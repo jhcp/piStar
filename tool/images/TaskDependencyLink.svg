@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="31.916656mm"
+   height="10.384943mm"
+   viewBox="0 0 113.09051 36.797042"
+   id="svg4276"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="TaskDependencyLink.svg">
+  <defs
+     id="defs4278">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path4257"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="-18.443263"
+     inkscape:cy="87.141348"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4281">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-296.47155,-1165.2036)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.78378999"
+       inkscape:connector-curvature="0"
+       d="m 409.44646,1189.4665 c -9.24699,-2.8548 -18.49399,-5.7097 -28.65552,-7.0532 -10.16153,-1.3434 -21.2376,-1.1755 -32.31367,-1.0076"
+       id="v-39-6"
+       class="connection" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.78378999"
+       inkscape:connector-curvature="0"
+       d="m 296.58715,1191.133 c 9.24699,-2.8549 18.49398,-5.7098 28.65551,-7.0532 10.16153,-1.3435 21.2376,-1.1756 32.31367,-1.0076"
+       id="v-39"
+       class="connection" />
+    <g
+       class="label"
+       id="v-66"
+       label-idx="0"
+       transform="matrix(0.98501715,0.1724564,-0.17245639,0.98501721,394.87069,1203.414)">
+      <rect
+         rx="3"
+         ry="3"
+         x="-8.65625"
+         y="-16.296875"
+         width="17.328125"
+         height="27"
+         transform="matrix(0.99713483,0.07564471,-0.07564471,0.99713483,0,0)"
+         id="rect25"
+         style="fill:none" />
+      <text
+         font-size="24"
+         id="v-67"
+         y="-9.0617008"
+         display="null"
+         xml:space="preserve"
+         transform="matrix(0.99713483,0.07564471,-0.07564471,0.99713483,0,0)"
+         style="font-size:24px;font-family:sans-serif;text-anchor:middle;stroke-width:2"
+         x="0.49294722"><tspan
+           dy="0"
+           x="0.49294722"
+           id="v-68"
+           class="v-line">D</tspan></text>
+      <g
+         class="scalable"
+         id="v-95"
+         transform="matrix(0.47843683,-0.08376452,0.17613862,1.0060489,-77.15034,-24.575061)"
+         style="fill:#ffffff;stroke:none">
+        <polygon
+           id="v-96"
+           points="0,18 15,0 115,0 130,18 115,36 15,36 "
+           width="130"
+           height="36"
+           style="fill:#cdfecd;stroke:#000000;stroke-width:2" />
+      </g>
+    </g>
+    <text
+       id="v-36"
+       y="1186.6021"
+       display="null"
+       xml:space="preserve"
+       font-size="12"
+       font-weight="bold"
+       x="353.58145"
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000;stroke:none"><tspan
+         x="353.58145"
+         id="v-38"
+         class="v-line">task</tspan></text>
+  </g>
+</svg>

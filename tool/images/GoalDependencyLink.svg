@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="31.916656mm"
+   height="10.384943mm"
+   viewBox="0 0 113.09051 36.797042"
+   id="svg4276"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="GoalDependencyLink.svg">
+  <defs
+     id="defs4278">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path4257"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="-45.825147"
+     inkscape:cy="72.855631"
+     inkscape:document-units="px"
+     inkscape:current-layer="v-66"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4281">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-296.47155,-1165.2036)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.78378999"
+       inkscape:connector-curvature="0"
+       d="m 409.44646,1189.4665 c -9.24699,-2.8548 -18.49399,-5.7097 -28.65552,-7.0532 -10.16153,-1.3434 -21.2376,-1.1755 -32.31367,-1.0076"
+       id="v-39-6"
+       class="connection" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.78378999"
+       inkscape:connector-curvature="0"
+       d="m 296.58715,1191.133 c 9.24699,-2.8549 18.49398,-5.7098 28.65551,-7.0532 10.16153,-1.3435 21.2376,-1.1756 32.31367,-1.0076"
+       id="v-39"
+       class="connection" />
+    <g
+       style="fill:#ffffff;stroke:#000000;stroke-width:0.99963313;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       class="scalable"
+       id="v-34"
+       transform="matrix(0.53262535,0,0,1.1862711,318.42332,1165.8081)">
+      <rect
+         id="v-35"
+         width="130"
+         height="30"
+         rx="20"
+         x="0"
+         y="0"
+         style="fill:#cdfecd;stroke:#000000;stroke-width:0.99963313;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+    <g
+       transform="matrix(0.98501715,0.1724564,-0.17245639,0.98501721,-177.94179,737.09711)"
+       id="v-58"
+       class="labels">
+      <g
+         transform="translate(642.32074,362.98303)"
+         label-idx="0"
+         id="v-66"
+         class="label">
+        <rect
+           style="fill:none"
+           id="rect25"
+           transform="matrix(0.99713483,0.07564471,-0.07564471,0.99713483,0,0)"
+           height="27"
+           width="17.328125"
+           y="-16.296875"
+           x="-8.65625"
+           ry="3"
+           rx="3" />
+        <text
+           style="font-size:24px;font-family:sans-serif;text-anchor:middle;stroke-width:2"
+           transform="matrix(0.99713483,0.07564471,-0.07564471,0.99713483,0,0)"
+           xml:space="preserve"
+           display="null"
+           y="-11.492947"
+           id="v-67"
+           font-size="24"
+           x="1.9382991"><tspan
+             class="v-line"
+             id="v-68"
+             x="1.9382991"
+             dy="0">D</tspan></text>
+        <text
+           id="v-36-33"
+           y="-24.192678"
+           display="null"
+           xml:space="preserve"
+           font-size="12"
+           font-weight="bold"
+           x="-39.669514"
+           style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000;stroke:none"
+           transform="matrix(0.98501718,-0.1724564,0.17245639,0.98501712,0,0)"><tspan
+             x="-39.669514"
+             id="v-38-1"
+             class="v-line" /></text>
+        <text
+           id="v-36-3"
+           y="-19.56951"
+           display="null"
+           xml:space="preserve"
+           font-size="12"
+           font-weight="bold"
+           x="-39.049793"
+           style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000;stroke:none"
+           transform="matrix(0.98501718,-0.1724564,0.17245639,0.98501712,0,0)"><tspan
+             x="-39.049793"
+             id="v-38-4"
+             class="v-line">goal</tspan></text>
+      </g>
+    </g>
+  </g>
+</svg>

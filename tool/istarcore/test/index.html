@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>iStar 2 barebones test suite</title>
+        <link rel="stylesheet" href="qunit/qunit-1.19.0.css">
+    </head>
+    <body>
+
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+
+		<!-- Testing framework: -->
+        <script src="qunit/qunit-git.js"></script>
+
+        <!-- Dependencies:  -->
+        <script src="../lib/jquery.min.js"></script>
+        <script src="../lib/lodash.min.js"></script>
+        <script src="../lib/backbone.min.js"></script>
+        <script>
+        //polyfill to work around a feature that is no longer available at Chrome
+        //further info: https://groups.google.com/d/msg/jointjs/qIKIiJCEClI/qfrT-wQJAgAJ
+        SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement || function(toElement) {
+            return toElement.getScreenCTM().inverse().multiply(this.getScreenCTM());
+        };
+        </script>
+        <script src="../lib/joint.min.js"></script>
+
+		<!-- Applicatiion code: -->
+        <script src="../istarcore.js"></script>
+        <script src="../metamodel.js"></script>
+        <script src="../istarcore.metamodel.js"></script>
+
+		<!-- Tests: -->
+        <script src="test.js"></script>
+
+
+    </body>
+</html>

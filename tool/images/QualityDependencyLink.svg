@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="31.916656mm"
+   height="10.384943mm"
+   viewBox="0 0 113.09051 36.797042"
+   id="svg4276"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="QualityDependencyLink.svg">
+  <defs
+     id="defs4278">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible"
+       id="Arrow1Lstart"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Arrow1Lstart">
+      <path
+         transform="matrix(0.8,0,0,0.8,10,0)"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt"
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 Z"
+         id="path4257"
+         inkscape:connector-curvature="0" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8"
+     inkscape:cx="-13.991255"
+     inkscape:cy="58.569919"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4281">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-296.47155,-1165.2036)">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.78378999"
+       inkscape:connector-curvature="0"
+       d="m 409.44646,1189.4665 c -9.24699,-2.8548 -18.49399,-5.7097 -28.65552,-7.0532 -10.16153,-1.3434 -21.2376,-1.1755 -32.31367,-1.0076"
+       id="v-39-6"
+       class="connection" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.78378999"
+       inkscape:connector-curvature="0"
+       d="m 296.58715,1191.133 c 9.24699,-2.8549 18.49398,-5.7098 28.65551,-7.0532 10.16153,-1.3435 21.2376,-1.1756 32.31367,-1.0076"
+       id="v-39"
+       class="connection" />
+    <rect
+       style="fill:none"
+       id="rect25"
+       transform="matrix(0.9691495,0.24647362,-0.2464736,0.96914951,0,0)"
+       height="27.000002"
+       width="17.328125"
+       y="1052.666"
+       x="670.64227"
+       ry="3.0000002"
+       rx="3" />
+    <text
+       x="679.7915"
+       style="font-size:24px;font-family:sans-serif;text-anchor:middle;stroke-width:2"
+       transform="matrix(0.96914947,0.24647362,-0.24647361,0.96914953,0,0)"
+       xml:space="preserve"
+       display="null"
+       y="1059.9011"
+       id="v-67"
+       font-size="24"><tspan
+         class="v-line"
+         id="v-68"
+         x="679.7915"
+         dy="0">D</tspan></text>
+    <g
+       style="fill:#ffffff;stroke:none"
+       transform="matrix(0.52842549,0,0,0.67262708,323.33173,1173.3959)"
+       id="v-88"
+       class="scalable">
+      <path
+         style="fill:#cdfecd;stroke:#000000;stroke-width:2"
+         inkscape:connector-curvature="0"
+         d="m 60.637955,-4.0358 c 17.5174,2.2042 29.9953,-10.69554 41.892705,-4.7858 22.34142,10.8714 11.2203,43.7743 -2.25,47.7322 -8.276505,2.9084 -13.960205,5.1934 -46.142805,-2.1786 -6.7454,-2.2317 -28.2652,6.0799 -35.4643,4.7143 C 9.072156,39.4809 6.491756,33.7693 3.744956,28.482 c -6.3069,-15.1266 -2.5738,-28.0439 7.981099,-34.7856 10.5549,-6.74179 27.9316,-7.30796 48.9119,2.2678 z"
+         id="v-89" />
+    </g>
+    <text
+       id="v-36"
+       y="1186.6021"
+       display="null"
+       xml:space="preserve"
+       font-size="12"
+       font-weight="bold"
+       x="353.58145"
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000;stroke:none">quality</text>
+  </g>
+</svg>

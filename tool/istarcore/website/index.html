@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="João Pimentel">
+
+    <title>istarcore</title>
+
+</head>
+
+<body>
+    Interact with the library in your browser's console. Use the 'istar' object.
+    Useful commands:
+    <ul>
+        <li>istar.getElements(): returns every element in the model (including dependums)</li>
+    </ul>
+    Example:
+    <pre>
+a1 = istar.addActor(0, 0, 'person'); // adds an actor named 'person' in position 0,0
+istar.getElements();
+a1.isKindOfActor(); //expected result: true
+a1.isAgent(); //expected result: false
+a1.isActor(); //expected result: true
+a1.isGoal(); //expected result: false
+a2 = istar.addAgent(0, 0, 'john doe'); // adds an agent named 'john doe' in position 0,0
+g1 = istar.addGoal(0,0,"goal 1");
+istar.embedNode(g1, a2); // states that g1 (goal 1) is a goal of a2 (john doe)
+_.map(istar.getElements(), function(node) { console.log(node.attr('text/text')); }); // prints the 'content' of each element in the model: person, john doe, and goal 1.
+console.log('id:', g1.prop('parent')); // prints the id of the parent of g1
+a2.prop('customProperties/height', 1.87); // stores a custom property in a2
+console.log(a2.prop('customProperties/height')); // reads that custom property from a2
+console.log(a2.prop('customProperties')); // reads every custom property from a2
+    </pre>
+</body>
+
+<!-- dependencies -->
+<script src="../lib/jquery.min.js"></script>
+<script src="../lib/lodash.min.js"></script>
+<script src="../lib/backbone.min.js"></script>
+
+<script src="../lib/joint.js"></script>
+
+<!-- istar core -->
+<script src="../istarcore.metamodel.js"></script>
+<script src="../istarcore.js"></script>
+<script src="../metamodel.js"></script>
+
+<!-- tool specific -->
+<script src="../fileManager.js"></script>
+
+<script src="main.js"></script>
+
+<!-- tool's plugins -->
+
+</html>

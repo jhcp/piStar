@@ -1,0 +1,132 @@
+body {
+	padding: 0;
+    padding-bottom: 40px;
+	margin: 0;
+}
+#diagramOuter {
+	height: 600px;
+	padding:7px 5px;
+	background-color: lightgray;
+
+}
+#diagram {
+    overflow: scroll;
+	height: 100%;
+}
+
+svg {
+    border: solid lightgray 2px;
+    background-color: white;
+    margin: 0;
+}
+
+
+.remove-element {
+	cursor: pointer;
+}
+.remove-element circle {
+    fill: grey;
+}
+
+.remove-element path {
+    fill: white;
+}
+
+.link-tools .tool-remove path {
+    /*display: none;*/
+}
+
+.link-tools .tool-remove circle {
+    /*display: none;*/
+	fill: grey;
+}
+
+.link-tools, .marker-arrowheads {
+    /*display: none;*/
+}
+
+.tool-options {
+    display: none;
+}
+
+.navbar {
+    margin-bottom:0;
+}
+
+/* change the height of the navbar. Based on http://stackoverflow.com/questions/19576175/how-do-you-decrease-navbar-height-in-bootstrap-3 */
+.navbar-nav > li > a, .navbar-brand {padding-top:5px !important; padding-bottom:0 !important; height: 30px; } .navbar {min-height:30px !important;}
+body {
+    padding-top: 34px;/* required if the navbar is fixed at the top*/
+}
+
+#extraOptions {
+    min-height: 200px;
+}
+
+#addToolbar {
+    background-color: rgb(48, 48, 48);
+    color: white;
+    margin:0;
+}
+#addToolbar .btn{
+    font-family:sans-serif;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.toolbar {
+    background-color: rgb(48, 48, 48);
+}
+#propertiesPanel {
+    padding:10px;
+    background-color: white;
+    height: 200px;
+    margin:7px;
+    overflow: auto;
+}
+.btn {
+    padding-top:3px;
+    padding-bottom:3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin-top: 2px;
+}
+.toolbarGroup {
+	border-top: 1px black solid;
+	border-bottom: 1px black solid;
+	border-right: 1px black solid;
+	border-left: 1px black solid;
+	background-color: white;
+	border-radius: 5px;
+	margin-left: 0px;
+	left: 0px;
+	padding:5px;
+}
+
+
+table {
+    width: 100%;
+    /*border: solid lightgray 1px;*/
+    margin: 0;
+    font-size: 12px;
+}
+
+propertyName {
+    width: 20%;
+}
+
+#appToolbar  {
+    height: 100%;
+    background-color: lightgray;
+    margin:7px;
+    padding:7px;
+    min-height: 200px;
+}
+button:focus{
+	/*border: solid rgb(54,162,214) 5px;*/
+}
+
+.highlighted {
+	outline:5px dashed rgb(34,177,76);
+}
