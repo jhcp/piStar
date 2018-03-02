@@ -3,13 +3,13 @@ body {
     padding-bottom: 40px;
 	margin: 0;
 }
-#diagramOuter {
+#diagramBoxOuter {
 	height: 600px;
 	padding:7px 5px;
 	background-color: lightgray;
 
 }
-#diagram {
+#diagramBoxInner {
     overflow: scroll;
 	height: 100%;
 }
