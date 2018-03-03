@@ -12,6 +12,9 @@ All notable changes to this project will be documented in this file.
   - Now it is also applied for the SVG file
   - Now it also trims empty space on the left and the top of the model
   - Now it is a bit tighter (less empty space) 
+  
+### Fixed
+- Fix limitation of 1.5mb for downloading PNG file on Chrome
 
 ## [Release v1.0.0] - 2017-03-19
 - First release
