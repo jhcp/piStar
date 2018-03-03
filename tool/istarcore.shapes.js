@@ -301,6 +301,7 @@ joint.shapes.istar.DependencyLink = joint.dia.Link.extend({
 						'stroke-width': 2,
 						'font-size': 24,
 						'font-family': 'sans-serif',
+                        'font-style': 'normal',
 					},
 					rect: {
 						fill: 'none',
