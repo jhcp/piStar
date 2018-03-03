@@ -4,7 +4,7 @@ function saveSvg(paperId) {
 	//access the SVG element and serialize it
     var originalWidth = istar.paper.getArea().width;
     var originalHeight = istar.paper.getArea().height;
-    istar.paper.fitToContent({padding: 40});
+    istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
     $('svg').attr('width', istar.paper.getArea().width);
     $('svg').attr('height', istar.paper.getArea().height);
 	var text = (new XMLSerializer()).serializeToString(document.getElementById(paperId).childNodes[2]);
@@ -19,7 +19,7 @@ function saveSvg(paperId) {
 function savePng(paperId, callback) {
 	var originalWidth = istar.paper.getArea().width;
 	var originalHeight = istar.paper.getArea().height;
-	istar.paper.fitToContent({padding: 40});
+	istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
 
 	//create a canvas, which is used to convert the SVG to png
 	var canvas = document.createElement('canvas');
