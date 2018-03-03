@@ -3,6 +3,6 @@ $(document).ready(function(){
     istar.setupDiagram();
     istar.setupMetamodel(istarcoreMetamodel);
     ui.defineInteractions();
-    // examples.pistarIntro();
+    examples.pistarIntro();
     ui.setupUi();
 });

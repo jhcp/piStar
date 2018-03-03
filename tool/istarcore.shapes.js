@@ -239,6 +239,7 @@ joint.shapes.istar.ParticipatesInLink = joint.dia.Link.extend({
         type: 'istar.ParticipatesInLink',
 		arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
         attrs: {
+            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior https://groups.google.com/forum/#!topic/jointjs/CpQ2TtoQW4E
 			'.marker-target': {
 				d: 'M 10 0 L 5 5 L 10 5 M 5 5 L 10 10',
 				fill:'none',
@@ -266,6 +267,7 @@ joint.shapes.istar.IsALink = joint.dia.Link.extend({
         type: 'istar.IsALink',
 		arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
         attrs: {
+            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
 			'.marker-target': {
 				d: 'M 10 0 L 5 5 L 10 5 M 5 5 L 10 10',
 				fill:'none',
@@ -312,7 +314,9 @@ joint.shapes.istar.DependencyLink = joint.dia.Link.extend({
 		//necessary in order to prevent filling the curves when saving the image
 		attrs: {
 			'.connection': { fill: 'none' },
-			'.connection-wrap': { fill: 'none' }
+			'.connection-wrap': { fill: 'none' },
+            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
+            '.marker-target': {d: '',}, //required in order to have correct fitToContent behavior
 		},
 		source: {selector: 'text'},
 		target: {selector: 'text'},
@@ -325,14 +329,17 @@ joint.shapes.istar.AndRefinementLink = joint.dia.Link.extend({
         type: 'istar.AndRefinementLink',
 		arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
         attrs: {
+            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
 			'.marker-target': {
 				d: 'M 15 0 L 15 8 M 15 4 L 5 4 ',
 				// d:    'M 15 0 L 15 20 M 15 10 L 0 10 ',
 				// d: 'M 15 0 L 15 20 M 15 10 L 0 10 ',
 				fill:'black',
 				'stroke-width':1 },
+
 			'.connection': { fill: 'none' },//necessary in order to prevent filling the curves when saving the image
 			'.connection-wrap': { fill: 'none' }//necessary in order to prevent filling the curves when saving the image
+
 		},
         smooth: false
     }, joint.dia.Link.prototype.defaults)
@@ -342,6 +349,7 @@ joint.shapes.istar.OrRefinementLink = joint.dia.Link.extend({
         type: 'istar.OrRefinementLink',
 		arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
         attrs: {
+            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
 			'.marker-target': {
 				d: 'M 15 0 L 5 5 L 15 10 z',
 				fill:'black',
@@ -376,7 +384,9 @@ joint.shapes.istar.NeededByLink = joint.dia.Link.extend({
 		],
 		attrs: {
 			'.connection': { fill: 'none' },//necessary in order to prevent filling the curves when saving the image
-			'.connection-wrap': { fill: 'none' }//necessary in order to prevent filling the curves when saving the image
+			'.connection-wrap': { fill: 'none' },//necessary in order to prevent filling the curves when saving the image
+            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
+            '.marker-target': {d: '',}, //required in order to have correct fitToContent behavior
 		},
         smooth: false
     }, joint.dia.Link.prototype.defaults)
@@ -400,6 +410,7 @@ joint.shapes.istar.ContributionLink = joint.dia.Link.extend({
 			}
 		],
 		attrs: {
+            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
 			'.marker-target': {
 				d: 'M 15 0 L 5 5 L 15 5 M 5 5 L 15 10',
 				fill:'none',
@@ -416,6 +427,8 @@ joint.shapes.istar.QualificationLink = joint.dia.Link.extend({
         type: 'istar.QualificationLink',
 		arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
         attrs: {
+            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
+            '.marker-target': {d: '',}, //required in order to have correct fitToContent behavior
 			'.connection': {
                 'fill': 'none',
                 'stroke-dasharray': '10,5'
