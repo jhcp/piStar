@@ -15,6 +15,28 @@ function saveSvg(paperId) {
 	return "data:image/svg+xml," + encodeURIComponent(text);
 }
 
+//Polyfill for when the browser does not support canvas.toBlob()
+//From https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob
+if (!HTMLCanvasElement.prototype.toBlob) {
+    Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
+        value: function (callback, type, quality) {
+            var canvas = this;
+            setTimeout(function() {
+
+                var binStr = atob( canvas.toDataURL(type, quality).split(',')[1] ),
+                    len = binStr.length,
+                    arr = new Uint8Array(len);
+
+                for (var i = 0; i < len; i++ ) {
+                    arr[i] = binStr.charCodeAt(i);
+                }
+
+                callback( new Blob( [arr], {type: type || 'image/png'} ) );
+
+            });
+        }
+    });
+}
 
 function savePng(paperId, callback) {
 	var originalWidth = istar.paper.getArea().width;
@@ -43,8 +65,11 @@ function savePng(paperId, callback) {
         canvasContext.fillRect(0, 0, canvas.width, canvas.height);
         canvasContext.drawImage(imageElement, 0, 0, canvas.width, canvas.height);//insert the SVG image into the canvas. This does the actual rasterization of the image
 
-        var png_dataurl = canvas.toDataURL("image/png");//get the canvas content as a PNG image
-        callback(png_dataurl);
+        canvas.toBlob(function(blob) {
+            var linkToDownload = URL.createObjectURL(blob);
+            callback(linkToDownload);
+        });
+
     };
 
 }
