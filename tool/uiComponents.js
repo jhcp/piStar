@@ -162,6 +162,7 @@ uiC.CellTableView = Backbone.View.extend({
             if (newPropertyName) {
                 if (! ui.currentElement.prop('customProperties/' + newPropertyName) ) {
                     ui.currentElement.prop('customProperties/' + newPropertyName, '');
+                    new uiC.CellTableView({model: ui.currentElement}).render();
                 }
                 else {
                     alert('ERROR: This property has been previously defined');
