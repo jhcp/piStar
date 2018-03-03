@@ -475,7 +475,6 @@ function deleteRemoveElementButton() {
 }
 function createRemoveButton(position) {
     deleteRemoveElementButton();
-console.log('creating button');
     removeElementButton = V('<g class="remove-element" event="remove"><circle stroke="black" stroke-width="1" r="11" z="1000"/><path z="500" transform="scale(.8) translate(-16, -16)" d="M24.778,21.419 19.276,15.917 24.777,10.415 21.949,7.585 16.447,13.087 10.945,7.585 8.117,10.415 13.618,15.917 8.116,21.419 10.946,24.248 16.447,18.746 21.948,24.248z"/></g>');
     $('.joint-viewport').append(removeElementButton.node);
     removeElementButton.translate(position.x, position.y);
