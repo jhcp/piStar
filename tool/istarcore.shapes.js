@@ -204,10 +204,7 @@ joint.shapes.istar.Task = joint.shapes.basic.Polygon.extend({
                 text: 'Task',
                 'font-size': 12,
 				'font-weight': 'bold',
-                ref: 'polygon',
-                'ref-x': 0.5,
-                'ref-y': 0.5,
-                'y-alignment': 'middle',
+                'ref-dy': -18,
             }
         }
     }, joint.shapes.basic.Polygon.prototype.defaults)
@@ -229,10 +226,9 @@ joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
                 text: 'Quality',
                 'font-size': 12,
 				'font-weight': 'bold',
-                ref: 'path',
-                'ref-x': 0.5,
                 'ref-y': 0.5,
-                'y-alignment': 'middle'
+                'ref-dy': -42,
+                'y-alignment': 'middle',
             },
         }
     }, joint.shapes.basic.Path.prototype.defaults)
@@ -247,6 +243,7 @@ joint.shapes.istar.ParticipatesInLink = joint.dia.Link.extend({
 				d: 'M 10 0 L 5 5 L 10 5 M 5 5 L 10 10',
 				fill:'none',
 				'stroke-width':1.2 }},
+            'labelRectOffset':-44,  // in order to correctly position the box behind the label
         labels: [
 			{ position: 0.5,
 				attrs: {
@@ -255,8 +252,6 @@ joint.shapes.istar.ParticipatesInLink = joint.dia.Link.extend({
 						'font-weight': 400,
                         'font-size': 14
 					},
-					rect: {
-						fill: 'white' }
 				}
 			}
 		],
@@ -275,6 +270,7 @@ joint.shapes.istar.IsALink = joint.dia.Link.extend({
 				d: 'M 10 0 L 5 5 L 10 5 M 5 5 L 10 10',
 				fill:'none',
 				'stroke-width':1.2 }},
+            'labelRectOffset':-12,  // in order to correctly position the box behind the label
         labels: [
 			{ position: 0.5,
 				attrs: {
@@ -283,8 +279,6 @@ joint.shapes.istar.IsALink = joint.dia.Link.extend({
 						'font-weight': 400,
                         'font-size': 14
 					},
-					rect: {
-						fill: 'white' }
 				}
 			}
 		],

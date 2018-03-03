@@ -2,7 +2,15 @@
  */
 function saveSvg(paperId) {
 	//access the SVG element and serialize it
-	var text = (new XMLSerializer()).serializeToString(document.getElementById(paperId).childNodes[0]);
+    var originalWidth = istar.paper.getArea().width;
+    var originalHeight = istar.paper.getArea().height;
+    istar.paper.fitToContent({padding: 40});
+    $('svg').attr('width', istar.paper.getArea().width);
+    $('svg').attr('height', istar.paper.getArea().height);
+	var text = (new XMLSerializer()).serializeToString(document.getElementById(paperId).childNodes[2]);
+    $('svg').attr('width', '100%');
+    $('svg').attr('height', '100%');
+    istar.paper.setDimensions(originalWidth, originalHeight);
 
 	return "data:image/svg+xml," + encodeURIComponent(text);
 }
@@ -12,27 +20,33 @@ function savePng(paperId, callback) {
 	var originalWidth = istar.paper.getArea().width;
 	var originalHeight = istar.paper.getArea().height;
 	istar.paper.fitToContent({padding: 40});
+
 	//create a canvas, which is used to convert the SVG to png
 	var canvas = document.createElement('canvas');
 	var canvasContext = canvas.getContext('2d');
 
 	//create a img (DOM element) with the SVG content from our paper. This element will later be inserted in the canvas for converting to PNG
 	var imageElement = new Image();
-	var text = (new XMLSerializer()).serializeToString(document.getElementById(paperId).childNodes[0]);
+    $('svg').attr('width', istar.paper.getArea().width);
+    $('svg').attr('height', istar.paper.getArea().height);
+	var text = (new XMLSerializer()).serializeToString(document.getElementById(paperId).childNodes[2]);
+    $('svg').attr('width', '100%');
+    $('svg').attr('height', '100%');
 	imageElement.src = "data:image/svg+xml," +encodeURIComponent(text);
 	istar.paper.setDimensions(originalWidth, originalHeight);
 
-	imageElement.onload = function() {
-		canvas.width = imageElement.width*4; //multiply the width for better resolution
-		canvas.height = imageElement.height*4; //multiply the height for better resolution
-		//fill the canvas with a color. To create an image with transparent background, you just need to remove the 'fillRect' line
-		canvasContext.fillStyle = 'white';
-		canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-		canvasContext.drawImage(imageElement, 0, 0, canvas.width, canvas.height);//insert the SVG image into the canvas. This does the actual rasterization of the image
+    imageElement.onload = function() {
+        canvas.width = imageElement.width*4; //multiply the width for better resolution
+        canvas.height = imageElement.height*4; //multiply the height for better resolution
+        //fill the canvas with a color. To create an image with transparent background, you just need to remove the 'fillRect' line
+        canvasContext.fillStyle = 'white';
+        canvasContext.fillRect(0, 0, canvas.width, canvas.height);
+        canvasContext.drawImage(imageElement, 0, 0, canvas.width, canvas.height);//insert the SVG image into the canvas. This does the actual rasterization of the image
 
-		var png_dataurl = canvas.toDataURL("image/png");//get the canvas content as a PNG image
-		callback(png_dataurl);
-	};
+        var png_dataurl = canvas.toDataURL("image/png");//get the canvas content as a PNG image
+        callback(png_dataurl);
+    };
+
 }
 
 

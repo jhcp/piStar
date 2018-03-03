@@ -21,10 +21,8 @@ var istar = function(){
     var _createDefaultPaper = function(graph){
         return new joint.dia.Paper({
             el: $('#diagram'),
-            // width: 1300,
-            // height: 1300,
-            width: ($('#diagram').width() - 22)*1.5,
-            height: $('#diagram').height() * 2,
+             width: 1700,
+             height: 1300,
             model: graph,
             gridSize: 1,
             //async: true,
@@ -158,16 +156,19 @@ var istar = function(){
             if (angle > 90 || angle < -90) angle -= 180;//adjust the angle to prevent the text from being upside down
         }
 
+        var xOffset = link.attributes.labelRectOffset || 0;
         var yOffset = -8;
         if (link.attributes.type === V.sanitizeText(istar.linkTypes.dependency.name)) {
             yOffset=-11;
         }
-        //apply the new angle
 
+
+        //apply the new angle
         link.attr({
             'text': {transform: 'rotate('+ angle + ') translate(0,' + yOffset + ')' },
+            //'text': {transform: 'rotate('+ angle + ') translate(0,' + yOffset + ')' },
             // 'text': {transform: 'rotate('+ angle + ') translate(0,-8)' },
-            'rect': {transform: 'rotate('+ angle + ')' },
+            'rect': {transform: 'rotate('+ angle + ') translate(' + xOffset + ',' + yOffset + ')' },
         });
     };
 
