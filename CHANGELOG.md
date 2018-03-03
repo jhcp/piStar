@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file.
 ### Fixed
 - Fix limitation of 1.5mb for downloading PNG file on Chrome
 - Fix incorrect behavior of changing focus when hovering over an actor
+- Fix desync: when changing the label of a node through double click, the properties table wasn't updated
 
 ## [Release v1.0.0] - 2017-03-19
 - First release

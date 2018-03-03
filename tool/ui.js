@@ -189,6 +189,7 @@ ui.defineInteractions = function() {
             if (newText !== null) {
                 cellView.model.changeNodeContent(newText);
             }
+            new uiC.CellTableView({model: cellView.model}).render();
         }
     });
 
