@@ -1,14 +1,16 @@
 window.uiC = {};
 uiC.ButtonModel = Backbone.Model.extend({
     defaults: {
-            name: '',
-            label: '',
-            tooltip: '',
-            statusText: '',
-            precondition: function() {return true;},
-            action: 'view',
-            active: false
+        name: '',
+        label: '',
+        tooltip: '',
+        statusText: '',
+        precondition: function () {
+            return true;
         },
+        action: 'view',
+        active: false
+    },
     act: function () {
         if (ui.currentElement) {
             ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
@@ -28,7 +30,7 @@ uiC.ButtonModel = Backbone.Model.extend({
             $('#diagram .actorKindMain').css('cursor', 'crosshair');
         }
     },
-    end: function() {
+    end: function () {
         this.set('active', false);
         //resets the values of the app variables
 
@@ -45,28 +47,28 @@ uiC.ButtonModel = Backbone.Model.extend({
 });
 
 uiC.ButtonView = Backbone.View.extend({
-    tagName     : 'span',
-    className     : 'addButton',
-    template     : _.template($('#addButtonTemplate').html()),
+    tagName: 'span',
+    className: 'addButton',
+    template: _.template($('#addButtonTemplate').html()),
 
-    events : {
-        'mousedown button' : 'buttonClickHandler'//meaning: when its button is clicked, the buttonClickHandler is called
+    events: {
+        'mousedown button': 'buttonClickHandler'//meaning: when its button is clicked, the buttonClickHandler is called
     },
 
-    initialize : function(){
-        if (! this.model.get('name')) {
+    initialize: function () {
+        if (!this.model.get('name')) {
             this.model.set('name', this.model.get('label'));
         }
         this.listenTo(this.model, 'change:active', this.highlight);
     },
 
-    render : function(){
+    render: function () {
         this.$el.html(this.template(this.model.toJSON()));
         $('#addToolbarButtons').append(this.$el);
         return this;
     },
 
-    buttonClickHandler: function(event){
+    buttonClickHandler: function (event) {
         if (ui.currentButton) {
             ui.currentButton.end();
         }
@@ -91,26 +93,26 @@ uiC.ButtonView = Backbone.View.extend({
 
 uiC.DropdownItemView = Backbone.View.extend({
     tagName: 'li',
-    template     : _.template($('#addDropdownButtonTemplate').html()),
+    template: _.template($('#addDropdownButtonTemplate').html()),
 
-    events : {
-        'mousedown' : 'buttonClickHandler'//meaning: when its button is clicked, the buttonClickHandler is called
+    events: {
+        'mousedown': 'buttonClickHandler'//meaning: when its button is clicked, the buttonClickHandler is called
     },
 
-    initialize : function(){
-        if (! this.model.get('name')) {
+    initialize: function () {
+        if (!this.model.get('name')) {
             this.model.set('name', this.model.get('label'));
         }
         this.listenTo(this.model, 'change:active', this.highlight);
     },
 
-    render : function(){
+    render: function () {
         this.$el.html(this.template(this.model.toJSON()));
         $(this.attributes.parent).append(this.$el);
         return this;
     },
 
-    buttonClickHandler: function(event){
+    buttonClickHandler: function (event) {
         if (ui.currentButton) {
             ui.currentButton.end();
         }
@@ -130,40 +132,46 @@ uiC.DropdownItemView = Backbone.View.extend({
 
 
 uiC.CellTableView = Backbone.View.extend({
-    template     : _.template($('#propertyTemplate').html()),
+    template: _.template($('#propertyTemplate').html()),
 
-    initialize : function(){
+    initialize: function () {
         this.model.on('mouseup', this.render, this);
     },
 
-    render : function(){
-        $('#propertyTable tbody').html(this.template({propertyName: 'Text', propertyValue: this.model.attr('text/text').replace(/(\r\n|\n|\r)/gm,' ')}));
+    render: function () {
+        $('#propertyTable tbody').html(this.template({
+            propertyName: 'Text',
+            propertyValue: this.model.attr('text/text').replace(/(\r\n|\n|\r)/gm, ' ')
+        }));
         $('#propertyTable a').editable({
-            success: function(response, newValue) {
+            success: function (response, newValue) {
                 if (newValue) {
                     ui.currentElement.changeNodeContent(newValue);
                 }
             }
         })
-        .on('shown', ui.changeStateToEdit)
-        .on('hidden', ui.changeStateToView);
+            .on('shown', ui.changeStateToEdit)
+            .on('hidden', ui.changeStateToView);
 
-        for( var propertyName in this.model.prop('customProperties') ) {
-            $('#propertyTable tbody').append(this.template({'propertyName': propertyName, 'propertyValue': this.model.prop('customProperties/' + propertyName)}));
-            $('#current'+propertyName).editable({
-                    success: function(response, newValue) {
+        for (var propertyName in this.model.prop('customProperties')) {
+            $('#propertyTable tbody').append(this.template({
+                'propertyName': propertyName,
+                'propertyValue': this.model.prop('customProperties/' + propertyName)
+            }));
+            $('#current' + propertyName).editable({
+                    success: function (response, newValue) {
                         if (newValue) changeCustomPropertyValue(ui.currentElement, $(this).attr('data-name'), newValue); //update backbone model
                     }
                 }
             )
-            .on('shown', ui.changeStateToEdit)
-            .on('hidden', ui.changeStateToView);
+                .on('shown', ui.changeStateToEdit)
+                .on('hidden', ui.changeStateToView);
         }
         $('#cellButtons').html('<button type="button" id="addPropertyButton">Add Property</button>');
         $('#addPropertyButton').click(function () {
             var newPropertyName = window.prompt('Name of the new custom property', 'newProperty');
             if (newPropertyName) {
-                if (! ui.currentElement.prop('customProperties/' + newPropertyName) ) {
+                if (!ui.currentElement.prop('customProperties/' + newPropertyName)) {
                     ui.currentElement.prop('customProperties/' + newPropertyName, '');
                     new uiC.CellTableView({model: ui.currentElement}).render();
                 }
@@ -183,14 +191,14 @@ uiC.CellTableView = Backbone.View.extend({
 
                     currentView = istar.paper.findViewByModel(ui.currentElement);
                     ui.highlightFocus(currentView);
-                    
+
                 }
             });
         }
         return this;
     },
 
-    buttonClickHandler: function(event){
+    buttonClickHandler: function (event) {
         if (ui.currentButton) {
             ui.currentButton.end();
         }
@@ -203,7 +211,7 @@ uiC.CellTableView = Backbone.View.extend({
 
 });
 
-$(document).ready(function() {
+$(document).ready(function () {
     $.fn.editable.defaults.mode = 'inline';//x-editable setting
 });
 
