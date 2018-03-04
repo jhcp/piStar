@@ -10,6 +10,9 @@ uiC.ButtonModel = Backbone.Model.extend({
             active: false
         },
     act: function () {
+        if (ui.currentElement) {
+            ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
+        }
         this.set('active', true);
         ui.currentState = this.get('action');
         ui.currentAddingElement = this.get('name');
@@ -173,7 +176,15 @@ uiC.CellTableView = Backbone.View.extend({
         if (this.model.isKindOfActor()) {
             $('#cellButtons').append('<button type="button" id="collapseButton">Collapse/Expand</button>');
             $('#collapseButton').click(function () {
-                if (ui.currentElement) ui.currentElement.toggleCollapse();
+                if (ui.currentElement) {
+                    ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement), true);
+
+                    ui.currentElement.toggleCollapse();
+
+                    currentView = istar.paper.findViewByModel(ui.currentElement);
+                    ui.highlightFocus(currentView);
+                    
+                }
             });
         }
         return this;
@@ -188,7 +199,6 @@ uiC.CellTableView = Backbone.View.extend({
 
     highlight: function (element) {
         this.$('button').toggleClass('buttonHighlight', element.get('active'));
-        //perhaps it's better to use 'changedAttributes', to prevent unnecessary updates
     }
 
 });
