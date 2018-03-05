@@ -1,6 +1,7 @@
 /*! This is open-source. Feel free to use, modify, redistribute, and so on.
  */
 
+// noinspection JSUnusedGlobalSymbols
 var ui = {
     STATE_ADD_ACTOR: 'addActor',
     STATE_ADD_LINK: 'addLink',
@@ -29,7 +30,7 @@ var ui = {
     },
 
     isCurrentlyAddingElement: function () {
-        return this.currentAddingElement != 'none';
+        return this.currentAddingElement !== 'none';
     },
     isLinkSourceUndefined: function () {
         return this.linkSource === 'none';
@@ -49,7 +50,7 @@ var ui = {
     resetLinkTarget: function () {
         this.linkTarget = 'none';
         return this;
-    },
+    }
 };
 
 
@@ -268,7 +269,7 @@ ui.highlighter = {
         ry: -5,
         attrs: {
             'stroke-width': 2,
-            stroke: '#555555',
+            stroke: '#555555'
         }
     }
 };
@@ -286,7 +287,7 @@ ui.unhighlightFocus = function (cellView, keep) {
     }
     if (!keep) {
         ui.currentElement = null;
-        $('#propertyTable tbody').html('');
+        $('#propertyTable').find('tbody').html('');
         $('#cellButtons').html('');
     }
 };
@@ -330,7 +331,7 @@ ui.defineInteractions = function () {
         }
         else {
             if (cellView.model.get('parent')) {
-                parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')))
+                parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
                 parentView.$('rect').css({stroke: 'black', 'stroke-width': '2'});
                 parentView.$('circle').css({stroke: 'black', 'stroke-width': '2'});
             }
@@ -583,19 +584,25 @@ ui.connectLinksToShape = function () {
 };
 
 $('#saveImageButton').click(function () {
-    //hide vertex tools before saving
-    $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element').hide();
-    ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement), true);
+    var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
+    var $saveImage = $('#saveImage');
+    var currentView = istar.paper.findViewByModel(ui.currentElement);
+
+    //hide UI elements before saving
+    $jointMarkers.hide();
+    ui.unhighlightFocus(currentView, true);
 
     var svgData = saveSvg('diagram');
-    $('#saveImage').html(createDownloadLink('goalModel.svg', '◀ SVG', svgData, 'download SVG (vectorial)'));
+    $saveImage.html(createDownloadLink('goalModel.svg', '◀ SVG', svgData, 'download SVG (vectorial)'));
+    $saveImage.append(document.createTextNode(' - '));
 
-    $('#saveImage').append(document.createTextNode(' - '));
+    savePng('diagram', addPngLink);
 
-    var pngData = savePng('diagram', addPngLink);
-    $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element').show();
-    ui.highlightFocus(istar.paper.findViewByModel(ui.currentElement));
-    $('#saveImage').show();
+    $saveImage.show();
+
+    //show the UI elements again
+    $jointMarkers.show();
+    ui.highlightFocus(currentView);
 });
 
 function createDownloadLink(fileName, text, data, title) {
@@ -618,8 +625,7 @@ $('#saveModelButton').click(function () {
     var model = saveModel();
     csvData = 'data:text/json;charset=utf-8,' + escape(model);
     a = createDownloadLink('goalModel.txt', '◀ File', csvData, 'download goal model');
-    $('#saveModel').html(a);
-    $('#saveModel').show();
+    $('#saveModel').html(a).show();
 });
 
 $('#saveImage, a').click(function () {
@@ -635,7 +641,8 @@ $('#loadButton').click(function () {
     setTimeout(function () {
         //call the actual loading
         try {
-            if ($('#actualFileInput')[0].files.length === 0) {
+            var fileInput = $('#actualFileInput')[0];
+            if (fileInput.files.length === 0) {
                 //if there is no file selected, load the model from the textArea
                 fileManager.load($('#loadModelContent').val());
 
@@ -645,8 +652,8 @@ $('#loadButton').click(function () {
             }
             else {
                 //else, load model from file
-                var file = $('#actualFileInput')[0].files[0];
-                if (file.type == 'text/plain') {
+                var file = fileInput.files[0];
+                if (file.type === 'text/plain') {
                     var fileReader = new FileReader();
                     fileReader.onload = function (e) {
                         fileManager.load(e.target.result);
@@ -746,14 +753,19 @@ $('#feedbackArea').on('hide.bs.collapse', function () {
 
 $(document).keyup(function (e) {
     if (ui.currentElement !== null) {
-        if (ui.currentState === 'view') {
-            if (e.which == 46) {  //delete
+        if (ui.currentStateIsView()) {
+            if (e.which === 46) {  //delete
                 ui.currentElement.remove();
                 ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
             }
-            if (e.which == 27) {  //esc
+            if (e.which === 27) {  //esc
                 ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
             }
+        }
+    }
+    if (ui.isCurrentlyAddingElement()) {
+        if (e.which === 27) {  //esc
+            ui.currentButton.end();
         }
     }
 });
@@ -764,13 +776,13 @@ ui.changeStateToEdit = function () {
 };
 ui.changeStateToView = function () {
     ui.currentState = 'view';
-
 };
 
 ui.resetPointerStyles = function () {
-    $('#diagram').css('cursor', 'auto');
-    $('#diagram g').css('cursor', 'move');
-    $('#diagram .actorKindMain').css('cursor', 'move');
+    $diagram = $('#diagram');
+    $diagram.css('cursor', 'auto');
+    $diagram.find('g').css('cursor', 'move');
+    $diagram.find('.actorKindMain').css('cursor', 'move');
     $('.link-tools g').css('cursor', 'pointer');
 };
 

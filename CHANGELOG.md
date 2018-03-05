@@ -18,6 +18,8 @@ All notable changes to this project will be documented in this file.
   - Fixed some bugs that could cause (i) accidental delete and (ii) blocked UI when adding a link
   - The user can now de-select an element (ESC or click on empty space)
   - Auto-focus on an element when adding it 
+- Allow users to cancel an element/link insertion
+  - Now the user can press ESC and cancel the action of adding an element or link. This is important since otherwise the UI could get blocked (for instance, if the user selected to add a link, clicked on the source, but didn't have an element to be the target).
   
 ### Fixed
 - Fix limitation of 1.5mb for downloading PNG file on Chrome
