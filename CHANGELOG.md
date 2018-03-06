@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+- No unreleased change yet
+
+## [Release v1.0.1] - 2018-03-05
 ### Added
 - Changelog file
 

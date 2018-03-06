@@ -85,7 +85,7 @@ function saveModel() {
         'actors': [],
         'dependencies': [],
         'links': [],
-        'tool': 'pistar.1.0.0',
+        'tool': 'pistar.1.0.1',
         "istar": "2.0",
         "saveDate": date,
         'diagram': diagram
