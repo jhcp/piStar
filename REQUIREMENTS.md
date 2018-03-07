@@ -13,9 +13,9 @@
 # User Stories
 
 ## Unreleased
-- [X] <details><summary><p>**As a** modeler from a non-english speaking country
+<details><summary><p>**As a** modeler from a non-english speaking country
 **I want to** be able to write content that contains non-english symbols
-**so that** I can create a goal model in my native language</p></summary>
+**so that** I can create a goal model in my native language</p></summary><p>
   - Examples:
     - المتطلبات الهندسية (Arabic)
     - 需求工程 (Chinese)
@@ -27,7 +27,7 @@
     - Try in elements' name
     - Try in the content of a custom property
     - Try in the name of a custom property  
-</details>
+  </p></details>
 
 
 ## Release 1.0.0
