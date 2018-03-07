@@ -13,21 +13,21 @@
 # User Stories
 
 ## Unreleased
-<details><summary><p>**As a** modeler from a non-english speaking country
+_ <details><summary>**As a** modeler from a non-english speaking country
 **I want to** be able to write content that contains non-english symbols
-**so that** I can create a goal model in my native language</p></summary><p>
-  - Examples:
-    - المتطلبات الهندسية (Arabic)
-    - 需求工程 (Chinese)
-    - 要求工学 (Japanese)
-    - Açafrão (Portuguese)
-    - разработка требований (Russian)
-    - ihtiyaç mühendisliği (Turkish)
-  - Tests:
-    - Try in elements' name
-    - Try in the content of a custom property
-    - Try in the name of a custom property  
-  </p></details>
+**so that** I can create a goal model in my native language</summary>
+- Examples:
+  - المتطلبات الهندسية (Arabic)
+  - 需求工程 (Chinese)
+  - 要求工学 (Japanese)
+  - Açafrão (Portuguese)
+  - разработка требований (Russian)
+  - ihtiyaç mühendisliği (Turkish)
+- Tests:
+  - Try in elements' name
+  - Try in the content of a custom property
+  - Try in the name of a custom property  
+</details>
 
 
 ## Release 1.0.0
