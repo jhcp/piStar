@@ -7,7 +7,7 @@
 
 Currently, this tool is deployed at http://www.cin.ufpe.br/~jhcp/pistar/
 
-Please check our [requirements doc](requirements.md), our [development instructions](development.md), and our [contributors list](contributors.md). For further information please contact jhcp at cin ufpe br
+Please check our [requirements doc](REQUIREMENTS.md), our [development instructions](DEVELOPMENT.md), and our [contributors list](CONTRIBUTORS.md). For further information please contact jhcp at cin ufpe br
 
 ## A hackable tool
 Feel like getting inside The Matrix? Open your browser's console (usualy ctrl+shift+c) and try one of these examples:
@@ -33,7 +33,7 @@ _.map(istar.graph.getNeighbors(ui.currentElement), function(node) { istar.paper.
 ```
 
 ## Licensing
-This is open-source, you can fork and use it as you see fit. Push requests are very welcome, we will add you to our Contributors list!
+This is open-source, you can fork and use it as you see fit. Push requests are very welcome, we will add you to our [contributors list](CONTRIBUTORS.md)!
 
 Of course, the world is a better place when we work together to make it better. So, if you want to extend the tool with some functionality that you think will be useful to others, please get in touch so that we can make it available for everybody. In the future we plan to provide support for plugins, so stay tuned.
 
