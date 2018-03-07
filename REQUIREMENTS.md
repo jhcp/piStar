@@ -13,8 +13,29 @@
 # User Stories
 
 ## Unreleased
-_ <details><summary>**As a** modeler from a non-english speaking country
-**I want to** be able to write content that contains non-english symbols
+
+<details><summary>
+  
+**As a** modeler 
+**I want to** save and load visual aspects of my model
+**so that** I can reopen my diagram exactly as I left it</summary>
+- Additional information:
+  - Vertexes on links
+  - Collapsed actors
+</details>
+
+<details><summary>
+  
+**As a** modeler 
+**I want to** define custom attributes for the model itself 
+ **so that** I can provide additional information such as project name, project description, and company</summary>
+TBD
+</details>
+
+<details><summary>
+  
+**As a** modeler from a non-english speaking country
+**I want to** write content that contains non-english symbols
 **so that** I can create a goal model in my native language</summary>
 - Examples:
   - المتطلبات الهندسية (Arabic)
