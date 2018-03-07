@@ -623,7 +623,7 @@ function addPngLink(pngData) {
 
 $('#saveModelButton').click(function () {
     var model = saveModel();
-    csvData = 'data:text/json;charset=utf-8,' + escape(model);
+    csvData = 'data:text/json;charset=utf-8,' + (encodeURI(model));
     a = createDownloadLink('goalModel.txt', '◀ File', csvData, 'download goal model');
     $('#saveModel').html(a).show();
 });

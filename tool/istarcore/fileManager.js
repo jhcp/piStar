@@ -310,7 +310,7 @@ fileManager = {
     outputSavedModel: function (modelJson, newTab) {
         var stringifiedModel = JSON.stringify(modelJson, null, 2);
         if (newTab) {
-            window.open("data:text/json;charset=utf-8," + escape(stringifiedModel));//this open the content of the file in a new tab
+            window.open("data:text/json;charset=utf-8," + encodeURI(stringifiedModel));//this open the content of the file in a new tab
         }
         console.log(stringifiedModel);
 

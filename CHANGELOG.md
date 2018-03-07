@@ -2,7 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
-- No unreleased change yet
+### Added
+- Ability to save/load models with text containing non-native symbols, by encoding the content 
 
 ## [Release v1.0.1] - 2018-03-05
 ### Added
