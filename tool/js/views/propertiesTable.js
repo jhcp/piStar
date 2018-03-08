@@ -19,7 +19,7 @@ uiC.CellTableView = Backbone.View.extend({
         $('#propertyTable a').editable({
             success: function (response, newValue) {
                 if (newValue) {
-                    ui.currentElement.changeNodeContent(newValue);
+                    ui.getSelectedElement().changeNodeContent(newValue);
                 }
             }
         })
@@ -33,7 +33,7 @@ uiC.CellTableView = Backbone.View.extend({
             }));
             $('#current' + propertyName).editable({
                     success: function (response, newValue) {
-                        if (newValue) changeCustomPropertyValue(ui.currentElement, $(this).attr('data-name'), newValue); //update backbone model
+                        if (newValue) changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue); //update backbone model
                     }
                 }
             )
@@ -44,9 +44,9 @@ uiC.CellTableView = Backbone.View.extend({
         $('#addPropertyButton').click(function () {
             var newPropertyName = window.prompt('Name of the new custom property', 'newProperty');
             if (newPropertyName) {
-                if (!ui.currentElement.prop('customProperties/' + newPropertyName)) {
-                    ui.currentElement.prop('customProperties/' + newPropertyName, '');
-                    //new uiC.CellTableView({model: ui.currentElement}).render();
+                if (!ui.getSelectedElement().prop('customProperties/' + newPropertyName)) {
+                    ui.getSelectedElement().prop('customProperties/' + newPropertyName, '');
+                    //new uiC.CellTableView({model: ui.getSelectedElement()}).render();
                 }
                 else {
                     alert('ERROR: This property has been previously defined');
@@ -57,9 +57,9 @@ uiC.CellTableView = Backbone.View.extend({
         if (this.model.isKindOfActor()) {
             $('#cellButtons').append('<button type="button" id="collapseButton">Collapse/Expand</button>');
             $('#collapseButton').click(function () {
-                if (ui.currentElement) {
+                if (ui.getSelectedElement()) {
                     ui.hideSelection();//remove the focus from the actor
-                    ui.currentElement.toggleCollapse();
+                    ui.getSelectedElement().toggleCollapse();
                     ui.unhideSelection();//give the focus back to actor, now collapsed or expanded
                 }
             });

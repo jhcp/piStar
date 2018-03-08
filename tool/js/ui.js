@@ -2,103 +2,110 @@
  */
 
 // noinspection JSUnusedGlobalSymbols
-var ui = {
-    STATE_ADD_ACTOR: 'addActor',
-    STATE_ADD_LINK: 'addLink',
-    STATE_ADD_NODE: 'addNode',
-    STATE_VIEW: 'view',
+var ui = function() {
+    var selectedElement = null;
 
-    currentButton: null, //the button that is currently selected
-    currentState: 'view',
-    currentAddingElement: 'none',
-    linkSource: 'none',
-    linkTarget: 'none',
-    dependencyType: 'GoalDependencyLink',
-    currentElement: null,
+    return {
+        STATE_ADD_ACTOR: 'addActor',
+            STATE_ADD_LINK: 'addLink',
+        STATE_ADD_NODE: 'addNode',
+        STATE_VIEW: 'view',
 
-    currentStateIsAddKindOfActor: function () {
-        return this.currentState === this.STATE_ADD_ACTOR;
-    },
-    currentStateIsAddLink: function () {
-        return this.currentState === this.STATE_ADD_LINK;
-    },
-    currentStateIsAddNode: function () {
-        return this.currentState === this.STATE_ADD_NODE;
-    },
-    currentStateIsView: function () {
-        return this.currentState === this.STATE_VIEW;
-    },
+        currentButton: null, //the button that is currently selected
+        currentState: 'view',
+        currentAddingElement: 'none',
+        linkSource: 'none',
+        linkTarget: 'none',
+        dependencyType: 'GoalDependencyLink',
+        currentElement: null,
 
-    isCurrentlyAddingElement: function () {
-        return this.currentAddingElement !== 'none';
-    },
-    isLinkSourceUndefined: function () {
-        return this.linkSource === 'none';
-    },
-    isLinkTargetUndefined: function () {
-        return this.linkTarget === 'none';
-    },
+        currentStateIsAddKindOfActor: function () {
+            return this.currentState === this.STATE_ADD_ACTOR;
+        },
+        currentStateIsAddLink: function () {
+            return this.currentState === this.STATE_ADD_LINK;
+        },
+        currentStateIsAddNode: function () {
+            return this.currentState === this.STATE_ADD_NODE;
+        },
+        currentStateIsView: function () {
+            return this.currentState === this.STATE_VIEW;
+        },
 
-    resetAddingElement: function () {
-        this.currentAddingElement = 'none';
-        return this;
-    },
-    resetLinkSource: function () {
-        this.linkSource = 'none';
-        return this;
-    },
-    resetLinkTarget: function () {
-        this.linkTarget = 'none';
-        return this;
-    },
-    selectElement: function(element, elementView) {
-        if (element) {
-            var toTrigger = false;
-            if (this.currentElement && this.currentElement != element) {
-                this.clearSelection();
+        isCurrentlyAddingElement: function () {
+            return this.currentAddingElement !== 'none';
+        },
+        isLinkSourceUndefined: function () {
+            return this.linkSource === 'none';
+        },
+        isLinkTargetUndefined: function () {
+            return this.linkTarget === 'none';
+        },
+
+        resetAddingElement: function () {
+            this.currentAddingElement = 'none';
+            return this;
+        },
+        resetLinkSource: function () {
+            this.linkSource = 'none';
+            return this;
+        },
+        resetLinkTarget: function () {
+            this.linkTarget = 'none';
+            return this;
+        },
+        getSelectedElement: function() {
+            return this.selectedElement;
+        },
+        selectElement: function(element, elementView) {
+            if (element) {
+                var toTrigger = false;
+                if (this.selectedElement && this.selectedElement != element) {
+                    this.clearSelection();
+                }
+                if (this.selectedElement != element) {
+                    //there is no need to trigger a change:selection event if the same element is being selected
+                    toTrigger = true;
+                }
+
+                //actual selection change
+                this.selectedElement = element;
+
+                if (toTrigger) {
+                    elementView = elementView || istar.paper.findViewByModel(element);
+                    istar.paper.trigger('change:selection', {selectedElement: element, selectedElementView: elementView});
+                }
             }
-            if (this.currentElement != element) {
-                //there is no need to trigger a change:selection event if the same element is being selected
-                toTrigger = true;
+        },
+        deselectElement: function(element, elementView) {
+            if (element) {
+                var elementView = elementView || istar.paper.findViewByModel(element);
+
+                //actual selection change
+                this.selectedElement = null;
+
+                istar.paper.trigger('change:selection', {deselectedElement: element, deselectedElementView: elementView});
             }
+        },
+        clearSelection: function() {
+            if (this.selectedElement) {
+                var elementView = istar.paper.findViewByModel(this.selectedElement);
 
-            //actual selection change
-            this.currentElement = element;
-
-            if (toTrigger) {
-                elementView = elementView || istar.paper.findViewByModel(element);
-                istar.paper.trigger('change:selection', {selectedElement: element, selectedElementView: elementView});
+                this.deselectElement(this.selectedElement, elementView);
             }
-        }
-    },
-    deselectElement: function(element, elementView) {
-        if (element) {
-            var elementView = elementView || istar.paper.findViewByModel(element);
-
-            //actual selection change
-            this.currentElement = null;
-
-            istar.paper.trigger('change:selection', {deselectedElement: element, deselectedElementView: elementView});
-        }
-    },
-    clearSelection: function() {
-        if (this.currentElement) {
-            var elementView = istar.paper.findViewByModel(this.currentElement);
-
-            this.deselectElement(this.currentElement, elementView);
-        }
-    },
-    hideSelection: function() {
-        if (this.currentElement) {
-            this.unhighlightFocus(istar.paper.findViewByModel(this.currentElement));
-        }
-    },
-    unhideSelection: function() {
-        if (this.currentElement) {
-            this.highlightFocus(istar.paper.findViewByModel(this.currentElement));
+        },
+        hideSelection: function() {
+            if (this.selectedElement) {
+                this.unhighlightFocus(istar.paper.findViewByModel(this.selectedElement));
+            }
+        },
+        unhideSelection: function() {
+            if (this.selectedElement) {
+                this.highlightFocus(istar.paper.findViewByModel(this.selectedElement));
+            }
         }
     }
-};
+}();
 
 //create the ADD buttons
 new uiC.DropdownItemView({
@@ -349,8 +356,7 @@ ui.defineInteractions = function () {
     });
 
     istar.paper.on('blank:pointerdown', function (evt, x, y) {
-        if (ui.currentElement) {
-            // ui.deselectElement();
+        if (ui.getSelectedElement()) {
             ui.clearSelection();
         }
         if (ui.currentStateIsAddKindOfActor()) {
@@ -460,9 +466,6 @@ ui.defineInteractions = function () {
         }
         else if (ui.currentStateIsView()) {
             if (!cellView.model.isLink()) {
-                // if (ui.currentElement) {
-                //     ui.deselectElement();
-                // }
                 ui.selectElement(cellView.model, cellView);
             }
         }
@@ -653,7 +656,7 @@ $('#saveImageButton').click(function () {
 
     //show the UI elements again
     $jointMarkers.show();
-    ui.unhideSelection(ui.currentElement);
+    ui.unhideSelection(ui.getSelectedElement());
 });
 
 function createDownloadLink(fileName, text, data, title) {
@@ -803,15 +806,13 @@ $('#feedbackArea').on('hide.bs.collapse', function () {
 });
 
 $(document).keyup(function (e) {
-    if (ui.currentElement !== null) {
+    if (ui.getSelectedElement() !== null) {
         if (ui.currentStateIsView()) {
             if (e.which === 46) {  //delete
-                ui.currentElement.remove();
-                // ui.deselectElement();
+                ui.getSelectedElement().remove();
                 ui.clearSelection();
             }
             if (e.which === 27) {  //esc
-                // ui.deselectElement();
                 ui.clearSelection();
             }
         }

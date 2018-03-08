@@ -13,9 +13,7 @@ uiC.ButtonModel = Backbone.Model.extend({
     },
     act: function () {
         ui.clearSelection();
-        // if (ui.currentElement) {
-        //     ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
-        // }
+
         this.set('active', true);
         ui.currentState = this.get('action');
         ui.currentAddingElement = this.get('name');
