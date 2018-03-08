@@ -17,7 +17,7 @@ var ui = function() {
         linkSource: 'none',
         linkTarget: 'none',
         dependencyType: 'GoalDependencyLink',
-        currentElement: null,
+        selectedElement: null,
 
         currentStateIsAddKindOfActor: function () {
             return this.currentState === this.STATE_ADD_ACTOR;
@@ -108,36 +108,36 @@ var ui = function() {
 }();
 
 //create the ADD buttons
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addActorDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Role',
         action: ui.STATE_ADD_ACTOR,
         tooltip: 'Add Role',
         statusText: 'Now click on an empty space in the diagram to add a Role'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addActorDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Agent',
         action: ui.STATE_ADD_ACTOR,
         tooltip: 'Add Agent',
         statusText: 'Now click on an empty space in the diagram to add an Agent'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addActorDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Actor',
         action: ui.STATE_ADD_ACTOR,
         tooltip: 'Add Actor',
         statusText: 'Now click on an empty space in the diagram to add an Actor'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addActorLinkDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Is A link',
         action: ui.STATE_ADD_LINK,
         name: 'IsALink',
@@ -145,9 +145,9 @@ new uiC.DropdownItemView({
         statusText: 'Adding Is-A link: click on the sub-element and then on the super-element.'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addActorLinkDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Participates-In link',
         action: ui.STATE_ADD_LINK,
         name: 'ParticipatesInLink',
@@ -155,9 +155,9 @@ new uiC.DropdownItemView({
         statusText: 'Adding Participates-In link: click on the source, and then on the target.'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addDependencyDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Goal dependency',
         action: ui.STATE_ADD_LINK,
         name: 'GoalDependencyLink',
@@ -165,9 +165,9 @@ new uiC.DropdownItemView({
         statusText: 'Goal Dependency link: click first on the depender, and then on the dependee.'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addDependencyDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Quality dependency',
         action: ui.STATE_ADD_LINK,
         name: 'QualityDependencyLink',
@@ -175,9 +175,9 @@ new uiC.DropdownItemView({
         statusText: 'Quality Dependency link: click first on the depender, and then on the dependee.'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addDependencyDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Task dependency',
         action: ui.STATE_ADD_LINK,
         name: 'TaskDependencyLink',
@@ -185,9 +185,9 @@ new uiC.DropdownItemView({
         statusText: 'Task Dependency link: click first on the depender, and then on the dependee.'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addDependencyDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Resource dependency',
         action: ui.STATE_ADD_LINK,
         name: 'ResourceDependencyLink',
@@ -195,8 +195,8 @@ new uiC.DropdownItemView({
         statusText: 'Resource Dependency link: click first on the depender, and then on the dependee.'
     })
 }).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
+new uiC.AddButtonView({
+    model: new uiC.AddButtonModel({
         label: 'Goal',
         action: ui.STATE_ADD_NODE,
         name: 'Goal',
@@ -212,24 +212,24 @@ new uiC.ButtonView({
         }
     })
 }).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
+new uiC.AddButtonView({
+    model: new uiC.AddButtonModel({
         label: 'Task',
         action: ui.STATE_ADD_NODE,
         tooltip: 'Add Task',
         statusText: 'Click on an actor/role/agent to add a Task'
     })
 }).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
+new uiC.AddButtonView({
+    model: new uiC.AddButtonModel({
         label: 'Resource',
         action: ui.STATE_ADD_NODE,
         tooltip: 'Add Resource',
         statusText: 'Click on an actor/role/agent to add a Resource'
     })
 }).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
+new uiC.AddButtonView({
+    model: new uiC.AddButtonModel({
         label: 'Quality',
         action: ui.STATE_ADD_NODE,
         name: 'Quality',
@@ -237,8 +237,8 @@ new uiC.ButtonView({
         statusText: 'Click on an actor/role/agent to add a Quality'
     })
 }).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
+new uiC.AddButtonView({
+    model: new uiC.AddButtonModel({
         label: 'And-Refinement',
         action: ui.STATE_ADD_LINK,
         name: 'AndRefinementLink',
@@ -246,8 +246,8 @@ new uiC.ButtonView({
         statusText: 'And-Refinement link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
     })
 }).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
+new uiC.AddButtonView({
+    model: new uiC.AddButtonModel({
         label: 'Or-Refinement',
         action: ui.STATE_ADD_LINK,
         name: 'OrRefinementLink',
@@ -255,8 +255,8 @@ new uiC.ButtonView({
         statusText: 'Or-Refinement link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
     })
 }).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
+new uiC.AddButtonView({
+    model: new uiC.AddButtonModel({
         label: 'Qualification',
         action: ui.STATE_ADD_LINK,
         name: 'QualificationLink',
@@ -264,8 +264,8 @@ new uiC.ButtonView({
         statusText: 'Qualification link: click first on the Quality and then on the element it qualifies (Goal, Task or Resource).'
     })
 }).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
+new uiC.AddButtonView({
+    model: new uiC.AddButtonModel({
         label: 'Needed-By',
         action: ui.STATE_ADD_LINK,
         name: 'NeededByLink',
@@ -273,9 +273,9 @@ new uiC.ButtonView({
         statusText: 'Needed-By link: click first on the Resource and then on the Task that needs it.'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addContributionDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Make (++)',
         action: ui.STATE_ADD_LINK,
         name: 'make',
@@ -283,9 +283,9 @@ new uiC.DropdownItemView({
         statusText: 'Make (++) Contribution link: click first on an element and then on the Quality it contributes to.'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addContributionDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Help (+)',
         action: ui.STATE_ADD_LINK,
         name: 'help',
@@ -293,9 +293,9 @@ new uiC.DropdownItemView({
         statusText: 'Help (+) Contribution link: click first on an element and then on the Quality it contributes to.'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addContributionDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Hurt (-)',
         action: ui.STATE_ADD_LINK,
         name: 'hurt',
@@ -303,9 +303,9 @@ new uiC.DropdownItemView({
         statusText: 'Hurt (-) Contribution link: click first on an element and then on the Quality it contributes to.'
     })
 }).render();
-new uiC.DropdownItemView({
+new uiC.AddButtonDropdownItemView({
     attributes: {parent: '#addContributionDropdown'},
-    model: new uiC.ButtonModel({
+    model: new uiC.AddButtonModel({
         label: 'Break (--)',
         action: ui.STATE_ADD_LINK,
         name: 'break',
@@ -342,7 +342,7 @@ ui.unhighlightFocus = function (cellView) {
 ui.defineInteractions = function () {
     istar.paper.on('change:selection', function(selection) {
         if (selection.selectedElement) {
-            ui.table = new uiC.CellTableView({model: selection.selectedElement}).render();
+            ui.table = new uiC.PropertiesTableView({model: selection.selectedElement}).render();
             if (selection.selectedElementView) {
                 ui.highlightFocus(selection.selectedElementView);
             }
@@ -848,3 +848,12 @@ ui._toggleSmoothness = function (link, vertices, something) {
         link.set('smooth', false);
     }
 };
+
+
+$(document).ready(function () {
+    $.fn.editable.defaults.mode = 'inline';//x-editable setting
+});
+
+function changeCustomPropertyValue(model, propertyName, propertyValue) {
+    model.prop('customProperties/' + propertyName, propertyValue);
+}

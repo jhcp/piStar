@@ -1,6 +1,6 @@
 window.uiC = window.uiC || {};  //prevents overriding the variable, while also preventing working with a null variable
 
-uiC.CellTableView = Backbone.View.extend({
+uiC.PropertiesTableView = Backbone.View.extend({
     template: _.template($('#propertyTemplate').html()),
     propertyTemplate: _.template($('#propertyTemplate').html()),
 
@@ -46,7 +46,6 @@ uiC.CellTableView = Backbone.View.extend({
             if (newPropertyName) {
                 if (!ui.getSelectedElement().prop('customProperties/' + newPropertyName)) {
                     ui.getSelectedElement().prop('customProperties/' + newPropertyName, '');
-                    //new uiC.CellTableView({model: ui.getSelectedElement()}).render();
                 }
                 else {
                     alert('ERROR: This property has been previously defined');
