@@ -43,6 +43,7 @@ var istar = function () {
             'breakLine': true,
             'breakWidth': 90
         });
+        this.prop('name', content);
         //add the line breaks automatically
         if (options.breakLine && content) {
             content = joint.util.breakText(content, {width: options.breakWidth});
@@ -368,8 +369,11 @@ var istar = function () {
                 'breakLine': true,
                 'breakWidth': 90
             });
-            //add the line breaks automatically
+            var clearTypeName = typeName.substring(typeName.lastIndexOf('.') + 1);
+            content = content || clearTypeName;//if the content is empty, use the type name as the name of the element
+            var originalContent = content;
             if (options.breakLine && content) {
+                //add the line breaks automatically
                 content = joint.util.breakText(content, {width: options.breakWidth});
             }
             //create the node and add it to the graph
@@ -377,22 +381,16 @@ var istar = function () {
             if (options.id) {
                 node = new shape({
                     id: options.id,
-                    // var node = new istar.nodeTypes[shape].className({
                     position: {x: x, y: y},
-                    attrs: {
-                        text: {text: content}
-                    }
                 });
             }
             else {
                 node = new shape({
-                    // var node = new istar.nodeTypes[shape].className({
                     position: {x: x, y: y},
-                    attrs: {
-                        text: {text: content}
-                    }
                 });
             }
+            node.prop('name', originalContent);
+            node.attr('text/text', content);
             node.prop('type', typeName);
             istar.graph.addCell(node);
             return node;

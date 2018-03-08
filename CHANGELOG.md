@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Ability to save/load models with text containing non-native symbols, by encoding the content 
 
+### Changed
+- Now the name of an element is a property of its own, instead of being stored just in the SVG (its view) 
+- Added change:selection events, allowing developers to react to it
+
+### Fixed
+- Fixed error when pressing ctrl+click on a non-actor element
+- Refactoring
+- Performance enhacement related to the Properties Table View
+
 ## [Release v1.0.1] - 2018-03-05
 ### Added
 - Changelog file

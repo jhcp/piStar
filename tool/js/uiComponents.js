@@ -12,9 +12,10 @@ uiC.ButtonModel = Backbone.Model.extend({
         active: false
     },
     act: function () {
-        if (ui.currentElement) {
-            ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
-        }
+        ui.clearSelection();
+        // if (ui.currentElement) {
+        //     ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
+        // }
         this.set('active', true);
         ui.currentState = this.get('action');
         ui.currentAddingElement = this.get('name');
@@ -130,86 +131,6 @@ uiC.DropdownItemView = Backbone.View.extend({
 
 });
 
-
-uiC.CellTableView = Backbone.View.extend({
-    template: _.template($('#propertyTemplate').html()),
-
-    initialize: function () {
-        this.model.on('mouseup', this.render, this);
-    },
-
-    render: function () {
-        $('#propertyTable tbody').html(this.template({
-            propertyName: 'Text',
-            propertyValue: this.model.attr('text/text').replace(/(\r\n|\n|\r)/gm, ' ')
-        }));
-        $('#propertyTable a').editable({
-            success: function (response, newValue) {
-                if (newValue) {
-                    ui.currentElement.changeNodeContent(newValue);
-                }
-            }
-        })
-            .on('shown', ui.changeStateToEdit)
-            .on('hidden', ui.changeStateToView);
-
-        for (var propertyName in this.model.prop('customProperties')) {
-            $('#propertyTable tbody').append(this.template({
-                'propertyName': propertyName,
-                'propertyValue': this.model.prop('customProperties/' + propertyName)
-            }));
-            $('#current' + propertyName).editable({
-                    success: function (response, newValue) {
-                        if (newValue) changeCustomPropertyValue(ui.currentElement, $(this).attr('data-name'), newValue); //update backbone model
-                    }
-                }
-            )
-                .on('shown', ui.changeStateToEdit)
-                .on('hidden', ui.changeStateToView);
-        }
-        $('#cellButtons').html('<button type="button" id="addPropertyButton">Add Property</button>');
-        $('#addPropertyButton').click(function () {
-            var newPropertyName = window.prompt('Name of the new custom property', 'newProperty');
-            if (newPropertyName) {
-                if (!ui.currentElement.prop('customProperties/' + newPropertyName)) {
-                    ui.currentElement.prop('customProperties/' + newPropertyName, '');
-                    new uiC.CellTableView({model: ui.currentElement}).render();
-                }
-                else {
-                    alert('ERROR: This property has been previously defined');
-                }
-            }
-        });
-
-        if (this.model.isKindOfActor()) {
-            $('#cellButtons').append('<button type="button" id="collapseButton">Collapse/Expand</button>');
-            $('#collapseButton').click(function () {
-                if (ui.currentElement) {
-                    ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement), true);
-
-                    ui.currentElement.toggleCollapse();
-
-                    currentView = istar.paper.findViewByModel(ui.currentElement);
-                    ui.highlightFocus(currentView);
-
-                }
-            });
-        }
-        return this;
-    },
-
-    buttonClickHandler: function (event) {
-        if (ui.currentButton) {
-            ui.currentButton.end();
-        }
-        this.model.act();
-    },
-
-    highlight: function (element) {
-        this.$('button').toggleClass('buttonHighlight', element.get('active'));
-    }
-
-});
 
 $(document).ready(function () {
     $.fn.editable.defaults.mode = 'inline';//x-editable setting

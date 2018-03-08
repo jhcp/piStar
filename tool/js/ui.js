@@ -50,9 +50,55 @@ var ui = {
     resetLinkTarget: function () {
         this.linkTarget = 'none';
         return this;
+    },
+    selectElement: function(element, elementView) {
+        if (element) {
+            var toTrigger = false;
+            if (this.currentElement && this.currentElement != element) {
+                this.clearSelection();
+            }
+            if (this.currentElement != element) {
+                //there is no need to trigger a change:selection event if the same element is being selected
+                toTrigger = true;
+            }
+
+            //actual selection change
+            this.currentElement = element;
+
+            if (toTrigger) {
+                elementView = elementView || istar.paper.findViewByModel(element);
+                istar.paper.trigger('change:selection', {selectedElement: element, selectedElementView: elementView});
+            }
+        }
+    },
+    deselectElement: function(element, elementView) {
+        if (element) {
+            var elementView = elementView || istar.paper.findViewByModel(element);
+
+            //actual selection change
+            this.currentElement = null;
+
+            istar.paper.trigger('change:selection', {deselectedElement: element, deselectedElementView: elementView});
+        }
+    },
+    clearSelection: function() {
+        if (this.currentElement) {
+            var elementView = istar.paper.findViewByModel(this.currentElement);
+
+            this.deselectElement(this.currentElement, elementView);
+        }
+    },
+    hideSelection: function() {
+        if (this.currentElement) {
+            this.unhighlightFocus(istar.paper.findViewByModel(this.currentElement));
+        }
+    },
+    unhideSelection: function() {
+        if (this.currentElement) {
+            this.highlightFocus(istar.paper.findViewByModel(this.currentElement));
+        }
     }
 };
-
 
 //create the ADD buttons
 new uiC.DropdownItemView({
@@ -279,22 +325,33 @@ ui.highlightFocus = function (cellView) {
     });
 };
 
-ui.unhighlightFocus = function (cellView, keep) {
+ui.unhighlightFocus = function (cellView) {
     if (cellView) {
         cellView.unhighlight(null, {
             highlighter: ui.highlighter
         });
     }
-    if (!keep) {
-        ui.currentElement = null;
-        $('#propertyTable').find('tbody').html('');
-        $('#cellButtons').html('');
-    }
 };
 ui.defineInteractions = function () {
+    istar.paper.on('change:selection', function(selection) {
+        if (selection.selectedElement) {
+            ui.table = new uiC.CellTableView({model: selection.selectedElement}).render();
+            if (selection.selectedElementView) {
+                ui.highlightFocus(selection.selectedElementView);
+            }
+        }
+        else if (selection.deselectedElement){
+            ui.unhighlightFocus(selection.deselectedElementView);
+            ui.table.remove();
+            $('#propertyTable').find('tbody').html('');
+            $('#cellButtons').html('');
+        }
+    });
+
     istar.paper.on('blank:pointerdown', function (evt, x, y) {
         if (ui.currentElement) {
-            ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
+            // ui.deselectElement();
+            ui.clearSelection();
         }
         if (ui.currentStateIsAddKindOfActor()) {
             ui.addElementOnPaper(x, y);
@@ -339,7 +396,12 @@ ui.defineInteractions = function () {
     });
     istar.paper.on('cell:pointerup', function (cellView, evt, x, y) {
         if (evt.ctrlKey) {
-            cellView.model.toggleCollapse();  //collapse/uncollapse actors when ctrl-clicked
+            //collapse/uncollapse actors when ctrl-clicked
+            if (cellView.model.isKindOfActor()) {
+                ui.hideSelection();//remove the focus from the actor
+                cellView.model.toggleCollapse();
+                ui.unhideSelection();//give the focus back to actor, now collapsed or expanded
+            }
         }
         if (ui.currentStateIsAddNode()) {
             ui.addElementOnActor(cellView, x - 50, y - 18);
@@ -398,13 +460,10 @@ ui.defineInteractions = function () {
         }
         else if (ui.currentStateIsView()) {
             if (!cellView.model.isLink()) {
-                if (ui.currentElement) {
-                    ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
-                }
-                ui.highlightFocus(cellView);
-                ui.currentElement = cellView.model;
-
-                new uiC.CellTableView({model: cellView.model}).render();
+                // if (ui.currentElement) {
+                //     ui.deselectElement();
+                // }
+                ui.selectElement(cellView.model, cellView);
             }
         }
     });
@@ -420,12 +479,11 @@ ui.defineInteractions = function () {
             }
         }
         else {
-            oldText = cellView.model.attr('text/text').replace(/(\r\n|\n|\r)/gm, ' ');
+            oldText = cellView.model.prop('name');
             newText = window.prompt('Edit text:', oldText);
             if (newText !== null) {
                 cellView.model.changeNodeContent(newText);
             }
-            new uiC.CellTableView({model: cellView.model}).render();
         }
     });
 
@@ -435,10 +493,9 @@ ui.defineInteractions = function () {
 
 ui.addElementOnPaper = function (x, y) {
     try {
+        console.log('adding actor');
         newActor = istar['add' + ui.currentAddingElement](x, y);
-        ui.currentElement = newActor;
-        ui.highlightFocus(istar.paper.findViewByModel(newActor));
-        new uiC.CellTableView({model: newActor}).render();
+        ui.selectElement(newActor);
     } catch (e) {
         console.log(e);
     } finally {
@@ -449,9 +506,7 @@ ui.addElementOnPaper = function (x, y) {
 ui.addElementOnActor = function (cellView, x, y) {
     try {
         element = addElementInPlace(cellView.model, istar[istar.PREFIX_ADD + ui.currentAddingElement], x, y);
-        ui.currentElement = element;
-        ui.highlightFocus(istar.paper.findViewByModel(element));
-        new uiC.CellTableView({model: element}).render();
+        ui.selectElement(element);
     } catch (e) {
         console.log(e);
     } finally {
@@ -532,9 +587,7 @@ function addDependency(source, dependencyType, target) {
         links[0].on('change:vertices', ui._toggleSmoothness);
         links[1].on('change:vertices', ui._toggleSmoothness);
 
-        ui.currentElement = node;
-        ui.highlightFocus(istar.paper.findViewByModel(node));
-        new uiC.CellTableView({model: node}).render();
+        ui.selectElement(node);
     }
 }
 
@@ -563,7 +616,6 @@ function addElementInPlace(clickedNode, callback, x, y) {
 ui.changeColorActorContainer = function (color) {
     _.map(istar.getElements(), function (node) {
         if (node.isKindOfActor()) {
-            //istar.paper.findViewByModel(node).highlight();
             node.attr('rect', {fill: color});
         }
     });
@@ -586,11 +638,10 @@ ui.connectLinksToShape = function () {
 $('#saveImageButton').click(function () {
     var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
     var $saveImage = $('#saveImage');
-    var currentView = istar.paper.findViewByModel(ui.currentElement);
 
     //hide UI elements before saving
     $jointMarkers.hide();
-    ui.unhighlightFocus(currentView, true);
+    ui.hideSelection();
 
     var svgData = saveSvg('diagram');
     $saveImage.html(createDownloadLink('goalModel.svg', '◀ SVG', svgData, 'download SVG (vectorial)'));
@@ -602,7 +653,7 @@ $('#saveImageButton').click(function () {
 
     //show the UI elements again
     $jointMarkers.show();
-    ui.highlightFocus(currentView);
+    ui.unhideSelection(ui.currentElement);
 });
 
 function createDownloadLink(fileName, text, data, title) {
@@ -756,10 +807,12 @@ $(document).keyup(function (e) {
         if (ui.currentStateIsView()) {
             if (e.which === 46) {  //delete
                 ui.currentElement.remove();
-                ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
+                // ui.deselectElement();
+                ui.clearSelection();
             }
             if (e.which === 27) {  //esc
-                ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
+                // ui.deselectElement();
+                ui.clearSelection();
             }
         }
     }
