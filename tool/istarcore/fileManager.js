@@ -268,8 +268,7 @@ fileManager = {
         }
     },
     elementToJSON: function (element) {
-        var text = element.attr('text/text');
-        text = text.replace(/\n/g, ' ');
+        var text = element.prop('name');
         var result = {
             'id': element.id,
             'text': text,
@@ -304,7 +303,6 @@ fileManager = {
             type: link.prop('type'),
             source: link.attributes.source.id,
             target: link.attributes.target.id,
-            //text: link.attr('text/text'),
         };
     },
     outputSavedModel: function (modelJson, newTab) {

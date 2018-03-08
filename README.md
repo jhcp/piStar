@@ -19,7 +19,7 @@ istar.addActor(10,10,'Eric');
 
 - Get the content of each element of the model:
 ```javascript
-_.map(istar.getElements(), function(node) { return node.attr('text/text'); });
+_.map(istar.getElements(), function(node) { return node.prop('name'); });
 ```
 
 - Find out if the selected element is a goal (for this you first need to click on an element of the goal model):
