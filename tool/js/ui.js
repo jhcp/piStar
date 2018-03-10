@@ -684,5 +684,7 @@ function changeCustomPropertyValue(model, propertyName, propertyValue) {
         propertyValue = $.trim(propertyValue);
         model.prop('customProperties/' + propertyName, propertyValue);
     }
+
+    return model;
 }
 

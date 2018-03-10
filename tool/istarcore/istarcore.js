@@ -43,6 +43,7 @@ var istar = function () {
             'breakLine': true,
             'breakWidth': 90
         });
+        content = $.trim(content);
         this.prop('name', content);
         //add the line breaks automatically
         if (options.breakLine && content) {
