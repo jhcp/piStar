@@ -48,8 +48,9 @@ var istar = function () {
         if (options.breakLine && content) {
             content = joint.util.breakText(content, {width: options.breakWidth});
         }
-
+        ui.hideSelection();//workaround for jointjs bug: changing the path of a highlight when changing an attribute of a CellView
         this.attr('text/text', content);
+        ui.unhideSelection();//workaround for jointjs bug: changing the path of a highlight when changing an attribute of a CellView
         return this;
     };
     var _embedNode = function (node) {

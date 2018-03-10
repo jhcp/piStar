@@ -496,7 +496,6 @@ ui.defineInteractions = function () {
 
 ui.addElementOnPaper = function (x, y) {
     try {
-        console.log('adding actor');
         newActor = istar['add' + ui.currentAddingElement](x, y);
         ui.selectElement(newActor);
     } catch (e) {
@@ -857,3 +856,4 @@ $(document).ready(function () {
 function changeCustomPropertyValue(model, propertyName, propertyValue) {
     model.prop('customProperties/' + propertyName, propertyValue);
 }
+
