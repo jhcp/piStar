@@ -19,17 +19,17 @@ istar.addActor(10,10,'Eric');
 
 - Get the content of each element of the model:
 ```javascript
-_.map(istar.getElements(), function(node) { return node.attr('text/text'); });
+_.map(istar.getElements(), function(node) { return node.prop('name'); });
 ```
 
 - Find out if the selected element is a goal (for this you first need to click on an element of the goal model):
 ```javascript
-ui.currentElement.isGoal();
+ui.getSelectedElement().isGoal();
 ```
 
 - Highlight every neighbor of the selected element (for this you first need to click on an element of the goal model):
 ```javascript
-_.map(istar.graph.getNeighbors(ui.currentElement), function(node) { istar.paper.findViewByModel(node).highlight(); });
+_.map(istar.graph.getNeighbors(ui.getSelectedElement()), function(node) { istar.paper.findViewByModel(node).highlight(); });
 ```
 
 ## Licensing

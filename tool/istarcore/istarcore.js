@@ -43,12 +43,14 @@ var istar = function () {
             'breakLine': true,
             'breakWidth': 90
         });
+        this.prop('name', content);
         //add the line breaks automatically
         if (options.breakLine && content) {
             content = joint.util.breakText(content, {width: options.breakWidth});
         }
-
+        ui.hideSelection();//workaround for jointjs bug: changing the path of a highlight when changing an attribute of a CellView
         this.attr('text/text', content);
+        ui.showSelection();//workaround for jointjs bug: changing the path of a highlight when changing an attribute of a CellView
         return this;
     };
     var _embedNode = function (node) {
@@ -368,8 +370,11 @@ var istar = function () {
                 'breakLine': true,
                 'breakWidth': 90
             });
-            //add the line breaks automatically
+            var clearTypeName = typeName.substring(typeName.lastIndexOf('.') + 1);
+            content = content || clearTypeName;//if the content is empty, use the type name as the name of the element
+            var originalContent = content;
             if (options.breakLine && content) {
+                //add the line breaks automatically
                 content = joint.util.breakText(content, {width: options.breakWidth});
             }
             //create the node and add it to the graph
@@ -377,22 +382,16 @@ var istar = function () {
             if (options.id) {
                 node = new shape({
                     id: options.id,
-                    // var node = new istar.nodeTypes[shape].className({
                     position: {x: x, y: y},
-                    attrs: {
-                        text: {text: content}
-                    }
                 });
             }
             else {
                 node = new shape({
-                    // var node = new istar.nodeTypes[shape].className({
                     position: {x: x, y: y},
-                    attrs: {
-                        text: {text: content}
-                    }
                 });
             }
+            node.prop('name', originalContent);
+            node.attr('text/text', content);
             node.prop('type', typeName);
             istar.graph.addCell(node);
             return node;
@@ -460,22 +459,22 @@ var istar = function () {
             "use strict";
             //TODO prevent repeated links
 
-            var link;
+            var link1;
             if (depender.isKindOfActor()) {
-                link = new joint.shapes.istar.DependencyLink({
+                link1 = new joint.shapes.istar.DependencyLink({
                     'source': {id: depender.id, selector: 'circle'},
                     'target': {id: dependum.id}
                 });
             }
             else {
-                link = new joint.shapes.istar.DependencyLink({
+                link1 = new joint.shapes.istar.DependencyLink({
                     'source': {id: depender.id},
                     'target': {id: dependum.id}
                 });
             }
 
-            istar.graph.addCell(link);
-            _updateLinkLabelRotation(link, depender, dependum);
+            istar.graph.addCell(link1);
+            _updateLinkLabelRotation(link1, depender, dependum);
 
             var link2;
             if (dependee.isKindOfActor()) {
@@ -493,6 +492,9 @@ var istar = function () {
             istar.graph.addCell(link2);
             _updateLinkLabelRotation(link2, dependum, dependee);
 
+            link1.prop('otherHalf', link2);
+            link2.prop('otherHalf', link1);
+
             dependum.prop('isDependum', true);
             var dependumPosition = {x: 50, y: 50};
             dependumPosition.x = (depender.prop('position/x') + dependee.prop('position/x')) / 2;
@@ -500,7 +502,7 @@ var istar = function () {
             dependum.prop('position', dependumPosition);
 
             //move links to the back, so that they don't appear on top of the element's shape
-            link.toBack();
+            link1.toBack();
             link2.toBack();
             //move all the actors even further back, so that they don't impede the visualization of the dependency links
             var actors = _.filter(istar.graph.getElements(), function (element) {
@@ -509,7 +511,7 @@ var istar = function () {
             _.each(actors, function (actor) {
                 actor.toBack();
             });
-            return [link, link2];
+            return [link1, link2];
         },
         addLinkBetweenNodes: function (linkName, shape, source, target, value) {
             "use strict";

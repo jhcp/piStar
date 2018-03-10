@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 ### Added
 - Ability to save/load models with text containing non-native symbols, by encoding the content 
 
+### Changed
+- Now the name of an element is a property of its own, instead of being stored just in the SVG (its view) 
+- Added change:selection events, allowing developers to react to it.
+Documentation added accordingly (docs/EVENTS.md.
+
+### Fixed
+- Fixed error when pressing ctrl+click on a non-actor element
+- Refactoring
+- Performance enhacement related to the Properties Table View
+- Workaround for the "exploding quality" bug: whenever a quality was renamed, its
+view got wider and covered the name.
+This bug is purely aesthetical.
+The view got restored after any (de)selection event.
+This is just a workaround, a proper fix is still needed.
+- Now it deletes the entire dependency link when deleting a depender or a dependee, preventing dangling dependums
+
 ## [Release v1.0.1] - 2018-03-05
 ### Added
 - Changelog file
