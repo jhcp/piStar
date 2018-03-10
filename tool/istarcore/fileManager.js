@@ -127,7 +127,12 @@ function loadModel(inputRaw) {
         this.changedModel = true;
 
         ui.clearDiagram();
-        var inputModel = $.parseJSON(inputRaw);
+        try {
+            var inputModel = $.parseJSON(inputRaw);
+        } catch (e) {
+            // if failed to parse, consider that the input already is a JSON object
+            var inputModel = inputRaw;
+        }
 
         if (inputModel.diagram) {
             if (inputModel.diagram.width && inputModel.diagram.height) {
