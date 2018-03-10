@@ -85,24 +85,28 @@ function saveModel() {
         'actors': [],
         'dependencies': [],
         'links': [],
+        'visualData': {},
         'tool': 'pistar.1.0.1',
-        "istar": "2.0",
-        "saveDate": date,
+        'istar': '2.0',
+        'saveDate': date,
         'diagram': diagram
     };
+
+    var toCollapse = [];
 
     _.each(istar.graph.getElements(), function (element) {
         if (element.isKindOfActor()) {
             var actorJSON = fileManager.elementToJSON(element);
-            var collapsed = element.prop("collapsed");
-            if (collapsed) {
+
+            //it is necessary to expand collapsed actors in order
+            //to get proper sources and targets for any dependency links
+            if (element.prop('collapsed')) {
+                toCollapse.push(element);//stores the actor in order to collapse it again afterwards
                 element.uncollapse();
             }
+
             actorJSON.nodes = fileManager.childrenToJSON(element);
             modelJSON.actors.push(actorJSON);
-            if (collapsed) {
-                element.collapse();
-            }
         }
         else if (element.isDependum()) {
             var dependency = fileManager.elementToJSON(element);
@@ -117,6 +121,11 @@ function saveModel() {
             linkJSON.label = link.attributes.labels[0].attrs.text.text;
         }
         modelJSON.links.push(linkJSON);
+    });
+
+    _.each(toCollapse, function (actor) {
+        modelJSON.visualData[actor.id] = {collapsed: true};//add the collapsing information to the save file
+        actor.collapse();//collapses the actor, thus returning it to its original state
     });
 
     return fileManager.outputSavedModel(modelJSON);
@@ -140,6 +149,7 @@ function loadModel(inputRaw) {
             }
         }
 
+        var toCollapse = [];
         if (inputModel.actors) {
             //create actors and inner elements
             for (var i = 0; i < inputModel.actors.length; i++) {
@@ -148,6 +158,9 @@ function loadModel(inputRaw) {
                 for (var j = 0; j < actor.nodes.length; j++) {
                     var child = fileManager.addLoadedElement(actor.nodes[j]);
                     if (child) parent.embedNode(child);
+                }
+                if (inputModel.visualData && inputModel.visualData[actor.id]) {
+                    toCollapse.push(parent);
                 }
             }
 
@@ -175,6 +188,10 @@ function loadModel(inputRaw) {
                 else {
                     fileManager.addLoadedLink(inputModel.links[i]);
                 }
+            }
+
+            for (var i = 0; i < toCollapse.length; i++) {
+                toCollapse[i].collapse();
             }
         }
     }

@@ -498,6 +498,11 @@ function addPngLink(pngData) {
 
 $('#saveModelButton').click(function () {
     var model = saveModel();
+
+    //workaround for jointjs bug: changing the path of a highlight when changing an attribute of a CellView
+    ui.hideSelection();
+    ui.showSelection();
+
     csvData = 'data:text/json;charset=utf-8,' + (encodeURI(model));
     a = createDownloadLink('goalModel.txt', '◀ File', csvData, 'download goal model');
     $('#saveModel').html(a).show();

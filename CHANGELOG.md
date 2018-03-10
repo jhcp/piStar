@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Ability to save/load models with text containing non-native symbols, by encoding the content 
+- Save/load now saves the information on whether a kind of actor was collapsed 
 
 ### Changed
 - Now the name of an element is a property of its own, instead of being stored just in the SVG (its view) 
@@ -22,6 +23,7 @@ This is just a workaround, a proper fix is still needed.
 - Now it deletes the entire dependency link when deleting a depender or a dependee, preventing dangling dependums
 - Prevent invalid property names: just a number; non-alphanumeric characters (except underscore _).
 - Trim property values.
+- Fix bug when saving model with collapsed actors
 
 ## [Release v1.0.1] - 2018-03-05
 ### Added
