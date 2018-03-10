@@ -122,9 +122,11 @@ ui.highlighter = {
     }
 };
 ui.highlightFocus = function (cellView) {
-    cellView.highlight(null, {
-        highlighter: ui.highlighter
-    });
+    if (cellView) {
+        cellView.highlight(null, {
+            highlighter: ui.highlighter
+        });
+    }
 };
 
 ui.unhighlightFocus = function (cellView) {
