@@ -99,7 +99,7 @@ var ui = function() {
                 this.unhighlightFocus(istar.paper.findViewByModel(this.selectedElement));
             }
         },
-        unhideSelection: function() {
+        showSelection: function() {
             if (this.selectedElement) {
                 this.highlightFocus(istar.paper.findViewByModel(this.selectedElement));
             }
@@ -406,7 +406,7 @@ ui.defineInteractions = function () {
             if (cellView.model.isKindOfActor()) {
                 ui.hideSelection();//remove the focus from the actor
                 cellView.model.toggleCollapse();
-                ui.unhideSelection();//give the focus back to actor, now collapsed or expanded
+                ui.showSelection();//give the focus back to actor, now collapsed or expanded
             }
         }
         if (ui.currentStateIsAddNode()) {
@@ -655,7 +655,7 @@ $('#saveImageButton').click(function () {
 
     //show the UI elements again
     $jointMarkers.show();
-    ui.unhideSelection(ui.getSelectedElement());
+    ui.showSelection(ui.getSelectedElement());
 });
 
 function createDownloadLink(fileName, text, data, title) {

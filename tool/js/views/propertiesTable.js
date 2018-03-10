@@ -59,7 +59,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 if (ui.getSelectedElement()) {
                     ui.hideSelection();//remove the focus from the actor
                     ui.getSelectedElement().toggleCollapse();
-                    ui.unhideSelection();//give the focus back to actor, now collapsed or expanded
+                    ui.showSelection();//give the focus back to actor, now collapsed or expanded
                 }
             });
         }
