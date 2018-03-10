@@ -492,6 +492,8 @@ ui.defineInteractions = function () {
 
     istar.paper.on('cell:contextmenu', function (cellView, evt, x, y) {
     });
+
+    $.fn.editable.defaults.mode = 'inline';//x-editable setting
 };
 
 ui.addElementOnPaper = function (x, y) {
@@ -874,11 +876,10 @@ ui._toggleSmoothness = function (link, vertices, something) {
 };
 
 
-$(document).ready(function () {
-    $.fn.editable.defaults.mode = 'inline';//x-editable setting
-});
-
 function changeCustomPropertyValue(model, propertyName, propertyValue) {
-    model.prop('customProperties/' + propertyName, propertyValue);
+    if (propertyValue) {
+        propertyValue = $.trim(propertyValue);
+        model.prop('customProperties/' + propertyName, propertyValue);
+    }
 }
 

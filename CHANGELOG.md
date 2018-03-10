@@ -20,6 +20,8 @@ This bug is purely aesthetical.
 The view got restored after any (de)selection event.
 This is just a workaround, a proper fix is still needed.
 - Now it deletes the entire dependency link when deleting a depender or a dependee, preventing dangling dependums
+- Prevent invalid property names: just a number; non-alphanumeric characters (except underscore _).
+- Trim property values.
 
 ## [Release v1.0.1] - 2018-03-05
 ### Added

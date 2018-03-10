@@ -49,11 +49,27 @@ uiC.PropertiesTableView = Backbone.View.extend({
         $('#addPropertyButton').click(function () {
             var newPropertyName = window.prompt('Name of the new custom property', 'newProperty');
             if (newPropertyName) {
-                if (!ui.getSelectedElement().prop('customProperties/' + newPropertyName)) {
+                var isValidName = false;
+                var validityMessage = '';
+                if (isNaN(newPropertyName)) {
+                    var existsPropertyWithSameNameInThisElement = ui.getSelectedElement().prop('customProperties/' + newPropertyName);
+                    if (!existsPropertyWithSameNameInThisElement) {
+                        newPropertyName = newPropertyName.replace(/\W/g, '');
+                        isValidName = true;
+                    }
+                    else {
+                        validityMessage = 'A property with this same name has already been defined; please try again with a different name';
+                    }
+                }
+                else {
+                    validityMessage = 'Sorry, the property name cannot be a number; please try again with a different name';
+                }
+
+                if (isValidName) {
                     ui.getSelectedElement().prop('customProperties/' + newPropertyName, '');
                 }
                 else {
-                    alert('A property with this same name has already been defined; please try again with a different name');
+                    alert(validityMessage);
                 }
             }
         });
