@@ -16,24 +16,6 @@
 
 <details><summary>
   
-**As a** modeler 
-**I want to** save and load visual aspects of my model
-**so that** I can reopen my diagram exactly as I left it</summary>
-- Additional information:
-  - Vertexes on links
-  - Collapsed actors
-</details>
-
-<details><summary>
-  
-**As a** modeler 
-**I want to** define custom attributes for the model itself 
- **so that** I can provide additional information such as project name, project description, and company</summary>
-TBD
-</details>
-
-<details><summary>
-  
 **As a** modeler from a non-english speaking country
 **I want to** write content that contains non-english symbols
 **so that** I can create a goal model in my native language</summary>
@@ -102,3 +84,55 @@ TBD
 - [X] **As a** modeler
 **I want to** define custom attributes for elements in the model
 **so that I** can provide additional information such as rationale, author, and fit criterion
+
+
+
+## Backlog
+
+
+<details><summary>
+  
+**As a** modeler 
+**I want to** change the type of a dependency link
+**so that** I can edit my model more easily</summary>
+- Additional information:
+  - Change between Goal dependency, Quality dependency, Task dependency,
+  and Resource dependency
+
+</details>
+
+<details><summary>
+  
+**As a** modeler 
+**I want to** change the type of a contribution link
+**so that** I can edit my model more easily</summary>
+- Additional information:
+  - Change between Make, Help, Hurt, and Break
+
+</details>
+
+<details><summary>
+  
+**As a** modeler 
+**I want to** flip the direction of a dependency link
+**so that** I can edit my model more easily</summary>
+
+</details>
+
+<details><summary>
+  
+**As a** modeler 
+**I want to** save and load visual aspects of my model
+**so that** I can reopen my diagram exactly as I left it</summary>
+- Additional information:
+  - Vertexes on links
+  - Collapsed actors
+</details>
+
+<details><summary>
+  
+**As a** modeler 
+**I want to** define custom properties for the model itself 
+ **so that** I can provide additional information such as project name, project description, and company</summary>
+TBD
+</details>
