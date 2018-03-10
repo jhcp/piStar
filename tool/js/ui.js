@@ -7,7 +7,7 @@ var ui = function() {
 
     return {
         STATE_ADD_ACTOR: 'addActor',
-            STATE_ADD_LINK: 'addLink',
+        STATE_ADD_LINK: 'addLink',
         STATE_ADD_NODE: 'addNode',
         STATE_VIEW: 'view',
 

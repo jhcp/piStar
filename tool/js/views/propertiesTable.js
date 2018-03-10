@@ -2,7 +2,6 @@ window.uiC = window.uiC || {};  //prevents overriding the variable, while also p
 
 uiC.PropertiesTableView = Backbone.View.extend({
     template: _.template($('#propertyTemplate').html()),
-    propertyTemplate: _.template($('#propertyTemplate').html()),
 
     initialize: function () {
         this.listenTo(this.model, 'mouseup', this.render);
@@ -11,11 +10,30 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
 
     render: function () {
-        console.log('rendering table' + this.model.prop('name'));
+        this.renderElementName();
+        this.setupElementNameEditing();
+
+        for (var propertyName in this.model.prop('customProperties')) {
+            this.renderCustomProperty(propertyName);
+            this.setupCustomPropertyEditing(propertyName);
+        }
+
+        this.setupAddPropertyButton();
+
+        if (this.model.isKindOfActor()) {
+            this.setupCollapseExpandButton();
+        }
+
+        return this;
+    },
+
+    renderElementName: function () {
         $('#propertyTable tbody').html(this.template({
             propertyName: 'Name',
             propertyValue: this.model.prop('name')
         }));
+    },
+    setupElementNameEditing: function () {
         $('#propertyTable a').editable({
             success: function (response, newValue) {
                 if (newValue) {
@@ -25,21 +43,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
         })
             .on('shown', ui.changeStateToEdit)
             .on('hidden', ui.changeStateToView);
-
-        for (var propertyName in this.model.prop('customProperties')) {
-            $('#propertyTable tbody').append(this.template({
-                'propertyName': propertyName,
-                'propertyValue': this.model.prop('customProperties/' + propertyName)
-            }));
-            $('#current' + propertyName).editable({
-                    success: function (response, newValue) {
-                        if (newValue) changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue); //update backbone model
-                    }
-                }
-            )
-                .on('shown', ui.changeStateToEdit)
-                .on('hidden', ui.changeStateToView);
-        }
+    },
+    setupAddPropertyButton: function () {
         $('#cellButtons').html('<button type="button" id="addPropertyButton">Add Property</button>');
         $('#addPropertyButton').click(function () {
             var newPropertyName = window.prompt('Name of the new custom property', 'newProperty');
@@ -48,33 +53,35 @@ uiC.PropertiesTableView = Backbone.View.extend({
                     ui.getSelectedElement().prop('customProperties/' + newPropertyName, '');
                 }
                 else {
-                    alert('ERROR: This property has been previously defined');
+                    alert('A property with this same name has already been defined; please try again with a different name');
                 }
             }
         });
-
-        if (this.model.isKindOfActor()) {
-            $('#cellButtons').append('<button type="button" id="collapseButton">Collapse/Expand</button>');
-            $('#collapseButton').click(function () {
-                if (ui.getSelectedElement()) {
-                    ui.hideSelection();//remove the focus from the actor
-                    ui.getSelectedElement().toggleCollapse();
-                    ui.showSelection();//give the focus back to actor, now collapsed or expanded
+    },
+    setupCollapseExpandButton: function () {
+        $('#cellButtons').append('<button type="button" id="collapseButton">Collapse/Expand</button>');
+        $('#collapseButton').click(function () {
+            if (ui.getSelectedElement()) {
+                ui.hideSelection();//remove the focus from the actor
+                ui.getSelectedElement().toggleCollapse();
+                ui.showSelection();//give the focus back to actor, now collapsed or expanded
+            }
+        });
+    },
+    renderCustomProperty: function (propertyName) {
+        $('#propertyTable tbody').append(this.template({
+            'propertyName': propertyName,
+            'propertyValue': this.model.prop('customProperties/' + propertyName)
+        }));
+    },
+    setupCustomPropertyEditing: function (propertyName) {
+        $('#current' + propertyName).editable({
+                success: function (response, newValue) {
+                    if (newValue) changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue); //update backbone model
                 }
-            });
-        }
-        return this;
+            }
+        )
+            .on('shown', ui.changeStateToEdit)
+            .on('hidden', ui.changeStateToView);
     },
-
-    buttonClickHandler: function (event) {
-        if (ui.currentButton) {
-            ui.currentButton.end();
-        }
-        this.model.act();
-    },
-
-    highlight: function (element) {
-        this.$('button').toggleClass('buttonHighlight', element.get('active'));
-    }
-
 });
