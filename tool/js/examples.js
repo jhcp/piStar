@@ -181,3 +181,85 @@ examples.util.randomIntegerFromMinToMax = function (min, max) {
     //max (excluded)
     return Math.floor(Math.random() * (max - min)) + min;
 };
+
+
+examples.smallTree = {
+    "actors": [
+        {
+            "id": "12caea97-b1f2-42ec-a699-86a62b095ec6",
+            "text": "Agent",
+            "type": "istar.Agent",
+            "x": 116,
+            "y": 79,
+            "nodes": [
+                {
+                    "id": "b8a841aa-5c20-4dff-9b66-ed033cc851c9",
+                    "text": "Goal",
+                    "type": "istar.Goal",
+                    "x": 230,
+                    "y": 116
+                },
+                {
+                    "id": "427dd6e4-789b-44d9-98f9-9132b07ea1b1",
+                    "text": "Task",
+                    "type": "istar.Task",
+                    "x": 176,
+                    "y": 210
+                },
+                {
+                    "id": "5053a1b9-0656-480c-8e76-716119ce2d78",
+                    "text": "Task",
+                    "type": "istar.Task",
+                    "x": 302,
+                    "y": 211
+                },
+                {
+                    "id": "c3aaa3dc-2e06-4eb7-9712-6cea511f04e4",
+                    "text": "Quality",
+                    "type": "istar.Quality",
+                    "x": 440,
+                    "y": 116
+                }
+            ]
+        }
+    ],
+    "dependencies": [],
+    "links": [
+        {
+            "id": "9bf9f7a4-fa0d-4718-a041-e6c9035e6d25",
+            "type": "istar.OrRefinementLink",
+            "source": "427dd6e4-789b-44d9-98f9-9132b07ea1b1",
+            "target": "b8a841aa-5c20-4dff-9b66-ed033cc851c9"
+        },
+        {
+            "id": "866a7793-b2a3-4290-a022-ecc87cbbd00c",
+            "type": "istar.OrRefinementLink",
+            "source": "5053a1b9-0656-480c-8e76-716119ce2d78",
+            "target": "b8a841aa-5c20-4dff-9b66-ed033cc851c9"
+        },
+        {
+            "id": "ab573709-321e-47b9-9a8f-50db4dbb0fc8",
+            "type": "istar.ContributionLink",
+            "source": "427dd6e4-789b-44d9-98f9-9132b07ea1b1",
+            "target": "c3aaa3dc-2e06-4eb7-9712-6cea511f04e4",
+            "label": "help"
+        },
+        {
+            "id": "9feeba13-d929-4c51-80bc-d913aa19f701",
+            "type": "istar.ContributionLink",
+            "source": "5053a1b9-0656-480c-8e76-716119ce2d78",
+            "target": "c3aaa3dc-2e06-4eb7-9712-6cea511f04e4",
+            "label": "hurt"
+        }
+    ],
+    "tool": "pistar.1.0.1",
+    "istar": "2.0",
+    "saveDate": "Sat, 10 Mar 2018 02:16:02 GMT",
+    "diagram": {
+        "width": 1700,
+        "height": 1300
+    }
+};
+examples.loadSmallTree = function() {
+    loadModel(examples.smallTree);
+}

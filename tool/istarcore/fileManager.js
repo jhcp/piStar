@@ -127,7 +127,12 @@ function loadModel(inputRaw) {
         this.changedModel = true;
 
         ui.clearDiagram();
-        var inputModel = $.parseJSON(inputRaw);
+        try {
+            var inputModel = $.parseJSON(inputRaw);
+        } catch (e) {
+            // if failed to parse, consider that the input already is a JSON object
+            var inputModel = inputRaw;
+        }
 
         if (inputModel.diagram) {
             if (inputModel.diagram.width && inputModel.diagram.height) {
@@ -268,8 +273,7 @@ fileManager = {
         }
     },
     elementToJSON: function (element) {
-        var text = element.attr('text/text');
-        text = text.replace(/\n/g, ' ');
+        var text = element.prop('name');
         var result = {
             'id': element.id,
             'text': text,
@@ -304,7 +308,6 @@ fileManager = {
             type: link.prop('type'),
             source: link.attributes.source.id,
             target: link.attributes.target.id,
-            //text: link.attr('text/text'),
         };
     },
     outputSavedModel: function (modelJson, newTab) {

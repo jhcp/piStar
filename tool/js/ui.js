@@ -2,264 +2,112 @@
  */
 
 // noinspection JSUnusedGlobalSymbols
-var ui = {
-    STATE_ADD_ACTOR: 'addActor',
-    STATE_ADD_LINK: 'addLink',
-    STATE_ADD_NODE: 'addNode',
-    STATE_VIEW: 'view',
+var ui = function() {
+    var selectedElement = null;
 
-    currentButton: null, //the button that is currently selected
-    currentState: 'view',
-    currentAddingElement: 'none',
-    linkSource: 'none',
-    linkTarget: 'none',
-    dependencyType: 'GoalDependencyLink',
-    currentElement: null,
+    return {
+        STATE_ADD_ACTOR: 'addActor',
+        STATE_ADD_LINK: 'addLink',
+        STATE_ADD_NODE: 'addNode',
+        STATE_VIEW: 'view',
 
-    currentStateIsAddKindOfActor: function () {
-        return this.currentState === this.STATE_ADD_ACTOR;
-    },
-    currentStateIsAddLink: function () {
-        return this.currentState === this.STATE_ADD_LINK;
-    },
-    currentStateIsAddNode: function () {
-        return this.currentState === this.STATE_ADD_NODE;
-    },
-    currentStateIsView: function () {
-        return this.currentState === this.STATE_VIEW;
-    },
+        currentButton: null, //the button that is currently selected
+        currentState: 'view',
+        currentAddingElement: 'none',
+        linkSource: 'none',
+        linkTarget: 'none',
+        dependencyType: 'GoalDependencyLink',
+        selectedElement: null,
 
-    isCurrentlyAddingElement: function () {
-        return this.currentAddingElement !== 'none';
-    },
-    isLinkSourceUndefined: function () {
-        return this.linkSource === 'none';
-    },
-    isLinkTargetUndefined: function () {
-        return this.linkTarget === 'none';
-    },
+        currentStateIsAddKindOfActor: function () {
+            return this.currentState === this.STATE_ADD_ACTOR;
+        },
+        currentStateIsAddLink: function () {
+            return this.currentState === this.STATE_ADD_LINK;
+        },
+        currentStateIsAddNode: function () {
+            return this.currentState === this.STATE_ADD_NODE;
+        },
+        currentStateIsView: function () {
+            return this.currentState === this.STATE_VIEW;
+        },
 
-    resetAddingElement: function () {
-        this.currentAddingElement = 'none';
-        return this;
-    },
-    resetLinkSource: function () {
-        this.linkSource = 'none';
-        return this;
-    },
-    resetLinkTarget: function () {
-        this.linkTarget = 'none';
-        return this;
-    }
-};
+        isCurrentlyAddingElement: function () {
+            return this.currentAddingElement !== 'none';
+        },
+        isLinkSourceUndefined: function () {
+            return this.linkSource === 'none';
+        },
+        isLinkTargetUndefined: function () {
+            return this.linkTarget === 'none';
+        },
 
+        resetAddingElement: function () {
+            this.currentAddingElement = 'none';
+            return this;
+        },
+        resetLinkSource: function () {
+            this.linkSource = 'none';
+            return this;
+        },
+        resetLinkTarget: function () {
+            this.linkTarget = 'none';
+            return this;
+        },
+        getSelectedElement: function() {
+            return this.selectedElement;
+        },
+        selectElement: function(element, elementView) {
+            if (element) {
+                var toTrigger = false;
+                if (this.selectedElement && this.selectedElement != element) {
+                    this.clearSelection();
+                }
+                if (this.selectedElement != element) {
+                    //there is no need to trigger a change:selection event if the same element is being selected
+                    toTrigger = true;
+                }
 
-//create the ADD buttons
-new uiC.DropdownItemView({
-    attributes: {parent: '#addActorDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Role',
-        action: ui.STATE_ADD_ACTOR,
-        tooltip: 'Add Role',
-        statusText: 'Now click on an empty space in the diagram to add a Role'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addActorDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Agent',
-        action: ui.STATE_ADD_ACTOR,
-        tooltip: 'Add Agent',
-        statusText: 'Now click on an empty space in the diagram to add an Agent'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addActorDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Actor',
-        action: ui.STATE_ADD_ACTOR,
-        tooltip: 'Add Actor',
-        statusText: 'Now click on an empty space in the diagram to add an Actor'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addActorLinkDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Is A link',
-        action: ui.STATE_ADD_LINK,
-        name: 'IsALink',
-        tooltip: 'Add an Is-A link between an Actor and another Actor, or between a Role and another Role',
-        statusText: 'Adding Is-A link: click on the sub-element and then on the super-element.'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addActorLinkDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Participates-In link',
-        action: ui.STATE_ADD_LINK,
-        name: 'ParticipatesInLink',
-        tooltip: 'Add a Participates-In link between any Actors, Roles, or Agents',
-        statusText: 'Adding Participates-In link: click on the source, and then on the target.'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addDependencyDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Goal dependency',
-        action: ui.STATE_ADD_LINK,
-        name: 'GoalDependencyLink',
-        tooltip: 'Add Goal Dependency link (including its dependum)',
-        statusText: 'Goal Dependency link: click first on the depender, and then on the dependee.'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addDependencyDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Quality dependency',
-        action: ui.STATE_ADD_LINK,
-        name: 'QualityDependencyLink',
-        tooltip: 'Add Quality Dependency link (including its dependum)',
-        statusText: 'Quality Dependency link: click first on the depender, and then on the dependee.'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addDependencyDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Task dependency',
-        action: ui.STATE_ADD_LINK,
-        name: 'TaskDependencyLink',
-        tooltip: 'Add Task Dependency link (including its dependum)',
-        statusText: 'Task Dependency link: click first on the depender, and then on the dependee.'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addDependencyDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Resource dependency',
-        action: ui.STATE_ADD_LINK,
-        name: 'ResourceDependencyLink',
-        tooltip: 'Add Resource Dependency link (including its dependum)',
-        statusText: 'Resource Dependency link: click first on the depender, and then on the dependee.'
-    })
-}).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
-        label: 'Goal',
-        action: ui.STATE_ADD_NODE,
-        name: 'Goal',
-        tooltip: 'Add Goal',
-        statusText: 'Click on an actor/role/agent to add a Goal',
-        precondition: function () {
-            var valid = true;
-            if (istar.isEmpty()) {
-                alert('Sorry, you can only add goals on an actor/role/agent.');
-                valid = false;
+                //actual selection change
+                this.selectedElement = element;
+
+                if (toTrigger) {
+                    elementView = elementView || istar.paper.findViewByModel(element);
+                    istar.paper.trigger('change:selection', {selectedElement: element, selectedElementView: elementView});
+                }
             }
-            return valid;
+        },
+        deselectElement: function(element, elementView) {
+            if (element) {
+                var elementView = elementView || istar.paper.findViewByModel(element);
+
+                //actual selection change
+                this.selectedElement = null;
+
+                istar.paper.trigger('change:selection', {deselectedElement: element, deselectedElementView: elementView});
+            }
+        },
+        clearSelection: function() {
+            if (this.selectedElement) {
+                var elementView = istar.paper.findViewByModel(this.selectedElement);
+
+                this.deselectElement(this.selectedElement, elementView);
+            }
+        },
+        hideSelection: function() {
+            if (this.selectedElement) {
+                this.unhighlightFocus(istar.paper.findViewByModel(this.selectedElement));
+            }
+        },
+        showSelection: function() {
+            if (this.selectedElement) {
+                this.highlightFocus(istar.paper.findViewByModel(this.selectedElement));
+            }
         }
-    })
-}).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
-        label: 'Task',
-        action: ui.STATE_ADD_NODE,
-        tooltip: 'Add Task',
-        statusText: 'Click on an actor/role/agent to add a Task'
-    })
-}).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
-        label: 'Resource',
-        action: ui.STATE_ADD_NODE,
-        tooltip: 'Add Resource',
-        statusText: 'Click on an actor/role/agent to add a Resource'
-    })
-}).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
-        label: 'Quality',
-        action: ui.STATE_ADD_NODE,
-        name: 'Quality',
-        tooltip: 'Add Quality',
-        statusText: 'Click on an actor/role/agent to add a Quality'
-    })
-}).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
-        label: 'And-Refinement',
-        action: ui.STATE_ADD_LINK,
-        name: 'AndRefinementLink',
-        tooltip: 'Add And-Refinement link',
-        statusText: 'And-Refinement link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
-    })
-}).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
-        label: 'Or-Refinement',
-        action: ui.STATE_ADD_LINK,
-        name: 'OrRefinementLink',
-        tooltip: 'Add Or-Refinement link',
-        statusText: 'Or-Refinement link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
-    })
-}).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
-        label: 'Qualification',
-        action: ui.STATE_ADD_LINK,
-        name: 'QualificationLink',
-        tooltip: 'Add Qualification link',
-        statusText: 'Qualification link: click first on the Quality and then on the element it qualifies (Goal, Task or Resource).'
-    })
-}).render();
-new uiC.ButtonView({
-    model: new uiC.ButtonModel({
-        label: 'Needed-By',
-        action: ui.STATE_ADD_LINK,
-        name: 'NeededByLink',
-        tooltip: 'Add Needed-By link',
-        statusText: 'Needed-By link: click first on the Resource and then on the Task that needs it.'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addContributionDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Make (++)',
-        action: ui.STATE_ADD_LINK,
-        name: 'make',
-        tooltip: 'Add Make (++) Contribution link',
-        statusText: 'Make (++) Contribution link: click first on an element and then on the Quality it contributes to.'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addContributionDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Help (+)',
-        action: ui.STATE_ADD_LINK,
-        name: 'help',
-        tooltip: 'Add Help (+) Contribution link',
-        statusText: 'Help (+) Contribution link: click first on an element and then on the Quality it contributes to.'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addContributionDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Hurt (-)',
-        action: ui.STATE_ADD_LINK,
-        name: 'hurt',
-        tooltip: 'Add Hurt (-) Contribution link',
-        statusText: 'Hurt (-) Contribution link: click first on an element and then on the Quality it contributes to.'
-    })
-}).render();
-new uiC.DropdownItemView({
-    attributes: {parent: '#addContributionDropdown'},
-    model: new uiC.ButtonModel({
-        label: 'Break (--)',
-        action: ui.STATE_ADD_LINK,
-        name: 'break',
-        tooltip: 'Add Break (--) Contribution link',
-        statusText: 'Break (--) Contribution link: click first on an element and then on the Quality it contributes to.'
-    })
-}).render();
+    }
+}();
+
+
 
 ui.highlighter = {
     name: 'stroke',
@@ -279,22 +127,32 @@ ui.highlightFocus = function (cellView) {
     });
 };
 
-ui.unhighlightFocus = function (cellView, keep) {
+ui.unhighlightFocus = function (cellView) {
     if (cellView) {
         cellView.unhighlight(null, {
             highlighter: ui.highlighter
         });
     }
-    if (!keep) {
-        ui.currentElement = null;
-        $('#propertyTable').find('tbody').html('');
-        $('#cellButtons').html('');
-    }
 };
 ui.defineInteractions = function () {
+    istar.paper.on('change:selection', function(selection) {
+        if (selection.selectedElement) {
+            ui.table = new uiC.PropertiesTableView({model: selection.selectedElement}).render();
+            if (selection.selectedElementView) {
+                ui.highlightFocus(selection.selectedElementView);
+            }
+        }
+        else if (selection.deselectedElement){
+            ui.unhighlightFocus(selection.deselectedElementView);
+            ui.table.remove();
+            $('#propertyTable').find('tbody').html('');
+            $('#cellButtons').html('');
+        }
+    });
+
     istar.paper.on('blank:pointerdown', function (evt, x, y) {
-        if (ui.currentElement) {
-            ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
+        if (ui.getSelectedElement()) {
+            ui.clearSelection();
         }
         if (ui.currentStateIsAddKindOfActor()) {
             ui.addElementOnPaper(x, y);
@@ -339,7 +197,12 @@ ui.defineInteractions = function () {
     });
     istar.paper.on('cell:pointerup', function (cellView, evt, x, y) {
         if (evt.ctrlKey) {
-            cellView.model.toggleCollapse();  //collapse/uncollapse actors when ctrl-clicked
+            //collapse/uncollapse actors when ctrl-clicked
+            if (cellView.model.isKindOfActor()) {
+                ui.hideSelection();//remove the focus from the actor
+                cellView.model.toggleCollapse();
+                ui.showSelection();//give the focus back to actor, now collapsed or expanded
+            }
         }
         if (ui.currentStateIsAddNode()) {
             ui.addElementOnActor(cellView, x - 50, y - 18);
@@ -398,13 +261,7 @@ ui.defineInteractions = function () {
         }
         else if (ui.currentStateIsView()) {
             if (!cellView.model.isLink()) {
-                if (ui.currentElement) {
-                    ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
-                }
-                ui.highlightFocus(cellView);
-                ui.currentElement = cellView.model;
-
-                new uiC.CellTableView({model: cellView.model}).render();
+                ui.selectElement(cellView.model, cellView);
             }
         }
     });
@@ -420,25 +277,24 @@ ui.defineInteractions = function () {
             }
         }
         else {
-            oldText = cellView.model.attr('text/text').replace(/(\r\n|\n|\r)/gm, ' ');
+            oldText = cellView.model.prop('name');
             newText = window.prompt('Edit text:', oldText);
             if (newText !== null) {
                 cellView.model.changeNodeContent(newText);
             }
-            new uiC.CellTableView({model: cellView.model}).render();
         }
     });
 
     istar.paper.on('cell:contextmenu', function (cellView, evt, x, y) {
     });
+
+    $.fn.editable.defaults.mode = 'inline';//x-editable setting
 };
 
 ui.addElementOnPaper = function (x, y) {
     try {
         newActor = istar['add' + ui.currentAddingElement](x, y);
-        ui.currentElement = newActor;
-        ui.highlightFocus(istar.paper.findViewByModel(newActor));
-        new uiC.CellTableView({model: newActor}).render();
+        ui.selectElement(newActor);
     } catch (e) {
         console.log(e);
     } finally {
@@ -449,9 +305,7 @@ ui.addElementOnPaper = function (x, y) {
 ui.addElementOnActor = function (cellView, x, y) {
     try {
         element = addElementInPlace(cellView.model, istar[istar.PREFIX_ADD + ui.currentAddingElement], x, y);
-        ui.currentElement = element;
-        ui.highlightFocus(istar.paper.findViewByModel(element));
-        new uiC.CellTableView({model: element}).render();
+        ui.selectElement(element);
     } catch (e) {
         console.log(e);
     } finally {
@@ -532,9 +386,32 @@ function addDependency(source, dependencyType, target) {
         links[0].on('change:vertices', ui._toggleSmoothness);
         links[1].on('change:vertices', ui._toggleSmoothness);
 
-        ui.currentElement = node;
-        ui.highlightFocus(istar.paper.findViewByModel(node));
-        new uiC.CellTableView({model: node}).render();
+        //ensure that the entire dependency (two links and dependum) are deleted
+        //when any of its links is deleted
+        //this is needed when a depender or dependee is deleted, so that
+        //the dependency will not be left dangling in the diagram
+        links[0].on('remove', function(){
+            if (this.getSourceElement() && this.getSourceElement().isDependum()) {
+                this.getSourceElement().remove({ disconnectLinks: true });
+                this.prop('otherHalf').remove();
+            }
+            if (this.getTargetElement() && this.getTargetElement().isDependum()) {
+                this.getTargetElement().remove({ disconnectLinks: true });
+                this.prop('otherHalf').remove();
+            }
+        });
+        links[1].on('remove', function(){
+            if (this.getSourceElement() && this.getSourceElement().isDependum()) {
+                this.getSourceElement().remove({ disconnectLinks: true });
+                this.prop('otherHalf').remove();
+            }
+            if (this.getTargetElement() && this.getTargetElement().isDependum()) {
+                this.getTargetElement().remove({ disconnectLinks: true });
+                this.prop('otherHalf').remove();
+            }
+        });
+
+        ui.selectElement(node);
     }
 }
 
@@ -563,7 +440,6 @@ function addElementInPlace(clickedNode, callback, x, y) {
 ui.changeColorActorContainer = function (color) {
     _.map(istar.getElements(), function (node) {
         if (node.isKindOfActor()) {
-            //istar.paper.findViewByModel(node).highlight();
             node.attr('rect', {fill: color});
         }
     });
@@ -586,11 +462,10 @@ ui.connectLinksToShape = function () {
 $('#saveImageButton').click(function () {
     var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
     var $saveImage = $('#saveImage');
-    var currentView = istar.paper.findViewByModel(ui.currentElement);
 
     //hide UI elements before saving
     $jointMarkers.hide();
-    ui.unhighlightFocus(currentView, true);
+    ui.hideSelection();
 
     var svgData = saveSvg('diagram');
     $saveImage.html(createDownloadLink('goalModel.svg', '◀ SVG', svgData, 'download SVG (vectorial)'));
@@ -602,7 +477,7 @@ $('#saveImageButton').click(function () {
 
     //show the UI elements again
     $jointMarkers.show();
-    ui.highlightFocus(currentView);
+    ui.showSelection(ui.getSelectedElement());
 });
 
 function createDownloadLink(fileName, text, data, title) {
@@ -679,6 +554,9 @@ $('#loadButton').click(function () {
 });
 
 ui.setupUi = function () {
+    this.defineInteractions();
+    uiC.createAddButtons();
+    
     $('#saveImage').hide();
     $('#saveModel').hide();
     $('#diagramWidthInput').val(istar.paper.getArea().width);
@@ -752,14 +630,14 @@ $('#feedbackArea').on('hide.bs.collapse', function () {
 });
 
 $(document).keyup(function (e) {
-    if (ui.currentElement !== null) {
+    if (ui.getSelectedElement() !== null) {
         if (ui.currentStateIsView()) {
             if (e.which === 46) {  //delete
-                ui.currentElement.remove();
-                ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
+                ui.getSelectedElement().remove();
+                ui.clearSelection();
             }
             if (e.which === 27) {  //esc
-                ui.unhighlightFocus(istar.paper.findViewByModel(ui.currentElement));
+                ui.clearSelection();
             }
         }
     }
@@ -794,3 +672,12 @@ ui._toggleSmoothness = function (link, vertices, something) {
         link.set('smooth', false);
     }
 };
+
+
+function changeCustomPropertyValue(model, propertyName, propertyValue) {
+    if (propertyValue) {
+        propertyValue = $.trim(propertyValue);
+        model.prop('customProperties/' + propertyName, propertyValue);
+    }
+}
+
