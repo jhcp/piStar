@@ -85,24 +85,29 @@ function saveModel() {
         'actors': [],
         'dependencies': [],
         'links': [],
+        'display': {},
         'tool': 'pistar.1.0.1',
-        "istar": "2.0",
-        "saveDate": date,
+        'istar': '2.0',
+        'saveDate': date,
         'diagram': diagram
     };
+
+    var toCollapse = [];
+    var vertices = [];
 
     _.each(istar.graph.getElements(), function (element) {
         if (element.isKindOfActor()) {
             var actorJSON = fileManager.elementToJSON(element);
-            var collapsed = element.prop("collapsed");
-            if (collapsed) {
+
+            //it is necessary to expand collapsed actors in order
+            //to get proper sources and targets for any dependency links
+            if (element.prop('collapsed')) {
+                toCollapse.push(element);//stores the actor in order to collapse it again afterwards
                 element.uncollapse();
             }
+
             actorJSON.nodes = fileManager.childrenToJSON(element);
             modelJSON.actors.push(actorJSON);
-            if (collapsed) {
-                element.collapse();
-            }
         }
         else if (element.isDependum()) {
             var dependency = fileManager.elementToJSON(element);
@@ -116,7 +121,18 @@ function saveModel() {
         if (link.isContributionLink()) {
             linkJSON.label = link.attributes.labels[0].attrs.text.text;
         }
+
+        var vertices = link.get('vertices');
+        if (vertices) {
+            modelJSON.display[link.id] = {vertices: vertices};//add the vertices to the save file
+        }
+
         modelJSON.links.push(linkJSON);
+    });
+
+    _.each(toCollapse, function (actor) {
+        modelJSON.display[actor.id] = {collapsed: true};//add the collapsing information to the save file
+        actor.collapse();//collapses the actor, thus returning it to its original state
     });
 
     return fileManager.outputSavedModel(modelJSON);
@@ -140,6 +156,7 @@ function loadModel(inputRaw) {
             }
         }
 
+        var toCollapse = [];
         if (inputModel.actors) {
             //create actors and inner elements
             for (var i = 0; i < inputModel.actors.length; i++) {
@@ -148,6 +165,9 @@ function loadModel(inputRaw) {
                 for (var j = 0; j < actor.nodes.length; j++) {
                     var child = fileManager.addLoadedElement(actor.nodes[j]);
                     if (child) parent.embedNode(child);
+                }
+                if (inputModel.display && inputModel.display[actor.id]) {
+                    toCollapse.push(parent);
                 }
             }
 
@@ -162,6 +182,20 @@ function loadModel(inputRaw) {
                 links[0].on('change:vertices', ui._toggleSmoothness);
                 links[1].on('change:vertices', ui._toggleSmoothness);
 
+                for (j = 0; j < inputModel.links.length; j++) {
+                    linkJSON = inputModel.links[j];
+                    if (linkJSON.target === element.id) {
+                        if (inputModel.display && inputModel.display[linkJSON.id] && inputModel.display[linkJSON.id].vertices) {
+                            links[0].set('vertices', inputModel.display[linkJSON.id].vertices);
+                        }
+                    }
+                    if (linkJSON.source === element.id) {
+                        if (inputModel.display && inputModel.display[linkJSON.id] && inputModel.display[linkJSON.id].vertices) {
+                            links[1].set('vertices', inputModel.display[linkJSON.id].vertices);
+                        }
+                    }
+                }
+
                 dependum.prop('position/x', element.x);
                 dependum.prop('position/y', element.y);
                 // treat as dependum
@@ -169,12 +203,20 @@ function loadModel(inputRaw) {
 
             //create links
             for (i = 0; i < inputModel.links.length; i++) {
-                if (fileManager.isDependencyLink(inputModel.links[i])) {
+                var linkJSON = inputModel.links[i];
+                if (fileManager.isDependencyLink(linkJSON)) {
                     //fileManager.addDependencyLink(inputModel.links[i]);
                 }
                 else {
-                    fileManager.addLoadedLink(inputModel.links[i]);
+                    var newLink = fileManager.addLoadedLink(linkJSON);
+                    if (inputModel.display && inputModel.display[linkJSON.id] && inputModel.display[linkJSON.id].vertices) {
+                        newLink.set('vertices', inputModel.display[linkJSON.id].vertices);
+                    }
                 }
+            }
+
+            for (var i = 0; i < toCollapse.length; i++) {
+                toCollapse[i].collapse();
             }
         }
     }
