@@ -670,7 +670,7 @@ ui.resetPointerStyles = function () {
 };
 
 ui._toggleSmoothness = function (link, vertices, something) {
-    if (vertices.length === 1) {
+    if (vertices.length >= 1) {
         link.set('smooth', true);
     }
     else if (vertices.length === 0) {

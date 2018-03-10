@@ -4,7 +4,8 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 ### Added
 - Ability to save/load models with text containing non-native symbols, by encoding the content 
-- Save/load now saves the information on whether a kind of actor was collapsed 
+- Save/load now saves/loads the information on whether a kind of actor was collapsed
+- Save/load now saves/loads the vertices of links 
 
 ### Changed
 - Now the name of an element is a property of its own, instead of being stored just in the SVG (its view) 
