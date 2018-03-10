@@ -589,6 +589,31 @@ function addDependency(source, dependencyType, target) {
         links[0].on('change:vertices', ui._toggleSmoothness);
         links[1].on('change:vertices', ui._toggleSmoothness);
 
+        //ensure that the entire dependency (two links and dependum) are deleted
+        //when any of its links is deleted
+        //this is needed when a depender or dependee is deleted, so that
+        //the dependency will not be left dangling in the diagram
+        links[0].on('remove', function(){
+            if (this.getSourceElement() && this.getSourceElement().isDependum()) {
+                this.getSourceElement().remove({ disconnectLinks: true });
+                this.prop('otherHalf').remove();
+            }
+            if (this.getTargetElement() && this.getTargetElement().isDependum()) {
+                this.getTargetElement().remove({ disconnectLinks: true });
+                this.prop('otherHalf').remove();
+            }
+        });
+        links[1].on('remove', function(){
+            if (this.getSourceElement() && this.getSourceElement().isDependum()) {
+                this.getSourceElement().remove({ disconnectLinks: true });
+                this.prop('otherHalf').remove();
+            }
+            if (this.getTargetElement() && this.getTargetElement().isDependum()) {
+                this.getTargetElement().remove({ disconnectLinks: true });
+                this.prop('otherHalf').remove();
+            }
+        });
+
         ui.selectElement(node);
     }
 }
