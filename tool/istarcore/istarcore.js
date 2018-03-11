@@ -43,7 +43,7 @@ var istar = function () {
             'breakLine': true,
             'breakWidth': 90
         });
-        content = $.trim(content);
+        content = $.trim(content) || '';
         this.prop('name', content);
         //add the line breaks automatically
         if (options.breakLine && content) {
@@ -372,7 +372,6 @@ var istar = function () {
                 'breakWidth': 90
             });
             var clearTypeName = typeName.substring(typeName.lastIndexOf('.') + 1);
-            content = content || clearTypeName;//if the content is empty, use the type name as the name of the element
             var originalContent = content;
             if (options.breakLine && content) {
                 //add the line breaks automatically

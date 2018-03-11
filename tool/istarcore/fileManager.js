@@ -226,7 +226,8 @@ function loadModel(inputRaw) {
 fileManager = {
     load: loadModel,
     addLoadedElement: function (element) {
-        if (element.id && element.text && element.type && element.x && element.y) {
+        if (element.id && element.type && element.x && element.y) {
+            element.text = element.text || '';
             var type = element.type.split('.')[1];
             if (istar['add' + type]) {
                 var newElement = istar['add' + type](element.x, element.y, element.text, {id: element.id});//obs: the id MUST be passed during creation, can't be changed later

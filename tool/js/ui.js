@@ -682,8 +682,11 @@ ui._toggleSmoothness = function (link, vertices, something) {
 function changeCustomPropertyValue(model, propertyName, propertyValue) {
     if (propertyValue) {
         propertyValue = $.trim(propertyValue);
-        model.prop('customProperties/' + propertyName, propertyValue);
     }
+    else {
+        propertyValue = '';
+    }
+    model.prop('customProperties/' + propertyName, propertyValue);
 
     return model;
 }

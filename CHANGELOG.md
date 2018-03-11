@@ -27,7 +27,8 @@ This bug is purely aesthetical.
 The view got restored after any (de)selection event.
 This is just a workaround, a proper fix is still needed.
 - Now it deletes the entire dependency link when deleting a depender or a dependee, preventing dangling dependums
-- Prevent invalid property names: just a number; non-alphanumeric characters (except underscore _).
+- Prevent invalid property names: just a number; non-alphanumeric characters (except underscore _), empty.
+- Prevent error when submiting an empty value for the value of an element's name or a Custom Property.
 - Trim property values.
 - Fix bug when saving model with collapsed actors
 - Changed the way examples are loaded, resulting in being easier to create

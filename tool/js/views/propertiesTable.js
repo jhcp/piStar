@@ -38,9 +38,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
     setupElementNameEditing: function () {
         this.$table.find('a').editable({
             success: function (response, newValue) {
-                if (newValue) {
-                    var updatedElement = ui.getSelectedElement().changeNodeContent(newValue);
-                }
+                var updatedElement = ui.getSelectedElement().changeNodeContent(newValue);
 
                 return {newValue: updatedElement.prop('name')};
             }
@@ -97,10 +95,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
     setupCustomPropertyEditing: function (propertyName) {
         $('#current' + propertyName).editable({
                 success: function (response, newValue) {
-                    if (newValue) {
-                        //update backbone model
-                        var updatedElement = changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue);
-                    }
+                    //update backbone model
+                    var updatedElement = changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue);
                     return {newValue: updatedElement.prop('customProperties/' + propertyName)};
                 }
             }
