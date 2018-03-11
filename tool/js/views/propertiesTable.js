@@ -4,6 +4,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
     template: _.template($('#propertyTemplate').html()),
 
     initialize: function () {
+        this.$table = $('#propertyTable');
+        
         this.listenTo(this.model, 'mouseup', this.render);
         this.listenTo(this.model, 'change:customProperties', this.render);
         this.listenTo(this.model, 'change:name', this.render);
@@ -28,17 +30,17 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
 
     renderElementName: function () {
-        $('#propertyTable tbody').html(this.template({
+        this.$table.find('tbody').html(this.template({
             propertyName: 'Name',
             propertyValue: this.model.prop('name')
         }));
     },
     setupElementNameEditing: function () {
-        $('#propertyTable a').editable({
+        this.$table.find('a').editable({
             success: function (response, newValue) {
-                if (newValue) {
-                    ui.getSelectedElement().changeNodeContent(newValue);
-                }
+                var updatedElement = ui.getSelectedElement().changeNodeContent(newValue);
+
+                return {newValue: updatedElement.prop('name')};
             }
         })
             .on('shown', ui.changeStateToEdit)
@@ -85,7 +87,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     renderCustomProperty: function (propertyName) {
-        $('#propertyTable tbody').append(this.template({
+        this.$table.find('tbody').append(this.template({
             'propertyName': propertyName,
             'propertyValue': this.model.prop('customProperties/' + propertyName)
         }));
@@ -93,7 +95,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
     setupCustomPropertyEditing: function (propertyName) {
         $('#current' + propertyName).editable({
                 success: function (response, newValue) {
-                    if (newValue) changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue); //update backbone model
+                    //update backbone model
+                    var updatedElement = changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue);
+                    return {newValue: updatedElement.prop('customProperties/' + propertyName)};
                 }
             }
         )

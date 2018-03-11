@@ -16,6 +16,17 @@
 
 <details><summary>
   
+**As a** modeler 
+**I want to** save and load visual aspects of my model
+**so that** I can reopen my diagram exactly as I left it</summary>
+- Additional information:
+  - Vertices on links
+  - Collapsed actors
+</details>
+
+
+<details><summary>
+  
 **As a** modeler from a non-english speaking country
 **I want to** write content that contains non-english symbols
 **so that** I can create a goal model in my native language</summary>
@@ -85,6 +96,16 @@
 **I want to** define custom attributes for elements in the model
 **so that I** can provide additional information such as rationale, author, and fit criterion
 
+<details><summary>
+  
+**As a** modeler 
+**I want to** open model examples
+- **so that** I can see what is possible to do with this
+modeling language and tool
+- **so that** I have a starting point to tinker with in the tool
+</summary>
+
+</details>
 
 
 ## Backlog
@@ -112,21 +133,11 @@
 </details>
 
 <details><summary>
-  
+
 **As a** modeler 
 **I want to** flip the direction of a dependency link
 **so that** I can edit my model more easily</summary>
-
-</details>
-
-<details><summary>
-  
-**As a** modeler 
-**I want to** save and load visual aspects of my model
-**so that** I can reopen my diagram exactly as I left it</summary>
-- Additional information:
-  - Vertexes on links
-  - Collapsed actors
+TBD
 </details>
 
 <details><summary>

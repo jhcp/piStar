@@ -122,9 +122,11 @@ ui.highlighter = {
     }
 };
 ui.highlightFocus = function (cellView) {
-    cellView.highlight(null, {
-        highlighter: ui.highlighter
-    });
+    if (cellView) {
+        cellView.highlight(null, {
+            highlighter: ui.highlighter
+        });
+    }
 };
 
 ui.unhighlightFocus = function (cellView) {
@@ -523,9 +525,7 @@ $('#loadButton').click(function () {
         try {
             var fileInput = $('#actualFileInput')[0];
             if (fileInput.files.length === 0) {
-                //if there is no file selected, load the model from the textArea
-                fileManager.load($('#loadModelContent').val());
-
+                alert('You must select a file to load');
 
                 $('#loadModelModal').modal('hide');
                 $('#loadButton').button('reset');
@@ -682,7 +682,12 @@ ui._toggleSmoothness = function (link, vertices, something) {
 function changeCustomPropertyValue(model, propertyName, propertyValue) {
     if (propertyValue) {
         propertyValue = $.trim(propertyValue);
-        model.prop('customProperties/' + propertyName, propertyValue);
     }
+    else {
+        propertyValue = '';
+    }
+    model.prop('customProperties/' + propertyName, propertyValue);
+
+    return model;
 }
 

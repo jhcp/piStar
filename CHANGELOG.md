@@ -11,6 +11,11 @@ All notable changes to this project will be documented in this file.
 - Now the name of an element is a property of its own, instead of being stored just in the SVG (its view) 
 - Added change:selection events, allowing developers to react to it.
 Documentation added accordingly (docs/EVENTS.md.
+- Google Analytics tracking returns to the live version
+- Changed in-tool examples. Added one showing every possible element and link.
+Another one from the i* wiki: http://istar.rwth-aachen.de/tiki-index.php?page=Strategic+Rationale+Example+Model%3A+Buyer+Drive+E-Commerce+from+Yu01&structure=i%2A+Guide
+- Now it is no longer possible to load a model by pasting its content in a textarea. This feature was removed because the load file feature was deemed sufficient and a better option. 
+
 
 ### Fixed
 - Fixed error when pressing ctrl+click on a non-actor element
@@ -22,9 +27,13 @@ This bug is purely aesthetical.
 The view got restored after any (de)selection event.
 This is just a workaround, a proper fix is still needed.
 - Now it deletes the entire dependency link when deleting a depender or a dependee, preventing dangling dependums
-- Prevent invalid property names: just a number; non-alphanumeric characters (except underscore _).
+- Prevent invalid property names: just a number; non-alphanumeric characters (except underscore _), empty.
+- Prevent error when submiting an empty value for the value of an element's name or a Custom Property.
 - Trim property values.
 - Fix bug when saving model with collapsed actors
+- Changed the way examples are loaded, resulting in being easier to create
+examples and complete functionality upon loading
+(previously the links didn't get smooth)
 
 ## [Release v1.0.1] - 2018-03-05
 ### Added
@@ -37,6 +46,7 @@ This is just a workaround, a proper fix is still needed.
   - Now it is also applied for the SVG file
   - Now it also trims empty space on the left and the top of the model
   - Now it is a bit tighter (less empty space)
+- Google Analytics tracking removed from the live version
 - Improved handling of element focus:
   - Rectangle around the element to indicate that it is selected
   - The 'delete element' button was removed, to prevent accidental deletes

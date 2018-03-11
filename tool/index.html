@@ -48,12 +48,15 @@
 
 <div id="examplesArea" class="collapse container">
     <div class="well">
-        <em>Loading may take a while, please wait a few seconds after clicking in an example below:</em>
+        <em>Loading may take a while, please wait a few seconds after clicking in an example below.</em>
+        <p>WARNING! If you click on an example below, your current model will be erased.</p>
         <ul>
-            <li><a href="#examplesArea" onclick="examples.smallExample();" aria-controls="examplesArea"
-                   data-toggle="collapse">Small Example</a></li>
-            <li><a href="#examplesArea" onclick="examples.travelReimbursement();" aria-controls="examplesArea"
+            <li><a href="#examplesArea" onclick="istar.examples.loadEveryElementAndLink();" aria-controls="examplesArea"
+                   data-toggle="collapse">Example with every i* 2.0 element and link</a></li>
+            <li><a href="#examplesArea" onclick="istar.examples.loadTravelReimbursement();" aria-controls="examplesArea"
                    data-toggle="collapse">Travel Reinbursement</a></li>
+            <li><a href="#examplesArea" onclick="istar.examples.loadBuyerDrivenECommerce();" aria-controls="examplesArea"
+                   data-toggle="collapse">Buyer Driven e-Commerce</a></li>
         </ul>
     </div>
 </div>
@@ -247,8 +250,6 @@
                 <div class="modal-body">
                     <input type="file" id="actualFileInput" name="file"/>
                     <br/>
-                    <p>Or paste the content of your model into the textarea below.</p>
-                    <textarea id="loadModelContent" autofocus="" rows="10" cols="50"></textarea>
                 </div>
                 <div class="modal-footer">
                     <button id="loadButton" type="button" class="btn btn-primary" data-loading-text="Loading...">Load
