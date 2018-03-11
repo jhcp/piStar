@@ -96,6 +96,16 @@
 **I want to** define custom attributes for elements in the model
 **so that I** can provide additional information such as rationale, author, and fit criterion
 
+<details><summary>
+  
+**As a** modeler 
+**I want to** open model examples
+- **so that** I can see what is possible to do with this
+modeling language and tool
+- **so that** I have a starting point to tinker with in the tool
+</summary>
+
+</details>
 
 
 ## Backlog
