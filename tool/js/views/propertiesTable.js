@@ -4,6 +4,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
     template: _.template($('#propertyTemplate').html()),
 
     initialize: function () {
+        this.$table = $('#propertyTable');
+        
         this.listenTo(this.model, 'mouseup', this.render);
         this.listenTo(this.model, 'change:customProperties', this.render);
         this.listenTo(this.model, 'change:name', this.render);
@@ -28,13 +30,13 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
 
     renderElementName: function () {
-        $('#propertyTable tbody').html(this.template({
+        this.$table.find('tbody').html(this.template({
             propertyName: 'Name',
             propertyValue: this.model.prop('name')
         }));
     },
     setupElementNameEditing: function () {
-        $('#propertyTable a').editable({
+        this.$table.find('a').editable({
             success: function (response, newValue) {
                 if (newValue) {
                     var updatedElement = ui.getSelectedElement().changeNodeContent(newValue);
@@ -87,7 +89,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     renderCustomProperty: function (propertyName) {
-        $('#propertyTable tbody').append(this.template({
+        this.$table.find('tbody').append(this.template({
             'propertyName': propertyName,
             'propertyValue': this.model.prop('customProperties/' + propertyName)
         }));
