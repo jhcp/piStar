@@ -11,6 +11,9 @@ All notable changes to this project will be documented in this file.
 - Now the name of an element is a property of its own, instead of being stored just in the SVG (its view) 
 - Added change:selection events, allowing developers to react to it.
 Documentation added accordingly (docs/EVENTS.md.
+- Changed in-tool examples. Added one showing every possible element and link.
+Another one from the i* wiki: http://istar.rwth-aachen.de/tiki-index.php?page=Strategic+Rationale+Example+Model%3A+Buyer+Drive+E-Commerce+from+Yu01&structure=i%2A+Guide
+
 
 ### Fixed
 - Fixed error when pressing ctrl+click on a non-actor element
@@ -25,6 +28,9 @@ This is just a workaround, a proper fix is still needed.
 - Prevent invalid property names: just a number; non-alphanumeric characters (except underscore _).
 - Trim property values.
 - Fix bug when saving model with collapsed actors
+- Changed the way examples are loaded, resulting in being easier to create
+examples and complete functionality upon loading
+(previously the links didn't get smooth)
 
 ## [Release v1.0.1] - 2018-03-05
 ### Added

@@ -2,6 +2,6 @@ $(document).ready(function () {
     istar.setupModel();
     istar.setupDiagram();
     istar.setupMetamodel(istarcoreMetamodel);
-    examples.pistarIntro();
+    istar.examples.loadPistarWelcome();
     ui.setupUi();
 });

@@ -133,11 +133,11 @@ modeling language and tool
 </details>
 
 <details><summary>
-  
+
 **As a** modeler 
 **I want to** flip the direction of a dependency link
 **so that** I can edit my model more easily</summary>
-
+TBD
 </details>
 
 <details><summary>
