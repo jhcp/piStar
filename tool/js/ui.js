@@ -525,9 +525,7 @@ $('#loadButton').click(function () {
         try {
             var fileInput = $('#actualFileInput')[0];
             if (fileInput.files.length === 0) {
-                //if there is no file selected, load the model from the textArea
-                fileManager.load($('#loadModelContent').val());
-
+                alert('You must select a file to load');
 
                 $('#loadModelModal').modal('hide');
                 $('#loadButton').button('reset');

@@ -11,8 +11,10 @@ All notable changes to this project will be documented in this file.
 - Now the name of an element is a property of its own, instead of being stored just in the SVG (its view) 
 - Added change:selection events, allowing developers to react to it.
 Documentation added accordingly (docs/EVENTS.md.
+- Google Analytics tracking returns to the live version
 - Changed in-tool examples. Added one showing every possible element and link.
 Another one from the i* wiki: http://istar.rwth-aachen.de/tiki-index.php?page=Strategic+Rationale+Example+Model%3A+Buyer+Drive+E-Commerce+from+Yu01&structure=i%2A+Guide
+- Now it is no longer possible to load a model by pasting its content in a textarea. This feature was removed because the load file feature was deemed sufficient and a better option. 
 
 
 ### Fixed
@@ -43,6 +45,7 @@ examples and complete functionality upon loading
   - Now it is also applied for the SVG file
   - Now it also trims empty space on the left and the top of the model
   - Now it is a bit tighter (less empty space)
+- Google Analytics tracking removed from the live version
 - Improved handling of element focus:
   - Rectangle around the element to indicate that it is selected
   - The 'delete element' button was removed, to prevent accidental deletes
