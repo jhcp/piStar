@@ -12,7 +12,7 @@
 
 # User Stories
 
-## Unreleased
+## Release 1.1.0
 
 <details><summary>
   

@@ -2,6 +2,8 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [Release v1.1.0] - 2018-03-11
 ### Added
 - Ability to save/load models with text containing non-native symbols, by encoding the content 
 - Save/load now saves/loads the information on whether a kind of actor was collapsed
