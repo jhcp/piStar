@@ -19,7 +19,7 @@
 **As a** modeler 
 **I want to** save and load visual aspects of my model
 **so that** I can reopen my diagram exactly as I left it</summary>
-- Additional information:
+- *Notes*:
   - Vertices on links
   - Collapsed actors
 </details>
@@ -30,7 +30,7 @@
 **As a** modeler from a non-english speaking country
 **I want to** write content that contains non-english symbols
 **so that** I can create a goal model in my native language</summary>
-- Examples:
+- *Notes*:
   - المتطلبات الهندسية (Arabic)
   - 需求工程 (Chinese)
   - 要求工学 (Japanese)
@@ -45,56 +45,116 @@
 
 
 ## Release 1.0.0
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
 **I want to** add elements in the model
-**so that** I can create a goal model
+**so that** I can create a goal model</summary>
+- *Notes*:
+  - Conform to i* 2.0 standard
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
 **I want to** delete elements from the model
-**so that** I can create a goal model
+**so that** I can create a goal model</summary>
+- *Notes*:
+  - delete associated links
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
 **I want to** move elements in the model
-**so that** I can create a goal model
+**so that** I can create a goal model</summary>
+- *Notes*:
+  - update actor's boundary accordingly
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
 **I want to** change the name of elements in the model
-**so that I** can create a goal model
+**so that I** can create a goal model</summary>
+- *Notes*:
+  - allow duplicates
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
 **I want to** delete all elements in the model at once
-**so that I** can create a new goal model from scratch
+**so that I** can create a new goal model from scratch</summary>
+- *Notes*:
+  - ask user to confirm
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
 **I want to** collapse/uncollapse actors in the model
   - **so that I** can create SD models
-  - **so that I** can create SR models with collapsed actors
+  - **so that I** can create SR models with collapsed actors</summary>
+- *Notes*:
+  - reposition dependency links
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
 **I want to** save models offline in my computer
   - **so that** I can reopen them later and continue editing
   - **so that** I can make backups
   - **so that** I can share them with other people
-  - **so that** I can edit them with other tools
+  - **so that** I can edit them with other tools</summary>
+- *Notes*:
+  - none
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
   **I want to** export a vectorial image from my models
     - **so that** I can edit them with image editing software
     - **so that** I can add them to my documents
-    - **so that** I can share them with other people
+    - **so that** I can share them with other people</summary>
+- *Notes*:
+  - none
+- *Tests*:
+  - See if they open correctly in Inkscape (open-source image cration software)
+  - Try with a selected element
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
   **I want to** export a high-resolution rasterized image from my models
     - **so that** I can add them to my documents
-    - **so that** I can share them with other people
+    - **so that** I can share them with other people</summary>
+- *Notes*:
+  - none
+- *Tests*:
+  - Try with a selected element
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
 **I want to** be prevented from making mistakes regarding the syntax of iStar 2
-**so that** I can create a valid goal model
+**so that** I can create a valid goal model</summary>
+- *Notes*:
+  - Conform to i* 2.0 standard
+</details>
 
-- [X] **As a** modeler
+<details><summary>
+  
+**As a** modeler
 **I want to** define custom attributes for elements in the model
-**so that I** can provide additional information such as rationale, author, and fit criterion
+**so that I** can provide additional information such as rationale, author, and fit criterion</summary>
+- *Notes*:
+  - none
+</details>
 
 <details><summary>
   
@@ -104,7 +164,8 @@
 modeling language and tool
 - **so that** I have a starting point to tinker with in the tool
 </summary>
-
+- *Notes*:
+  - none
 </details>
 
 
@@ -116,7 +177,7 @@ modeling language and tool
 **As a** modeler 
 **I want to** change the type of a dependency link
 **so that** I can edit my model more easily</summary>
-- Additional information:
+- *Notes*:
   - Change between Goal dependency, Quality dependency, Task dependency,
   and Resource dependency
 
@@ -127,7 +188,7 @@ modeling language and tool
 **As a** modeler 
 **I want to** change the type of a contribution link
 **so that** I can edit my model more easily</summary>
-- Additional information:
+- *Notes*:
   - Change between Make, Help, Hurt, and Break
 
 </details>
@@ -137,7 +198,8 @@ modeling language and tool
 **As a** modeler 
 **I want to** flip the direction of a dependency link
 **so that** I can edit my model more easily</summary>
-TBD
+- *Notes*:
+  - TBD
 </details>
 
 <details><summary>
@@ -145,5 +207,6 @@ TBD
 **As a** modeler 
 **I want to** define custom properties for the model itself 
  **so that** I can provide additional information such as project name, project description, and company</summary>
-TBD
+- *Notes*:
+  - TBD
 </details>
