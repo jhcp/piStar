@@ -93,7 +93,7 @@
 <details><summary>
   
 **As a** modeler
-**I want to** collapse/uncollapse actors in the model
+**I want to** collapse/expand actors in the model
   - **so that I** can create SD models
   - **so that I** can create SR models with collapsed actors</summary>
 - *Notes*:
@@ -207,6 +207,15 @@ modeling language and tool
 **As a** modeler 
 **I want to** define custom properties for the model itself 
  **so that** I can provide additional information such as project name, project description, and company</summary>
+- *Notes*:
+  - TBD
+</details>
+
+<details><summary>
+  
+**As a** modeler 
+**I want to** calculate metrics for my i* model 
+ **so that** I can assess its quality</summary>
 - *Notes*:
   - TBD
 </details>
