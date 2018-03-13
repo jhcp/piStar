@@ -1,0 +1,165 @@
+body {
+    font-size: .875rem;
+    overflow: hidden;
+}
+
+.menubar {
+    color: rgb(252, 255, 239);
+    background-color: rgb(200, 0, 0);
+    height:1.8rem;
+}
+.menubar .brand {
+    height:100%;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    font-size: 1rem;
+}
+.menubar .brand a, .menubar .brand a:link, .menubar .brand a:visited
+, .menubar .brand a:hover, .menubar .brand a:active{
+    color: rgb(252, 255, 239);
+    text-decoration: none;
+}
+.menubar .btn {
+    height:100%;
+    border:2px solid rgb(200, 0, 0);
+    border-radius: 0;
+    background-color: rgb(200, 0, 0);
+    color: rgb(252, 255, 239);
+    font-size: .875rem;
+    margin-right:0;
+    margin-left:0;
+    padding-top: 1px;
+}
+.menubar button {
+    margin-right:0;
+    margin-left:0;
+}
+.menubar .active {
+    background-color: rgb(41, 46, 50);
+    border-bottom:2px solid rgb(41, 46, 50);
+    color: rgb(252, 255, 239);
+}
+.menubar .active:hover {
+    /*background-color: white;*/
+    /*border-bottom:2px solid rgb(41, 46, 50);*/
+    /*color: black;*/
+}
+.menubar button:hover {
+    /*background-color: rgb(170, 0, 0);*/
+    /*border-bottom:2px solid rgb(170, 0, 0);*/
+    border-top:2px solid white;
+}
+.menubar .closeMenuIcon {
+    display: none;
+}
+.menubar .active .closeMenuIcon {
+    display: inline-block;
+    opacity: 0.0;
+    transition: opacity 0.3s linear;
+
+}
+.menubar .active:hover .closeMenuIcon {
+    opacity: 1;
+}
+
+
+
+
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
+}
+
+/*
+ * Sidebar
+ */
+
+.sidebar {
+    z-index: 100; /* Behind the navbar */
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    font-size: 0.7rem;
+    width: 270px;
+    position: absolute;
+    /*top: 0;*/
+    left: 0;
+}
+
+.sidebar-sticky {
+    height: calc(100vh - 48px);
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    box-shadow: 0 4px 10px rgb(100, 100, 100);
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+}
+
+.sidebar .nav-link .feather {
+    margin-right: 4px;
+    color: #999;
+}
+
+.sidebar .nav-link.active {
+    color: #007bff;
+}
+
+.sidebar .nav-link:hover .feather,
+.sidebar .nav-link.active .feather {
+    color: inherit;
+}
+
+.sidebar-heading {
+    font-size: .75rem;
+    text-transform: uppercase;
+}
+
+/*
+ * Navbar
+ */
+
+.toolbar .card {
+    border:0;
+    background-color: rgb(41, 46, 50);
+}
+.toolbar {
+    padding:0;
+}
+.toolbar-bottom {
+    box-shadow: 0 4px 8px rgb(0, 0, 0);
+}
+
+#collapseExample .card{
+    padding:10px 30px 5px;
+}
+
+/*
+ * Utilities
+ */
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+.main {
+    /*position:relative;*/
+    height: 100vh;
+    margin-top: -100px;
+    padding-top: 100px;
+ }
+
+#diagramBoxOuter {
+    overflow: scroll;
+    /*height: 100%;*/
+    /*height: calc(100vh);*/
+    margin-left: 270px;
+    height: calc(100vh - 117px);
+}
+
+
+* {
+    box-sizing: border-box;
+}

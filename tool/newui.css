@@ -1,5 +1,7 @@
 body {
     font-size: .875rem;
+    overflow: hidden;
+    height:100%;
 }
 
 .feather {
@@ -14,7 +16,7 @@ body {
 
 .sidebar {
     position: fixed;
-    top: 0;
+    top: 113px;
     bottom: 0;
     left: 0;
     z-index: 100; /* Behind the navbar */
@@ -25,11 +27,12 @@ body {
 .sidebar-sticky {
     position: -webkit-sticky;
     position: sticky;
-    top: 48px; /* Height of navbar */
+    top: 148px; /* Height of navbar */
     height: calc(100vh - 48px);
     padding-top: .5rem;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+    box-shadow: 0 4px 10px rgb(100, 100, 100);
 }
 
 .sidebar .nav-link {
@@ -60,29 +63,48 @@ body {
  * Navbar
  */
 
-.navbar-brand {
-    padding-top: .75rem;
-    padding-bottom: .75rem;
-    font-size: 1rem;
-    background-color: rgba(0, 0, 0, .25);
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
-}
-
-.navbar .form-control {
-    padding: .75rem 1rem;
-    border-width: 0;
+.menubar {
+    position: -webkit-sticky;
+    position: sticky;
+    color:white;
+    background-color: rgb(200, 0, 0);
+    box-shadow: 0 2px 4px rgb(0, 0, 0);
+    border:0;
     border-radius: 0;
 }
-
-.form-control-dark {
-    color: #fff;
-    background-color: rgba(255, 255, 255, .1);
-    border-color: rgba(255, 255, 255, .1);
+.menubar .brand {
+    font-size: 1rem;
 }
 
-.form-control-dark:focus {
-    border-color: transparent;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
+.menubar button {
+    border:0;
+    border-radius: 0;
+    background-color: rgb(200, 0, 0);
+    color: rgb(252, 255, 239);
+    font-size: .875rem;
+}
+.menubar .currentMenu {
+    background-color: rgb(41, 46, 50);
+    color: rgb(252, 255, 239);
+}
+.menubar a{
+    /*height:200px;*/
+    color:white;
+    background-color: rgb(200, 0, 0);
+    padding: 5px 15px;
+}
+
+.toolbar .card {
+    /*border:1px solid #343A40 !important;*/
+    border:0;
+    background-color: rgb(41, 46, 50);
+}
+.toolbar {
+    padding:0;
+}
+
+#collapseExample .card{
+    padding:10px 30px 5px;
 }
 
 /*
@@ -91,3 +113,10 @@ body {
 
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
+
+
+#diagramBoxInner {
+    overflow: scroll;
+    height: 100%;
+}

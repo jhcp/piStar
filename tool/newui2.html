@@ -20,25 +20,23 @@
     <!--<link href="lib/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"> &lt;!&ndash; x-editable &ndash;&gt;-->
 
     <!-- custom styles -->
-    <link rel="stylesheet" href="newui.css"/>
+    <link rel="stylesheet" href="newui2.css"/>
 </head>
 <body>
+    <div class="row menubar">
+        <!-- piStar logo -->
+        <div class="brand col-sm-2 col-md-1 text-center align-middle">
+            <a href="#" class="align-middle">piStar</a>
+        </div>
 
-<!--<nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0">-->
-<!--<div class="container-fluid titlebar sticky-top flex-md-nowrap">-->
-    <div class="row titlebar flex-md-nowrap">
-        <div class="brand col-1" href="#"><span class="align-middle">piStar</span></div>
-
-            <div class="col-11 toolbar">
-                <button type="button" class="btn">File</button>
-                <button type="button" class="btn currentMenu">Add</button>
-                <button type="button" class="btn">Diagram</button>
-                <button type="button" class="btn">Help</button>
-            </div>
+        <div class="col-sm-12 col-md-11 p-0 m-0">
+            <button type="button" class="btn">File <span class="closeMenuIcon">&#8648;</span></button><button type="button" class="btn active">Add <span class="closeMenuIcon">&#8648;</span></button><button type="button" class="btn">Diagram</button><button type="button" class="btn">Help</button>
+        </div>
     </div>
+
     <div class="row">
         <!--<div class="col-1 mr-0" href="#"></div>-->
-        <div class="col-12 toolbar">
+        <div class="col-12 toolbar toolbar-bottom">
             <div class=" w-100" id="collapseExample">
                 <div class="card card-body text-white">
                     <img src="pallete.png" width="1040px"/>
@@ -54,10 +52,7 @@
     <!--</ul>-->
 <!--</nav>-->
 
-<div class="container-fluid">
-    <div class="row w-100">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
+            <div class="sidebar sidebar-sticky">
                 <table class="table">
                     <thead class="thead-dark">
                     <tr>
@@ -76,26 +71,23 @@
                     </tr>
                     <tr>
                         <th scope="row">Description</th>
-                        <td>To use the piStar tool the user will open a specific URL on her web browser.</td>
+                        <td>To use the piStar tool the user will open a specific <a href="#">URL</a> on her web browser.</td>
                     </tr>
                     </tbody>
                 </table>
             </div>
-        </nav>
 
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3">
-            <div id="diagramBoxInner">
-                <img src="goalModel.png" width="1500px"/>
+        <main role="main" class="main">
+            <div id="diagramBoxOuter">
+                <div id="diagramBoxInner">
+                    <img src="goalModel.png" width="1500px" style="border:1px solid black"/>
+                </div>
             </div>
+
         </main>
-    </div>
-</div>
 
 
-
-
-<!-- dependencies -->
-<script src="istarcore/lib/jquery.min.js"></script>
+    <script src="istarcore/lib/jquery.min.js"></script>
 <script src="istarcore/lib/lodash.min.js"></script>
 <script src="istarcore/lib/backbone.min.js"></script>
 
