@@ -3,113 +3,164 @@ body {
     overflow: hidden;
 }
 
-.menubar {
+.menu-bar {
     color: rgb(252, 255, 239);
     background-color: rgb(200, 0, 0);
     height:1.8rem;
 }
-.menubar .brand {
-    height:100%;
-    padding-top: 0px;
-    padding-bottom: 0px;
+.menu-bar .brand {
     font-size: 1rem;
+    font-weight: bold;
 }
-.menubar .brand a, .menubar .brand a:link, .menubar .brand a:visited
-, .menubar .brand a:hover, .menubar .brand a:active{
+.menu-bar .brand a, .menu-bar .brand a:link, .menu-bar .brand a:visited
+, .menu-bar .brand a:hover, .menu-bar .brand a:active{
     color: rgb(252, 255, 239);
     text-decoration: none;
 }
-.menubar .btn {
-    height:100%;
-    border:2px solid rgb(200, 0, 0);
-    border-radius: 0;
+.menu-bar .btn {
     background-color: rgb(200, 0, 0);
     color: rgb(252, 255, 239);
+    border-radius: 0;
     font-size: .875rem;
-    margin-right:0;
-    margin-left:0;
     padding-top: 1px;
+    height:100%; /*prevents a visual disconnection between the menu-item and the menu-body if sizes are wrong */
+    border:2px solid rgb(200, 0, 0); /*prevents reflow when adding a border */
 }
-.menubar button {
-    margin-right:0;
-    margin-left:0;
-}
-.menubar .active {
+.menu-bar .active {
     background-color: rgb(41, 46, 50);
     border-bottom:2px solid rgb(41, 46, 50);
     color: rgb(252, 255, 239);
 }
-.menubar .active:hover {
-    /*background-color: white;*/
-    /*border-bottom:2px solid rgb(41, 46, 50);*/
-    /*color: black;*/
-}
-.menubar button:hover {
-    /*background-color: rgb(170, 0, 0);*/
-    /*border-bottom:2px solid rgb(170, 0, 0);*/
+.menu-bar button:hover {
     border-top:2px solid white;
+    /*border-left:2px solid white;*/
+    /*border-right:2px solid white;*/
 }
-.menubar .closeMenuIcon {
+.menu-bar .toggleMenuSymbol {
     display: none;
 }
-.menubar .active .closeMenuIcon {
+.menu-bar .active .toggleMenuSymbol {
     display: inline-block;
     opacity: 0.0;
-    transition: opacity 0.3s linear;
-
+    transition: opacity 0.2s;
+    /*font-size: 0.92rem;*/
 }
-.menubar .active:hover .closeMenuIcon {
+.menu-bar .active:hover .toggleMenuSymbol {
     opacity: 1;
 }
 
 
 
 
-.feather {
-    width: 16px;
-    height: 16px;
-    vertical-align: text-bottom;
-}
-
 /*
  * Sidebar
  */
 
-.sidebar {
-    z-index: 100; /* Behind the navbar */
+.sidepanel {
+    /*background-color: rgb(247, 247, 247);*/
+    /*background-color: rgb(252, 255, 239);*/
+    background-color: white;
+    z-index: 1; /* Behind the menu */
     padding: 0;
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
     font-size: 0.7rem;
     width: 270px;
     position: absolute;
-    /*top: 0;*/
     left: 0;
-}
-
-.sidebar-sticky {
-    height: calc(100vh - 48px);
-    padding-top: .5rem;
+    /*height: calc(100vh - 48px);*/
+    height: calc(100vh - 112px);
+    /*padding-top: .5rem;*/
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     box-shadow: 0 4px 10px rgb(100, 100, 100);
+    transition: width 0.5s, height 0.3s ease-in-out;;
+    /*transition: */
+}
+.sidepanel td, .sidepanel th {
+    padding: 8px 5px;
+}
+.sidepanel .propertyValue {
+    color: rgb(41, 46, 50);
+    border-bottom-color: rgb(200, 0, 0);
+}
+.sidepanel input{
+    font-size: 0.75rem;
 }
 
-.sidebar .nav-link {
+.sidepanel .size-options {
+    float:right;
+    padding: 0 10px;
+    transition: opacity 0.25s ease-in-out;
+    font-size: 1.3rem;
+}
+.sidepanel:not(.collapsed) .size-options {
+    opacity: 0.0;
+}
+.collapsed .size-options {
+    padding: 2px;
+}
+.sidepanel .size-options a {
+    color: rgb(200, 0, 0);
+}
+.collapsed .collapseSidepanelButton {
+    display: none;
+}
+.full .expandSidepanelButton {
+    display: none;
+}
+.collapsed table {
+    display: none;
+}
+.sidepanel:hover .size-options {
+    opacity: 1.0;
+}
+.q1 {
+    font-size: 1.0rem;
+}
+.q2 {
+    font-size: 1.5rem;
+}
+.q3 {
+    font-size: 2rem;
+}
+
+
+.sidebarResize {
+    width: 10px;
+    background-color: dimgrey;
+    z-index: 1; /* Behind the menu */
+    padding: 0;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    font-size: 0.7rem;
+    /*width: 270px;*/
+    position: absolute;
+    left: 0;
+    height: calc(100vh - 48px);
+    /*padding-top: .5rem;*/
+    overflow-x: hidden;
+    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+}
+
+
+
+
+
+.sidepanel .nav-link {
     font-weight: 500;
     color: #333;
 }
 
-.sidebar .nav-link .feather {
+.sidepanel .nav-link .feather {
     margin-right: 4px;
     color: #999;
 }
 
-.sidebar .nav-link.active {
+.sidepanel .nav-link.active {
     color: #007bff;
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
+.sidepanel .nav-link:hover .feather,
+.sidepanel .nav-link.active .feather {
     color: inherit;
 }
 
@@ -130,7 +181,8 @@ body {
     padding:0;
 }
 .toolbar-bottom {
-    box-shadow: 0 4px 8px rgb(0, 0, 0);
+    z-index: 10;
+    box-shadow: 0 4px 4px rgb(30, 30, 30);
 }
 
 #collapseExample .card{
@@ -153,13 +205,18 @@ body {
 
 #diagramBoxOuter {
     overflow: scroll;
-    /*height: 100%;*/
+    height: calc(100% - 17px);
     /*height: calc(100vh);*/
     margin-left: 270px;
     height: calc(100vh - 117px);
+    transition: margin-left 0.5s, height 0.3s ease-in-out;
 }
 
 
-* {
-    box-sizing: border-box;
+
+
+.feather {
+    width: 16px;
+    height: 16px;
+    vertical-align: text-bottom;
 }

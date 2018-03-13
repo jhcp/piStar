@@ -17,84 +17,155 @@
 
     <!-- library-specific styles -->
     <!--<link rel="stylesheet" href="istarcore/lib/joint.min.css"/> &lt;!&ndash; joint js &ndash;&gt;-->
-    <!--<link href="lib/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"> &lt;!&ndash; x-editable &ndash;&gt;-->
+    <link href="lib/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"> <!-- x-editable -->
 
     <!-- custom styles -->
     <link rel="stylesheet" href="newui2.css"/>
 </head>
 <body>
-    <div class="row menubar">
-        <!-- piStar logo -->
-        <div class="brand col-sm-2 col-md-1 text-center align-middle">
-            <a href="#" class="align-middle">piStar</a>
-        </div>
-
-        <div class="col-sm-12 col-md-11 p-0 m-0">
-            <button type="button" class="btn">File <span class="closeMenuIcon">&#8648;</span></button><button type="button" class="btn active">Add <span class="closeMenuIcon">&#8648;</span></button><button type="button" class="btn">Diagram</button><button type="button" class="btn">Help</button>
-        </div>
+<div class="row menu-bar">
+    <!-- piStar logo -->
+    <div class="brand col-sm-2 col-md-1 text-center align-middle">
+        <a href="#" class="align-middle">piStar</a>
     </div>
 
-    <div class="row">
-        <!--<div class="col-1 mr-0" href="#"></div>-->
-        <div class="col-12 toolbar toolbar-bottom">
-            <div class=" w-100" id="collapseExample">
-                <div class="card card-body text-white">
-                    <img src="pallete.png" width="1040px"/>
-                </div>
+    <div class="col-sm-12 col-md-11 p-0 m-0">
+        <button type="button" class="btn">File <span class="toggleMenuSymbol">&#8648;</span></button>
+        <button type="button" class="btn active">Add <span class="toggleMenuSymbol">&#8648;</span></button>
+        <button type="button" class="btn">Diagram</button>
+        <button type="button" class="btn">Help<span class="toggleMenuSymbol2">&#8689;</span></button>
+    </div>
+</div>
+
+<div class="row menu-body">
+    <!--<div class="col-1 mr-0" href="#"></div>-->
+    <div class="col-12 toolbar toolbar-bottom">
+        <div class=" w-100" id="collapseExample">
+            <div class="card card-body text-white">
+                <img src="pallete.png" width="1040px"/>
             </div>
         </div>
     </div>
+</div>
 <!--</div>-->
-    <!--<ul class="navbar-nav px-3">-->
-        <!--<li class="nav-item text-nowrap">-->
-            <!--<a class="nav-link" href="#">Sign out</a>-->
-        <!--</li>-->
-    <!--</ul>-->
+<!--<ul class="navbar-nav px-3">-->
+<!--<li class="nav-item text-nowrap">-->
+<!--<a class="nav-link" href="#">Sign out</a>-->
+<!--</li>-->
+<!--</ul>-->
 <!--</nav>-->
+<!--<div id="main-area">-->
+<div class="sidepanel">
+    <div class="size-options">
+        <!--<a href="#" class="q1">&#9634;</a><a href="#" class="q2">&#9634;</a><a href="#" class="q3">&#9634;</a>-->
+        <!--<a href="#" class="q1">&#9645;</a><a href="#" class="q2">&#9645;</a><a href="#" class="q3">&#9645;</a>-->
+        <!--<a href="#" class="q1">&#9608;</a> <a href="#" class="q2">&#9608;</a> <a href="#" class="q3">&#9608;</a>-->
+        <!--<a href="#" class="q2">&#9614;</a> <a href="#" class="q2">&#9613;</a> <a href="#" class="q2">&#9609;</a>-->
+        <a href="#" class="collapseSidepanelButton">&#9665;</a> <a href="#" class="expandSidepanelButton">&#9655;</a>
+        <!--<a href="#" class="q2 collapseSidepanelButton">&#8612;</a> <a href="#" class="q2 expandSidepanelButton">&#8614;</a>-->
+    </div>
+    <div class="propertiesPanel">
+        <table class="table table-hover">
+            <tbody>
+            <tr>
+                <th scope="row">Name</th>
+                <td><a href="#" id="currentName" class="propertyValue" data-type="text" data-pk="1"
+                       data-name="name" data-title="Enter name">Use piStar</a></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="#" id="propertyName1" class="propertyValue" data-type="text" data-pk="1"
+                                   data-name="name" data-title="Enter property name">Cost</a></th>
+                <td><a href="#" id="currentCost" class="propertyValue" data-type="text" data-pk="1"
+                       data-name="name" data-title="Enter cost">$10</a></td>
+            </tr>
+            <tr>
+                <th scope="row"><a href="#" id="propertyName2" class="propertyValue" data-type="text" data-pk="1"
+                                   data-name="name" data-title="Enter property name">Description</a></th>
+                <td><a href="#" id="currentDescription" class="propertyValue" data-type="text" data-pk="1"
+                       data-name="name" data-title="Enter description">To use the piStar tool the user will open a
+                    specific URL on her web browser.</a></td>
+            </tr>
+            <!--<tr>-->
+                <!--<th scope="row">Name</th>-->
+                <!--<td><a href="#" id="currentName" class="propertyValue" data-type="text" data-pk="1"-->
+                       <!--data-name="name" data-title="Enter name">Use piStar</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th scope="row"><a href="#" id="propertyName1" class="propertyValue" data-type="text" data-pk="1"-->
+                                   <!--data-name="name" data-title="Enter property name">Cost</a></th>-->
+                <!--<td><a href="#" id="currentCost" class="propertyValue" data-type="text" data-pk="1"-->
+                       <!--data-name="name" data-title="Enter cost">$10</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th scope="row"><a href="#" id="propertyName2" class="propertyValue" data-type="text" data-pk="1"-->
+                                   <!--data-name="name" data-title="Enter property name">Description</a></th>-->
+                <!--<td><a href="#" id="currentDescription" class="propertyValue" data-type="text" data-pk="1"-->
+                       <!--data-name="name" data-title="Enter description">To use the piStar tool the user will open a-->
+                    <!--specific URL on her web browser.</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th scope="row">Name</th>-->
+                <!--<td><a href="#" id="currentName" class="propertyValue" data-type="text" data-pk="1"-->
+                       <!--data-name="name" data-title="Enter name">Use piStar</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th scope="row"><a href="#" id="propertyName1" class="propertyValue" data-type="text" data-pk="1"-->
+                                   <!--data-name="name" data-title="Enter property name">Cost</a></th>-->
+                <!--<td><a href="#" id="currentCost" class="propertyValue" data-type="text" data-pk="1"-->
+                       <!--data-name="name" data-title="Enter cost">$10</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th scope="row"><a href="#" id="propertyName2" class="propertyValue" data-type="text" data-pk="1"-->
+                                   <!--data-name="name" data-title="Enter property name">Description</a></th>-->
+                <!--<td><a href="#" id="currentDescription" class="propertyValue" data-type="text" data-pk="1"-->
+                       <!--data-name="name" data-title="Enter description">To use the piStar tool the user will open a-->
+                    <!--specific URL on her web browser.</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th scope="row">Name</th>-->
+                <!--<td><a href="#" id="currentName" class="propertyValue" data-type="text" data-pk="1"-->
+                       <!--data-name="name" data-title="Enter name">Use piStar</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th scope="row"><a href="#" id="propertyName1" class="propertyValue" data-type="text" data-pk="1"-->
+                                   <!--data-name="name" data-title="Enter property name">Cost</a></th>-->
+                <!--<td><a href="#" id="currentCost" class="propertyValue" data-type="text" data-pk="1"-->
+                       <!--data-name="name" data-title="Enter cost">$10</a></td>-->
+            <!--</tr>-->
+            <!--<tr>-->
+                <!--<th scope="row"><a href="#" id="propertyName2" class="propertyValue" data-type="text" data-pk="1"-->
+                                   <!--data-name="name" data-title="Enter property name">Description</a></th>-->
+                <!--<td><a href="#" id="currentDescription" class="propertyValue" data-type="text" data-pk="1"-->
+                       <!--data-name="name" data-title="Enter description">To use the piStar tool the user will open a-->
+                    <!--specific URL on her web browser.</a></td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+</div>
 
-            <div class="sidebar sidebar-sticky">
-                <table class="table">
-                    <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Value</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">Name</th>
-                        <td>Use piStar</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Cost</th>
-                        <td>$10</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Description</th>
-                        <td>To use the piStar tool the user will open a specific <a href="#">URL</a> on her web browser.</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+<!--<div class="sidebarResize">-->
 
-        <main role="main" class="main">
-            <div id="diagramBoxOuter">
-                <div id="diagramBoxInner">
-                    <img src="goalModel.png" width="1500px" style="border:1px solid black"/>
-                </div>
-            </div>
+<!--</div>-->
 
-        </main>
+<main role="main" class="main">
+    <div id="diagramBoxOuter">
+        <div id="diagramBoxInner">
+            <img src="goalModel.svg" width="1376"/>
+        </div>
+    </div>
 
+</main>
+<!--</div>-->
 
-    <script src="istarcore/lib/jquery.min.js"></script>
+<script src="istarcore/lib/jquery.min.js"></script>
 <script src="istarcore/lib/lodash.min.js"></script>
 <script src="istarcore/lib/backbone.min.js"></script>
 
 <!--<script src="istarcore/lib/joint.min.js"></script>-->
 <script src="lib/bootstrap/bootstrap.min.js"></script>
 
-<!--<script src="lib/bootstrap3-editable/js/bootstrap-editable.min.js" type="text/javascript"></script>-->
+<script src="lib/bootstrap3-editable/js/bootstrap-editable.min.js" type="text/javascript"></script>
 
 <!-- istar core -->
 <!--<script src="js/istarcore.shapes.js"></script>-->
@@ -119,12 +190,73 @@
 <!--<script src="js/main.js"></script>-->
 
 
-
-
 <!-- Icons -->
 <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
 <script>
     feather.replace()
+</script>
+
+
+<script>
+    //x-editable setup
+    $.fn.editable.defaults.mode = 'inline';
+    $(document).ready(function () {
+        $('.propertyValue').editable();
+    });
+
+    //sidepanel resizing
+    var sidepanelSizes = [25, 270, 600];
+    var sidepanelCurrentSize = 1;
+    $('.collapseSidepanelButton').click(function () {
+        if (sidepanelCurrentSize > 0) {
+            if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
+                $('.sidepanel').removeClass('full');
+            }
+            sidepanelCurrentSize--;
+            $('.sidepanel').css('width', sidepanelSizes[sidepanelCurrentSize] + 'px');
+            $('#diagramBoxOuter').css('margin-left', sidepanelSizes[sidepanelCurrentSize] + 'px');
+
+            if (sidepanelCurrentSize === 0) {
+                $('.sidepanel').addClass('collapsed');
+            }
+        }
+    });
+    $('.expandSidepanelButton').click(function () {
+        if (sidepanelCurrentSize < (sidepanelSizes.length - 1)) {
+            //TODO check if the next size is not larger than the current window/document size
+            sidepanelCurrentSize++;
+            $('.sidepanel').css('width', sidepanelSizes[sidepanelCurrentSize] + 'px');
+            $('#diagramBoxOuter').css('margin-left', sidepanelSizes[sidepanelCurrentSize] + 'px');
+
+            if (sidepanelCurrentSize === 1) {
+                $('.sidepanel').removeClass('collapsed');
+            }
+            if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
+                $('.sidepanel').addClass('full');
+            }
+        }
+    });
+
+    //menu-body toggling
+    var isMenuBodyCollapsed = false;
+    var menuBodyHeight = 0;
+    $(document).ready(function () {
+        menuBodyHeight = $('.menu-body').height();
+    });
+    $('.menu-bar .active').click(function () {
+        if (isMenuBodyCollapsed) {
+            $('.menu-body').slideDown(200);
+            isMenuBodyCollapsed = false;
+            $('#diagramBoxOuter').height($('#diagramBoxOuter').height() - menuBodyHeight);
+            $('.sidepanel').height($('.sidepanel').height() - menuBodyHeight);
+        }
+        else {
+            $('.menu-body').slideUp(200);
+            isMenuBodyCollapsed = true;
+            $('#diagramBoxOuter').height($('#diagramBoxOuter').height() + menuBodyHeight);
+            $('.sidepanel').height($('.sidepanel').height() + menuBodyHeight);
+        }
+    });
 </script>
 
 </body>

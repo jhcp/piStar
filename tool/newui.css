@@ -14,7 +14,7 @@ body {
  * Sidebar
  */
 
-.sidebar {
+.sidepanel {
     position: fixed;
     top: 113px;
     bottom: 0;
@@ -35,22 +35,22 @@ body {
     box-shadow: 0 4px 10px rgb(100, 100, 100);
 }
 
-.sidebar .nav-link {
+.sidepanel .nav-link {
     font-weight: 500;
     color: #333;
 }
 
-.sidebar .nav-link .feather {
+.sidepanel .nav-link .feather {
     margin-right: 4px;
     color: #999;
 }
 
-.sidebar .nav-link.active {
+.sidepanel .nav-link.active {
     color: #007bff;
 }
 
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
+.sidepanel .nav-link:hover .feather,
+.sidepanel .nav-link.active .feather {
     color: inherit;
 }
 
@@ -63,7 +63,7 @@ body {
  * Navbar
  */
 
-.menubar {
+.menu-bar {
     position: -webkit-sticky;
     position: sticky;
     color:white;
@@ -72,22 +72,22 @@ body {
     border:0;
     border-radius: 0;
 }
-.menubar .brand {
+.menu-bar .brand {
     font-size: 1rem;
 }
 
-.menubar button {
+.menu-bar button {
     border:0;
     border-radius: 0;
     background-color: rgb(200, 0, 0);
     color: rgb(252, 255, 239);
     font-size: .875rem;
 }
-.menubar .currentMenu {
+.menu-bar .currentMenu {
     background-color: rgb(41, 46, 50);
     color: rgb(252, 255, 239);
 }
-.menubar a{
+.menu-bar a{
     /*height:200px;*/
     color:white;
     background-color: rgb(200, 0, 0);
