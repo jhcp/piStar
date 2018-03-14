@@ -566,6 +566,9 @@ ui.setupUi = function () {
     $('#saveModel').hide();
     $('#diagramWidthInput').val(istar.paper.getArea().width);
     $('#diagramHeightInput').val(istar.paper.getArea().height);
+    $('#diagramBoxOuter').height($(window).height()+100);
+
+
 };
 
 $('#diagramSizeButton').click(function () {
