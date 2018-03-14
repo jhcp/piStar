@@ -7,6 +7,7 @@ body {
     color: rgb(252, 255, 239);
     background-color: rgb(200, 0, 0);
     height:1.8rem;
+    overflow: hidden;
 }
 .menu-bar .brand {
     font-size: 1rem;
@@ -31,7 +32,7 @@ body {
     border-bottom:2px solid rgb(41, 46, 50);
     color: rgb(252, 255, 239);
 }
-.menu-bar button:hover {
+.menu-items a:hover {
     border-top:2px solid white;
     /*border-left:2px solid white;*/
     /*border-right:2px solid white;*/
@@ -79,11 +80,11 @@ body {
 .sidepanel td, .sidepanel th {
     padding: 8px 5px;
 }
-.sidepanel .propertyValue {
+.sidepanel .propertyValue, .sidepanel .propertyName {
     color: rgb(41, 46, 50);
     border-bottom-color: rgb(200, 0, 0);
 }
-.sidepanel input{
+.sidepanel input, .sidepanel textarea {
     font-size: 0.75rem;
 }
 
@@ -123,25 +124,6 @@ body {
 .q3 {
     font-size: 2rem;
 }
-
-
-.sidebarResize {
-    width: 10px;
-    background-color: dimgrey;
-    z-index: 1; /* Behind the menu */
-    padding: 0;
-    box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
-    font-size: 0.7rem;
-    /*width: 270px;*/
-    position: absolute;
-    left: 0;
-    height: calc(100vh - 48px);
-    /*padding-top: .5rem;*/
-    overflow-x: hidden;
-    overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-}
-
-
 
 
 
@@ -205,7 +187,7 @@ body {
 
 #diagramBoxOuter {
     overflow: scroll;
-    height: calc(100% - 17px);
+    /*height: calc(100% - 17px);*/
     /*height: calc(100vh);*/
     margin-left: 270px;
     height: calc(100vh - 117px);
@@ -219,4 +201,15 @@ body {
     width: 16px;
     height: 16px;
     vertical-align: text-bottom;
+}
+
+
+.propertiesPanel  .editable-container {
+    width: 100%;
+}
+.propertiesPanel  div {
+    width: 100%;
+}
+.propertiesPanel  textarea {
+    width: 100%!important;
 }

@@ -29,11 +29,15 @@
         <a href="#" class="align-middle">piStar</a>
     </div>
 
-    <div class="col-sm-12 col-md-11 p-0 m-0">
-        <button type="button" class="btn">File <span class="toggleMenuSymbol">&#8648;</span></button>
-        <button type="button" class="btn active">Add <span class="toggleMenuSymbol">&#8648;</span></button>
-        <button type="button" class="btn">Diagram</button>
-        <button type="button" class="btn">Help<span class="toggleMenuSymbol2">&#8689;</span></button>
+    <div class="col-sm-12 col-md-11 p-0 m-0 menu-items">
+        <!--<button type="button" class="btn">File <span class="toggleMenuSymbol">&#8648;</span></button>-->
+        <!--<button type="button" class="btn active">Add <span class="toggleMenuSymbol">&#8648;</span></button>-->
+        <!--<button type="button" class="btn">Diagram</button>-->
+        <!--<button type="button" class="btn">Help<span class="toggleMenuSymbol2">&#8689;</span></button>-->
+        <a class="btn">File <span class="toggleMenuSymbol">&#8648;</span></a>
+        <a class="btn active">Add <span class="toggleMenuSymbol">&#8648;</span></a>
+        <a class="btn">Diagram</a>
+        <a class="btn">Help <span class="toggleMenuSymbol">&#9651;</span></a>
     </div>
 </div>
 
@@ -61,29 +65,41 @@
         <!--<a href="#" class="q1">&#9645;</a><a href="#" class="q2">&#9645;</a><a href="#" class="q3">&#9645;</a>-->
         <!--<a href="#" class="q1">&#9608;</a> <a href="#" class="q2">&#9608;</a> <a href="#" class="q3">&#9608;</a>-->
         <!--<a href="#" class="q2">&#9614;</a> <a href="#" class="q2">&#9613;</a> <a href="#" class="q2">&#9609;</a>-->
-        <a href="#" class="collapseSidepanelButton">&#9665;</a> <a href="#" class="expandSidepanelButton">&#9655;</a>
+        <a href="#" class="collapseSidepanelButton" title="Collapse panel">&#9665;</a> <a href="#" class="expandSidepanelButton" title="Expand panel">&#9655;</a>
         <!--<a href="#" class="q2 collapseSidepanelButton">&#8612;</a> <a href="#" class="q2 expandSidepanelButton">&#8614;</a>-->
     </div>
+    <br />Properties:
     <div class="propertiesPanel">
         <table class="table table-hover">
             <tbody>
             <tr>
                 <th scope="row">Name</th>
-                <td><a href="#" id="currentName" class="propertyValue" data-type="text" data-pk="1"
+                <td><a href="#" id="currentName" class="propertyValue" data-type="textarea" data-pk="1"
                        data-name="name" data-title="Enter name">Use piStar</a></td>
             </tr>
             <tr>
-                <th scope="row"><a href="#" id="propertyName1" class="propertyValue" data-type="text" data-pk="1"
+                <th scope="row"><a href="#" id="propertyName1" class="propertyName" data-type="text" data-pk="1"
                                    data-name="name" data-title="Enter property name">Cost</a></th>
-                <td><a href="#" id="currentCost" class="propertyValue" data-type="text" data-pk="1"
+                <td><a href="#" id="currentCost" class="propertyValue" data-type="textarea" data-pk="1"
                        data-name="name" data-title="Enter cost">$10</a></td>
             </tr>
             <tr>
-                <th scope="row"><a href="#" id="propertyName2" class="propertyValue" data-type="text" data-pk="1"
+                <th scope="row"><a href="#" id="propertyName2" class="propertyName" data-type="text" data-pk="1"
                                    data-name="name" data-title="Enter property name">Description</a></th>
-                <td><a href="#" id="currentDescription" class="propertyValue" data-type="text" data-pk="1"
-                       data-name="name" data-title="Enter description">To use the piStar tool the user will open a
-                    specific URL on her web browser.</a></td>
+                <td><a href="#" id="currentDescription" class="propertyValue" data-type="textarea" data-pk="1"
+                       data-name="name" data-title="Enter description">To use the piStar tool the user will open a specific URL on her web browser.</a></td>
+            </tr>
+            <tr>
+                <th scope="row">
+                    <a href="#" id="" class="propertyAdd" data-type="text" data-pk="1"
+                       data-name="name" data-title="Enter description" data-placeholder="ahhhh" title="Add a new property to this element">
+                    <i data-feather="plus-circle"></i>
+                    <!--<i data-feather="plus"></i>-->
+                    <!--<i data-feather="plus-square"></i>-->
+                    Add
+                    </a>
+                </th>
+                <td></td>
             </tr>
             <!--<tr>-->
                 <!--<th scope="row">Name</th>-->
@@ -141,6 +157,69 @@
             <!--</tr>-->
             </tbody>
         </table>
+
+        <!--<h6 class="sidepanel-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">-->
+            <!--<span>ACTION BUTTONS</span>-->
+            <!--<a class="d-flex align-items-center text-muted" href="#">-->
+                <!--+-->
+            <!--</a>-->
+        <!--</h6>-->
+        <!--<hr />-->
+        <div class="button-area" style="padding:5px;" >
+        <!--<div class="card text-center bg-light">-->
+            <!--<div class="card-body">-->
+                <!--<a href="#" class="btn btn-sm btn-outline-primary">Collapse/expand</a>-->
+            <!--</div>-->
+        <!--</div>-->
+<!--<br />-->
+<!--<br />-->
+            <!--<div class="list-group">-->
+                <!--<a href="#" class="list-group-item list-group-item-action">-->
+                    <!--Collapse/expand-->
+                <!--</a>-->
+                <!--<li class="list-group-item d-flex justify-content-between align-items-center">-->
+                    <!--Number of elements-->
+                    <!--<span class="badge badge-primary badge-pill">12</span>-->
+                <!--</li>-->
+
+                <!--<li class="list-group-item d-flex justify-content-between align-items-center">-->
+                    <!--Number of dependencies-->
+                    <!--<span class="badge badge-primary badge-pill">4</span>-->
+                <!--</li>-->
+                <!--<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>-->
+                <!--<a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>-->
+            <!--</div>-->
+
+            <!--<br />-->
+            <!--<br />-->
+            Actions:
+            <div class="list-group">
+                <a href="#" class="list-group-item list-group-item-action">
+                    Collapse/expand
+                </a>
+            </div>
+
+
+        </div>
+        <br />
+        Info:
+            <div class="list-group rounded-0">
+            <li class="list-group-item d-flex justify-content-between align-items-center rounded-0">
+                Number of elements
+                <span class="badge badge-primary badge-pill">12</span>
+            </li>
+
+            <li class="list-group-item d-flex justify-content-between align-items-center rounded-0">
+                Number of dependencies
+                <span class="badge badge-primary badge-pill">4</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center rounded-0">
+                [WARNING] Elements with no name
+                <span class="badge badge-primary badge-pill">1</span>
+            </li>
+        </div>
+
+
     </div>
 </div>
 
@@ -151,7 +230,8 @@
 <main role="main" class="main">
     <div id="diagramBoxOuter">
         <div id="diagramBoxInner">
-            <img src="goalModel.svg" width="1376"/>
+            <div id="diagram"></div>
+            <!--<img src="goalModel.svg" width="1376"/>-->
         </div>
     </div>
 
@@ -162,66 +242,46 @@
 <script src="istarcore/lib/lodash.min.js"></script>
 <script src="istarcore/lib/backbone.min.js"></script>
 
-<!--<script src="istarcore/lib/joint.min.js"></script>-->
+<script src="istarcore/lib/joint.min.js"></script>
 <script src="lib/bootstrap/bootstrap.min.js"></script>
 
-<script src="lib/bootstrap3-editable/js/bootstrap-editable.min.js" type="text/javascript"></script>
+<script src="lib/bootstrap3-editable/js/bootstrap-editable.js" type="text/javascript"></script>
 
-<!-- istar core -->
-<!--<script src="js/istarcore.shapes.js"></script>-->
-<!--<script src="istarcore/istarcore.metamodel.js"></script>-->
-<!--<script src="istarcore/istarcore.js"></script>-->
-<!--<script src="istarcore/metamodel.js"></script>-->
+ istar core
+<script src="js/istarcore.shapes.js"></script>
+<script src="istarcore/istarcore.metamodel.js"></script>
+<script src="istarcore/istarcore.js"></script>
+<script src="istarcore/metamodel.js"></script>
 
-<!-- tool specific -->
-<!--<script src="istarcore/fileManager.js"></script>-->
-<!--<script src="js/models/addButton.js"></script>-->
-<!--<script src="js/views/addButton.js"></script>-->
-<!--<script src="js/views/addButtonDropdownItem.js"></script>-->
-<!--<script src="js/controllers/addButton.js"></script>-->
-<!--<script src="js/views/propertiesTable.js"></script>-->
-<!--<script src="js/ui.js"></script>-->
-<!--<script src="js/examples.js"></script>-->
+ tool specific
+<script src="istarcore/fileManager.js"></script>
+<script src="js/models/addButton.js"></script>
+<script src="js/views/addButton.js"></script>
+<script src="js/views/addButtonDropdownItem.js"></script>
+<script src="js/controllers/addButton.js"></script>
+<script src="js/views/propertiesTable.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/examples.js"></script>
 
 <!-- insert your plugin(s) here, after this line -->
 
 <!-- end of plugin(s) area -->
 
-<!--<script src="js/main.js"></script>-->
-
-
-<!-- Icons -->
-<script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
-<script>
-    feather.replace()
-</script>
+<script src="js/main.js"></script>
 
 
 <script>
     //x-editable setup
     $.fn.editable.defaults.mode = 'inline';
     $(document).ready(function () {
-        $('.propertyValue').editable();
+        $('.propertyName, .propertyValue, .propertyAdd').editable({showbuttons: 'bottom'});
     });
 
     //sidepanel resizing
     var sidepanelSizes = [25, 270, 600];
     var sidepanelCurrentSize = 1;
-    $('.collapseSidepanelButton').click(function () {
-        if (sidepanelCurrentSize > 0) {
-            if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
-                $('.sidepanel').removeClass('full');
-            }
-            sidepanelCurrentSize--;
-            $('.sidepanel').css('width', sidepanelSizes[sidepanelCurrentSize] + 'px');
-            $('#diagramBoxOuter').css('margin-left', sidepanelSizes[sidepanelCurrentSize] + 'px');
-
-            if (sidepanelCurrentSize === 0) {
-                $('.sidepanel').addClass('collapsed');
-            }
-        }
-    });
-    $('.expandSidepanelButton').click(function () {
+    var sidepanelSizeForXeditable = 1;
+    var expandSidepanel = function () {
         if (sidepanelCurrentSize < (sidepanelSizes.length - 1)) {
             //TODO check if the next size is not larger than the current window/document size
             sidepanelCurrentSize++;
@@ -235,7 +295,23 @@
                 $('.sidepanel').addClass('full');
             }
         }
-    });
+    };
+    var collapseSidepanel = function () {
+        if (sidepanelCurrentSize > 0) {
+            if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
+                $('.sidepanel').removeClass('full');
+            }
+            sidepanelCurrentSize--;
+            $('.sidepanel').css('width', sidepanelSizes[sidepanelCurrentSize] + 'px');
+            $('#diagramBoxOuter').css('margin-left', sidepanelSizes[sidepanelCurrentSize] + 'px');
+
+            if (sidepanelCurrentSize === 0) {
+                $('.sidepanel').addClass('collapsed');
+            }
+        }
+    };
+    $('.collapseSidepanelButton').click(collapseSidepanel);
+    $('.expandSidepanelButton').click(expandSidepanel);
 
     //menu-body toggling
     var isMenuBodyCollapsed = false;
@@ -249,14 +325,29 @@
             isMenuBodyCollapsed = false;
             $('#diagramBoxOuter').height($('#diagramBoxOuter').height() - menuBodyHeight);
             $('.sidepanel').height($('.sidepanel').height() - menuBodyHeight);
+            $(this).find('.toggleMenuSymbol').html('&#8648');
         }
         else {
             $('.menu-body').slideUp(200);
             isMenuBodyCollapsed = true;
             $('#diagramBoxOuter').height($('#diagramBoxOuter').height() + menuBodyHeight);
             $('.sidepanel').height($('.sidepanel').height() + menuBodyHeight);
+            $(this).find('.toggleMenuSymbol').html('&#8650');
         }
     });
+
+    // $('.propertiesPanel  a').click(function () {
+    $('.propertiesPanel  a').on('shown', function(e, editable) {
+            // sidepanelSizeForXeditable = sidepanelCurrentSize;
+            // expandSidepanel();
+    });
+    $('.propertiesPanel  a').on('hidden', function(e, reason) {
+        if (sidepanelSizeForXeditable !== sidepanelCurrentSize) {
+            // collapseSidepanel();
+        }
+    });
+
+
 </script>
 
 </body>
