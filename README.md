@@ -7,7 +7,9 @@
 
 Currently, this tool is deployed at http://www.cin.ufpe.br/~jhcp/pistar/
 
-Please check our [requirements doc](REQUIREMENTS.md), our [development instructions](DEVELOPMENT.md), and our [contributors list](CONTRIBUTORS.md). For further information please contact jhcp at cin ufpe br
+Please check out our [requirements doc](REQUIREMENTS.md), our [development instructions](docs/README.md), and our [contributors list](CONTRIBUTORS.md). You can also see the [list of published work that has used this tool](RESEARCH.md).
+
+For further information please contact jhcp at cin ufpe br
 
 ## A hackable tool
 Feel like getting inside The Matrix? Open your browser's console (usualy ctrl+shift+c) and try one of these examples:
