@@ -2,6 +2,12 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+### Added
+- Responsive drawing area, based on the windows' height
+
+### Changed
+- Preventing unnecessary data on the JSON object when saving a file, 
+for the cases where vertices were added to a link but were later removed.
 
 ## [Release v1.1.0] - 2018-03-11
 ### Added

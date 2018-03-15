@@ -124,7 +124,9 @@ function saveModel() {
 
         var vertices = link.get('vertices');
         if (vertices) {
-            modelJSON.display[link.id] = {vertices: vertices};//add the vertices to the save file
+            if (vertices.length > 0) {
+                modelJSON.display[link.id] = {vertices: vertices};//add the vertices to the save file
+            }
         }
 
         modelJSON.links.push(linkJSON);
