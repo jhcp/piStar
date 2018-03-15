@@ -1,8 +1,10 @@
 # Development information
+
 This tool is architected to be easily extendable by developers. Thus, no knowledge of specific frameworks is required. You can hack your way with HTML and Javascript.
 
 Nonetheless, the library used to handle the drawing of the model (JointJS) requires a few other libraries, hence feel free to use them as you see fit.
 
+*Check out these additional [development docs](/docs)*
 ## Build instructions
 No build required, you just need to clone this repository (or your own fork) and open tool/index.html on your browser.
 
