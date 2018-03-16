@@ -219,3 +219,17 @@ modeling language and tool
 - *Notes*:
   - TBD
 </details>
+
+# User Roles
+
+## Modeler
+Needs to create an i* 2.0 model.
+
+### Novice modeler
+Computer-savvy but not very familiar with i*. Forced to create i* models by a university professor. He is aware of i*'s key concepts, but will have many doubts when creating his models.
+
+### Advanced modeler
+Has created more than a handful of i* models, perhaps using some other tool. Is very busy and cannot be bothered by technical issues. Wants to create models for illustrating scientific papers and also for teaching. Alternatively, she is designing a real system and needs to document its requirements.
+
+## Researcher
+Conducts i*-related research in an academic context. Has conceived a very nice proposal (extension/method/transformation/etc.) and now needs to create i* models to be used as input. She also wants to provide tool support for her proposal, but is pressured to meet deadlines and can't afford to spend too much time in it.
