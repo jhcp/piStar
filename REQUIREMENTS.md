@@ -220,6 +220,16 @@ modeling language and tool
   - TBD
 </details>
 
+
+<details><summary>
+  
+**As a** modeler 
+**I want to** increase the size of the drawing area
+ **so that** I can create models as large as I need</summary>
+- *Notes*:
+  - TBD
+</details>
+
 # User Roles
 
 ## Modeler
