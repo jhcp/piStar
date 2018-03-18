@@ -197,6 +197,13 @@ ui.defineInteractions = function () {
             }
         }
     });
+    istar.paper.on('cell:pointerdown', function (cellView, evt, x, y) {
+        if (ui.currentStateIsView()) {
+            if (!cellView.model.isLink()) {
+                ui.selectElement(cellView.model, cellView);
+            }
+        }
+    });
     istar.paper.on('cell:pointerup', function (cellView, evt, x, y) {
         if (evt.ctrlKey) {
             //collapse/uncollapse actors when ctrl-clicked
@@ -262,8 +269,25 @@ ui.defineInteractions = function () {
             }
         }
         else if (ui.currentStateIsView()) {
-            if (!cellView.model.isLink()) {
-                ui.selectElement(cellView.model, cellView);
+            //increase the drawing area if there is an element beyond its edges
+
+            //get the Bounding Box from the view, which ignores hidden inner elements
+            //In contrast, if we were to get the Bounding Box from the model, the dimensions would be
+            //that of a expanded actor even if it were collapsed
+            var cellBBox = cellView.getBBox();
+
+            var paperWidth = istar.paper.getArea().width;
+
+            //Round the numbers of the new dimension since:
+            // a) Precision is not relevant here
+            // b) Int numbers are easier for the user to handle (when manually changing the size)
+            if (cellBBox.y + cellBBox.height > istar.paper.getArea().height ) {
+                //if the element is beyond the right edge
+                istar.paper.setDimensions(paperWidth, Math.round(cellBBox.y + cellBBox.height + 40));
+            }
+            if (cellBBox.x + cellBBox.width > paperWidth ) {
+                //if the element is beyond the bottom edge
+                istar.paper.setDimensions(Math.round(cellBBox.x + cellBBox.width + 40));
             }
         }
     });
@@ -571,13 +595,15 @@ ui.setupUi = function () {
     
     $('#saveImage').hide();
     $('#saveModel').hide();
-    $('#diagramWidthInput').val(istar.paper.getArea().width);
-    $('#diagramHeightInput').val(istar.paper.getArea().height);
     $('#diagramBoxOuter').height($(window).height()+100);
 
 
 };
 
+$('#diagramOptionsModalButton').click(function () {
+    $('#diagramWidthInput').val(istar.paper.getArea().width);
+    $('#diagramHeightInput').val(istar.paper.getArea().height);
+});
 $('#diagramSizeButton').click(function () {
     istar.paper.setDimensions($('#diagramWidthInput').val(), $('#diagramHeightInput').val());
 });

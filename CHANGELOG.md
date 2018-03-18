@@ -3,11 +3,16 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 ### Added
-- Responsive drawing area, based on the windows' height
+- Responsive initial size of the drawing area, based on the windows' height
+- Increase drawing area if there is an element beyond its right and bottom edges
 
 ### Changed
 - Preventing unnecessary data on the JSON object when saving a file, 
 for the cases where vertices were added to a link but were later removed.
+- Now select element on pointerdown instead of on pointerup to increase perceived responsiveness
+
+### Fix
+- Issue #5: wrong origin of the model after save image
 
 ## [Release v1.1.0] - 2018-03-11
 ### Added
