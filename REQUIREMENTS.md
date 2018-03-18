@@ -230,6 +230,13 @@ modeling language and tool
   - TBD
 </details>
 
+**As a** modeler 
+**I want to** add custom attributes to multiple elements at once
+ **so that** I can save time when creating my models</summary>
+- *Notes*:
+  - TBD
+</details>
+
 # User Roles
 
 ## Modeler
