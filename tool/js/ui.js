@@ -469,16 +469,23 @@ $('#saveImageButton').click(function () {
     $jointMarkers.hide();
     ui.hideSelection();
 
+    var originalWidth = istar.paper.getArea().width;
+    var originalHeight = istar.paper.getArea().height;
+    istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
+
     var svgData = saveSvg('diagram');
     $saveImage.html(createDownloadLink('goalModel.svg', '◀ SVG', svgData, 'download SVG (vectorial)'));
     $saveImage.append(document.createTextNode(' - '));
 
     savePng('diagram', addPngLink);
 
-    $saveImage.show();
+    //restore the paper to its initial state
+    istar.paper.setDimensions(originalWidth, originalHeight);
+    istar.paper.translate(0,0);
 
-    //show the UI elements again
+    //show the UI elements back again
     $jointMarkers.show();
+    $saveImage.show();
     ui.showSelection(ui.getSelectedElement());
 });
 
