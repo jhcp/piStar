@@ -12,6 +12,24 @@
 
 # User Stories
 
+## Release 1.2.0
+<details><summary>
+  
+**As a** modeler 
+**I want to** have the drawing area automatically enlarged if my elements don't fit in it
+ **so that** I can create models as large as I need</summary>
+- *Notes*:
+  - Expand to the right
+  - Expand to the bottom
+  - Due to technical difficulties and low value, expand to top and left were excluded from this story;
+   this may be reconsidered in a future release. 
+- *Tests*:
+  - Try when moving expanded actor
+  - Try when moving collapsed actor
+  - Try when moving elements within an expanded actor
+  - Try when moving dependums
+</details>
+
 ## Release 1.1.0
 
 <details><summary>
@@ -37,7 +55,7 @@
   - Açafrão (Portuguese)
   - разработка требований (Russian)
   - ihtiyaç mühendisliği (Turkish)
-- Tests:
+- *Tests*:
   - Try in elements' name
   - Try in the content of a custom property
   - Try in the name of a custom property  
@@ -162,12 +180,19 @@
 **I want to** open model examples
 - **so that** I can see what is possible to do with this
 modeling language and tool
-- **so that** I have a starting point to tinker with in the tool
-</summary>
+- **so that** I have a starting point to tinker with in the tool</summary>
 - *Notes*:
   - none
 </details>
 
+<details><summary>
+  
+**As a** modeler 
+**I want to** change the size of the drawing area
+ **so that** I can create models as large (or as small) as I need</summary>
+- *Notes*:
+  - Manually define width and height
+</details>
 
 ## Backlog
 
@@ -216,16 +241,6 @@ modeling language and tool
 **As a** modeler 
 **I want to** calculate metrics for my i* model 
  **so that** I can assess its quality</summary>
-- *Notes*:
-  - TBD
-</details>
-
-
-<details><summary>
-  
-**As a** modeler 
-**I want to** increase the size of the drawing area
- **so that** I can create models as large as I need</summary>
 - *Notes*:
   - TBD
 </details>

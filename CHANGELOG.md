@@ -2,6 +2,9 @@
 All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
+
+## [Release v1.2.0] - 2018-03-20
+
 ### Added
 - Responsive initial size of the drawing area, based on the windows' height
 - Increase drawing area if there is an element beyond its right and bottom edges
