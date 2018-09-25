@@ -10,6 +10,8 @@ If you need to mention the piStar tool, please reference this publication:
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- In Portuguese: Bergmann, Leandro Santos. "piStar-GODA: integração entre os projetos piStar e GODA." (2018). Advisor: Genaína Rodrigues, UNB. [http://bdm.unb.br/bitstream/10483/20428/1/2018_LeandroSantosBergmann_tcc.pdf]
+
 - Peixoto, Mariana Maia, and Carla Silva. "Specifying privacy requirements with goal-oriented modeling languages." Proceedings of the XXXII Brazilian Symposium on Software Engineering. ACM, 2018. [https://dl.acm.org/citation.cfm?id=3266270]
 
 - Siyal, F. and Franch, X., 2018. A Goal Model for Crowdsourced Software Engineering. [http://ceur-ws.org/Vol-2118/iStar2018_paper_8.pdf]
