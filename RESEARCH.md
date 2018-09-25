@@ -10,6 +10,8 @@ If you need to mention the piStar tool, please reference this publication:
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- Peixoto, Mariana Maia, and Carla Silva. "Specifying privacy requirements with goal-oriented modeling languages." Proceedings of the XXXII Brazilian Symposium on Software Engineering. ACM, 2018. [https://dl.acm.org/citation.cfm?id=3266270]
+
 - Siyal, F. and Franch, X., 2018. A Goal Model for Crowdsourced Software Engineering. [http://ceur-ws.org/Vol-2118/iStar2018_paper_8.pdf]
 
 - de Freitas, M.L., Silva, A.A., Guizzardi, R.S. and Souza, V.E.S., 2018. Goal and Risk Analysis in the Development of Information Systems for the Web of Data. [https://www.inf.ufes.br/~rguizzardi/publications/freitas-silva-guizz-souza-wer2018-CR.pdf]
