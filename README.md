@@ -7,7 +7,7 @@
 
 Currently, this tool is deployed at http://www.cin.ufpe.br/~jhcp/pistar/
 
-Please check out our [requirements doc](REQUIREMENTS.md), our [development instructions](docs/), and our [contributors list](CONTRIBUTORS.md). You can also see the [list of published work that has used this tool](RESEARCH.md).
+Please check out our [requirements doc](docs/REQUIREMENTS.md), our [development instructions](docs/), and our [contributors list](CONTRIBUTORS.md). You can also see the [list of published work that has used this tool](RESEARCH.md).
 
 For further information please contact jhcp at cin ufpe br
 
