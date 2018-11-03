@@ -247,15 +247,33 @@ ui.defineInteractions = function () {
                         ui.linkTarget = cellView;
 
                         if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|make|help|hurt|break/)) {
-                            if (ui.currentAddingElement === 'AndRefinementLink') istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
-                            else if (ui.currentAddingElement === 'OrRefinementLink') istar.addOrRefinementLink(ui.linkSource.model, ui.linkTarget.model);
-                            else if (ui.currentAddingElement === 'NeededByLink') istar.addNeededByLink(ui.linkSource.model, ui.linkTarget.model);
-                            else if (ui.currentAddingElement === 'QualificationLink') istar.addQualificationLink(ui.linkSource.model, ui.linkTarget.model);
+                            var newLink = null;
+                            var prettyLinkName = '';
+                            if (ui.currentAddingElement === 'AndRefinementLink') {
+                                newLink = istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
+                                prettyLinkName = 'And-Refinement link';
+                            }
+                            else if (ui.currentAddingElement === 'OrRefinementLink') {
+                                newLink = istar.addOrRefinementLink(ui.linkSource.model, ui.linkTarget.model);
+                                prettyLinkName = 'Or-Refinement link';
+                            }
+                            else if (ui.currentAddingElement === 'NeededByLink') {
+                                newLink = istar.addNeededByLink(ui.linkSource.model, ui.linkTarget.model);
+                                prettyLinkName = 'Needed-By link';
+                            }
+                            else if (ui.currentAddingElement === 'QualificationLink') {
+                                newLink = istar.addQualificationLink(ui.linkSource.model, ui.linkTarget.model);
+                                prettyLinkName = 'Qualification link';
+                            }
                             else if (ui.currentAddingElement.match(/make|help|hurt|break/i)) {
-                                var newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.currentAddingElement);
+                                newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.currentAddingElement);
+                                prettyLinkName = 'Contribution link';
                                 if (newLink) {
                                     newLink.on('change:vertices', ui._toggleSmoothness);//do some magic in order to prevent ugly links when there are no vertices
                                 }
+                            }
+                            if (!newLink) {
+                                alert('INVALID: the i* 2.0 syntax does not allow you to create a ' + prettyLinkName + ' between the selected elements');
                             }
                         }
                         else if (ui.dependencyType.match(/DependencyLink/)) {
@@ -345,7 +363,7 @@ ui.addLinkBetweenActors = function (newLink, targetCellView) {
             istar[istar.PREFIX_ADD + ui.currentAddingElement](ui.linkSource.model, ui.linkTarget.model);
         }
         else {
-            alert('Sorry, it is not possible to add a \'' + newLink +
+            alert('INVALID: the i* 2.0 syntax does not allow you to to add a \'' + newLink +
                 '\' link from a ' + ui.linkSource.model.get('type') + ' to a ' +
                 ui.linkTarget.model.get('type'));
         }
@@ -375,20 +393,20 @@ function addDependency(source, dependencyType, target) {
     }
 
     if (source === target) {
-        console.log('INVALID: you cannot create a dependency from an element to itself.');
-        alert('INVALID: you cannot create a dependency from an element to itself.');
+        console.log('INVALID: the i* 2.0 syntax does not allow you to create a dependency from an element to itself.');
+        alert('INVALID: the i* 2.0 syntax does not allow you to create a dependency from an element to itself.');
     }
     else if (source.isLink() || target.isLink()) {
-        console.log('INVALID: you cannot create a dependency from/to another link.');
-        alert('INVALID: you cannot create a dependency from/to another link.');
+        console.log('INVALID: the i* 2.0 syntax does not allow you to create a dependency from/to another link.');
+        alert('INVALID: the i* 2.0 syntax does not allow you to create a dependency from/to another link.');
     }
     else if (source.isDependum() || target.isDependum()) {
-        console.log('INVALID: you cannot create a dependency from/to a dependum.');
-        alert('INVALID: you cannot create a dependency from/to a dependum.');
+        console.log('INVALID: the i* 2.0 syntax does not allow you to create a dependency from/to a dependum.');
+        alert('INVALID: the i* 2.0 syntax does not allow you to create a dependency from/to a dependum.');
     }
     else if (sourceParentId === targetParentId) {
-        console.log('INVALID: you cannot create a dependency with a single actor.');
-        alert('INVALID: you cannot create a dependency with a single actor.');
+        console.log('INVALID: the i* 2.0 syntax does not allow you to create a dependency with a single actor.');
+        alert('INVALID: the i* 2.0 syntax does not allow you to create a dependency with a single actor.');
     }
     else if (sourceParentId && targetParentId) {
         var node = '';

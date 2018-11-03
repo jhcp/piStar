@@ -565,6 +565,7 @@ var istar = function () {
                 if (istar.types[linkName].isValid(source, target)) {
                     return istar.addLinkBetweenNodes(linkPrefixedName, shape, source, target, label);
                 }
+
             };
         },
         embedNode: function (child, parent) {
