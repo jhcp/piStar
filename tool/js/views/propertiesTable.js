@@ -25,6 +25,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
         if (this.model.isKindOfActor()) {
             this.setupCollapseExpandButton();
         }
+        else if (this.model.isGoal()) {
+            this.setupObstructButton();
+        }
 
         return this;
     },
@@ -83,6 +86,29 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 ui.hideSelection();//remove the focus from the actor
                 ui.getSelectedElement().toggleCollapse();
                 ui.showSelection();//give the focus back to actor, now collapsed or expanded
+            }
+        });
+    },
+    setupObstructButton: function () {
+        $('#cellButtons').append('<button type="button" id="obstructButton">Toggle Obstruct</button>');
+        $('#obstructButton').click(function () {
+            goal = ui.getSelectedElement();
+            if (goal) {
+                var name = ui.getSelectedElement().prop('name');
+                isObstruct = goal.prop('customProperties/isObstruct');
+                if (isObstruct) {
+                    goal.attr('rect', {fill: '#cdfecd'});
+                    var newName = name.replace('<<obstruct>> ', '');
+                    goal.changeNodeContent(newName);
+                    goal.prop('customProperties/isObstruct', false);
+                }
+                else {
+                    goal.attr('rect', {fill: '#ce8483'});
+
+                    var newName = '<<obstruct>> ' + name;
+                    goal.changeNodeContent(newName);
+                    goal.prop('customProperties/isObstruct', true);
+                }
             }
         });
     },
