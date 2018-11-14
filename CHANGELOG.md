@@ -7,6 +7,10 @@ All notable changes to this project will be documented in this file.
 - UI Error messages when adding invalid links between nodes. E.g., when adding a contribution link 
 from a task to another task. 
 
+### Changed
+- Revamped UI, with collapsable toolbars on the top.
+
+
 ## [Release v1.2.0] - 2018-03-20
 
 ### Added

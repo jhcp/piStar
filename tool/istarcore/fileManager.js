@@ -34,7 +34,7 @@ if (!HTMLCanvasElement.prototype.toBlob) {
     });
 }
 
-function savePng(paperId, callback) {
+function savePng(paperId, callback, filename) {
 
 
     //create a canvas, which is used to convert the SVG to png
@@ -60,7 +60,7 @@ function savePng(paperId, callback) {
 
         canvas.toBlob(function (blob) {
             var linkToDownload = URL.createObjectURL(blob);
-            callback(linkToDownload);
+            callback(linkToDownload, filename);
         });
 
     };

@@ -1,95 +1,179 @@
 body {
-    padding: 0;
-    margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; /* based on Bootstrap 4 font*/
 }
-
+.menu-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-wrap: wrap;
+    background-color: rgb(200,0,0);
+    color: rgb(252, 255, 239);
+}
+.menu-bar .logo {
+    font-weight: bolder;
+    padding: 4px 50px;
+    align-self: center;
+    font-size: 1.1em;
+    cursor:default;
+}
+#star {
+    transition-duration: 0.6s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+    margin-left:-5px;
+    margin-top:-10px;
+}
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+nav a, nav a:active, nav a:hover, nav a:link, nav a:visited {
+    text-decoration: none;
+    color: rgb(252, 255, 239);
+}
+.menu-item {
+    display: inline-block;
+    padding:2px 20px;
+    color: rgb(252, 255, 239);;
+    border: solid 2px rgb(200,0,0);
+    font-size: 0.97em;
+}
+.menu-item:hover {
+    border-top: solid 2px white;
+}
+.menu-item.active {
+    background-color: rgb(21, 26, 30);
+    border-bottom:2px solid rgb(21, 26, 30);
+}
+.menu-body {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    background-color: rgb(21, 26, 30);
+    color: rgb(252, 255, 239);
+    padding:6px 3px;
+    font-size: 0.8em;
+}
+.menu-group {
+    display: flex;
+    flex-direction: column;
+    border-left: dashed 1px lightgrey;
+    padding: 0px 3px;
+    padding-right: 0;
+    margin:0px 2px;
+    text-align: center;
+}
+.menu-group:first-child {
+    border:none;
+}
+.menu-group .title {
+    text-align: center;
+    padding:0px;
+}
+input, button {
+    color: black;
+}
+.button-horizontal {
+    display: inline-flex;
+    align-items: center;
+    padding:0px;
+    padding-right: 4px;
+}
+.button-horizontal .glyphicon {
+    font-size: 1.5em;
+    margin:3px;
+    margin-top:1px;
+}
+.button-horizontal:active:focus {
+    margin-bottom: -2px;
+    margin-right: -2px;
+}
+.btn {
+    border-radius: 0px;
+}
+.btn-default.active, .btn-default.active.focus, .btn-default:active, .btn-default.active:hover, .btn-default.active.focus:hover, .btn-default:active:hover {
+    box-shadow: none;
+    background-color: #b1b1b1;
+    color:black;
+}
+.menu-line {
+    padding:2px;
+}
+.add-button.btn {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    margin: 0px;
+    font-size: 1em;
+}
+.addButton, .addDropdownButton {
+    margin:0px;
+    padding:0px;
+    display: inline-block;
+}
+#menu-add {
+    flex-wrap: wrap;
+}
+.line-break {
+    width: 100%;
+}
+#status {
+    font-size:1.2em;
+    margin-left:3em;
+}
+.jscolor {
+    border:1px solid darkgrey;
+}
+#saveModel a{
+    color: black;
+    text-decoration: none;
+}
 #diagramBoxOuter {
     height: 600px;
     padding: 7px 5px;
     background-color: lightgray;
 
 }
-
 #diagramBoxInner {
     overflow: scroll;
     height: 100%;
 }
-
 svg {
     border: solid lightgray 2px;
     background-color: white;
     margin: 0;
 }
-
 .remove-element {
     cursor: pointer;
 }
-
 .remove-element circle {
     fill: grey;
 }
-
 .remove-element path {
     fill: white;
 }
-
 .link-tools .tool-remove path {
     /*display: none;*/
 }
-
 .link-tools .tool-remove circle {
     /*display: none;*/
     fill: grey;
 }
-
 .link-tools, .marker-arrowheads {
     /*display: none;*/
 }
-
 .tool-options {
     display: none;
 }
-
-.navbar {
-    margin-bottom: 0;
-}
-
-/* change the height of the navbar. Based on http://stackoverflow.com/questions/19576175/how-do-you-decrease-navbar-height-in-bootstrap-3 */
-.navbar-nav > li > a, .navbar-brand {
-    padding-top: 5px !important;
-    padding-bottom: 0 !important;
-    height: 30px;
-}
-
-.navbar {
-    min-height: 30px !important;
-}
-
-body {
-    padding-top: 34px; /* required if the navbar is fixed at the top*/
-}
-
 #extraOptions {
     min-height: 200px;
 }
-
-#addToolbar {
-    background-color: rgb(48, 48, 48);
-    color: white;
-    margin: 0;
-}
-
-#addToolbar .btn {
-    font-family: sans-serif;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
 .toolbar {
     background-color: rgb(48, 48, 48);
 }
-
 #propertiesPanel {
     padding: 10px;
     background-color: white;
@@ -97,50 +181,17 @@ body {
     margin: 7px;
     overflow: auto;
 }
-
-.btn {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 3px;
-    padding-right: 3px;
-    margin-top: 2px;
-}
-
-.toolbarGroup {
-    border-top: 1px black solid;
-    border-bottom: 1px black solid;
-    border-right: 1px black solid;
-    border-left: 1px black solid;
-    background-color: white;
-    border-radius: 5px;
-    margin-left: 0px;
-    left: 0px;
-    padding: 5px;
-}
-
 table {
     width: 100%;
-    /*border: solid lightgray 1px;*/
     margin: 0;
     font-size: 12px;
 }
-
 propertyName {
     width: 20%;
 }
-
-#appToolbar {
-    height: 100%;
-    background-color: lightgray;
-    margin: 7px;
-    padding: 7px;
-    min-height: 200px;
-}
-
 button:focus {
     /*border: solid rgb(54,162,214) 5px;*/
 }
-
 .highlighted {
     outline: 5px dashed rgb(34, 177, 76);
 }

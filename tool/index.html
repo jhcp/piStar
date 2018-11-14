@@ -10,7 +10,7 @@
     <meta name="author" content="João Pimentel">
     <link rel="icon" href="images/favicon.ico">
 
-    <title>piStar tool - Goal Modeling</title>
+    <title>piStar tool</title>
 
     <!-- bootstrap styles -->
     <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">  <!-- Bootstrap core CSS -->
@@ -25,139 +25,137 @@
 
 <body>
 
-<nav class="navbar navbar-default navbar-fixed-top navbar-xs">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span
-                    class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="#">piStar</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li id="examplesButton"><a href="#examplesArea" aria-controls="examplesArea" aria-expanded="false"
-                                           data-toggle="collapse" title="Open some pre-loaded examples.">Examples</a>
-                </li>
-                <li id="helpButton"><a href="#helpArea" aria-controls="helpArea" aria-expanded="false"
-                                       data-toggle="collapse"
-                                       title="Don't worry, you won't loose your model if you click here.">Help</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
+<div class="menu-bar">
+    <div class="logo">
+        <img src = 'images/cake.svg' width="22px"/> <img id="star" src = 'images/five-pointed-star.svg' width="12px"/> piStar
     </div>
-</nav>
-
-<div id="examplesArea" class="collapse container">
-    <div class="well">
-        <em>Loading may take a while, please wait a few seconds after clicking in an example below.</em>
-        <p>WARNING! If you click on an example below, your current model will be erased.</p>
-        <ul>
-            <li><a href="#examplesArea" onclick="istar.examples.loadEveryElementAndLink();" aria-controls="examplesArea"
-                   data-toggle="collapse">Example with every i* 2.0 element and link</a></li>
-            <li><a href="#examplesArea" onclick="istar.examples.loadTravelReimbursement();" aria-controls="examplesArea"
-                   data-toggle="collapse">Travel Reinbursement</a></li>
-            <li><a href="#examplesArea" onclick="istar.examples.loadBuyerDrivenECommerce();" aria-controls="examplesArea"
-                   data-toggle="collapse">Buyer Driven e-Commerce</a></li>
-        </ul>
-    </div>
+    <nav class="menu-items">
+        <a class="menu-item" href="#" id="file-button" data-toggle="menu-file">File</a>
+        <a class="menu-item active" href="#" id="add-button" data-toggle="menu-add">Add</a>
+        <a class="menu-item" href="#" id="diagram-button" data-toggle="menu-diagram">Diagram's Look & Feel</a>
+        <a class="menu-item" href="#" id="help-button" data-toggle="menu-help">Help</a>
+    </nav>
 </div>
 
-<div id="helpArea" class="collapse container">
-    <div class="well">
-        <ul>
-            <li>Press <kbd>F11</kbd> to use the tool in fullscreen</li>
-            <li>To change the name of an element: double-click it.</li>
-            <li>To collapse/expand an actor/role/agent, press <kbd>ctrl</kbd> and click it.</li>
-            <li>To add an actor/role/agent in the diagram: click on the ACTOR... button, select the respective option,
-                and then click on the diagram.
-            </li>
-            <li>To add a goal/task/resource/quality in the diagram: click on the respective button and then click on the
-                diagram. (OBS: all elements must be inside an actor/role/agent)
-            </li>
-            <li>To add a refinement/qualification/needed-by link: click on the respective link button, then click on the
-                source element, and lastly click on the target element.
-            </li>
-            <li>To add a contribution link: click on the CONTRIBUTION... button, select the respective label, then click
-                on the source element, and lastly click on the target element.
-            </li>
-            <li>To add a dependency link: click on the DEPENDENCY... button, select the respective dependency type, then
-                click on the source element (in the depender), and lastly click on the target element (on the dependee).
-            </li>
-            <li>To add an is-a/participates-in link: click on the ACTOR LINK... button, select the respective option,
-                then click on the source, and lastly click on the target.
-            </li>
-            <li>To delete an element: click on the element, then press the <kbd>delete</kbd> key.</li>
-            <li>To delete a dependency: click on its dependum, then press the <kbd>delete</kbd> key.</li>
-            <li>To delete a link: point the mouse over the link, then click on its <em>'X'</em> symbol.</li>
-            <li>To add a property to an element: click on the element, then click on the <em>Add Property</em> button in
-                the panel below the diagram.
-            </li>
-            <li>TIP: You can use your browser's zoom options (try pressing <kbd>ctrl</kbd> and scrolling your mouse
-                wheel).
-            </li>
-            <li>You can change the diagram size and other visualization options with <em>Diagram Options</em></li>
-        </ul>
-        For help with the iStar 2 language, please visit <em><a href="https://sites.google.com/site/istarlanguage/"
-                                                                target="blank">https://sites.google.com/site/istarlanguage/</a></em><br/>
-        For more info on this project, please visit the <a href="https://github.com/jhcp/piStar/" target="blank">piStar
-        repository</a>.<br/>
-        <em>piStar tool version 1.2.0</em>
+<div id="menu-bodies">
+    <div id="menu-file" class="menu-body hidden">
+        <button class="btn btn-default" type="button" id="saveImageButton" title="Save model as a SVG or PNG image file">
+        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span><br/>
+        Save Image
+        </button>
+
+
+        <button class="btn btn-default" type="button" id="saveModelButton" title="Save the content of the model as a backup">
+        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span><br/>
+        Save Model
+        </button>
+        <button class="btn btn-default" id="saveModel"></button>
+
+        <button class="btn btn-default" type="button" id="loadModelButton" data-toggle="modal" data-target="#loadModelModal" title="Load a previously saved model">
+        <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span><br/>
+        Load Model
+        </button>
+
     </div>
-</div>
+    <div id="menu-add" class="menu-body">
+        <div class="menu-group">
+      <span class="menu-line">
 
-<div id="addToolbar" class="container-fluid">
-    <div class="row">
-        <strong>&nbsp;&nbsp;ADD: </strong>
+          <span class="addDropdownButton dropdown">
+          <button class="btn add-button btn-default dropdown-toggle" type="button" id="dropdownMenuActor" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="true" title="Add Role, Agent, or Actor">
+          <img src="images/Actor.svg" height="25px"/><br/>
+          Actor...
+          <span class="caret"></span>
+          </button>
+          <ul id="addActorDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuActor"></ul>
+          </span>
 
-        <span class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuActor" data-toggle="dropdown"
-                    aria-haspopup="true" aria-expanded="true" title="Add Role, Agent, or Actor">
-                <img src="images/Actor.svg" height="25px"/><br/>
-                Actor...
-                <span class="caret"></span>
-            </button>
-            <ul id="addActorDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuActor"></ul>
-        </span>
+          <span class="addDropdownButton dropdown">
+          <button class="btn add-button btn-default dropdown-toggle" type="button" id="dropdownMenuActorLink"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+          title="Add is-a or participates-in link between actors">
+          <img src="images/IsALink.svg" height="25px"/><br/>
+          Actor links...
+          <span class="caret"></span>
+          </button>
+          <ul id="addActorLinkDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuActorLink"></ul>
+          </span>
 
-        <span class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuActorLink"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-                    title="Add is-a or participates-in link between actors">
-                <img src="images/IsALink.svg" height="25px"/><br/>
-                Actor links...
-                <span class="caret"></span>
-            </button>
-            <ul id="addActorLinkDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuActorLink"></ul>
-        </span>
+          <span class="addDropdownButton dropdown">
+          <button class="btn add-button btn-default dropdown-toggle" type="button" id="dropdownMenuDependencyLink"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Add dependency link">
+          <img src="images/DependencyLink.svg" height="25px"/><br/>
+          Dependency...
+          <span class="caret"></span>
+          </button>
+          <ul id="addDependencyDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuDependencyLink"></ul>
+          </span>
+      </span>
+        </div>
+                  <div class="menu-group">
+      <span class="menu-line">
+          <span id="addToolbarButtons" class="add-button"></span>
 
-        <span class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuDependencyLink"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Add dependency link">
-                <img src="images/DependencyLink.svg" height="25px"/><br/>
-                Dependency...
-                <span class="caret"></span>
-            </button>
-            <ul id="addDependencyDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuDependencyLink"></ul>
-        </span>
+          <span class="addDropdownButton dropdown">
+          <button class="btn add-button btn-default dropdown-toggle" type="button" id="dropdownMenuContributionLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                  title="Add contribution link (make, help, hurt or break)">
+          <img src="images/ContributionLink.svg" height="25px"/><br/>
+          Contribution...
+          <span class="caret"></span>
+          </button>
+          <ul id="addContributionDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuContributionLink"></ul>
+          </span>
 
-        <span class="dropdown">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuContributionLink"
-                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-                    title="Add contribution link (make, help, hurt or break)">
-                <img src="images/ContributionLink.svg" height="25px"/><br/>
-                Contribution...
-                <span class="caret"></span>
-            </button>
-            <ul id="addContributionDropdown" class="dropdown-menu" aria-labelledby="dropdownMenuContributionLink"></ul>
-        </span>
 
-        <span id="addToolbarButtons"></span>
-        <div>
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <i id="status"></em>
-            </span>
+
+      </span>
+        </div>
+        <div class="line-break"></div>
+        <div id="status-bar">
+          <span>          <em id="status"></em>
+          </span>
         </div>
 
+
     </div>
+    <div id="menu-diagram" class="menu-body hidden">
+        <div class="menu-group">
+            <span class="title">diagram size</span>
+            <span class="menu-line">Width: <input id="diagramWidthInput" type="text" name="width" value="500" size="4" maxlength="6" title="Set the diagram's width (in pixels)"> px</span>
+            <span class="menu-line">Height: <input id="diagramHeightInput" type="text" name="height" value="1200" size="4" maxlength="6" title="Set the diagram's height (in pixels)"> px</span>
+            <!--<span class="menu-line"><a id="fitToContentButton" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-resize-small"></i> Fit to content</a></span> TODO-->
+        </div>
+        <!--<div class="menu-group">-->
+            <!--<span class="title">colors</span>-->
+            <!--<span class="menu-line">Actor boundary:-->
+                <!--<input id="actorBoundaryColorPicker" onchange="console.log('change event');" class="jscolor {hash:true}" value="e6e6e6" size="8">-->
+            <!--</span>-->
+            <!--<span class="menu-line">Elements:-->
+                <!--<input id="elementsColorPicker" class="jscolor {hash:true}" value="ccfacd" size="8">-->
+            <!--</span>-->
+            <!--<span class="menu-line">-->
+                <!--<a id="resetColorsButton" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset colors</a>-->
+            <!--</span>-->
+        <!--</div>-->
+        <!--<div class="menu-group">-->
+            <!--<span class="title">text</span>-->
+            <!--<span class="menu-line">Font size: <input type="number" name="fontsize" value="12" min="4" max="999"></span>-->
+            <!--<span class="menu-line"><a class="btn btn-default btn-xs" data-toggle="button"><i class="glyphicon glyphicon-italic"></i></a></span>-->
+        <!--</div>-->
+        <div class="menu-group">
+            <span class="menu-line"><a id="preciseLinksButton" class="btn btn-default btn-xs button-horizontal" title="Remove gaps between links and elements, recommended to apply before saving an image. It may take some seconds"><i class="glyphicon glyphicon-screenshot"></i> Fix links spacing</a></span>
+        </div>
+    </div>
+    <div id="menu-help" class="menu-body hidden">
+        <div class="btn-group" role="group">
+            <a type="button" class="btn btn-default" data-toggle="modal" data-target="#examplesModal">Examples</a>
+            <a type="button" class="btn btn-default" data-toggle="modal" data-target="#instructionsModal">Tool Manual</a>
+            <a type="button" class="btn btn-default" href="https://sites.google.com/site/istarlanguage/" target="blank">i* 2.0 Language Guide</a>
+        </div>
+    </div>
+
 </div>
 
 <div id="diagramBoxOuter">
@@ -184,36 +182,12 @@
             </div>
         </div>
 
-        <div id="appToolbar" class="col-md-3">
-            <button type="button" id="saveImageButton"><span class="glyphicon glyphicon-picture"
-                                                             aria-hidden="true"></span> Save Image
-            </button>
-            <span id="saveImage" class="toolbarGroup"></span>
-
-            <button type="button" id="saveModelButton"><span class="glyphicon glyphicon-floppy-save"
-                                                             aria-hidden="true"></span> Save Model
-            </button>
-            <span id="saveModel" class="toolbarGroup"></span>
-
-            <button type="button" id="loadModelButton" data-toggle="modal" data-target="#loadModelModal"
-                    title="Load a goal model from a JSON file created with this tool"><span
-                    class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span> Load model
-            </button>
-            <button type="button" id="diagramOptionsModalButton" data-toggle="modal" data-target="#diagramOptions"
-                    title="Change diagram settings"><span class="glyphicon glyphicon-blackboard"
-                                                          aria-hidden="true"></span> Diagram options
-            </button>
-            <button type="button" id="clearButton"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                Clear
-            </button>
-
-        </div>
     </div>
 </div>
 
 <!-- backbone templates -->
 <script type="text/template" id="addButtonTemplate">
-    <button type="button" class="btn btn-default" id="add<%- label %>" title="<%- tooltip %>"><img
+    <button type="button" class="btn btn-default add-button" id="add<%- label %>" title="<%- tooltip %>"><img
             src="images/<%- name %>.svg" height="25px"/><br/><%- label %>
     </button>
 </script>
@@ -239,6 +213,51 @@
 
 <div id="modals">
 
+    <div class="modal fade" id="saveImageModal" tabindex="-1" role="dialog" aria-labelledby="loadModelModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="saveImageModalLabel">Save model as image</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="filenameInput" class="col-sm-2 control-label">File name: </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="filenameInput" value="goalModel" placeholder="goalModel">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <!--<input id="fixSpacesBeforeSaveInput" type="checkbox"> Fix links spacing before saving (it may take some seconds) TODO-->
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                        <div class="col-sm-3">
+                            <select id="fileFormatInput" class="form-control">
+                            <option>SVG</option>
+                            <option>PNG</option>
+                        </select>
+                        </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="saveImageButton2" type="button" class="btn btn-primary" data-loading-text="Saving...">Save image
+                    </button>
+                    <span id="saveImage"></span>
+                    <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="loadModelModal" tabindex="-1" role="dialog" aria-labelledby="loadModelModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -255,51 +274,90 @@
                     <button id="loadButton" type="button" class="btn btn-primary" data-loading-text="Loading...">Load
                         model
                     </button>
-                    <button type="button" class="btn" data-dismiss="modal">Close</a>
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade" id="diagramOptions" tabindex="-1" role="dialog" aria-labelledby="diagramOptionsLabel">
+    <div class="modal fade" id="examplesModal" tabindex="-1" role="dialog" aria-labelledby="examplesModalLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
                             aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="changeDiagramModalLabel">Change Diagram Options</h4>
+                    <h4 class="modal-title" id="examplesModalLabel">Load Examples</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <label for="diagramWidthInput">Width</label>
-                            <input id="diagramWidthInput" type="text" autofocus=""> px
-                            <br/>
-                            <label for="diagramWidthInput">Height</label>
-                            <input id="diagramHeightInput" type="text"> px
-                            <br/>
-                            <button id="diagramSizeButton" type="button">Apply</button>
-                        </div>
+                    <div class="well">
+                        <em>Loading may take a while, please wait a few seconds after clicking in an example below.</em><br /><br />
+                        <p>WARNING! If you click on an example below, your current model will be erased.</p>
+                        <ul>
+                            <li><a href="#examplesArea" onclick="istar.examples.loadEveryElementAndLink();" aria-controls="examplesArea"
+                                   data-toggle="collapse">Example with every i* 2.0 element and link</a></li>
+                            <li><a href="#examplesArea" onclick="istar.examples.loadTravelReimbursement();" aria-controls="examplesArea"
+                                   data-toggle="collapse">Travel Reinbursement</a></li>
+                            <li><a href="#examplesArea" onclick="istar.examples.loadBuyerDrivenECommerce();" aria-controls="examplesArea"
+                                   data-toggle="collapse">Buyer Driven e-Commerce</a></li>
+                        </ul>
                     </div>
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <p>
-                                <button id="preciseLinksButton" type="button">
-                                    <span class="glyphicon glyphicon-screenshot" aria-hidden="true"></span> Fix links
-                                    spacing
-                                </button>
-                                <em>Remove gaps between links and elements, recommended to apply before saving an image.
-                                    It may take some seconds.</em>
-                            </p>
-                            <p>
-                                <button id="whiteActorsButton" type="button">
-                                    <span class="glyphicon glyphicon-unchecked" aria-hidden="true"></span> Blank actors
-                                </button>
-                                <em>Turn white the background color of the boundaries of existing actors.</em>
-                            </p>
-                        </div>
-                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="modal fade" id="instructionsModal" tabindex="-1" role="dialog" aria-labelledby="instructionsModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="instructionsModalLabel">Tool Manual</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="well">
+                        <ul>
+                            <li>Press <kbd>F11</kbd> to use the tool in fullscreen</li>
+                            <li>To change the name of an element: double-click it.</li>
+                            <li>To collapse/expand an actor/role/agent, press <kbd>ctrl</kbd> and click it.</li>
+                            <li>To add an actor/role/agent in the diagram: click on the ACTOR... button, select the respective option,
+                                and then click on the diagram.
+                            </li>
+                            <li>To add a goal/task/resource/quality in the diagram: click on the respective button and then click on the
+                                diagram. (OBS: all elements must be inside an actor/role/agent)
+                            </li>
+                            <li>To add a refinement/qualification/needed-by link: click on the respective link button, then click on the
+                                source element, and lastly click on the target element.
+                            </li>
+                            <li>To add a contribution link: click on the CONTRIBUTION... button, select the respective label, then click
+                                on the source element, and lastly click on the target element.
+                            </li>
+                            <li>To add a dependency link: click on the DEPENDENCY... button, select the respective dependency type, then
+                                click on the source element (in the depender), and lastly click on the target element (on the dependee).
+                            </li>
+                            <li>To add an is-a/participates-in link: click on the ACTOR LINK... button, select the respective option,
+                                then click on the source, and lastly click on the target.
+                            </li>
+                            <li>To delete an element: click on the element, then press the <kbd>delete</kbd> key.</li>
+                            <li>To delete a dependency: click on its dependum, then press the <kbd>delete</kbd> key.</li>
+                            <li>To delete a link: point the mouse over the link, then click on its <em>'X'</em> symbol.</li>
+                            <li>To add a property to an element: click on the element, then click on the <em>Add Property</em> button in
+                                the panel below the diagram.
+                            </li>
+                            <li>TIP: You can use your browser's zoom options (try pressing <kbd>ctrl</kbd> and scrolling your mouse
+                                wheel).
+                            </li>
+                            <li>You can change the diagram size and other visualization options within the <em>Diagram menu</em></li>
+                        </ul>
+
+                        <em>piStar tool version 1.2.0</em><br/>
+                        For more info on this project, please visit the <a href="https://github.com/jhcp/piStar/" target="blank">piStar
+                        repository</a>.
+
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn" data-dismiss="modal">Close</button>
@@ -315,6 +373,7 @@
 <script src="istarcore/lib/jquery.min.js"></script>
 <script src="istarcore/lib/lodash.min.js"></script>
 <script src="istarcore/lib/backbone.min.js"></script>
+<script src="lib/jscolor/jscolor.min.js"></script>
 
 <script src="istarcore/lib/joint.min.js"></script>
 <script src="lib/bootstrap/bootstrap.min.js"></script>

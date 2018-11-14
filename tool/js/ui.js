@@ -488,6 +488,16 @@ ui.changeColorActorContainer = function (color) {
         }
     });
 };
+ui.changeColorElements = function (color) {
+    _.map(istar.getElements(), function (node) {
+        node.attr('circle', {fill: color});
+        if (node.isKindOfInnerElement()) {
+            node.attr('rect', {fill: color});
+            node.attr('polygon', {fill: color});
+            node.attr('path', {fill: color});
+        }
+    });
+};
 ui.connectLinksToShape = function () {
     $('#modals *').css('cursor', 'wait');
     //do the processing after a small delay, in order to allow the browser to update the cursor icon
@@ -504,6 +514,16 @@ ui.connectLinksToShape = function () {
 };
 
 $('#saveImageButton').click(function () {
+    $('#saveImageModal').modal();
+});
+
+$('#fileFormatInput').change(function () {
+    $('#saveImage').html('');
+});
+
+$('#saveImageButton2').click(function () {
+    $(this).button('loading');
+    filename = $('#filenameInput').val() || 'goalModel';
     var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
     var $saveImage = $('#saveImage');
 
@@ -515,11 +535,14 @@ $('#saveImageButton').click(function () {
     var originalHeight = istar.paper.getArea().height;
     istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
 
-    var svgData = saveSvg('diagram');
-    $saveImage.html(createDownloadLink('goalModel.svg', '◀ SVG', svgData, 'download SVG (vectorial)'));
-    $saveImage.append(document.createTextNode(' - '));
-
-    savePng('diagram', addPngLink);
+    if ($('#fileFormatInput').val() === "SVG") {
+        var svgData = saveSvg('diagram');
+        $saveImage.html(createDownloadLink(filename + '.svg', 'click here to save', svgData, 'download SVG (vectorial)'));
+        $('#saveImageButton2').button('reset');
+    }
+    else {
+        savePng('diagram', addPngLink, filename);
+    }
 
     //restore the paper to its initial state
     istar.paper.setDimensions(originalWidth, originalHeight);
@@ -536,15 +559,20 @@ function createDownloadLink(fileName, text, data, title) {
     a.download = fileName;//name that will appear when saving the file
     a.title = title;
     a.href = data;
+    a.id = 'saveImageButton3';
+    $(a).click(function () {
+        $('#saveImageModal').modal('hide');
+    });
 
     var linkText = document.createTextNode(text);
     a.appendChild(linkText);
     return a;
 }
 
-function addPngLink(pngData) {
-    var a = createDownloadLink('goalModel.png', 'PNG', pngData, 'download PNG');
-    $('#saveImage').append(a);
+function addPngLink(pngData, filename) {
+    var a = createDownloadLink(filename+'.png', 'click here to save', pngData, 'download PNG');
+    $('#saveImage').html(a);
+    $('#saveImageButton2').button('reset');
 }
 
 $('#saveModelButton').click(function () {
@@ -613,22 +641,39 @@ ui.setupUi = function () {
     
     $('#saveImage').hide();
     $('#saveModel').hide();
+
+
+    this.setupDiagramSizeInputs();
     $('#diagramBoxOuter').height($(window).height()+100);
 
 
 };
 
-$('#diagramOptionsModalButton').click(function () {
+ui.setupDiagramSizeInputs = function () {
+    //updates the initial values of the diagram's size inputs with the diagram's actual size
     $('#diagramWidthInput').val(istar.paper.getArea().width);
     $('#diagramHeightInput').val(istar.paper.getArea().height);
-});
-$('#diagramSizeButton').click(function () {
-    istar.paper.setDimensions($('#diagramWidthInput').val(), $('#diagramHeightInput').val());
-});
 
-$('#whiteActorsButton').click(function () {
-    ui.changeColorActorContainer('white');
-});
+    //setup to update the inputs' values whenever the diagram's size is changed
+    istar.paper.on('resize', function(width, height) {
+        $('#diagramWidthInput').val(width);
+        $('#diagramHeightInput').val(height);
+    });
+
+    //setup to update the diagram's size whenever the user leaves (focusout) the input fields
+    $('#diagramWidthInput, #diagramHeightInput').focusout(function () {
+        istar.paper.setDimensions($('#diagramWidthInput').val(), $('#diagramHeightInput').val());
+    });
+}
+
+
+
+$('#actorBoundaryColorPicker').on('change', function () {
+    ui.changeColorActorContainer(this.value);
+})
+$('#elementsColorPicker').on('change', function () {
+    ui.changeColorElements(this.value);
+})
 
 $('#analyseModelButton').click(function () {
     var numberOfElements = 'Number of elements: ' + istar.getNumberOfElements();
@@ -745,3 +790,70 @@ function changeCustomPropertyValue(model, propertyName, propertyValue) {
     return model;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(function () {
+    var currentMenuItem = $('.menu-items #add-button');
+
+    $('.menu-items a').each(function () {
+        target = $('#' + $(this).data('toggle'));
+        target.slideUp(0);
+
+        $(this).click(function () {
+            target = $('#' + $(this).data('toggle'));
+
+            if (currentMenuItem === null) {
+                //no menu is currently displayed, the clicked one will now be displayed
+                currentMenuItem = $(this);
+                $(this).addClass('active');
+                target.css('display', 'none');
+                target.removeClass('hidden');
+                target.slideDown(200);
+                $('#star').css("-transform","rotate(0deg)");
+                console.log('show up a menu, there is none seen');
+            }
+            else if ($(this).attr('id') != currentMenuItem.attr('id')) {
+                $(currentMenuItem).removeClass('active');
+                $('#' + $(currentMenuItem).data('toggle')).addClass('hidden');
+                $('#' + $(currentMenuItem).data('toggle')).slideUp(0);
+                $(this).addClass('active');
+                target.removeClass('hidden');
+                target.slideDown(0);
+                currentMenuItem = $(this);
+                console.log('change to other menu');
+            }
+            else {
+                    target.slideUp(200, function () {
+                        $(currentMenuItem).removeClass('active');
+                        currentMenuItem = null;
+                    });
+                    $('#star').css("-transform","rotate(-180deg)");
+                    console.log('hide the menu');
+            }
+        });
+    });
+    $('#' + currentMenuItem.data('toggle')).slideDown(0);
+
+}());
+
+$('#fitToContentButton').click(function () {
+    istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
+});
+$('#resetColorsButton').click(function () {
+    $('#actorBoundaryColorPicker').get(0).jscolor.fromString('E6E6E6');
+    ui.changeColorActorContainer('#E6E6E6');
+    $('#elementsColorPicker').get(0).jscolor.fromString('CCFACD');
+    ui.changeColorElements('#CCFACD');
+});

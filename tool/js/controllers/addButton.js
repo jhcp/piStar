@@ -133,7 +133,7 @@ uiC.createAddButtons = function() {
     }).render();
     new uiC.AddButtonView({
         model: new uiC.AddButtonModel({
-            label: 'And-Refinement',
+            label: 'And',
             action: ui.STATE_ADD_LINK,
             name: 'AndRefinementLink',
             tooltip: 'Add And-Refinement link',
@@ -142,20 +142,11 @@ uiC.createAddButtons = function() {
     }).render();
     new uiC.AddButtonView({
         model: new uiC.AddButtonModel({
-            label: 'Or-Refinement',
+            label: 'Or',
             action: ui.STATE_ADD_LINK,
             name: 'OrRefinementLink',
             tooltip: 'Add Or-Refinement link',
             statusText: 'Or-Refinement link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
-        })
-    }).render();
-    new uiC.AddButtonView({
-        model: new uiC.AddButtonModel({
-            label: 'Qualification',
-            action: ui.STATE_ADD_LINK,
-            name: 'QualificationLink',
-            tooltip: 'Add Qualification link',
-            statusText: 'Qualification link: click first on the Quality and then on the element it qualifies (Goal, Task or Resource).'
         })
     }).render();
     new uiC.AddButtonView({
@@ -165,6 +156,15 @@ uiC.createAddButtons = function() {
             name: 'NeededByLink',
             tooltip: 'Add Needed-By link',
             statusText: 'Needed-By link: click first on the Resource and then on the Task that needs it.'
+        })
+    }).render();
+    new uiC.AddButtonView({
+        model: new uiC.AddButtonModel({
+            label: 'Qualification',
+            action: ui.STATE_ADD_LINK,
+            name: 'QualificationLink',
+            tooltip: 'Add Qualification link',
+            statusText: 'Qualification link: click first on the Quality and then on the element it qualifies (Goal, Task or Resource).'
         })
     }).render();
     new uiC.AddButtonDropdownItemView({
