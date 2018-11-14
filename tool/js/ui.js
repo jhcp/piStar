@@ -239,14 +239,14 @@ ui.defineInteractions = function () {
                 }
             }
             else {
-                if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|DependencyLink|make|help|hurt|break/)) {
+                if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|DependencyLink|ObstructsLink|make|help|hurt|break/)) {
                     if (ui.isLinkSourceUndefined()) {
                         cellView.highlight({blur: 10, color: 'blue'});
                         ui.linkSource = cellView;
                     } else {
                         ui.linkTarget = cellView;
 
-                        if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|make|help|hurt|break/)) {
+                        if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|ObstructsLink|make|help|hurt|break/)) {
                             var newLink = null;
                             var prettyLinkName = '';
                             if (ui.currentAddingElement === 'AndRefinementLink') {
@@ -264,6 +264,13 @@ ui.defineInteractions = function () {
                             else if (ui.currentAddingElement === 'QualificationLink') {
                                 newLink = istar.addQualificationLink(ui.linkSource.model, ui.linkTarget.model);
                                 prettyLinkName = 'Qualification link';
+                            }
+                            else if (ui.currentAddingElement === 'ObstructsLink') {
+                                newLink = istar.addObstructsLink(ui.linkSource.model, ui.linkTarget.model, 'obstructs');
+                                prettyLinkName = 'Obstructs link';
+                                if (newLink) {
+                                    newLink.on('change:vertices', ui._toggleSmoothness);//do some magic in order to prevent ugly links when there are no vertices
+                                }
                             }
                             else if (ui.currentAddingElement.match(/make|help|hurt|break/i)) {
                                 newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.currentAddingElement);
@@ -613,7 +620,7 @@ ui.setupUi = function () {
     
     $('#saveImage').hide();
     $('#saveModel').hide();
-    $('#diagramBoxOuter').height($(window).height()+100);
+    $('#diagramBoxOuter').height($(window).height()/3+100);
 
 
 };

@@ -247,6 +247,10 @@ var istar = function () {
             'contribution': {
                 'name': 'istar.ContributionLink',
                 //'className': joint.shapes.istar.ContributionLink
+            },
+            'obstructs': {
+                'name': 'istar.ObstructsLink',
+                //'className': joint.shapes.istar.ContributionLink
             }
         },
         rotateLabel: _updateLinkLabelRotation,

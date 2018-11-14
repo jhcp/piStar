@@ -128,6 +128,20 @@ var istarcoreMetamodel = {
             }
         },
         {
+            'name': 'ObstructsLink',
+            'isValid': function (source, target) {
+                //Sarah Moniky's extension
+                //goal->element
+                //The Obstructs relationship links a (obstructs) goal with another element
+
+                var result = false;
+                result = source.isGoal();
+                result = result && (source != target);
+                result = result && (source.attributes.parent === target.attributes.parent);
+                return result;
+            }
+        },
+        {
             'name': 'ContributionLink',
             'isValid': function (source, target) {
                 //istar 2.0

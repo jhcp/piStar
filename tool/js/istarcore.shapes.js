@@ -433,6 +433,38 @@ joint.shapes.istar.ContributionLink = joint.dia.Link.extend({
         smooth: false
     }, joint.dia.Link.prototype.defaults)
 });
+joint.shapes.istar.ObstructsLink = joint.dia.Link.extend({
+    defaults: joint.util.deepSupplement({
+        type: 'istar.ObstructsLink',
+        arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
+        labels: [
+            {
+                position: 0.4,
+                attrs: {
+                    text: {
+                        'font-weight': 'bold',
+                        'font-size': 12,
+                        'font-family': 'sans-serif',
+                    },
+                    rect: {
+                        fill: 'rgb(230,230,230)',
+                    }
+                }
+            }
+        ],
+        attrs: {
+            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
+            '.marker-target': {
+                d: 'M 15 0 L 5 5 L 15 5 M 5 5 L 15 10',
+                fill: 'none',
+                'stroke-width': 1.2
+            },
+            '.connection': {fill: 'none'},//necessary in order to prevent filling the curves when saving the image
+            '.connection-wrap': {fill: 'none'}//necessary in order to prevent filling the curves when saving the image
+        },
+        smooth: false
+    }, joint.dia.Link.prototype.defaults)
+});
 
 joint.shapes.istar.QualificationLink = joint.dia.Link.extend({
     defaults: joint.util.deepSupplement({

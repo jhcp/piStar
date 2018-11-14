@@ -153,6 +153,7 @@ istar.setupMetamodel = function (metamodel) {
     };
 
     if (istar.linkTypes.contribution.className) istar.createLabeledNodeLinkFunctions(istar.linkTypes.contribution.className.prototype);
+    if (istar.linkTypes.obstructs.className) istar.createLabeledNodeLinkFunctions(istar.linkTypes.obstructs.className.prototype);
     console.log('end of metamodel setup');
     return 0;
 };

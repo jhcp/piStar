@@ -167,6 +167,15 @@ uiC.createAddButtons = function() {
             statusText: 'Needed-By link: click first on the Resource and then on the Task that needs it.'
         })
     }).render();
+    new uiC.AddButtonView({
+        model: new uiC.AddButtonModel({
+            label: 'Obstructs',
+            action: ui.STATE_ADD_LINK,
+            name: 'ObstructsLink',
+            tooltip: 'Add Obstructs link',
+            statusText: 'Obstructs link: click first on the Obstruct Goal and then on the elements that it obstructs.'
+        })
+    }).render();
     new uiC.AddButtonDropdownItemView({
         attributes: {parent: '#addContributionDropdown'},
         model: new uiC.AddButtonModel({
