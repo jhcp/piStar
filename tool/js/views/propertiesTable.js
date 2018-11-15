@@ -1,7 +1,7 @@
 window.uiC = window.uiC || {};  //prevents overriding the variable, while also preventing working with a null variable
 
 uiC.PropertiesTableView = Backbone.View.extend({
-    template: _.template($('#propertyTemplate').html()),
+    template: _.template($('#property-template').html()),
 
     initialize: function () {
         this.$table = $('#propertyTable');
@@ -47,7 +47,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
             .on('hidden', ui.changeStateToView);
     },
     setupAddPropertyButton: function () {
-        $('#cellButtons').html('<button type="button" id="addPropertyButton">Add Property</button>');
+        $('#cell-buttons').html('<button type="button" id="addPropertyButton">Add Property</button>');
         $('#addPropertyButton').click(function () {
             var newPropertyName = window.prompt('Name of the new custom property', 'newProperty');
             if (newPropertyName) {
@@ -77,7 +77,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     setupCollapseExpandButton: function () {
-        $('#cellButtons').append('<button type="button" id="collapseButton">Collapse/Expand</button>');
+        $('#cell-buttons').append('<button type="button" id="collapseButton">Collapse/Expand</button>');
         $('#collapseButton').click(function () {
             if (ui.getSelectedElement()) {
                 ui.hideSelection();//remove the focus from the actor

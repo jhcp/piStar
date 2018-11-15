@@ -6,18 +6,6 @@ istar.examples.loadPistarWelcome = function () {
     loadModel(this.pistarWelcome);
 };
 
-istar.examples.loadTravelReimbursement = function () {
-    loadModel(this.travelReimbursement);
-};
-
-istar.examples.loadBuyerDrivenECommerce = function () {
-    loadModel(this.buyerDrivenECommerce);
-};
-
-istar.examples.loadEveryElementAndLink = function () {
-    loadModel(this.everyElementAndLink);
-};
-
 // istar.examples.experimentExample = function () {
 //     console.log('Go drink some water, this will take a while');
 //     var actor = istar.addActor(23, 23, 'Actor');

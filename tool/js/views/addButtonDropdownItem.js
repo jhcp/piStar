@@ -2,7 +2,7 @@ window.uiC = window.uiC || {};  //prevents overriding the variable, while also p
 
 uiC.AddButtonDropdownItemView = Backbone.View.extend({
     tagName: 'li',
-    template: _.template($('#addDropdownButtonTemplate').html()),
+    template: _.template($('#add-dropdown-button-template').html()),
 
     events: {
         'mousedown': 'buttonClickHandler'//meaning: when its button is clicked, the buttonClickHandler is called

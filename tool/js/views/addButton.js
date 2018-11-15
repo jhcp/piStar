@@ -2,8 +2,8 @@ window.uiC = window.uiC || {};  //prevents overriding the variable, while also p
 
 uiC.AddButtonView = Backbone.View.extend({
     tagName: 'span',
-    className: 'addButton',
-    template: _.template($('#addButtonTemplate').html()),
+    className: 'add-button',
+    template: _.template($('#add-button-template').html()),
 
     events: {
         'mousedown button': 'buttonClickHandler'//meaning: when its button is clicked, the buttonClickHandler is called
@@ -18,7 +18,7 @@ uiC.AddButtonView = Backbone.View.extend({
 
     render: function () {
         this.$el.html(this.template(this.model.toJSON()));
-        $('#addToolbarButtons').append(this.$el);
+        $('#add-internal-cells-palette').append(this.$el);
         return this;
     },
 

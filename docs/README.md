@@ -20,7 +20,13 @@ All dependencies are included in this project's repository, so that you can easi
 - **[Bootstrap 3](http://getbootstrap.com/)** - Because we want our tool to have an organized look-and-feel.
 
 ## Static Analysis
-The source code of this project is checked with [JSHint](http://jshint.com/) in order to prevent some silly mistakes.
+In order to prevent some silly mistakes and improve browser compatibility, the source code of this project is checked with:
+ - [JSHint](http://jshint.com/) .
+ - [HTML validator](https://validator.w3.org/nu/) 
+ - [CSS validator](https://jigsaw.w3.org/css-validator/)
+
+HTML and CSS code adheres to [Google's HTML and CSS style guide](https://google.github.io/styleguide/htmlcssguide.html).
+However, no automatic linter is used to check this adherence, sadly.
 
 [Plato](https://github.com/es-analysis/plato) is used for further analysis of code quality.
 

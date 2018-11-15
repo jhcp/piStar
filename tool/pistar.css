@@ -1,197 +1,271 @@
 body {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol"; /* based on Bootstrap 4 font*/
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif,'Apple Color Emoji',
+  'Segoe UI Emoji','Segoe UI Symbol'; /* based on Bootstrap 4 font*/
 }
-.menu-bar {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    flex-wrap: wrap;
-    background-color: rgb(200,0,0);
-    color: rgb(252, 255, 239);
-}
-.menu-bar .logo {
-    font-weight: bolder;
-    padding: 4px 50px;
-    align-self: center;
-    font-size: 1.1em;
-    cursor:default;
-}
-#star {
-    transition-duration: 0.6s;
-    transition-property: transform;
-    transition-timing-function: ease-out;
-    margin-left:-5px;
-    margin-top:-10px;
-}
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-nav a, nav a:active, nav a:hover, nav a:link, nav a:visited {
-    text-decoration: none;
-    color: rgb(252, 255, 239);
-}
-.menu-item {
-    display: inline-block;
-    padding:2px 20px;
-    color: rgb(252, 255, 239);;
-    border: solid 2px rgb(200,0,0);
-    font-size: 0.97em;
-}
-.menu-item:hover {
-    border-top: solid 2px white;
-}
-.menu-item.active {
-    background-color: rgb(21, 26, 30);
-    border-bottom:2px solid rgb(21, 26, 30);
-}
-.menu-body {
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    background-color: rgb(21, 26, 30);
-    color: rgb(252, 255, 239);
-    padding:6px 3px;
-    font-size: 0.8em;
-}
-.menu-group {
-    display: flex;
-    flex-direction: column;
-    border-left: dashed 1px lightgrey;
-    padding: 0px 3px;
-    padding-right: 0;
-    margin:0px 2px;
-    text-align: center;
-}
-.menu-group:first-child {
-    border:none;
-}
-.menu-group .title {
-    text-align: center;
-    padding:0px;
-}
-input, button {
-    color: black;
-}
-.button-horizontal {
-    display: inline-flex;
-    align-items: center;
-    padding:0px;
-    padding-right: 4px;
-}
-.button-horizontal .glyphicon {
-    font-size: 1.5em;
-    margin:3px;
-    margin-top:1px;
-}
-.button-horizontal:active:focus {
-    margin-bottom: -2px;
-    margin-right: -2px;
-}
-.btn {
-    border-radius: 0px;
-}
-.btn-default.active, .btn-default.active.focus, .btn-default:active, .btn-default.active:hover, .btn-default.active.focus:hover, .btn-default:active:hover {
-    box-shadow: none;
-    background-color: #b1b1b1;
-    color:black;
-}
-.menu-line {
-    padding:2px;
-}
-.add-button.btn {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 3px;
-    padding-right: 3px;
-    margin: 0px;
-    font-size: 1em;
-}
-.addButton, .addDropdownButton {
-    margin:0px;
-    padding:0px;
-    display: inline-block;
-}
-#menu-add {
-    flex-wrap: wrap;
-}
-.line-break {
-    width: 100%;
-}
-#status {
-    font-size:1.2em;
-    margin-left:3em;
-}
-.jscolor {
-    border:1px solid darkgrey;
-}
-#saveModel a{
-    color: black;
-    text-decoration: none;
-}
-#diagramBoxOuter {
-    height: 600px;
-    padding: 7px 5px;
-    background-color: lightgray;
 
+/*  Main Menu */
+
+.menu-bar {
+  align-items: stretch;
+  background-color: rgb(200,0,0);
+  color: rgb(252, 255, 239);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-#diagramBoxInner {
-    overflow: scroll;
-    height: 100%;
+
+#logo {
+  align-self: center;
+  cursor: default;
+  font-weight: bolder;
+  font-size: 1.1em;
+  padding: 0 50px;
 }
+
+#star {
+  margin-left: -5px;
+  margin-top: -10px;
+  transition-duration: .6s;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+nav a,
+nav a:active,
+nav a:hover,
+nav a:link,
+nav a:visited {
+  color: rgb(252, 255, 239);
+  text-decoration: none;
+}
+
+.menu-item {
+  border: solid 2px rgb(200,0,0);
+  color: rgb(252, 255, 239);
+  display: inline-block;
+  font-size: .97em;
+  padding: 2px 20px;
+}
+
+.menu-item:hover {
+  border-top: solid 2px white;
+}
+
+.menu-item.active {
+  background-color: rgb(21, 26, 30);
+  border-bottom: 2px solid rgb(21, 26, 30);
+}
+
+.menu-body {
+  align-items: stretch;
+  background-color: rgb(21, 26, 30);
+  color: rgb(252, 255, 239);
+  display: flex;
+  flex-direction: row;
+  font-size: .8em;
+  padding: 6px 3px;
+}
+
+.menu-group {
+  border-left: dashed 1px lightgrey;
+  display: flex;
+  flex-direction: column;
+  margin: 0 2px;
+  padding: 0 0 0 3px;
+  text-align: center;
+}
+
+.menu-group:first-child {
+  border: none;
+}
+
+.menu-group .title {
+  padding: 0;
+  text-align: center;
+}
+
+.button-horizontal {
+  align-items: center;
+  display: inline-flex;
+  padding: 0 4px 0 0;
+}
+
+.button-horizontal .glyphicon {
+  font-size: 1.5em;
+  margin: 1px 3px 3px;
+}
+
+.button-horizontal:active:focus {
+  margin-bottom: -2px;
+  margin-right: -2px;
+}
+
+.button-vertical {
+  padding: 4px 4px 0px 4px;
+  font-size: 1.1em;
+}
+
+.button-vertical .glyphicon {
+  font-size: 1.8em;
+}
+
+input,
+button {
+  color: black;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-default.active,
+.btn-default.active.focus,
+.btn-default:active,
+.btn-default.active:hover,
+.btn-default.active.focus:hover,
+.btn-default:active:hover {
+  background-color: #b1b1b1;
+  box-shadow: none;
+  color: black;
+}
+
+.menu-line {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 2px;
+}
+
+.add-button.btn {
+  font-size: 1em;
+  margin: 0;
+  padding: 3px;
+}
+
+.add-button,
+.add-dropdown-button {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+#menu-add {
+  flex-wrap: wrap;
+}
+
+.line-break {
+  width: 100%;
+}
+
+#status {
+  font-size: 1.2em;
+  margin-left: 3em;
+}
+
+.jscolor {
+  border: 1px solid darkgrey;
+}
+
+#placeholder-save-model a {
+  color: black;
+  text-decoration: none;
+}
+
+kbd {
+  /* based on Bootstrap's style */
+  background-color: #333;
+  border-radius: 3px;
+  color: white;
+  font-size: 90%;
+  padding: 2px 4px;
+}
+
+.waiting {
+  cursor: wait !important;
+}
+
+/* Diagram */
+
+#diagram-box-outer {
+  background-color: lightgray;
+  height: 600px;
+  padding: 3px 3px;
+}
+
+#diagram-box-inner {
+  height: 100%;
+  overflow: scroll;
+}
+
 svg {
-    border: solid lightgray 2px;
-    background-color: white;
-    margin: 0;
+  background-color: white;
+  border: solid lightgray 2px;
+  margin: 0;
 }
+
+/* JointJS markup */
+
 .remove-element {
-    cursor: pointer;
+  cursor: pointer;
 }
+
 .remove-element circle {
-    fill: grey;
+  fill: grey;
 }
+
 .remove-element path {
-    fill: white;
+  fill: white;
 }
+
 .link-tools .tool-remove path {
-    /*display: none;*/
+  /*display: none;*/
 }
+
 .link-tools .tool-remove circle {
-    /*display: none;*/
-    fill: grey;
+  /*display: none;*/
+  fill: grey;
 }
-.link-tools, .marker-arrowheads {
-    /*display: none;*/
+
+.link-tools,
+.marker-arrowheads {
+  /*display: none;*/
 }
+
 .tool-options {
-    display: none;
+  display: none;
 }
-#extraOptions {
-    min-height: 200px;
+
+/* Contextual options */
+
+#extra-options {
+  min-height: 200px;
 }
+
 .toolbar {
-    background-color: rgb(48, 48, 48);
+  background-color: rgb(48, 48, 48);
 }
-#propertiesPanel {
-    padding: 10px;
-    background-color: white;
-    height: 200px;
-    margin: 7px;
-    overflow: auto;
+
+#properties-panel {
+  background-color: white;
+  height: 200px;
+  margin: 7px;
+  overflow: auto;
+  padding: 10px;
 }
+
 table {
-    width: 100%;
-    margin: 0;
-    font-size: 12px;
+  font-size: 12px;
+  margin: 0;
+  width: 100%;
 }
-propertyName {
-    width: 20%;
-}
-button:focus {
-    /*border: solid rgb(54,162,214) 5px;*/
-}
-.highlighted {
-    outline: 5px dashed rgb(34, 177, 76);
+
+.property-name {
+  width: 20%;
 }

@@ -11,6 +11,8 @@ from a task to another task.
 - Revamped UI, with collapsable toolbars on the top.
 - Elements can now be deleted with either the 'delete' or 'backspace' key, in order to make it easier for Mac users to 
 delete elements (in Mac OS the 'delete' key behaves as 'backspace')
+- Changes have been made to conform to [Google's HTML and CSS style guide](https://google.github.io/styleguide/htmlcssguide.html). Notably, HTML elements have been renamed 
+from CamelCase to snake-case. E.g.: addButton -> add-button 
 
 ### Removed
 - Aiming to save bandwidth, the following CSS styles that are not likely to be used in the context of this tool have

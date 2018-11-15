@@ -104,7 +104,7 @@ var ui = function() {
                 this.highlightFocus(istar.paper.findViewByModel(this.selectedElement));
             }
         }
-    }
+    };
 }();
 
 
@@ -148,7 +148,7 @@ ui.defineInteractions = function () {
             ui.unhighlightFocus(selection.deselectedElementView);
             ui.table.remove();
             $('#propertyTable').find('tbody').html('');
-            $('#cellButtons').html('');
+            $('#cell-buttons').html('');
         }
     });
 
@@ -164,22 +164,24 @@ ui.defineInteractions = function () {
     istar.paper.on('cell:mouseover', function (cellView, evt, x, y) {
         //indicates that the mouse is over a given actor
         //.css() is used instead of .attr() because the latter is bugged with elements containing a path element
-        color = 'rgb(63,72,204)';
+        color = '#631919';
         if (cellView.model.isKindOfActor()) {
             if (cellView.model.prop('collapsed')) {
-                cellView.$('circle').css({stroke: color, 'stroke-width': '2'});
+                cellView.$('circle').css({stroke: color, 'stroke-width': '3'});
                 cellView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
             }
             else {
                 cellView.$('rect').css({stroke: color, 'stroke-width': '4'});
-                cellView.$('circle').css({stroke: 'black', 'stroke-width': '3'});
+                cellView.$('circle').css({stroke: color, 'stroke-width': '3'});
+                cellView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
             }
         }
         else {
             if (cellView.model.get('parent')) {
                 parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
                 parentView.$('rect').css({stroke: color, 'stroke-width': '4'});
-                parentView.$('circle').css({stroke: 'black', 'stroke-width': '3'});
+                parentView.$('circle').css({stroke: color, 'stroke-width': '3'});
+                parentView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
             }
         }
     });
@@ -502,7 +504,7 @@ ui.changeColorElements = function (color) {
     });
 };
 ui.connectLinksToShape = function () {
-    $('#modals *').css('cursor', 'wait');
+    $('.menu-body *').addClass('waiting');
     //do the processing after a small delay, in order to allow the browser to update the cursor icon
     setTimeout(function () {
         istar.paper.options.linkConnectionPoint = joint.util.shapePerimeterConnectionPoint;
@@ -512,23 +514,19 @@ ui.connectLinksToShape = function () {
             e.translate(-1);
         });
         istar.paper.options.linkConnectionPoint = undefined;
-        $('#modals *').css('cursor', 'auto');
+        $('.menu-body *').removeClass('waiting');
     }, 100);
 };
 
-$('#saveImageButton').click(function () {
-    $('#saveImageModal').modal();
+$('#input-file-format').change(function () {
+    $('#placeholder-save-image').html('');
 });
 
-$('#fileFormatInput').change(function () {
-    $('#saveImage').html('');
-});
-
-$('#saveImageButton2').click(function () {
+$('#modal-button-save-image').click(function () {
     $(this).button('loading');
-    filename = $('#filenameInput').val() || 'goalModel';
+    filename = $('#input-filename').val() || 'goalModel';
     var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
-    var $saveImage = $('#saveImage');
+    var $saveImage = $('#placeholder-save-image');
 
     //hide UI elements before saving
     $jointMarkers.hide();
@@ -538,10 +536,13 @@ $('#saveImageButton2').click(function () {
     var originalHeight = istar.paper.getArea().height;
     istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
 
-    if ($('#fileFormatInput').val() === "SVG") {
+    if ($('#input-file-format').val() === "SVG") {
         var svgData = saveSvg('diagram');
         $saveImage.html(createDownloadLink(filename + '.svg', 'click here to save', svgData, 'download SVG (vectorial)'));
-        $('#saveImageButton2').button('reset');
+        $('#modal-button-save-image').button('reset');
+        $('#placeholder-save-image > a').click(function () {
+            $('#placeholder-save-image').hide(200);
+        });
     }
     else {
         savePng('diagram', addPngLink, filename);
@@ -562,9 +563,8 @@ function createDownloadLink(fileName, text, data, title) {
     a.download = fileName;//name that will appear when saving the file
     a.title = title;
     a.href = data;
-    a.id = 'saveImageButton3';
     $(a).click(function () {
-        $('#saveImageModal').modal('hide');
+        $('#modal-save-image').modal('hide');
     });
 
     var linkText = document.createTextNode(text);
@@ -574,11 +574,14 @@ function createDownloadLink(fileName, text, data, title) {
 
 function addPngLink(pngData, filename) {
     var a = createDownloadLink(filename+'.png', 'click here to save', pngData, 'download PNG');
-    $('#saveImage').html(a);
-    $('#saveImageButton2').button('reset');
+    $('#placeholder-save-image').html(a);
+    $('#modal-button-save-image').button('reset');
+    $('#placeholder-save-image > a').click(function () {
+        $('#placeholder-save-image').hide(200);
+    });
 }
 
-$('#saveModelButton').click(function () {
+$('#menu-button-save-model').click(function () {
     var model = saveModel();
 
     //workaround for jointjs bug: changing the path of a highlight when changing an attribute of a CellView
@@ -587,28 +590,24 @@ $('#saveModelButton').click(function () {
 
     csvData = 'data:text/json;charset=utf-8,' + (encodeURI(model));
     a = createDownloadLink('goalModel.txt', '◀ File', csvData, 'download goal model');
-    $('#saveModel').html(a).show();
+    $('#placeholder-save-model').html(a).show();
+    $('#placeholder-save-model > a').click(function () {
+        $('#placeholder-save-model').hide(200);
+    });
 });
 
-$('#saveImage, a').click(function () {
-    $('#saveImage').hide(200);
-});
-
-$('#saveModel, a').click(function () {
-    $('#saveModel').hide(200);
-});
-$('#loadButton').click(function () {
+$('#modal-button-load-model').click(function () {
     $(this).button('loading');
     //load the model with a small delay, giving time to the browser to display the 'loading' message
     setTimeout(function () {
         //call the actual loading
         try {
-            var fileInput = $('#actualFileInput')[0];
+            var fileInput = $('#input-file-to-load')[0];
             if (fileInput.files.length === 0) {
                 alert('You must select a file to load');
 
-                $('#loadModelModal').modal('hide');
-                $('#loadButton').button('reset');
+                $('#modal-load-model').modal('hide');
+                $('#modal-button-load-model').button('reset');
             }
             else {
                 //else, load model from file
@@ -618,20 +617,20 @@ $('#loadButton').click(function () {
                     fileReader.onload = function (e) {
                         fileManager.load(e.target.result);
 
-                        $('#loadModelModal').modal('hide');
-                        $('#loadButton').button('reset');
+                        $('#modal-load-model').modal('hide');
+                        $('#modal-button-load-model').button('reset');
                     };
                     fileReader.readAsText(file);
                 }
                 else {
                     alert('Sorry, this kind of file is not valid');
-                    $('#loadButton').button('reset');
-                    $('#loadModelModal').modal('hide');
+                    $('#modal-button-load-model').button('reset');
+                    $('#modal-load-model').modal('hide');
                 }
             }
         }
         catch (error) {
-            $('#loadButton').button('reset');
+            $('#modal-button-load-model').button('reset');
             alert('Sorry, the input model is not valid.');
             console.log(error.stack);
         }
@@ -642,41 +641,48 @@ ui.setupUi = function () {
     this.defineInteractions();
     uiC.createAddButtons();
 
-    $('#saveImage').hide();
-    $('#saveModel').hide();
+    $('#placeholder-save-image').hide();
+    $('#placeholder-save-model').hide();
 
 
     this.setupDiagramSizeInputs();
-    $('#diagramBoxOuter').height($(window).height()+100);
+    $('#diagram-box-outer').height($(window).height()+100);
 
 
 };
 
 ui.setupDiagramSizeInputs = function () {
     //updates the initial values of the diagram's size inputs with the diagram's actual size
-    $('#diagramWidthInput').val(istar.paper.getArea().width);
-    $('#diagramHeightInput').val(istar.paper.getArea().height);
+    $('#input-diagram-width').val(istar.paper.getArea().width);
+    $('#input-diagram-height').val(istar.paper.getArea().height);
 
     //setup to update the inputs' values whenever the diagram's size is changed
     istar.paper.on('resize', function(width, height) {
-        $('#diagramWidthInput').val(width);
-        $('#diagramHeightInput').val(height);
+        $('#input-diagram-width').val(width);
+        $('#input-diagram-height').val(height);
     });
 
-    //setup to update the diagram's size whenever the user leaves (focusout) the input fields
-    $('#diagramWidthInput, #diagramHeightInput').focusout(function () {
-        istar.paper.setDimensions($('#diagramWidthInput').val(), $('#diagramHeightInput').val());
+    //setup to update the diagram's size whenever the user leaves (focusout) the input fields or press enter
+    $('#input-diagram-width, #input-diagram-height')
+        .focusout(function () {
+            istar.paper.setDimensions($('#input-diagram-width').val(), $('#input-diagram-height').val());
+    })
+        .keyup(function (e) {
+        if (e.which === 13) {
+            istar.paper.setDimensions($('#input-diagram-width').val(), $('#input-diagram-height').val());
+            this.blur(); //remove focus from the input field
+        }
     });
-}
+};
 
 
 
 $('#actorBoundaryColorPicker').on('change', function () {
     ui.changeColorActorContainer(this.value);
-})
+});
 $('#elementsColorPicker').on('change', function () {
     ui.changeColorElements(this.value);
-})
+});
 
 $('#analyseModelButton').click(function () {
     var numberOfElements = 'Number of elements: ' + istar.getNumberOfElements();
@@ -684,7 +690,7 @@ $('#analyseModelButton').click(function () {
     alert(numberOfElements + '\n' + numberOfLinks + '\n\n' + 'OBS: each dependency counts as two links - one from the depender to the dependum, and another from the dependum to the dependee.');
 });
 
-$('#preciseLinksButton').click(function () {
+$('#menu-button-precise-links').click(function () {
     ui.connectLinksToShape();
 });
 
@@ -737,7 +743,6 @@ $('#feedbackArea').on('hide.bs.collapse', function () {
 });
 
 $(document).keyup(function (e) {
-  console.log(e.which);
     if (ui.getSelectedElement() !== null) {
         if (ui.currentStateIsView()) {
             if (e.which === 8 || e.which === 46) {
@@ -813,7 +818,7 @@ function changeCustomPropertyValue(model, propertyName, propertyValue) {
 
 
 (function () {
-    var currentMenuItem = $('.menu-items #add-button');
+    var currentMenuItem = $('#menu-item-add');
 
     $('.menu-items a').each(function () {
         target = $('#' + $(this).data('toggle'));
@@ -830,9 +835,9 @@ function changeCustomPropertyValue(model, propertyName, propertyValue) {
                 target.removeClass('hidden');
                 target.slideDown(200);
                 $('#star').css("-transform","rotate(0deg)");
-                console.log('show up a menu, there is none seen');
             }
             else if ($(this).attr('id') != currentMenuItem.attr('id')) {
+                //some menu is already displayed, a different one will be displayed
                 $(currentMenuItem).removeClass('active');
                 $('#' + $(currentMenuItem).data('toggle')).addClass('hidden');
                 $('#' + $(currentMenuItem).data('toggle')).slideUp(0);
@@ -840,19 +845,19 @@ function changeCustomPropertyValue(model, propertyName, propertyValue) {
                 target.removeClass('hidden');
                 target.slideDown(0);
                 currentMenuItem = $(this);
-                console.log('change to other menu');
             }
             else {
+                //some menu is already displayed, the menu will be hidden
                     target.slideUp(200, function () {
                         $(currentMenuItem).removeClass('active');
                         currentMenuItem = null;
                     });
                     $('#star').css("-transform","rotate(-180deg)");
-                    console.log('hide the menu');
             }
         });
     });
-    $('#' + currentMenuItem.data('toggle')).slideDown(0);
+
+    $('#' + currentMenuItem.data('toggle')).slideDown(0); //displays the default menu when the tool is loaded
 
 }());
 
@@ -864,4 +869,16 @@ $('#resetColorsButton').click(function () {
     ui.changeColorActorContainer('#E6E6E6');
     $('#elementsColorPicker').get(0).jscolor.fromString('CCFACD');
     ui.changeColorElements('#CCFACD');
+});
+
+$('.modal-button-load-example').click(function () {
+    $('.modal *').addClass('waiting');
+    var modelToLoad = $(this).data('model');
+    //do the processing after a small delay, in order to allow the browser to update the cursor icon
+    setTimeout(function () {
+        loadModel(istar.examples[modelToLoad]);
+        $('.modal *').removeClass('waiting');
+        $('#modal-examples').modal('hide');
+    }, 500);
+
 });
