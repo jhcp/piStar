@@ -9,6 +9,14 @@ from a task to another task.
 
 ### Changed
 - Revamped UI, with collapsable toolbars on the top.
+- Elements can now be deleted with either the 'delete' or 'backspace' key, in order to make it easier for Mac users to 
+delete elements (in Mac OS the 'delete' key behaves as 'backspace')
+
+### Removed
+- Aiming to save bandwidth, the following CSS styles that are not likely to be used in the context of this tool have
+ been removed from our Bootstrap files: Print media styles, Code, Navs, Navbar, Breadcrumbs, Jumbotron, Media items, Carousel.
+- Aiming to save bandwidth, the following JS components that are not likely to be used in the context of this tool have
+ been removed from our Bootstrap files: Carousel functionality, Scrollspy.
 
 
 ## [Release v1.2.0] - 2018-03-20
