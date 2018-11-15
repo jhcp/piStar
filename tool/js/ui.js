@@ -313,12 +313,15 @@ ui.defineInteractions = function () {
     istar.paper.on('cell:pointerdblclick', function (cellView, evt, x, y) {
         var newText;
         if (cellView.model.isLink()) {
-            if (cellView.model.isContributionLink()) {
-                newText = window.prompt('make, help, hurt, or break', cellView.model.getContributionType());
-                if (newText !== null) {
-                    cellView.model.setContributionType(newText);
-                }
-            }
+          // console.log(cellView.model);
+          //   if (cellView.model.isContributionLink()) {
+          //       newText = window.prompt('make, help, hurt, or break', cellView.model.attributes.labels[0].attrs.text.text);
+          //       //newText = window.prompt('make, help, hurt, or break', cellView.model.getContributionType());
+          //       if (newText !== null) {
+          //           cellView.model.attributes.labels[0].attrs.text.text = newText;
+          //           //cellView.model.setContributionType(newText);
+          //       }
+          //   }
         }
         else {
             oldText = cellView.model.prop('name');
@@ -638,7 +641,7 @@ $('#loadButton').click(function () {
 ui.setupUi = function () {
     this.defineInteractions();
     uiC.createAddButtons();
-    
+
     $('#saveImage').hide();
     $('#saveModel').hide();
 
@@ -734,9 +737,14 @@ $('#feedbackArea').on('hide.bs.collapse', function () {
 });
 
 $(document).keyup(function (e) {
+  console.log(e.which);
     if (ui.getSelectedElement() !== null) {
         if (ui.currentStateIsView()) {
-            if (e.which === 46) {  //delete
+            if (e.which === 8 || e.which === 46) {
+                // 8: backspace
+                // 46: delete
+                // The use of the 'backspace' key, in addition to the 'delete', key aims to improve support for Mac users,
+                //    since in that system the key named 'delete' actually is a 'backspace' key
                 ui.getSelectedElement().remove();
                 ui.clearSelection();
             }
