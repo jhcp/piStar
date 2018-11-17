@@ -3,6 +3,19 @@ body {
   'Segoe UI Emoji','Segoe UI Symbol'; /* based on Bootstrap 4 font*/
 }
 
+.workspace {
+  align-items: stretch;
+  background-color: yellow;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.sidepanel {
+  width: 20%;
+  background-color: blue;
+}
+
 /*  Main Menu */
 
 .menu-bar {
@@ -197,6 +210,7 @@ kbd {
   background-color: lightgray;
   height: 600px;
   padding: 3px 3px;
+  display: flex;
 }
 
 #diagram-box-inner {
