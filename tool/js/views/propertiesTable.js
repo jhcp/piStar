@@ -5,7 +5,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
 
     initialize: function () {
         this.$table = $('#propertyTable');
-        
+
         this.listenTo(this.model, 'mouseup', this.render);
         this.listenTo(this.model, 'change:customProperties', this.render);
         this.listenTo(this.model, 'change:name', this.render);
@@ -25,8 +25,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
         if (this.model.isKindOfActor()) {
             this.setupCollapseExpandButton();
         }
-        else if (this.model.isGoal()) {
-            this.setupObstructButton();
+        else if (this.model.isGoal() || this.model.isResource() || this.model.isTask()) {
+            this.setupSafetyToggle();
         }
 
         return this;
@@ -89,25 +89,36 @@ uiC.PropertiesTableView = Backbone.View.extend({
             }
         });
     },
-    setupObstructButton: function () {
-        $('#cellButtons').append('<button type="button" id="obstructButton">Toggle Obstruct</button>');
+    setupSafetyToggle: function () {
+        $('#cellButtons').append('<button type="button" id="obstructButton">Toggle Safety</button>');
+
         $('#obstructButton').click(function () {
-            goal = ui.getSelectedElement();
-            if (goal) {
+            element = ui.getSelectedElement();
+
+            stereotypeSuffix = 'Goal';
+            if (element.isTask()) stereotypeSuffix = 'Task';
+            if (element.isResource()) stereotypeSuffix = 'Resource';
+            stereotype = '<<safety' + stereotypeSuffix + '>> ';
+            size = 120;
+            if (element.isGoal()) size = 110;
+            if (element.isResource()) size = 140;
+            if (element) {
                 var name = ui.getSelectedElement().prop('name');
-                isObstruct = goal.prop('customProperties/isObstruct');
+                isObstruct = element.prop('customProperties/isObstruct');
                 if (isObstruct) {
-                    goal.attr('rect', {fill: '#cdfecd'});
-                    var newName = name.replace('<<obstruct>> ', '');
-                    goal.changeNodeContent(newName);
-                    goal.prop('customProperties/isObstruct', false);
+                    element.attr('polygon', {fill: '#cdfecd'}); //tasks
+                    element.attr('rect', {fill: '#cdfecd'}); //goals, resources
+                    var newName = name.replace(stereotype, '');
+                    element.changeNodeContent(newName, {'breakWidth': size});
+                    element.prop('customProperties/isObstruct', false);
                 }
                 else {
-                    goal.attr('rect', {fill: '#ce8483'});
+                    element.attr('polygon', {fill: '#ce8483'}); //tasks
+                    element.attr('rect', {fill: '#ce8483'}); //goals, resources
 
-                    var newName = '<<obstruct>> ' + name;
-                    goal.changeNodeContent(newName);
-                    goal.prop('customProperties/isObstruct', true);
+                    var newName = stereotype + name;
+                    element.changeNodeContent(newName, {'breakWidth': size});
+                    element.prop('customProperties/isObstruct', true);
                 }
             }
         });

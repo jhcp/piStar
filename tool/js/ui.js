@@ -331,7 +331,10 @@ ui.defineInteractions = function () {
             oldText = cellView.model.prop('name');
             newText = window.prompt('Edit text:', oldText);
             if (newText !== null) {
-                cellView.model.changeNodeContent(newText);
+              size = 120;
+              if (cellView.model.isGoal()) size = 110;
+              if (cellView.model.isResource()) size = 140;
+              cellView.model.changeNodeContent(newText, {'breakWidth': size});
             }
         }
     });
@@ -617,7 +620,7 @@ $('#loadButton').click(function () {
 ui.setupUi = function () {
     this.defineInteractions();
     uiC.createAddButtons();
-    
+
     $('#saveImage').hide();
     $('#saveModel').hide();
     $('#diagramBoxOuter').height($(window).height()/3+100);
@@ -751,4 +754,3 @@ function changeCustomPropertyValue(model, propertyName, propertyValue) {
 
     return model;
 }
-

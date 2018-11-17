@@ -146,7 +146,7 @@ joint.shapes.istar.Agent = joint.dia.Element.extend({
 joint.shapes.istar.Goal = joint.shapes.basic.Rect.extend({
     defaults: joint.util.deepSupplement({
         type: 'istar.Goal',
-        size: {width: 90, height: 35},
+        size: {width: 130, height: 35},
         attrs: {
             rect: {
                 fill: 'rgb(205,254,205)',
@@ -168,7 +168,7 @@ joint.shapes.istar.Goal = joint.shapes.basic.Rect.extend({
 joint.shapes.istar.Resource = joint.shapes.basic.Rect.extend({
     defaults: joint.util.deepSupplement({
         type: 'istar.Resource',
-        size: {width: 90, height: 35},
+        size: {width: 130, height: 35},
         attrs: {
             rect: {
                 fill: 'rgb(205,254,205)',
@@ -190,7 +190,7 @@ joint.shapes.istar.Resource = joint.shapes.basic.Rect.extend({
 joint.shapes.istar.Task = joint.shapes.basic.Polygon.extend({
     defaults: joint.util.deepSupplement({
         type: 'istar.Task',
-        size: {width: 95, height: 36},
+        size: {width: 135, height: 36},
         attrs: {
             'polygon': {
                 points: '0,18 15,0 115,0 130,18 115,36 15,36',
@@ -213,7 +213,7 @@ joint.shapes.istar.Task = joint.shapes.basic.Polygon.extend({
 joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
     defaults: joint.util.deepSupplement({
         type: 'istar.Quality',
-        size: {width: 90, height: 55},
+        size: {width: 130, height: 55},
         attrs: {
             'path': {
                 d: 'm 60.637955,-4.0358 c 17.5174,2.2042 29.9953,-10.69554 41.892705,-4.7858 22.34142,10.8714 11.2203,43.7743 -2.25,47.7322 -8.276505,2.9084 -13.960205,5.1934 -46.142805,-2.1786 -6.7454,-2.2317 -28.2652,6.0799 -35.4643,4.7143 C 9.072156,39.4809 6.491756,33.7693 3.744956,28.482 c -6.3069,-15.1266 -2.5738,-28.0439 7.981099,-34.7856 10.5549,-6.74179 27.9316,-7.30796 48.9119,2.2678 z',
