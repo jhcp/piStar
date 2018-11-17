@@ -255,7 +255,7 @@
               <div class="col-sm-10">
                 <div class="checkbox">
                   <label>
-                    <!--<input id="fixSpacesBeforeSaveInput" type="checkbox"> Fix links spacing before saving (it may take some seconds) TODO-->
+                    <input id="modal-input-precise-links" type="checkbox"> Pixel-perfect links (it may take some seconds)
                   </label>
                 </div>
               </div>
@@ -273,7 +273,8 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button id="modal-button-save-image" type="button" class="btn btn-primary" data-loading-text="Saving...">Save image
+          <button id="modal-button-save-image" type="button" class="btn btn-primary"
+                  data-save-text="Saving..." data-preciselinks-text="Fixing links...">Save image
           </button>
           <span id="placeholder-save-image"></span>
           <button type="button" class="btn" data-dismiss="modal">Cancel</button>

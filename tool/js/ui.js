@@ -523,39 +523,55 @@ $('#input-file-format').change(function () {
 });
 
 $('#modal-button-save-image').click(function () {
-    $(this).button('loading');
-    filename = $('#input-filename').val() || 'goalModel';
-    var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
-    var $saveImage = $('#placeholder-save-image');
+    $('body *').addClass('waiting');
+    clickedButton = this;
 
-    //hide UI elements before saving
-    $jointMarkers.hide();
-    ui.hideSelection();
 
-    var originalWidth = istar.paper.getArea().width;
-    var originalHeight = istar.paper.getArea().height;
-    istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
-
-    if ($('#input-file-format').val() === "SVG") {
-        var svgData = saveSvg('diagram');
-        $saveImage.html(createDownloadLink(filename + '.svg', 'click here to save', svgData, 'download SVG (vectorial)'));
-        $('#modal-button-save-image').button('reset');
-        $('#placeholder-save-image > a').click(function () {
-            $('#placeholder-save-image').hide(200);
-        });
-    }
-    else {
-        savePng('diagram', addPngLink, filename);
+    //pre-processment
+    if ($('#modal-input-precise-links').prop(`checked`)) {
+          $(clickedButton).button('preciselinks');
+          ui.connectLinksToShape();
     }
 
-    //restore the paper to its initial state
-    istar.paper.setDimensions(originalWidth, originalHeight);
-    istar.paper.translate(0,0);
+    //saving
+    setTimeout(function () {
+      $(clickedButton).button('save');
+      filename = $('#input-filename').val() || 'goalModel';
+      var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
+      var $saveImage = $('#placeholder-save-image');
 
-    //show the UI elements back again
-    $jointMarkers.show();
-    $saveImage.show();
-    ui.showSelection(ui.getSelectedElement());
+      //hide UI elements before saving
+      $jointMarkers.hide();
+      ui.hideSelection();
+
+      var originalWidth = istar.paper.getArea().width;
+      var originalHeight = istar.paper.getArea().height;
+      istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
+
+      if ($('#input-file-format').val() === "SVG") {
+          var svgData = saveSvg('diagram');
+          $saveImage.html(createDownloadLink(filename + '.svg', 'click here to save', svgData, 'download SVG (vectorial)'));
+          $('#modal-button-save-image').button('reset');
+          $('#placeholder-save-image > a').click(function () {
+              $('#placeholder-save-image').hide(200);
+          });
+      }
+      else {
+          savePng('diagram', addPngLink, filename);
+      }
+
+      //restore the paper to its initial state
+      istar.paper.setDimensions(originalWidth, originalHeight);
+      istar.paper.translate(0,0);
+
+      //show the UI elements back again
+      $jointMarkers.show();
+      $saveImage.show();
+      ui.showSelection(ui.getSelectedElement());
+
+      $('body *').removeClass('waiting');
+    }, 100);
+
 });
 
 function createDownloadLink(fileName, text, data, title) {
@@ -646,6 +662,8 @@ ui.setupUi = function () {
 
 
     this.setupDiagramSizeInputs();
+    this.setupLoadModelButton();
+    this.setupMainMenuInteraction();
     $('#diagram-box-outer').height($(window).height()+100);
 
 
@@ -675,7 +693,72 @@ ui.setupDiagramSizeInputs = function () {
     });
 };
 
+ui.setupLoadModelButton = function () {
+  $('.modal-button-load-example').click(function () {
+      $('.modal *').addClass('waiting');
+      var modelToLoad = $(this).data('model');
+      //do the processing after a small delay, in order to allow the browser to update the cursor icon
+      setTimeout(function () {
+          loadModel(istar.examples[modelToLoad]);
+          $('.modal *').removeClass('waiting');
+          $('#modal-examples').modal('hide');
+      }, 100);
 
+  });
+};
+
+ui.setupMainMenuInteraction = function () {
+    // default menu to be displayed when the tool opens
+    var currentMenuItem = $('#menu-item-add');
+
+    // set up the click behavior for every menu-item
+    $('.menu-items a').each(function () {
+        $(this).click(function () {
+            target = $('#' + $(this).data('toggle'));
+
+            if (currentMenuItem === null) {
+                //no menu is currently displayed, the clicked one will now be displayed
+                currentMenuItem = $(this);
+                $(this).addClass('active');
+
+                target.css('display', 'none');
+                target.removeClass('hidden');
+                target.slideDown(200);
+
+                $('#star').css("-transform","rotate(0deg)");
+            }
+            else if ($(this).attr('id') != currentMenuItem.attr('id')) {
+                //some menu is already displayed, a different one will be displayed
+
+                //deselect and hide the current menu
+                $(currentMenuItem).removeClass('active');
+                $('#' + $(currentMenuItem).data('toggle')).addClass('hidden');
+                $('#' + $(currentMenuItem).data('toggle')).slideUp(0);
+
+                currentMenuItem = $(this);
+
+                //select and show the clicked menu
+                currentMenuItem .addClass('active');
+                target.removeClass('hidden');
+                target.slideDown(0);
+
+            }
+            else {
+                //some menu is already displayed, the menu will be hidden
+                    target.slideUp(200, function () {
+                        //only deselect the menu after its body disappear,
+                        //for smoother visual animation
+                        $(currentMenuItem).removeClass('active');
+                        currentMenuItem = null;
+                    });
+                    $('#star').css("-transform","rotate(-180deg)");
+            }
+        });
+    });
+
+    $('#' + currentMenuItem.data('toggle')).slideDown(0); //displays the default menu when the tool is loaded
+
+};
 
 $('#actorBoundaryColorPicker').on('change', function () {
     ui.changeColorActorContainer(this.value);
@@ -722,25 +805,6 @@ $('#instructionsContent').toggle(0);
 ui.changeStatus = function (text) {
     $('#status').html(text);
 };
-
-$('#examplesArea').on('show.bs.collapse', function () {
-    $('#examplesButton').addClass('active');
-});
-$('#examplesArea').on('hide.bs.collapse', function () {
-    $('#examplesButton').removeClass('active');
-});
-$('#helpArea').on('show.bs.collapse', function () {
-    $('#helpButton').addClass('active');
-});
-$('#helpArea').on('hide.bs.collapse', function () {
-    $('#helpButton').removeClass('active');
-});
-$('#feedbackArea').on('show.bs.collapse', function () {
-    $('#feedbackButton').addClass('active');
-});
-$('#feedbackArea').on('hide.bs.collapse', function () {
-    $('#feedbackButton').removeClass('active');
-});
 
 $(document).keyup(function (e) {
     if (ui.getSelectedElement() !== null) {
@@ -808,59 +872,6 @@ function changeCustomPropertyValue(model, propertyName, propertyValue) {
 
 
 
-
-
-
-
-
-
-
-
-
-(function () {
-    var currentMenuItem = $('#menu-item-add');
-
-    $('.menu-items a').each(function () {
-        target = $('#' + $(this).data('toggle'));
-        target.slideUp(0);
-
-        $(this).click(function () {
-            target = $('#' + $(this).data('toggle'));
-
-            if (currentMenuItem === null) {
-                //no menu is currently displayed, the clicked one will now be displayed
-                currentMenuItem = $(this);
-                $(this).addClass('active');
-                target.css('display', 'none');
-                target.removeClass('hidden');
-                target.slideDown(200);
-                $('#star').css("-transform","rotate(0deg)");
-            }
-            else if ($(this).attr('id') != currentMenuItem.attr('id')) {
-                //some menu is already displayed, a different one will be displayed
-                $(currentMenuItem).removeClass('active');
-                $('#' + $(currentMenuItem).data('toggle')).addClass('hidden');
-                $('#' + $(currentMenuItem).data('toggle')).slideUp(0);
-                $(this).addClass('active');
-                target.removeClass('hidden');
-                target.slideDown(0);
-                currentMenuItem = $(this);
-            }
-            else {
-                //some menu is already displayed, the menu will be hidden
-                    target.slideUp(200, function () {
-                        $(currentMenuItem).removeClass('active');
-                        currentMenuItem = null;
-                    });
-                    $('#star').css("-transform","rotate(-180deg)");
-            }
-        });
-    });
-
-    $('#' + currentMenuItem.data('toggle')).slideDown(0); //displays the default menu when the tool is loaded
-
-}());
-
 $('#fitToContentButton').click(function () {
     istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
 });
@@ -869,16 +880,4 @@ $('#resetColorsButton').click(function () {
     ui.changeColorActorContainer('#E6E6E6');
     $('#elementsColorPicker').get(0).jscolor.fromString('CCFACD');
     ui.changeColorElements('#CCFACD');
-});
-
-$('.modal-button-load-example').click(function () {
-    $('.modal *').addClass('waiting');
-    var modelToLoad = $(this).data('model');
-    //do the processing after a small delay, in order to allow the browser to update the cursor icon
-    setTimeout(function () {
-        loadModel(istar.examples[modelToLoad]);
-        $('.modal *').removeClass('waiting');
-        $('#modal-examples').modal('hide');
-    }, 500);
-
 });
