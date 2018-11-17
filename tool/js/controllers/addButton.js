@@ -133,6 +133,14 @@ uiC.createAddButtons = function() {
     }).render();
     new uiC.AddButtonView({
         model: new uiC.AddButtonModel({
+            label: 'Hazard',
+            action: ui.STATE_ADD_NODE,
+            tooltip: 'Add Hazard',
+            statusText: 'Click on an actor/role/agent to add a Hazard'
+        })
+    }).render();
+    new uiC.AddButtonView({
+        model: new uiC.AddButtonModel({
             label: 'And-Refinement',
             action: ui.STATE_ADD_LINK,
             name: 'AndRefinementLink',

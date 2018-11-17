@@ -42,6 +42,9 @@ var istarcoreMetamodel = {
         },
         {
             'name': 'Resource',
+        },
+        {
+            'name': 'Hazard',
         }
     ],
     //links between actor-like elements
@@ -86,7 +89,7 @@ var istarcoreMetamodel = {
                 //A parent can only be AND-refined or OR-refined, not both simultaneously.
 
                 var result = false;
-                result = source.isTask() || source.isGoal();
+                result = source.isTask() || source.isGoal() || source.isHazard();
                 result = result && (target.isTask() || target.isGoal());
                 result = result && (source != target);
                 result = result && (source.attributes.parent === target.attributes.parent);
@@ -105,7 +108,7 @@ var istarcoreMetamodel = {
                 //A parent can only be AND-refined or OR-refined, not both simultaneously.
 
                 var result = false;
-                result = source.isTask() || source.isGoal();
+                result = source.isTask() || source.isGoal() || source.isHazard();
                 result = result && (target.isTask() || target.isGoal());
                 result = result && (source != target);
                 result = result && (source.attributes.parent === target.attributes.parent);
@@ -121,7 +124,7 @@ var istarcoreMetamodel = {
 
                 var result = false;
                 result = source.isResource();
-                result = result && target.isTask();
+                result = result && (target.isTask() || target.isHazard());
                 // result = result && (source != target);
                 result = result && (source.attributes.parent === target.attributes.parent);
                 return result;
@@ -135,7 +138,8 @@ var istarcoreMetamodel = {
                 //The Obstructs relationship links a (obstructs) goal with another element
 
                 var result = false;
-                result = source.isGoal();
+                result = source.isHazard();
+                result = result && (target.isGoal());
                 result = result && (source != target);
                 result = result && (source.attributes.parent === target.attributes.parent);
                 return result;

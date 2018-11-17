@@ -165,6 +165,28 @@ joint.shapes.istar.Goal = joint.shapes.basic.Rect.extend({
     }, joint.shapes.basic.Rect.prototype.defaults)
 });
 
+joint.shapes.istar.Hazard = joint.shapes.basic.Rect.extend({
+    defaults: joint.util.deepSupplement({
+        type: 'istar.safety.Hazard',
+        size: {width: 130, height: 35},
+        attrs: {
+            rect: {
+                fill: '#ce8483',
+                stroke: 'black',
+                'stroke-width': 2,
+                width: 130,
+                height: 30,
+                rx: 20
+            },
+            text: {
+                text: '<<hazard>> Hazard',
+                'font-size': 12,
+                'font-weight': 'bold'
+            }
+        }
+    }, joint.shapes.basic.Rect.prototype.defaults)
+});
+
 joint.shapes.istar.Resource = joint.shapes.basic.Rect.extend({
     defaults: joint.util.deepSupplement({
         type: 'istar.Resource',
