@@ -111,7 +111,7 @@ function saveModel() {
     });
     _.each(istar.graph.getLinks(), function (link) {
         var linkJSON = fileManager.linkToJSON(link);
-        if (link.isContributionLink()) {
+        if (link.isContributionLink() || link.isObstructsLink()) {
             linkJSON.label = link.attributes.labels[0].attrs.text.text;
         }
 
@@ -250,7 +250,8 @@ fileManager = {
                 if (linkJSON.customProperties) {
                     newLink.prop('customProperties', linkJSON.customProperties);
                 }
-                if (typeWithoutPrefix === 'ContributionLink') {
+                if (typeWithoutPrefix === 'ContributionLink'
+                    || typeWithoutPrefix === 'ObstructsLink') {
                     newLink.on('change:vertices', ui._toggleSmoothness);
                 }
                 return newLink;

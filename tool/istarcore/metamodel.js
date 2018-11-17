@@ -141,7 +141,7 @@ istar.setupMetamodel = function (metamodel) {
     istar._createIsActorLinkFunction(metamodel);
 
     joint.dia.Cell.prototype.isKindOfInnerElement = function () {
-        return this.isGoal() || this.isQuality() || this.isTask() || this.isResource();
+        return this.isGoal() || this.isQuality() || this.isTask() || this.isResource() || this.isHazard();
     };
     joint.dia.Cell.prototype.isKindOfActor = function () {
         return this.isActor() || this.isRole() || this.isAgent();
