@@ -217,6 +217,9 @@ ui.defineInteractions = function () {
         }
         if (ui.currentStateIsAddNode()) {
             ui.addElementOnActor(cellView, x - 50, y - 18);
+            if (cellView.model.prop('collapsed')) {
+              cellView.model.toggleCollapse();
+            }
         }
         else if (ui.currentStateIsAddLink()) {
             if (cellView.model.isKindOfActor()) {
