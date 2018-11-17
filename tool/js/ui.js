@@ -523,6 +523,13 @@ ui.connectLinksToShape = function () {
 
 $('#input-file-format').change(function () {
     $('#placeholder-save-image').html('');
+    if ($(this).val() === "PNG") {
+      $('#modal-input-hi-res').parent().removeClass('hidden');
+    }
+    else {
+      $('#modal-input-hi-res').parent().addClass('hidden');
+    }
+
 });
 
 $('#modal-button-save-image').click(function () {
@@ -560,7 +567,11 @@ $('#modal-button-save-image').click(function () {
           });
       }
       else {
-          savePng('diagram', addPngLink, filename);
+          resolutionFactor = 1;
+          if ($('#modal-input-hi-res').prop(`checked`)) {
+            resolutionFactor = 4;
+          }
+          savePng('diagram', addPngLink, filename, resolutionFactor);
       }
 
       //restore the paper to its initial state

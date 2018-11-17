@@ -4,15 +4,19 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Added
-- UI Error messages when adding invalid links between nodes. E.g., when adding a contribution link 
-from a task to another task. 
+- UI Error messages when adding invalid links between nodes. E.g., when adding a contribution link
+from a task to another task.
+- Automatically expand actor when adding an element inside a collapsed actor, in order to prevent the impression
+that the inserted element is outside the actor.
+- Now the user can select whether to save PNG images with high resolution or with original resolution
 
 ### Changed
 - Revamped UI, with collapsable toolbars on the top.
-- Elements can now be deleted with either the 'delete' or 'backspace' key, in order to make it easier for Mac users to 
+- Elements can now be deleted with either the 'delete' or 'backspace' key, in order to make it easier for Mac users to
 delete elements (in Mac OS the 'delete' key behaves as 'backspace')
-- Changes have been made to conform to [Google's HTML and CSS style guide](https://google.github.io/styleguide/htmlcssguide.html). Notably, HTML elements have been renamed 
-from CamelCase to snake-case. E.g.: addButton -> add-button 
+- Changes have been made to conform to [Google's HTML and CSS style guide](https://google.github.io/styleguide/htmlcssguide.html). Notably, HTML elements have been renamed
+from CamelCase to snake-case. E.g.: addButton -> add-button
+- jQuery (dependency) updated to v3.*
 
 ### Removed
 - Aiming to save bandwidth, the following CSS styles that are not likely to be used in the context of this tool have
@@ -28,7 +32,7 @@ from CamelCase to snake-case. E.g.: addButton -> add-button
 - Increase drawing area if there is an element beyond its right and bottom edges
 
 ### Changed
-- Preventing unnecessary data on the JSON object when saving a file, 
+- Preventing unnecessary data on the JSON object when saving a file,
 for the cases where vertices were added to a link but were later removed.
 - Now select element on pointerdown instead of on pointerup to increase perceived responsiveness
 
@@ -37,18 +41,18 @@ for the cases where vertices were added to a link but were later removed.
 
 ## [Release v1.1.0] - 2018-03-11
 ### Added
-- Ability to save/load models with text containing non-native symbols, by encoding the content 
+- Ability to save/load models with text containing non-native symbols, by encoding the content
 - Save/load now saves/loads the information on whether a kind of actor was collapsed
-- Save/load now saves/loads the vertices of links 
+- Save/load now saves/loads the vertices of links
 
 ### Changed
-- Now the name of an element is a property of its own, instead of being stored just in the SVG (its view) 
+- Now the name of an element is a property of its own, instead of being stored just in the SVG (its view)
 - Added change:selection events, allowing developers to react to it.
 Documentation added accordingly (docs/EVENTS.md.
 - Google Analytics tracking returns to the live version
 - Changed in-tool examples. Added one showing every possible element and link.
 Another one from the i* wiki: http://istar.rwth-aachen.de/tiki-index.php?page=Strategic+Rationale+Example+Model%3A+Buyer+Drive+E-Commerce+from+Yu01&structure=i%2A+Guide
-- Now it is no longer possible to load a model by pasting its content in a textarea. This feature was removed because the load file feature was deemed sufficient and a better option. 
+- Now it is no longer possible to load a model by pasting its content in a textarea. This feature was removed because the load file feature was deemed sufficient and a better option.
 
 
 ### Fixed
@@ -86,10 +90,10 @@ examples and complete functionality upon loading
   - The 'delete element' button was removed, to prevent accidental deletes
   - Fixed some bugs that could cause (i) accidental delete and (ii) blocked UI when adding a link
   - The user can now de-select an element (ESC or click on empty space)
-  - Auto-focus on an element when adding it 
+  - Auto-focus on an element when adding it
 - Allow users to cancel an element/link insertion
   - Now the user can press ESC and cancel the action of adding an element or link. This is important since otherwise the UI could get blocked (for instance, if the user selected to add a link, clicked on the source, but didn't have an element to be the target).
-  
+
 ### Fixed
 - Fix limitation of 1.5mb for downloading PNG file on Chrome
 - Fix incorrect behavior of changing focus when hovering over an actor

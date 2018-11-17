@@ -34,7 +34,7 @@ if (!HTMLCanvasElement.prototype.toBlob) {
     });
 }
 
-function savePng(paperId, callback, filename) {
+function savePng(paperId, callback, filename, resolutionFactor) {
 
 
     //create a canvas, which is used to convert the SVG to png
@@ -51,8 +51,8 @@ function savePng(paperId, callback, filename) {
     imageElement.src = "data:image/svg+xml," + encodeURIComponent(text);
 
     imageElement.onload = function () {
-        canvas.width = imageElement.width * 4; //multiply the width for better resolution
-        canvas.height = imageElement.height * 4; //multiply the height for better resolution
+        canvas.width = imageElement.width * resolutionFactor; //multiply the width for better resolution
+        canvas.height = imageElement.height * resolutionFactor; //multiply the height for better resolution
         //fill the canvas with a color. To create an image with transparent background, you just need to remove the 'fillRect' line
         canvasContext.fillStyle = 'white';
         canvasContext.fillRect(0, 0, canvas.width, canvas.height);
