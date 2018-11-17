@@ -23,7 +23,7 @@
 </head>
 
 <body>
-
+<div id="tool">
 <div class="menu-bar">
   <div id="logo">
     <img src="images/cake.svg" width="21" height="21" alt=""/>
@@ -181,32 +181,37 @@
 
 </div>
 
-<div id="diagram-box-outer">
-  <div id="diagram-box-inner">
-    <div id="diagram"></div>
-  </div>
-</div>
+<div id="workspace">
+  <div id="sidepanel">
+    Properties
 
+    <div  id="extra-options">
+      <div class="row">
+        <div id="properties-panel" class="col-md-8">
+          <table class="table table-bordered table-condensed" id="propertyTable">
+            <tbody>
+            </tbody>
+          </table>
+          <div id="cell-buttons">
+          </div>
+        </div>
 
-<div class="container-fluid toolbar" id="extra-options">
-  <div class="row">
-    <div id="properties-panel" class="col-md-8">
-      <table class="table table-bordered table-condensed" id="propertyTable">
-        <thead>
-          <tr>
-            <th>Property</th>
-            <th>Value</th>
-          </tr>
-        </thead>
-        <tbody>
-        </tbody>
-      </table>
-      <div id="cell-buttons">
       </div>
     </div>
-
   </div>
+  <div id="out">
+    <div id="diagram"></div>
+  </div>
+  <!-- <div id="diagram-box-outer">
+    <div id="diagram-box-inner">
+      <div id="diagram"></div>
+    </div>
+  </div> -->
 </div>
+
+</div>
+
+
 
 <!-- backbone templates -->
 <script type="text/template" id="add-button-template">
@@ -271,7 +276,7 @@
               </div>
               <div class="col-sm-6">
                 <div class="checkbox">
-                  <label class="hidden">
+                  <label class="hidden" title="test">
                     <input id="modal-input-hi-res" type="checkbox" checked> High resolution
                   </label>
                 </div>

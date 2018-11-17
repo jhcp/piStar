@@ -3,6 +3,36 @@ body {
   'Segoe UI Emoji','Segoe UI Symbol'; /* based on Bootstrap 4 font*/
 }
 
+#tool {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+  width: 100vw;
+}
+
+#workspace {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  height:100%;
+}
+
+#sidepanel {
+  background-color: whitesmoke;
+  width: 30vw;
+}
+
+#out {
+  background-color: lightgray;
+  flex-grow: 1;
+  /* height: 100%; */
+  overflow:scroll;
+  /* padding: 3px; */
+  width: 70vw
+}
+
 /*  Main Menu */
 
 .menu-bar {
@@ -193,20 +223,9 @@ kbd {
 
 /* Diagram */
 
-#diagram-box-outer {
-  background-color: lightgray;
-  height: 600px;
-  padding: 3px 3px;
-}
-
-#diagram-box-inner {
-  height: 100%;
-  overflow: scroll;
-}
-
 svg {
   background-color: white;
-  border: solid lightgray 2px;
+  /* border: solid lightgray 2px; */
   margin: 0;
 }
 
