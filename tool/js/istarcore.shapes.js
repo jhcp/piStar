@@ -171,7 +171,7 @@ joint.shapes.istar.Hazard = joint.shapes.basic.Rect.extend({
         size: {width: 130, height: 35},
         attrs: {
             rect: {
-                fill: '#ce8483',
+                fill: 'rgb(200,10,10)',
                 stroke: 'black',
                 'stroke-width': 2,
                 width: 130,

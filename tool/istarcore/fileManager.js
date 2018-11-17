@@ -229,6 +229,10 @@ fileManager = {
 
                 if (element.customProperties) {
                     newElement.prop('customProperties', element.customProperties);
+                    if (element.customProperties.isSafety) {
+                      newElement.attr('polygon', {fill: '#ce8483'}); //tasks
+                      newElement.attr('rect', {fill: '#ce8483'}); //goals, resources
+                    };
                 }
                 return newElement;
             }

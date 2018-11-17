@@ -104,13 +104,13 @@ uiC.PropertiesTableView = Backbone.View.extend({
             if (element.isResource()) size = 140;
             if (element) {
                 var name = ui.getSelectedElement().prop('name');
-                isObstruct = element.prop('customProperties/isObstruct');
-                if (isObstruct) {
+                isSafety = element.prop('customProperties/isSafety');
+                if (isSafety) {
                     element.attr('polygon', {fill: '#cdfecd'}); //tasks
                     element.attr('rect', {fill: '#cdfecd'}); //goals, resources
                     var newName = name.replace(stereotype, '');
                     element.changeNodeContent(newName, {'breakWidth': size});
-                    element.prop('customProperties/isObstruct', false);
+                    element.prop('customProperties/isSafety', false);
                 }
                 else {
                     element.attr('polygon', {fill: '#ce8483'}); //tasks
@@ -118,7 +118,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
 
                     var newName = stereotype + name;
                     element.changeNodeContent(newName, {'breakWidth': size});
-                    element.prop('customProperties/isObstruct', true);
+                    element.prop('customProperties/isSafety', true);
                 }
             }
         });
