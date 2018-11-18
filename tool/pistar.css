@@ -20,8 +20,12 @@ body {
 }
 
 #sidepanel {
-  background-color: whitesmoke;
+  /* background-color: #fbfbfb; */
+  background-color: white;
+  box-shadow: 0 4px 10px rgb(100,100,100);
+  padding: 4px;
   width: 30vw;
+  z-index: 1;
 }
 
 #out {
@@ -31,6 +35,21 @@ body {
   overflow:scroll;
   /* padding: 3px; */
   width: 70vw
+}
+
+/* Hack do display scrollbars on Mac OS */
+/* based on
+https://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-vertical-scroll-bar
+*/
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #999;
 }
 
 /*  Main Menu */
