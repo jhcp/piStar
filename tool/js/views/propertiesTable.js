@@ -119,6 +119,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
                     var newName = stereotype + name;
                     element.changeNodeContent(newName, {'breakWidth': size});
                     element.prop('customProperties/isSafety', true);
+                    if (element.isGoal()) element.prop('customProperties/accidentImpactLevel', '');
+
                 }
             }
         });

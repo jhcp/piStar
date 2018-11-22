@@ -476,15 +476,22 @@ function addElementInPlace(clickedNode, callback, x, y) {
     //if the user clicked on an actor kind, the parent is the clicked element itself (i.e., the actor)
     //otherwise, if the user clicked on another element (e.g., a goal), then the parent of the new element will be the same parent of the clicked element
     var node;
+    content = '';
     if (clickedNode.isKindOfActor()) {
         node = callback(x, y);
         clickedNode.embedNode(node);
+        if (node.isHazard()) {
+          node.prop('name', '<<hazard>> ')
+        }
     }
+
     else {
         var parent = istar.graph.getCell(clickedNode.attributes.parent);
         if (parent && parent.isKindOfActor()) {
             node = callback(x, y);
+
             istar.graph.getCell(clickedNode.attributes.parent).embedNode(node);
+
         }
     }
     return node;

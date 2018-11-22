@@ -90,7 +90,8 @@ var istarcoreMetamodel = {
 
                 var result = false;
                 result = source.isTask() || source.isGoal() || source.isHazard();
-                result = result && (target.isTask() || target.isGoal());
+                result = result && (target.isTask() || target.isGoal() || target.isHazard());
+                //result = result && ((target.isHazard() && source.isHazard()) || !target.isHazard());
                 result = result && (source != target);
                 result = result && (source.attributes.parent === target.attributes.parent);
                 return result;
@@ -109,7 +110,7 @@ var istarcoreMetamodel = {
 
                 var result = false;
                 result = source.isTask() || source.isGoal() || source.isHazard();
-                result = result && (target.isTask() || target.isGoal());
+                result = result && (target.isTask() || target.isGoal() || target.isHazard());
                 result = result && (source != target);
                 result = result && (source.attributes.parent === target.attributes.parent);
                 return result;
@@ -155,7 +156,7 @@ var istarcoreMetamodel = {
                 // and tasks, it is also possible to initiate contributions
                 //from resources and qualities.
                 var result = false;
-                result = source.isGoal() || source.isQuality() || source.isTask() || source.isResource();
+                result = source.isGoal() || source.isQuality() || source.isTask() || source.isResource() || source.isHazard() ;
                 result = result && target.isQuality();
                 result = result && (source != target);
                 result = result && (source.attributes.parent === target.attributes.parent);
@@ -172,7 +173,7 @@ var istarcoreMetamodel = {
 
                 var result = false;
                 result = source.isQuality();
-                result = result && (target.isGoal() || target.isTask() || target.isResource());
+                result = result && (target.isGoal() || target.isTask() || target.isResource() || target.isHazard());
                 // result = result && (source != target);
                 result = result && (source.attributes.parent === target.attributes.parent);
                 // alert('here');
