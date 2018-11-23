@@ -10,7 +10,7 @@
     <meta name="author" content="João Pimentel">
     <link rel="icon" href="images/favicon.ico">
 
-    <title>piStar4Safety</title>
+    <title>piStar tool - 4Safety extension</title>
 
     <!-- bootstrap styles -->
     <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">  <!-- Bootstrap core CSS -->
@@ -31,7 +31,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
                     aria-expanded="false" aria-controls="navbar"><span class="sr-only">Toggle navigation</span><span
                     class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-            <a class="navbar-brand" href="#">piStar4Safety</a>
+            <a class="navbar-brand" href="#">piStar-4Safety</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -51,12 +51,9 @@
         <em>Loading may take a while, please wait a few seconds after clicking in an example below.</em>
         <p>WARNING! If you click on an example below, your current model will be erased.</p>
         <ul>
-            <li><a href="#examplesArea" onclick="istar.examples.loadEveryElementAndLink();" aria-controls="examplesArea"
-                   data-toggle="collapse">Example with every i* 2.0 element and link</a></li>
-            <li><a href="#examplesArea" onclick="istar.examples.loadTravelReimbursement();" aria-controls="examplesArea"
-                   data-toggle="collapse">Travel Reinbursement</a></li>
-            <li><a href="#examplesArea" onclick="istar.examples.loadBuyerDrivenECommerce();" aria-controls="examplesArea"
-                   data-toggle="collapse">Buyer Driven e-Commerce</a></li>
+            <li><a href="#examplesArea" onclick="istar.examples.loadInsulinPump();" aria-controls="examplesArea"
+                   data-toggle="collapse">Bomba de infusão de insulina - SEM IStar4Safety</a></li>
+
         </ul>
     </div>
 </div>
@@ -96,11 +93,14 @@
             </li>
             <li>You can change the diagram size and other visualization options with <em>Diagram Options</em></li>
         </ul>
-        For help with the iStar 2 language, please visit <em><a href="https://sites.google.com/site/istarlanguage/"
-                                                                target="blank">https://sites.google.com/site/istarlanguage/</a></em><br/>
-        For more info on this project, please visit the <a href="https://github.com/jhcp/piStar/" target="blank">piStar
-        repository</a>.<br/>
-        <em>piStar tool version 1.2.0</em>
+      <ul> ISTARSAFETY - Para verificar a completude do seu modelo com iStar4Safety:
+	  <li> 1. Todos os safetyGoals têm uma propriedade “Accident Impact Level” com um valor inserido. </li>
+      <li> 2. Todos os safetyGoals têm um ou mais hazards associados.</li>
+     <li>  3. Todos os hazards-raiz estão ligados a um ou mais safetyGoals.</li>
+      <li> 4. Todos os hazards-filho estão ligados a uma ou mais safetyStrategies.</li>
+      <li> 5. Atente-se que: caso um recurso seja SAFETYRESOURCE ele será em todo o modelo.</li>
+	   </ul>
+
     </div>
 </div>
 
