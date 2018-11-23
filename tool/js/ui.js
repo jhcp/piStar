@@ -319,7 +319,7 @@ ui.defineInteractions = function () {
 
     istar.paper.on('cell:pointerdblclick', function (cellView, evt, x, y) {
         var newText;
-        if (cellView.model.isLink()) {
+        /*if (cellView.model.isLink()) {
             if (cellView.model.isContributionLink()) {
                 newText = window.prompt('make, help, hurt, or break', cellView.model.getContributionType());
                 if (newText !== null) {
@@ -327,16 +327,24 @@ ui.defineInteractions = function () {
                 }
             }
         }
-        else {
+        else {*/
             oldText = cellView.model.prop('name');
-            newText = window.prompt('Edit text:', oldText);
+            prefixPattern = new RegExp("<<(.*)>> ");
+            oldTextPrefix = prefixPattern.exec(oldText);
+            if (oldTextPrefix) {
+              oldTextPrefix = oldTextPrefix[0];
+            }
+            oldTextWithoutPrefix = oldText.replace(prefixPattern, '');
+// str.replace(/Hello/g, 'Hy');
+            newText = window.prompt('Edit text:', oldTextWithoutPrefix);
             if (newText !== null) {
               size = 120;
               if (cellView.model.isGoal()) size = 110;
               if (cellView.model.isResource()) size = 140;
-              cellView.model.changeNodeContent(newText, {'breakWidth': size});
+              oldTextPrefix = oldTextPrefix || '';
+              cellView.model.changeNodeContent(oldTextPrefix + newText, {'breakWidth': size});
             }
-        }
+      //  }
     });
 
     istar.paper.on('cell:contextmenu', function (cellView, evt, x, y) {
