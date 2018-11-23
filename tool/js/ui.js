@@ -638,9 +638,7 @@ ui.setupUi = function () {
 
     $('#saveImage').hide();
     $('#saveModel').hide();
-    $('#diagramBoxOuter').height($(window).height()/3+100);
-
-
+    $('#diagramBoxOuter').height($(window).height());
 };
 
 $('#diagramOptionsModalButton').click(function () {
