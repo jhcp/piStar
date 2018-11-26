@@ -319,32 +319,21 @@ ui.defineInteractions = function () {
 
     istar.paper.on('cell:pointerdblclick', function (cellView, evt, x, y) {
         var newText;
-        /*if (cellView.model.isLink()) {
-            if (cellView.model.isContributionLink()) {
-                newText = window.prompt('make, help, hurt, or break', cellView.model.getContributionType());
-                if (newText !== null) {
-                    cellView.model.setContributionType(newText);
-                }
-            }
+        oldText = cellView.model.prop('name') || '';
+        prefixPattern = new RegExp("<<(.*)>> ");
+        oldTextPrefix = prefixPattern.exec(oldText);
+        if (oldTextPrefix) {
+          oldTextPrefix = oldTextPrefix[0];
         }
-        else {*/
-            oldText = cellView.model.prop('name');
-            prefixPattern = new RegExp("<<(.*)>> ");
-            oldTextPrefix = prefixPattern.exec(oldText);
-            if (oldTextPrefix) {
-              oldTextPrefix = oldTextPrefix[0];
-            }
-            oldTextWithoutPrefix = oldText.replace(prefixPattern, '');
-// str.replace(/Hello/g, 'Hy');
-            newText = window.prompt('Edit text:', oldTextWithoutPrefix);
-            if (newText !== null) {
-              size = 120;
-              if (cellView.model.isGoal()) size = 110;
-              if (cellView.model.isResource()) size = 140;
-              oldTextPrefix = oldTextPrefix || '';
-              cellView.model.changeNodeContent(oldTextPrefix + newText, {'breakWidth': size});
-            }
-      //  }
+        oldTextWithoutPrefix = oldText.replace(prefixPattern, '');
+        newText = window.prompt('Edit text:', oldTextWithoutPrefix);
+        if (newText !== null) {
+          size = 120;
+          if (cellView.model.isGoal()) size = 110;
+          if (cellView.model.isResource()) size = 140;
+          oldTextPrefix = oldTextPrefix || '';
+          cellView.model.changeNodeContent(oldTextPrefix + newText, {'breakWidth': size});
+        }
     });
 
     istar.paper.on('cell:contextmenu', function (cellView, evt, x, y) {
