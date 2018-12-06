@@ -8,9 +8,9 @@ If you need to mention the piStar tool, please reference this publication:
 
 ## Research work that uses, extends or mentions the piStar tool.
 
-- Pimentel, João and Castro, Jaelson. piStar Tool – A Pluggable Online Tool for Goal Modeling. 2018 IEEE 26th International Requirements Engineering Conference, pp. 498-499.
-
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
+
+- Pimentel, João and Castro, Jaelson. piStar Tool – A Pluggable Online Tool for Goal Modeling. 2018 IEEE 26th International Requirements Engineering Conference, pp. 498-499.
 
 - In Portuguese: Santos, Max G., and Pimentel, João. "Compartilhamento de Modelos iStar 2.0 em Ferramentas de Modelagem Online - o Caso da piStar." Revista de Engenharia e Pesquisa Aplicada 3.2 (2018). [http://dx.doi.org/10.25286/repa.v3i2.885]
 
