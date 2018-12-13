@@ -506,6 +506,19 @@ ui.changeColorElements = function (color) {
         }
     });
 };
+ui.changeColorElement = function (color) {
+  element = ui.getSelectedElement();
+  ui.hideSelection();
+  if (element.isKindOfActor()) {
+    element.attr('circle', {fill: color});
+  }
+  else {
+    element.attr('rect', {fill: color});
+    element.attr('polygon', {fill: color});
+    element.attr('path', {fill: color});
+  }
+  ui.showSelection();
+};
 ui.connectLinksToShape = function () {
     $('.menu-body *').addClass('waiting');
     //do the processing after a small delay, in order to allow the browser to update the cursor icon
@@ -781,6 +794,10 @@ $('#elementsColorPicker').on('change', function () {
     ui.changeColorElements(this.value);
 });
 
+$('#single-element-color-picker').on('change', function () {
+    ui.changeColorElement(this.value);
+});
+
 $('#analyseModelButton').click(function () {
     var numberOfElements = 'Number of elements: ' + istar.getNumberOfElements();
     var numberOfLinks = 'Number of links: ' + istar.getNumberOfLinks();
@@ -895,3 +912,40 @@ $('#resetColorsButton').click(function () {
     $('#elementsColorPicker').get(0).jscolor.fromString('CCFACD');
     ui.changeColorElements('#CCFACD');
 });
+
+
+//sidepanel resizing
+var sidepanelSizes = [2, 17, 30];
+var sidepanelCurrentSize = 1;
+var sidepanelSizeForXeditable = 1;
+var expandSidepanel = function () {
+    if (sidepanelCurrentSize < (sidepanelSizes.length - 1)) {
+        //TODO check if the next size is not larger than the current window/document size
+        sidepanelCurrentSize++;
+        $('#sidepanel').css('width', sidepanelSizes[sidepanelCurrentSize] + 'vw');
+        //$('#diagramBoxOuter').css('margin-left', sidepanelSizes[sidepanelCurrentSize] + 'px');
+
+        if (sidepanelCurrentSize === 1) {
+            $('#sidepanel').removeClass('collapsed');
+        }
+        if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
+            $('#sidepanel').addClass('full');
+        }
+    }
+};
+var collapseSidepanel = function () {
+    if (sidepanelCurrentSize > 0) {
+        if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
+            $('#sidepanel').removeClass('full');
+        }
+        sidepanelCurrentSize--;
+        $('#sidepanel').css('width', sidepanelSizes[sidepanelCurrentSize] + 'vw');
+        //$('#diagramBoxOuter').css('margin-left', sidepanelSizes[sidepanelCurrentSize] + 'px');
+
+        if (sidepanelCurrentSize === 0) {
+            $('#sidepanel').addClass('collapsed');
+        }
+    }
+};
+$('.collapseSidepanelButton').click(collapseSidepanel);
+$('.expandSidepanelButton').click(expandSidepanel);

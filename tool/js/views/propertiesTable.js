@@ -5,7 +5,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
 
     initialize: function () {
         this.$table = $('#propertyTable');
-        
+
         this.listenTo(this.model, 'mouseup', this.render);
         this.listenTo(this.model, 'change:customProperties', this.render);
         this.listenTo(this.model, 'change:name', this.render);
@@ -22,9 +22,11 @@ uiC.PropertiesTableView = Backbone.View.extend({
 
         this.setupAddPropertyButton();
 
+        this.clearOptionsPanel();
         if (this.model.isKindOfActor()) {
             this.setupCollapseExpandButton();
         }
+        this.setupOptionsPanel();
 
         return this;
     },
@@ -41,15 +43,18 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 var updatedElement = ui.getSelectedElement().changeNodeContent(newValue);
 
                 return {newValue: updatedElement.prop('name')};
-            }
+            },
+            showbuttons: 'bottom'
         })
             .on('shown', ui.changeStateToEdit)
             .on('hidden', ui.changeStateToView);
     },
     setupAddPropertyButton: function () {
-        $('#cell-buttons').html('<button type="button" id="addPropertyButton">Add Property</button>');
-        $('#addPropertyButton').click(function () {
-            var newPropertyName = window.prompt('Name of the new custom property', 'newProperty');
+        $('#add-property-button-area').html('<a href="#" id="add-property-button" class="property-add" data-type="text" data-pk="1"           data-name="name" data-title="Enter description" data-placeholder="ahhhh" title="Add a new property to this element">        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>        Add Property</a>');
+        // $('#add-property-button-area').html('<button type="button" id="addPropertyButton">Add Property</button>');
+        // $('#cell-buttons').html('<button type="button" id="addPropertyButton">Add Property</button>');
+        $('#add-property-button').click(function () {
+            var newPropertyName = window.prompt('Name of the new custom property:', 'newProperty');
             if (newPropertyName) {
                 var isValidName = false;
                 var validityMessage = '';
@@ -76,8 +81,12 @@ uiC.PropertiesTableView = Backbone.View.extend({
             }
         });
     },
+    clearOptionsPanel: function () {
+      $('#cell-collapse-options').html('');
+    },
     setupCollapseExpandButton: function () {
-        $('#cell-buttons').append('<button type="button" id="collapseButton">Collapse/Expand</button>');
+        $('#cell-collapse-options').append('<a id="collapseButton" class="btn btn-default btn-xs button-horizontal">Collapse/Expand</a><br>');
+        //$('#cell-collapse-options').append('<button type="button" id="collapseButton">Collapse/Expand</button><br>');
         $('#collapseButton').click(function () {
             if (ui.getSelectedElement()) {
                 ui.hideSelection();//remove the focus from the actor
@@ -85,6 +94,25 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 ui.showSelection();//give the focus back to actor, now collapsed or expanded
             }
         });
+    },
+    setupOptionsPanel: function () {
+      // var input = document.createElement('INPUT')
+      // var picker = new jscolor(input)
+      // //picker.fromHSV(360 / 100 * i, 100, 100)
+      // picker.fromString('#ccfacd')
+      // input.setAttribute('id', 'elementsColorPicker');
+      // input.setAttribute('value', '#ccfacd');
+      // input.setAttribute('size', '8');
+      // input.setAttribute('class', 'jscolor {hash:true}');
+      //
+      // //document.getElementById('container').appendChild(input)
+      // $('#cell-options').append(input);
+      // $(input).on('change', function () {
+      //     ui.changeColorElements('#' + this.value);
+      //     //ui.changeColorElements(this.value);
+      // });
+      //$('#cell-options').append('Background color:&nbsp; <input id="elementsColorPicker" class="jscolor {hash:true}" value="ccfacd" size="8"> <a id="resetElementColorButton" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset colors</a>');
+      //$('#cell-options').append('Background color:&nbsp; <input id="" class="jscolor {hash:true}" value="" size=""> <a id="resetElementColorButton" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset colors</a>');
     },
     renderCustomProperty: function (propertyName) {
         this.$table.find('tbody').append(this.template({
@@ -98,7 +126,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
                     //update backbone model
                     var updatedElement = changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue);
                     return {newValue: updatedElement.prop('customProperties/' + propertyName)};
-                }
+                },
+                showbuttons: 'bottom'
             }
         )
             .on('shown', ui.changeStateToEdit)
