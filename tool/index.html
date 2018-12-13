@@ -183,20 +183,22 @@
 
 <div id="workspace">
   <div id="sidepanel">
-    Properties
-
-    <div  id="extra-options">
-      <div class="row">
-        <div id="properties-panel" class="col-md-8">
-          <table class="table table-bordered table-condensed" id="propertyTable">
+    Properties:
+      <div class="">
+        <div id="properties-panel">
+          <table class="table table-hover" id="propertyTable">
             <tbody>
             </tbody>
           </table>
+          <div id="add-property-button-area">
+          </div>
+          Actions:
           <div id="cell-buttons">
           </div>
         </div>
 
       </div>
+      <div  id="extra-options">
     </div>
   </div>
   <div id="out">
@@ -230,12 +232,10 @@
 
 <script type="text/template" id="property-template">
   <tr>
-    <td class="property-name"><%- propertyName %></td>
+    <th scope="row" class="property-name"><%- propertyName %></th>
     <td class="property-value">
-      <a href="#" id="current<%- propertyName %>" class="property-value" data-type="text" data-pk="1"
-         data-name="<%- propertyName %>" data-title="Enter <%- propertyName %>">
-        <%- propertyValue %>
-      </a>
+      <a href="#" id="current<%- propertyName %>" class="property-value" data-type="textarea" data-pk="1"
+         data-name="<%- propertyName %>" data-title="Enter <%- propertyName %>"><%- propertyValue %></a>
     </td>
   </tr>
 </script>

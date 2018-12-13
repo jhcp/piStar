@@ -5,7 +5,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
 
     initialize: function () {
         this.$table = $('#propertyTable');
-        
+
         this.listenTo(this.model, 'mouseup', this.render);
         this.listenTo(this.model, 'change:customProperties', this.render);
         this.listenTo(this.model, 'change:name', this.render);
@@ -41,15 +41,18 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 var updatedElement = ui.getSelectedElement().changeNodeContent(newValue);
 
                 return {newValue: updatedElement.prop('name')};
-            }
+            },
+            showbuttons: 'bottom'
         })
             .on('shown', ui.changeStateToEdit)
             .on('hidden', ui.changeStateToView);
     },
     setupAddPropertyButton: function () {
-        $('#cell-buttons').html('<button type="button" id="addPropertyButton">Add Property</button>');
+        $('#add-property-button-area').html('<a href="#" id="addPropertyButton" class="propertyAdd" data-type="text" data-pk="1"           data-name="name" data-title="Enter description" data-placeholder="ahhhh" title="Add a new property to this element">        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>        Add Property</a>');
+        // $('#add-property-button-area').html('<button type="button" id="addPropertyButton">Add Property</button>');
+        // $('#cell-buttons').html('<button type="button" id="addPropertyButton">Add Property</button>');
         $('#addPropertyButton').click(function () {
-            var newPropertyName = window.prompt('Name of the new custom property', 'newProperty');
+            var newPropertyName = window.prompt('Name of the new custom property:', 'newProperty');
             if (newPropertyName) {
                 var isValidName = false;
                 var validityMessage = '';
@@ -98,7 +101,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
                     //update backbone model
                     var updatedElement = changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue);
                     return {newValue: updatedElement.prop('customProperties/' + propertyName)};
-                }
+                },
+                showbuttons: 'bottom'
             }
         )
             .on('shown', ui.changeStateToEdit)

@@ -45,6 +45,9 @@ istar.examples.pistarWelcome = {
             "type": "istar.Actor",
             "x": 119,
             "y": 49,
+            "customProperties": {
+              "Description": "I am a Requirements Engineering researcher"
+            },
             "nodes": [
                 {
                     "id": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252",
