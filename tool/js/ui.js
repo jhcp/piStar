@@ -18,6 +18,7 @@ var ui = function() {
         linkTarget: 'none',
         dependencyType: 'GoalDependencyLink',
         selectedElement: null,
+        defaultElementBackgroundColor: '#CCFACD',
 
         currentStateIsAddKindOfActor: function () {
             return this.currentState === this.STATE_ADD_ACTOR;
@@ -506,8 +507,8 @@ ui.changeColorElements = function (color) {
         }
     });
 };
-ui.changeColorElement = function (color) {
-  element = ui.getSelectedElement();
+ui.changeColorElement = function (color, element) {
+  element = element || ui.getSelectedElement();
   ui.hideSelection();
   if (element.isKindOfActor()) {
     element.attr('circle', {fill: color});
@@ -517,6 +518,13 @@ ui.changeColorElement = function (color) {
     element.attr('polygon', {fill: color});
     element.attr('path', {fill: color});
   }
+  if (color == ui.defaultElementBackgroundColor) {
+    element.prop('backgroundColor', null);
+  }
+  else {
+    element.prop('backgroundColor', color);
+  }
+
   ui.showSelection();
 };
 ui.connectLinksToShape = function () {
@@ -909,10 +917,13 @@ $('#fitToContentButton').click(function () {
 $('#resetColorsButton').click(function () {
     $('#actorBoundaryColorPicker').get(0).jscolor.fromString('E6E6E6');
     ui.changeColorActorContainer('#E6E6E6');
-    $('#elementsColorPicker').get(0).jscolor.fromString('CCFACD');
-    ui.changeColorElements('#CCFACD');
+    $('#elementsColorPicker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
+    ui.changeColorElements(ui.defaultElementBackgroundColor);
 });
-
+$('#reset-element-color-button').click(function () {
+    $('#single-element-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
+    ui.changeColorElement(ui.defaultElementBackgroundColor);
+});
 
 //sidepanel resizing
 var sidepanelSizes = [2, 17, 30];

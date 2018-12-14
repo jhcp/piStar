@@ -56,12 +56,12 @@ The model above represents the following JSON object:
 }
 ```
 
-This model has one actor, named (```text```) "Developer". 
+This model has one actor, named (```text```) "Developer".
 This actor has two nodes: "Process an i* model", which is a Goal; and "Use a JSON parser", which is a Task.
 
 This model has no dependencies.
 
-This model has one link: from "Use a JSON parser" (id "edbfa16a-424b-4465-9694-317e2e926440") 
+This model has one link: from "Use a JSON parser" (id "edbfa16a-424b-4465-9694-317e2e926440")
 to "Process an i* model" (id "d55292b1-32e1-4c94-9345-15e125568c0d").
 
 This model has no display information. It was created with piStar v1.1.0, compliant to the i* 2.0 standard.
@@ -389,25 +389,25 @@ Besides having actors and nodes of different types, this model also contain depe
 - The three collapsed actors in the left half of the diagram
 
 (collapsed actors and links' vertices).
- 
+
 
 ## Changes
 
-This section describes the changes that have been made to this JSON schema. 
+This section describes the changes that have been made to this JSON schema.
 
-Hopefully, we will never make breaking 
+Hopefully, we will never make breaking
 changes. If we do, we plan to provide backwards compatibility (starting from version 1.0.0), as follows: enable the user to load models into the
 newest version of the tool, even if they were created with previous versions of the tool. This can be achieved in two
 ways:
- - Directly, by having the loadModel function check the 'tool' attribute of the JSON object and behave differently 
+ - Directly, by having the loadModel function check the 'tool' attribute of the JSON object and behave differently
  according to its version
  - Indirectly, By providing an external utility to convert older models to the newest schema
- 
+
 ### From 1.0.1 to 1.1.0
-Starting from version 1.1.0, the piStar's JSON objects now has a ```display``` object in its root. 
-This ```display``` object is meant to store visual information of the diagrams, such as 
+Starting from version 1.1.0, the piStar's JSON objects now has a ```display``` object in its root.
+This ```display``` object is meant to store visual information of the diagrams, such as
 the visual state of actors (collapsed or expanded) and
-the vertices that define the shape of a link. 
+the vertices that define the shape of a link.
 
 #### Compatibility:
  - Does this break loading 1.0.1 models into piStar 1.1.0?
@@ -415,17 +415,27 @@ the vertices that define the shape of a link.
  - Does this break loading 1.1.0 models into piStar 1.0.1?
    - No, the display object will simply be ignored.
 
+### From 1.1.0 to 1.2.0
+The ```display``` object inside piStar's JSON objects now captures the
+background (fill) color of elements.
+
+#### Compatibility:
+- Does this break loading 1.1.0 models into piStar 1.2.0?
+  - No, if the background color property is undefined it will be ignored.
+- Does this break loading 1.2.0 models into piStar 1.1.0?
+  - No, the background color property will simply be ignored.
+
 ## Development tips
   - There are plenty of libraries for parsing JSON objects and generating native objects in different programming
- languages (e.g., [Java](https://www.google.com.br/search?q=json+parser+java), 
- [Haskell](https://www.google.com.br/search?q=json+parser+haskell), 
+ languages (e.g., [Java](https://www.google.com.br/search?q=json+parser+java),
+ [Haskell](https://www.google.com.br/search?q=json+parser+haskell),
  [PHP](https://www.google.com.br/search?q=json+php), and
  [Python](https://www.google.com.br/search?q=json+parser+python)).
   And vice-versa: there are also libraries for generating JSON objects from native
  objects in your language of choice.
- - If you want to send the model to a remote server for processing, the easiest way probably is to use 
+ - If you want to send the model to a remote server for processing, the easiest way probably is to use
  [jQuery's AJAX methods](http://api.jquery.com/category/ajax/).   
    - Checkout [jQuery.post](http://api.jquery.com/jQuery.post/), in particular.
- - If you'd like to develop a plugin or extension where it is possible to add elements (such as a Goal) 
+ - If you'd like to develop a plugin or extension where it is possible to add elements (such as a Goal)
  to the diagram itself, it is probably better (more compatible) to *not* change the JSON structure.
- Instead, add these elements to a placeholder Actor. 
+ Instead, add these elements to a placeholder Actor.

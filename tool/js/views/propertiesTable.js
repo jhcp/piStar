@@ -96,23 +96,12 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     setupOptionsPanel: function () {
-      // var input = document.createElement('INPUT')
-      // var picker = new jscolor(input)
-      // //picker.fromHSV(360 / 100 * i, 100, 100)
-      // picker.fromString('#ccfacd')
-      // input.setAttribute('id', 'elementsColorPicker');
-      // input.setAttribute('value', '#ccfacd');
-      // input.setAttribute('size', '8');
-      // input.setAttribute('class', 'jscolor {hash:true}');
-      //
-      // //document.getElementById('container').appendChild(input)
-      // $('#cell-options').append(input);
-      // $(input).on('change', function () {
-      //     ui.changeColorElements('#' + this.value);
-      //     //ui.changeColorElements(this.value);
-      // });
-      //$('#cell-options').append('Background color:&nbsp; <input id="elementsColorPicker" class="jscolor {hash:true}" value="ccfacd" size="8"> <a id="resetElementColorButton" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset colors</a>');
-      //$('#cell-options').append('Background color:&nbsp; <input id="" class="jscolor {hash:true}" value="" size=""> <a id="resetElementColorButton" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset colors</a>');
+      if (this.model.prop('backgroundColor')) {
+        $('#single-element-color-picker').get(0).jscolor.fromString(this.model.prop('backgroundColor'));
+      }
+      else if (ui.getSelectedElement()){
+        $('#single-element-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
+      }
     },
     renderCustomProperty: function (propertyName) {
         this.$table.find('tbody').append(this.template({

@@ -99,13 +99,24 @@ function saveModel() {
                 element.uncollapse();
             }
 
-            actorJSON.nodes = fileManager.childrenToJSON(element);
+            if (element.prop('backgroundColor')) {
+              modelJSON.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
+            }
+
+            children = fileManager.childrenToJSON(element);
+            $.extend(true, modelJSON.display, children.display);
+            actorJSON.nodes = children.nodes;
             modelJSON.actors.push(actorJSON);
         }
         else if (element.isDependum()) {
             var dependency = fileManager.elementToJSON(element);
             dependency.source = istar.graph.getConnectedLinks(element, {inbound: true})[0].attributes.source.id;
             dependency.target = istar.graph.getConnectedLinks(element, {outbound: true})[0].attributes.target.id;
+
+            if (element.prop('backgroundColor')) {
+              modelJSON.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
+            }
+
             modelJSON.dependencies.push(dependency);
         }
     });
@@ -159,7 +170,12 @@ function loadModel(inputRaw) {
                 var parent = fileManager.addLoadedElement(actor);
                 for (var j = 0; j < actor.nodes.length; j++) {
                     var child = fileManager.addLoadedElement(actor.nodes[j]);
-                    if (child) parent.embedNode(child);
+                    if (child) {
+                      if (inputModel.display && inputModel.display[actor.nodes[j].id] && inputModel.display[actor.nodes[j].id].backgroundColor) {
+                          ui.changeColorElement(inputModel.display[actor.nodes[j].id].backgroundColor, child);
+                      }
+                      parent.embedNode(child);
+                    }
                 }
                 if (inputModel.display && inputModel.display[actor.id]) {
                     toCollapse.push(parent);
@@ -329,12 +345,17 @@ fileManager = {
         return element.prop('customProperties');
     },
     childrenToJSON: function (element) {
-        var result = [];
+        var result = {nodes: [], display: {}};
 
         _.each(element.getEmbeddedCells(), function (element) {
             if (element.isKindOfInnerElement()) {
                 var node = fileManager.elementToJSON(element);
-                result.push(node);
+
+                if (element.prop('backgroundColor')) {
+                  result.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
+                }
+
+                result.nodes.push(node);
             }
         });
 

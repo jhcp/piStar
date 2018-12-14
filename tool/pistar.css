@@ -348,9 +348,9 @@ table, .table {
 
 #sidepanel .size-options {
     float:right;
-    padding: 0 10px;
+    padding: 0 5px;
     transition: opacity 0.25s ease-in-out;
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     text-decoration: none;
 }
 #sidepanel:not(.collapsed) .size-options {
@@ -361,6 +361,7 @@ table, .table {
 }
 #sidepanel .size-options a {
     color: rgb(200, 0, 0);
+    text-decoration: none;
 }
 .collapsed .collapseSidepanelButton {
     display: none;
