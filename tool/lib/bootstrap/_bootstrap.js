@@ -7,7 +7,6 @@
 /*!
  * Generated using the Bootstrap Customizer (<none>)
  * Config saved to config.json and <none>
- *     This customized file does NOT feature: Carousel functionality, Scrollspy
  */
 if (typeof jQuery === 'undefined') {
   throw new Error('Bootstrap\'s JavaScript requires jQuery')
