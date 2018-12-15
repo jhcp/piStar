@@ -391,6 +391,7 @@
     "glyphicons.less",
     "button-groups.less",
     "input-groups.less",
+    "navs.less",
     "pagination.less",
     "pager.less",
     "labels.less",

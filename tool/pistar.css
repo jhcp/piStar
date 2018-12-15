@@ -392,3 +392,8 @@ tr {
 #sidepanel th {
   padding: 0 8px 0 3px;
 }
+
+.nav li a {
+  margin-top: 5px;
+  padding: 2px 5px;
+}

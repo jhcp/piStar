@@ -9,6 +9,7 @@ from a task to another task.
 - Automatically expand actor when adding an element inside a collapsed actor, in order to prevent the impression
 that the inserted element is outside the actor.
 - Now the user can select whether to save PNG images with high resolution or with original resolution
+- Option to change the background color of a particular element
 
 ### Changed
 - Revamped UI, with collapsable toolbars on the top.
@@ -20,7 +21,7 @@ from CamelCase to snake-case. E.g.: addButton -> add-button
 
 ### Removed
 - Aiming to save bandwidth, the following CSS styles that are not likely to be used in the context of this tool have
- been removed from our Bootstrap files: Print media styles, Code, Navs, Navbar, Breadcrumbs, Jumbotron, Media items, Carousel.
+ been removed from our Bootstrap files: Print media styles, Code, Navbar, Breadcrumbs, Jumbotron, Media items, Carousel.
 - Aiming to save bandwidth, the following JS components that are not likely to be used in the context of this tool have
  been removed from our Bootstrap files: Carousel functionality, Scrollspy.
 
