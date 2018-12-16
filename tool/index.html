@@ -137,18 +137,18 @@
         Height:&nbsp; <input id="input-diagram-height" type="text" name="height" value="1200" size="4" maxlength="6"
                        title="Set the diagram's height (in pixels)"> px
       </div>
-      <!--<span class="menu-line"><a id="fitToContentButton" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-resize-small"></i> Fit to content</a></span> TODO-->
+      <!--<span class="menu-line"><a id="fit-to-content-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-resize-small"></i> Fit to content</a></span> TODO-->
     </div>
     <!--<div class="menu-group">-->
     <!--<span class="title">colors</span>-->
     <!--<span class="menu-line">Actor boundary:-->
-    <!--<input id="actorBoundaryColorPicker" onchange="console.log('change event');" class="jscolor {hash:true}" value="e6e6e6" size="8">-->
+    <!--<input id="all-actor-boundary-color-picker" onchange="console.log('change event');" class="jscolor {hash:true}" value="e6e6e6" size="8">-->
     <!--</span>-->
     <!--<span class="menu-line">Elements:-->
-    <!--<input id="elementsColorPicker" class="jscolor {hash:true}" value="ccfacd" size="8">-->
+    <!--<input id="all-elements-color-picker" class="jscolor {hash:true}" value="ccfacd" size="8">-->
     <!--</span>-->
     <!--<span class="menu-line">-->
-    <!--<a id="resetColorsButton" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset colors</a>-->
+    <!--<a id="reset-all-colors-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset colors</a>-->
     <!--</span>-->
     <!--</div>-->
     <!--<div class="menu-group">-->
@@ -182,83 +182,77 @@
 </div>
 
 <div id="workspace">
-  <div id="sidepanel">
+  <div id="sidepanel" class="size2">
     <div class="size-options">
-        <a href="#" class="collapseSidepanelButton" title="Collapse panel">-</a>
-        <a href="#" class="expandSidepanelButton" title="Expand panel">+</a>
+      <a href="#" class="collapse-sidepanel-button" title="Collapse panel">-</a>
+      <a href="#" class="expand-sidepanel-button" title="Expand panel">+</a>
     </div>
+
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#sidepanel-properties" aria-controls="sidepanel-properties" role="tab" data-toggle="tab">Properties</a></li>
-      <li role="presentation"><a href="#sidepanel-style" aria-controls="sidepanel-style" role="tab" data-toggle="tab">Style</a></li>
+      <li role="presentation" class="active"><a href="#subpanel-properties" aria-controls="subpanel-properties" role="tab" data-toggle="tab">Properties</a></li>
+      <li role="presentation"><a href="#subpanel-style" aria-controls="subpanel-style" role="tab" data-toggle="tab">Style</a></li>
     </ul>
 
     <div class="sidepanel-content tab-content">
 
-      <div id="sidepanel-properties" role="tabpanel" class="tab-pane active">
-      <!--<div class="sidepanel-title">Properties:</div>-->
-      <div class="">
-        <div id="properties-panel">
-          <table class="table table-hover" id="propertyTable">
-            <tbody>
-            </tbody>
-          </table>
-          <div id="add-property-button-area">
-          </div>
+      <div id="subpanel-properties" role="tabpanel" class="tab-pane active">
+        <table class="table table-hover" id="properties-table">
+          <tbody>
+          </tbody>
+        </table>
 
-          <div id="cell-options">
-            <div id="cell-collapse-options"></div>
-          </div>
+        <div id="add-property-button-area">
+        </div>
 
+        <div id="cell-options">
+          <div id="cell-collapse-options"></div>
         </div>
 
       </div>
-      </div>
 
-      <div id="sidepanel-style" role="tabpanel" class="tab-pane">
-        <div class="">
-          <div id="properties-panel">
-            <div class="sidepanel-title">Element:</div>
-            <div id="cell-options">
-              <div id="cell-collapse-options"></div>
-              <div id="cell-color-options">
-                Color:&nbsp;
-                <input id="single-element-color-picker" class="jscolor {hash:true}" value="ccfacd" size="8">
-                <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
-                <br>Line style:&nbsp;
-                <select>
-                  <option value="volvo">solid</option>
-                  <option value="saab">dashed</option>
-                  <option value="mercedes">dotted</option>
-                </select>
-                <br>Line thickness:&nbsp;
-                <input type="number" name="quantity" min="1" max="25" value ="2" width="1">
-                <br><input type="checkbox" name="" value=""> shadow
-                <br><input type="checkbox" name="" value=""> hand-drawn
-                <br><input type="checkbox" name="" value=""> auto-break lines
+      <div id="subpanel-style" role="tabpanel" class="tab-pane">
 
-
-                <br><br>
-                <div class="sidepanel-title">Text:</div>
-                Color: <input id="single-element-color-picker" class="jscolor {hash:true}" value="000" size="8">
-                <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
-                <br><button>B</button><button>I</button><button>U</button>
-                <br>Size: <input type="number" name="quantity" min="1" max="25" value ="12" width="1">
-                <br>Top padding: <input type="number" name="quantity" min="1" max="25" value ="2" width="1">
-
-              </div>
-            </div>
-
-          </div>
-
+        <div class="sidepanel-title">Element:</div>
+        <div class="group">
+          Color:&nbsp;
+          <input id="single-element-color-picker" class="jscolor {hash:true}" value="ccfacd" size="8">
+          <!-- <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
+          <br>Line style:&nbsp;
+          <select>
+            <option value="volvo">solid</option>
+            <option value="saab">dashed</option>
+            <option value="mercedes">dotted</option>
+          </select>
+          <br>Line thickness:&nbsp;
+          <input type="number" name="quantity" min="1" max="25" value ="2">
+          <br><input type="checkbox" name="" value=""> shadow
+          <br><input type="checkbox" name="" value=""> hand-drawn
+          <br><input type="checkbox" name="" value=""> auto-break lines -->
         </div>
+
+
+        <!-- <div class="sidepanel-title">Text:</div>
+        <div class="group">
+          Color: <input id="single-element-color-picker" class="jscolor {hash:true}" value="000" size="8">
+          <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
+          <br><button style="font-weight:1000;">B</button><button style="font-style: italic;">I</button><button style="text-decoration: underline;">U</button><button style="text-decoration: line-through;">S</button>
+          <br>Size: <input type="number" name="quantity" min="1" max="25" value ="12">
+          <br>Top padding: <input type="number" name="quantity" min="1" max="25" value ="2">
+          <br>Letter spacing: <input type="number" name="quantity" min="-10" max="25" value ="0">
+          <br>Word spacing: <input type="number" name="quantity" min="-10" max="25" value ="0">
+          <br>Line height: <input type="number" name="quantity" min="0.1" max="10" value ="1.1" step="0.1">
+          <br><input type="checkbox" name="" value=""> shadow
+          <br><input type="checkbox" name="" value=""> uppercase
+        </div> -->
+
       </div>
-      <div  id="extra-options">
     </div>
   </div>
-  </div>
+
   <div id="out">
     <div id="diagram"></div>
   </div>
+
 </div>
 
 </div>

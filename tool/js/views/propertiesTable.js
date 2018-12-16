@@ -4,7 +4,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
     template: _.template($('#property-template').html()),
 
     initialize: function () {
-        this.$table = $('#propertyTable');
+        this.$table = $('#properties-table');
 
         this.listenTo(this.model, 'mouseup', this.render);
         this.listenTo(this.model, 'change:customProperties', this.render);
