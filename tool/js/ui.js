@@ -148,7 +148,7 @@ ui.defineInteractions = function () {
         else if (selection.deselectedElement){
             ui.unhighlightFocus(selection.deselectedElementView);
             ui.table.remove();
-            $('#propertyTable').find('tbody').html('');
+            $('#properties-table').find('tbody').html('');
             $('#cell-buttons').html('');
         }
     });
@@ -699,6 +699,7 @@ ui.setupUi = function () {
     this.setupDiagramSizeInputs();
     this.setupLoadModelButton();
     this.setupMainMenuInteraction();
+    this.setupSidepanelInteraction();
     $('#diagram-box-outer').height($(window).height()+100);
 
 
@@ -795,10 +796,10 @@ ui.setupMainMenuInteraction = function () {
 
 };
 
-$('#actorBoundaryColorPicker').on('change', function () {
+$('#all-actor-boundary-color-picker').on('change', function () {
     ui.changeColorActorContainer(this.value);
 });
-$('#elementsColorPicker').on('change', function () {
+$('#all-elements-color-picker').on('change', function () {
     ui.changeColorElements(this.value);
 });
 
@@ -806,21 +807,8 @@ $('#single-element-color-picker').on('change', function () {
     ui.changeColorElement(this.value);
 });
 
-$('#analyseModelButton').click(function () {
-    var numberOfElements = 'Number of elements: ' + istar.getNumberOfElements();
-    var numberOfLinks = 'Number of links: ' + istar.getNumberOfLinks();
-    alert(numberOfElements + '\n' + numberOfLinks + '\n\n' + 'OBS: each dependency counts as two links - one from the depender to the dependum, and another from the dependum to the dependee.');
-});
-
 $('#menu-button-precise-links').click(function () {
     ui.connectLinksToShape();
-});
-
-$('#clearButton').click(function () {
-    var confirmed = confirm('Are you sure you want to delete every element of this model?');
-    if (confirmed) {
-        ui.clearDiagram();
-    }
 });
 
 ui.clearDiagram = function () {
@@ -835,11 +823,6 @@ function createButtons() {
 
     return this;
 }
-
-$('#instructionsTitle').click(function () {
-    $('#instructionsContent').toggle(300);
-});
-$('#instructionsContent').toggle(0);
 
 ui.changeStatus = function (text) {
     $('#status').html(text);
@@ -911,52 +894,54 @@ function changeCustomPropertyValue(model, propertyName, propertyValue) {
 
 
 
-$('#fitToContentButton').click(function () {
+$('#fit-to-content-button').click(function () {
     istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
 });
-$('#resetColorsButton').click(function () {
-    $('#actorBoundaryColorPicker').get(0).jscolor.fromString('E6E6E6');
+
+$('#reset-all-colors-button').click(function () {
+    $('#all-actor-boundary-color-picker').get(0).jscolor.fromString('E6E6E6');
     ui.changeColorActorContainer('#E6E6E6');
-    $('#elementsColorPicker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
+    $('#all-elements-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
     ui.changeColorElements(ui.defaultElementBackgroundColor);
 });
+
 $('#reset-element-color-button').click(function () {
     $('#single-element-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
     ui.changeColorElement(ui.defaultElementBackgroundColor);
 });
 
-//sidepanel resizing
-var sidepanelSizes = [2, 17, 30];
-var sidepanelCurrentSize = 1;
-var sidepanelSizeForXeditable = 1;
-var expandSidepanel = function () {
-    if (sidepanelCurrentSize < (sidepanelSizes.length - 1)) {
-        //TODO check if the next size is not larger than the current window/document size
-        sidepanelCurrentSize++;
-        $('#sidepanel').css('width', sidepanelSizes[sidepanelCurrentSize] + 'vw');
-        //$('#diagramBoxOuter').css('margin-left', sidepanelSizes[sidepanelCurrentSize] + 'px');
+ui.setupSidepanelInteraction = function () {
+  var sidepanelSizes = ['size1', 'size2', 'size3'];
+  var sidepanelCurrentSize = 1;
+  ui.expandSidepanel = function () {
+      if (sidepanelCurrentSize < (sidepanelSizes.length - 1)) {
+          $('#sidepanel').removeClass(sidepanelSizes[sidepanelCurrentSize])
+          sidepanelCurrentSize++;
+          $('#sidepanel').addClass(sidepanelSizes[sidepanelCurrentSize])
 
-        if (sidepanelCurrentSize === 1) {
-            $('#sidepanel').removeClass('collapsed');
-        }
-        if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
-            $('#sidepanel').addClass('full');
-        }
-    }
-};
-var collapseSidepanel = function () {
-    if (sidepanelCurrentSize > 0) {
-        if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
-            $('#sidepanel').removeClass('full');
-        }
-        sidepanelCurrentSize--;
-        $('#sidepanel').css('width', sidepanelSizes[sidepanelCurrentSize] + 'vw');
-        //$('#diagramBoxOuter').css('margin-left', sidepanelSizes[sidepanelCurrentSize] + 'px');
+          if (sidepanelCurrentSize === 1) {
+              $('#sidepanel').removeClass('collapsed');
+          }
+          if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
+              $('#sidepanel').addClass('full');
+          }
+      }
+  };
+  ui.collapseSidepanel = function () {
+      if (sidepanelCurrentSize > 0) {
+          if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
+              $('#sidepanel').removeClass('full');
+          }
 
-        if (sidepanelCurrentSize === 0) {
-            $('#sidepanel').addClass('collapsed');
-        }
-    }
-};
-$('.collapseSidepanelButton').click(collapseSidepanel);
-$('.expandSidepanelButton').click(expandSidepanel);
+          $('#sidepanel').removeClass(sidepanelSizes[sidepanelCurrentSize])
+          sidepanelCurrentSize--;
+          $('#sidepanel').addClass(sidepanelSizes[sidepanelCurrentSize])
+
+          if (sidepanelCurrentSize === 0) {
+              $('#sidepanel').addClass('collapsed');
+          }
+      }
+  };
+  $('.collapse-sidepanel-button').click(ui.collapseSidepanel);
+  $('.expand-sidepanel-button').click(ui.expandSidepanel);
+}

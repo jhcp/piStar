@@ -277,7 +277,7 @@ svg {
   display: none;
 }
 
-/* Contextual options */
+/* Sidepanel */
 
 #sidepanel {
   background-color: #fbfbfb;
@@ -288,112 +288,123 @@ svg {
   overflow-x: auto;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   transition: width 0.5s, height 0.3s ease-in-out;
-  width: 17vw;
   z-index: 1;
 }
 
-#extra-options {
-  min-height: 200px;
+#sidepanel.size1 {
+  width: 2vw;
 }
 
-#properties-panel {
-  height: 100%;
-  margin: 0;
-  overflow: auto;
-  margin-left: 0;
-  width: 100%;
+#sidepanel.size2 {
+  width: 17vw;
 }
 
+#sidepanel.size3 {
+  width: 30vw;
+}
 
-table, .table {
-  margin: 0;
-  padding: 0;
-  width: 100%;
+.nav li a {
+  /* inside of the tabs menu */
+  margin-top: 5px;
+  padding: 2px 5px;
+  color: #555;
+}
+
+#sidepanel .nav {
+  background-color: white;
+}
+
+#sidepanel .active a {
+  background-color: #fbfbfb;
+}
+
+.sidepanel-content {
+  padding: 5px;
+}
+
+#properties-table {
+  margin-bottom: 0;
 }
 
 .property-name {
   width: 20%;
 }
 
-#sidepanel input, #sidepanel textarea {
-    font-size: 1.1rem;
-    padding: 3px;
+#properties-table textarea {
+  font-size: 1.2rem;
+  padding: 3px; /* sets the padding inside the textarea */
+  width: 100%!important;
 }
 
-#sidepanel .editable-container, .editable-container div{
-    width: 100%;
-}
-
-#sidepanel  textarea {
-    width: 100%!important;
-}
-
-#add-property-button-area {
-  padding-left: 8px;
-  margin-top: 0;
-  padding-top: 0;
-}
-
-#add-property-button {
-  /* border-bottom: dashed 1px #0088cc; */
+#properties-table .editable-container, .editable-container div{
+  width: 100%;
 }
 
 .sidepanel-title {
+  background-color: #f0f0f0;
   margin-top: 10px;
-  border-bottom: 1px solid lightgrey;
 }
 
-#cell-options {
-  padding-left: 5px;
+#properties-table tr {
+  border: solid 2px #fbfbfb; /* hack to hide the table lines */
 }
 
-#cell-options div{
-  padding-top: 3px;
-}
-
-#sidepanel .size-options {
-    float:right;
-    padding: 0 5px;
-    transition: opacity 0.25s ease-in-out;
-    font-size: 1.7rem;
-    text-decoration: none;
-}
-#sidepanel:not(.collapsed) .size-options {
-    opacity: 0.0;
-}
-.collapsed .size-options {
-    padding: 2px;
-}
-#sidepanel .size-options a {
-    color: rgb(200, 0, 0);
-    text-decoration: none;
-}
-.collapsed .collapseSidepanelButton {
-    display: none;
-}
-.full .expandSidepanelButton {
-    display: none;
-}
-.collapsed .sidepanel-content {
-    display: none;
-}
-#sidepanel:hover .size-options {
-    opacity: 1.0;
-}
-
-tr {
-  border: solid 2px #fbfbfb;
-}
-
-#sidepanel td {
+#properties-table td {
   padding: 0;
 }
 
-#sidepanel th {
-  padding: 0 8px 0 3px;
+#properties-table th {
+  padding: 0 5px 0 0;
 }
 
-.nav li a {
+#cell-options div {
   margin-top: 5px;
-  padding: 2px 5px;
+}
+
+/*   Sidepanel resizing  */
+#sidepanel .size-options {
+  float: right;
+  font-size: 1.7rem;
+  padding: 0 5px;
+  transition: opacity 0.25s ease-in-out;
+}
+
+#sidepanel:not(.collapsed) .size-options {
+  opacity: 0.0;
+}
+
+#sidepanel .size-options a {
+  color: rgb(200, 0, 0);
+  text-decoration: none;
+}
+
+.collapsed .collapse-sidepanel-button {
+  display: none;
+}
+
+#sidepanel.collapsed {
+  overflow: hidden;
+}
+
+.collapsed .expand-sidepanel-button {
+  display: block;
+  min-height: 1000px;
+  min-width: 100px;
+  padding: 0 5px;
+  text-align: right;
+}
+
+#sidepanel.collapsed .size-options {
+  padding: 0;
+}
+
+.full .expand-sidepanel-button {
+  display: none;
+}
+
+.collapsed .sidepanel-content, .collapsed  ul {
+  display: none;
+}
+#sidepanel:hover .size-options {
+  opacity: 1.0;
 }
