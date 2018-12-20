@@ -399,6 +399,8 @@ var istar = function () {
             node.prop('name', originalContent);
             node.attr('text/text', content);
             node.prop('type', typeName);
+            node.prop('originalSize', node.prop('size')); //stores the initial size of the element
+
             istar.graph.addCell(node);
             return node;
         },

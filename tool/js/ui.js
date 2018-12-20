@@ -96,19 +96,19 @@ var ui = function() {
             }
         },
         selectModel: function() {
-          if (this.selectedElement != istar.graph) {
-            this.clearSelection();
-            this.selectedElement = istar.graph;
-            istar.paper.trigger('change:selection', {selectedElement: istar.graph});
+            if (this.selectedElement != istar.graph) {
+                this.clearSelection();
+                this.selectedElement = istar.graph;
+                istar.paper.trigger('change:selection', {selectedElement: istar.graph});
 
-            //closes any color picker that may be open
-            $('.jscolor').each(function () {
-              this.jscolor.hide();
-            });
-            
-            $('#sidepanel-tab-style').hide();
-            $('#sidepanel-tab-properties a').tab('show')
-          }
+                //closes any color picker that may be open
+                $('.jscolor').each(function () {
+                    this.jscolor.hide();
+                });
+
+                $('#sidepanel-tab-style').hide();
+                $('#sidepanel-tab-properties a').tab('show')
+            }
         },
         hideSelection: function() {
             if (this.selectedElement) {
@@ -124,33 +124,31 @@ var ui = function() {
 }();
 
 
-
-ui.highlighter = {
-    name: 'stroke',
-    options: {
-        padding: 7,
-        rx: -5,
-        ry: -5,
-        attrs: {
-            'stroke-width': 2,
-            stroke: '#555555'
-        }
-    }
-};
 ui.highlightFocus = function (cellView) {
     if (cellView) {
-        cellView.highlight(null, {
-            highlighter: ui.highlighter
+        elementBox = cellView.getBBox();
+
+        //positioning and display of the selection box
+        $('.element-selection').css({
+            left: elementBox.x-3 + 'px',
+            top: elementBox.y-3 + 'px',
+            width: (elementBox.width + 6) + 'px',
+            height: (elementBox.height + 6) + 'px'
         });
+        $('.element-selection').show();
+
+        //positioning and display  of the resizing handle, when applicable
+        if (! cellView.model.isKindOfActor()) {
+            $('#resize-handle').css({left: elementBox.x - 4 + elementBox.width, top: elementBox.y - 4 + elementBox.height});
+            $('#resize-handle').show();
+        }
+
     }
 };
 
 ui.unhighlightFocus = function (cellView) {
-    if (cellView) {
-        cellView.unhighlight(null, {
-            highlighter: ui.highlighter
-        });
-    }
+    $('#resize-handle').hide();
+    $('.element-selection').hide();
 };
 ui.defineInteractions = function () {
     istar.paper.on('change:selection', function(selection) {
@@ -221,6 +219,9 @@ ui.defineInteractions = function () {
                 ui.selectElement(cellView.model, cellView);
             }
         }
+        if (ui.getSelectedElement().findView) {
+            ui.unhighlightFocus(ui.getSelectedElement().findView(istar.paper));
+        }
     });
     istar.paper.on('cell:pointerup', function (cellView, evt, x, y) {
         if (evt.ctrlKey) {
@@ -234,7 +235,7 @@ ui.defineInteractions = function () {
         if (ui.currentStateIsAddNode()) {
             ui.addElementOnActor(cellView, x - 50, y - 18);
             if (cellView.model.prop('collapsed')) {
-              cellView.model.toggleCollapse();
+                cellView.model.toggleCollapse();
             }
         }
         else if (ui.currentStateIsAddLink()) {
@@ -328,35 +329,40 @@ ui.defineInteractions = function () {
                 //if the element is beyond the bottom edge
                 istar.paper.setDimensions(Math.round(cellBBox.x + cellBBox.width + 40));
             }
+
+            ui.highlightFocus(ui.getSelectedElement().findView(istar.paper));
         }
     });
 
     istar.paper.on('cell:pointerdblclick', function (cellView, evt, x, y) {
         var newText;
         if (cellView.model.isLink()) {
-          // console.log(cellView.model);
-          //   if (cellView.model.isContributionLink()) {
-          //       newText = window.prompt('make, help, hurt, or break', cellView.model.attributes.labels[0].attrs.text.text);
-          //       //newText = window.prompt('make, help, hurt, or break', cellView.model.getContributionType());
-          //       if (newText !== null) {
-          //           cellView.model.attributes.labels[0].attrs.text.text = newText;
-          //           //cellView.model.setContributionType(newText);
-          //       }
-          //   }
+            // console.log(cellView.model);
+            //   if (cellView.model.isContributionLink()) {
+            //       newText = window.prompt('make, help, hurt, or break', cellView.model.attributes.labels[0].attrs.text.text);
+            //       //newText = window.prompt('make, help, hurt, or break', cellView.model.getContributionType());
+            //       if (newText !== null) {
+            //           cellView.model.attributes.labels[0].attrs.text.text = newText;
+            //           //cellView.model.setContributionType(newText);
+            //       }
+            //   }
         }
         else {
             oldText = cellView.model.prop('name');
             newText = window.prompt('Edit text:', oldText);
             if (newText !== null) {
-                cellView.model.changeNodeContent(newText);
+                if (cellView.model.isKindOfActor()) {
+                    cellView.model.changeNodeContent(newText);
+                }
+                else {
+                    cellView.model.changeNodeContent(newText, {breakLine: true, breakWidth: cellView.getBBox().width});
+                }
             }
         }
     });
 
     istar.paper.on('cell:contextmenu', function (cellView, evt, x, y) {
     });
-
-    $.fn.editable.defaults.mode = 'inline';//x-editable setting
 };
 
 ui.addElementOnPaper = function (x, y) {
@@ -523,24 +529,24 @@ ui.changeColorElements = function (color) {
     });
 };
 ui.changeColorElement = function (color, element) {
-  element = element || ui.getSelectedElement();
-  ui.hideSelection();
-  if (element.isKindOfActor()) {
-    element.attr('circle', {fill: color});
-  }
-  else {
-    element.attr('rect', {fill: color});
-    element.attr('polygon', {fill: color});
-    element.attr('path', {fill: color});
-  }
-  if (color == ui.defaultElementBackgroundColor) {
-    element.prop('backgroundColor', null);
-  }
-  else {
-    element.prop('backgroundColor', color);
-  }
+    element = element || ui.getSelectedElement();
+    ui.hideSelection();
+    if (element.isKindOfActor()) {
+        element.attr('circle', {fill: color});
+    }
+    else {
+        element.attr('rect', {fill: color});
+        element.attr('polygon', {fill: color});
+        element.attr('path', {fill: color});
+    }
+    if (color == ui.defaultElementBackgroundColor) {
+        element.prop('backgroundColor', null);
+    }
+    else {
+        element.prop('backgroundColor', color);
+    }
 
-  ui.showSelection();
+    ui.showSelection();
 };
 ui.connectLinksToShape = function () {
     $('.menu-body *').addClass('waiting');
@@ -560,10 +566,10 @@ ui.connectLinksToShape = function () {
 $('#input-file-format').change(function () {
     $('#placeholder-save-image').html('');
     if ($(this).val() === "PNG") {
-      $('#modal-input-hi-res').parent().removeClass('hidden');
+        $('#modal-input-hi-res').parent().removeClass('hidden');
     }
     else {
-      $('#modal-input-hi-res').parent().addClass('hidden');
+        $('#modal-input-hi-res').parent().addClass('hidden');
     }
 
 });
@@ -575,51 +581,51 @@ $('#modal-button-save-image').click(function () {
 
     //pre-processment
     if ($('#modal-input-precise-links').prop(`checked`)) {
-          $(clickedButton).button('preciselinks');
-          ui.connectLinksToShape();
+        $(clickedButton).button('preciselinks');
+        ui.connectLinksToShape();
     }
 
     //saving
     setTimeout(function () {
-      $(clickedButton).button('save');
-      filename = $('#input-filename').val() || 'goalModel';
-      var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
-      var $saveImage = $('#placeholder-save-image');
+        $(clickedButton).button('save');
+        filename = $('#input-filename').val() || 'goalModel';
+        var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
+        var $saveImage = $('#placeholder-save-image');
 
-      //hide UI elements before saving
-      $jointMarkers.hide();
-      ui.hideSelection();
+        //hide UI elements before saving
+        $jointMarkers.hide();
+        ui.hideSelection();
 
-      var originalWidth = istar.paper.getArea().width;
-      var originalHeight = istar.paper.getArea().height;
-      istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
+        var originalWidth = istar.paper.getArea().width;
+        var originalHeight = istar.paper.getArea().height;
+        istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
 
-      if ($('#input-file-format').val() === "SVG") {
-          var svgData = saveSvg('diagram');
-          $saveImage.html(createDownloadLink(filename + '.svg', 'click here to save', svgData, 'download SVG (vectorial)'));
-          $('#modal-button-save-image').button('reset');
-          $('#placeholder-save-image > a').click(function () {
-              $('#placeholder-save-image').hide(200);
-          });
-      }
-      else {
-          resolutionFactor = 1;
-          if ($('#modal-input-hi-res').prop(`checked`)) {
-            resolutionFactor = 4;
-          }
-          savePng('diagram', addPngLink, filename, resolutionFactor);
-      }
+        if ($('#input-file-format').val() === "SVG") {
+            var svgData = saveSvg('diagram');
+            $saveImage.html(createDownloadLink(filename + '.svg', 'click here to save', svgData, 'download SVG (vectorial)'));
+            $('#modal-button-save-image').button('reset');
+            $('#placeholder-save-image > a').click(function () {
+                $('#placeholder-save-image').hide(200);
+            });
+        }
+        else {
+            resolutionFactor = 1;
+            if ($('#modal-input-hi-res').prop(`checked`)) {
+                resolutionFactor = 4;
+            }
+            savePng('diagram', addPngLink, filename, resolutionFactor);
+        }
 
-      //restore the paper to its initial state
-      istar.paper.setDimensions(originalWidth, originalHeight);
-      istar.paper.translate(0,0);
+        //restore the paper to its initial state
+        istar.paper.setDimensions(originalWidth, originalHeight);
+        istar.paper.translate(0,0);
 
-      //show the UI elements back again
-      $jointMarkers.show();
-      $saveImage.show();
-      ui.showSelection(ui.getSelectedElement());
+        //show the UI elements back again
+        $jointMarkers.show();
+        $saveImage.show();
+        ui.showSelection(ui.getSelectedElement());
 
-      $('body *').removeClass('waiting');
+        $('body *').removeClass('waiting');
     }, 100);
 
 });
@@ -679,6 +685,9 @@ $('#modal-button-load-model').click(function () {
                 //else, load model from file
                 var file = fileInput.files[0];
                 if (file.type === 'text/plain') {
+                    if (ui.getSelectedElement().findView) {
+                        ui.unhighlightFocus(ui.getSelectedElement().findView(istar.paper));
+                    }
                     var fileReader = new FileReader();
                     fileReader.onload = function (e) {
                         fileManager.load(e.target.result);//do the actual loading
@@ -688,6 +697,7 @@ $('#modal-button-load-model').click(function () {
                         $('#modal-button-load-model').button('reset');
                     };
                     fileReader.readAsText(file);
+
                 }
                 else {
                     alert('Sorry, this kind of file is not valid');
@@ -712,11 +722,12 @@ ui.setupUi = function () {
     $('#placeholder-save-model').hide();
 
 
+    this.setupElementResizing();
     this.setupDiagramSizeInputs();
     this.setupLoadModelButton();
     this.setupMainMenuInteraction();
     this.setupSidepanelInteraction();
-    $('#diagram-box-outer').height($(window).height()+100);
+
 
     ui.selectModel();
 };
@@ -736,27 +747,30 @@ ui.setupDiagramSizeInputs = function () {
     $('#input-diagram-width, #input-diagram-height')
         .focusout(function () {
             istar.paper.setDimensions($('#input-diagram-width').val(), $('#input-diagram-height').val());
-    })
+        })
         .keyup(function (e) {
-        if (e.which === 13) {
-            istar.paper.setDimensions($('#input-diagram-width').val(), $('#input-diagram-height').val());
-            this.blur(); //remove focus from the input field
-        }
-    });
+            if (e.which === 13) {
+                istar.paper.setDimensions($('#input-diagram-width').val(), $('#input-diagram-height').val());
+                this.blur(); //remove focus from the input field
+            }
+        });
 };
 
 ui.setupLoadModelButton = function () {
-  $('.modal-button-load-example').click(function () {
-      $('.modal *').addClass('waiting');
-      var modelToLoad = $(this).data('model');
-      //do the processing after a small delay, in order to allow the browser to update the cursor icon
-      setTimeout(function () {
-          loadModel(istar.examples[modelToLoad]);
-          $('.modal *').removeClass('waiting');
-          $('#modal-examples').modal('hide');
-      }, 100);
+    $('.modal-button-load-example').click(function () {
+        $('.modal *').addClass('waiting');
+        var modelToLoad = $(this).data('model');
+        //do the processing after a small delay, in order to allow the browser to update the cursor icon
+        setTimeout(function () {
+            if (ui.getSelectedElement().findView) {
+                ui.unhighlightFocus(ui.getSelectedElement().findView(istar.paper));
+            }
+            loadModel(istar.examples[modelToLoad]);
+            $('.modal *').removeClass('waiting');
+            $('#modal-examples').modal('hide');
+        }, 100);
 
-  });
+    });
 };
 
 ui.setupMainMenuInteraction = function () {
@@ -797,13 +811,13 @@ ui.setupMainMenuInteraction = function () {
             }
             else {
                 //some menu is already displayed, the menu will be hidden
-                    target.slideUp(200, function () {
-                        //only deselect the menu after its body disappear,
-                        //for smoother visual animation
-                        $(currentMenuItem).removeClass('active');
-                        currentMenuItem = null;
-                    });
-                    $('#star').css("-transform","rotate(-180deg)");
+                target.slideUp(200, function () {
+                    //only deselect the menu after its body disappear,
+                    //for smoother visual animation
+                    $(currentMenuItem).removeClass('active');
+                    currentMenuItem = null;
+                });
+                $('#star').css("-transform","rotate(-180deg)");
             }
         });
     });
@@ -928,39 +942,100 @@ $('#reset-element-color-button').click(function () {
 });
 
 ui.setupSidepanelInteraction = function () {
-  var sidepanelSizes = ['size1', 'size2', 'size3'];
-  var sidepanelCurrentSize = 1;
-  ui.expandSidepanel = function () {
-      if (sidepanelCurrentSize < (sidepanelSizes.length - 1)) {
-          $('#sidepanel').removeClass(sidepanelSizes[sidepanelCurrentSize])
-          sidepanelCurrentSize++;
-          $('#sidepanel').addClass(sidepanelSizes[sidepanelCurrentSize])
+    var sidepanelSizes = ['size1', 'size2', 'size3'];
+    var sidepanelCurrentSize = 1;
+    ui.expandSidepanel = function () {
+        if (sidepanelCurrentSize < (sidepanelSizes.length - 1)) {
+            $('#sidepanel').removeClass(sidepanelSizes[sidepanelCurrentSize])
+            sidepanelCurrentSize++;
+            $('#sidepanel').addClass(sidepanelSizes[sidepanelCurrentSize])
 
-          if (sidepanelCurrentSize === 1) {
-              $('#sidepanel').removeClass('collapsed');
-          }
-          if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
-              $('#sidepanel').addClass('full');
-          }
-      }
-  };
-  ui.collapseSidepanel = function () {
-      if (sidepanelCurrentSize > 0) {
-          if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
-              $('#sidepanel').removeClass('full');
-          }
+            if (sidepanelCurrentSize === 1) {
+                $('#sidepanel').removeClass('collapsed');
+            }
+            if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
+                $('#sidepanel').addClass('full');
+            }
+        }
+    };
+    ui.collapseSidepanel = function () {
+        if (sidepanelCurrentSize > 0) {
+            if (sidepanelCurrentSize === (sidepanelSizes.length - 1)) {
+                $('#sidepanel').removeClass('full');
+            }
 
-          $('#sidepanel').removeClass(sidepanelSizes[sidepanelCurrentSize])
-          sidepanelCurrentSize--;
-          $('#sidepanel').addClass(sidepanelSizes[sidepanelCurrentSize])
+            $('#sidepanel').removeClass(sidepanelSizes[sidepanelCurrentSize])
+            sidepanelCurrentSize--;
+            $('#sidepanel').addClass(sidepanelSizes[sidepanelCurrentSize])
 
-          if (sidepanelCurrentSize === 0) {
-              $('#sidepanel').addClass('collapsed');
-          }
-      }
-  };
-  $('.collapse-sidepanel-button').click(ui.collapseSidepanel);
-  $('.expand-sidepanel-button').click(ui.expandSidepanel);
+            if (sidepanelCurrentSize === 0) {
+                $('#sidepanel').addClass('collapsed');
+            }
+        }
+    };
+    $('.collapse-sidepanel-button').click(ui.collapseSidepanel);
+    $('.expand-sidepanel-button').click(ui.expandSidepanel);
+
+    $.fn.editable.defaults.mode = 'inline';//x-editable setting
+};
+
+ui.setupElementResizing = function () {
+    $('#resize-handle').hide();
+    $('.element-selection').hide();
+
+    ui.resizeElement = function (element, width, height) {
+        element.resize(width, height);
+
+        ui.highlightFocus(ui.getSelectedElement().findView(istar.paper));
+        // $('.element-selection').css({
+        //     width: (width + 6) + 'px',
+        //     height: (height + 6) + 'px'
+        // });
+        // $('#resize-handle').css({
+        //     left: viewBBox.x - 4 + width,
+        //     top: viewBBox.y - 4 + height
+        // });
+
+        //update the line break on the element's label
+        element.changeNodeContent(element.prop('name'), {breakLine: true, breakWidth: element.findView(istar.paper).getBBox().width});
+    };
+
+    ui.resizeHandlerOnMouseMove = function (e) {
+        viewBBox = ui.getSelectedElement().findView(istar.paper).getBBox();
+        diagramPosition = $('#out').position();
+
+        var newWidth = e.pageX - viewBBox.x - diagramPosition.left + $('#out').scrollLeft();
+        var newHeight = e.pageY - viewBBox.y - diagramPosition.top + $('#out').scrollTop();
+        if (newWidth < 20) newWidth = 20;
+        if (newHeight < 20) newHeight = 20;
+
+        ui.resizeElement(ui.getSelectedElement(), newWidth, newHeight);
+    };
+
+    ui.stopResizeMouseEvents = function (e) {
+        $(window).off('mousemove', ui.resizeHandlerOnMouseMove);
+        $(window).off('mouseup', ui.stopResizeMouseEvents);
+    };
+
+    $('#resize-handle').mousedown(function (e) {
+        e.preventDefault();
+        $(window).mousemove(ui.resizeHandlerOnMouseMove);
+        $(window).mouseup(ui.stopResizeMouseEvents);
+    });
+    $('#resize-handle').dblclick(function (e) {
+        e.preventDefault();
+
+        //restore element to a default size
+        ui.resizeElement(
+            ui.getSelectedElement(),
+            ui.getSelectedElement().prop('originalSize/width'),
+            ui.getSelectedElement().prop('originalSize/height')
+        );
+    });
+};
 
 
-}
+
+
+
+

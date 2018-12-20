@@ -22,10 +22,9 @@ body {
 #out {
   background-color: lightgray;
   flex-grow: 1;
-  /* height: 100%; */
   overflow:scroll;
-  /* padding: 3px; */
-  width: 70vw
+  width: 70vw;
+  position: relative;
 }
 
 /* Hack to display scrollbars on Mac OS */
@@ -407,4 +406,27 @@ svg {
 }
 #sidepanel:hover .size-options {
   opacity: 1.0;
+}
+
+
+
+/*   Element resizing */
+#resize-handle {
+  background: white;
+  border: 2px solid rgb(200,0,0);
+  border-radius: 50%;
+  cursor: nwse-resize;
+  height: 10px;
+  position: absolute;
+  width: 10px;
+  z-index: 2;
+}
+
+.element-selection {
+  border: 2px dashed grey;
+  height: 0;
+  pointer-events: none;  /* based on https://stackoverflow.com/questions/3538489/html-css-make-a-div-invisible-to-clicks */
+  position: absolute;
+  width: 0;
+  z-index: 1;
 }

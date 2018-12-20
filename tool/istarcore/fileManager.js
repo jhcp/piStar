@@ -121,8 +121,27 @@ function saveModel() {
             dependency.source = istar.graph.getConnectedLinks(element, {inbound: true})[0].attributes.source.id;
             dependency.target = istar.graph.getConnectedLinks(element, {outbound: true})[0].attributes.target.id;
 
+            // if (element.prop('backgroundColor')) {
+            //   modelJSON.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
+            // }
+
+            var display = {};
+            var needToSaveDisplay = false;
             if (element.prop('backgroundColor')) {
-              modelJSON.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
+                display.backgroundColor = element.prop('backgroundColor');
+                needToSaveDisplay = true;
+            }
+            if (element.prop('size/width') !== element.prop('originalSize/width')) {
+                display.width = element.prop('size/width');
+                needToSaveDisplay = true;
+            }
+            if (element.prop('size/height') !== element.prop('originalSize/height')) {
+                display.height = element.prop('size/height');
+                needToSaveDisplay = true;
+            }
+
+            if (needToSaveDisplay === true) {
+                modelJSON.display[[element.id]] = display;
             }
 
             modelJSON.dependencies.push(dependency);
@@ -183,14 +202,36 @@ function loadModel(inputRaw) {
                 for (var j = 0; j < actor.nodes.length; j++) {
                     var child = fileManager.addLoadedElement(actor.nodes[j]);
                     if (child) {
-                      if (inputModel.display && inputModel.display[actor.nodes[j].id] && inputModel.display[actor.nodes[j].id].backgroundColor) {
-                          ui.changeColorElement(inputModel.display[actor.nodes[j].id].backgroundColor, child);
-                      }
-                      parent.embedNode(child);
+                        if (inputModel.display && inputModel.display[actor.nodes[j].id]) {
+                            size = {};
+                            if (inputModel.display[actor.nodes[j].id].backgroundColor) {
+                                ui.changeColorElement(inputModel.display[actor.nodes[j].id].backgroundColor, child);
+                            }
+                            if (inputModel.display[actor.nodes[j].id].width) {
+                                size.width = inputModel.display[actor.nodes[j].id].width;
+                            }
+                            if (inputModel.display[actor.nodes[j].id].height) {
+                                size.height = inputModel.display[actor.nodes[j].id].height;
+                            }
+                            if (size.width || size.height) {
+                                size.width = size.width || child.prop('size/width');
+                                size.height = size.height || child.prop('size/height');
+                                child.resize(size.width, size.height);
+                                child.changeNodeContent(child.prop('name'), {breakLine: true, breakWidth: child.prop('size/width')});
+                            }
+
+
+                        }
+                        parent.embedNode(child);
                     }
                 }
                 if (inputModel.display && inputModel.display[actor.id]) {
-                    toCollapse.push(parent);
+                    if (inputModel.display[actor.id].collapsed) {
+                        toCollapse.push(parent);
+                    }
+                    if (inputModel.display[actor.id].backgroundColor) {
+                        ui.changeColorElement(inputModel.display[actor.id].backgroundColor, parent);
+                    }
                 }
             }
 
@@ -221,7 +262,26 @@ function loadModel(inputRaw) {
 
                 dependum.prop('position/x', element.x);
                 dependum.prop('position/y', element.y);
-                // treat as dependum
+
+                if (inputModel.display[element.id]) {
+                    size = {};
+                    if (inputModel.display[element.id].backgroundColor) {
+                        ui.changeColorElement(inputModel.display[element.id].backgroundColor, dependum);
+                    }
+                    if (inputModel.display[element.id].width) {
+                        size.width = inputModel.display[element.id].width;
+                    }
+                    if (inputModel.display[element.id].height) {
+                        size.height = inputModel.display[element.id].height;
+                    }
+                    if (size.width || size.height) {
+                        size.width = size.width || child.prop('size/width');
+                        size.height = size.height || child.prop('size/height');
+                        dependum.resize(size.width, size.height);
+                        dependum.changeNodeContent(child.prop('name'), {breakLine: true, breakWidth: child.prop('size/width')});
+                    }
+                }
+
             }
 
             //create links
@@ -362,11 +422,24 @@ fileManager = {
         _.each(element.getEmbeddedCells(), function (element) {
             if (element.isKindOfInnerElement()) {
                 var node = fileManager.elementToJSON(element);
-
+                var display = {};
+                var needToSaveDisplay = false;
                 if (element.prop('backgroundColor')) {
-                  result.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
+                    display.backgroundColor = element.prop('backgroundColor');
+                    needToSaveDisplay = true;
+                }
+                if (element.prop('size/width') !== element.prop('originalSize/width')) {
+                    display.width = element.prop('size/width');
+                    needToSaveDisplay = true;
+                }
+                if (element.prop('size/height') !== element.prop('originalSize/height')) {
+                    display.height = element.prop('size/height');
+                    needToSaveDisplay = true;
                 }
 
+                if (needToSaveDisplay === true) {
+                    result.display[[element.id]] = display;
+                }
                 result.nodes.push(node);
             }
         });
