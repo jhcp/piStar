@@ -33,7 +33,7 @@
   <nav class="menu-items">
     <a class="menu-item" href="#" id="menu-item-file" data-toggle="menu-file">File</a>
     <a class="menu-item active" href="#" id="menu-item-add" data-toggle="menu-add">Add</a>
-    <a class="menu-item" href="#" id="menu-item-diagram" data-toggle="menu-diagram">Diagram's Look & Feel</a>
+    <a class="menu-item" href="#" id="menu-item-diagram" data-toggle="menu-diagram">Options</a>
     <a class="menu-item" href="#" id="menu-item-help" data-toggle="menu-help">Help</a>
   </nav>
 </div>
@@ -189,8 +189,8 @@
     </div>
 
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#subpanel-properties" aria-controls="subpanel-properties" role="tab" data-toggle="tab">Properties</a></li>
-      <li role="presentation"><a href="#subpanel-style" aria-controls="subpanel-style" role="tab" data-toggle="tab">Style</a></li>
+      <li role="presentation" class="active" id="sidepanel-tab-properties"><a href="#subpanel-properties" aria-controls="subpanel-properties" role="tab" data-toggle="tab">Properties</a></li>
+      <li role="presentation" id="sidepanel-tab-style"><a href="#subpanel-style" aria-controls="subpanel-style" role="tab" data-toggle="tab">Style</a></li>
     </ul>
 
     <div class="sidepanel-content tab-content">
@@ -304,7 +304,7 @@
               <div class="col-sm-10">
                 <div class="checkbox">
                   <label>
-                    <input id="modal-input-precise-links" type="checkbox"> Pixel-perfect links (it may take some seconds)
+                    <input id="modal-input-precise-links" type="checkbox"> Pixel-perfect links (it may take some seconds longer)
                   </label>
                 </div>
               </div>

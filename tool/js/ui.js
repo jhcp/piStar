@@ -76,6 +76,7 @@ var ui = function() {
                     elementView = elementView || istar.paper.findViewByModel(element);
                     istar.paper.trigger('change:selection', {selectedElement: element, selectedElementView: elementView});
                 }
+                $('#sidepanel-tab-style').show();
             }
         },
         deselectElement: function(element, elementView) {
@@ -91,9 +92,23 @@ var ui = function() {
         clearSelection: function() {
             if (this.selectedElement) {
                 var elementView = istar.paper.findViewByModel(this.selectedElement);
-
                 this.deselectElement(this.selectedElement, elementView);
             }
+        },
+        selectModel: function() {
+          if (this.selectedElement != istar.graph) {
+            this.clearSelection();
+            this.selectedElement = istar.graph;
+            istar.paper.trigger('change:selection', {selectedElement: istar.graph});
+
+            //closes any color picker that may be open
+            $('.jscolor').each(function () {
+              this.jscolor.hide();
+            });
+            
+            $('#sidepanel-tab-style').hide();
+            $('#sidepanel-tab-properties a').tab('show')
+          }
         },
         hideSelection: function() {
             if (this.selectedElement) {
@@ -155,7 +170,7 @@ ui.defineInteractions = function () {
 
     istar.paper.on('blank:pointerdown', function (evt, x, y) {
         if (ui.getSelectedElement()) {
-            ui.clearSelection();
+            ui.selectModel();
         }
         if (ui.currentStateIsAddKindOfActor()) {
             ui.addElementOnPaper(x, y);
@@ -666,7 +681,8 @@ $('#modal-button-load-model').click(function () {
                 if (file.type === 'text/plain') {
                     var fileReader = new FileReader();
                     fileReader.onload = function (e) {
-                        fileManager.load(e.target.result);
+                        fileManager.load(e.target.result);//do the actual loading
+                        ui.selectModel();//select the model (as a whole)
 
                         $('#modal-load-model').modal('hide');
                         $('#modal-button-load-model').button('reset');
@@ -702,7 +718,7 @@ ui.setupUi = function () {
     this.setupSidepanelInteraction();
     $('#diagram-box-outer').height($(window).height()+100);
 
-
+    ui.selectModel();
 };
 
 ui.setupDiagramSizeInputs = function () {
@@ -837,16 +853,17 @@ $(document).keyup(function (e) {
                 // The use of the 'backspace' key, in addition to the 'delete', key aims to improve support for Mac users,
                 //    since in that system the key named 'delete' actually is a 'backspace' key
                 ui.getSelectedElement().remove();
-                ui.clearSelection();
+                ui.selectModel();
             }
             if (e.which === 27) {  //esc
-                ui.clearSelection();
+                ui.selectModel();
             }
         }
     }
     if (ui.isCurrentlyAddingElement()) {
         if (e.which === 27) {  //esc
             ui.currentButton.end();
+            ui.selectModel();
         }
     }
 });
@@ -944,4 +961,6 @@ ui.setupSidepanelInteraction = function () {
   };
   $('.collapse-sidepanel-button').click(ui.collapseSidepanel);
   $('.expand-sidepanel-button').click(ui.expandSidepanel);
+
+
 }

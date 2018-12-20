@@ -38,74 +38,151 @@ istar.examples.loadPistarWelcome = function () {
 
 
 istar.examples.pistarWelcome = {
-    "actors": [
+  "actors": [
+    {
+      "id": "3589ee55-603d-41ee-8bf1-2b2a54498def",
+      "text": "Researcher",
+      "type": "istar.Actor",
+      "x": 119,
+      "y": 49,
+      "customProperties": {
+        "Description": "I am a Requirements Engineering researcher. You too?"
+      },
+      "nodes": [
         {
-            "id": "3589ee55-603d-41ee-8bf1-2b2a54498def",
-            "text": "Researcher",
-            "type": "istar.Actor",
-            "x": 119,
-            "y": 49,
-            "customProperties": {
-              "Description": "I am a Requirements Engineering researcher"
-            },
-            "nodes": [
-                {
-                    "id": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252",
-                    "text": "i* models created",
-                    "type": "istar.Goal",
-                    "x": 320,
-                    "y": 88
-                },
-                {
-                    "id": "8d716a61-1ca4-44f4-934c-26166ea44d11",
-                    "text": "Use piStar",
-                    "type": "istar.Task",
-                    "x": 291,
-                    "y": 170
-                },
-                {
-                    "id": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
-                    "text": "Good Quality",
-                    "type": "istar.Quality",
-                    "x": 190,
-                    "y": 65
-                }
-            ]
-        }
-    ],
-    "dependencies": [],
-    "links": [
-        {
-            "id": "de114c37-510c-4d81-a664-e7e34ca164e0",
-            "type": "istar.AndRefinementLink",
-            "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
-            "target": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252"
+          "id": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252",
+          "text": "i* models created",
+          "type": "istar.Goal",
+          "x": 325,
+          "y": 151,
+          "customProperties": {
+            "Description": "This tool supports the i* 2.0 version (iStar 2.0)"
+          }
         },
         {
-            "id": "e5ea3334-f0a6-4d0d-8f30-fc651aca693f",
-            "type": "istar.ContributionLink",
-            "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
-            "target": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
-            "label": "help"
+          "id": "8d716a61-1ca4-44f4-934c-26166ea44d11",
+          "text": "Use piStar",
+          "type": "istar.Task",
+          "x": 269,
+          "y": 231,
+          "customProperties": {
+            "Description": "You can use it for free, without worrying about installations"
+          }
+        },
+        {
+          "id": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
+          "text": "Good Quality",
+          "type": "istar.Quality",
+          "x": 189,
+          "y": 98,
+          "customProperties": {
+            "Description": "By Good Quality we mean good *visual* quality:\n - no visual artefacts due to compression or rescaling;\n - aesthetically similar to the diagrams from the i* Wiki guides"
+          }
+        },
+        {
+          "id": "8edafcc6-efb7-4d28-ab8c-4ffb111e87c1",
+          "text": "Change color of elements",
+          "type": "istar.Task",
+          "x": 601,
+          "y": 225,
+          "customProperties": {
+            "Description": "Now you can change the color of elements, but use this with CAUTION! because the readers of your model may not be able to guess the meaning of each color. Plus, too many colors will make it messy."
+          }
+        },
+        {
+          "id": "d389a8e8-34db-40fc-bf14-5320cd623a94",
+          "text": "Add properties to the model",
+          "type": "istar.Task",
+          "x": 528,
+          "y": 273,
+          "customProperties": {
+            "Description": "Now you can add custom properties not only to your elements, but also to your model as a whole! For instance, you can give it a name, record the authors' names, provide a link for further information, provide a brief description of the project, and so on."
+          }
+        },
+        {
+          "id": "962a13d5-6da5-488b-8fdf-ed0aff373214",
+          "text": "Continuous Improvement",
+          "type": "istar.Quality",
+          "x": 502,
+          "y": 100,
+          "customProperties": {
+            "Description": "Because we all know there is much to be improved in this tool =)\n\nBtw, help us improve it by sending your feedback through the Help menu"
+          }
+        },
+        {
+          "id": "b3b7c0dc-72de-4916-b28d-4e5aa903b021",
+          "text": "Deploy new UI",
+          "type": "istar.Task",
+          "x": 440,
+          "y": 228,
+          "customProperties": {
+            "Description": "This new User Interface has been designed not only to improve usability, but also to accommodate new functionalities that are coming in the near future"
+          }
         }
-    ],
-    "display": {
-        "e5ea3334-f0a6-4d0d-8f30-fc651aca693f": {
-            "vertices": [
-                {
-                    "x": 200,
-                    "y": 180
-                }
-            ]
-        }
-    },
-    "tool": "pistar.1.0.1",
-    "istar": "2.0",
-    "saveDate": "Sat, 10 Mar 2018 23:46:16 GMT",
-    "diagram": {
-        "width": 1700,
-        "height": 1300
+      ]
     }
+  ],
+  "dependencies": [],
+  "links": [
+    {
+      "id": "ef38674c-acc1-4739-925f-155d40292f91",
+      "type": "istar.AndRefinementLink",
+      "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
+      "target": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252"
+    },
+    {
+      "id": "51995af9-3400-4aa6-8645-a417046af5a9",
+      "type": "istar.ContributionLink",
+      "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
+      "target": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
+      "label": "help"
+    },
+    {
+      "id": "cac12b9a-c990-47bb-8e71-89f483e8e21c",
+      "type": "istar.ContributionLink",
+      "source": "8edafcc6-efb7-4d28-ab8c-4ffb111e87c1",
+      "target": "962a13d5-6da5-488b-8fdf-ed0aff373214",
+      "label": "help"
+    },
+    {
+      "id": "b8ba79f5-4103-4c55-8ad8-2630951ea20b",
+      "type": "istar.ContributionLink",
+      "source": "d389a8e8-34db-40fc-bf14-5320cd623a94",
+      "target": "962a13d5-6da5-488b-8fdf-ed0aff373214",
+      "label": "help"
+    },
+    {
+      "id": "43a713bc-e92d-48b3-ac79-aa122bb55ddf",
+      "type": "istar.ContributionLink",
+      "source": "b3b7c0dc-72de-4916-b28d-4e5aa903b021",
+      "target": "962a13d5-6da5-488b-8fdf-ed0aff373214",
+      "label": "help"
+    }
+  ],
+  "display": {
+    "8edafcc6-efb7-4d28-ab8c-4ffb111e87c1": {
+      "backgroundColor": "#FAE573"
+    },
+    "51995af9-3400-4aa6-8645-a417046af5a9": {
+      "vertices": [
+        {
+          "x": 200,
+          "y": 180
+        }
+      ]
+    }
+  },
+  "tool": "pistar.1.2.0",
+  "istar": "2.0",
+  "saveDate": "Wed, 19 Dec 2018 21:40:37 GMT",
+  "diagram": {
+    "width": 1700,
+    "height": 1300,
+    "name": "Welcome Model",
+    "customProperties": {
+      "Description": "Welcome to the piStar tool!\n\nFor help using this tool, please check the Help menu above. For further information about it and its development, you can check out our open source repository: https://github.com/jhcp/pistar/"
+    }
+  }
 };
 
 istar.examples.travelReimbursement = {

@@ -13,7 +13,7 @@ uiC.AddButtonModel = Backbone.Model.extend({
         active: false
     },
     act: function () {
-        ui.clearSelection();
+        ui.selectModel();
 
         this.set('active', true);
         ui.currentState = this.get('action');

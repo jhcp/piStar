@@ -14,9 +14,15 @@
  * @class istar
  */
 var istar = function () {
-
     var _createDefaultGraph = function () {
-        return new joint.dia.Graph();
+        graph = new joint.dia.Graph();
+
+        //Create a new JointJS Cell to store custom data properties of the
+        // model as a whole
+        graph._modelProperties = (new joint.dia.Element()).prop('name', '');
+        graph.prop = graph._modelProperties.prop;
+
+        return graph;
     };
     var _createDefaultPaper = function (graph) {
         return new joint.dia.Paper({

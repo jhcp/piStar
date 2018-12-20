@@ -10,6 +10,7 @@ from a task to another task
 that the inserted element is outside the actor
 - Now the user can select whether to save PNG images with high resolution (default) or with original resolution (the same size as seen in the tool)
 - Option to change the background color of individual elements
+- Now users are able to add custom data (custom properties) to the model itself, rather than just to its elements
 
 ### Changed
 - Revamped UI, with collapsable toolbars menu on the top and collapsable panel on the left (for element/link specific content). This repositioning aims to address the complaint of having to scroll

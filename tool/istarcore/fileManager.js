@@ -72,6 +72,14 @@ function saveModel() {
     var diagram = {width: 1300, height: 1300};
     diagram.width = istar.paper.getArea().width;
     diagram.height = istar.paper.getArea().height;
+    if (istar.graph.prop('name')) {
+      diagram.name = istar.graph.prop('name');
+    }
+    var customPropertiesJSON = fileManager.getCustomPropertiesJSON(istar.graph);
+    if (customPropertiesJSON) {
+      diagram.customProperties = customPropertiesJSON;
+    }
+
     var date = new Date().toGMTString();
 
     var modelJSON = {
@@ -159,6 +167,10 @@ function loadModel(inputRaw) {
         if (inputModel.diagram) {
             if (inputModel.diagram.width && inputModel.diagram.height) {
                 istar.paper.setDimensions(inputModel.diagram.width, inputModel.diagram.height);
+            }
+            istar.graph.prop('name', inputModel.diagram.name);
+            if (inputModel.diagram.customProperties) {
+              istar.graph.prop('customProperties', inputModel.diagram.customProperties)
             }
         }
 

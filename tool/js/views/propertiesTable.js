@@ -23,7 +23,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
         this.setupAddPropertyButton();
 
         this.clearOptionsPanel();
-        if (this.model.isKindOfActor()) {
+        if (this.model.isKindOfActor && this.model.isKindOfActor()) {
             this.setupCollapseExpandButton();
         }
         this.setupOptionsPanel();
@@ -40,7 +40,15 @@ uiC.PropertiesTableView = Backbone.View.extend({
     setupElementNameEditing: function () {
         this.$table.find('a').editable({
             success: function (response, newValue) {
-                var updatedElement = ui.getSelectedElement().changeNodeContent(newValue);
+                var updatedElement = ui.getSelectedElement()
+                if (updatedElement.changeNodeContent) {
+                  //if it is a istar element
+                  updatedElement.changeNodeContent(newValue);
+                }
+                else {
+                  //if it is a istar model (graph)
+                  updatedElement.prop('name', newValue);
+                }
 
                 return {newValue: updatedElement.prop('name')};
             },
