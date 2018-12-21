@@ -26,6 +26,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
         if (this.model.isKindOfActor && this.model.isKindOfActor()) {
             this.setupCollapseExpandButton();
         }
+        this.setupDeleteButton();
         this.setupOptionsPanel();
 
         return this;
@@ -90,16 +91,28 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     clearOptionsPanel: function () {
-      $('#cell-collapse-options').html('');
+        $('#cell-actions').html('');
     },
     setupCollapseExpandButton: function () {
-        $('#cell-collapse-options').append('<a id="collapseButton" class="btn btn-default btn-xs button-horizontal">Collapse/Expand</a><br>');
-        //$('#cell-collapse-options').append('<button type="button" id="collapseButton">Collapse/Expand</button><br>');
-        $('#collapseButton').click(function () {
+        $('#cell-actions').append(
+            '<a id="collapse-expand-actor-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: ctrl+click the actor">Collapse/Expand</a><br>'
+        );
+        $('#collapse-expand-actor-button').click(function () {
             if (ui.getSelectedElement()) {
                 ui.hideSelection();//remove the focus from the actor
                 ui.getSelectedElement().toggleCollapse();
                 ui.showSelection();//give the focus back to actor, now collapsed or expanded
+            }
+        });
+    },
+    setupDeleteButton: function () {
+        $('#cell-actions').append(
+            '<a id="delete-element-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: Delete key">Delete</a><br>'
+        );
+        $('#delete-element-button').click(function () {
+            if (ui.getSelectedElement()) {
+                ui.getSelectedElement().remove();
+                ui.selectModel();
             }
         });
     },

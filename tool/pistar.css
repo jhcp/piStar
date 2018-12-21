@@ -356,8 +356,8 @@ svg {
   padding: 0 5px 0 0;
 }
 
-#cell-options div {
-  margin-top: 5px;
+#cell-actions a {
+  margin-top: 3px;
 }
 
 /*   Sidepanel resizing  */
