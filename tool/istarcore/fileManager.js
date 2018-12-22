@@ -260,6 +260,10 @@ function loadModel(inputRaw) {
                     }
                 }
 
+                if (ui) {
+                    ui.setupDependencyRemoval(links);
+                }
+
                 dependum.prop('position/x', element.x);
                 dependum.prop('position/y', element.y);
 
