@@ -236,14 +236,6 @@ kbd {
   cursor: wait !important;
 }
 
-/* Diagram */
-
-svg {
-  background-color: white;
-  /* border: solid lightgray 2px; */
-  margin: 0;
-}
-
 /* JointJS markup */
 
 .remove-element {
@@ -258,18 +250,8 @@ svg {
   fill: white;
 }
 
-.link-tools .tool-remove path {
-  /*display: none;*/
-}
-
 .link-tools .tool-remove circle {
-  /*display: none;*/
   fill: grey;
-}
-
-.link-tools,
-.marker-arrowheads {
-  /*display: none;*/
 }
 
 .tool-options {
@@ -280,10 +262,8 @@ svg {
 
 #sidepanel {
   background-color: white;
-  /* background-color: white; */
   box-shadow: 0 4px 10px rgb(100,100,100);
   font-size: 1.2rem;
-  /* overflow-x: hidden; */
   overflow-x: auto;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   transition: width 0.5s, height 0.3s ease-in-out;
@@ -408,23 +388,6 @@ svg {
   position: absolute;
   width: 2vw;
 }
-
-/*.collapsed-expand-sidepanel-button {*/
-  /*background-color: #6AA96E;*/
-  /*border-radius: 0 30% 30% 0;*/
-  /*!*border: 1px solid grey;*!*/
-  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
-  /*color: white;*/
-  /*float: left;*/
-  /*font-size: 1.7rem;*/
-  /*font-weight: 1000;*/
-  /*height: 4rem;*/
-  /*margin-top: 5px;*/
-  /*text-align: center;*/
-  /*pointer-events: none;*/
-  /*position: absolute;*/
-  /*width: 2vw;*/
-/*}*/
 
 #sidepanel.collapsed .size-options {
   padding: 0;
