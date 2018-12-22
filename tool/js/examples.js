@@ -275,7 +275,7 @@ istar.examples.pistarWelcome = {
     "istar": "2.0",
     "saveDate": "Sat, 22 Dec 2018 02:57:46 GMT",
     "diagram": {
-        "width": 1700,
+        "width": 2000,
         "height": 1300,
         "name": "Welcome Model",
         "customProperties": {

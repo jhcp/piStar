@@ -27,7 +27,7 @@ var istar = function () {
     var _createDefaultPaper = function (graph) {
         return new joint.dia.Paper({
             el: $('#diagram'),
-            width: 1700,
+            width: 2000,
             height: 1300,
             model: graph,
             gridSize: 1,
