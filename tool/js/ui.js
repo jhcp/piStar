@@ -186,7 +186,7 @@ ui.defineInteractions = function () {
     istar.paper.on('cell:mouseover', function (cellView, evt, x, y) {
         //indicates that the mouse is over a given actor
         //.css() is used instead of .attr() because the latter is bugged with elements containing a path element
-        color = '#631919';
+        color = '#1C5052';
         if (cellView.model.isKindOfActor()) {
             if (cellView.model.prop('collapsed')) {
                 cellView.$('circle').css({stroke: color, 'stroke-width': '3'});

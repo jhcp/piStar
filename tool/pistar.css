@@ -52,7 +52,7 @@ https://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-vert
 
 .menu-bar {
   align-items: stretch;
-  background-color: rgb(200,0,0);
+  background-color: #246B29;
   color: rgb(252, 255, 239);
   display: flex;
   flex-direction: row;
@@ -92,7 +92,7 @@ nav a:visited {
 }
 
 .menu-item {
-  border: solid 2px rgb(200,0,0);
+  border: solid 2px #246B29;
   color: rgb(252, 255, 239);
   display: inline-block;
   font-size: .97em;
@@ -364,6 +364,7 @@ svg {
 #sidepanel .size-options {
   float: right;
   font-size: 1.7rem;
+  font-weight: 900;
   padding: 0 5px;
   transition: opacity 0.25s ease-in-out;
 }
@@ -373,7 +374,7 @@ svg {
 }
 
 #sidepanel .size-options a {
-  color: rgb(200, 0, 0);
+  color: #246B29;
   text-decoration: none;
 }
 
@@ -386,12 +387,44 @@ svg {
 }
 
 .collapsed .expand-sidepanel-button {
+  color: white;
   display: block;
-  min-height: 1000px;
-  min-width: 100px;
-  padding: 0 5px;
-  text-align: right;
+  min-height: 1500px; /* hack to make the button fill the entire sidepanel */
+  min-width: 500px;   /* hack to make the button fill the entire sidepanel */
+  text-align: left;
 }
+
+#sidepanel:not(.collapsed) .collapsed-expand-sidepanel-button {
+  display: none;
+}
+
+.collapsed-expand-sidepanel-button {
+  color: #246B29;
+  display: block;
+  font-size: 1.7rem;
+  font-weight: 900;
+  text-align: center;
+  pointer-events: none;
+  position: absolute;
+  width: 2vw;
+}
+
+/*.collapsed-expand-sidepanel-button {*/
+  /*background-color: #6AA96E;*/
+  /*border-radius: 0 30% 30% 0;*/
+  /*!*border: 1px solid grey;*!*/
+  /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+  /*color: white;*/
+  /*float: left;*/
+  /*font-size: 1.7rem;*/
+  /*font-weight: 1000;*/
+  /*height: 4rem;*/
+  /*margin-top: 5px;*/
+  /*text-align: center;*/
+  /*pointer-events: none;*/
+  /*position: absolute;*/
+  /*width: 2vw;*/
+/*}*/
 
 #sidepanel.collapsed .size-options {
   padding: 0;
@@ -413,7 +446,7 @@ svg {
 /*   Element resizing */
 #resize-handle {
   background: white;
-  border: 2px solid rgb(200,0,0);
+  border: 2px solid #1C5052;
   border-radius: 50%;
   cursor: nwse-resize;
   height: 10px;
