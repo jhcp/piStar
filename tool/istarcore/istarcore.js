@@ -404,6 +404,51 @@ var istar = function () {
             istar.graph.addCell(node);
             return node;
         },
+        replaceNode: function (element, typeName) {
+            "use strict";
+            var typePrefix = typeName.substring(0,typeName.lastIndexOf('.'));
+            var typeActualName = typeName.substring(typeName.lastIndexOf('.') + 1);
+            var shape = joint.shapes[typePrefix][typeActualName];
+
+            //create the node and add it to the graph
+            var node = new shape({
+                position: element.prop('position'),
+            });
+
+            //copy the old node properties to the new node
+            node.prop('name', element.prop('name'));
+            node.attr('text/text', element.prop('name'));
+            node.prop('type', typeName);
+            node.prop('originalSize', node.prop('size')); //stores the initial size of the element
+            if (element.prop('size') !== element.prop('originalSize')) {
+                node.prop('size', element.prop('size')); //stores the initial size of the element
+            }
+            node.prop('customProperties', element.prop('customProperties'));
+            //TODO copy style
+
+            istar.graph.addCell(node);
+
+            //change the dependency links from the old node to the new node
+            var nodeId = element.prop('id');
+            var connectedLinks = istar.graph.getConnectedLinks(element);
+            if (connectedLinks[0].prop('source/id') == nodeId) {
+                connectedLinks[0].prop('source/id', node.prop('id'))
+            }
+            if (connectedLinks[1].prop('source/id') == nodeId) {
+                connectedLinks[1].prop('source/id', node.prop('id'))
+            }
+            if (connectedLinks[0].prop('target/id') == nodeId) {
+                connectedLinks[0].prop('target/id', node.prop('id'))
+            }
+            if (connectedLinks[1].prop('target/id') == nodeId) {
+                connectedLinks[1].prop('target/id', node.prop('id'))
+            }
+
+            //remove the old node
+            element.remove();
+
+            return node;
+        },
         /**
          * Adds a link between two actors.
          * @returns the new link

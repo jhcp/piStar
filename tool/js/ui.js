@@ -151,6 +151,14 @@ ui.unhighlightFocus = function (cellView) {
     $('.element-selection').hide();
 };
 ui.defineInteractions = function () {
+    istar.graph.on('add', function(cell) {
+        if (cell.isElement()) {
+            cell.updateLineBreak = function() {
+                this.changeNodeContent(this.prop('name'), {breakLine: true, breakWidth: this.findView(istar.paper).getBBox().width});
+            };
+        }
+    });
+
     istar.paper.on('change:selection', function(selection) {
         if (selection.selectedElement) {
             ui.table = new uiC.PropertiesTableView({model: selection.selectedElement}).render();
@@ -330,7 +338,9 @@ ui.defineInteractions = function () {
                 istar.paper.setDimensions(Math.round(cellBBox.x + cellBBox.width + 40));
             }
 
-            ui.highlightFocus(ui.getSelectedElement().findView(istar.paper));
+            if (ui.getSelectedElement().findView) {
+                ui.highlightFocus(ui.getSelectedElement().findView(istar.paper));
+            }
         }
     });
 
@@ -460,34 +470,38 @@ function addDependency(source, dependencyType, target) {
         links[0].on('change:vertices', ui._toggleSmoothness);
         links[1].on('change:vertices', ui._toggleSmoothness);
 
-        //ensure that the entire dependency (two links and dependum) are deleted
-        //when any of its links is deleted
-        //this is needed when a depender or dependee is deleted, so that
-        //the dependency will not be left dangling in the diagram
-        links[0].on('remove', function(){
-            if (this.getSourceElement() && this.getSourceElement().isDependum()) {
-                this.getSourceElement().remove({ disconnectLinks: true });
-                this.prop('otherHalf').remove();
-            }
-            if (this.getTargetElement() && this.getTargetElement().isDependum()) {
-                this.getTargetElement().remove({ disconnectLinks: true });
-                this.prop('otherHalf').remove();
-            }
-        });
-        links[1].on('remove', function(){
-            if (this.getSourceElement() && this.getSourceElement().isDependum()) {
-                this.getSourceElement().remove({ disconnectLinks: true });
-                this.prop('otherHalf').remove();
-            }
-            if (this.getTargetElement() && this.getTargetElement().isDependum()) {
-                this.getTargetElement().remove({ disconnectLinks: true });
-                this.prop('otherHalf').remove();
-            }
-        });
+        ui.setupDependencyRemoval(links);
 
         ui.selectElement(node);
     }
 }
+
+ui.setupDependencyRemoval = function (links) {
+    //ensure that the entire dependency (two links and dependum) are deleted
+    //when any of its links is deleted
+    //this is needed when a depender or dependee is deleted, so that
+    //the dependency will not be left dangling in the diagram
+    links[0].on('remove', function(){
+        if (this.getSourceElement() && this.getSourceElement().isDependum()) {
+            this.getSourceElement().remove({ disconnectLinks: true });
+            this.prop('otherHalf').remove();
+        }
+        if (this.getTargetElement() && this.getTargetElement().isDependum()) {
+            this.getTargetElement().remove({ disconnectLinks: true });
+            this.prop('otherHalf').remove();
+        }
+    });
+    links[1].on('remove', function(){
+        if (this.getSourceElement() && this.getSourceElement().isDependum()) {
+            this.getSourceElement().remove({ disconnectLinks: true });
+            this.prop('otherHalf').remove();
+        }
+        if (this.getTargetElement() && this.getTargetElement().isDependum()) {
+            this.getTargetElement().remove({ disconnectLinks: true });
+            this.prop('otherHalf').remove();
+        }
+    });
+};
 
 function addElementInPlace(clickedNode, callback, x, y) {
     ui.currentState = ui.STATE_VIEW;
@@ -997,7 +1011,7 @@ ui.setupElementResizing = function () {
         // });
 
         //update the line break on the element's label
-        element.changeNodeContent(element.prop('name'), {breakLine: true, breakWidth: element.findView(istar.paper).getBBox().width});
+        element.updateLineBreak();
     };
 
     ui.resizeHandlerOnMouseMove = function (e) {

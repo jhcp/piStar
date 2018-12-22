@@ -217,7 +217,7 @@ function loadModel(inputRaw) {
                                 size.width = size.width || child.prop('size/width');
                                 size.height = size.height || child.prop('size/height');
                                 child.resize(size.width, size.height);
-                                child.changeNodeContent(child.prop('name'), {breakLine: true, breakWidth: child.prop('size/width')});
+                                child.updateLineBreak();
                             }
 
 
@@ -282,7 +282,7 @@ function loadModel(inputRaw) {
                         size.width = size.width || child.prop('size/width');
                         size.height = size.height || child.prop('size/height');
                         dependum.resize(size.width, size.height);
-                        dependum.changeNodeContent(child.prop('name'), {breakLine: true, breakWidth: child.prop('size/width')});
+                        dependum.updateLineBreak();
                     }
                 }
 

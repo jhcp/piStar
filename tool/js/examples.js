@@ -53,8 +53,8 @@ istar.examples.pistarWelcome = {
                     "id": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252",
                     "text": "i* models created",
                     "type": "istar.Goal",
-                    "x": 331,
-                    "y": 150,
+                    "x": 319,
+                    "y": 95,
                     "customProperties": {
                         "Description": "This tool supports the i* 2.0 version (iStar 2.0)"
                     }
@@ -63,8 +63,8 @@ istar.examples.pistarWelcome = {
                     "id": "8d716a61-1ca4-44f4-934c-26166ea44d11",
                     "text": "Use piStar",
                     "type": "istar.Task",
-                    "x": 269,
-                    "y": 231,
+                    "x": 242,
+                    "y": 169,
                     "customProperties": {
                         "Description": "You can use it for free, without worrying about installations"
                     }
@@ -73,8 +73,8 @@ istar.examples.pistarWelcome = {
                     "id": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
                     "text": "Good Quality",
                     "type": "istar.Quality",
-                    "x": 189,
-                    "y": 98,
+                    "x": 196,
+                    "y": 69,
                     "customProperties": {
                         "Description": "By Good Quality we mean good *visual* quality:\n - no visual artefacts due to compression or rescaling;\n - aesthetically similar to the diagrams from the i* Wiki guides"
                     }
@@ -85,15 +85,15 @@ istar.examples.pistarWelcome = {
             "id": "dbe6cf9f-877d-4600-bac9-8f7bbde93426",
             "text": "piStar tool team",
             "type": "istar.Agent",
-            "x": 628,
-            "y": 221,
+            "x": 551,
+            "y": 205,
             "nodes": [
                 {
                     "id": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
                     "text": "Continuous Improvement",
                     "type": "istar.Quality",
-                    "x": 747,
-                    "y": 257,
+                    "x": 718,
+                    "y": 215,
                     "customProperties": {
                         "Description": "Because we all know there is much to be improved in this tool =)\n\nBtw, help us improve it by sending your feedback through the Help menu"
                     }
@@ -102,8 +102,8 @@ istar.examples.pistarWelcome = {
                     "id": "f69a3c4b-4d40-488d-a54a-a0e38453f077",
                     "text": "Add properties to the model",
                     "type": "istar.Task",
-                    "x": 735,
-                    "y": 388,
+                    "x": 649,
+                    "y": 372,
                     "customProperties": {
                         "Description": "Now you can add custom properties not only to your elements, but also to your model as a whole! For instance, you can give it a name, record the authors' names, provide a link for further information, provide a brief description of the project, and so on.",
                         "Since": "Version 2.0.0"
@@ -113,8 +113,8 @@ istar.examples.pistarWelcome = {
                     "id": "1f011a05-50ff-47b4-bdf6-e6c9227eef70",
                     "text": "Change the color of elements",
                     "type": "istar.Task",
-                    "x": 877,
-                    "y": 384,
+                    "x": 787,
+                    "y": 371,
                     "customProperties": {
                         "Description": "Now you can change the color of elements, but use this with CAUTION! because the readers of your model may not be able to guess the meaning of each color. Plus, too many colors will make it messy.",
                         "Since": "Version 2.0.0"
@@ -124,8 +124,8 @@ istar.examples.pistarWelcome = {
                     "id": "5562be02-998b-4a7b-8bb9-355d84b3c06b",
                     "text": "Change the size of elements",
                     "type": "istar.Task",
-                    "x": 789,
-                    "y": 437,
+                    "x": 673,
+                    "y": 426,
                     "customProperties": {
                         "Description": "Now you can change the size of elements of the model. You just need to drag the handle in the bottom-right corner of the selected element",
                         "Since": "Version 2.0.0"
@@ -135,10 +135,21 @@ istar.examples.pistarWelcome = {
                     "id": "17acd322-9d37-496e-b6d5-c69c497502db",
                     "text": "New UI",
                     "type": "istar.Resource",
-                    "x": 639,
-                    "y": 360,
+                    "x": 570,
+                    "y": 325,
                     "customProperties": {
                         "Description": "This new User Interface has been designed not only to improve usability, but also to accommodate new functionalities that are coming in the near future",
+                        "Since": "Version 2.0.0"
+                    }
+                },
+                {
+                    "id": "f9035e8c-0294-44a8-a93e-85a349d2f21a",
+                    "text": "Change the type of dependums",
+                    "type": "istar.Task",
+                    "x": 883,
+                    "y": 332,
+                    "customProperties": {
+                        "Description": "Now you can change the type of dependum elements. Select the dependum and then change its type in the Properties sidepanel",
                         "Since": "Version 2.0.0"
                     }
                 }
@@ -150,8 +161,8 @@ istar.examples.pistarWelcome = {
             "id": "2083cdfc-21c9-4a25-9a70-e65934cd588d",
             "text": "The piStar tool",
             "type": "istar.Resource",
-            "x": 443,
-            "y": 276,
+            "x": 360,
+            "y": 260,
             "customProperties": {
                 "Cost": "$0.00"
             },
@@ -161,55 +172,62 @@ istar.examples.pistarWelcome = {
     ],
     "links": [
         {
-            "id": "482014ea-f323-4935-b0ae-a7300276c1c3",
+            "id": "08b9c28d-2d9f-4feb-9ea5-fa6715be7b5f",
             "type": "istar.DependencyLink",
             "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
             "target": "2083cdfc-21c9-4a25-9a70-e65934cd588d"
         },
         {
-            "id": "8ccb747f-92c8-4467-959e-4994466e4994",
+            "id": "04e2cfea-79b8-478b-8e6b-084601346875",
             "type": "istar.DependencyLink",
             "source": "2083cdfc-21c9-4a25-9a70-e65934cd588d",
             "target": "dbe6cf9f-877d-4600-bac9-8f7bbde93426"
         },
         {
-            "id": "fe4f3fb3-422e-4d0b-8317-c76640ace64e",
+            "id": "bfb82261-dc8f-4df7-9725-2f233b68b03d",
             "type": "istar.AndRefinementLink",
             "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
             "target": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252"
         },
         {
-            "id": "62b8689c-2f89-40a5-a8b0-8ef41097c3c2",
+            "id": "91d719c5-943e-43b6-b5d5-c1357c08165a",
             "type": "istar.ContributionLink",
             "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
             "target": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
             "label": "help"
         },
         {
-            "id": "5be4d8a6-542a-40d4-b433-1d29f718281b",
+            "id": "0ff4ab12-b853-44af-aa22-e1fa6b92850f",
             "type": "istar.ContributionLink",
             "source": "f69a3c4b-4d40-488d-a54a-a0e38453f077",
             "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
             "label": "help"
         },
         {
-            "id": "68619a76-2d48-4551-86c8-a4b74b30e513",
+            "id": "975f9e56-6e9d-4ed6-97c6-8527495229ee",
             "type": "istar.ContributionLink",
             "source": "1f011a05-50ff-47b4-bdf6-e6c9227eef70",
             "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
             "label": "help"
         },
         {
-            "id": "356d22ba-1c48-461c-b827-9e7e5d982d08",
+            "id": "9f701fe3-8279-4959-8488-810cb6dbc1d6",
             "type": "istar.ContributionLink",
             "source": "5562be02-998b-4a7b-8bb9-355d84b3c06b",
             "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
             "label": "help"
         },
         {
-            "id": "47652328-396f-4fa1-bcfd-836392e6a186",
+            "id": "8dcf04cd-5555-41e4-9d62-fb8f830d9758",
             "type": "istar.ContributionLink",
             "source": "17acd322-9d37-496e-b6d5-c69c497502db",
+            "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
+            "label": "help"
+        },
+        {
+            "id": "8298571c-285e-4f67-a44c-ff1e227d8c6b",
+            "type": "istar.ContributionLink",
+            "source": "f9035e8c-0294-44a8-a93e-85a349d2f21a",
             "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
             "label": "help"
         }
@@ -224,34 +242,38 @@ istar.examples.pistarWelcome = {
             "width": 179.609375,
             "height": 31.078125
         },
-        "482014ea-f323-4935-b0ae-a7300276c1c3": {
+        "08b9c28d-2d9f-4feb-9ea5-fa6715be7b5f": {
             "vertices": [
                 {
-                    "x": 376,
-                    "y": 297
+                    "x": 310,
+                    "y": 253
                 }
             ]
         },
-        "8ccb747f-92c8-4467-959e-4994466e4994": {
+        "04e2cfea-79b8-478b-8e6b-084601346875": {
             "vertices": [
                 {
-                    "x": 576,
-                    "y": 261
+                    "x": 473,
+                    "y": 276
+                },
+                {
+                    "x": 504,
+                    "y": 232
                 }
             ]
         },
-        "62b8689c-2f89-40a5-a8b0-8ef41097c3c2": {
+        "91d719c5-943e-43b6-b5d5-c1357c08165a": {
             "vertices": [
                 {
-                    "x": 200,
-                    "y": 180
+                    "x": 182,
+                    "y": 146
                 }
             ]
         }
     },
     "tool": "pistar.1.2.0",
     "istar": "2.0",
-    "saveDate": "Fri, 21 Dec 2018 03:20:11 GMT",
+    "saveDate": "Sat, 22 Dec 2018 02:57:46 GMT",
     "diagram": {
         "width": 1700,
         "height": 1300,

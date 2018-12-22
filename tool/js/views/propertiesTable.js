@@ -15,6 +15,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
         this.renderElementName();
         this.setupElementNameEditing();
 
+        this.renderElementType();
+        this.setupElementTypeEditing();
+
         for (var propertyName in this.model.prop('customProperties')) {
             this.renderCustomProperty(propertyName);
             this.setupCustomPropertyEditing(propertyName);
@@ -35,8 +38,20 @@ uiC.PropertiesTableView = Backbone.View.extend({
     renderElementName: function () {
         this.$table.find('tbody').html(this.template({
             propertyName: 'Name',
-            propertyValue: this.model.prop('name')
+            propertyValue: this.model.prop('name'),
+            dataType: 'textarea'
         }));
+    },
+    renderElementType: function () {
+        if (this.model.prop('type')) {
+            if (this.model.isDependum && this.model.isDependum()) {
+                this.$table.find('tbody').append(this.template({
+                    propertyName: 'Type',
+                    propertyValue: this.model.prop('type'),
+                    dataType: 'select'
+                }));
+            }
+        }
     },
     setupElementNameEditing: function () {
         this.$table.find('a').editable({
@@ -57,6 +72,42 @@ uiC.PropertiesTableView = Backbone.View.extend({
         })
             .on('shown', ui.changeStateToEdit)
             .on('hidden', ui.changeStateToView);
+    },
+    setupElementTypeEditing: function () {
+        if (this.model.isDependum && this.model.isDependum()) {
+            typeNames = [];
+            currentType = 0;
+            _.each(istarcoreMetamodel.nodes, function(nodeType, index) {
+                typeNames.push({value: index, text: nodeType.prefixedName});
+                if (nodeType.prefixedName === this.model.prop('type')) {
+                    currentType = index;
+                }
+            }, this);
+            this.$table.find('a').editable({
+                source: typeNames,
+                value: currentType,
+                success: function (response, newValue, c) {
+                    updatedElement = ui.getSelectedElement();
+                    newType = istarcoreMetamodel.nodes[newValue].prefixedName;
+                    updatedElement.prop('type', newType);
+                    newNode = istar.replaceNode(updatedElement, istarcoreMetamodel.nodes[newValue].prefixedName)
+                        .prop('isDependum', true);
+                    ui.selectElement(newNode);
+                    //update the line break on the element's label
+                    newNode.updateLineBreak();
+
+                    return {newValue: newValue};
+                },
+                showbuttons: 'bottom'
+            })
+                .on('shown', ui.changeStateToEdit)
+                .on('hidden', ui.changeStateToView);
+        }
+        // else {
+        //     this.$table.find('a').editable({
+        //         disabled: true,
+        //     });
+        // }
     },
     setupAddPropertyButton: function () {
         $('#add-property-button-area').html('<a href="#" id="add-property-button" class="property-add" data-type="text" data-pk="1"           data-name="name" data-title="Enter description" data-placeholder="ahhhh" title="Add a new property to this element">        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>        Add Property</a>');
@@ -126,8 +177,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
     renderCustomProperty: function (propertyName) {
         this.$table.find('tbody').append(this.template({
-            'propertyName': propertyName,
-            'propertyValue': this.model.prop('customProperties/' + propertyName)
+            propertyName: propertyName,
+            propertyValue: this.model.prop('customProperties/' + propertyName),
+            dataType: 'textarea'
         }));
     },
     setupCustomPropertyEditing: function (propertyName) {
