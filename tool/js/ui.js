@@ -649,17 +649,8 @@ $('#modal-button-save-image').click(function () {
 
 $('#menu-button-save-model').click(function () {
     var model = saveModel();
-
-    //workaround for jointjs bug: changing the path of a highlight when changing an attribute of a CellView
-    ui.hideSelection();
-    ui.showSelection();
-
     csvData = 'data:text/json;charset=utf-8,' + (encodeURI(model));
-    a = createDownloadLink('goalModel.txt', '◀ File', csvData, 'download goal model');
-    $('#placeholder-save-model').html(a).show();
-    $('#placeholder-save-model > a').click(function () {
-        $('#placeholder-save-model').hide(200);
-    });
+    joint.util.downloadDataUri(csvData, 'goalModel.txt');
 });
 
 $('#modal-button-load-model').click(function () {
