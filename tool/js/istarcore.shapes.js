@@ -154,7 +154,8 @@ joint.shapes.istar.Goal = joint.shapes.basic.Rect.extend({
                 'stroke-width': 2,
                 width: 130,
                 height: 30,
-                rx: 20
+                rx: 20,
+                'vector-effect': 'non-scaling-stroke' /* prevents stroke distortion when the element is resized */
             },
             text: {
                 text: 'Goal',
@@ -176,7 +177,8 @@ joint.shapes.istar.Resource = joint.shapes.basic.Rect.extend({
                 'stroke-width': 2,
                 width: 130,
                 height: 30,
-                rx: 0
+                rx: 0,
+                'vector-effect': 'non-scaling-stroke' /* prevents stroke distortion when the element is resized */
             },
             text: {
                 text: 'Resource',
@@ -198,7 +200,8 @@ joint.shapes.istar.Task = joint.shapes.basic.Polygon.extend({
                 stroke: 'black',
                 'stroke-width': 2,
                 width: 130,
-                height: 36
+                height: 36,
+                'vector-effect': 'non-scaling-stroke' /* prevents stroke distortion when the element is resized */
             },
             text: {
                 text: 'Task',
@@ -223,7 +226,8 @@ joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
                 fill: 'rgb(205,254,205)',
                 stroke: 'black',
                 'stroke-width': 2,
-                resetOffset: true
+                resetOffset: true,
+                'vector-effect': 'non-scaling-stroke' /* prevents stroke distortion when the element is resized */
             },
             text: {
                 text: 'Quality',
