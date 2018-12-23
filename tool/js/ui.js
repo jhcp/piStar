@@ -299,7 +299,8 @@ ui.defineInteractions = function () {
                                 newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.currentAddingElement);
                                 prettyLinkName = 'Contribution link';
                                 if (newLink) {
-                                    newLink.on('change:vertices', ui._toggleSmoothness);//do some magic in order to prevent ugly links when there are no vertices
+                                    //do some magic in order to keep links straight when there are no vertices defined
+                                    newLink.on('change:vertices', ui._toggleSmoothness);
                                 }
                             }
                             if (!newLink) {
@@ -578,7 +579,6 @@ ui.connectLinksToShape = function () {
 };
 
 $('#input-file-format').change(function () {
-    $('#placeholder-save-image').html('');
     if ($(this).val() === "PNG") {
         $('#modal-input-hi-res').parent().removeClass('hidden');
     }
@@ -589,45 +589,46 @@ $('#input-file-format').change(function () {
 });
 
 $('#modal-button-save-image').click(function () {
+    $saveButton = $(this);
+
+    //let the user know that sometinh is being done
     $('body *').addClass('waiting');
-    clickedButton = this;
+    $saveButton.button('preparing');//display status information in the save button
+    $saveButton.attr('disabled', 'disabled');
 
-
-    //pre-processment
-    if ($('#modal-input-precise-links').prop(`checked`)) {
-        $(clickedButton).button('preciselinks');
+    //optionally fix link gaps
+    if ($('#modal-input-precise-links').prop('checked')) {
+        //this is a time-consuming function. It checks every link connection and make it perfectly fit the
+        //shape of the connected element
         ui.connectLinksToShape();
     }
 
-    //saving
+    //hide UI elements before saving
+    var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
+    $jointMarkers.hide();
+    ui.hideSelection();
+
+    //execute the actual saving only after some time has passed, allowing the browser to update the UI
     setTimeout(function () {
-        $(clickedButton).button('save');
+        $saveButton.button('save'); //display status information in the save button
         filename = $('#input-filename').val() || 'goalModel';
-        var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
-        var $saveImage = $('#placeholder-save-image');
 
-        //hide UI elements before saving
-        $jointMarkers.hide();
-        ui.hideSelection();
-
+        //Adjust the size of the model, to prevent empty spaces in the image
         var originalWidth = istar.paper.getArea().width;
         var originalHeight = istar.paper.getArea().height;
-        istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
+        istar.paper.fitToContent({padding: 10, allowNewOrigin: 'any'});
 
         if ($('#input-file-format').val() === "SVG") {
             var svgData = saveSvg('diagram');
-            $saveImage.html(createDownloadLink(filename + '.svg', 'click here to save', svgData, 'download SVG (vectorial)'));
-            $('#modal-button-save-image').button('reset');
-            $('#placeholder-save-image > a').click(function () {
-                $('#placeholder-save-image').hide(200);
-            });
+            joint.util.downloadDataUri(svgData, filename + '.svg');
         }
         else {
+            //save PNG
             resolutionFactor = 1;
-            if ($('#modal-input-hi-res').prop(`checked`)) {
+            if ($('#modal-input-hi-res').prop('checked')) {
                 resolutionFactor = 4;
             }
-            savePng('diagram', addPngLink, filename, resolutionFactor);
+            savePng('diagram', joint.util.downloadBlob, filename, resolutionFactor);
         }
 
         //restore the paper to its initial state
@@ -635,37 +636,16 @@ $('#modal-button-save-image').click(function () {
         istar.paper.translate(0,0);
 
         //show the UI elements back again
-        $jointMarkers.show();
-        $saveImage.show();
+        $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element').show();
         ui.showSelection(ui.getSelectedElement());
 
         $('body *').removeClass('waiting');
+        $saveButton.button('reset');
+        $saveButton.removeAttr('disabled');
+        $('#modal-save-image').modal('hide');
     }, 100);
 
 });
-
-function createDownloadLink(fileName, text, data, title) {
-    var a = document.createElement('a');
-    a.download = fileName;//name that will appear when saving the file
-    a.title = title;
-    a.href = data;
-    $(a).click(function () {
-        $('#modal-save-image').modal('hide');
-    });
-
-    var linkText = document.createTextNode(text);
-    a.appendChild(linkText);
-    return a;
-}
-
-function addPngLink(pngData, filename) {
-    var a = createDownloadLink(filename+'.png', 'click here to save', pngData, 'download PNG');
-    $('#placeholder-save-image').html(a);
-    $('#modal-button-save-image').button('reset');
-    $('#placeholder-save-image > a').click(function () {
-        $('#placeholder-save-image').hide(200);
-    });
-}
 
 $('#menu-button-save-model').click(function () {
     var model = saveModel();
@@ -732,7 +712,6 @@ ui.setupUi = function () {
     this.defineInteractions();
     uiC.createAddButtons();
 
-    $('#placeholder-save-image').hide();
     $('#placeholder-save-model').hide();
 
 
@@ -741,7 +720,6 @@ ui.setupUi = function () {
     this.setupLoadModelButton();
     this.setupMainMenuInteraction();
     this.setupSidepanelInteraction();
-
 
     ui.selectModel();
 };

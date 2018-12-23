@@ -35,8 +35,6 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 }
 
 function savePng(paperId, callback, filename, resolutionFactor) {
-
-
     //create a canvas, which is used to convert the SVG to png
     var canvas = document.createElement('canvas');
     var canvasContext = canvas.getContext('2d');
@@ -53,14 +51,10 @@ function savePng(paperId, callback, filename, resolutionFactor) {
     imageElement.onload = function () {
         canvas.width = imageElement.width * resolutionFactor; //multiply the width for better resolution
         canvas.height = imageElement.height * resolutionFactor; //multiply the height for better resolution
-        //fill the canvas with a color. To create an image with transparent background, you just need to remove the 'fillRect' line
-        canvasContext.fillStyle = 'white';
-        canvasContext.fillRect(0, 0, canvas.width, canvas.height);
         canvasContext.drawImage(imageElement, 0, 0, canvas.width, canvas.height);//insert the SVG image into the canvas. This does the actual rasterization of the image
 
         canvas.toBlob(function (blob) {
-            var linkToDownload = URL.createObjectURL(blob);
-            callback(linkToDownload, filename);
+            callback(blob, filename + '.png');
         });
 
     };
