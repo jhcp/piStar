@@ -428,12 +428,14 @@ joint.shapes.istar.ContributionLink = joint.dia.Link.extend({
         ],
         attrs: {
             '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
-            '.marker-target': {
-                d: 'M 15 0 L 5 5 L 15 5 M 5 5 L 15 10',
-                fill: 'none',
-                'stroke-width': 1.2
-            },
-            '.connection': {fill: 'none'},//necessary in order to prevent filling the curves when saving the image
+            '.connection': {
+                fill: 'none', //necessary in order to prevent filling the curves when saving the image
+                'targetMarker': {
+                    'type': 'path',
+                     'd': 'm 10,-6 l -10,6 10,6',
+                    'fill': 'none',
+                    'stroke': 'black',
+                }},
             '.connection-wrap': {fill: 'none'}//necessary in order to prevent filling the curves when saving the image
         },
         smooth: false
