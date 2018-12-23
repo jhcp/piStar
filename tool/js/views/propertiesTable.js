@@ -77,16 +77,18 @@ uiC.PropertiesTableView = Backbone.View.extend({
         if (this.model.isDependum && this.model.isDependum()) {
             typeNames = [];
             currentType = 0;
-            _.each(istarcoreMetamodel.nodes, function(nodeType, index) {
+            element = this.model;
+            _.forEach(istarcoreMetamodel.nodes, function(nodeType, index) {
                 typeNames.push({value: index, text: nodeType.prefixedName});
-                if (nodeType.prefixedName === this.model.prop('type')) {
+                if (nodeType.prefixedName === element.prop('type')) {
                     currentType = index;
                 }
             }, this);
             this.$table.find('a').editable({
                 source: typeNames,
                 value: currentType,
-                success: function (response, newValue, c) {
+                showbuttons: false,
+                success: function (response, newValue) {
                     updatedElement = ui.getSelectedElement();
                     newType = istarcoreMetamodel.nodes[newValue].prefixedName;
                     updatedElement.prop('type', newType);
@@ -96,9 +98,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
                     //update the line break on the element's label
                     newNode.updateLineBreak();
 
-                    return {newValue: newValue};
-                },
-                showbuttons: 'bottom'
+                }
             })
                 .on('shown', ui.changeStateToEdit)
                 .on('hidden', ui.changeStateToView);
