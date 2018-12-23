@@ -31,6 +31,13 @@ var istar = function () {
             height: 1300,
             model: graph,
             gridSize: 1,
+            linkPinning: false, /*prevents connecting a link to a point outside of an element*/
+            defaultConnector: {
+                name: 'rounded',
+                args: {
+                    radius: 10
+                }
+            }
             //async: true,
             //linkConnectionPoint: joint.util.shapePerimeterConnectionPoint, //connects links to the nodes' shape, rather than their bounding box. Big toll on performance
         });
