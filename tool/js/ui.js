@@ -379,6 +379,7 @@ ui.defineInteractions = function () {
 ui.addElementOnPaper = function (x, y) {
     try {
         newActor = istar['add' + ui.currentAddingElement](x, y);
+        newActor.prop('customProperties/Description', '');
         ui.selectElement(newActor);
     } catch (e) {
         console.log(e);
@@ -390,6 +391,7 @@ ui.addElementOnPaper = function (x, y) {
 ui.addElementOnActor = function (cellView, x, y) {
     try {
         element = addElementInPlace(cellView.model, istar[istar.PREFIX_ADD + ui.currentAddingElement], x, y);
+        element.prop('customProperties/Description', '');
         ui.selectElement(element);
     } catch (e) {
         console.log(e);
@@ -473,6 +475,7 @@ function addDependency(source, dependencyType, target) {
 
         ui.setupDependencyRemoval(links);
 
+        node.prop('customProperties/Description', '');
         ui.selectElement(node);
     }
 }
