@@ -346,7 +346,7 @@ kbd {
 }
 
 /*   Sidepanel resizing  */
-#sidepanel .size-options {
+#regular-size-options {
   float: right;
   font-size: 1.7rem;
   font-weight: 900;
@@ -354,58 +354,59 @@ kbd {
   transition: opacity 0.25s ease-in-out;
 }
 
-#sidepanel:not(.collapsed) .size-options {
+#sidepanel:not(.collapsed) #regular-size-options {
   opacity: 0.0;
 }
 
-#sidepanel .size-options a {
+#regular-size-options a {
   color: #246B29;
   text-decoration: none;
 }
 
-.collapsed .collapse-sidepanel-button {
+.collapsed #regular-size-options {
   display: none;
+}
+#sidepanel.collapsed #regular-size-options {
+  padding: 0;
 }
 
 #sidepanel.collapsed {
   overflow: hidden;
 }
 
-.collapsed .expand-sidepanel-button {
-  color: white;
+
+.collapsed .collapsed-size-options-area {
   display: block;
   min-height: 1500px; /* hack to make the button fill the entire sidepanel */
   min-width: 500px;   /* hack to make the button fill the entire sidepanel */
   text-align: left;
 }
 
-#sidepanel:not(.collapsed) .collapsed-expand-sidepanel-button {
+#sidepanel:not(.collapsed) #collapsed-size-options {
   display: none;
 }
 
-.collapsed-expand-sidepanel-button {
-  color: #246B29;
+#collapsed-size-options-button {
   display: block;
   font-size: 1.7rem;
   font-weight: 900;
   text-align: center;
-  pointer-events: none;
-  position: absolute;
   width: 2vw;
 }
 
-#sidepanel.collapsed .size-options {
-  padding: 0;
+#collapsed-size-options-button a{
+  color: #246B29;
+  text-decoration: none;
 }
 
-.full .expand-sidepanel-button {
+.full .uncollapsed-expand-sidepanel-button {
   display: none;
 }
 
 .collapsed .sidepanel-content, .collapsed  ul {
   display: none;
 }
-#sidepanel:hover .size-options {
+#sidepanel:hover #regular-size-options {
   opacity: 1.0;
 }
 

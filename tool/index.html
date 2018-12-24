@@ -182,11 +182,17 @@
 
 <div id="workspace">
   <div id="sidepanel" class="size2">
-    <div class="size-options">
+    <div id="regular-size-options">
       <a href="#" class="collapse-sidepanel-button" title="Collapse panel">-</a>
-      <a href="#" class="expand-sidepanel-button" title="Expand panel">+</a>
+      <a href="#" id="uncollapsed-expand-sidepanel-button" class="expand-sidepanel-button" title="Expand panel">+</a>
     </div>
-    <div class="collapsed-expand-sidepanel-button">+</div>
+    <div id="collapsed-size-options" class="expand-sidepanel-button" title="click to expand this sidepanel">
+      <div id="collapsed-size-options-button">
+        <a href="#">+</a>
+      </div>
+      <a href="#" class="collapsed-size-options-area"></a>
+    </div>
+
 
     <ul class="nav nav-tabs" role="tablist">
       <li role="presentation" class="active" id="sidepanel-tab-properties"><a href="#subpanel-properties" aria-controls="subpanel-properties" role="tab" data-toggle="tab">Properties</a></li>

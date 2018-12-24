@@ -1016,9 +1016,3 @@ ui.setupElementResizing = function () {
         );
     });
 };
-
-
-
-
-
-
