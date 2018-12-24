@@ -403,7 +403,7 @@ var istar = function () {
                     position: {x: x, y: y},
                 });
             }
-            node.prop('name', originalContent);
+            node.prop('name', originalContent || clearTypeName);
             node.attr('text/text', content);
             node.prop('type', typeName);
             node.prop('originalSize', node.prop('size')); //stores the initial size of the element
