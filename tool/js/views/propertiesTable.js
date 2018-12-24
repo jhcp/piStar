@@ -15,6 +15,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
         this.renderElementName();
         this.setupElementNameEditing();
 
+        this.renderElementType();
+        this.setupElementTypeEditing();
+
         for (var propertyName in this.model.prop('customProperties')) {
             this.renderCustomProperty(propertyName);
             this.setupCustomPropertyEditing(propertyName);
@@ -23,10 +26,18 @@ uiC.PropertiesTableView = Backbone.View.extend({
         this.setupAddPropertyButton();
 
         this.clearOptionsPanel();
-        if (this.model.isKindOfActor()) {
+        if (this.model.isKindOfActor && this.model.isKindOfActor()) {
             this.setupCollapseExpandButton();
         }
+        this.setupDeleteButton();
         this.setupOptionsPanel();
+
+        if ($.trim($('#cell-actions').html())) {
+            $('#sidepanel-title-actions').show();
+        }
+        else {
+            $('#sidepanel-title-actions').hide();
+        }
 
         return this;
     },
@@ -34,13 +45,33 @@ uiC.PropertiesTableView = Backbone.View.extend({
     renderElementName: function () {
         this.$table.find('tbody').html(this.template({
             propertyName: 'Name',
-            propertyValue: this.model.prop('name')
+            propertyValue: this.model.prop('name'),
+            dataType: 'textarea'
         }));
+    },
+    renderElementType: function () {
+        if (this.model.prop('type')) {
+            if (this.model.isDependum && this.model.isDependum()) {
+                this.$table.find('tbody').append(this.template({
+                    propertyName: 'Type',
+                    propertyValue: this.model.prop('type'),
+                    dataType: 'select'
+                }));
+            }
+        }
     },
     setupElementNameEditing: function () {
         this.$table.find('a').editable({
             success: function (response, newValue) {
-                var updatedElement = ui.getSelectedElement().changeNodeContent(newValue);
+                var updatedElement = ui.getSelectedElement()
+                if (updatedElement.changeNodeContent) {
+                  //if it is a istar element
+                  updatedElement.changeNodeContent(newValue);
+                }
+                else {
+                  //if it is a istar model (graph)
+                  updatedElement.prop('name', newValue);
+                }
 
                 return {newValue: updatedElement.prop('name')};
             },
@@ -48,6 +79,42 @@ uiC.PropertiesTableView = Backbone.View.extend({
         })
             .on('shown', ui.changeStateToEdit)
             .on('hidden', ui.changeStateToView);
+    },
+    setupElementTypeEditing: function () {
+        if (this.model.isDependum && this.model.isDependum()) {
+            typeNames = [];
+            currentType = 0;
+            element = this.model;
+            _.forEach(istarcoreMetamodel.nodes, function(nodeType, index) {
+                typeNames.push({value: index, text: nodeType.prefixedName});
+                if (nodeType.prefixedName === element.prop('type')) {
+                    currentType = index;
+                }
+            }, this);
+            this.$table.find('a').editable({
+                source: typeNames,
+                value: currentType,
+                showbuttons: false,
+                success: function (response, newValue) {
+                    updatedElement = ui.getSelectedElement();
+                    newType = istarcoreMetamodel.nodes[newValue].prefixedName;
+                    updatedElement.prop('type', newType);
+                    newNode = istar.replaceNode(updatedElement, istarcoreMetamodel.nodes[newValue].prefixedName)
+                        .prop('isDependum', true);
+                    ui.selectElement(newNode);
+                    //update the line break on the element's label
+                    newNode.updateLineBreak();
+
+                }
+            })
+                .on('shown', ui.changeStateToEdit)
+                .on('hidden', ui.changeStateToView);
+        }
+        // else {
+        //     this.$table.find('a').editable({
+        //         disabled: true,
+        //     });
+        // }
     },
     setupAddPropertyButton: function () {
         $('#add-property-button-area').html('<a href="#" id="add-property-button" class="property-add" data-type="text" data-pk="1"           data-name="name" data-title="Enter description" data-placeholder="ahhhh" title="Add a new property to this element">        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>        Add Property</a>');
@@ -82,18 +149,32 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     clearOptionsPanel: function () {
-      $('#cell-collapse-options').html('');
+        $('#cell-actions').html('');
     },
     setupCollapseExpandButton: function () {
-        $('#cell-collapse-options').append('<a id="collapseButton" class="btn btn-default btn-xs button-horizontal">Collapse/Expand</a><br>');
-        //$('#cell-collapse-options').append('<button type="button" id="collapseButton">Collapse/Expand</button><br>');
-        $('#collapseButton').click(function () {
+        $('#cell-actions').append(
+            '<a id="collapse-expand-actor-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: alt+click the actor">Collapse/Expand</a><br>'
+        );
+        $('#collapse-expand-actor-button').click(function () {
             if (ui.getSelectedElement()) {
                 ui.hideSelection();//remove the focus from the actor
                 ui.getSelectedElement().toggleCollapse();
                 ui.showSelection();//give the focus back to actor, now collapsed or expanded
             }
         });
+    },
+    setupDeleteButton: function () {
+        if (ui.getSelectedElement().remove) {
+            $('#cell-actions').append(
+                '<a id="delete-element-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: Delete key">Delete</a><br>'
+            );
+            $('#delete-element-button').click(function () {
+                if (ui.getSelectedElement()) {
+                    ui.getSelectedElement().remove();
+                    ui.selectModel();
+                }
+            });
+        }
     },
     setupOptionsPanel: function () {
       if (this.model.prop('backgroundColor')) {
@@ -105,8 +186,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
     renderCustomProperty: function (propertyName) {
         this.$table.find('tbody').append(this.template({
-            'propertyName': propertyName,
-            'propertyValue': this.model.prop('customProperties/' + propertyName)
+            propertyName: propertyName,
+            propertyValue: this.model.prop('customProperties/' + propertyName),
+            dataType: 'textarea'
         }));
     },
     setupCustomPropertyEditing: function (propertyName) {

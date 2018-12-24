@@ -27,12 +27,6 @@ uiC.AddButtonView = Backbone.View.extend({
             ui.currentButton.end();
         }
         if (this.model.get('precondition')()) {
-            if (this.model.get('name') === 'DependencyLink') {
-                var newType = window.prompt('Select type:\n  g for goal;\n  s for softgoal;\n  t for task;\n  r for resource.', 'g');
-                if (newType !== null) {
-                    ui.dependencyType = newType;
-                }
-            }
             this.model.act();
             ui.changeStatus(this.model.get('statusText'));
         }

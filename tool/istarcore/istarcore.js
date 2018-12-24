@@ -14,17 +14,30 @@
  * @class istar
  */
 var istar = function () {
-
     var _createDefaultGraph = function () {
-        return new joint.dia.Graph();
+        graph = new joint.dia.Graph();
+
+        //Create a new JointJS Cell to store custom data properties of the
+        // model as a whole
+        graph._modelProperties = (new joint.dia.Element()).prop('name', '');
+        graph.prop = graph._modelProperties.prop;
+
+        return graph;
     };
     var _createDefaultPaper = function (graph) {
         return new joint.dia.Paper({
             el: $('#diagram'),
-            width: 1700,
+            width: 2000,
             height: 1300,
             model: graph,
             gridSize: 1,
+            linkPinning: false, /*prevents connecting a link to a point outside of an element*/
+            defaultConnector: {
+                name: 'rounded',
+                args: {
+                    radius: 10
+                }
+            }
             //async: true,
             //linkConnectionPoint: joint.util.shapePerimeterConnectionPoint, //connects links to the nodes' shape, rather than their bounding box. Big toll on performance
         });
@@ -188,6 +201,7 @@ var istar = function () {
         //update the size of the (parent) actor's boundary based on its contents
         //based on a JointJS tutorial: http://www.jointjs.com/tutorial/hierarchy
 
+        parent = parent || this;
         var parentBbox = parent.getBBox();
 
         if (!parent.get('originalPosition')) parent.set('originalPosition', parent.get('position'));
@@ -293,9 +307,10 @@ var istar = function () {
                 }
 
                 var parentId = cell.get('parent');
-                if (!parentId) return;
-                var parent = istar.graph.getCell(parentId);
-                _updateActorBoundary(parent);
+                if (parentId) {
+                    var parent = istar.graph.getCell(parentId);
+                    _updateActorBoundary(parent);
+                }
             });
         },
         /**
@@ -390,10 +405,57 @@ var istar = function () {
                     position: {x: x, y: y},
                 });
             }
-            node.prop('name', originalContent);
+            node.prop('name', originalContent || clearTypeName);
             node.attr('text/text', content);
             node.prop('type', typeName);
+            node.prop('originalSize', node.prop('size')); //stores the initial size of the element
+
             istar.graph.addCell(node);
+            return node;
+        },
+        replaceNode: function (element, typeName) {
+            "use strict";
+            var typePrefix = typeName.substring(0,typeName.lastIndexOf('.'));
+            var typeActualName = typeName.substring(typeName.lastIndexOf('.') + 1);
+            var shape = joint.shapes[typePrefix][typeActualName];
+
+            //create the node and add it to the graph
+            var node = new shape({
+                position: element.prop('position'),
+            });
+
+            //copy the old node properties to the new node
+            node.prop('name', element.prop('name'));
+            node.attr('text/text', element.prop('name'));
+            node.prop('type', typeName);
+            node.prop('originalSize', node.prop('size')); //stores the initial size of the element
+            if (element.prop('size') !== element.prop('originalSize')) {
+                node.prop('size', element.prop('size')); //stores the initial size of the element
+            }
+            node.prop('customProperties', element.prop('customProperties'));
+            //TODO copy style
+
+            istar.graph.addCell(node);
+
+            //change the dependency links from the old node to the new node
+            var nodeId = element.prop('id');
+            var connectedLinks = istar.graph.getConnectedLinks(element);
+            if (connectedLinks[0].prop('source/id') == nodeId) {
+                connectedLinks[0].prop('source/id', node.prop('id'))
+            }
+            if (connectedLinks[1].prop('source/id') == nodeId) {
+                connectedLinks[1].prop('source/id', node.prop('id'))
+            }
+            if (connectedLinks[0].prop('target/id') == nodeId) {
+                connectedLinks[0].prop('target/id', node.prop('id'))
+            }
+            if (connectedLinks[1].prop('target/id') == nodeId) {
+                connectedLinks[1].prop('target/id', node.prop('id'))
+            }
+
+            //remove the old node
+            element.remove();
+
             return node;
         },
         /**
@@ -490,6 +552,37 @@ var istar = function () {
                 });
             }
             istar.graph.addCell(link2);
+
+
+
+
+            console.log('remove from here');
+            link1.attr('label/atConnectionRatio', 0.50);
+            var verticesTool = new joint.linkTools.Vertices({snapRadius: 1});
+            var removeButton = new joint.linkTools.Remove();
+            var toolsView = new joint.dia.ToolsView({tools: [verticesTool, removeButton]});
+            link1.findView(istar.paper).addTools(toolsView).hideTools();
+            istar.paper.on('link:mouseenter', function(linkView) {
+                linkView.showTools();
+                linkView.model.attr('connection-wrap/strokeWidth', 20);
+                linkView.model.attr('connection-wrap/stroke', 'lightgrey');
+            });
+            istar.paper.on('link:pointerup', function(linkView) {
+                ui.selectElement(linkView.model, linkView);
+            });
+            link1.on('change:vertices', function(linkModel) {
+                ui.clearSelection();
+                ui.selectElement(linkModel, linkModel.findView(istar.paper));
+            });
+            istar.paper.on('link:mouseleave', function(linkView) {
+                linkView.hideTools();
+                linkView.model.attr('connection-wrap/stroke', 'transparent');
+            });
+
+
+            link2.attr('label/atConnectionRatio', 0.50);
+
+
             _updateLinkLabelRotation(link2, dependum, dependee);
 
             link1.prop('otherHalf', link2);
@@ -548,6 +641,7 @@ var istar = function () {
             prototype.uncollapse = _uncollapse;
             prototype.toggleCollapse = _toggleCollapse;
             prototype.embedNode = _embedNode;
+            prototype.updateBoundary = _updateActorBoundary;
         },
         createLabeledNodeLinkFunctions: function (prototype) {
             prototype.getContributionType = _getNodeLinkLabel;

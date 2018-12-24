@@ -261,6 +261,8 @@ modeling language and tool
   - TBD
 </details>
 
+<details><summary>
+
 **As a** modeler 
 **I want to** add custom attributes to multiple elements at once
  **so that** I can save time when creating my models</summary>
@@ -268,3 +270,47 @@ modeling language and tool
   - TBD
 </details>
 
+<details><summary>
+
+**As a** modeler 
+**I want to** copy elements from my model
+ **so that** TBD</summary>
+- *Notes*:
+  - TBD
+</details>
+
+<details><summary>
+
+**As a** modeler 
+**I want to** resize my elements
+ **so that** their text do not go outside the element's shape </summary>
+- *Notes*:
+  - TBD
+</details>
+
+<details><summary>
+
+**As a** modeler 
+**I want to** customize the look of my elements
+ **so that** TBD </summary>
+- *Notes*:
+  - TBD
+</details>
+
+<details><summary>
+
+**As a** modeler 
+**I want to** be able to undo my recent actions
+ **so that** I can correct any accident </summary>
+- *Notes*:
+  - TBD
+</details>
+
+<details><summary>
+
+**As a** modeler 
+**I want to** be able to delete custom properties
+ **so that** I can remove data that is no longer needed </summary>
+- *Notes*:
+  - TBD
+</details>

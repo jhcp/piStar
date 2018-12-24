@@ -35,8 +35,6 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 }
 
 function savePng(paperId, callback, filename, resolutionFactor) {
-
-
     //create a canvas, which is used to convert the SVG to png
     var canvas = document.createElement('canvas');
     var canvasContext = canvas.getContext('2d');
@@ -53,14 +51,10 @@ function savePng(paperId, callback, filename, resolutionFactor) {
     imageElement.onload = function () {
         canvas.width = imageElement.width * resolutionFactor; //multiply the width for better resolution
         canvas.height = imageElement.height * resolutionFactor; //multiply the height for better resolution
-        //fill the canvas with a color. To create an image with transparent background, you just need to remove the 'fillRect' line
-        canvasContext.fillStyle = 'white';
-        canvasContext.fillRect(0, 0, canvas.width, canvas.height);
         canvasContext.drawImage(imageElement, 0, 0, canvas.width, canvas.height);//insert the SVG image into the canvas. This does the actual rasterization of the image
 
         canvas.toBlob(function (blob) {
-            var linkToDownload = URL.createObjectURL(blob);
-            callback(linkToDownload, filename);
+            callback(blob, filename + '.png');
         });
 
     };
@@ -72,6 +66,14 @@ function saveModel() {
     var diagram = {width: 1300, height: 1300};
     diagram.width = istar.paper.getArea().width;
     diagram.height = istar.paper.getArea().height;
+    if (istar.graph.prop('name')) {
+      diagram.name = istar.graph.prop('name');
+    }
+    var customPropertiesJSON = fileManager.getCustomPropertiesJSON(istar.graph);
+    if (customPropertiesJSON) {
+      diagram.customProperties = customPropertiesJSON;
+    }
+
     var date = new Date().toGMTString();
 
     var modelJSON = {
@@ -113,8 +115,27 @@ function saveModel() {
             dependency.source = istar.graph.getConnectedLinks(element, {inbound: true})[0].attributes.source.id;
             dependency.target = istar.graph.getConnectedLinks(element, {outbound: true})[0].attributes.target.id;
 
+            // if (element.prop('backgroundColor')) {
+            //   modelJSON.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
+            // }
+
+            var display = {};
+            var needToSaveDisplay = false;
             if (element.prop('backgroundColor')) {
-              modelJSON.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
+                display.backgroundColor = element.prop('backgroundColor');
+                needToSaveDisplay = true;
+            }
+            if (element.prop('size/width') !== element.prop('originalSize/width')) {
+                display.width = element.prop('size/width');
+                needToSaveDisplay = true;
+            }
+            if (element.prop('size/height') !== element.prop('originalSize/height')) {
+                display.height = element.prop('size/height');
+                needToSaveDisplay = true;
+            }
+
+            if (needToSaveDisplay === true) {
+                modelJSON.display[[element.id]] = display;
             }
 
             modelJSON.dependencies.push(dependency);
@@ -149,6 +170,8 @@ function loadModel(inputRaw) {
         this.changedModel = true;
 
         ui.clearDiagram();
+        istar.graph.prop('name', '');
+        istar.graph.prop('customProperties/Description', '');
         try {
             var inputModel = $.parseJSON(inputRaw);
         } catch (e) {
@@ -159,6 +182,10 @@ function loadModel(inputRaw) {
         if (inputModel.diagram) {
             if (inputModel.diagram.width && inputModel.diagram.height) {
                 istar.paper.setDimensions(inputModel.diagram.width, inputModel.diagram.height);
+            }
+            istar.graph.prop('name', inputModel.diagram.name);
+            if (inputModel.diagram.customProperties) {
+              istar.graph.prop('customProperties', inputModel.diagram.customProperties)
             }
         }
 
@@ -171,14 +198,36 @@ function loadModel(inputRaw) {
                 for (var j = 0; j < actor.nodes.length; j++) {
                     var child = fileManager.addLoadedElement(actor.nodes[j]);
                     if (child) {
-                      if (inputModel.display && inputModel.display[actor.nodes[j].id] && inputModel.display[actor.nodes[j].id].backgroundColor) {
-                          ui.changeColorElement(inputModel.display[actor.nodes[j].id].backgroundColor, child);
-                      }
-                      parent.embedNode(child);
+                        if (inputModel.display && inputModel.display[actor.nodes[j].id]) {
+                            size = {};
+                            if (inputModel.display[actor.nodes[j].id].backgroundColor) {
+                                ui.changeColorElement(inputModel.display[actor.nodes[j].id].backgroundColor, child);
+                            }
+                            if (inputModel.display[actor.nodes[j].id].width) {
+                                size.width = inputModel.display[actor.nodes[j].id].width;
+                            }
+                            if (inputModel.display[actor.nodes[j].id].height) {
+                                size.height = inputModel.display[actor.nodes[j].id].height;
+                            }
+                            if (size.width || size.height) {
+                                size.width = size.width || child.prop('size/width');
+                                size.height = size.height || child.prop('size/height');
+                                child.resize(size.width, size.height);
+                                child.updateLineBreak();
+                            }
+
+
+                        }
+                        parent.embedNode(child);
                     }
                 }
                 if (inputModel.display && inputModel.display[actor.id]) {
-                    toCollapse.push(parent);
+                    if (inputModel.display[actor.id].collapsed) {
+                        toCollapse.push(parent);
+                    }
+                    if (inputModel.display[actor.id].backgroundColor) {
+                        ui.changeColorElement(inputModel.display[actor.id].backgroundColor, parent);
+                    }
                 }
             }
 
@@ -207,9 +256,32 @@ function loadModel(inputRaw) {
                     }
                 }
 
+                if (ui) {
+                    ui.setupDependencyRemoval(links);
+                }
+
                 dependum.prop('position/x', element.x);
                 dependum.prop('position/y', element.y);
-                // treat as dependum
+
+                if (inputModel.display[element.id]) {
+                    size = {};
+                    if (inputModel.display[element.id].backgroundColor) {
+                        ui.changeColorElement(inputModel.display[element.id].backgroundColor, dependum);
+                    }
+                    if (inputModel.display[element.id].width) {
+                        size.width = inputModel.display[element.id].width;
+                    }
+                    if (inputModel.display[element.id].height) {
+                        size.height = inputModel.display[element.id].height;
+                    }
+                    if (size.width || size.height) {
+                        size.width = size.width || child.prop('size/width');
+                        size.height = size.height || child.prop('size/height');
+                        dependum.resize(size.width, size.height);
+                        dependum.updateLineBreak();
+                    }
+                }
+
             }
 
             //create links
@@ -350,11 +422,24 @@ fileManager = {
         _.each(element.getEmbeddedCells(), function (element) {
             if (element.isKindOfInnerElement()) {
                 var node = fileManager.elementToJSON(element);
-
+                var display = {};
+                var needToSaveDisplay = false;
                 if (element.prop('backgroundColor')) {
-                  result.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
+                    display.backgroundColor = element.prop('backgroundColor');
+                    needToSaveDisplay = true;
+                }
+                if (element.prop('size/width') !== element.prop('originalSize/width')) {
+                    display.width = element.prop('size/width');
+                    needToSaveDisplay = true;
+                }
+                if (element.prop('size/height') !== element.prop('originalSize/height')) {
+                    display.height = element.prop('size/height');
+                    needToSaveDisplay = true;
                 }
 
+                if (needToSaveDisplay === true) {
+                    result.display[[element.id]] = display;
+                }
                 result.nodes.push(node);
             }
         });

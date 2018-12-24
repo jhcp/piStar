@@ -26,14 +26,14 @@
 <div id="tool">
 <div class="menu-bar">
   <div id="logo">
-    <img src="images/cake.svg" width="21" height="21" alt=""/>
-    <img id="star" src="images/five-pointed-star.svg" width="11" height="11" alt=""/>
+    <img src="images/logo-pie.svg" width="21" height="21" title="a pie" alt=""/>
+    <img id="star" src="images/logo-star.svg" width="12" height="12" title="a star" alt=""/>
     piStar
   </div>
   <nav class="menu-items">
     <a class="menu-item" href="#" id="menu-item-file" data-toggle="menu-file">File</a>
     <a class="menu-item active" href="#" id="menu-item-add" data-toggle="menu-add">Add</a>
-    <a class="menu-item" href="#" id="menu-item-diagram" data-toggle="menu-diagram">Diagram's Look & Feel</a>
+    <a class="menu-item" href="#" id="menu-item-diagram" data-toggle="menu-diagram">Options</a>
     <a class="menu-item" href="#" id="menu-item-help" data-toggle="menu-help">Help</a>
   </nav>
 </div>
@@ -54,7 +54,6 @@
           <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span><br>
           Save Model
         </a>
-        <button class="btn btn-default" id="placeholder-save-model"></button>
 
         <a class="btn btn-default button-vertical" id="menu-button-load-model" data-toggle="modal" data-target="#modal-load-model"
                 title="Load a previously saved model">
@@ -183,14 +182,21 @@
 
 <div id="workspace">
   <div id="sidepanel" class="size2">
-    <div class="size-options">
+    <div id="regular-size-options">
       <a href="#" class="collapse-sidepanel-button" title="Collapse panel">-</a>
-      <a href="#" class="expand-sidepanel-button" title="Expand panel">+</a>
+      <a href="#" id="uncollapsed-expand-sidepanel-button" class="expand-sidepanel-button" title="Expand panel">+</a>
+    </div>
+    <div id="collapsed-size-options" class="expand-sidepanel-button" title="click to expand this sidepanel">
+      <div id="collapsed-size-options-button">
+        <a href="#">+</a>
+      </div>
+      <a href="#" class="collapsed-size-options-area"></a>
     </div>
 
+
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#subpanel-properties" aria-controls="subpanel-properties" role="tab" data-toggle="tab">Properties</a></li>
-      <li role="presentation"><a href="#subpanel-style" aria-controls="subpanel-style" role="tab" data-toggle="tab">Style</a></li>
+      <li role="presentation" class="active" id="sidepanel-tab-properties"><a href="#subpanel-properties" aria-controls="subpanel-properties" role="tab" data-toggle="tab">Properties</a></li>
+      <li role="presentation" id="sidepanel-tab-style" style="display: none;"><a href="#subpanel-style" aria-controls="subpanel-style" role="tab" data-toggle="tab">Style</a></li>
     </ul>
 
     <div class="sidepanel-content tab-content">
@@ -204,8 +210,8 @@
         <div id="add-property-button-area">
         </div>
 
-        <div id="cell-options">
-          <div id="cell-collapse-options"></div>
+        <div id="sidepanel-title-actions" class="sidepanel-title">Actions:</div>
+        <div id="cell-actions">
         </div>
 
       </div>
@@ -216,15 +222,15 @@
         <div class="group">
           Color:&nbsp;
           <input id="single-element-color-picker" class="jscolor {hash:true}" value="ccfacd" size="8">
-          <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
-          <!-- <br>Line style:&nbsp;
+          <!-- <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
+          <br>Line style:&nbsp;
           <select>
             <option value="volvo">solid</option>
             <option value="saab">dashed</option>
             <option value="mercedes">dotted</option>
           </select>
           <br>Line thickness:&nbsp;
-          <input type="number" name="quantity" min="1" max="25" value ="2" width="1">
+          <input type="number" name="quantity" min="1" max="25" value ="2">
           <br><input type="checkbox" name="" value=""> shadow
           <br><input type="checkbox" name="" value=""> hand-drawn
           <br><input type="checkbox" name="" value=""> auto-break lines -->
@@ -235,9 +241,14 @@
         <div class="group">
           Color: <input id="single-element-color-picker" class="jscolor {hash:true}" value="000" size="8">
           <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
-          <br><button>B</button><button>I</button><button>U</button>
-          <br>Size: <input type="number" name="quantity" min="1" max="25" value ="12" width="1">
-          <br>Top padding: <input type="number" name="quantity" min="1" max="25" value ="2" width="1">
+          <br><button style="font-weight:1000;">B</button><button style="font-style: italic;">I</button><button style="text-decoration: underline;">U</button><button style="text-decoration: line-through;">S</button>
+          <br>Size: <input type="number" name="quantity" min="1" max="25" value ="12">
+          <br>Top padding: <input type="number" name="quantity" min="1" max="25" value ="2">
+          <br>Letter spacing: <input type="number" name="quantity" min="-10" max="25" value ="0">
+          <br>Word spacing: <input type="number" name="quantity" min="-10" max="25" value ="0">
+          <br>Line height: <input type="number" name="quantity" min="0.1" max="10" value ="1.1" step="0.1">
+          <br><input type="checkbox" name="" value=""> shadow
+          <br><input type="checkbox" name="" value=""> uppercase
         </div> -->
 
       </div>
@@ -245,7 +256,11 @@
   </div>
 
   <div id="out">
-    <div id="diagram"></div>
+    <div class="element-selection" style="display: none;"></div>
+    <div id="resize-handle" style="display: none;"></div>
+    <div id="diagram">
+    </div>
+
   </div>
 
 </div>
@@ -273,7 +288,7 @@
   <tr>
     <th scope="row" class="property-name"><%- propertyName %></th>
     <td class="property-value">
-      <a href="#" id="current<%- propertyName %>" class="property-value" data-type="textarea" data-pk="1"
+      <a href="#" id="current<%- propertyName %>" class="property-value" data-type="<%- dataType %>" data-pk="1"
          data-name="<%- propertyName %>" data-title="Enter <%- propertyName %>"><%- propertyValue %></a>
     </td>
   </tr>
@@ -299,7 +314,7 @@
               <div class="col-sm-10">
                 <div class="checkbox">
                   <label>
-                    <input id="modal-input-precise-links" type="checkbox"> Pixel-perfect links (it may take some seconds)
+                    <input id="modal-input-precise-links" type="checkbox"> Pixel-perfect links (it may take some seconds longer)
                   </label>
                 </div>
               </div>
@@ -326,9 +341,8 @@
         </div>
         <div class="modal-footer">
           <button id="modal-button-save-image" type="button" class="btn btn-primary"
-                  data-save-text="Saving..." data-preciselinks-text="Fixing links...">Save image
+                  data-save-text="Saving..." data-preparing-text="Preparing image... (please wait)">Save image
           </button>
-          <span id="placeholder-save-image"></span>
           <button type="button" class="btn" data-dismiss="modal">Cancel</button>
         </div>
       </div>
@@ -397,7 +411,7 @@
           <ul>
             <li>Press <kbd>F11</kbd> to use the tool in full screen</li>
             <li>To change the name of an element: double-click it.</li>
-            <li>To collapse/expand an actor/role/agent, press <kbd>ctrl</kbd> and click it.</li>
+            <li>To collapse/expand an actor/role/agent, press <kbd>alt</kbd> and click it.</li>
             <li>To add an actor/role/agent in the diagram: click on the ACTOR... button, select the respective option,
               and then click on the diagram.
             </li>
@@ -420,12 +434,12 @@
             <li>To delete a dependency: click on its dependum, then press the <kbd>delete</kbd> key.</li>
             <li>To delete a link: point the mouse over the link, then click on its <em>'X'</em> symbol.</li>
             <li>To add a property to an element: click on the element, then click on the <em>Add Property</em> button in
-              the panel below the diagram.
+              the sidepanel.
             </li>
             <li>TIP: You can use your browser's zoom options (try pressing <kbd>ctrl</kbd> and scrolling your mouse
               wheel).
             </li>
-            <li>You can change the diagram size and other visualization options within the <em>Diagram menu</em></li>
+            <li>You can change the diagram size and other visualization options within the <em>Options</em> menu.</li>
           </ul>
 
           <em>piStar tool version 1.2.0</em><br>
