@@ -201,6 +201,7 @@ var istar = function () {
         //update the size of the (parent) actor's boundary based on its contents
         //based on a JointJS tutorial: http://www.jointjs.com/tutorial/hierarchy
 
+        parent = parent || this;
         var parentBbox = parent.getBBox();
 
         if (!parent.get('originalPosition')) parent.set('originalPosition', parent.get('position'));
@@ -306,9 +307,10 @@ var istar = function () {
                 }
 
                 var parentId = cell.get('parent');
-                if (!parentId) return;
-                var parent = istar.graph.getCell(parentId);
-                _updateActorBoundary(parent);
+                if (parentId) {
+                    var parent = istar.graph.getCell(parentId);
+                    _updateActorBoundary(parent);
+                }
             });
         },
         /**
@@ -608,6 +610,7 @@ var istar = function () {
             prototype.uncollapse = _uncollapse;
             prototype.toggleCollapse = _toggleCollapse;
             prototype.embedNode = _embedNode;
+            prototype.updateBoundary = _updateActorBoundary;
         },
         createLabeledNodeLinkFunctions: function (prototype) {
             prototype.getContributionType = _getNodeLinkLabel;

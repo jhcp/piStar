@@ -1001,6 +1001,9 @@ ui.setupElementResizing = function () {
     ui.stopResizeMouseEvents = function (e) {
         $(window).off('mousemove', ui.resizeHandlerOnMouseMove);
         $(window).off('mouseup', ui.stopResizeMouseEvents);
+        if (ui.getSelectedElement().get('parent')) {
+            istar.graph.getCell(ui.getSelectedElement().get('parent')).updateBoundary();
+        }
     };
 
     $('#resize-handle').mousedown(function (e) {
@@ -1017,5 +1020,8 @@ ui.setupElementResizing = function () {
             ui.getSelectedElement().prop('originalSize/width'),
             ui.getSelectedElement().prop('originalSize/height')
         );
+        if (ui.getSelectedElement().get('parent')) {
+            istar.graph.getCell(ui.getSelectedElement().get('parent')).updateBoundary();
+        }
     });
 };
