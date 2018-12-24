@@ -146,7 +146,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
     setupCollapseExpandButton: function () {
         $('#cell-actions').append(
-            '<a id="collapse-expand-actor-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: ctrl+click the actor">Collapse/Expand</a><br>'
+            '<a id="collapse-expand-actor-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: alt+click the actor">Collapse/Expand</a><br>'
         );
         $('#collapse-expand-actor-button').click(function () {
             if (ui.getSelectedElement()) {

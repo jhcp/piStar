@@ -232,8 +232,8 @@ ui.defineInteractions = function () {
         }
     });
     istar.paper.on('cell:pointerup', function (cellView, evt, x, y) {
-        if (evt.ctrlKey) {
-            //collapse/uncollapse actors when ctrl-clicked
+        if (evt.ctrlKey || evt.altKey) {
+            //collapse/uncollapse actors when alt-clicked
             if (cellView.model.isKindOfActor()) {
                 ui.hideSelection();//remove the focus from the actor
                 cellView.model.toggleCollapse();
