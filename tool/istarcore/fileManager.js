@@ -170,6 +170,8 @@ function loadModel(inputRaw) {
         this.changedModel = true;
 
         ui.clearDiagram();
+        istar.graph.prop('name', '');
+        istar.graph.prop('customProperties/Description', '');
         try {
             var inputModel = $.parseJSON(inputRaw);
         } catch (e) {
