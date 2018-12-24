@@ -302,40 +302,90 @@ joint.shapes.istar.IsALink = joint.dia.Link.extend({
     }, joint.dia.Link.prototype.defaults)
 });
 
-joint.shapes.istar.DependencyLink = joint.dia.Link.extend({
-    defaults: joint.util.deepSupplement({
-        type: 'istar.DependencyLink',
-        toolMarkup: '<g />',//prevents the tool options button from appearing in the saved image
-        arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
-        labels: [
-            {
-                position: 0.5,
-                attrs: {
-                    text: {
-                        text: 'D',
-                        'stroke-width': 2,
-                        'font-size': 24,
-                        'font-family': 'sans-serif',
-                        'font-style': 'normal',
-                    },
-                    rect: {
-                        fill: 'none',
-                    }
-                }
-            }
-        ],
-        //necessary in order to prevent filling the curves when saving the image
-        attrs: {
-            '.connection': {fill: 'none'},
-            '.connection-wrap': {fill: 'none'},
-            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
-            '.marker-target': {d: '',}, //required in order to have correct fitToContent behavior
+// joint.shapes.istar.DependencyLink = joint.dia.Link.extend({
+//     defaults: joint.util.deepSupplement({
+//         type: 'istar.DependencyLink',
+//         toolMarkup: '<g />',//prevents the tool options button from appearing in the saved image
+//         arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
+//         labels: [
+//             {
+//                 position: 0.5,
+//                 attrs: {
+//                     text: {
+//                         text: 'D',
+//                         'stroke-width': 2,
+//                         'font-size': 24,
+//                         'font-family': 'sans-serif',
+//                         'font-style': 'normal',
+//                     },
+//                     rect: {
+//                         fill: 'none',
+//                     }
+//                 }
+//             }
+//         ],
+//         //necessary in order to prevent filling the curves when saving the image
+//         attrs: {
+//             '.connection': {
+//                 fill: 'none',
+//             },
+//             'targetMarker': {
+//                 'type': 'path',
+//                 'd': 'm 10,-6 l -10,6 10,6',
+//                 'fill': 'none',
+//                 'stroke': 'black',
+//             },
+//             '.connection-wrap': {fill: 'none'},
+//             '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
+//             '.marker-target': {d: '',}, //required in order to have correct fitToContent behavior
+//         },
+//         source: {selector: 'text'},
+//         target: {selector: 'text'},
+//         smooth: false
+//     }, joint.dia.Link.prototype.defaults)
+// });
+
+joint.shapes.istar.DependencyLink = joint.dia.Link.define('istar.DependencyLink', {
+    attrs: {
+        line: {
+            connection: true,
+            fill: 'none',
+            stroke: 'black',
+            strokeWidth: 1,
         },
-        source: {selector: 'text'},
-        target: {selector: 'text'},
-        smooth: false
-    }, joint.dia.Link.prototype.defaults)
-});
+        'connection-wrap': {
+            connection: true,
+            fill: 'none',
+            stroke: 'transparent',
+            strokeWidth: 20,
+        },
+        label: {
+            d: 'm 0,-10 l 0,20 4,0 c 10,0, 10 -20, 0,-20 l -4,0',
+            // d: 'm 0,-10 l 0,20 c 15,2, 15 -22, 0,-20',
+            // d: 'm 0,-10 l 0,20 q 15 -10, 0,-20',
+            stroke: 'black',
+            'stroke-width': 2,
+            fill: 'white'
+            // fill: 'none'
+        }
+    }
+},
+{
+    markup: [
+        {
+            tagName: 'path',
+            selector: 'connection-wrap'
+        },
+        {
+            tagName: 'path',
+            selector: 'line'
+        },
+        {
+            tagName: 'path',
+            selector: 'label'
+        }]
+}
+);
 
 joint.shapes.istar.AndRefinementLink = joint.dia.Link.extend({
     defaults: joint.util.deepSupplement({

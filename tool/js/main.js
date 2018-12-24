@@ -4,4 +4,6 @@ $(document).ready(function () {
     istar.setupMetamodel(istarcoreMetamodel);
     ui.setupUi();
     istar.examples.loadPistarWelcome();
+
+    ui.selectElement(istar.graph);
 });

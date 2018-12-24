@@ -552,6 +552,37 @@ var istar = function () {
                 });
             }
             istar.graph.addCell(link2);
+
+
+
+
+            console.log('remove from here');
+            link1.attr('label/atConnectionRatio', 0.50);
+            var verticesTool = new joint.linkTools.Vertices({snapRadius: 1});
+            var removeButton = new joint.linkTools.Remove();
+            var toolsView = new joint.dia.ToolsView({tools: [verticesTool, removeButton]});
+            link1.findView(istar.paper).addTools(toolsView).hideTools();
+            istar.paper.on('link:mouseenter', function(linkView) {
+                linkView.showTools();
+                linkView.model.attr('connection-wrap/strokeWidth', 20);
+                linkView.model.attr('connection-wrap/stroke', 'lightgrey');
+            });
+            istar.paper.on('link:pointerup', function(linkView) {
+                ui.selectElement(linkView.model, linkView);
+            });
+            link1.on('change:vertices', function(linkModel) {
+                ui.clearSelection();
+                ui.selectElement(linkModel, linkModel.findView(istar.paper));
+            });
+            istar.paper.on('link:mouseleave', function(linkView) {
+                linkView.hideTools();
+                linkView.model.attr('connection-wrap/stroke', 'transparent');
+            });
+
+
+            link2.attr('label/atConnectionRatio', 0.50);
+
+
             _updateLinkLabelRotation(link2, dependum, dependee);
 
             link1.prop('otherHalf', link2);
