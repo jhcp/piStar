@@ -10,16 +10,22 @@ from a task to another task
 that the inserted element is outside the actor
 - Now the user can select whether to save PNG images with high resolution (default) or with original resolution (the same size as seen in the tool)
 - Option to change the background color of individual elements
+- Now every element that is added to the model comes with a "Description" property by default
 - Now users are able to add custom data (custom properties) to the model itself, rather than just to its elements
+- Now users are able to change the type of a dependency (dependum)
 
 ### Changed
 - Revamped UI, with collapsable toolbars menu on the top and collapsable panel on the left (for element/link specific content). This repositioning aims to address the complaint of having to scroll
 up and down in order to use the tool functionalities. The collapsability allows to increase the diagram view when desired
 - Elements can now be deleted with either the 'delete' or 'backspace' key, in order to make it easier for Mac users to
 delete elements (in Mac OS the 'delete' key behaves as 'backspace')
-- Changes have been made to conform to [Google's HTML and CSS style guide](https://google.github.io/styleguide/htmlcssguide.html). Notably, HTML elements have been renamed
+- Changes have been made in the code to conform to [Google's HTML and CSS style guide](https://google.github.io/styleguide/htmlcssguide.html). Notably, HTML elements have been renamed
 from CamelCase to snake-case. E.g.: addButton -> add-button
 - jQuery (dependency) updated to v3.*
+- JointJS (dependency) update to v2.2.0, along with its dependencies (BacjboneJS and lodash)
+- when saving the model as a PNG image, now its background is transparent
+- Links are now rounded by default when they have vertices.
+Except for depedency links and contribution links, which are curved
 
 ### Removed
 - Aiming to save bandwidth, the following CSS styles that are not likely to be used in the context of this tool have

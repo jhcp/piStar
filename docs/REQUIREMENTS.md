@@ -305,3 +305,12 @@ modeling language and tool
 - *Notes*:
   - TBD
 </details>
+
+<details><summary>
+
+**As a** modeler 
+**I want to** be able to delete custom properties
+ **so that** I can remove data that is no longer needed </summary>
+- *Notes*:
+  - TBD
+</details>
