@@ -32,6 +32,13 @@ uiC.PropertiesTableView = Backbone.View.extend({
         this.setupDeleteButton();
         this.setupOptionsPanel();
 
+        if ($.trim($('#cell-actions').html())) {
+            $('#sidepanel-title-actions').show();
+        }
+        else {
+            $('#sidepanel-title-actions').hide();
+        }
+
         return this;
     },
 
@@ -157,15 +164,17 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     setupDeleteButton: function () {
-        $('#cell-actions').append(
-            '<a id="delete-element-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: Delete key">Delete</a><br>'
-        );
-        $('#delete-element-button').click(function () {
-            if (ui.getSelectedElement()) {
-                ui.getSelectedElement().remove();
-                ui.selectModel();
-            }
-        });
+        if (ui.getSelectedElement().remove) {
+            $('#cell-actions').append(
+                '<a id="delete-element-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: Delete key">Delete</a><br>'
+            );
+            $('#delete-element-button').click(function () {
+                if (ui.getSelectedElement()) {
+                    ui.getSelectedElement().remove();
+                    ui.selectModel();
+                }
+            });
+        }
     },
     setupOptionsPanel: function () {
       if (this.model.prop('backgroundColor')) {
