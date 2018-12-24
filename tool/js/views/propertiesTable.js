@@ -46,7 +46,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
         this.$table.find('tbody').html(this.template({
             propertyName: 'Name',
             propertyValue: this.model.prop('name'),
-            dataType: 'textarea'
+            dataType: 'text'
         }));
     },
     renderElementType: function () {
@@ -62,6 +62,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
     setupElementNameEditing: function () {
         this.$table.find('a').editable({
+            showbuttons: 'bottom',
             success: function (response, newValue) {
                 var updatedElement = ui.getSelectedElement()
                 if (updatedElement.changeNodeContent) {
@@ -74,8 +75,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 }
 
                 return {newValue: updatedElement.prop('name')};
-            },
-            showbuttons: 'bottom'
+            }
         })
             .on('shown', ui.changeStateToEdit)
             .on('hidden', ui.changeStateToView);
@@ -92,9 +92,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 }
             }, this);
             this.$table.find('a').editable({
-                source: typeNames,
-                value: currentType,
                 showbuttons: false,
+                source: typeNames,
                 success: function (response, newValue) {
                     updatedElement = ui.getSelectedElement();
                     newType = istarcoreMetamodel.nodes[newValue].prefixedName;
@@ -104,8 +103,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
                     ui.selectElement(newNode);
                     //update the line break on the element's label
                     newNode.updateLineBreak();
-
-                }
+                },
+                value: currentType
             })
                 .on('shown', ui.changeStateToEdit)
                 .on('hidden', ui.changeStateToView);
@@ -193,12 +192,12 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
     setupCustomPropertyEditing: function (propertyName) {
         $('#current' + propertyName).editable({
+                showbuttons: 'bottom',
                 success: function (response, newValue) {
                     //update backbone model
                     var updatedElement = changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue);
                     return {newValue: updatedElement.prop('customProperties/' + propertyName)};
-                },
-                showbuttons: 'bottom'
+                }
             }
         )
             .on('shown', ui.changeStateToEdit)

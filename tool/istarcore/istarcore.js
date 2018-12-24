@@ -21,6 +21,8 @@ var istar = function () {
         // model as a whole
         graph._modelProperties = (new joint.dia.Element()).prop('name', '');
         graph.prop = graph._modelProperties.prop;
+        graph.isElement = function(){return false;};
+        graph.isLink = function(){return false;};
 
         return graph;
     };

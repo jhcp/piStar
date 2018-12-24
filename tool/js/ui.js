@@ -76,7 +76,12 @@ var ui = function() {
                     elementView = elementView || istar.paper.findViewByModel(element);
                     istar.paper.trigger('change:selection', {selectedElement: element, selectedElementView: elementView});
                 }
-                $('#sidepanel-tab-style').show();
+                if (element.isElement()) {
+                  $('#sidepanel-tab-style').show();
+                }
+                else {
+                  $('#sidepanel-tab-style').hide();
+                }
             }
         },
         deselectElement: function(element, elementView) {
@@ -138,7 +143,7 @@ ui.highlightFocus = function (cellView) {
         $('.element-selection').show();
 
         //positioning and display  of the resizing handle, when applicable
-        if (! cellView.model.isKindOfActor()) {
+        if (! cellView.model.isKindOfActor() && cellView.model.isElement()) {
             $('#resize-handle').css({left: elementBox.x - 4 + elementBox.width, top: elementBox.y - 4 + elementBox.height});
             $('#resize-handle').show();
         }
