@@ -248,10 +248,22 @@ function loadModel(inputRaw) {
                         if (inputModel.display && inputModel.display[linkJSON.id] && inputModel.display[linkJSON.id].vertices) {
                             links[0].set('vertices', inputModel.display[linkJSON.id].vertices);
                         }
+                        if (linkJSON.name) {
+                            links[0].prop('name', linkJSON.name);
+                        }
+                        if (linkJSON.customProperties) {
+                            links[0].prop('customProperties', linkJSON.customProperties);
+                        }
                     }
                     if (linkJSON.source === element.id) {
                         if (inputModel.display && inputModel.display[linkJSON.id] && inputModel.display[linkJSON.id].vertices) {
                             links[1].set('vertices', inputModel.display[linkJSON.id].vertices);
+                        }
+                        if (linkJSON.name) {
+                            links[1].prop('name', linkJSON.name);
+                        }
+                        if (linkJSON.customProperties) {
+                            links[1].prop('customProperties', linkJSON.customProperties);
                         }
                     }
                 }
@@ -287,10 +299,7 @@ function loadModel(inputRaw) {
             //create links
             for (i = 0; i < inputModel.links.length; i++) {
                 var linkJSON = inputModel.links[i];
-                if (fileManager.isDependencyLink(linkJSON)) {
-                    //fileManager.addDependencyLink(inputModel.links[i]);
-                }
-                else {
+                if (! fileManager.isDependencyLink(linkJSON)) {
                     var newLink = fileManager.addLoadedLink(linkJSON);
                     if (inputModel.display && inputModel.display[linkJSON.id] && inputModel.display[linkJSON.id].vertices) {
                         newLink.set('vertices', inputModel.display[linkJSON.id].vertices);
@@ -335,6 +344,9 @@ fileManager = {
                 targetObject = istar.graph.getCell(linkJSON.target);
                 var newLink = istar['add' + typeWithoutPrefix](sourceObject, targetObject, linkJSON.label);
 
+                if (linkJSON.name) {
+                    newLink.prop('name', linkJSON.name);
+                }
                 if (linkJSON.customProperties) {
                     newLink.prop('customProperties', linkJSON.customProperties);
                 }
@@ -360,44 +372,6 @@ fileManager = {
         }
         return result;
     },
-    addDependencyLink: function (linkJSON, dependum) {
-        if (linkJSON.id && linkJSON.type && linkJSON.source && linkJSON.target) {
-            var typeWithoutPrefix = linkJSON.type.split('.')[1];
-            if (istar['add' + typeWithoutPrefix]) {
-                sourceObject = istar.graph.getCell(linkJSON.source);
-                targetObject = istar.graph.getCell(linkJSON.target);
-                var newLink = istar.addDependencyLink(sourceObject, targetObject);
-                if (linkJSON.customProperties) {
-                    newLink.prop('customProperties', linkJSON.customProperties);
-                }
-                return newLink;
-            }
-            else {
-                var errorMessage = 'Unknown link type: ' + linkJSON.type + '.';
-                console.log(errorMessage);
-                alert(errorMessage);
-            }
-        }
-    },
-    addDependencyLink2: function (linkJSON) {
-        if (linkJSON.id && linkJSON.type && linkJSON.source && linkJSON.target) {
-            var typeWithoutPrefix = linkJSON.type.split('.')[1];
-            if (istar['add' + typeWithoutPrefix]) {
-                sourceObject = istar.graph.getCell(linkJSON.source);
-                targetObject = istar.graph.getCell(linkJSON.target);
-                var newLink = istar.addOneSideOfDependencyLink(sourceObject, targetObject);
-                if (linkJSON.customProperties) {
-                    newLink.prop('customProperties', linkJSON.customProperties);
-                }
-                return newLink;
-            }
-            else {
-                var errorMessage = 'Unknown link type: ' + linkJSON.type + '.';
-                console.log(errorMessage);
-                alert(errorMessage);
-            }
-        }
-    },
     elementToJSON: function (element) {
         var text = element.prop('name');
         var result = {
@@ -413,8 +387,8 @@ fileManager = {
 
         return result;
     },
-    getCustomPropertiesJSON: function (element) {
-        return element.prop('customProperties');
+    getCustomPropertiesJSON: function (cell) {
+        return cell.prop('customProperties');
     },
     childrenToJSON: function (element) {
         var result = {nodes: [], display: {}};
@@ -447,12 +421,18 @@ fileManager = {
         return result;
     },
     linkToJSON: function (link) {
-        return {
+        result = {
             id: link.id,
             type: link.prop('type'),
             source: link.attributes.source.id,
             target: link.attributes.target.id,
         };
+        if (link.prop('name')) {
+            result.name = link.prop('name');
+        }
+        var customPropertiesJSON = fileManager.getCustomPropertiesJSON(link);
+        if (customPropertiesJSON) result.customProperties = customPropertiesJSON;
+        return result;
     },
     outputSavedModel: function (modelJson, newTab) {
         var stringifiedModel = JSON.stringify(modelJson, null, 2);
