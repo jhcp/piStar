@@ -143,7 +143,8 @@ var istarcoreMetamodel = {
                 result = result && (source.attributes.parent === target.attributes.parent);
                 return result;
             },
-            'changeableLabel': true
+            'changeableLabel': true,
+            'possibleLabels': ['make', 'help', 'hurt', 'break']
         },
         {
             'name': 'QualificationLink',

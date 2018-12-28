@@ -153,21 +153,11 @@ var istar = function () {
             this.collapse();
         }
     };
-    var _getNodeLinkLabel = function () {
-        "use strict";
-        return this.label(0).attrs.text.text;
-    };
-    _setNodeLinkLabel = function (value) {
+    var _setNodeLinkLabel = function (value) {
         "use strict";
         this.label(0, {attrs: {text: {text: '' + value + ''}}});
         return this;//TODO
     };
-    setNodeLinkLabel = function (link, value) {
-        "use strict";
-        link.label(0, {attrs: {text: {text: '' + value + ''}}});
-        return link;
-    };
-
     var _updateActorBoundary = function (parent) {
         "use strict";
         //update the size of the (parent) actor's boundary based on its contents
@@ -543,8 +533,6 @@ var istar = function () {
             });
             if (!isDuplicated) {
                 var link = new shape({'source': {id: source.id}, 'target': {id: target.id}});
-                if (value) setNodeLinkLabel(link, value);
-                // if (value) link.setContributionType(value);
                 istar.graph.addCell(link);
                 //embeds the link on the (parent) actor of its source element, to facilitate collapse/uncollapse
                 if (source.get('parent')) {
@@ -554,9 +542,13 @@ var istar = function () {
                 link.prop('type', linkName);
 
                 if (linkType.changeableLabel) {
-                    link.getContributionType = _getNodeLinkLabel;
                     link.setContributionType = _setNodeLinkLabel;
+                    link.on('change:value', function(link, newValue) {
+                        link.setContributionType(newValue);
+                    })
                 }
+                if (value) link.prop('value', value);
+
                 return link;
             }
         },

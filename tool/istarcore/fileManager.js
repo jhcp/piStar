@@ -144,7 +144,7 @@ function saveModel() {
     _.each(istar.graph.getLinks(), function (link) {
         var linkJSON = fileManager.linkToJSON(link);
         if (link.isContributionLink()) {
-            linkJSON.label = link.attributes.labels[0].attrs.text.text;
+            linkJSON.label = link.prop('value');//link.attributes.labels[0].attrs.text.text;
         }
 
         var vertices = link.get('vertices');

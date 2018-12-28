@@ -51,10 +51,17 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
     renderElementType: function () {
         if (this.model.prop('type')) {
+            var propertyName = null;
             if (this.model.isDependum && this.model.isDependum()) {
+                propertyName = 'type';
+            }
+            else if (this.model.isContributionLink && this.model.isContributionLink()) {
+                propertyName = 'value';
+            }
+            if (propertyName) {
                 this.$table.find('tbody').append(this.template({
-                    propertyName: 'Type',
-                    propertyValue: this.model.prop('type'),
+                    propertyName: _.capitalize(propertyName),
+                    propertyValue: this.model.prop(propertyName),
                     dataType: 'select'
                 }));
             }
@@ -82,9 +89,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
     setupElementTypeEditing: function () {
         if (this.model.isDependum && this.model.isDependum()) {
-            typeNames = [];
-            currentType = 0;
-            element = this.model;
+            var typeNames = [];
+            var currentType = 0;
+            var element = this.model;
             _.forEach(istarcoreMetamodel.nodes, function(nodeType, index) {
                 typeNames.push({value: index, text: nodeType.prefixedName});
                 if (nodeType.prefixedName === element.prop('type')) {
@@ -95,16 +102,32 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 showbuttons: false,
                 source: typeNames,
                 success: function (response, newValue) {
-                    updatedElement = ui.getSelectedElement();
-                    newType = istarcoreMetamodel.nodes[newValue].prefixedName;
+                    var updatedElement = ui.getSelectedElement();
+                    var newType = istarcoreMetamodel.nodes[newValue].prefixedName;
                     updatedElement.prop('type', newType);
-                    newNode = istar.replaceNode(updatedElement, istarcoreMetamodel.nodes[newValue].prefixedName)
+                    var newNode = istar.replaceNode(updatedElement, istarcoreMetamodel.nodes[newValue].prefixedName)
                         .prop('isDependum', true);
                     ui.selectElement(newNode);
                     //update the line break on the element's label
                     newNode.updateLineBreak();
                 },
                 value: currentType
+            })
+                .on('shown', ui.changeStateToEdit)
+                .on('hidden', ui.changeStateToView);
+        }
+        else if (this.model.isContributionLink && this.model.isContributionLink()) {
+            var element = this.model;
+            var contributionMetamodel = _.find(istarcoreMetamodel.nodeLinks, function(o) { return o.prefixedName === element.prop('type'); })
+            var valueNames = contributionMetamodel.possibleLabels;
+            // var currentType = _.findIndex(valueNames, function(o) { return o === element.prop('value'); });
+            this.$table.find('a').editable({
+                showbuttons: false,
+                source: valueNames,
+                success: function (response, newValue) {
+                    ui.getSelectedElement().prop('value', newValue);
+                },
+                value: element.prop('value')
             })
                 .on('shown', ui.changeStateToEdit)
                 .on('hidden', ui.changeStateToView);
