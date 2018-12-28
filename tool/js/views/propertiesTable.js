@@ -26,10 +26,15 @@ uiC.PropertiesTableView = Backbone.View.extend({
         this.setupAddPropertyButton();
 
         this.clearOptionsPanel();
-        if (this.model.isKindOfActor && this.model.isKindOfActor()) {
-            this.setupCollapseExpandButton();
+        if (this.model.isElement() || this.model.isLink()) {
+            if (this.model.isKindOfActor()) {
+                this.setupCollapseExpandButton();
+            }
+            if (this.model.isDependum()) {
+                this.setupChangeDirectionButton();
+            }
+            this.setupDeleteButton();
         }
-        this.setupDeleteButton();
         this.setupOptionsPanel();
 
         if ($.trim($('#cell-actions').html())) {
@@ -184,6 +189,64 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 ui.showSelection();//give the focus back to actor, now collapsed or expanded
             }
         });
+    },
+    setupChangeDirectionButton: function () {
+        if (ui.getSelectedElement().remove) {
+            $('#cell-actions').append(
+                '<a id="flip-direction-button" class="btn btn-default btn-xs button-horizontal" title="Change the direction of the dependency">Flip direction</a><br>'
+            );
+            $('#flip-direction-button').click(function () {
+                var dependum = ui.getSelectedElement();
+                if (dependum) {
+                    var connectedLinks = istar.graph.getConnectedLinks(dependum);
+
+                    //If we change the source and target without removing the vertices, the math for creating
+                    //the curves may throw exceptions. Thus, we store them in a temp variable, and then re-add
+                    //them reversed.
+                    //It is reversed because the direction has changed, thus the first vertex is now the last vertex,
+                    //and so on.
+                    var originalVertices = connectedLinks[0].vertices();
+                    var originalSource = connectedLinks[0].prop('source/id');
+                    connectedLinks[0].vertices([]);
+                    connectedLinks[0].prop('source/id', connectedLinks[0].prop('target/id'));
+                    connectedLinks[0].prop('target/id', originalSource);
+                    if (istar.graph.getCell(originalSource).isKindOfActor()) {
+                        connectedLinks[0].prop('target/selector', 'circle');
+                    }
+                    else {
+                        connectedLinks[0].prop('target/selector', 'text');
+                    }
+                    if (istar.graph.getCell(connectedLinks[0].prop('source/id')).isKindOfActor()) {
+                        connectedLinks[0].prop('source/selector', 'circle');
+                    }
+                    else {
+                        connectedLinks[0].prop('source/selector', 'text');
+                    }
+                    connectedLinks[0].vertices(_.reverse(originalVertices));
+
+
+                    originalVertices = connectedLinks[1].vertices();
+                    connectedLinks[1].vertices([]);
+                    originalSource = connectedLinks[1].prop('source/id');
+                    connectedLinks[1].prop('source/id', connectedLinks[1].prop('target/id'));
+                    connectedLinks[1].prop('target/id', originalSource);
+                    if (istar.graph.getCell(originalSource).isKindOfActor()) {
+                        connectedLinks[1].prop('target/selector', 'circle');
+                    }
+                    else {
+                        connectedLinks[1].prop('target/selector', 'text');
+                    }
+                    if (istar.graph.getCell(connectedLinks[1].prop('source/id')).isKindOfActor()) {
+                        connectedLinks[1].prop('source/selector', 'circle');
+                    }
+                    else {
+                        connectedLinks[1].prop('source/selector', 'text');
+                    }
+                    connectedLinks[1].vertices(_.reverse(originalVertices));
+                    ui.selectElement(dependum);
+                }
+            });
+        }
     },
     setupDeleteButton: function () {
         if (ui.getSelectedElement().remove) {

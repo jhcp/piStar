@@ -619,6 +619,7 @@ ui.connectLinksToShape = function () {
         });
         istar.paper.options.linkConnectionPoint = undefined;
         $('.menu-body *').removeClass('waiting');
+        ui.selectModel();
     }, 100);
 };
 
