@@ -157,6 +157,35 @@ ui.unhighlightFocus = function (cellView) {
 };
 ui.defineInteractions = function () {
     istar.graph.on('add', function(cell) {
+        if (cell.isLink()) {
+            var verticesTool = new joint.linkTools.Vertices({snapRadius: 1});
+            // var removeButton = new joint.linkTools.Remove();
+            // var toolsView = new joint.dia.ToolsView({tools: [verticesTool, removeButton]});
+            var toolsView = new joint.dia.ToolsView({tools: [verticesTool]});
+            cell.findView(istar.paper).addTools(toolsView).hideTools();
+            cell.on('change:vertices', function(linkModel) {
+                ui.clearSelection();
+                ui.selectElement(linkModel, linkModel.findView(istar.paper));
+            });
+        }
+    });
+
+    istar.paper.on('link:mouseenter', function(linkView) {
+        linkView.showTools();
+        linkView.model.attr('connection-wrap/strokeWidth', 20);
+        linkView.model.attr('connection-wrap/stroke', 'lightgrey');
+    });
+
+    istar.paper.on('link:pointerup', function(linkView) {
+        ui.selectElement(linkView.model, linkView);
+    });
+
+    istar.paper.on('link:mouseleave', function(linkView) {
+        linkView.hideTools();
+        linkView.model.attr('connection-wrap/stroke', 'transparent');
+    });
+
+    istar.graph.on('add', function(cell) {
         if (cell.isElement()) {
             cell.updateLineBreak = function() {
                 this.changeNodeContent(this.prop('name'), {breakLine: true, breakWidth: this.findView(istar.paper).getBBox().width});
@@ -473,8 +502,6 @@ function addDependency(source, dependencyType, target) {
             node = istar.addGoal(x, y, text);
         }
         links = istar.addDependencyLink(source, node, target);
-        istar.rotateLabel(links[0]);
-        istar.rotateLabel(links[1]);
         links[0].on('change:vertices', ui._toggleSmoothness);
         links[1].on('change:vertices', ui._toggleSmoothness);
 
@@ -716,7 +743,7 @@ ui.setupUi = function () {
 
     this.setupElementResizing();
     this.setupDiagramSizeInputs();
-    this.setupLoadModelButton();
+    this.setupLoadExampleButton();
     this.setupMainMenuInteraction();
     this.setupSidepanelInteraction();
 
@@ -747,7 +774,7 @@ ui.setupDiagramSizeInputs = function () {
         });
 };
 
-ui.setupLoadModelButton = function () {
+ui.setupLoadExampleButton = function () {
     $('.modal-button-load-example').click(function () {
         $('.modal *').addClass('waiting');
         var modelToLoad = $(this).data('model');
@@ -757,6 +784,7 @@ ui.setupLoadModelButton = function () {
                 ui.unhighlightFocus(ui.getSelectedElement().findView(istar.paper));
             }
             loadModel(istar.examples[modelToLoad]);
+            ui.selectModel();//select the model (as a whole)
             $('.modal *').removeClass('waiting');
             $('#modal-examples').modal('hide');
         }, 100);

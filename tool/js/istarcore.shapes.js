@@ -240,67 +240,146 @@ joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
     }, joint.shapes.basic.Path.prototype.defaults)
 });
 
-joint.shapes.istar.ParticipatesInLink = joint.dia.Link.extend({
-    defaults: joint.util.deepSupplement({
-        type: 'istar.ParticipatesInLink',
-        arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
+joint.shapes.istar.ParticipatesInLink = joint.dia.Link.define('istar.ParticipatesInLink',
+    {
         attrs: {
-            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior https://groups.google.com/forum/#!topic/jointjs/CpQ2TtoQW4E
-            '.marker-target': {
-                d: 'M 10 0 L 5 5 L 10 5 M 5 5 L 10 10',
+            line: {
+                connection: true,
                 fill: 'none',
-                'stroke-width': 1.2
+                stroke: 'black',
+                'stroke-width': 1,
+                targetMarker: {
+                    'd': 'm 10,-6 l -10,6 10,6',
+                    fill: 'none',
+                    'stroke-width': 1.2,
+                    'type': 'path',
+                }
+            },
+            'connection-wrap': {
+                connection: true,
+                fill: 'none',
+                stroke: 'transparent',
+                'stroke-width': 20,
+                'stroke-linecap': 'round'
+            },
+            label: {
+                atConnectionRatio: 0.5,
+                'font-weight': 400,
+                'font-size': 13,
+                text: 'participates-in',
+                x: -40,
+                y: 4,
+                // textPath: {   /* used if we want the text to follow along the line */
+                //     selector: 'line',
+                //     startOffset: '50%'
+                // },
+            },
+            'label-background': {
+                atConnectionRatio: 0.5,
+                'font-weight': 400,
+                'font-size': 13,
+                stroke: 'white',
+                'stroke-width': '0.35em',
+                text: 'participates=In',
+                x: -40,
+                y: 4,
+                // textPath: {  /* used if we want the text to follow along the line */
+                //     selector: 'line',
+                //     startOffset: '50%'
+                // },
             }
         },
-        'labelRectOffset': -44,  // in order to correctly position the box behind the label
-        labels: [
-            {
-                position: 0.5,
-                attrs: {
-                    text: {
-                        text: 'participates-in',
-                        'font-weight': 400,
-                        'font-size': 14
-                    },
-                }
-            }
-        ],
         source: {selector: 'circle'},
-        target: {selector: 'circle'},
-        smooth: false
-    }, joint.dia.Link.prototype.defaults)
-});
+        target: {selector: 'circle'}
+    },
+    {
+        markup: [
+            {
+                tagName: 'path',
+                selector: 'connection-wrap'
+            },
+            {
+                tagName: 'path',
+                selector: 'line'
+            },
+            {
+                tagName: 'text',
+                selector: 'label-background'
+            },
+            {
+                tagName: 'text',
+                selector: 'label'
+            }
+        ]
+    }
+);
 
-joint.shapes.istar.IsALink = joint.dia.Link.extend({
-    defaults: joint.util.deepSupplement({
-        type: 'istar.IsALink',
-        arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
+joint.shapes.istar.IsALink = joint.dia.Link.define('istar.IsALink',
+    {
         attrs: {
-            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
-            '.marker-target': {
-                d: 'M 10 0 L 5 5 L 10 5 M 5 5 L 10 10',
+            line: {
+                connection: true,
                 fill: 'none',
-                'stroke-width': 1.2
+                stroke: 'black',
+                'stroke-width': 1,
+                targetMarker: {
+                    'd': 'm 10,-6 l -10,6 10,6',
+                    fill: 'none',
+                    'stroke-width': 1.2,
+                    'type': 'path',
+                }
+            },
+            'connection-wrap': {
+                connection: true,
+                fill: 'none',
+                stroke: 'transparent',
+                'stroke-width': 20,
+                'stroke-linecap': 'round'
+            },
+            label: {
+                atConnectionRatio: 0.5,
+                'font-weight': 400,
+                'font-size': 13,
+                text: 'is-a',
+                x: -20,
+                y: 4,
+            },
+            'label-background': {
+                atConnectionRatio: 0.5,
+                'font-weight': 400,
+                'font-size': 13,
+                stroke: 'white',
+                'stroke-width': '0.35em',
+                text: 'is-a',
+                x: -20,
+                y: 4,
             }
         },
-        'labelRectOffset': -12,  // in order to correctly position the box behind the label
-        labels: [
-            {
-                position: 0.5,
-                attrs: {
-                    text: {
-                        text: 'is-a',
-                        'font-weight': 400,
-                        'font-size': 14
-                    },
-                }
-            }
-        ],
         source: {selector: 'circle'},
-        target: {selector: 'circle'},
-        smooth: false
-    }, joint.dia.Link.prototype.defaults)
-});
+        target: {selector: 'circle'}
+    },
+    {
+        markup: [
+            {
+                tagName: 'path',
+                selector: 'connection-wrap'
+            },
+            {
+                tagName: 'path',
+                selector: 'line'
+            },
+            {
+                tagName: 'text',
+                selector: 'label-background'
+            },
+            {
+                tagName: 'text',
+                selector: 'label'
+            }
+        ]
+    }
+);
+
 joint.shapes.istar.DependencyLink = joint.dia.Link.define('istar.DependencyLink',
 {
     attrs: {
@@ -308,22 +387,24 @@ joint.shapes.istar.DependencyLink = joint.dia.Link.define('istar.DependencyLink'
             connection: true,
             fill: 'none',
             stroke: 'black',
-            strokeWidth: 1,
+            'stroke-width': 1
         },
         'connection-wrap': {
             connection: true,
             fill: 'none',
             stroke: 'transparent',
-            strokeWidth: 20,
+            'stroke-width': 20,
+            'stroke-linecap': 'round'
         },
         label: {
+            atConnectionRatio: 0.5,
             d: 'm 0,-10 l 0,20 4,0 c 10,0, 10 -20, 0,-20 l -4,0',
             // d: 'm 0,-10 l 0,20 c 15,2, 15 -22, 0,-20',
             // d: 'm 0,-10 l 0,20 q 15 -10, 0,-20',
+            fill: 'white',
+            // fill: 'none',
             stroke: 'black',
             'stroke-width': 2,
-            fill: 'white'
-            // fill: 'none'
         }
     },
     source: {selector: 'text'},
@@ -346,80 +427,152 @@ joint.shapes.istar.DependencyLink = joint.dia.Link.define('istar.DependencyLink'
 }
 );
 
-joint.shapes.istar.AndRefinementLink = joint.dia.Link.extend({
-    defaults: joint.util.deepSupplement({
-        type: 'istar.AndRefinementLink',
-        arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
+joint.shapes.istar.AndRefinementLink = joint.dia.Link.define('istar.AndRefinementLink',
+    {
         attrs: {
-            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
-            '.marker-target': {
-                d: 'M 15 0 L 15 8 M 15 4 L 5 4 ',
-                // d:    'M 15 0 L 15 20 M 15 10 L 0 10 ',
-                // d: 'M 15 0 L 15 20 M 15 10 L 0 10 ',
-                fill: 'black',
-                'stroke-width': 1
-            },
-
-            '.connection': {fill: 'none'},//necessary in order to prevent filling the curves when saving the image
-            '.connection-wrap': {fill: 'none'}//necessary in order to prevent filling the curves when saving the image
-
-        },
-        smooth: false
-    }, joint.dia.Link.prototype.defaults)
-});
-joint.shapes.istar.OrRefinementLink = joint.dia.Link.extend({
-    defaults: joint.util.deepSupplement({
-        type: 'istar.OrRefinementLink',
-        arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
-        attrs: {
-            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
-            '.marker-target': {
-                d: 'M 15 0 L 5 5 L 15 10 z',
-                fill: 'black',
-                'stroke-width': 2
-            },
-            '.connection': {fill: 'none'},//necessary in order to prevent filling the curves when saving the image
-            '.connection-wrap': {fill: 'none'}//necessary in order to prevent filling the curves when saving the image
-        },
-        smooth: false
-    }, joint.dia.Link.prototype.defaults)
-});
-
-joint.shapes.istar.NeededByLink = joint.dia.Link.extend({
-    defaults: joint.util.deepSupplement({
-        markup: [
-            '<path class="connection" stroke="black" d="M 0 0 0 0"/>',
-            '<path class="marker-source" fill="black" stroke="black" d="M 0 0 0 0"/>',
-            '<circle class="marker-target" fill="black" stroke="black" r="4"/>',
-            '<path class="connection-wrap" d="M 0 0 0 0"/>',
-            '<g class="labels"/>',
-            '<g class="marker-vertices"/>',
-            '<g class="link-tools"/>'
-        ].join(''),
-        type: 'istar.NeededByLink',
-        labels: [
-            {
-                position: 0.7,
-                attrs: {
-                    rect: {
-                        fill: 'rgb(220,220,220)',
-                    }
+            line: {
+                connection: true,
+                fill: 'none',
+                stroke: 'black',
+                'stroke-width': 1,
+                'targetMarker': {
+                    'd': 'm 10,-6 l 0,12',
+                    fill: 'none',
+                    'stroke-width': 1.2,
+                    'type': 'path',
                 }
+            },
+            'connection-wrap': {
+                connection: true,
+                fill: 'none',
+                stroke: 'transparent',
+                'stroke-width': 20,
+                'stroke-linecap': 'round'
             }
-        ],
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'path',
+                selector: 'connection-wrap'
+            },
+            {
+                tagName: 'path',
+                selector: 'line'
+            }
+        ]
+    }
+);
+
+joint.shapes.istar.OrRefinementLink = joint.dia.Link.define('istar.OrRefinementLink',
+    {
         attrs: {
-            '.connection': {fill: 'none'},//necessary in order to prevent filling the curves when saving the image
-            '.connection-wrap': {fill: 'none'},//necessary in order to prevent filling the curves when saving the image
-            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
-            '.marker-target': {d: '',}, //required in order to have correct fitToContent behavior
+            line: {
+                connection: true,
+                fill: 'none',
+                stroke: 'black',
+                'stroke-width': 1,
+                targetMarker: {
+                    'd': 'm 12,-6 l -12,6 12,6 z',
+                     fill: 'black',
+                    'stroke-width': 1.2,
+                    'type': 'path',
+                }
+            },
+            'connection-wrap': {
+                connection: true,
+                fill: 'none',
+                stroke: 'transparent',
+                'stroke-width': 20,
+                'stroke-linecap': 'round'
+            }
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'path',
+                selector: 'connection-wrap'
+            },
+            {
+                tagName: 'path',
+                selector: 'line'
+            }
+        ]
+    }
+);
+
+joint.shapes.istar.NeededByLink = joint.dia.Link.define('istar.NeededByLink',
+    {
+        attrs: {
+            line: {
+                connection: true,
+                fill: 'none',
+                stroke: 'black',
+                'stroke-width': 1,
+                targetMarker: {
+                    d:    'm 1, 0         a 4,4 0 1,0 8,0         a 4,4 0 1,0 -8,0',
+                    // d: 'M cx - r, cy   a r,r 0 1,0 (r * 2),0   a r,r 0 1,0 -(r * 2),0', from https://codepen.io/jakob-e/pen/bgBegJ
+                    fill: 'black',
+                    stroke: 'black',
+                    type: 'path', //using path instead of circle to correctly position the circle
+                }
+                // targetMarker: {
+                //     r: 4,
+                //     fill: 'black',
+                //     stroke: 'black',
+                //     'type': 'circle',
+                //     x: -10,
+                //     y: 10
+                // }
+            },
+            'connection-wrap': {
+                connection: true,
+                fill: 'none',
+                stroke: 'transparent',
+                'stroke-width': 20,
+                'stroke-linecap': 'round'
+            }
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'path',
+                selector: 'connection-wrap'
+            },
+            {
+                tagName: 'path',
+                selector: 'line'
+            }
+        ]
+    }
+);
+
+joint.shapes.istar.ContributionLink = joint.dia.Link.define('istar.ContributionLink',
+    {
+        attrs: {
+            line: {
+                connection: true,
+                fill: 'none',
+                stroke: 'black',
+                'stroke-width': 1,
+                targetMarker: {
+                    'd': 'm 10,-6 l -10,6 10,6',
+                    fill: 'none',
+                    'stroke-width': 1.2,
+                    'type': 'path',
+                }
+            },
+            'connection-wrap': {
+                connection: true,
+                fill: 'none',
+                stroke: 'transparent',
+                'stroke-width': 20,
+                'stroke-linecap': 'round'
+            }
         },
-        smooth: false
-    }, joint.dia.Link.prototype.defaults)
-});
-joint.shapes.istar.ContributionLink = joint.dia.Link.extend({
-    defaults: joint.util.deepSupplement({
-        type: 'istar.ContributionLink',
-        arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
         labels: [
             {
                 position: 0.4,
@@ -435,36 +588,52 @@ joint.shapes.istar.ContributionLink = joint.dia.Link.extend({
                 }
             }
         ],
-        attrs: {
-            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
-            '.connection': {
-                fill: 'none', //necessary in order to prevent filling the curves when saving the image
-                'targetMarker': {
-                    'type': 'path',
-                     'd': 'm 10,-6 l -10,6 10,6',
-                    'fill': 'none',
-                    'stroke': 'black',
-                }},
-            '.connection-wrap': {fill: 'none'}//necessary in order to prevent filling the curves when saving the image
-        },
-        smooth: false
-    }, joint.dia.Link.prototype.defaults)
-});
+        source: {selector: 'circle'},
+        target: {selector: 'circle'}
+    },
+    {
+        markup: [
+            {
+                tagName: 'path',
+                selector: 'connection-wrap'
+            },
+            {
+                tagName: 'path',
+                selector: 'line'
+            }
+        ]
+    }
+);
 
-joint.shapes.istar.QualificationLink = joint.dia.Link.extend({
-    defaults: joint.util.deepSupplement({
-        type: 'istar.QualificationLink',
-        arrowheadMarkup: '<g />',//prevents the arrowhead from appearing in the saved image
+joint.shapes.istar.QualificationLink = joint.dia.Link.define('istar.QualificationLink',
+    {
         attrs: {
-            '.marker-source': {d: '',}, //required in order to have correct fitToContent behavior
-            '.marker-target': {d: '',}, //required in order to have correct fitToContent behavior
-            '.connection': {
-                'fill': 'none',
-                'stroke-dasharray': '10,5'
-            },//necessary in order to prevent filling the curves when saving the image
-            '.connection-wrap': {fill: 'none'},//necessary in order to prevent filling the curves when saving the image
-
-        },
-        smooth: false
-    }, joint.dia.Link.prototype.defaults)
-});
+            line: {
+                connection: true,
+                fill: 'none',
+                stroke: 'black',
+                'stroke-dasharray': '10,5',
+                'stroke-width': 1
+            },
+            'connection-wrap': {
+                connection: true,
+                fill: 'none',
+                stroke: 'transparent',
+                'stroke-width': 20,
+                'stroke-linecap': 'round'
+            }
+        }
+    },
+    {
+        markup: [
+            {
+                tagName: 'path',
+                selector: 'connection-wrap'
+            },
+            {
+                tagName: 'path',
+                selector: 'line'
+            }
+        ]
+    }
+);

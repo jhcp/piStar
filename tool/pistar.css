@@ -27,6 +27,12 @@ body {
   position: relative;
 }
 
+.joint-marker-vertex {
+  fill: white;
+  r: 5;
+  stroke: #1C5052;
+}
+
 /* Hack to display scrollbars on Mac OS */
 /* based on
 https://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-vertical-scroll-bar

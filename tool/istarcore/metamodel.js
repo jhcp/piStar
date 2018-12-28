@@ -107,7 +107,7 @@ istar._setupLinkBetweenActors = function (linkType, metamodel) {
 istar._setupLinkBetweenNodes = function (linkType, metamodel) {
     if (linkType.name) {
         //creates an 'add' function that can be used to create instances of this type
-        istar.createAddLinkBetweenNodes(linkType.prefixedName, linkType.name, linkType.shapeObject);
+        istar.createAddLinkBetweenNodes(linkType);
     }
 };
 
@@ -146,13 +146,10 @@ istar.setupMetamodel = function (metamodel) {
     joint.dia.Cell.prototype.isKindOfActor = function () {
         return this.isActor() || this.isRole() || this.isAgent();
     };
-
-
     joint.dia.Cell.prototype.isDependencyLink = function () {
         return this.attributes.type === istar.linkTypes.dependency.name;
     };
 
-    if (istar.linkTypes.contribution.className) istar.createLabeledNodeLinkFunctions(istar.linkTypes.contribution.className.prototype);
     console.log('end of metamodel setup');
     return 0;
 };

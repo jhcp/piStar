@@ -100,7 +100,6 @@ var istar = function () {
                                 connectedLink.prop('elementTarget', innerElement.id);
                                 connectedLink.set('target', {id: actor.id, selector: 'circle'});
                             }
-                            _updateLinkLabelRotation(connectedLink);
                         }
                     });
                 }
@@ -138,7 +137,6 @@ var istar = function () {
                                     });
                                 }
                             }
-                            _updateLinkLabelRotation(connectedLink);
                         }
                     });
                 }
@@ -168,34 +166,6 @@ var istar = function () {
         "use strict";
         link.label(0, {attrs: {text: {text: '' + value + ''}}});
         return link;
-    };
-    var _updateLinkLabelRotation = function (link) {
-        "use strict";
-        var source = istar.graph.getCell(link.attributes.source.id);
-        var target = istar.graph.getCell(link.attributes.target.id);
-
-        //calculates a new angle for the label, based on the x and y position of the elements
-        var deltaX = (target.attributes.position.x - source.attributes.position.x);
-        var deltaY = (target.attributes.position.y - source.attributes.position.y);
-        var angle = (Math.atan2(deltaY, deltaX) * 180 / Math.PI);
-        if (link.isActorLink()) {
-            if (angle > 90 || angle < -90) angle -= 180;//adjust the angle to prevent the text from being upside down
-        }
-
-        var xOffset = link.attributes.labelRectOffset || 0;
-        var yOffset = -8;
-        if (link.attributes.type === V.sanitizeText(istar.linkTypes.dependency.name)) {
-            yOffset = -11;
-        }
-
-
-        //apply the new angle
-        link.attr({
-            'text': {transform: 'rotate(' + angle + ') translate(0,' + yOffset + ')'},
-            //'text': {transform: 'rotate('+ angle + ') translate(0,' + yOffset + ')' },
-            // 'text': {transform: 'rotate('+ angle + ') translate(0,-8)' },
-            'rect': {transform: 'rotate(' + angle + ') translate(' + xOffset + ',' + yOffset + ')'},
-        });
     };
 
     var _updateActorBoundary = function (parent) {
@@ -265,7 +235,6 @@ var istar = function () {
                 //'className': joint.shapes.istar.ContributionLink
             }
         },
-        rotateLabel: _updateLinkLabelRotation,
         setupModel: function (graph) {
             "use strict";
             this.graph = graph ? graph : _createDefaultGraph();
@@ -275,23 +244,7 @@ var istar = function () {
             "use strict";
             this.paper = paper ? paper : _createDefaultPaper(this.graph);
 
-            this.setupLabelRotation(/DependencyLink|IsALink|ParticipatesInLink/);
             this.setupAutomaticContainerResizing();
-        },
-        setupLabelRotation: function (expressionWithRotatableLinksNames) {
-
-            //updates the rotation of labels when an element is moved
-            this.paper.on('cell:pointerup', function (cellView, evt, x, y) {
-                var connectedLinks = istar.graph.getConnectedLinks(cellView.model);
-                if (connectedLinks) {
-                    _.each(connectedLinks, function (connectedLink) {
-                        if (connectedLink.attributes.type.match(expressionWithRotatableLinksNames)) {
-                            _updateLinkLabelRotation(connectedLink);
-                        }
-                    });
-                }
-
-            });
         },
         setupAutomaticContainerResizing: function () {
             //updates the size of an actor's boundary when its internal elements are moved
@@ -488,7 +441,6 @@ var istar = function () {
 
                 link.prop('type', linkName);
                 istar.graph.addCell(link);
-                _updateLinkLabelRotation(link, source, target);
                 return link;
             }
         },
@@ -506,7 +458,6 @@ var istar = function () {
             }
 
             istar.graph.addCell(link);
-            _updateLinkLabelRotation(link, source, target);
 
             //move links to the back, so that they don't appear on top of the element's shape
             link.toBack();
@@ -538,7 +489,6 @@ var istar = function () {
             }
 
             istar.graph.addCell(link1);
-            _updateLinkLabelRotation(link1, depender, dependum);
 
             var link2;
             if (dependee.isKindOfActor()) {
@@ -554,38 +504,6 @@ var istar = function () {
                 });
             }
             istar.graph.addCell(link2);
-
-
-
-
-            console.log('remove from here');
-            link1.attr('label/atConnectionRatio', 0.50);
-            var verticesTool = new joint.linkTools.Vertices({snapRadius: 1});
-            var removeButton = new joint.linkTools.Remove();
-            var toolsView = new joint.dia.ToolsView({tools: [verticesTool, removeButton]});
-            link1.findView(istar.paper).addTools(toolsView).hideTools();
-            istar.paper.on('link:mouseenter', function(linkView) {
-                linkView.showTools();
-                linkView.model.attr('connection-wrap/strokeWidth', 20);
-                linkView.model.attr('connection-wrap/stroke', 'lightgrey');
-            });
-            istar.paper.on('link:pointerup', function(linkView) {
-                ui.selectElement(linkView.model, linkView);
-            });
-            link1.on('change:vertices', function(linkModel) {
-                ui.clearSelection();
-                ui.selectElement(linkModel, linkModel.findView(istar.paper));
-            });
-            istar.paper.on('link:mouseleave', function(linkView) {
-                linkView.hideTools();
-                linkView.model.attr('connection-wrap/stroke', 'transparent');
-            });
-
-
-            link2.attr('label/atConnectionRatio', 0.50);
-
-
-            _updateLinkLabelRotation(link2, dependum, dependee);
 
             link1.prop('otherHalf', link2);
             link2.prop('otherHalf', link1);
@@ -608,9 +526,11 @@ var istar = function () {
             });
             return [link1, link2];
         },
-        addLinkBetweenNodes: function (linkName, shape, source, target, value) {
+        addLinkBetweenNodes: function (linkType, source, target, value) {
             "use strict";
 
+            var linkName = linkType.prefixedName;
+            var shape = linkType.shapeObject;
             if (!shape) {
                 shape = joint.dia.Link;//safeguard in case the library is being used without a visual representation
             }
@@ -632,6 +552,11 @@ var istar = function () {
                 }
 
                 link.prop('type', linkName);
+
+                if (linkType.changeableLabel) {
+                    link.getContributionType = _getNodeLinkLabel;
+                    link.setContributionType = _setNodeLinkLabel;
+                }
                 return link;
             }
         },
@@ -645,10 +570,6 @@ var istar = function () {
             prototype.embedNode = _embedNode;
             prototype.updateBoundary = _updateActorBoundary;
         },
-        createLabeledNodeLinkFunctions: function (prototype) {
-            prototype.getContributionType = _getNodeLinkLabel;
-            prototype.setContributionType = _setNodeLinkLabel;
-        },
         createAddLinkBetweenActors: function (linkPrefixedName, linkName, shape) {
             this['add' + linkName] = function (source, target) {
                 if (istar.types[linkName].isValid(source, target)) {
@@ -656,10 +577,10 @@ var istar = function () {
                 }
             };
         },
-        createAddLinkBetweenNodes: function (linkPrefixedName, linkName, shape) {
-            this['add' + linkName] = function (source, target, label) {
-                if (istar.types[linkName].isValid(source, target)) {
-                    return istar.addLinkBetweenNodes(linkPrefixedName, shape, source, target, label);
+        createAddLinkBetweenNodes: function (linkType) {
+            this['add' + linkType.name] = function (source, target, label) {
+                if (istar.types[linkType.name].isValid(source, target)) {
+                    return istar.addLinkBetweenNodes(linkType, source, target, label);
                 }
 
             };
