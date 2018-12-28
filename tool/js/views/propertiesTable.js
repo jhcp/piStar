@@ -30,9 +30,13 @@ uiC.PropertiesTableView = Backbone.View.extend({
             if (this.model.isKindOfActor()) {
                 this.setupCollapseExpandButton();
             }
-            if (this.model.isDependum()) {
+            else if (this.model.isDependum()) {
                 this.setupChangeDirectionButton();
             }
+            else if (this.model.isLink()) {
+                this.setupClearVerticesButton();
+            }
+
             this.setupDeleteButton();
         }
         this.setupOptionsPanel();
@@ -247,6 +251,17 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 }
             });
         }
+    },
+    setupClearVerticesButton: function () {
+        $('#cell-actions').append(
+            '<a id="clear-vertices-button" class="btn btn-default btn-xs button-horizontal" ' +
+            'title="This deletes all vertices in this link. To delete an individual vertex, double click the vertex.">Clear vertices</a><br>'
+        );
+        $('#clear-vertices-button').click(function () {
+            if (ui.getSelectedElement()) {
+                ui.getSelectedElement().vertices([]);
+            }
+        });
     },
     setupDeleteButton: function () {
         if (ui.getSelectedElement().remove) {
