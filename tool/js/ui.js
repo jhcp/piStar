@@ -860,6 +860,10 @@ $('#menu-button-precise-links').click(function () {
     ui.connectLinksToShape();
 });
 
+$('#menu-button-toggle-fullscreen').click(function () {
+    joint.util.toggleFullScreen();
+});
+
 ui.clearDiagram = function () {
     istar.graph.clear();
 };
