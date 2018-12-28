@@ -233,8 +233,8 @@ joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
                 text: 'Quality',
                 'font-size': 12,
                 'font-weight': 'bold',
-                'refY': '-50%',
-                'refY2': '-20',
+                'ref-y': '-65%',
+                'y-alignment': 'middle'
             },
         }
     }, joint.shapes.basic.Path.prototype.defaults)
