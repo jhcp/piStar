@@ -85,15 +85,15 @@ istar.examples.pistarWelcome = {
             "id": "dbe6cf9f-877d-4600-bac9-8f7bbde93426",
             "text": "piStar tool team",
             "type": "istar.Agent",
-            "x": 551,
-            "y": 205,
+            "x": 568,
+            "y": 208,
             "nodes": [
                 {
                     "id": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
                     "text": "Continuous Improvement",
                     "type": "istar.Quality",
-                    "x": 718,
-                    "y": 215,
+                    "x": 780,
+                    "y": 218,
                     "customProperties": {
                         "Description": "Because we all know there is much to be improved in this tool =)\n\nBtw, help us improve it by sending your feedback through the Help menu"
                     }
@@ -102,8 +102,8 @@ istar.examples.pistarWelcome = {
                     "id": "f69a3c4b-4d40-488d-a54a-a0e38453f077",
                     "text": "Add properties to the model",
                     "type": "istar.Task",
-                    "x": 649,
-                    "y": 372,
+                    "x": 622,
+                    "y": 383,
                     "customProperties": {
                         "Description": "Now you can add custom properties not only to your elements, but also to your model as a whole! For instance, you can give it a name, record the authors' names, provide a link for further information, provide a brief description of the project, and so on.",
                         "Since": "Version 2.0.0"
@@ -113,8 +113,8 @@ istar.examples.pistarWelcome = {
                     "id": "1f011a05-50ff-47b4-bdf6-e6c9227eef70",
                     "text": "Change the color of elements",
                     "type": "istar.Task",
-                    "x": 787,
-                    "y": 371,
+                    "x": 788,
+                    "y": 429,
                     "customProperties": {
                         "Description": "Now you can change the color of elements, but use this with CAUTION! because the readers of your model may not be able to guess the meaning of each color. Plus, too many colors will make it messy.",
                         "Since": "Version 2.0.0"
@@ -124,8 +124,8 @@ istar.examples.pistarWelcome = {
                     "id": "5562be02-998b-4a7b-8bb9-355d84b3c06b",
                     "text": "Change the size of elements",
                     "type": "istar.Task",
-                    "x": 673,
-                    "y": 426,
+                    "x": 677,
+                    "y": 484,
                     "customProperties": {
                         "Description": "Now you can change the size of elements of the model. You just need to drag the handle in the bottom-right corner of the selected element",
                         "Since": "Version 2.0.0"
@@ -135,8 +135,8 @@ istar.examples.pistarWelcome = {
                     "id": "17acd322-9d37-496e-b6d5-c69c497502db",
                     "text": "New UI",
                     "type": "istar.Resource",
-                    "x": 570,
-                    "y": 325,
+                    "x": 594,
+                    "y": 328,
                     "customProperties": {
                         "Description": "This new User Interface has been designed not only to improve usability, but also to accommodate new functionalities that are coming in the near future",
                         "Since": "Version 2.0.0"
@@ -146,10 +146,43 @@ istar.examples.pistarWelcome = {
                     "id": "f9035e8c-0294-44a8-a93e-85a349d2f21a",
                     "text": "Change the type of dependums",
                     "type": "istar.Task",
-                    "x": 883,
-                    "y": 332,
+                    "x": 927,
+                    "y": 400,
                     "customProperties": {
                         "Description": "Now you can change the type of dependum elements. Select the dependum and then change its type in the Properties sidepanel",
+                        "Since": "Version 2.0.0"
+                    }
+                },
+                {
+                    "id": "2697c4ac-6868-42ff-9d1d-b819000f909e",
+                    "text": "Improved visual for links",
+                    "type": "istar.Resource",
+                    "x": 907,
+                    "y": 458,
+                    "customProperties": {
+                        "Description": "Improved shape and rotation for the 'D' in dependency links, as well as for the arrows in actor links, or-refinement links, and contribution links",
+                        "Since": "Version 2.0.0"
+                    }
+                },
+                {
+                    "id": "d481f512-6836-4e17-ba29-0192cb0c8ad8",
+                    "text": "Add properties to links",
+                    "type": "istar.Task",
+                    "x": 663,
+                    "y": 434,
+                    "customProperties": {
+                        "Description": "Now you can add custom properties not only to your elements, but also to your links! For instance, you can provide a rationale for the link, define context annotations, specify numerical values for contributions, etc.",
+                        "Since": "Version 2.0.0"
+                    }
+                },
+                {
+                    "id": "63f3b48a-0088-4aa3-9f63-5354efefc78b",
+                    "text": "Change the value of contribution links",
+                    "type": "istar.Task",
+                    "x": 971,
+                    "y": 351,
+                    "customProperties": {
+                        "Description": "Now you can change the value of contribution links (Make, Help, Hurt or Break). Select the link and then change its type in the Properties sidepanel",
                         "Since": "Version 2.0.0"
                     }
                 }
@@ -172,62 +205,83 @@ istar.examples.pistarWelcome = {
     ],
     "links": [
         {
-            "id": "08b9c28d-2d9f-4feb-9ea5-fa6715be7b5f",
+            "id": "920de798-9053-4aba-bff3-f5c196730bdb",
             "type": "istar.DependencyLink",
             "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
             "target": "2083cdfc-21c9-4a25-9a70-e65934cd588d"
         },
         {
-            "id": "04e2cfea-79b8-478b-8e6b-084601346875",
+            "id": "9687e3fb-6fa8-4166-889a-8a38b84c8066",
             "type": "istar.DependencyLink",
             "source": "2083cdfc-21c9-4a25-9a70-e65934cd588d",
             "target": "dbe6cf9f-877d-4600-bac9-8f7bbde93426"
         },
         {
-            "id": "bfb82261-dc8f-4df7-9725-2f233b68b03d",
+            "id": "38881ee9-e7bd-460a-928c-9ceb81edccb9",
             "type": "istar.AndRefinementLink",
             "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
             "target": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252"
         },
         {
-            "id": "91d719c5-943e-43b6-b5d5-c1357c08165a",
+            "id": "688fe789-e030-428b-b270-ba8b15b78d3f",
             "type": "istar.ContributionLink",
             "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
             "target": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
             "label": "help"
         },
         {
-            "id": "0ff4ab12-b853-44af-aa22-e1fa6b92850f",
+            "id": "b4bf08b4-4ece-4bfa-a9cf-cd89e1fd6e65",
             "type": "istar.ContributionLink",
             "source": "f69a3c4b-4d40-488d-a54a-a0e38453f077",
             "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
             "label": "help"
         },
         {
-            "id": "975f9e56-6e9d-4ed6-97c6-8527495229ee",
+            "id": "4ab2aa4a-fea2-43aa-96d8-2868438e891f",
             "type": "istar.ContributionLink",
             "source": "1f011a05-50ff-47b4-bdf6-e6c9227eef70",
             "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
             "label": "help"
         },
         {
-            "id": "9f701fe3-8279-4959-8488-810cb6dbc1d6",
+            "id": "48a0ff9a-34db-4d97-9184-dbdc7d70e9f3",
             "type": "istar.ContributionLink",
             "source": "5562be02-998b-4a7b-8bb9-355d84b3c06b",
             "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
             "label": "help"
         },
         {
-            "id": "8dcf04cd-5555-41e4-9d62-fb8f830d9758",
+            "id": "0720822e-c3a0-4d1c-944d-5a6d233f811d",
             "type": "istar.ContributionLink",
             "source": "17acd322-9d37-496e-b6d5-c69c497502db",
             "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
             "label": "help"
         },
         {
-            "id": "8298571c-285e-4f67-a44c-ff1e227d8c6b",
+            "id": "97cc8fff-7e9f-4b6e-9e13-bd7aa014b16e",
             "type": "istar.ContributionLink",
             "source": "f9035e8c-0294-44a8-a93e-85a349d2f21a",
+            "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
+            "label": "help"
+        },
+        {
+            "id": "1bb2d813-8673-4b59-8892-86c7fd89e81c",
+            "type": "istar.ContributionLink",
+            "source": "d481f512-6836-4e17-ba29-0192cb0c8ad8",
+            "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
+            "label": "help"
+        },
+        {
+            "id": "17e4c66e-dd52-4a0e-8a53-89ea0e28ad1c",
+            "type": "istar.ContributionLink",
+            "source": "2697c4ac-6868-42ff-9d1d-b819000f909e",
+            "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
+            "label": "help"
+        },
+        {
+            "id": "6c44908f-fb3e-45fb-b41c-5d8a002f61f4",
+            "type": "istar.ContributionLink",
+            "source": "63f3b48a-0088-4aa3-9f63-5354efefc78b",
             "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
             "label": "help"
         }
@@ -242,7 +296,11 @@ istar.examples.pistarWelcome = {
             "width": 179.609375,
             "height": 31.078125
         },
-        "08b9c28d-2d9f-4feb-9ea5-fa6715be7b5f": {
+        "63f3b48a-0088-4aa3-9f63-5354efefc78b": {
+            "width": 140.609375,
+            "height": 34.078125
+        },
+        "920de798-9053-4aba-bff3-f5c196730bdb": {
             "vertices": [
                 {
                     "x": 310,
@@ -250,7 +308,7 @@ istar.examples.pistarWelcome = {
                 }
             ]
         },
-        "04e2cfea-79b8-478b-8e6b-084601346875": {
+        "9687e3fb-6fa8-4166-889a-8a38b84c8066": {
             "vertices": [
                 {
                     "x": 473,
@@ -262,7 +320,7 @@ istar.examples.pistarWelcome = {
                 }
             ]
         },
-        "91d719c5-943e-43b6-b5d5-c1357c08165a": {
+        "688fe789-e030-428b-b270-ba8b15b78d3f": {
             "vertices": [
                 {
                     "x": 182,
@@ -271,9 +329,9 @@ istar.examples.pistarWelcome = {
             ]
         }
     },
-    "tool": "pistar.1.2.0",
+    "tool": "pistar.2.0.0",
     "istar": "2.0",
-    "saveDate": "Sat, 22 Dec 2018 02:57:46 GMT",
+    "saveDate": "Fri, 28 Dec 2018 00:26:48 GMT",
     "diagram": {
         "width": 2000,
         "height": 1300,
@@ -393,7 +451,7 @@ istar.examples.travelReimbursement = {
                 },
                 {
                     "id": "94b43d28-480c-4a22-92ed-c8ba69a1d111",
-                    "text": "Accommodati on booked",
+                    "text": "Accommodation booked",
                     "type": "istar.Goal",
                     "x": 796,
                     "y": 331
@@ -586,280 +644,280 @@ istar.examples.travelReimbursement = {
     ],
     "links": [
         {
-            "id": "ddb052be-c62f-4215-9bd1-b23ae3e2ddfe",
+            "id": "22dac746-8ee9-4ff1-90ef-4d5d1cdc1b2a",
             "type": "istar.DependencyLink",
             "source": "9bb7e927-3dee-4485-8fda-01954d324c88",
             "target": "fe9bc590-394b-4585-be24-66419eb353b9"
         },
         {
-            "id": "f941a127-da62-4a9c-8a64-81fbf45286c3",
+            "id": "01b316e0-829c-4288-8310-2e4948df389b",
             "type": "istar.DependencyLink",
             "source": "fe9bc590-394b-4585-be24-66419eb353b9",
             "target": "ac7c22c2-6538-4fe3-a14f-8f8a2233a472"
         },
         {
-            "id": "67b641af-0413-4592-8725-df3afa396866",
+            "id": "0895db0b-da58-4519-a7a9-a81ce56f75cb",
             "type": "istar.DependencyLink",
             "source": "f2ad4e2a-1b6d-44ce-94d7-28aee4e08d3d",
             "target": "dc25d9f6-7aea-46fd-8b59-1e317f5017f1"
         },
         {
-            "id": "c808b404-4c74-4123-8836-904b96b8dff7",
+            "id": "2f03872a-f320-4884-90c0-5dd365964873",
             "type": "istar.DependencyLink",
             "source": "dc25d9f6-7aea-46fd-8b59-1e317f5017f1",
             "target": "9544119c-dd79-417e-8a19-6f67455d784b"
         },
         {
-            "id": "ce3b7974-e7a7-4905-af45-a31136a31a63",
+            "id": "dc86b2fc-4192-4725-b30d-2958c46dada6",
             "type": "istar.DependencyLink",
             "source": "4934265e-abf6-4fe1-91c9-38c2a6aadcb0",
             "target": "f26ec7d2-3133-42b0-b54c-2b4695e9ee1b"
         },
         {
-            "id": "41f3e904-b669-4178-9344-cf8fd0dff4f1",
+            "id": "24c5690f-4b42-4884-b540-afb37cf30c6c",
             "type": "istar.DependencyLink",
             "source": "f26ec7d2-3133-42b0-b54c-2b4695e9ee1b",
             "target": "3c57900f-ba6a-4277-ba86-a688b23628a8"
         },
         {
-            "id": "85b3f18a-c274-480d-8a1f-c7d0bce5d67f",
+            "id": "933bf752-403a-4625-9216-980d6134e824",
             "type": "istar.AndRefinementLink",
             "source": "7897dbdc-5dd5-4332-9e31-cac22e01f1e1",
             "target": "ac7c22c2-6538-4fe3-a14f-8f8a2233a472"
         },
         {
-            "id": "9d369bc4-9676-4612-8ee4-e30823dec83e",
+            "id": "b6f44d15-563d-4b1c-99cc-355ab6f49691",
             "type": "istar.AndRefinementLink",
             "source": "609eedc5-29e7-4360-b9ad-5ca23076033c",
             "target": "ac7c22c2-6538-4fe3-a14f-8f8a2233a472"
         },
         {
-            "id": "fb7da26f-1eb8-483b-9809-fbecf697dad2",
+            "id": "e341c73c-1840-4794-a4ab-aa173c394bb1",
             "type": "istar.AndRefinementLink",
             "source": "334c70d0-7786-4dda-8340-aa63c921bc03",
             "target": "ac7c22c2-6538-4fe3-a14f-8f8a2233a472"
         },
         {
-            "id": "a9be70e5-fdfe-4ddf-98c6-d2cd1a72a332",
+            "id": "b834eaf2-8b25-4b35-9589-5c6257c0896e",
             "type": "istar.IsALink",
             "source": "c7b6f310-8fab-4181-8323-a4190cd35c26",
             "target": "830b5ef8-0f41-4a17-ba2a-ba4a8f4e799b"
         },
         {
-            "id": "9bc7ee5c-8b84-4028-a343-95e81e6500f3",
+            "id": "8e18dc9a-9c83-4024-98d0-81f810c2c8dd",
             "type": "istar.ParticipatesInLink",
             "source": "77f4dfe4-1af2-4271-bbfa-0f5892cad0e4",
             "target": "c7b6f310-8fab-4181-8323-a4190cd35c26"
         },
         {
-            "id": "8973ae0d-aa9e-4e16-a75e-7521a212ff66",
+            "id": "60d2a322-dc93-4bcd-98f4-1f22842fdc43",
             "type": "istar.AndRefinementLink",
             "source": "d7350e31-1d29-46b0-bce5-e191189720cd",
             "target": "8f5b5975-10bc-44b5-92b2-c53e2394b2c9"
         },
         {
-            "id": "00631d53-57d0-4a3c-94c4-e72845704cfc",
+            "id": "311e7939-1fda-49f2-9e6a-4930380f0817",
             "type": "istar.AndRefinementLink",
             "source": "c3f53c8d-b421-4c60-8dbf-03b07978295b",
             "target": "d7350e31-1d29-46b0-bce5-e191189720cd"
         },
         {
-            "id": "051aeed0-6e45-44e6-a5c5-c6e409afed1d",
+            "id": "c9e13288-79d1-43a3-9ad1-20da47731a27",
             "type": "istar.AndRefinementLink",
             "source": "4e767af4-fd1e-4e3e-8a82-3740521e576a",
             "target": "d7350e31-1d29-46b0-bce5-e191189720cd"
         },
         {
-            "id": "18ab31d8-e424-42fe-856f-edbbf8f59cbc",
+            "id": "e808d70e-b972-46e0-ae6f-bbbcca9b60a3",
             "type": "istar.OrRefinementLink",
             "source": "191249f9-d249-47db-b5f2-c09449307eb4",
             "target": "c3f53c8d-b421-4c60-8dbf-03b07978295b"
         },
         {
-            "id": "c21268d7-4747-408f-8bef-7bef4d8a539a",
+            "id": "5e9fb272-fc73-4a52-889b-c4c3017783e4",
             "type": "istar.OrRefinementLink",
             "source": "9bb7e927-3dee-4485-8fda-01954d324c88",
             "target": "c3f53c8d-b421-4c60-8dbf-03b07978295b"
         },
         {
-            "id": "da75c221-ff52-4212-87c0-77c1c40a5ee9",
+            "id": "f47c5009-2e5c-41e4-81ab-e4a1a800a404",
             "type": "istar.QualificationLink",
             "source": "0055d468-1097-43b2-95bf-1781730b1985",
             "target": "c3f53c8d-b421-4c60-8dbf-03b07978295b"
         },
         {
-            "id": "3e2560e2-935c-40eb-a741-91652b9c23f9",
+            "id": "d071e095-737f-4269-9fc4-fbb05ffc563a",
             "type": "istar.OrRefinementLink",
             "source": "37b28c3f-7554-4c62-91cd-44cac0873977",
             "target": "4e767af4-fd1e-4e3e-8a82-3740521e576a"
         },
         {
-            "id": "fec0fdd1-fdff-4b7d-9454-1f2fb90d44a8",
+            "id": "f42a938f-428b-495f-aec1-3edb951312c8",
             "type": "istar.OrRefinementLink",
             "source": "102cbb1c-5600-4058-bed9-cc9e1ad1d9e9",
             "target": "4e767af4-fd1e-4e3e-8a82-3740521e576a"
         },
         {
-            "id": "489c481d-3442-4b65-b2d2-4bddfc9c5879",
+            "id": "d69e7872-d9b2-4f19-8a08-c86817c24811",
             "type": "istar.ContributionLink",
             "source": "191249f9-d249-47db-b5f2-c09449307eb4",
             "target": "0055d468-1097-43b2-95bf-1781730b1985",
             "label": "hurt"
         },
         {
-            "id": "8cfba3d6-791f-42fb-aa30-509f5fdfd8a8",
+            "id": "9fab10bc-0903-421c-9bbb-bb4622c94ff0",
             "type": "istar.ContributionLink",
             "source": "9bb7e927-3dee-4485-8fda-01954d324c88",
             "target": "0055d468-1097-43b2-95bf-1781730b1985",
             "label": "help"
         },
         {
-            "id": "b458c670-8ab1-4d56-be9d-10b4ba8ab311",
+            "id": "a7730aaa-68fe-4760-b36b-1153504f8283",
             "type": "istar.ContributionLink",
             "source": "37b28c3f-7554-4c62-91cd-44cac0873977",
             "target": "0afa08e3-2306-40c8-9d40-2c144b748664",
             "label": "help"
         },
         {
-            "id": "f1a68ee0-9415-4391-ae7f-32826886906a",
+            "id": "9f3e0bb7-6ae7-4cd9-bbec-80ca7eee342e",
             "type": "istar.ContributionLink",
             "source": "102cbb1c-5600-4058-bed9-cc9e1ad1d9e9",
             "target": "0afa08e3-2306-40c8-9d40-2c144b748664",
             "label": "break"
         },
         {
-            "id": "389b2fdf-d3a6-445c-9336-c2401a6df1e2",
+            "id": "5e8dd76c-34ba-49af-8b8d-4cfac6e2aacb",
             "type": "istar.AndRefinementLink",
             "source": "16d9b9bf-fdef-4832-8f7d-8dcb42513371",
             "target": "8f5b5975-10bc-44b5-92b2-c53e2394b2c9"
         },
         {
-            "id": "3e773b8a-4f33-4ba0-8ff3-c5f95a4f811d",
+            "id": "4d0aabb8-96a5-4964-a777-021241dbc464",
             "type": "istar.OrRefinementLink",
             "source": "d8991d04-c2a6-45f0-a3ed-3ebed2a2d86d",
             "target": "16d9b9bf-fdef-4832-8f7d-8dcb42513371"
         },
         {
-            "id": "ad797322-54f0-4376-b933-fc61b4ebfe9f",
+            "id": "078a7367-7b42-4015-a239-ebc388e3db99",
             "type": "istar.OrRefinementLink",
             "source": "f2ad4e2a-1b6d-44ce-94d7-28aee4e08d3d",
             "target": "16d9b9bf-fdef-4832-8f7d-8dcb42513371"
         },
         {
-            "id": "b4ae53e5-7a61-4512-93a9-8a32987e5fcf",
+            "id": "3b03d5e9-6d9c-4e7b-92e7-74a395db65ef",
             "type": "istar.AndRefinementLink",
             "source": "f34b98b9-6cba-4410-8a49-451e00049e43",
             "target": "d8991d04-c2a6-45f0-a3ed-3ebed2a2d86d"
         },
         {
-            "id": "d93cd6bb-efce-4666-b2a0-351a94725d4e",
+            "id": "c8241e9f-242b-4b90-a134-601ad498420c",
             "type": "istar.AndRefinementLink",
             "source": "94b43d28-480c-4a22-92ed-c8ba69a1d111",
             "target": "d8991d04-c2a6-45f0-a3ed-3ebed2a2d86d"
         },
         {
-            "id": "aa8e1ca9-a8a2-49de-85b5-cce1e559b6e4",
+            "id": "2d3d2252-e074-49ae-8896-c1e838aa9673",
             "type": "istar.OrRefinementLink",
             "source": "4934265e-abf6-4fe1-91c9-38c2a6aadcb0",
             "target": "f34b98b9-6cba-4410-8a49-451e00049e43"
         },
         {
-            "id": "493b4891-23f1-489d-b8ed-f91e347748d7",
+            "id": "1c0ac449-4e4a-4477-9b99-767670553c78",
             "type": "istar.OrRefinementLink",
             "source": "11d870d2-7987-45c9-a36a-7b177219ae50",
             "target": "f34b98b9-6cba-4410-8a49-451e00049e43"
         },
         {
-            "id": "769ab616-746b-4e79-86f1-49fe9dba60e5",
+            "id": "dda09e92-4419-4d64-8e3e-a3df77c44ea3",
             "type": "istar.OrRefinementLink",
             "source": "89643e71-e10f-4474-9ac6-3ddd413bfda8",
             "target": "94b43d28-480c-4a22-92ed-c8ba69a1d111"
         },
         {
-            "id": "320b32f2-3889-4380-b95f-e903c0444b16",
+            "id": "5790eee4-96fe-44f4-8e14-3b8a548c5ef6",
             "type": "istar.OrRefinementLink",
             "source": "b73684df-4238-47d2-ae5a-e9d88df9559a",
             "target": "94b43d28-480c-4a22-92ed-c8ba69a1d111"
         },
         {
-            "id": "37ba1dc5-53a2-4b9a-9d6c-d140748db5f7",
+            "id": "55f74dce-18ba-4da3-bc8a-aa48fd030633",
             "type": "istar.AndRefinementLink",
             "source": "1747e206-fa35-4229-b4be-67b3893e84d1",
             "target": "11d870d2-7987-45c9-a36a-7b177219ae50"
         },
         {
-            "id": "cf6f8efd-c17a-487e-b0c8-678a375bab6b",
+            "id": "f60694e4-2436-4c76-becf-c230044bf824",
             "type": "istar.AndRefinementLink",
             "source": "49da8a06-b243-4c6e-9c50-dded496bec94",
             "target": "11d870d2-7987-45c9-a36a-7b177219ae50"
         },
         {
-            "id": "dec0a41b-b870-484b-80ea-029679ad7e52",
+            "id": "d5ff1904-a9c6-4fba-ae3b-cb1e58102ad6",
             "type": "istar.NeededByLink",
             "source": "8a867e08-5a70-4816-ab02-1d84cf1b79dd",
             "target": "49da8a06-b243-4c6e-9c50-dded496bec94"
         },
         {
-            "id": "a7742406-b982-4ff3-ad41-b54733a1abbe",
+            "id": "1c8fb2a5-ca39-40a3-bf75-dcfe04a51c6e",
             "type": "istar.OrRefinementLink",
             "source": "13efea03-96a0-4162-b89e-f46efc9a96c4",
             "target": "b73684df-4238-47d2-ae5a-e9d88df9559a"
         },
         {
-            "id": "66863b26-37c0-46b0-be1d-4d763501c21d",
+            "id": "47c531d5-eff8-4025-9fbb-af7e758182b9",
             "type": "istar.OrRefinementLink",
             "source": "59d154e2-8af7-48da-9f55-195ffebab399",
             "target": "b73684df-4238-47d2-ae5a-e9d88df9559a"
         },
         {
-            "id": "5eaadd36-8b49-4fbd-b3ee-7be1873f319f",
+            "id": "489260e4-8a1d-4e8f-b946-dd8c67aaf92c",
             "type": "istar.ParticipatesInLink",
             "source": "9ebf064b-88e2-48e0-9a63-7adda0ae89d0",
             "target": "a0b5233e-414b-4c96-b87c-45d3167c1ea6"
         },
         {
-            "id": "b648c4b5-e073-4cae-97f9-af1b73e377b5",
+            "id": "36cdaa76-28b6-457f-9f03-7b9185d85ee2",
             "type": "istar.QualificationLink",
             "source": "0afa08e3-2306-40c8-9d40-2c144b748664",
             "target": "d8991d04-c2a6-45f0-a3ed-3ebed2a2d86d"
         },
         {
-            "id": "af2f0fc1-c89c-4c35-8490-cec27b05ff52",
+            "id": "7bc925d9-fdc1-4afb-b8e0-d402184dd0d2",
             "type": "istar.ContributionLink",
             "source": "11d870d2-7987-45c9-a36a-7b177219ae50",
             "target": "0afa08e3-2306-40c8-9d40-2c144b748664",
             "label": "help"
         },
         {
-            "id": "3b4e03a6-ddbe-4b4b-9a19-8e9636f76d7d",
+            "id": "f124046f-e621-4b59-949a-847c52114e88",
             "type": "istar.ContributionLink",
             "source": "0afa08e3-2306-40c8-9d40-2c144b748664",
             "target": "c8e311fd-2a1a-40f1-b5e5-c62eb3e3a397",
             "label": "help"
         },
         {
-            "id": "6d850692-483f-490b-a641-e710a5613d45",
+            "id": "c940a867-1f23-4f37-a98f-93a6c28327aa",
             "type": "istar.ContributionLink",
             "source": "685e4589-9717-487f-aa94-2eab2f7c5b46",
             "target": "c8e311fd-2a1a-40f1-b5e5-c62eb3e3a397",
             "label": "help"
         },
         {
-            "id": "f3179685-9e8a-4f88-8b7b-fe4cd03322f6",
+            "id": "89ddd15c-f07b-4ff3-8d7e-8e83541d0aca",
             "type": "istar.ContributionLink",
             "source": "4934265e-abf6-4fe1-91c9-38c2a6aadcb0",
             "target": "685e4589-9717-487f-aa94-2eab2f7c5b46",
             "label": "help"
         },
         {
-            "id": "34f2d9db-93e7-4b2f-a2c5-25323edafe63",
+            "id": "3a60b84d-43e4-4dd6-81b5-8b589fbae657",
             "type": "istar.ContributionLink",
             "source": "11d870d2-7987-45c9-a36a-7b177219ae50",
             "target": "685e4589-9717-487f-aa94-2eab2f7c5b46",
             "label": "hurt"
         },
         {
-            "id": "55a8ae1f-060c-4ba4-b842-b5c5f292d924",
+            "id": "ff6113f0-5ccf-4f10-9481-2db77e5d708b",
             "type": "istar.ContributionLink",
             "source": "f2ad4e2a-1b6d-44ce-94d7-28aee4e08d3d",
             "target": "685e4589-9717-487f-aa94-2eab2f7c5b46",
@@ -867,7 +925,11 @@ istar.examples.travelReimbursement = {
         }
     ],
     "display": {
-        "ddb052be-c62f-4215-9bd1-b23ae3e2ddfe": {
+        "94b43d28-480c-4a22-92ed-c8ba69a1d111": {
+            "width": 103.578125,
+            "height": 37.265625
+        },
+        "22dac746-8ee9-4ff1-90ef-4d5d1cdc1b2a": {
             "vertices": [
                 {
                     "x": 427,
@@ -875,7 +937,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "f941a127-da62-4a9c-8a64-81fbf45286c3": {
+        "01b316e0-829c-4288-8310-2e4948df389b": {
             "vertices": [
                 {
                     "x": 402,
@@ -883,7 +945,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "67b641af-0413-4592-8725-df3afa396866": {
+        "0895db0b-da58-4519-a7a9-a81ce56f75cb": {
             "vertices": [
                 {
                     "x": 1115,
@@ -891,7 +953,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "c808b404-4c74-4123-8836-904b96b8dff7": {
+        "2f03872a-f320-4884-90c0-5dd365964873": {
             "vertices": [
                 {
                     "x": 1295,
@@ -903,19 +965,23 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "ce3b7974-e7a7-4905-af45-a31136a31a63": {
+        "dc86b2fc-4192-4725-b30d-2958c46dada6": {
             "vertices": [
                 {
-                    "x": 598,
-                    "y": 598
+                    "x": 595,
+                    "y": 555
                 },
                 {
-                    "x": 632,
-                    "y": 726
+                    "x": 628,
+                    "y": 714
+                },
+                {
+                    "x": 750,
+                    "y": 795
                 }
             ]
         },
-        "41f3e904-b669-4178-9344-cf8fd0dff4f1": {
+        "24c5690f-4b42-4884-b540-afb37cf30c6c": {
             "vertices": [
                 {
                     "x": 940,
@@ -927,7 +993,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "489c481d-3442-4b65-b2d2-4bddfc9c5879": {
+        "d69e7872-d9b2-4f19-8a08-c86817c24811": {
             "vertices": [
                 {
                     "x": 287,
@@ -935,7 +1001,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "8cfba3d6-791f-42fb-aa30-509f5fdfd8a8": {
+        "9fab10bc-0903-421c-9bbb-bb4622c94ff0": {
             "vertices": [
                 {
                     "x": 367,
@@ -943,7 +1009,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "b458c670-8ab1-4d56-be9d-10b4ba8ab311": {
+        "a7730aaa-68fe-4760-b36b-1153504f8283": {
             "vertices": [
                 {
                     "x": 458,
@@ -951,7 +1017,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "f1a68ee0-9415-4391-ae7f-32826886906a": {
+        "9f3e0bb7-6ae7-4cd9-bbec-80ca7eee342e": {
             "vertices": [
                 {
                     "x": 504,
@@ -959,7 +1025,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "af2f0fc1-c89c-4c35-8490-cec27b05ff52": {
+        "7bc925d9-fdc1-4afb-b8e0-d402184dd0d2": {
             "vertices": [
                 {
                     "x": 595,
@@ -967,7 +1033,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "3b4e03a6-ddbe-4b4b-9a19-8e9636f76d7d": {
+        "f124046f-e621-4b59-949a-847c52114e88": {
             "vertices": [
                 {
                     "x": 482,
@@ -975,7 +1041,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "6d850692-483f-490b-a641-e710a5613d45": {
+        "c940a867-1f23-4f37-a98f-93a6c28327aa": {
             "vertices": [
                 {
                     "x": 737,
@@ -983,7 +1049,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "f3179685-9e8a-4f88-8b7b-fe4cd03322f6": {
+        "89ddd15c-f07b-4ff3-8d7e-8e83541d0aca": {
             "vertices": [
                 {
                     "x": 620,
@@ -995,7 +1061,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "34f2d9db-93e7-4b2f-a2c5-25323edafe63": {
+        "3a60b84d-43e4-4dd6-81b5-8b589fbae657": {
             "vertices": [
                 {
                     "x": 877,
@@ -1003,7 +1069,7 @@ istar.examples.travelReimbursement = {
                 }
             ]
         },
-        "55a8ae1f-060c-4ba4-b842-b5c5f292d924": {
+        "ff6113f0-5ccf-4f10-9481-2db77e5d708b": {
             "vertices": [
                 {
                     "x": 952,
@@ -1025,12 +1091,17 @@ istar.examples.travelReimbursement = {
             "collapsed": true
         }
     },
-    "tool": "pistar.1.0.1",
+    "tool": "pistar.2.0.0",
     "istar": "2.0",
-    "saveDate": "Sat, 10 Mar 2018 23:32:12 GMT",
+    "saveDate": "Thu, 27 Dec 2018 23:42:17 GMT",
     "diagram": {
         "width": 1500,
-        "height": 1100
+        "height": 1100,
+        "name": "University travel reimbursement",
+        "customProperties": {
+            "Description": "Students must organize their travel (e.g., to conferences) and have several goals to achieve, and options to achieve them. To achieve their goals, students rely on other parties such as a Travel Agency and the university’s trip management information system.",
+            "Origin": "This is the example presented in the iStar 2.0 Language Guide"
+        }
     }
 };
 
@@ -1062,14 +1133,20 @@ istar.examples.buyerDrivenECommerce = {
                     "text": "Service Be Purchased [Service]",
                     "type": "istar.Goal",
                     "x": 203,
-                    "y": 66
+                    "y": 66,
+                    "customProperties": {
+                        "Description": "The customer’s main goal is that Service Be Purchased [Service]. The goal is parameterized on Service so that the graph may be evaluated differently for different services."
+                    }
                 },
                 {
                     "id": "c9731a43-8765-450f-aec1-5450d733a923",
                     "text": "Purchase by Naming My Own Price [Service]",
                     "type": "istar.Task",
                     "x": 199,
-                    "y": 159
+                    "y": 159,
+                    "customProperties": {
+                        "Description": "One possible way to accomplish the Service Be Purchased goal is through the task Purchase By Naming My Own Price [Service]. It is connected to the goal with an or-refinement link. This task has two sub-elements connected to it through and-refinement links – the sub-task Name A Price [Service], and the sub-goal Low Price Service Provider Be Found.\n\nNaming one’s own price contributes positively (Help) to the buyer’s desired quality of Low Price, but negatively (Hurt) to Flexibility [Purchasing] because preferences about schedule, choice of airline, etc., could not be accommodated"
+                    }
                 },
                 {
                     "id": "ed027de5-ce0c-4544-bd6f-13da198dff2a",
@@ -1082,8 +1159,8 @@ istar.examples.buyerDrivenECommerce = {
                     "id": "ced7a959-842e-40db-8214-90bebb537259",
                     "text": "Low Price Service Provider Be Found",
                     "type": "istar.Goal",
-                    "x": 248,
-                    "y": 293
+                    "x": 251,
+                    "y": 297
                 }
             ]
         },
@@ -1098,15 +1175,15 @@ istar.examples.buyerDrivenECommerce = {
                     "id": "66b6daf0-c676-46c2-8552-dabd042c4163",
                     "text": "Profitability",
                     "type": "istar.Quality",
-                    "x": 714,
-                    "y": 62
+                    "x": 719,
+                    "y": 52
                 },
                 {
                     "id": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
                     "text": "Customer Attraction [Service]",
                     "type": "istar.Quality",
-                    "x": 749,
-                    "y": 189
+                    "x": 736,
+                    "y": 186
                 },
                 {
                     "id": "5536a6e3-7a22-4f93-afca-d944ad76e682",
@@ -1159,8 +1236,8 @@ istar.examples.buyerDrivenECommerce = {
             "id": "4f0d2b0b-fe4c-42a3-adfa-6e57888016ce",
             "text": "Loyalty",
             "type": "istar.Quality",
-            "x": 442,
-            "y": 19,
+            "x": 439,
+            "y": 143,
             "source": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
             "target": "c9731a43-8765-450f-aec1-5450d733a923"
         },
@@ -1168,8 +1245,8 @@ istar.examples.buyerDrivenECommerce = {
             "id": "bdd82c46-be52-42af-9214-b41cc90fb0c3",
             "text": "Pay for Purchasing [Service]",
             "type": "istar.Task",
-            "x": 437,
-            "y": 98,
+            "x": 453,
+            "y": 97,
             "source": "be1aa6fc-66dd-40f8-af03-a652352793e1",
             "target": "c9731a43-8765-450f-aec1-5450d733a923"
         },
@@ -1179,6 +1256,9 @@ istar.examples.buyerDrivenECommerce = {
             "type": "istar.Task",
             "x": 456,
             "y": 212,
+            "customProperties": {
+                "Description": "In a task dependency, an actor depends on another to perform an activity. The activity description specifies a particular course of action. For example, the task dependency Name a Price [Service] expresses that the customer depends on the middleman to name his own price for the service in need by specifying the standard procedure for naming a price."
+            },
             "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
             "target": "ed027de5-ce0c-4544-bd6f-13da198dff2a"
         },
@@ -1188,6 +1268,9 @@ istar.examples.buyerDrivenECommerce = {
             "type": "istar.Goal",
             "x": 477,
             "y": 404,
+            "customProperties": {
+                "Description": "In a goal dependency, an actor depends on another to make a condition in the world come true. The goal dependency Low Price Service Provider be Found from the customer to the middleman means that it is up to the middleman to decide how to find the low price service provider"
+            },
             "source": "ced7a959-842e-40db-8214-90bebb537259",
             "target": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a"
         },
@@ -1195,8 +1278,11 @@ istar.examples.buyerDrivenECommerce = {
             "id": "26c69472-2055-4e2a-8b1c-e6899355e7f0",
             "text": "Good Quality [Service]",
             "type": "istar.Quality",
-            "x": 397,
-            "y": 534,
+            "x": 402,
+            "y": 502,
+            "customProperties": {
+                "Description": "The customer’s dependency on the supplier for good quality service can be achieved in different ways. The desired degree of how good the quality should be is ultimately decided by the depender"
+            },
             "source": "c9731a43-8765-450f-aec1-5450d733a923",
             "target": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381"
         },
@@ -1213,8 +1299,8 @@ istar.examples.buyerDrivenECommerce = {
             "id": "4cff68b2-92bf-4e1c-b802-44daaadfdadd",
             "text": "Attract More Customers [Service]",
             "type": "istar.Quality",
-            "x": 650,
-            "y": 475,
+            "x": 643,
+            "y": 468,
             "source": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381",
             "target": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c"
         },
@@ -1224,186 +1310,189 @@ istar.examples.buyerDrivenECommerce = {
             "type": "istar.Resource",
             "x": 991,
             "y": 458,
+            "customProperties": {
+                "Description": "In a resource dependency, an actor depends on another for the availability of an entity. The depender takes the availability of the resource to be unproblematic. In this example, the customer’s dependency on the supplier for agreement on price is modelled as a resource dependency"
+            },
             "source": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a",
             "target": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381"
         }
     ],
     "links": [
         {
-            "id": "a471561a-9363-4021-9103-b296e2768bea",
+            "id": "8d43a7ce-e484-44c5-89a7-f0cd545852cf",
             "type": "istar.DependencyLink",
             "source": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
             "target": "4f0d2b0b-fe4c-42a3-adfa-6e57888016ce"
         },
         {
-            "id": "0deee214-9951-4165-97c4-e00eddfb3141",
+            "id": "7742acf0-b1e7-4018-afa5-3e99cfcf2ab8",
             "type": "istar.DependencyLink",
             "source": "4f0d2b0b-fe4c-42a3-adfa-6e57888016ce",
             "target": "c9731a43-8765-450f-aec1-5450d733a923"
         },
         {
-            "id": "88576b2d-8dde-4431-ad1e-43914f8343aa",
+            "id": "580e13a1-6e33-40c0-96e9-81a912409125",
             "type": "istar.DependencyLink",
             "source": "be1aa6fc-66dd-40f8-af03-a652352793e1",
             "target": "bdd82c46-be52-42af-9214-b41cc90fb0c3"
         },
         {
-            "id": "85a457fe-abc0-4413-b1cb-2f15ebc446d8",
+            "id": "c21062ae-eea6-4822-8059-7725ec00059d",
             "type": "istar.DependencyLink",
             "source": "bdd82c46-be52-42af-9214-b41cc90fb0c3",
             "target": "c9731a43-8765-450f-aec1-5450d733a923"
         },
         {
-            "id": "7b1d98e8-8371-4dfe-8ff4-212f4ddf98a6",
+            "id": "184f6059-65dc-4b72-9dcd-3e30a04ae156",
             "type": "istar.DependencyLink",
             "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
             "target": "d4beb38e-13e2-4e69-8540-d6ac5780ad36"
         },
         {
-            "id": "d4399f26-441c-44b5-a3f4-ef5e45e13fb3",
+            "id": "3cce99fc-3388-4381-a8e4-6f9a1cd2cd0e",
             "type": "istar.DependencyLink",
             "source": "d4beb38e-13e2-4e69-8540-d6ac5780ad36",
             "target": "ed027de5-ce0c-4544-bd6f-13da198dff2a"
         },
         {
-            "id": "beee4c3b-b65c-458b-a7ca-4d5bd28b7075",
+            "id": "fba87cfe-25af-46f0-98a4-b42d9ad09d79",
             "type": "istar.DependencyLink",
             "source": "ced7a959-842e-40db-8214-90bebb537259",
             "target": "07e4ea3e-bd43-49e3-b41c-38320942dcfb"
         },
         {
-            "id": "53b887d9-fc5b-4a1d-8798-e04f69c08680",
+            "id": "c171b1de-1e19-41af-ae25-4695a9d8a8f0",
             "type": "istar.DependencyLink",
             "source": "07e4ea3e-bd43-49e3-b41c-38320942dcfb",
             "target": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a"
         },
         {
-            "id": "115f20df-c841-453f-ab3e-bde5fa2e8a7e",
+            "id": "a7d1373d-e183-4031-a10f-838333fca648",
             "type": "istar.DependencyLink",
             "source": "c9731a43-8765-450f-aec1-5450d733a923",
             "target": "26c69472-2055-4e2a-8b1c-e6899355e7f0"
         },
         {
-            "id": "e15ad3e4-78e1-4354-804f-c8e514f402f0",
+            "id": "57b7d602-64de-41d9-8e7b-08222691c653",
             "type": "istar.DependencyLink",
             "source": "26c69472-2055-4e2a-8b1c-e6899355e7f0",
             "target": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381"
         },
         {
-            "id": "bcee45ee-f43d-4d3d-97d7-4197956fb559",
+            "id": "beb370b7-3a7c-4a84-8c85-e51430848d84",
             "type": "istar.DependencyLink",
             "source": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381",
             "target": "a77ec4dd-ab7d-463c-82fd-928cf3dde4c6"
         },
         {
-            "id": "cc95000c-c860-4efa-85a9-6ced5ac14cbc",
+            "id": "844df75f-fb53-4cbe-877c-eec3afc6897c",
             "type": "istar.DependencyLink",
             "source": "a77ec4dd-ab7d-463c-82fd-928cf3dde4c6",
             "target": "ed027de5-ce0c-4544-bd6f-13da198dff2a"
         },
         {
-            "id": "9ccb89f3-2bf0-4ca1-911c-a68bf5fb5dbc",
+            "id": "57e9681e-ea56-4259-ab7f-75b0a07df3d0",
             "type": "istar.DependencyLink",
             "source": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381",
             "target": "4cff68b2-92bf-4e1c-b802-44daaadfdadd"
         },
         {
-            "id": "2cf41527-d0f9-4bf8-8db9-2bf824deb67c",
+            "id": "e90bd7af-82d8-43c4-905f-41594355f3d8",
             "type": "istar.DependencyLink",
             "source": "4cff68b2-92bf-4e1c-b802-44daaadfdadd",
             "target": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c"
         },
         {
-            "id": "07313247-b064-495d-bbbe-3bc3fe03cd93",
+            "id": "89e93a09-c32e-474d-9412-3c2b1bea8bb3",
             "type": "istar.DependencyLink",
             "source": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a",
             "target": "4407a764-eef0-409e-90da-668fa688b17f"
         },
         {
-            "id": "bd32f342-c1ec-45f8-8dc4-97bc33118705",
+            "id": "21c5c92f-ad63-4a8b-89ef-68c41ba2c15a",
             "type": "istar.DependencyLink",
             "source": "4407a764-eef0-409e-90da-668fa688b17f",
             "target": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381"
         },
         {
-            "id": "a7e68b4e-f308-492d-bce7-0993efabc40d",
+            "id": "d7a99e47-cace-4245-b1b7-86401d454259",
             "type": "istar.OrRefinementLink",
             "source": "c9731a43-8765-450f-aec1-5450d733a923",
             "target": "cbb50b38-f83c-4871-b545-3bd72f9aac29"
         },
         {
-            "id": "86002901-6518-4bea-883d-595ccbd1236a",
+            "id": "7a50b0ce-e825-4715-9368-b395620c5539",
             "type": "istar.AndRefinementLink",
             "source": "ed027de5-ce0c-4544-bd6f-13da198dff2a",
             "target": "c9731a43-8765-450f-aec1-5450d733a923"
         },
         {
-            "id": "6b535e90-5f85-443e-96d9-8362a2805530",
+            "id": "53048433-6da7-44a3-9558-23acca27a759",
             "type": "istar.OrRefinementLink",
             "source": "be1aa6fc-66dd-40f8-af03-a652352793e1",
             "target": "5536a6e3-7a22-4f93-afca-d944ad76e682"
         },
         {
-            "id": "84ed3d1e-fe36-46fd-b179-a061efe8d4da",
+            "id": "4e49bc3e-8ae6-46cd-b549-ebf29294fda3",
             "type": "istar.AndRefinementLink",
             "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
             "target": "be1aa6fc-66dd-40f8-af03-a652352793e1"
         },
         {
-            "id": "8b957d0c-90ed-41a5-a136-a3cc02f1e3d9",
+            "id": "3e5dad64-2c67-4b66-86f8-417c35f09d40",
             "type": "istar.AndRefinementLink",
             "source": "ef62e89b-1bdd-49ed-959c-be64f45d673a",
             "target": "be1aa6fc-66dd-40f8-af03-a652352793e1"
         },
         {
-            "id": "4505b684-4367-428c-b0f7-e77e9999c502",
+            "id": "77cf5adf-0539-4f56-b7a1-d25be222e921",
             "type": "istar.AndRefinementLink",
             "source": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a",
             "target": "be1aa6fc-66dd-40f8-af03-a652352793e1"
         },
         {
-            "id": "0c84cc82-1da6-490a-860b-b6f21c4e7904",
+            "id": "2cbecb48-8c97-4dd7-a46e-6dae4c28f9e3",
             "type": "istar.ContributionLink",
             "source": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
             "target": "66b6daf0-c676-46c2-8552-dabd042c4163",
             "label": "help"
         },
         {
-            "id": "170b8775-b02a-46aa-8b62-0c378a5e2241",
+            "id": "2aaddb0e-609a-4833-a8d0-d80e17ad1816",
             "type": "istar.AndRefinementLink",
             "source": "ced7a959-842e-40db-8214-90bebb537259",
             "target": "c9731a43-8765-450f-aec1-5450d733a923"
         },
         {
-            "id": "66b4b909-91f5-4323-821b-cd849b3e2bd5",
+            "id": "41a711ed-12ee-4f90-9e72-e3ca01461d33",
             "type": "istar.ContributionLink",
             "source": "ed027de5-ce0c-4544-bd6f-13da198dff2a",
             "target": "41f6245a-fe65-4b02-9348-1d2a5aa49b61",
             "label": "help"
         },
         {
-            "id": "63d114e8-9b8d-40cf-bba7-f1eada4e469c",
+            "id": "121ed22b-d51e-4bd6-a7d9-4c8ba8d2878a",
             "type": "istar.ContributionLink",
             "source": "ced7a959-842e-40db-8214-90bebb537259",
             "target": "fd9cb71e-7beb-43b4-8bb3-407b94432adb",
             "label": "hurt"
         },
         {
-            "id": "efa8a610-fd56-4a44-a8a3-a1767e0c0982",
+            "id": "71b0deb0-5e2e-426b-b385-2cfcf1498515",
             "type": "istar.ContributionLink",
             "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
             "target": "66b6daf0-c676-46c2-8552-dabd042c4163",
             "label": "hurt"
         },
         {
-            "id": "299c9f2e-1211-4fc1-8d2e-d0d36db3e24d",
+            "id": "3dca03c7-ec5e-4135-ba6a-3399555f21b6",
             "type": "istar.ContributionLink",
             "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
             "target": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
             "label": "help"
         },
         {
-            "id": "437313fe-4ec0-45c0-984f-b134c1ef2b07",
+            "id": "423be39a-a7fb-4592-a951-5c803b88be0c",
             "type": "istar.ContributionLink",
             "source": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a",
             "target": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
@@ -1411,27 +1500,69 @@ istar.examples.buyerDrivenECommerce = {
         }
     ],
     "display": {
-        "a471561a-9363-4021-9103-b296e2768bea": {
+        "cbb50b38-f83c-4871-b545-3bd72f9aac29": {
+            "backgroundColor": "#FADF71"
+        },
+        "c9731a43-8765-450f-aec1-5450d733a923": {
+            "backgroundColor": "#FADF71",
+            "width": 106.85000610351562,
+            "height": 45.90000915527344
+        },
+        "ced7a959-842e-40db-8214-90bebb537259": {
+            "width": 91.85000610351562,
+            "height": 51.600006103515625
+        },
+        "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c": {
+            "width": 120.06849670410156,
+            "height": 45.603912353515625
+        },
+        "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4": {
+            "width": 128.03334045410156,
+            "height": 40.600006103515625
+        },
+        "ef62e89b-1bdd-49ed-959c-be64f45d673a": {
+            "width": 107.03334045410156,
+            "height": 38.20001220703125
+        },
+        "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a": {
+            "width": 102.03334045410156,
+            "height": 44.600006103515625
+        },
+        "d4beb38e-13e2-4e69-8540-d6ac5780ad36": {
+            "backgroundColor": "#FADF71"
+        },
+        "07e4ea3e-bd43-49e3-b41c-38320942dcfb": {
+            "backgroundColor": "#FADF71",
+            "width": 99.85000610351562,
+            "height": 46.600006103515625
+        },
+        "26c69472-2055-4e2a-8b1c-e6899355e7f0": {
+            "backgroundColor": "#FADF71"
+        },
+        "4cff68b2-92bf-4e1c-b802-44daaadfdadd": {
+            "width": 125.06849670410156,
+            "height": 59.607818603515625
+        },
+        "4407a764-eef0-409e-90da-668fa688b17f": {
+            "backgroundColor": "#FADF71"
+        },
+        "8d43a7ce-e484-44c5-89a7-f0cd545852cf": {
             "vertices": [
                 {
                     "x": 640,
                     "y": 182
-                },
-                {
-                    "x": 553,
-                    "y": 67
                 }
             ]
         },
-        "0deee214-9951-4165-97c4-e00eddfb3141": {
+        "7742acf0-b1e7-4018-afa5-3e99cfcf2ab8": {
             "vertices": [
                 {
-                    "x": 358,
-                    "y": 75
+                    "x": 373,
+                    "y": 160
                 }
             ]
         },
-        "88576b2d-8dde-4431-ad1e-43914f8343aa": {
+        "580e13a1-6e33-40c0-96e9-81a912409125": {
             "vertices": [
                 {
                     "x": 808,
@@ -1439,7 +1570,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "85a457fe-abc0-4413-b1cb-2f15ebc446d8": {
+        "c21062ae-eea6-4822-8059-7725ec00059d": {
             "vertices": [
                 {
                     "x": 361,
@@ -1447,7 +1578,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "7b1d98e8-8371-4dfe-8ff4-212f4ddf98a6": {
+        "184f6059-65dc-4b72-9dcd-3e30a04ae156": {
             "vertices": [
                 {
                     "x": 677,
@@ -1455,7 +1586,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "d4399f26-441c-44b5-a3f4-ef5e45e13fb3": {
+        "3cce99fc-3388-4381-a8e4-6f9a1cd2cd0e": {
             "vertices": [
                 {
                     "x": 304,
@@ -1463,7 +1594,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "beee4c3b-b65c-458b-a7ca-4d5bd28b7075": {
+        "fba87cfe-25af-46f0-98a4-b42d9ad09d79": {
             "vertices": [
                 {
                     "x": 372,
@@ -1471,7 +1602,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "53b887d9-fc5b-4a1d-8798-e04f69c08680": {
+        "c171b1de-1e19-41af-ae25-4695a9d8a8f0": {
             "vertices": [
                 {
                     "x": 947,
@@ -1479,7 +1610,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "115f20df-c841-453f-ab3e-bde5fa2e8a7e": {
+        "a7d1373d-e183-4031-a10f-838333fca648": {
             "vertices": [
                 {
                     "x": 229,
@@ -1491,7 +1622,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "e15ad3e4-78e1-4354-804f-c8e514f402f0": {
+        "57b7d602-64de-41d9-8e7b-08222691c653": {
             "vertices": [
                 {
                     "x": 626,
@@ -1499,7 +1630,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "bcee45ee-f43d-4d3d-97d7-4197956fb559": {
+        "beb370b7-3a7c-4a84-8c85-e51430848d84": {
             "vertices": [
                 {
                     "x": 509,
@@ -1507,7 +1638,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "cc95000c-c860-4efa-85a9-6ced5ac14cbc": {
+        "844df75f-fb53-4cbe-877c-eec3afc6897c": {
             "vertices": [
                 {
                     "x": 159,
@@ -1515,7 +1646,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "9ccb89f3-2bf0-4ca1-911c-a68bf5fb5dbc": {
+        "57e9681e-ea56-4259-ab7f-75b0a07df3d0": {
             "vertices": [
                 {
                     "x": 721,
@@ -1523,15 +1654,19 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "2cf41527-d0f9-4bf8-8db9-2bf824deb67c": {
+        "e90bd7af-82d8-43c4-905f-41594355f3d8": {
             "vertices": [
+                {
+                    "x": 697,
+                    "y": 443
+                },
                 {
                     "x": 746,
                     "y": 328
                 }
             ]
         },
-        "07313247-b064-495d-bbbe-3bc3fe03cd93": {
+        "89e93a09-c32e-474d-9412-3c2b1bea8bb3": {
             "vertices": [
                 {
                     "x": 1080,
@@ -1539,7 +1674,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "bd32f342-c1ec-45f8-8dc4-97bc33118705": {
+        "21c5c92f-ad63-4a8b-89ef-68c41ba2c15a": {
             "vertices": [
                 {
                     "x": 960,
@@ -1547,15 +1682,15 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "0c84cc82-1da6-490a-860b-b6f21c4e7904": {
+        "2cbecb48-8c97-4dd7-a46e-6dae4c28f9e3": {
             "vertices": [
                 {
-                    "x": 791,
-                    "y": 131
+                    "x": 798,
+                    "y": 154
                 }
             ]
         },
-        "66b4b909-91f5-4323-821b-cd849b3e2bd5": {
+        "41a711ed-12ee-4f90-9e72-e3ca01461d33": {
             "vertices": [
                 {
                     "x": 81,
@@ -1563,7 +1698,7 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "63d114e8-9b8d-40cf-bba7-f1eada4e469c": {
+        "121ed22b-d51e-4bd6-a7d9-4c8ba8d2878a": {
             "vertices": [
                 {
                     "x": 142,
@@ -1571,18 +1706,15 @@ istar.examples.buyerDrivenECommerce = {
                 }
             ]
         },
-        "efa8a610-fd56-4a44-a8a3-a1767e0c0982": {
+        "71b0deb0-5e2e-426b-b385-2cfcf1498515": {
             "vertices": [
                 {
-                    "x": 736,
-                    "y": 239
+                    "x": 710,
+                    "y": 235
                 }
             ]
         },
-        "299c9f2e-1211-4fc1-8d2e-d0d36db3e24d": {
-            "vertices": []
-        },
-        "437313fe-4ec0-45c0-984f-b134c1ef2b07": {
+        "423be39a-a7fb-4592-a951-5c803b88be0c": {
             "vertices": [
                 {
                     "x": 981,
@@ -1594,12 +1726,18 @@ istar.examples.buyerDrivenECommerce = {
             "collapsed": true
         }
     },
-    "tool": "pistar.1.0.1",
+    "tool": "pistar.2.0.0",
     "istar": "2.0",
-    "saveDate": "Sun, 11 Mar 2018 00:28:56 GMT",
+    "saveDate": "Fri, 28 Dec 2018 01:13:32 GMT",
     "diagram": {
         "width": 1200,
-        "height": 700
+        "height": 700,
+        "name": "Buyer-driven e-commerce system",
+        "customProperties": {
+            "Description": "Example of a buyer-driven e-commerce system. In such a system, the customer depends on a middleman to find a service provider who is willing to accept a price set by the customer. The customer submits a priced request to a middleman. The middleman forwards the request to suppliers. If a supplier decides to accept the request, it makes an agreement with the middleman. The middleman expects the customer to pay for the purchase in time.",
+            "About": "When you collapse every actor, the model becomes a *Strategic Dependency* (SD) model, consisting of a set of nodes and links. Each node represents an actor, and each link between two actors indicates that one actor depends on the other for something in order that the former may attain some goal. We call the depending actor the depender, and the actor who is depended upon the dependee. The object around which the\ndependency relationship centers is called the dependum. By depending on another actor for a dependum, an actor (the depender) is able to achieve goals that it was not able to without the dependency, or not as easily or as well. At the same time, the depender becomes vulnerable. If the dependee fails to deliver the dependum, the depender would be adversely affected in its ability to achieve its goals.\n\nWhen actors are expanded, you have a *Strategic Rationale* (SR) model, which provides a more detailed level of modelling by looking “inside” actors to model internal intentional relationships. Intentional elements (goals, tasks, resources, and qualities) appear in SR models not only as external dependencies, but also as internal elements arranged into (mostly hierarchical) structures of or-refinements, and-refinements, contribution, needed-by and qualification relationships.",
+            "Origin": "Model and text based on Eric Yu, Lin Liu, and Ying Li. \"Modelling strategic actor relationships to support intellectual property management.\" International Conference on Conceptual Modeling, 2001."
+        }
     }
 };
 
