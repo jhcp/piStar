@@ -407,6 +407,15 @@ ui.defineInteractions = function () {
     });
 
     istar.paper.on('cell:contextmenu', function (cellView, evt, x, y) {
+        ui.selectElement(cellView.model);
+        $('#sidepanel-title-actions').addClass('flash-on');
+        setTimeout(function () {
+            $('#sidepanel-title-actions').removeClass('flash-on');
+            $('#sidepanel-title-actions').addClass('flash-off');
+            setTimeout(function () {
+                $('#sidepanel-title-actions').removeClass('flash-off');
+            }, 300);
+        }, 50);
     });
 };
 
