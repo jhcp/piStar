@@ -115,6 +115,10 @@ nav a:visited {
   padding: 2px 20px;
 }
 
+#menu-item-plugin {
+  display: none;
+}
+
 .menu-item:hover {
   border-top: solid 2px white;
 }

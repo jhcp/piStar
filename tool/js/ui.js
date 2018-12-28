@@ -735,6 +735,8 @@ $('#modal-button-load-model').click(function () {
 });
 
 ui.setupUi = function () {
+    this.setupPluginMenu();
+
     this.defineInteractions();
     uiC.createAddButtons();
 
@@ -748,6 +750,17 @@ ui.setupUi = function () {
     this.setupSidepanelInteraction();
 
     ui.selectModel();
+};
+
+ui.setupPluginMenu = function () {
+    //listen for changes in the plugin menus, displaying it if some element is added to it
+    var targetNode = document.getElementById('menu-plugin');
+    var config = {childList: true, subtree: true }; // Options for the observer (which mutations to observe)
+    var observer = new MutationObserver(function(mutationsList, observer) {
+        $('#menu-item-plugin').show();
+        observer.disconnect();//stop observing
+    });
+    observer.observe(targetNode, config);
 };
 
 ui.setupDiagramSizeInputs = function () {
