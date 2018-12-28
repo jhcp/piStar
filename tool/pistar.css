@@ -7,7 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   height: 100vh;
-  overflow: hidden;
+  overflow: auto;
   width: 100vw;
 }
 
@@ -17,14 +17,24 @@ body {
   flex-grow: 1;
   flex-wrap: wrap;
   height:100%;
+  overflow: auto;
+  min-height: 1px;
 }
 
 #out {
   background-color: lightgray;
   flex-grow: 1;
-  overflow:scroll;
+  overflow: auto;
+  min-height: 1px;
   width: 70vw;
   position: relative;
+  height: 100%;
+}
+
+#diagram {
+  overflow: auto;
+  min-height: 1px;
+  flex-shrink: 0;
 }
 
 .joint-marker-vertex {
@@ -270,11 +280,15 @@ kbd {
   background-color: white;
   box-shadow: 0 4px 10px rgb(100,100,100);
   font-size: 1.2rem;
+  min-height: 1px;
   overflow-x: auto;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
   transition: width 0.5s, height 0.3s ease-in-out;
   z-index: 1;
+  height: 100%;
 }
+
+
 
 #sidepanel.size1 {
   width: 2vw;
