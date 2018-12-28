@@ -625,10 +625,10 @@ ui.connectLinksToShape = function () {
 
 $('#input-file-format').change(function () {
     if ($(this).val() === "PNG") {
-        $('#modal-input-hi-res').parent().removeClass('hidden');
+        $('#save-png-options').removeClass('hidden');
     }
     else {
-        $('#modal-input-hi-res').parent().addClass('hidden');
+        $('#save-png-options').addClass('hidden');
     }
 
 });
@@ -673,7 +673,7 @@ $('#modal-button-save-image').click(function () {
             if ($('#modal-input-hi-res').prop('checked')) {
                 resolutionFactor = 4;
             }
-            savePng('diagram', joint.util.downloadBlob, filename, resolutionFactor);
+            savePng('diagram', joint.util.downloadBlob, filename, resolutionFactor, $('#modal-input-transparent-background').prop('checked'));
         }
 
         //restore the paper to its initial state
