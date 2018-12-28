@@ -887,6 +887,14 @@ $('#menu-button-toggle-fullscreen').click(function () {
     joint.util.toggleFullScreen();
 });
 
+$('#menu-button-straighten-links').click(function () {
+    if (confirm("ATTENTION! This action will remove all vertices you may have added to the links in this model. Are you sure you want to do this?")) {
+        _.forEach(istar.getLinks(), function (link) {
+            link.vertices([]);
+        })
+    }
+});
+
 ui.clearDiagram = function () {
     istar.graph.clear();
 };
