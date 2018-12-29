@@ -176,6 +176,7 @@ function loadModel(inputRaw) {
 
         ui.clearDiagram();
         istar.graph.prop('name', '');
+        istar.graph.prop('customProperties', '');
         istar.graph.prop('customProperties/Description', '');
         try {
             var inputModel = $.parseJSON(inputRaw);
