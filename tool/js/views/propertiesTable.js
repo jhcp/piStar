@@ -204,50 +204,60 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 if (dependum) {
                     var connectedLinks = istar.graph.getConnectedLinks(dependum);
 
-                    //If we change the source and target without removing the vertices, the math for creating
-                    //the curves may throw exceptions. Thus, we store them in a temp variable, and then re-add
-                    //them reversed.
-                    //It is reversed because the direction has changed, thus the first vertex is now the last vertex,
-                    //and so on.
-                    var originalVertices = connectedLinks[0].vertices();
-                    var originalSource = connectedLinks[0].prop('source/id');
-                    connectedLinks[0].vertices([]);
-                    connectedLinks[0].prop('source/id', connectedLinks[0].prop('target/id'));
-                    connectedLinks[0].prop('target/id', originalSource);
-                    if (istar.graph.getCell(originalSource).isKindOfActor()) {
-                        connectedLinks[0].prop('target/selector', 'circle');
+                    //first verify whether the flipped dependency would be valid
+                    var source = connectedLinks[0].getSourceElement();
+                    var target = connectedLinks[1].getTargetElement();
+                    if (source === dependum) {
+                        source = connectedLinks[1].getSourceElement();
+                        target = connectedLinks[0].getTargetElement();
                     }
-                    else {
-                        connectedLinks[0].prop('target/selector', 'text');
-                    }
-                    if (istar.graph.getCell(connectedLinks[0].prop('source/id')).isKindOfActor()) {
-                        connectedLinks[0].prop('source/selector', 'circle');
-                    }
-                    else {
-                        connectedLinks[0].prop('source/selector', 'text');
-                    }
-                    connectedLinks[0].vertices(_.reverse(originalVertices));
+                    isValid = istar.types['DependencyLink'].isValid(target, source);//check with flipped source/target
+
+                    if (isValid.isValid) {
+                        //If we change the source and target without removing the vertices, the math for creating
+                        //the curves may throw exceptions. Thus, we store them in a temp variable, and then re-add
+                        //them reversed.
+                        //It is reversed because the direction has changed, thus the first vertex is now the last vertex,
+                        //and so on.
+                        var originalVertices = connectedLinks[0].vertices();
+                        var originalSource = connectedLinks[0].prop('source/id');
+                        connectedLinks[0].vertices([]);
+                        connectedLinks[0].prop('source/id', connectedLinks[0].prop('target/id'));
+                        connectedLinks[0].prop('target/id', originalSource);
+                        if (istar.graph.getCell(originalSource).isKindOfActor()) {
+                            connectedLinks[0].prop('target/selector', 'circle');
+                        } else {
+                            connectedLinks[0].prop('target/selector', 'text');
+                        }
+                        if (istar.graph.getCell(connectedLinks[0].prop('source/id')).isKindOfActor()) {
+                            connectedLinks[0].prop('source/selector', 'circle');
+                        } else {
+                            connectedLinks[0].prop('source/selector', 'text');
+                        }
+                        connectedLinks[0].vertices(_.reverse(originalVertices));
 
 
-                    originalVertices = connectedLinks[1].vertices();
-                    connectedLinks[1].vertices([]);
-                    originalSource = connectedLinks[1].prop('source/id');
-                    connectedLinks[1].prop('source/id', connectedLinks[1].prop('target/id'));
-                    connectedLinks[1].prop('target/id', originalSource);
-                    if (istar.graph.getCell(originalSource).isKindOfActor()) {
-                        connectedLinks[1].prop('target/selector', 'circle');
+                        originalVertices = connectedLinks[1].vertices();
+                        connectedLinks[1].vertices([]);
+                        originalSource = connectedLinks[1].prop('source/id');
+                        connectedLinks[1].prop('source/id', connectedLinks[1].prop('target/id'));
+                        connectedLinks[1].prop('target/id', originalSource);
+                        if (istar.graph.getCell(originalSource).isKindOfActor()) {
+                            connectedLinks[1].prop('target/selector', 'circle');
+                        } else {
+                            connectedLinks[1].prop('target/selector', 'text');
+                        }
+                        if (istar.graph.getCell(connectedLinks[1].prop('source/id')).isKindOfActor()) {
+                            connectedLinks[1].prop('source/selector', 'circle');
+                        } else {
+                            connectedLinks[1].prop('source/selector', 'text');
+                        }
+                        connectedLinks[1].vertices(_.reverse(originalVertices));
+                        ui.selectElement(dependum);
                     }
                     else {
-                        connectedLinks[1].prop('target/selector', 'text');
+                        alert('INVALID: Sorry, but ' + isValid.message + '. Thus, this Dependency currently cannot be flipped');
                     }
-                    if (istar.graph.getCell(connectedLinks[1].prop('source/id')).isKindOfActor()) {
-                        connectedLinks[1].prop('source/selector', 'circle');
-                    }
-                    else {
-                        connectedLinks[1].prop('source/selector', 'text');
-                    }
-                    connectedLinks[1].vertices(_.reverse(originalVertices));
-                    ui.selectElement(dependum);
                 }
             });
         }

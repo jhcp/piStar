@@ -287,7 +287,17 @@ ui.defineInteractions = function () {
                         cellView.highlight();
                         ui.linkSource = cellView;
                     } else {
-                        ui.addLinkBetweenActors(ui.currentAddingElement, cellView);
+                        ui.linkTarget = cellView;
+                        isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                        if (isValid.isValid) {
+                            // newLink = istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
+                            ui.addLinkBetweenActors(ui.currentAddingElement, cellView);
+                        }
+                        else {
+                            alert('INVALID: Sorry, but ' + isValid.message);
+                            ui.linkSource.unhighlight();
+                            ui.currentButton.end();
+                        }
                     }
                 }
                 else if (ui.dependencyType.match(/DependencyLink/)) {
@@ -296,7 +306,13 @@ ui.defineInteractions = function () {
                         ui.linkSource = cellView;
                     } else {
                         ui.linkTarget = cellView;
-                        addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
+                        isValid = istar.types['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                        if (isValid.isValid) {
+                            addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
+                        }
+                        else {
+                            alert('INVALID: Sorry, but ' + isValid.message);
+                        }
                         ui.linkSource.unhighlight();
                         ui.currentButton.end();
                     }
@@ -314,35 +330,51 @@ ui.defineInteractions = function () {
                             var newLink = null;
                             var prettyLinkName = '';
                             if (ui.currentAddingElement === 'AndRefinementLink') {
-                                newLink = istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
-                                prettyLinkName = 'And-Refinement link';
-                            }
-                            else if (ui.currentAddingElement === 'OrRefinementLink') {
-                                newLink = istar.addOrRefinementLink(ui.linkSource.model, ui.linkTarget.model);
-                                prettyLinkName = 'Or-Refinement link';
-                            }
-                            else if (ui.currentAddingElement === 'NeededByLink') {
-                                newLink = istar.addNeededByLink(ui.linkSource.model, ui.linkTarget.model);
-                                prettyLinkName = 'Needed-By link';
-                            }
-                            else if (ui.currentAddingElement === 'QualificationLink') {
-                                newLink = istar.addQualificationLink(ui.linkSource.model, ui.linkTarget.model);
-                                prettyLinkName = 'Qualification link';
-                            }
-                            else if (ui.currentAddingElement.match(/make|help|hurt|break/i)) {
-                                newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.currentAddingElement);
-                                prettyLinkName = 'Contribution link';
-                                if (newLink) {
-                                    //do some magic in order to keep links straight when there are no vertices defined
-                                    newLink.on('change:vertices', ui._toggleSmoothness);
+                                isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                if (isValid.isValid) {
+                                    newLink = istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
                                 }
                             }
-                            if (!newLink) {
-                                alert('INVALID: the i* 2.0 syntax does not allow you to create a ' + prettyLinkName + ' between the selected elements');
+                            else if (ui.currentAddingElement === 'OrRefinementLink') {
+                                isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                if (isValid.isValid) {
+                                    newLink = istar.addOrRefinementLink(ui.linkSource.model, ui.linkTarget.model);
+                                }
+                            }
+                            else if (ui.currentAddingElement === 'NeededByLink') {
+                                isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                if (isValid.isValid) {
+                                    newLink = istar.addNeededByLink(ui.linkSource.model, ui.linkTarget.model);
+                                }
+                            }
+                            else if (ui.currentAddingElement === 'QualificationLink') {
+                                isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                if (isValid.isValid) {
+                                    newLink = istar.addQualificationLink(ui.linkSource.model, ui.linkTarget.model);
+                                }
+                            }
+                            else if (ui.currentAddingElement.match(/make|help|hurt|break/i)) {
+                                isValid = istar.types['ContributionLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                if (isValid.isValid) {
+                                    newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.currentAddingElement);
+                                    if (newLink) {
+                                        //do some magic in order to keep links straight when there are no vertices defined
+                                        newLink.on('change:vertices', ui._toggleSmoothness);
+                                    }
+                                }
+                            }
+                            if (! isValid.isValid) {
+                                alert('INVALID: Sorry, but ' + isValid.message);
                             }
                         }
                         else if (ui.dependencyType.match(/DependencyLink/)) {
-                            addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
+                            isValid = istar.types['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                            if (isValid.isValid) {
+                                addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
+                            }
+                            else {
+                                alert('INVALID: Sorry, but ' + isValid.message);
+                            }
                         }
 
                         ui.linkSource.unhighlight();
@@ -462,63 +494,29 @@ ui.addLinkBetweenActors = function (newLink, targetCellView) {
 };
 
 function addDependency(source, dependencyType, target) {
-    var sourceParentId;
-    var targetParentId;
-    if (source.isKindOfActor()) {
-        sourceParentId = source.id;
+    var node = '';
+    var x = 10;
+    var y = 10;
+    var text = 'Dependum';
+    if (dependencyType === 'QualityDependencyLink') {
+        node = istar.addQuality(x, y, text);
     }
-    else if (source.isKindOfInnerElement()) {
-        sourceParentId = source.attributes.parent;
+    else if (dependencyType === 'TaskDependencyLink') {
+        node = istar.addTask(x, y, text);
     }
+    else if (dependencyType === 'ResourceDependencyLink') {
+        node = istar.addResource(x, y, text);
+    } else {
+        node = istar.addGoal(x, y, text);
+    }
+    links = istar.addDependencyLink(source, node, target);
+    links[0].on('change:vertices', ui._toggleSmoothness);
+    links[1].on('change:vertices', ui._toggleSmoothness);
 
-    if (target.isKindOfActor()) {
-        targetParentId = target.id;
-    }
-    else if (target.isKindOfInnerElement()) {
-        targetParentId = target.attributes.parent;
-    }
+    ui.setupDependencyRemoval(links);
 
-    if (source === target) {
-        console.log('INVALID: the i* 2.0 syntax does not allow you to create a dependency from an element to itself.');
-        alert('INVALID: the i* 2.0 syntax does not allow you to create a dependency from an element to itself.');
-    }
-    else if (source.isLink() || target.isLink()) {
-        console.log('INVALID: the i* 2.0 syntax does not allow you to create a dependency from/to another link.');
-        alert('INVALID: the i* 2.0 syntax does not allow you to create a dependency from/to another link.');
-    }
-    else if (source.isDependum() || target.isDependum()) {
-        console.log('INVALID: the i* 2.0 syntax does not allow you to create a dependency from/to a dependum.');
-        alert('INVALID: the i* 2.0 syntax does not allow you to create a dependency from/to a dependum.');
-    }
-    else if (sourceParentId === targetParentId) {
-        console.log('INVALID: the i* 2.0 syntax does not allow you to create a dependency with a single actor.');
-        alert('INVALID: the i* 2.0 syntax does not allow you to create a dependency with a single actor.');
-    }
-    else if (sourceParentId && targetParentId) {
-        var node = '';
-        var x = 10;
-        var y = 10;
-        var text = 'Dependum';
-        if (dependencyType === 'QualityDependencyLink') {
-            node = istar.addQuality(x, y, text);
-        }
-        else if (dependencyType === 'TaskDependencyLink') {
-            node = istar.addTask(x, y, text);
-        }
-        else if (dependencyType === 'ResourceDependencyLink') {
-            node = istar.addResource(x, y, text);
-        } else {
-            node = istar.addGoal(x, y, text);
-        }
-        links = istar.addDependencyLink(source, node, target);
-        links[0].on('change:vertices', ui._toggleSmoothness);
-        links[1].on('change:vertices', ui._toggleSmoothness);
-
-        ui.setupDependencyRemoval(links);
-
-        node.prop('customProperties/Description', '');
-        ui.selectElement(node);
-    }
+    node.prop('customProperties/Description', '');
+    ui.selectElement(node);
 }
 
 ui.setupDependencyRemoval = function (links) {

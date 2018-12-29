@@ -418,12 +418,7 @@ var istar = function () {
             }
 
             //prevent repeated links
-            var currentLinksFromSource = istar.graph.getConnectedLinks(source);
-            var isDuplicated = false;
-            _.each(currentLinksFromSource, function (link) {
-                isDuplicated = isDuplicated || link.getSourceElement() === target || link.getTargetElement() === target;
-            });
-            if (!isDuplicated) {
+            if (!this.isThereLinkBetween(source, target)) {
                 var link = new shape({
                     'source': {id: source.id},
                     'target': {id: target.id}
@@ -588,6 +583,41 @@ var istar = function () {
         },
         getLinks: function () {
             return this.graph.getLinks();
+        },
+        isSourceOf: function (element, typeName) {
+            var currentLinksFromElement = istar.graph.getConnectedLinks(element);
+            var isSourceOf = false;
+            _.each(currentLinksFromElement, function (link) {
+                isSourceOf = isSourceOf || ((link.getSourceElement() === element) && (link.prop('type') === typeName));
+            });
+            return isSourceOf;
+        },
+        isTargetOf: function (element, typeName) {
+            var currentLinksFromElement = istar.graph.getConnectedLinks(element);
+            var isTargetOf = false;
+            _.each(currentLinksFromElement, function (link) {
+                isTargetOf = isTargetOf || ((link.getTargetElement() === element) && (link.prop('type') === typeName));
+            });
+            return isTargetOf;
+        },
+        isThereLinkBetween: function (source, target, typeName) {
+            //check for existing links between two elements
+            //useful for preventing duplicated links
+            //returns true if there is already at least one link between source and target
+            var currentLinksFromSource = istar.graph.getConnectedLinks(source);
+            var isDuplicated = false;
+            if (typeName) {
+                _.each(currentLinksFromSource, function (link) {
+                    isDuplicated = isDuplicated || (link.prop('type') === typeName && (link.getSourceElement() === target
+                        || link.getTargetElement() === target) );
+                });
+            }
+            else {
+                _.each(currentLinksFromSource, function (link) {
+                    isDuplicated = isDuplicated || link.getSourceElement() === target || link.getTargetElement() === target;
+                });
+            }
+            return isDuplicated;
         }
 
     };

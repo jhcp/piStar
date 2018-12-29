@@ -131,6 +131,9 @@ istar.setupMetamodel = function (metamodel) {
     _.each(metamodel.containerLinks, function (node) {
         istar._setupLinkBetweenActors(node, metamodel);
     });
+    _.each(metamodel.dependencyLinks, function (node) {
+        istar._setupBasicLink(node, metamodel);
+    });
     _.each(metamodel.nodeLinks, function (node) {
         istar._setupBasicLink(node, metamodel);
     });
@@ -145,9 +148,6 @@ istar.setupMetamodel = function (metamodel) {
     };
     joint.dia.Cell.prototype.isKindOfActor = function () {
         return this.isActor() || this.isRole() || this.isAgent();
-    };
-    joint.dia.Cell.prototype.isDependencyLink = function () {
-        return this.attributes.type === istar.linkTypes.dependency.name;
     };
 
     console.log('end of metamodel setup');
