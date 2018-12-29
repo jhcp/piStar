@@ -1100,7 +1100,7 @@ istar.examples.travelReimbursement = {
         "name": "University travel reimbursement",
         "customProperties": {
             "Description": "Students must organize their travel (e.g., to conferences) and have several goals to achieve, and options to achieve them. To achieve their goals, students rely on other parties such as a Travel Agency and the university’s trip management information system.",
-            "Origin": "This is the example presented in the iStar 2.0 Language Guide"
+            "Origin": "This is the example presented in the iStar 2.0 Language Guide, which can be accessed through the Help menu"
         }
     }
 };
@@ -1746,112 +1746,176 @@ istar.examples.everyElementAndLink = {
     "actors": [
         {
             "id": "2b3ba506-1f5b-4b5b-9114-01b1092cd067",
-            "text": "Agent",
+            "text": "Agent A",
             "type": "istar.Agent",
             "x": 56,
             "y": 342,
+            "customProperties": {
+                "Description": "This is an agent. The idea of the symbol is that it shows the frontal view of a person wearing a hat, with the name of the agent\nappearing on its face",
+                "Concept": "Agent is an actor with concrete, physical manifestations, such as a human individual, an organization, or a department"
+            },
             "nodes": []
         },
         {
             "id": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
-            "text": "Role",
+            "text": "Role A",
             "type": "istar.Role",
             "x": 309,
             "y": 447,
+            "customProperties": {
+                "Description": "This is a role. The idea of the symbol is that it shows the aerial (top-down) view of a person wearing a hat, with the name of the role\nappearing on the hat. Thus, different people may wear the same \"hat\"",
+                "Concept": "Role is an abstract characterization of the behavior of a social actor within some specialized context or domain of endeavor"
+            },
             "nodes": []
         },
         {
             "id": "9cab7456-727b-4d7e-81dd-af8903718cb3",
-            "text": "Actor",
+            "text": "Actor A",
             "type": "istar.Actor",
             "x": 202,
             "y": 76,
+            "customProperties": {
+                "Description": "This actor is-a Actor B.\nIt depends on Agent to achieve Dependum A.\nIt depends on Role to satisfy Dependum B.\nIt depends on Role to execute Dependum C.\nIt depends on Actor B to obtain Dependum D.",
+                "Tooltip": "This actor is collapsed. You can press 'alt' and click on the actor to expand it, making its inner elements visible",
+                "Concept": "Actors are active, autonomous entities that aim at achieving their goals by exercising their know-how, in collaboration with other actors.\n\nActor can be specialized as Role or Agent. Whenever distinguishing the type of actor is not relevant, either because of the scenario-at-hand or the modeling stage, the notion of generic actor—without specialization—can be used in the model."
+            },
             "nodes": [
                 {
                     "id": "e1acd9b0-c9e9-468b-845c-c7b08db3020f",
-                    "text": "Goal",
+                    "text": "Goal X",
                     "type": "istar.Goal",
                     "x": 284,
-                    "y": 105
+                    "y": 105,
+                    "customProperties": {
+                        "Description": "This is a goal of Actor A",
+                        "Concept": "A Goal is a state of affairs that the actor wants to achieve and that has clear-cut criteria of achievement"
+                    }
                 },
                 {
                     "id": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
-                    "text": "Task",
+                    "text": "Task X",
                     "type": "istar.Task",
                     "x": 305,
-                    "y": 199
+                    "y": 199,
+                    "customProperties": {
+                        "Description": "This is a task that, if executed, will imply the achievement of Goal X",
+                        "Concept": "Tasks represent actions that an actor wants to be executed, usually with the purpose of achieving some goal"
+                    }
                 }
             ]
         },
         {
             "id": "6a76ceb5-f287-462d-bf57-a266cc19c243",
-            "text": "Actor",
+            "text": "Actor B",
             "type": "istar.Actor",
             "x": 572,
             "y": 30,
+            "customProperties": {
+                "Description": "This is an actor with its boundary expanded",
+                "Tooltip": "In order to expand or collapse (hide) the boundary of an actor you can press 'alt' and click on the actor",
+                "Concept": "Actors are active, autonomous entities that aim at achieving their goals by exercising their know-how, in collaboration with other actors.\n\nActors’ intentionality is made explicit through the actor boundary, which is a graphical container for their intentional elements together with their interrelationships. The actor boundary is represented by a grey area. An intentional element appearing inside the boundary of an actor denotes something that is desired or wanted by that actor"
+            },
             "nodes": [
                 {
                     "id": "4c3ba102-6514-47a4-b21c-8a8f8cdae0cc",
-                    "text": "Goal",
+                    "text": "Goal A",
                     "type": "istar.Goal",
                     "x": 702,
-                    "y": 45
+                    "y": 45,
+                    "customProperties": {
+                        "Description": "This goal is OR-refined by Task A, meaning that if Task A gets executed the Goal A will ve achieved",
+                        "Tooltip": "You can resize an element by dragging the small circle on its bottom-right corner",
+                        "Concept": "A Goal is a state of affairs that the actor wants to achieve and that has clear-cut criteria of achievement"
+
+                    }
                 },
                 {
                     "id": "e1270a5e-3c20-4be9-8097-66f6ed8502cd",
-                    "text": "Task",
+                    "text": "Task A",
                     "type": "istar.Task",
                     "x": 700,
-                    "y": 129
+                    "y": 129,
+                    "customProperties": {
+                        "Description": "This task is a means to achieve Goal A. It is AND-refined by tasks B and C",
+                        "Concept": "Tasks represent actions that an actor wants to be executed, usually with the purpose of achieving some goal"
+                    }
                 },
                 {
                     "id": "60d0943c-169e-41ff-85ed-e19360456863",
-                    "text": "Task",
+                    "text": "Task B",
                     "type": "istar.Task",
                     "x": 634,
-                    "y": 209
+                    "y": 209,
+                    "customProperties": {
+                        "Description": "This task is part of the refinement of Task A",
+                        "Concept": "Tasks represent actions that an actor wants to be executed, usually with the purpose of achieving some goal"
+                    }
                 },
                 {
                     "id": "0a28f23e-2008-43b3-9e63-025bdfd5f30c",
-                    "text": "Task",
+                    "text": "Task C",
                     "type": "istar.Task",
                     "x": 768,
-                    "y": 207
+                    "y": 207,
+                    "customProperties": {
+                        "Description": "This task is part of the refinement of Task A",
+                        "Concept": "Tasks represent actions that an actor wants to be executed, usually with the purpose of achieving some goal"
+                    }
                 },
                 {
                     "id": "df52f053-20a2-4bdf-8e23-e8c53a8ce306",
-                    "text": "Quality",
+                    "text": "Quality B",
                     "type": "istar.Quality",
                     "x": 572,
-                    "y": 322
+                    "y": 322,
+                    "customProperties": {
+                        "Description": "Task B provides sufficient positive evidence (make) for the satisfaction of this quality",
+                        "Concept": "A quality is an attribute for which an actor desires some level of achievement. For example, the entity could be the system under development and a quality its performance; another entity could be the business being analyzed and a quality the yearly profit. The level of achievement may be defined precisely or kept vague. Qualities can guide the search for ways of achieving goals, and also serve as criteria for evaluating alternative ways of achieving goals"
+                    }
                 },
                 {
                     "id": "3ff6395e-86ec-4661-ba13-c0493331303b",
-                    "text": "Quality",
+                    "text": "Quality C",
                     "type": "istar.Quality",
                     "x": 831,
-                    "y": 317
+                    "y": 317,
+                    "customProperties": {
+                        "Description": "Task C provides sufficient evidence against the satisfaction (or for the denial) of this quality",
+                        "Concept": "A quality is an attribute for which an actor desires some level of achievement. For example, the entity could be the system under development and a quality its performance; another entity could be the business being analyzed and a quality the yearly profit. The level of achievement may be defined precisely or kept vague. Qualities can guide the search for ways of achieving goals, and also serve as criteria for evaluating alternative ways of achieving goals"
+                    }
                 },
                 {
                     "id": "85940cf3-6d49-4270-9b00-51696b5790f5",
-                    "text": "Quality",
+                    "text": "Quality D",
                     "type": "istar.Quality",
                     "x": 699,
-                    "y": 455
+                    "y": 455,
+                    "customProperties": {
+                        "Description": "The satisfaction of Quality B provides weak evidence against the satisfaction (or for the denial) of this quality.\nOn the other hand, the satisfaction of Quality C provides weak positive evidence for the satisfaction of this quality. Quite the pickle, right?",
+                        "Concept": "A quality is an attribute for which an actor desires some level of achievement. For example, the entity could be the system under development and a quality its performance; another entity could be the business being analyzed and a quality the yearly profit. The level of achievement may be defined precisely or kept vague. Qualities can guide the search for ways of achieving goals, and also serve as criteria for evaluating alternative ways of achieving goals"
+                    }
                 },
                 {
                     "id": "54c01821-aa4d-4bd0-9fdf-6ddaa25c299f",
-                    "text": "Resource",
+                    "text": "Resource A",
                     "type": "istar.Resource",
                     "x": 922,
-                    "y": 233
+                    "y": 233,
+                    "customProperties": {
+                        "Description": "This is resource is needed for the execution of Task C",
+                        "Concept": "A Resource is a physical or informational entity that the actor requires in order to perform a task"
+                    }
                 },
                 {
                     "id": "1ecba4f1-f873-466c-8074-092f612d5fed",
-                    "text": "Quality",
+                    "text": "Quality A",
                     "type": "istar.Quality",
-                    "x": 860,
-                    "y": 101
+                    "x": 861,
+                    "y": 101,
+                    "customProperties": {
+                        "Description": "This quality qualifies Task A",
+                        "Concept": "A quality is an attribute for which an actor desires some level of achievement. For example, the entity could be the system under development and a quality its performance; another entity could be the business being analyzed and a quality the yearly profit. The level of achievement may be defined precisely or kept vague. Qualities can guide the search for ways of achieving goals, and also serve as criteria for evaluating alternative ways of achieving goals"
+                    }
                 }
             ]
         }
@@ -1859,169 +1923,297 @@ istar.examples.everyElementAndLink = {
     "dependencies": [
         {
             "id": "fd083df6-87fc-4423-b25c-3291a1bf9aa3",
-            "text": "Dependum",
+            "text": "Dependum A",
             "type": "istar.Goal",
-            "x": 12,
-            "y": 178,
+            "x": 13,
+            "y": 177,
+            "customProperties": {
+                "Description": "This is a dependum in a goal dependency.\n\n– Depender: Actor A\n– dependerElmt: none\n– dependum: Dependum A\n– dependee: Agent A\n– dependeeElmt: none",
+                "Tooltip": "You can flip the direction of a dependency by clicking on the button below",
+                "Concept": "Dependencies represent social relationships. A goal dependency indicates that the dependee is expected to achieve the goal, and is free to choose how.\n\nDependency relationships should not share the same dependum, as each dependum is a conceptually different element; in some cases, a dependum in one dependency is achieved, but is not achieved in another dependency, even if the dependums may have the same name.\nIn other words, an actor cannot depend on more than one actor for the same dependum, or two actors cannot depend on the same dependum from an actor. Instead, create multiple dependums with the same name"
+            },
             "source": "9cab7456-727b-4d7e-81dd-af8903718cb3",
             "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067"
         },
         {
             "id": "9934417c-7c57-4272-837d-fb75b6eff101",
-            "text": "Dependum",
+            "text": "Dependum B",
             "type": "istar.Quality",
             "x": 181,
             "y": 332,
+            "customProperties": {
+                "Description": "This is a dependum in a quality dependency.\n\n– Depender: Actor A\n– dependerElmt: Goal X (inside Actor A)\n– dependum: Dependum B\n– dependee: Role A\n– dependeeElmt: none",
+                "Concept": "Dependencies represent social relationships. A quality dependency indicates that  the dependee is expected to sufficiently satisfy the quality, and is free to choose how"
+            },
             "source": "e1acd9b0-c9e9-468b-845c-c7b08db3020f",
             "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2"
         },
         {
             "id": "81fe40dc-2380-47c0-92ab-1e7281dc020c",
-            "text": "Dependum",
+            "text": "Dependum C",
             "type": "istar.Task",
             "x": 379,
             "y": 333,
+            "customProperties": {
+                "Description": "This is a dependum in a task dependency.\n\n– Depender: Actor A\n– dependerElmt: Task X (inside Actor A)\n– dependum: Dependum C\n– dependee: Role A\n– dependeeElmt: none",
+                "Concept": "Dependencies represent social relationships. A task dependency indicates that the dependee is expected to execute the task in a prescribed way"
+            },
             "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
             "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2"
         },
         {
             "id": "7b339194-6020-4c2b-86e5-cd07ab9f725d",
-            "text": "Dependum",
+            "text": "Dependum D",
             "type": "istar.Resource",
             "x": 453,
             "y": 169,
+            "customProperties": {
+                "Description": "This is a dependum in a resource dependency.\n\n– Depender: Actor A\n– dependerElmt: Task X (inside Actor A)\n– dependum: Dependum D\n– dependee: Actor B\n– dependeeElmt: Task B (inside Actor B)",
+                "Tooltip": "You can change the type of a dependency (goal, quality, task or resource) by clicking on the type in this table",
+                "Concept": "Dependencies represent social relationships. A resource dependency indicates that the dependee is expected to make the resource available to the depender"
+            },
             "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
             "target": "60d0943c-169e-41ff-85ed-e19360456863"
+        },
+        {
+            "id": "ad1e6006-2afa-448a-ab76-94be798d1a1e",
+            "text": "Dependum A",
+            "type": "istar.Goal",
+            "x": 95,
+            "y": 467,
+            "customProperties": {
+                "Description": "This is a dependum in a goal dependency.\n\n– Depender: Role A\n– dependerElmt: none\n– dependum: Dependum A\n– dependee: Agent A\n– dependeeElmt: none",
+                "Concept": "Dependencies represent social relationships. A goal dependency indicates that the dependee is expected to achieve the goal, and is free to choose how.\n\nDependency relationships should not share the same dependum, as each dependum is a conceptually different element; in some cases, a dependum in one dependency is achieved, but is not achieved in another dependency, even if the dependums may have the same name.\nIn other words, an actor cannot depend on more than one actor for the same dependum, or two actors cannot depend on the same dependum from an actor. Instead, create multiple dependums with the same name"
+            },
+            "source": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
+            "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067"
         }
     ],
     "links": [
         {
-            "id": "a758b97d-bccf-4f54-9bee-8c29bcddafe9",
-            "type": "istar.OrRefinementLink",
-            "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
-            "target": "e1acd9b0-c9e9-468b-845c-c7b08db3020f"
-        },
-        {
-            "id": "9780344c-72b0-4bcc-8eee-6af8abda3e7c",
-            "type": "istar.IsALink",
-            "source": "9cab7456-727b-4d7e-81dd-af8903718cb3",
-            "target": "6a76ceb5-f287-462d-bf57-a266cc19c243"
-        },
-        {
-            "id": "d8ba60f5-88c4-4cfc-8058-004aeab36501",
+            "id": "b0e70150-9db6-411f-8b8c-976076dc2146",
             "type": "istar.DependencyLink",
             "source": "9cab7456-727b-4d7e-81dd-af8903718cb3",
-            "target": "fd083df6-87fc-4423-b25c-3291a1bf9aa3"
+            "target": "fd083df6-87fc-4423-b25c-3291a1bf9aa3",
+            "customProperties": {
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown",
+                "Description": "This link is part of a goal dependency. The \"D\" is pointing from Actor A to Dependum A"
+            }
         },
         {
-            "id": "0a6f14b3-005a-4309-930b-6568691227b5",
+            "id": "d64540cb-032b-4759-9839-d08c9d19d745",
             "type": "istar.DependencyLink",
             "source": "fd083df6-87fc-4423-b25c-3291a1bf9aa3",
-            "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067"
+            "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067",
+            "customProperties": {
+                "Description": "This link is part of a goal dependency. The \"D\" is pointing from Dependum A to Agent A",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
         },
         {
-            "id": "df0020bb-6275-473a-8731-601c27ca7f7c",
+            "id": "02cb3526-ab02-42d1-9bad-0a65cdb86b7f",
             "type": "istar.DependencyLink",
             "source": "e1acd9b0-c9e9-468b-845c-c7b08db3020f",
-            "target": "9934417c-7c57-4272-837d-fb75b6eff101"
+            "target": "9934417c-7c57-4272-837d-fb75b6eff101",
+            "customProperties": {
+                "Description": "This link is part of a quality dependency. The \"D\" is pointing from Actor A to Dependum B",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
         },
         {
-            "id": "b49cc7da-17e0-470f-86cf-9bb9aae6898d",
+            "id": "83ee4c45-2517-4336-af0d-8ecf58fd9d69",
             "type": "istar.DependencyLink",
             "source": "9934417c-7c57-4272-837d-fb75b6eff101",
-            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2"
+            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
+            "customProperties": {
+                "Description": "This link is part of a quality dependency. The \"D\" is pointing from Dependum B to Role A",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
         },
         {
-            "id": "0617cbda-3b51-45c1-8565-3a64aedc54e0",
+            "id": "3428a3ca-ea5e-4856-9c2d-7edeedafdaa9",
             "type": "istar.DependencyLink",
             "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
-            "target": "81fe40dc-2380-47c0-92ab-1e7281dc020c"
+            "target": "81fe40dc-2380-47c0-92ab-1e7281dc020c",
+            "customProperties": {
+                "Description": "This link is part of a task dependency. The \"D\" is pointing from Actor A to Dependum C",
+                "Tooltip": "Do you see the gap between the beginning of this link and Actor A? You can remove these gaps by clicking on \"Pixel-perfect links\" in the Options menu",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
         },
         {
-            "id": "dd595e43-d9dc-4e44-a751-132144628adf",
+            "id": "cdd5472f-cea8-423b-89f5-73d5ef40d0c9",
             "type": "istar.DependencyLink",
             "source": "81fe40dc-2380-47c0-92ab-1e7281dc020c",
-            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2"
+            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
+            "customProperties": {
+                "Description": "This link is part of a task dependency. The \"D\" is pointing from Dependum C to Role A",
+                "Tooltip": "Congratulations, you found this secret tip! You can change the size of the diagram on the Options menu. But if all you want is to enlarge it, you can just drag an element to the bottom or right and the diagram will automatically expand",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
         },
         {
-            "id": "608da22e-748e-4856-8c15-50476891cbfa",
+            "id": "9143dfcf-6903-4002-a77d-2db9ecc0ab46",
+            "type": "istar.DependencyLink",
+            "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
+            "target": "7b339194-6020-4c2b-86e5-cd07ab9f725d",
+            "customProperties": {
+                "Description": "This link is part of a resource dependency. The \"D\" is pointing from Actor A to Dependum D",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
+        },
+        {
+            "id": "0295cd63-3ece-4349-b2bc-9dd7db4be8d4",
+            "type": "istar.DependencyLink",
+            "source": "7b339194-6020-4c2b-86e5-cd07ab9f725d",
+            "target": "60d0943c-169e-41ff-85ed-e19360456863",
+            "customProperties": {
+                "Description": "This link is part of a resource dependency. The \"D\" is pointing from Dependum D to Task B (which is inside Actor B)",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
+        },
+        {
+            "id": "2d9e859b-cd05-4648-8793-b39cf4a817eb",
+            "type": "istar.OrRefinementLink",
+            "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
+            "target": "e1acd9b0-c9e9-468b-845c-c7b08db3020f",
+            "customProperties": {
+                "Description": "This is an (inclusive) OR-refinement linking Task X to Goal X",
+                "Concept": "The black triangle in this link indicates that it is an (inclusive) OR-refinement: the fulfillment of at least one child makes the parent fulfilled. This relationship allows for a single child (as is the case here)"
+            }
+        },
+        {
+            "id": "ad8dad95-644b-4e2e-a316-f4497ce853e1",
+            "type": "istar.IsALink",
+            "source": "9cab7456-727b-4d7e-81dd-af8903718cb3",
+            "target": "6a76ceb5-f287-462d-bf57-a266cc19c243",
+            "name": "Usually you DON'T want to define names for links",
+            "customProperties": {
+                "Concept": "Actors are often interrelated. In iStar 2.0, this is captured via actor links that define/describe these relationships. Actor links are binary, linking a single actor to a single other actor.\n\nA is-a link represents the concept of generalization / specialization in iStar 2.0. Only roles can be specialized into roles, or general actors into general actors. For\ninstance, a PhD student (role) can be defined as a specialization of a Student (another role). Agents cannot be specialized via is-a, as they are concrete instantiations (e.g., a John Smith cannot be another agent).",
+                "Description": "This links states that Actor A is a (specialization of) Actor B"
+            }
+        },
+        {
+            "id": "581b9fd1-bc55-42df-a78c-3a9e1a62a3bf",
             "type": "istar.OrRefinementLink",
             "source": "e1270a5e-3c20-4be9-8097-66f6ed8502cd",
-            "target": "4c3ba102-6514-47a4-b21c-8a8f8cdae0cc"
+            "target": "4c3ba102-6514-47a4-b21c-8a8f8cdae0cc",
+            "customProperties": {
+                "Concept": "iStar 2.0 features a generic relationship called \"refinement\" that links goals and tasks hierarchically. Refinement is an n-ary relationship relating one parent to one or more children.\nA parent can only be AND-refined or OR-refined, not both simultaneously\n\nThe black triangle in this link indicates that it is an (inclusive) OR-refinement: the fulfillment of at least one child makes the parent fulfilled. This relationship allows for a single child (as is the case here).\n\nDepending on the connected elements, refinement takes different meanings:\n• If the parent is a goal (which is the case here): in the case of OR-refinement, a child task is a particular way (a “means”) for fulfilling the parent goal (the “end”), while a child goal is a sub-goal that can be achieved for fulfilling the parent goal;\n• If the parent is a task: in the case of OR-refinement, a child goal is a goal whose existence that is uncovered by analyzing the parent task which may substitute for the original task, while a child task is a way to execute the parent task.",
+                "Description": "This is an OR-refinement linking Task A with Goal A"
+            }
         },
         {
-            "id": "7c09c187-4d18-4d2f-93c0-074b0bd37000",
+            "id": "da11c78c-3be2-44c9-bb0e-6d91f32b1b99",
             "type": "istar.AndRefinementLink",
             "source": "60d0943c-169e-41ff-85ed-e19360456863",
-            "target": "e1270a5e-3c20-4be9-8097-66f6ed8502cd"
+            "target": "e1270a5e-3c20-4be9-8097-66f6ed8502cd",
+            "customProperties": {
+                "Concept": "The small line in the top of this link indicates that it is an AND-refinement: the fulfillment of all the n children (n ≥ 2) makes the parent fulfilled.\n\nDepending on the connected elements, refinement takes different meanings:\n• If the parent is a goal: in the case of AND-refinement, a child goal is a sub-state of affairs that is part of the parent goal, while a child task is a sub-task that must be fulfilled;\n• If the parent is a task (which is the case here): in the case of AND-refinement, a child task is a sub-task that is identified as part of the parent task, while a child goal is a goal that is uncovered by analyzing the parent task"
+            }
         },
         {
-            "id": "24a18788-367e-4174-9411-450388e0a40e",
+            "id": "b1b1ecea-c28e-4d41-83e7-1847e9afd706",
             "type": "istar.AndRefinementLink",
             "source": "0a28f23e-2008-43b3-9e63-025bdfd5f30c",
-            "target": "e1270a5e-3c20-4be9-8097-66f6ed8502cd"
+            "target": "e1270a5e-3c20-4be9-8097-66f6ed8502cd",
+            "customProperties": {
+                "Concept": "The small line in the top of this link indicates that it is an AND-refinement: the fulfillment of all the n children (n ≥ 2) makes the parent fulfilled.\n\nDepending on the connected elements, refinement takes different meanings:\n• If the parent is a goal: in the case of AND-refinement, a child goal is a sub-state of affairs that is part of the parent goal, while a child task is a sub-task that must be fulfilled;\n• If the parent is a task (which is the case here): in the case of AND-refinement, a child task is a sub-task that is identified as part of the parent task, while a child goal is a goal that is uncovered by analyzing the parent task"
+            }
         },
         {
-            "id": "43f22aeb-95b1-4c37-ab77-475d6ef23c8b",
+            "id": "45876371-e283-4e58-9901-52f9bcb5f0f0",
             "type": "istar.QualificationLink",
             "source": "1ecba4f1-f873-466c-8074-092f612d5fed",
-            "target": "e1270a5e-3c20-4be9-8097-66f6ed8502cd"
+            "target": "e1270a5e-3c20-4be9-8097-66f6ed8502cd",
+            "customProperties": {
+                "Concept": "The qualification relationship relates a quality to its subject: a task, goal, or resource. Placing a qualification relationship expresses a desired quality over the execution of a task, the achievement of the goal, or the provision of the resource. For example, a quality “Quick saving” may refer to the goal “Save model”, qualifying how the operation or function of this goal should be achieved",
+                "Tooltip": "You can add vertices to a link by clicking right on top of its line"
+            }
         },
         {
-            "id": "cb9ab7bd-1204-4f0e-875b-79e7adf45a80",
+            "id": "baaf05ac-6a0c-4931-a6f1-8c3f8cc75f76",
             "type": "istar.NeededByLink",
             "source": "54c01821-aa4d-4bd0-9fdf-6ddaa25c299f",
-            "target": "0a28f23e-2008-43b3-9e63-025bdfd5f30c"
+            "target": "0a28f23e-2008-43b3-9e63-025bdfd5f30c",
+            "customProperties": {
+                "Concept": "The Needed-By relationship links a task with a resource and it indicates that the actor needs the resource in order to execute the task. This relationship does not specify what is the reason for this need: consumption, reading, modification, creation, etc."
+            }
         },
         {
-            "id": "77a95e79-997f-4322-84cd-80c596d41ac1",
+            "id": "57111733-7076-4116-b22a-5f0d8453a36f",
             "type": "istar.ContributionLink",
             "source": "60d0943c-169e-41ff-85ed-e19360456863",
             "target": "df52f053-20a2-4bdf-8e23-e8c53a8ce306",
+            "customProperties": {
+                "Concept": "Contribution links represent the effects of intentional elements on qualities, and are essential to assist analysts in the decision-making process among alternative goals or tasks. Contribution links lead to the accumulation of evidence for qualities. We talk of qualities being fulfilled or satisfied, having sufficient positive evidence, or being denied, having strong negative evidence.\n\nThis here is a 'make' contribution: The source provides sufficient positive evidence for the satisfaction of the target. In some i* variations this is called a ++ contribution",
+                "Tooltip": "You can change the value of a contribution (make, help, hurt or break) by clicking on the value in this table"
+            },
             "label": "make"
         },
         {
-            "id": "95ae8e2d-7edd-4fbc-99ca-2faa44e8f17e",
+            "id": "aa74a406-9b26-478e-ab69-9fd234408cf5",
             "type": "istar.ContributionLink",
             "source": "0a28f23e-2008-43b3-9e63-025bdfd5f30c",
             "target": "3ff6395e-86ec-4661-ba13-c0493331303b",
+            "customProperties": {
+                "Concept": "Contribution links represent the effects of intentional elements on qualities, and are essential to assist analysts in the decision-making process among alternative goals or tasks. Contribution links lead to the accumulation of evidence for qualities. We talk of qualities being fulfilled or satisfied, having sufficient positive evidence, or being denied, having strong negative evidence.\n\nThis here is a 'break' contribution: The source provides sufficient evidence against the satisfaction (or for the denial) of the target.  In some i* variations this is called a -- contribution"
+            },
             "label": "break"
         },
         {
-            "id": "a9b52236-13ed-41ab-b946-9b9ba34e82c4",
+            "id": "3dc971b7-3bde-4ed8-9b24-55152ce452a8",
             "type": "istar.ContributionLink",
             "source": "df52f053-20a2-4bdf-8e23-e8c53a8ce306",
             "target": "85940cf3-6d49-4270-9b00-51696b5790f5",
+            "customProperties": {
+                "Concept": "Contribution links represent the effects of intentional elements on qualities, and are essential to assist analysts in the decision-making process among alternative goals or tasks. Contribution links lead to the accumulation of evidence for qualities. We talk of qualities being fulfilled or satisfied, having sufficient positive evidence, or being denied, having strong negative evidence.\n\nThis here is a 'hurt' contribution: The source provides weak evidence against the satisfaction (or for the denial) of the target.  In some i* variations this is called a - contribution"
+            },
             "label": "hurt"
         },
         {
-            "id": "b1adf2a6-577d-4b97-ba8c-785dd255fa1e",
+            "id": "24e93e68-9cf9-4607-8d4d-60de8a61c7c2",
             "type": "istar.ContributionLink",
             "source": "3ff6395e-86ec-4661-ba13-c0493331303b",
             "target": "85940cf3-6d49-4270-9b00-51696b5790f5",
+            "customProperties": {
+                "Concept": "Contribution links represent the effects of intentional elements on qualities, and are essential to assist analysts in the decision-making process among alternative goals or tasks. Contribution links lead to the accumulation of evidence for qualities. We talk of qualities being fulfilled or satisfied, having sufficient positive evidence, or being denied, having strong negative evidence.\n\nThis here is a 'help' contribution:  The source provides weak positive evidence for the satisfaction of the target.  In some i* variations this is called a + contribution"
+            },
             "label": "help"
         },
         {
-            "id": "f7485e56-5c1e-447e-985f-ddcb9b48ce03",
-            "type": "istar.DependencyLink",
-            "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
-            "target": "7b339194-6020-4c2b-86e5-cd07ab9f725d"
-        },
-        {
-            "id": "19fe6b56-9de3-46c4-af0d-46503c438ceb",
-            "type": "istar.DependencyLink",
-            "source": "7b339194-6020-4c2b-86e5-cd07ab9f725d",
-            "target": "60d0943c-169e-41ff-85ed-e19360456863"
-        },
-        {
-            "id": "c5d14beb-fe64-462c-8135-269bc4c7f3c1",
+            "id": "3605b7cd-6b3c-4384-b1e7-9752b1b98ba8",
             "type": "istar.ParticipatesInLink",
             "source": "2b3ba506-1f5b-4b5b-9114-01b1092cd067",
-            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2"
+            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
+            "customProperties": {
+                "Concept": "Actors are often interrelated. In iStar 2.0, this is captured via actor links that define/describe these relationships. Actor links are binary, linking a single actor to a single other actor.\n\nA participates-in link represents any kind of association, other than generalization/specialization, between two actors. No restriction exists on the type of actors linked by this association. Depending on the connected elements, this link takes different meanings. Two typical situations are the following:\n• When the source is an agent and the target is a role, this represents the plays relationship, i.e., an agent plays a given role. For instance, the agent Smith plays the role of Tool User.\n• When the source and the target are of the same type, this will often represent the part-of relationship. For instance, the Beta Tester role is part of the Tool User role",
+                "Description": "This link states that Agent A plays the role Role A"
+            }
+        },
+        {
+            "id": "bcc54179-39d0-4a3b-8525-ccf39a4fb5c2",
+            "type": "istar.DependencyLink",
+            "source": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
+            "target": "ad1e6006-2afa-448a-ab76-94be798d1a1e",
+            "customProperties": {
+                "Description": "This link is part of a goal dependency. The \"D\" is pointing from Role A to Dependum A",
+                "Tooltip": "If you accidentally added to many vertices to an link, you can delete them by clickin on the \"Clear vertices\" button below"
+            }
+        },
+        {
+            "id": "b61bd4e3-501e-472d-aeb8-01dfbfb88585",
+            "type": "istar.DependencyLink",
+            "source": "ad1e6006-2afa-448a-ab76-94be798d1a1e",
+            "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067",
+            "customProperties": {
+                "Description": "This link is part of a goal dependency. The \"D\" is pointing from Dependum A to Agent A",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
         }
     ],
     "display": {
-        "d8ba60f5-88c4-4cfc-8058-004aeab36501": {
+        "b0e70150-9db6-411f-8b8c-976076dc2146": {
             "vertices": [
                 {
                     "x": 112,
@@ -2029,7 +2221,7 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "0a6f14b3-005a-4309-930b-6568691227b5": {
+        "d64540cb-032b-4759-9839-d08c9d19d745": {
             "vertices": [
                 {
                     "x": 43,
@@ -2037,7 +2229,7 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "df0020bb-6275-473a-8731-601c27ca7f7c": {
+        "02cb3526-ab02-42d1-9bad-0a65cdb86b7f": {
             "vertices": [
                 {
                     "x": 165,
@@ -2045,7 +2237,7 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "b49cc7da-17e0-470f-86cf-9bb9aae6898d": {
+        "83ee4c45-2517-4336-af0d-8ecf58fd9d69": {
             "vertices": [
                 {
                     "x": 285,
@@ -2053,7 +2245,7 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "0617cbda-3b51-45c1-8565-3a64aedc54e0": {
+        "3428a3ca-ea5e-4856-9c2d-7edeedafdaa9": {
             "vertices": [
                 {
                     "x": 422,
@@ -2061,42 +2253,7 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "dd595e43-d9dc-4e44-a751-132144628adf": {
-            "vertices": []
-        },
-        "77a95e79-997f-4322-84cd-80c596d41ac1": {
-            "vertices": [
-                {
-                    "x": 646,
-                    "y": 274
-                }
-            ]
-        },
-        "95ae8e2d-7edd-4fbc-99ca-2faa44e8f17e": {
-            "vertices": [
-                {
-                    "x": 855,
-                    "y": 272
-                }
-            ]
-        },
-        "a9b52236-13ed-41ab-b946-9b9ba34e82c4": {
-            "vertices": [
-                {
-                    "x": 619,
-                    "y": 433
-                }
-            ]
-        },
-        "b1adf2a6-577d-4b97-ba8c-785dd255fa1e": {
-            "vertices": [
-                {
-                    "x": 865,
-                    "y": 434
-                }
-            ]
-        },
-        "f7485e56-5c1e-447e-985f-ddcb9b48ce03": {
+        "9143dfcf-6903-4002-a77d-2db9ecc0ab46": {
             "vertices": [
                 {
                     "x": 388,
@@ -2104,11 +2261,83 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "19fe6b56-9de3-46c4-af0d-46503c438ceb": {
+        "0295cd63-3ece-4349-b2bc-9dd7db4be8d4": {
             "vertices": [
                 {
                     "x": 568,
                     "y": 195
+                }
+            ]
+        },
+        "57111733-7076-4116-b22a-5f0d8453a36f": {
+            "vertices": [
+                {
+                    "x": 646,
+                    "y": 274
+                }
+            ]
+        },
+        "aa74a406-9b26-478e-ab69-9fd234408cf5": {
+            "vertices": [
+                {
+                    "x": 855,
+                    "y": 272
+                }
+            ]
+        },
+        "3dc971b7-3bde-4ed8-9b24-55152ce452a8": {
+            "vertices": [
+                {
+                    "x": 619,
+                    "y": 433
+                }
+            ]
+        },
+        "24e93e68-9cf9-4607-8d4d-60de8a61c7c2": {
+            "vertices": [
+                {
+                    "x": 865,
+                    "y": 434
+                }
+            ]
+        },
+        "bcc54179-39d0-4a3b-8525-ccf39a4fb5c2": {
+            "vertices": [
+                {
+                    "x": 319,
+                    "y": 526
+                },
+                {
+                    "x": 282,
+                    "y": 538
+                },
+                {
+                    "x": 264,
+                    "y": 505
+                },
+                {
+                    "x": 223,
+                    "y": 551
+                },
+                {
+                    "x": 233,
+                    "y": 496
+                },
+                {
+                    "x": 186,
+                    "y": 541
+                },
+                {
+                    "x": 138,
+                    "y": 521
+                }
+            ]
+        },
+        "b61bd4e3-501e-472d-aeb8-01dfbfb88585": {
+            "vertices": [
+                {
+                    "x": 71,
+                    "y": 447
                 }
             ]
         },
@@ -2122,11 +2351,17 @@ istar.examples.everyElementAndLink = {
             "collapsed": true
         }
     },
-    "tool": "pistar.1.0.1",
+    "tool": "pistar.2.0.0",
     "istar": "2.0",
-    "saveDate": "Sun, 11 Mar 2018 01:00:05 GMT",
+    "saveDate": "Sat, 29 Dec 2018 00:34:01 GMT",
     "diagram": {
-        "width": 1500,
-        "height": 1500
+        "width": 1100,
+        "height": 600,
+        "name": "Every iStar 2.0 element and link",
+        "customProperties": {
+            "Description": "This is an example showing every iStar 2.0 element and link.\n\nKinds of actor:\n - Actor, Agent and Role\n\nDependency links:\n - Goal, Quality, Task and Resource dependency\n\nActor links:\n - Is-A and Participates-In\n\nInner elements:\n - Goal, Quality, Task, Resource\n\nInner element links:\n - And-refinement, Or-refinement, Needed-By, Qualification, and Contribution links (make, help, hurt, break)",
+            "Tooltip": "Click on \"Toggle fullscreen\" in the Options menu to facilitate the use of the tool\n\nAlso, click on the elements and links of this model to learn more about the iStar 2.0 language",
+            "Origin": "Model created by João Pimentel (UFRPE/Brazil). Concepts mostly copied from the iStar 2.0 language guide, by Fabiano Dalpiaz , Xavier Franch, and Jennifer Horkoff. You can access the full guide through the Help menu"
+        }
     }
 };
