@@ -294,7 +294,8 @@ ui.defineInteractions = function () {
                             ui.addLinkBetweenActors(ui.currentAddingElement, cellView);
                         }
                         else {
-                            alert('INVALID: Sorry, but ' + isValid.message);
+                            // alert('INVALID: Sorry, but ' + isValid.message);
+                            ui.displayInvalidLinkMessage(isValid.message);
                             ui.linkSource.unhighlight();
                             ui.currentButton.end();
                         }
@@ -311,7 +312,8 @@ ui.defineInteractions = function () {
                             addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                         }
                         else {
-                            alert('INVALID: Sorry, but ' + isValid.message);
+                            // alert('INVALID: Sorry, but ' + isValid.message);
+                            ui.displayInvalidLinkMessage(isValid.message);
                         }
                         ui.linkSource.unhighlight();
                         ui.currentButton.end();
@@ -364,7 +366,8 @@ ui.defineInteractions = function () {
                                 }
                             }
                             if (! isValid.isValid) {
-                                alert('INVALID: Sorry, but ' + isValid.message);
+                                // alert('INVALID: Sorry, but ' + isValid.message);
+                                ui.displayInvalidLinkMessage(isValid.message);
                             }
                         }
                         else if (ui.dependencyType.match(/DependencyLink/)) {
@@ -373,7 +376,8 @@ ui.defineInteractions = function () {
                                 addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                             }
                             else {
-                                alert('INVALID: Sorry, but ' + isValid.message);
+                                // alert('INVALID: Sorry, but ' + isValid.message);
+                                ui.displayInvalidLinkMessage(isValid.message);
                             }
                         }
 
@@ -1093,4 +1097,22 @@ ui.setupElementResizing = function () {
             istar.graph.getCell(ui.getSelectedElement().get('parent')).updateBoundary();
         }
     });
+};
+
+ui.alert = function (body, title) {
+    $('#body-alert-modal').html(body);
+    if (title) {
+        $('#label-alert-modal').html(title);
+    }
+    else {
+        $('#label-alert-modal').html('alert');
+    }
+    $('#modal-alert').modal('show');
+};
+$('#modal-alert').on('shown.bs.modal', function () {
+    $('#close-button-alert-modal').focus()
+});
+
+ui.displayInvalidLinkMessage = function (message) {
+    ui.alert('INVALID: Sorry, but ' + message, 'Invalid link');
 };
