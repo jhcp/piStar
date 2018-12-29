@@ -75,6 +75,10 @@ https://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-vert
   flex-wrap: wrap;
 }
 
+.plugged {
+  background-color: #c27800;
+}
+
 #logo {
   align-self: center;
   cursor: default;
@@ -109,6 +113,14 @@ nav a:visited {
 
 .menu-item {
   border: solid 2px #246B29;
+  color: rgb(252, 255, 239);
+  display: inline-block;
+  font-size: .97em;
+  padding: 2px 20px;
+}
+
+.menu-item.plugged {
+  border: solid 2px #c27800;
   color: rgb(252, 255, 239);
   display: inline-block;
   font-size: .97em;
@@ -291,8 +303,6 @@ kbd {
   z-index: 1;
   height: 100%;
 }
-
-
 
 #sidepanel.size1 {
   width: 2vw;

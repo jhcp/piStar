@@ -768,6 +768,9 @@ ui.setupPluginMenu = function () {
     var config = {childList: true, subtree: true }; // Options for the observer (which mutations to observe)
     var observer = new MutationObserver(function(mutationsList, observer) {
         $('#menu-item-plugin').show();
+        $('#logo').html('piStar plugin');
+        $('.menu-bar').addClass('plugged');
+        $('.menu-item').addClass('plugged');
         observer.disconnect();//stop observing
     });
     observer.observe(targetNode, config);
