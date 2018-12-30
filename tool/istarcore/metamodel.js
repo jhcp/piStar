@@ -152,13 +152,41 @@ istar.setupMetamodel = function (metamodel) {
         istar._setupLinkBetweenNodes(node, metamodel);
     });
 
-    istar._createIsActorLinkFunction(metamodel);
+    //create helper functions to that return arrays containing the names of sets of cells in this metamodel
+    getName = function(cellDefinition) {
+        return cellDefinition.name;
+    };
+    metamodel.getContainersNames = function() {
+        return _.map(metamodel.containers, getName);
+    };
+    metamodel.getNodesNames = function() {
+        return _.map(metamodel.nodes, getName);
+    };
+    metamodel.getInnerElementsNames = function() {
+        innerElements = _.filter(metamodel.nodes, 'canBeInnerElement');
+        return _.map(innerElements, getName);
+    };
+    metamodel.getDependumsNames = function() {
+        dependums = _.filter(metamodel.nodes, 'canBeDependum');
+        return _.map(dependums, getName);
+    };
+    metamodel.getContainerLinksNames = function() {
+        return _.map(metamodel.containerLinks, getName);
+    };
+    metamodel.getDependencyLinksNames = function() {
+        return _.map(metamodel.dependencyLinks, getName);
+    };
+    metamodel.getNodeLinksNames = function() {
+        return _.map(metamodel.nodeLinks, getName);
+    };
 
+
+    istar._createIsActorLinkFunction(metamodel);
     joint.dia.Cell.prototype.isKindOfInnerElement = function () {
-        return this.isGoal() || this.isQuality() || this.isTask() || this.isResource();
+        return _.includes(metamodel.getInnerElementsNames(), this.prop('type'));
     };
     joint.dia.Cell.prototype.isKindOfActor = function () {
-        return this.isActor() || this.isRole() || this.isAgent();
+        return _.includes(metamodel.getContainersNames(), this.prop('type'));
     };
 
     console.log('end of metamodel setup');

@@ -34,23 +34,23 @@ istar.metamodel = {
     nodes: {
         'Goal': {
             'name': 'Goal',
-            'canBeInnerElement': function() {return true;},
-            'canBeDependum': function() {return true;}
+            'canBeInnerElement': true,
+            'canBeDependum': true
         },
         'Quality': {
             'name': 'Quality',
-            'canBeInnerElement': function() {return true;},
-            'canBeDependum': function() {return true;}
+            'canBeInnerElement': true,
+            'canBeDependum': true
         },
         'Task': {
             'name': 'Task',
-            'canBeInnerElement': function() {return true;},
-            'canBeDependum': function() {return true;}
+            'canBeInnerElement': true,
+            'canBeDependum': true
         },
         'Resource': {
             'name': 'Resource',
-            'canBeInnerElement': function() {return true;},
-            'canBeDependum': function() {return true;}
+            'canBeInnerElement': true,
+            'canBeDependum': true
         }
     },
     //links between actor-like elements
