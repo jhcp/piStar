@@ -58,39 +58,50 @@ istar.validateMetamodel = function (metamodel) {
 
 istar._setupBasicType = function (nodeType, metamodel) {
     if (nodeType.name) {
-        //add some useful attributes for the node type
-        nodeType.prefixedName = metamodel.prefix + '.' + nodeType.name;//prefixedName acts as an unique id for this kind of node
+
         if ((!nodeType.shapeObject) && metamodel.shapesObject) {
             nodeType.shapeObject = metamodel.shapesObject[nodeType.name];//can be used to access the object that describes this node's shape
         }
 
         //creates an 'add' function that can be used to create instances of this type
         istar['add' + nodeType.name] = function (x, y, content, options) {
-            return istar.addNode(nodeType.prefixedName, nodeType.shapeObject, x, y, content, options);
+            return istar.addNode(nodeType.name, nodeType.shapeObject, x, y, content, options);
+        };
+
+        //store type information in an object that will be accessible to the rest of the software
+        istar.types[nodeType.name] = {
+            name: nodeType.name
         };
 
         //creates an 'is' function that can be used to check if a given node is of this type
         joint.dia.Cell.prototype['is' + nodeType.name] = function () {
-            return this.prop('type') === nodeType.prefixedName;
+            return this.prop('type') === nodeType.name;
         };
     }
 };
 istar._setupBasicLink = function (linkType, metamodel) {
     if (linkType.name) {
         //add some useful attributes for the node type
-        linkType.prefixedName = metamodel.prefix + '.' + linkType.name;//prefixedName acts as an unique id for this kind of node
+        // linkType.prefixedName = metamodel.prefix + '.' + linkType.name;//prefixedName acts as an unique id for this kind of node
         if ((!linkType.shapeObject) && metamodel.shapesObject) {
             linkType.shapeObject = metamodel.shapesObject[linkType.name];//can be used to access the object that describes this node's shape
         }
 
-        //creates an 'isValid' function that can be used to check if a pair of source and target are valid
+        //if a 'isValid' function has not been defined, create a default
+        //function that allows any connection
+        if (! linkType.isValid) {
+            linkType.isValid = function () {return {isValid: true};};
+        }
+
+        //store type information in an object that will be accessible to the rest of the software
         istar.types[linkType.name] = {
-            isValid: linkType.isValid
+            isValid: linkType.isValid,
+            name: linkType.name
         };
 
         //creates an 'is' function that can be used to check if a given node is of this type
         joint.dia.Cell.prototype['is' + linkType.name] = function () {
-            return this.prop('type') === linkType.prefixedName;
+            return this.prop('type') === linkType.name;
         };
 
         //TODO create a isValid function, if it doesn't exist

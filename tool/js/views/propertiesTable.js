@@ -101,9 +101,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
             var typeNames = [];
             var currentType = 0;
             var element = this.model;
-            _.forEach(istarcoreMetamodel.nodes, function(nodeType, index) {
-                typeNames.push({value: index, text: nodeType.prefixedName});
-                if (nodeType.prefixedName === element.prop('type')) {
+            _.forEach(istar.metamodel.nodes, function(nodeType, index) {
+                typeNames.push({value: index, text: nodeType.name});
+                if (nodeType.name === element.prop('type')) {
                     currentType = index;
                 }
             }, this);
@@ -112,9 +112,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 source: typeNames,
                 success: function (response, newValue) {
                     var updatedElement = ui.getSelectedElement();
-                    var newType = istarcoreMetamodel.nodes[newValue].prefixedName;
+                    var newType = istar.metamodel.nodes[newValue].name;
                     updatedElement.prop('type', newType);
-                    var newNode = istar.replaceNode(updatedElement, istarcoreMetamodel.nodes[newValue].prefixedName)
+                    var newNode = istar.replaceNode(updatedElement, istar.metamodel.nodes[newValue].name)
                         .prop('isDependum', true);
                     ui.selectElement(newNode);
                     //update the line break on the element's label
@@ -127,7 +127,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
         }
         else if (this.model.isContributionLink && this.model.isContributionLink()) {
             var element = this.model;
-            var contributionMetamodel = _.find(istarcoreMetamodel.nodeLinks, function(o) { return o.prefixedName === element.prop('type'); })
+            var contributionMetamodel = istar.metamodel.nodeLinks.ContributionLink;
             var valueNames = contributionMetamodel.possibleLabels;
             // var currentType = _.findIndex(valueNames, function(o) { return o === element.prop('value'); });
             this.$table.find('a').editable({
@@ -158,7 +158,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 var validityMessage = '';
                 if (isNaN(newPropertyName)) {
                     var existsPropertyWithSameNameInThisElement = ui.getSelectedElement().prop('customProperties/' + newPropertyName);
-                    if (!existsPropertyWithSameNameInThisElement) {
+                    if (existsPropertyWithSameNameInThisElement === undefined) {
                         newPropertyName = newPropertyName.replace(/\W/g, '');
                         isValidName = true;
                     }
@@ -167,14 +167,14 @@ uiC.PropertiesTableView = Backbone.View.extend({
                     }
                 }
                 else {
-                    validityMessage = 'Sorry, the property name cannot be a number; please try again with a different name';
+                    validityMessage = 'Sorry, the name of a property cannot be a number; please try again with a different name';
                 }
 
                 if (isValidName) {
                     ui.getSelectedElement().prop('customProperties/' + newPropertyName, '');
                 }
                 else {
-                    alert(validityMessage);
+                    ui.alert(validityMessage, 'Invalid property name');
                 }
             }
         });
@@ -256,7 +256,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
                         ui.selectElement(dependum);
                     }
                     else {
-                        alert('INVALID: Sorry, but ' + isValid.message + '. Thus, this Dependency currently cannot be flipped');
+                        ui.displayInvalidLinkMessage(isValid.message + '. Thus, this Dependency currently cannot be flipped');
                     }
                 }
             });

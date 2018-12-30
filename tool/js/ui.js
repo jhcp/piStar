@@ -294,7 +294,6 @@ ui.defineInteractions = function () {
                             ui.addLinkBetweenActors(ui.currentAddingElement, cellView);
                         }
                         else {
-                            // alert('INVALID: Sorry, but ' + isValid.message);
                             ui.displayInvalidLinkMessage(isValid.message);
                             ui.linkSource.unhighlight();
                             ui.currentButton.end();
@@ -312,7 +311,6 @@ ui.defineInteractions = function () {
                             addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                         }
                         else {
-                            // alert('INVALID: Sorry, but ' + isValid.message);
                             ui.displayInvalidLinkMessage(isValid.message);
                         }
                         ui.linkSource.unhighlight();
@@ -366,7 +364,6 @@ ui.defineInteractions = function () {
                                 }
                             }
                             if (! isValid.isValid) {
-                                // alert('INVALID: Sorry, but ' + isValid.message);
                                 ui.displayInvalidLinkMessage(isValid.message);
                             }
                         }
@@ -376,7 +373,6 @@ ui.defineInteractions = function () {
                                 addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                             }
                             else {
-                                // alert('INVALID: Sorry, but ' + isValid.message);
                                 ui.displayInvalidLinkMessage(isValid.message);
                             }
                         }
@@ -483,11 +479,6 @@ ui.addLinkBetweenActors = function (newLink, targetCellView) {
         ui.linkTarget = targetCellView;
         if (istar.types[newLink].isValid(ui.linkSource.model, ui.linkTarget.model)) {
             istar[istar.PREFIX_ADD + ui.currentAddingElement](ui.linkSource.model, ui.linkTarget.model);
-        }
-        else {
-            alert('INVALID: the i* 2.0 syntax does not allow you to to add a \'' + newLink +
-                '\' link from a ' + ui.linkSource.model.get('type') + ' to a ' +
-                ui.linkTarget.model.get('type'));
         }
     } catch (e) {
         console.log(e);
@@ -708,7 +699,7 @@ $('#modal-button-load-model').click(function () {
         try {
             var fileInput = $('#input-file-to-load')[0];
             if (fileInput.files.length === 0) {
-                alert('You must select a file to load');
+                ui.alert('You must select a file to load', 'No file selected');
 
                 $('#modal-load-model').modal('hide');
                 $('#modal-button-load-model').button('reset');
@@ -732,7 +723,7 @@ $('#modal-button-load-model').click(function () {
 
                 }
                 else {
-                    alert('Sorry, this kind of file is not valid');
+                    ui.alert('Sorry, this kind of file is not valid', 'Error loading file');
                     $('#modal-button-load-model').button('reset');
                     $('#modal-load-model').modal('hide');
                 }
@@ -740,7 +731,7 @@ $('#modal-button-load-model').click(function () {
         }
         catch (error) {
             $('#modal-button-load-model').button('reset');
-            alert('Sorry, the input model is not valid.');
+            ui.alert('Sorry, the input model is not valid.', 'Error loading file');
             console.log(error.stack);
         }
     }, 20);

@@ -1,8 +1,8 @@
 $(document).ready(function () {
     istar.setupModel();
     istar.setupDiagram();
-    istar.setupMetamodel(istarcoreMetamodel);
+    istar.setupMetamodel(istar.metamodel);
     ui.setupUi();
     istar.examples.loadPistarWelcome();
-    ui.selectElement(istar.graph);//clear selection
+    ui.selectModel();//clear selection
 });

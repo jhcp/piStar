@@ -1,8 +1,8 @@
 /**
- * A class for representing the metamodel to be used.
+ * A class to represent the metamodel to be used.
  * @class
  */
-var istarcoreMetamodel = {
+istar.metamodel = {
     /** @type {string} */
     prefix: 'istar',
     /** @type {Object} */
@@ -13,41 +13,50 @@ var istarcoreMetamodel = {
      * version: '0.1'
      @type {string}
      */
-    version: '0.1',
+    version: '0.2',
 
     //actor-like elements
     /** @type {Object[]} */
-    containers: [
-        {
-            'name': 'Actor',
+    containers: {
+        'Actor': {
+            'name': 'Actor'
         },
-        {
-            'name': 'Agent',
+        'Agent': {
+            'name': 'Agent'
         },
-        {
-            'name': 'Role',
+        'Role': {
+            'name': 'Role'
         }
-    ],
-    //internal elements
+    },
+    //non-container elements
+    //they can be inner elements, dependums, or both
     /** @type {Object[]} */
-    nodes: [
-        {
+    nodes: {
+        'Goal': {
             'name': 'Goal',
+            'canBeInnerElement': function() {return true;},
+            'canBeDependum': function() {return true;}
         },
-        {
+        'Quality': {
             'name': 'Quality',
+            'canBeInnerElement': function() {return true;},
+            'canBeDependum': function() {return true;}
         },
-        {
+        'Task': {
             'name': 'Task',
+            'canBeInnerElement': function() {return true;},
+            'canBeDependum': function() {return true;}
         },
-        {
+        'Resource': {
             'name': 'Resource',
+            'canBeInnerElement': function() {return true;},
+            'canBeDependum': function() {return true;}
         }
-    ],
+    },
     //links between actor-like elements
     /** @type {Object[]} */
-    containerLinks: [
-        {
+    containerLinks: {
+        'IsALink': {
             'name': 'IsALink',
             'isValid': function (source, target) {
                 // role->role; actor->actor;
@@ -83,7 +92,7 @@ var istarcoreMetamodel = {
                 return result;
             }
         },
-        {
+        'ParticipatesInLink': {
             'name': 'ParticipatesInLink',
             'isValid': function (source, target) {
                 // actor->actor; actor->role; actor->agent;
@@ -121,9 +130,9 @@ var istarcoreMetamodel = {
             },
             allowMultipleLinksBetweenTheSameElements: false //TODO
         }
-    ],
-    dependencyLinks: [
-        {
+    },
+    dependencyLinks: {
+        'DependencyLink': {
             'name': 'DependencyLink',
             'isValid': function (source, target) {
                 //istar 2.0:
@@ -141,47 +150,45 @@ var istarcoreMetamodel = {
                 var targetParentId;
                 if (source.isKindOfActor()) {
                     sourceParentId = source.id;
-                }
-                else if (source.isKindOfInnerElement()) {
+                } else if (source.isKindOfInnerElement()) {
                     sourceParentId = source.attributes.parent;
                 }
 
                 if (target.isKindOfActor()) {
                     targetParentId = target.id;
-                }
-                else if (target.isKindOfInnerElement()) {
+                } else if (target.isKindOfInnerElement()) {
                     targetParentId = target.attributes.parent;
                 }
 
-                if ( source.isLink()) {
+                if (source.isLink()) {
                     isValid = false;
                     result.message = 'the source of a Dependency link cannot be a link';
                 }
-                if ( isValid && target.isLink() ) {
+                if (isValid && target.isLink()) {
                     isValid = false;
                     result.message = 'the target of a Dependency link cannot be a link';
                 }
-                if ( isValid && !(source !== target) ) {
+                if (isValid && !(source !== target)) {
                     isValid = false;
                     result.message = 'a Dependency link cannot link an element onto itself';
                 }
-                if ( isValid && source.isDependum() ) {
+                if (isValid && source.isDependum()) {
                     isValid = false;
                     result.message = 'a Dependency link cannot start from a dependum';
                 }
-                if ( isValid && target.isDependum() ) {
+                if (isValid && target.isDependum()) {
                     isValid = false;
                     result.message = 'a Dependency link cannot end in a dependum';
                 }
-                if ( isValid && sourceParentId === targetParentId ) {
+                if (isValid && sourceParentId === targetParentId) {
                     isValid = false;
                     result.message = 'a Dependency link must involve two different actors (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && (istar.isTargetOf(source, 'istar.OrRefinementLink') || istar.isTargetOf(source, 'istar.AndRefinementLink'))) {
+                if (isValid && (istar.isTargetOf(source, 'OrRefinementLink') || istar.isTargetOf(source, 'AndRefinementLink'))) {
                     isValid = false;
                     result.message = 'a refined element cannot be the Depender Element in a Dependency link (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && istar.isTargetOf(source, 'istar.ContributionLink')) {
+                if (isValid && istar.isTargetOf(source, 'ContributionLink')) {
                     isValid = false;
                     result.message = 'a contributed element cannot be the Depender Element in a Dependency link (iStar 2.0 Guide, Page 14)';
                 }
@@ -190,11 +197,11 @@ var istarcoreMetamodel = {
                 return result;
             }
         }
-    ],
-    //links between internal elements
+    },
+    //links between non-container elements
     /** @type {Object[]} */
-    nodeLinks: [
-        {
+    nodeLinks: {
+        'AndRefinementLink': {
             'name': 'AndRefinementLink',
             'isValid': function (source, target) {
                 //istar 2.0:
@@ -234,20 +241,20 @@ var istarcoreMetamodel = {
                     isValid = false;
                     result.message = 'there can only be one refinement link between the same two elements';
                 }
-                if ( isValid && istar.isSourceOf(target, 'istar.DependencyLink')) {
+                if ( isValid && istar.isSourceOf(target, 'DependencyLink')) {
                     isValid = false;
                     result.message = 'you cannot refine a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && istar.isTargetOf(target, 'istar.OrRefinementLink')) {
+                if ( isValid && istar.isTargetOf(target, 'OrRefinementLink')) {
                     isValid = false;
-                    result.message = 'you cannot mix AND-refinements with OR-refinements targeting the same element (iStar 2.0 Guide, Page 10)';
+                    result.message = 'you cannot mix AND-refinements with OR-refinements targeting the same element (iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br><img src="images/errors/mixAndAndOr.svg" />';
                 }
 
                 result.isValid = isValid;
                 return result;
             }
         },
-        {
+        'OrRefinementLink': {
             'name': 'OrRefinementLink',
             'isValid': function (source, target) {
                 //istar 2.0:
@@ -286,20 +293,20 @@ var istarcoreMetamodel = {
                     isValid = false;
                     result.message = 'there can only be one refinement link between the same two elements';
                 }
-                if ( isValid && istar.isSourceOf(target, 'istar.DependencyLink')) {
+                if ( isValid && istar.isSourceOf(target, 'DependencyLink')) {
                     isValid = false;
                     result.message = 'you cannot refine a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && istar.isTargetOf(target, 'istar.AndRefinementLink')) {
+                if ( isValid && istar.isTargetOf(target, 'AndRefinementLink')) {
                     isValid = false;
-                    result.message = 'you cannot mix OR-refinements with AND-refinements targeting the same element (iStar 2.0 Guide, Page 10)';
+                    result.message = 'you cannot mix OR-refinements with AND-refinements targeting the same element (iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br><img src="images/errors/mixAndAndOr.svg" />';
                 }
 
                 result.isValid = isValid;
                 return result;
             }
         },
-        {
+        'NeededByLink': {
             'name': 'NeededByLink',
             'isValid': function (source, target) {
                 //istar 2.0
@@ -338,7 +345,7 @@ var istarcoreMetamodel = {
                 return result;
             }
         },
-        {
+        'ContributionLink': {
             'name': 'ContributionLink',
             'isValid': function (source, target) {
                 //istar 2.0
@@ -374,15 +381,15 @@ var istarcoreMetamodel = {
                     isValid = false;
                     result.message = 'the source and target of an a Contribution link must pertain to the same actor (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && istar.isThereLinkBetween(source, target, 'istar.ContributionLink')) {
+                if ( isValid && istar.isThereLinkBetween(source, target, 'ContributionLink')) {
                     isValid = false;
                     result.message = 'there can only be one Contribution link between the same two elements';
                 }
-                if ( isValid && istar.isThereLinkBetween(source, target, 'istar.QualificationLink')) {
+                if ( isValid && istar.isThereLinkBetween(source, target, 'QualificationLink')) {
                     isValid = false;
                     result.message = 'you cannot have Contribution and Qualification links between the same two elements (iStar 2.0 Guide, Page 15)';
                 }
-                if ( isValid && istar.isSourceOf(target, 'istar.DependencyLink')) {
+                if ( isValid && istar.isSourceOf(target, 'DependencyLink')) {
                     isValid = false;
                     result.message = 'you cannot contribute to a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)';
                 }
@@ -393,7 +400,7 @@ var istarcoreMetamodel = {
             'changeableLabel': true,
             'possibleLabels': ['make', 'help', 'hurt', 'break']
         },
-        {
+        'QualificationLink': {
             'name': 'QualificationLink',
             'isValid': function (source, target) {
                 //istar 2.0
@@ -427,11 +434,11 @@ var istarcoreMetamodel = {
                     isValid = false;
                     result.message = 'the source and target of an a Qualification link must pertain to the same actor (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && istar.isThereLinkBetween(source, target, 'istar.QualificationLink')) {
+                if ( isValid && istar.isThereLinkBetween(source, target, 'QualificationLink')) {
                     isValid = false;
                     result.message = 'there can only be one Qualification link between the same two elements';
                 }
-                if ( isValid && istar.isThereLinkBetween(source, target, 'istar.ContributionLink')) {
+                if ( isValid && istar.isThereLinkBetween(source, target, 'ContributionLink')) {
                     isValid = false;
                     result.message = 'you cannot have Qualification and Contribution links between the same two elements (iStar 2.0 Guide, Page 15)';
                 }
@@ -440,5 +447,5 @@ var istarcoreMetamodel = {
                 return result;
             }
         }
-    ]
+    }
 };

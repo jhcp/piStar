@@ -1,7 +1,7 @@
 //barebones
 $(document).ready(function(){
     istar.setupModel();
-    istar.setupMetamodel(istarcoreMetamodel);
+    istar.setupMetamodel(istar.metamodel);
 });
 
 // graphical

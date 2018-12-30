@@ -336,7 +336,7 @@ fileManager = {
                 return newElement;
             }
             else {
-                var errorMessage = 'Unknown element type: ' + element.type + '.';
+                var errorMessage = 'Unknown element type: ' + element.type + '. Your model will not load properly';
                 console.log(errorMessage);
                 alert(errorMessage);
             }
@@ -383,7 +383,7 @@ fileManager = {
         var result = {
             'id': element.id,
             'text': text,
-            'type': element.prop('type'),
+            'type': istar.metamodel.prefix + '.' + element.prop('type'),
             'x': element.prop('position/x'),
             'y': element.prop('position/y'),
         };
@@ -429,7 +429,7 @@ fileManager = {
     linkToJSON: function (link) {
         result = {
             id: link.id,
-            type: link.prop('type'),
+            type: istar.metamodel.prefix + '.' + link.prop('type'),
             source: link.attributes.source.id,
             target: link.attributes.target.id,
         };

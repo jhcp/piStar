@@ -1,6 +1,4 @@
 /*!
- * istarcore 0.1.0
- *
  * This is open-source. Which means that you can contribute to it, and help
  * make it better! Also, feel free to use, modify, redistribute, and so on.
  */
@@ -90,7 +88,7 @@ var istar = function () {
                 var connectedLinks = istar.graph.getConnectedLinks(innerElement);
                 if (connectedLinks) {
                     _.each(connectedLinks, function (connectedLink) {
-                        if (connectedLink.attributes.type === (istar.linkTypes.dependency.name)) {
+                        if (connectedLink.attributes.type === ('DependencyLink')) {
 
                             if (connectedLink.get('source').id === innerElement.id) {
                                 connectedLink.prop('elementSource', innerElement.id);
@@ -119,7 +117,7 @@ var istar = function () {
                 var connectedLinks = istar.graph.getConnectedLinks(actor);
                 if (connectedLinks) {
                     _.each(connectedLinks, function (connectedLink) {
-                        if (connectedLink.attributes.type === (istar.linkTypes.dependency.name)) {
+                        if (connectedLink.attributes.type === ('DependencyLink')) {
 
                             if (connectedLink.get('source').id === actor.id) {
                                 if (connectedLink.prop('elementSource')) {
@@ -215,16 +213,6 @@ var istar = function () {
         PREFIX_ADD: 'add', /*prefix to identify functions that add an element. Ex: addTask(...)*/
         PREFIX_IS: 'is', /*prefix to identify functions that check if an element is of an certain kind. Ex: isTask(...)*/
         types: {},
-        linkTypes: {
-            'dependency': {
-                'name': 'istar.DependencyLink',
-                //'className': joint.shapes.istar.DependencyLink
-            },
-            'contribution': {
-                'name': 'istar.ContributionLink',
-                //'className': joint.shapes.istar.ContributionLink
-            }
-        },
         setupModel: function (graph) {
             "use strict";
             this.graph = graph ? graph : _createDefaultGraph();
@@ -352,7 +340,6 @@ var istar = function () {
             }
             node.prop('name', originalContent || clearTypeName);
             node.attr('text/text', content);
-            node.prop('type', typeName);
             node.prop('originalSize', node.prop('size')); //stores the initial size of the element
 
             istar.graph.addCell(node);
@@ -360,9 +347,7 @@ var istar = function () {
         },
         replaceNode: function (element, typeName) {
             "use strict";
-            var typePrefix = typeName.substring(0,typeName.lastIndexOf('.'));
-            var typeActualName = typeName.substring(typeName.lastIndexOf('.') + 1);
-            var shape = joint.shapes[typePrefix][typeActualName];
+            var shape = joint.shapes[istar.metamodel.prefix][typeName];
 
             //create the node and add it to the graph
             var node = new shape({
@@ -372,7 +357,6 @@ var istar = function () {
             //copy the old node properties to the new node
             node.prop('name', element.prop('name'));
             node.attr('text/text', element.prop('name'));
-            node.prop('type', typeName);
             node.prop('originalSize', node.prop('size')); //stores the initial size of the element
             if (element.prop('size') !== element.prop('originalSize')) {
                 node.prop('size', element.prop('size')); //stores the initial size of the element
@@ -412,11 +396,9 @@ var istar = function () {
          */
         addLinkBetweenActors: function (linkName, shape, source, target) {
             "use strict";
-
             if (!shape) {
                 shape = joint.dia.Link;//safeguard in case the library is being used without a visual representation
             }
-
             //prevent repeated links
             if (!this.isThereLinkBetween(source, target)) {
                 var link = new shape({
@@ -424,7 +406,6 @@ var istar = function () {
                     'target': {id: target.id}
                 });
 
-                link.prop('type', linkName);
                 istar.graph.addCell(link);
                 return link;
             }
@@ -472,7 +453,6 @@ var istar = function () {
                     'target': {id: dependum.id}
                 });
             }
-
             istar.graph.addCell(link1);
 
             var link2;
@@ -514,7 +494,6 @@ var istar = function () {
         addLinkBetweenNodes: function (linkType, source, target, value) {
             "use strict";
 
-            var linkName = linkType.prefixedName;
             var shape = linkType.shapeObject;
             if (!shape) {
                 shape = joint.dia.Link;//safeguard in case the library is being used without a visual representation
@@ -533,8 +512,6 @@ var istar = function () {
                 if (source.get('parent')) {
                     istar.graph.getCell(source.get('parent')).embed(link);
                 }
-
-                link.prop('type', linkName);
 
                 if (linkType.changeableLabel) {
                     link.setContributionType = _setNodeLinkLabel;
@@ -560,7 +537,7 @@ var istar = function () {
         createAddLinkBetweenActors: function (linkPrefixedName, linkName, shape) {
             this['add' + linkName] = function (source, target) {
                 if (istar.types[linkName].isValid(source, target)) {
-                    return istar.addLinkBetweenActors(linkPrefixedName, shape, source, target);
+                    return istar.addLinkBetweenActors(linkName, shape, source, target);
                 }
             };
         },
