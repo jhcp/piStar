@@ -350,17 +350,35 @@ ui.defineInteractions = function () {
                                 }
                             }
                             else if (ui.currentAddingElement === 'NeededByLink') {
+                                // isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                // if (isValid.isValid) {
+                                //     newLink = istar.addNeededByLink(ui.linkSource.model, ui.linkTarget.model);
+                                // }
+
+                                var temp = ui.linkSource;
+                                var undoInversion = false;
+                                if ((ui.linkSource.model.isTask()) && ui.linkTarget.model.isResource()) {
+                                    ui.linkSource = ui.linkTarget;
+                                    ui.linkTarget = temp;
+                                    undoInversion = true;
+                                }
                                 isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addNeededByLink(ui.linkSource.model, ui.linkTarget.model);
                                 }
-                            }
-                            else if (ui.currentAddingElement === 'QualificationLink') {
-                                if ((!ui.linkSource.model.isQuality()) && ui.linkTarget.model.isQuality()) {
-                                    var temp = ui.linkSource;
+                                if (undoInversion) {
+                                    temp = ui.linkSource;
                                     ui.linkSource = ui.linkTarget;
                                     ui.linkTarget = temp;
-                                    var undoInversion = true;
+                                }
+                            }
+                            else if (ui.currentAddingElement === 'QualificationLink') {
+                                var temp = ui.linkSource;
+                                var undoInversion = false;
+                                if ((!ui.linkSource.model.isQuality()) && ui.linkTarget.model.isQuality()) {
+                                    ui.linkSource = ui.linkTarget;
+                                    ui.linkTarget = temp;
+                                    undoInversion = true;
                                 }
                                 isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
