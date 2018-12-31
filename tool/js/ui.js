@@ -156,6 +156,17 @@ ui.unhighlightFocus = function (cellView) {
     $('.element-selection').hide();
 };
 ui.defineInteractions = function () {
+    //this redefinition was used, instead of on('remove'), because when the 'remove' event is triggered the
+    //node has already been removed, thus it would be too late to know whom is the parent
+    var originalRemove = joint.dia.Cell.prototype.remove;
+    joint.dia.Cell.prototype.remove = function(opt) {
+        var parent = this.get('parent');
+        originalRemove.call(this, opt);
+        if (parent) {
+            istar.graph.getCell(parent).updateBoundary();
+        }
+    };
+
     istar.graph.on('add', function(cell) {
         if (cell.isElement()) {
             cell.on('change:name', function(node, newValue) {
