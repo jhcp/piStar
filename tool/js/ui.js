@@ -16,7 +16,7 @@ var ui = function() {
         currentAddingElement: 'none',
         linkSource: 'none',
         linkTarget: 'none',
-        dependencyType: 'GoalDependencyLink',
+        dependencyType: 'none',
         selectedElement: null,
         defaultElementBackgroundColor: '#CCFACD',
 
@@ -447,7 +447,7 @@ ui.defineInteractions = function () {
             oldText = cellView.model.prop('name');
             newText = window.prompt('Edit text:', oldText);
             if (newText !== null) {
-                cellView.model.setNodeLabel(newText);
+                cellView.model.prop('name', newText);
             }
         }
     });
@@ -506,19 +506,18 @@ ui.addLinkBetweenActors = function (newLink, targetCellView) {
 
 function addDependency(source, dependencyType, target) {
     var node = '';
-    var x = 10;
-    var y = 10;
+    var position = {x: 10, y: 10};
     var text = 'Dependum';
     if (dependencyType === 'QualityDependencyLink') {
-        node = istar.addQuality(x, y, text);
+        node = istar.addQuality(text, position);
     }
     else if (dependencyType === 'TaskDependencyLink') {
-        node = istar.addTask(x, y, text);
+        node = istar.addTask(text, position);
     }
     else if (dependencyType === 'ResourceDependencyLink') {
-        node = istar.addResource(x, y, text);
+        node = istar.addResource(text, position);
     } else {
-        node = istar.addGoal(x, y, text);
+        node = istar.addGoal(text, position);
     }
     links = istar.addDependencyLink(source, node, target);
     links[0].on('change:vertices', ui._toggleSmoothness);
@@ -760,7 +759,6 @@ ui.setupUi = function () {
     uiC.createAddButtons();
 
     $('#placeholder-save-model').hide();
-
 
     this.setupElementResizing();
     this.setupDiagramSizeInputs();

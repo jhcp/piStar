@@ -36,6 +36,7 @@ uiC.AddButtonModel = Backbone.Model.extend({
 
         ui.currentState = 'view';
         ui.currentAddingElement = 'none';
+        ui.dependencyType = 'none';
         if (ui.linkSource && ui.linkSource.unhighlight) ui.linkSource.unhighlight();
         ui.resetLinkSource();
         ui.resetLinkTarget();

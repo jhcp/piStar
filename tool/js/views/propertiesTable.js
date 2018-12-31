@@ -81,7 +81,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
         this.$table.find('a').editable({
             showbuttons: 'bottom',
             success: function (response, newValue) {
-                currentElementModel.prop('name', 'x:'+newValue);
+                currentElementModel.prop('name', newValue);
                 return {newValue: currentElementModel.prop('name')};
             }
         })
