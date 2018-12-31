@@ -1772,8 +1772,8 @@ istar.examples.everyElementAndLink = {
             "id": "9cab7456-727b-4d7e-81dd-af8903718cb3",
             "text": "Actor A",
             "type": "istar.Actor",
-            "x": 202,
-            "y": 76,
+            "x": 184,
+            "y": 72,
             "customProperties": {
                 "Description": "This actor is-a Actor B.\nIt depends on Agent to achieve Dependum A.\nIt depends on Role to satisfy Dependum B.\nIt depends on Role to execute Dependum C.\nIt depends on Actor B to obtain Dependum D.",
                 "Tooltip": "This actor is collapsed. You can press 'alt' and click on the actor to expand it, making its inner elements visible",
@@ -1784,8 +1784,8 @@ istar.examples.everyElementAndLink = {
                     "id": "e1acd9b0-c9e9-468b-845c-c7b08db3020f",
                     "text": "Goal X",
                     "type": "istar.Goal",
-                    "x": 284,
-                    "y": 105,
+                    "x": 266,
+                    "y": 101,
                     "customProperties": {
                         "Description": "This is a goal of Actor A",
                         "Concept": "A Goal is a state of affairs that the actor wants to achieve and that has clear-cut criteria of achievement"
@@ -1795,11 +1795,21 @@ istar.examples.everyElementAndLink = {
                     "id": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
                     "text": "Task X",
                     "type": "istar.Task",
-                    "x": 305,
-                    "y": 199,
+                    "x": 297,
+                    "y": 196,
                     "customProperties": {
-                        "Description": "This is a task that, if executed, will imply the achievement of Goal X",
+                        "Description": "This is a task that, if executed, will also imply the achievement of Goal X",
                         "Concept": "Tasks represent actions that an actor wants to be executed, usually with the purpose of achieving some goal"
+                    }
+                },
+                {
+                    "id": "a892b326-dae3-4ce1-8513-0de9ac88d4b5",
+                    "text": "Task Y",
+                    "type": "istar.Task",
+                    "x": 204,
+                    "y": 213,
+                    "customProperties": {
+                        "Description": "This is a task that, if executed, will imply the achievement of Goal X"
                     }
                 }
             ]
@@ -1826,7 +1836,6 @@ istar.examples.everyElementAndLink = {
                         "Description": "This goal is OR-refined by Task A, meaning that if Task A gets executed the Goal A will ve achieved",
                         "Tooltip": "You can resize an element by dragging the small circle on its bottom-right corner",
                         "Concept": "A Goal is a state of affairs that the actor wants to achieve and that has clear-cut criteria of achievement"
-
                     }
                 },
                 {
@@ -1936,24 +1945,11 @@ istar.examples.everyElementAndLink = {
             "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067"
         },
         {
-            "id": "9934417c-7c57-4272-837d-fb75b6eff101",
-            "text": "Dependum B",
-            "type": "istar.Quality",
-            "x": 181,
-            "y": 332,
-            "customProperties": {
-                "Description": "This is a dependum in a quality dependency.\n\n– Depender: Actor A\n– dependerElmt: Goal X (inside Actor A)\n– dependum: Dependum B\n– dependee: Role A\n– dependeeElmt: none",
-                "Concept": "Dependencies represent social relationships. A quality dependency indicates that  the dependee is expected to sufficiently satisfy the quality, and is free to choose how"
-            },
-            "source": "e1acd9b0-c9e9-468b-845c-c7b08db3020f",
-            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2"
-        },
-        {
             "id": "81fe40dc-2380-47c0-92ab-1e7281dc020c",
             "text": "Dependum C",
             "type": "istar.Task",
-            "x": 379,
-            "y": 333,
+            "x": 323,
+            "y": 309,
             "customProperties": {
                 "Description": "This is a dependum in a task dependency.\n\n– Depender: Actor A\n– dependerElmt: Task X (inside Actor A)\n– dependum: Dependum C\n– dependee: Role A\n– dependeeElmt: none",
                 "Concept": "Dependencies represent social relationships. A task dependency indicates that the dependee is expected to execute the task in a prescribed way"
@@ -1987,11 +1983,24 @@ istar.examples.everyElementAndLink = {
             },
             "source": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
             "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067"
+        },
+        {
+            "id": "49ba9425-0de8-4fbf-8ec0-6a384e844ea4",
+            "text": "Dependum B",
+            "type": "istar.Quality",
+            "x": 193,
+            "y": 314,
+            "customProperties": {
+                "Description": "This is a dependum in a quality dependency.\n\n– Depender: Actor A\n– dependerElmt: Goal X (inside Actor A)\n– dependum: Dependum B\n– dependee: Role A\n– dependeeElmt: none",
+                "Concept": "Dependencies represent social relationships. A quality dependency indicates that  the dependee is expected to sufficiently satisfy the quality, and is free to choose how"
+            },
+            "source": "a892b326-dae3-4ce1-8513-0de9ac88d4b5",
+            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2"
         }
     ],
     "links": [
         {
-            "id": "b0e70150-9db6-411f-8b8c-976076dc2146",
+            "id": "c14e7fda-e081-450f-b716-3fc839802fc3",
             "type": "istar.DependencyLink",
             "source": "9cab7456-727b-4d7e-81dd-af8903718cb3",
             "target": "fd083df6-87fc-4423-b25c-3291a1bf9aa3",
@@ -2001,7 +2010,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "d64540cb-032b-4759-9839-d08c9d19d745",
+            "id": "a7ad94ed-b49e-465f-912b-4ea6f86cd976",
             "type": "istar.DependencyLink",
             "source": "fd083df6-87fc-4423-b25c-3291a1bf9aa3",
             "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067",
@@ -2011,27 +2020,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "02cb3526-ab02-42d1-9bad-0a65cdb86b7f",
-            "type": "istar.DependencyLink",
-            "source": "e1acd9b0-c9e9-468b-845c-c7b08db3020f",
-            "target": "9934417c-7c57-4272-837d-fb75b6eff101",
-            "customProperties": {
-                "Description": "This link is part of a quality dependency. The \"D\" is pointing from Actor A to Dependum B",
-                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
-            }
-        },
-        {
-            "id": "83ee4c45-2517-4336-af0d-8ecf58fd9d69",
-            "type": "istar.DependencyLink",
-            "source": "9934417c-7c57-4272-837d-fb75b6eff101",
-            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
-            "customProperties": {
-                "Description": "This link is part of a quality dependency. The \"D\" is pointing from Dependum B to Role A",
-                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
-            }
-        },
-        {
-            "id": "3428a3ca-ea5e-4856-9c2d-7edeedafdaa9",
+            "id": "8118839e-ae5e-4755-87ba-c9fb29f10625",
             "type": "istar.DependencyLink",
             "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
             "target": "81fe40dc-2380-47c0-92ab-1e7281dc020c",
@@ -2042,7 +2031,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "cdd5472f-cea8-423b-89f5-73d5ef40d0c9",
+            "id": "5a65337a-8568-4eaf-b63b-f9256b314015",
             "type": "istar.DependencyLink",
             "source": "81fe40dc-2380-47c0-92ab-1e7281dc020c",
             "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
@@ -2053,7 +2042,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "9143dfcf-6903-4002-a77d-2db9ecc0ab46",
+            "id": "fa443e67-28f5-4934-a5d6-aae299fd95c3",
             "type": "istar.DependencyLink",
             "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
             "target": "7b339194-6020-4c2b-86e5-cd07ab9f725d",
@@ -2063,7 +2052,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "0295cd63-3ece-4349-b2bc-9dd7db4be8d4",
+            "id": "fc7573af-3955-4998-b839-ad4dd7649601",
             "type": "istar.DependencyLink",
             "source": "7b339194-6020-4c2b-86e5-cd07ab9f725d",
             "target": "60d0943c-169e-41ff-85ed-e19360456863",
@@ -2073,17 +2062,57 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "2d9e859b-cd05-4648-8793-b39cf4a817eb",
+            "id": "fd846234-3871-4c3b-bd10-64bdb4621fb5",
+            "type": "istar.DependencyLink",
+            "source": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
+            "target": "ad1e6006-2afa-448a-ab76-94be798d1a1e",
+            "customProperties": {
+                "Description": "This link is part of a goal dependency. The \"D\" is pointing from Role A to Dependum A",
+                "Tooltip": "If you accidentally added to many vertices to an link, you can delete them by clickin on the \"Clear vertices\" button below"
+            }
+        },
+        {
+            "id": "b15583b6-46c5-44a3-af48-c53535af7ee9",
+            "type": "istar.DependencyLink",
+            "source": "ad1e6006-2afa-448a-ab76-94be798d1a1e",
+            "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067",
+            "customProperties": {
+                "Description": "This link is part of a goal dependency. The \"D\" is pointing from Dependum A to Agent A",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
+        },
+        {
+            "id": "bb3a0297-98a5-419a-b2be-1fa7d8386b3a",
+            "type": "istar.DependencyLink",
+            "source": "a892b326-dae3-4ce1-8513-0de9ac88d4b5",
+            "target": "49ba9425-0de8-4fbf-8ec0-6a384e844ea4",
+            "customProperties": {
+                "Description": "This link is part of a quality dependency. The \"D\" is pointing from Actor A to Dependum B",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
+        },
+        {
+            "id": "b092f4ad-f635-4f27-a335-5f2c3874ad8c",
+            "type": "istar.DependencyLink",
+            "source": "49ba9425-0de8-4fbf-8ec0-6a384e844ea4",
+            "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
+            "customProperties": {
+                "Description": "This link is part of a quality dependency. The \"D\" is pointing from Dependum B to Role A",
+                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+            }
+        },
+        {
+            "id": "fa92f725-2109-4c53-b8e3-d82da60fc44e",
             "type": "istar.OrRefinementLink",
             "source": "b64fbf2b-b55e-4510-b31f-9adef8de5b69",
             "target": "e1acd9b0-c9e9-468b-845c-c7b08db3020f",
             "customProperties": {
                 "Description": "This is an (inclusive) OR-refinement linking Task X to Goal X",
-                "Concept": "The black triangle in this link indicates that it is an (inclusive) OR-refinement: the fulfillment of at least one child makes the parent fulfilled. This relationship allows for a single child (as is the case here)"
+                "Concept": "The black triangle in this link indicates that it is an (inclusive) OR-refinement: the fulfillment of at least one child makes the parent fulfilled"
             }
         },
         {
-            "id": "ad8dad95-644b-4e2e-a316-f4497ce853e1",
+            "id": "c2cdf0b6-0aba-4b26-affd-4a3ec2da6c67",
             "type": "istar.IsALink",
             "source": "9cab7456-727b-4d7e-81dd-af8903718cb3",
             "target": "6a76ceb5-f287-462d-bf57-a266cc19c243",
@@ -2094,7 +2123,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "581b9fd1-bc55-42df-a78c-3a9e1a62a3bf",
+            "id": "8a160047-6059-4688-ad66-1dd02d130fc5",
             "type": "istar.OrRefinementLink",
             "source": "e1270a5e-3c20-4be9-8097-66f6ed8502cd",
             "target": "4c3ba102-6514-47a4-b21c-8a8f8cdae0cc",
@@ -2104,7 +2133,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "da11c78c-3be2-44c9-bb0e-6d91f32b1b99",
+            "id": "cb88aba6-9fdf-4f90-9eaa-0b74be5d0edd",
             "type": "istar.AndRefinementLink",
             "source": "60d0943c-169e-41ff-85ed-e19360456863",
             "target": "e1270a5e-3c20-4be9-8097-66f6ed8502cd",
@@ -2113,7 +2142,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "b1b1ecea-c28e-4d41-83e7-1847e9afd706",
+            "id": "af1ac65b-8480-4c90-a960-e6e9ce239409",
             "type": "istar.AndRefinementLink",
             "source": "0a28f23e-2008-43b3-9e63-025bdfd5f30c",
             "target": "e1270a5e-3c20-4be9-8097-66f6ed8502cd",
@@ -2122,7 +2151,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "45876371-e283-4e58-9901-52f9bcb5f0f0",
+            "id": "ddf9d7ba-47bc-42fb-9ea8-d93ecbed4ec1",
             "type": "istar.QualificationLink",
             "source": "1ecba4f1-f873-466c-8074-092f612d5fed",
             "target": "e1270a5e-3c20-4be9-8097-66f6ed8502cd",
@@ -2132,7 +2161,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "baaf05ac-6a0c-4931-a6f1-8c3f8cc75f76",
+            "id": "8621b90b-d6cc-4edf-b7d8-9747292bd4f3",
             "type": "istar.NeededByLink",
             "source": "54c01821-aa4d-4bd0-9fdf-6ddaa25c299f",
             "target": "0a28f23e-2008-43b3-9e63-025bdfd5f30c",
@@ -2141,7 +2170,7 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "57111733-7076-4116-b22a-5f0d8453a36f",
+            "id": "14fc329e-60d2-4d10-8ed2-7aea6bdb0263",
             "type": "istar.ContributionLink",
             "source": "60d0943c-169e-41ff-85ed-e19360456863",
             "target": "df52f053-20a2-4bdf-8e23-e8c53a8ce306",
@@ -2152,7 +2181,7 @@ istar.examples.everyElementAndLink = {
             "label": "make"
         },
         {
-            "id": "aa74a406-9b26-478e-ab69-9fd234408cf5",
+            "id": "c268c9ad-85db-44aa-b219-995e339e462a",
             "type": "istar.ContributionLink",
             "source": "0a28f23e-2008-43b3-9e63-025bdfd5f30c",
             "target": "3ff6395e-86ec-4661-ba13-c0493331303b",
@@ -2162,7 +2191,7 @@ istar.examples.everyElementAndLink = {
             "label": "break"
         },
         {
-            "id": "3dc971b7-3bde-4ed8-9b24-55152ce452a8",
+            "id": "80811f20-5b66-4a89-8863-c1319ffa1c3b",
             "type": "istar.ContributionLink",
             "source": "df52f053-20a2-4bdf-8e23-e8c53a8ce306",
             "target": "85940cf3-6d49-4270-9b00-51696b5790f5",
@@ -2172,7 +2201,7 @@ istar.examples.everyElementAndLink = {
             "label": "hurt"
         },
         {
-            "id": "24e93e68-9cf9-4607-8d4d-60de8a61c7c2",
+            "id": "0a80971f-4c33-4785-853a-fc6ce0453e61",
             "type": "istar.ContributionLink",
             "source": "3ff6395e-86ec-4661-ba13-c0493331303b",
             "target": "85940cf3-6d49-4270-9b00-51696b5790f5",
@@ -2182,7 +2211,7 @@ istar.examples.everyElementAndLink = {
             "label": "help"
         },
         {
-            "id": "3605b7cd-6b3c-4384-b1e7-9752b1b98ba8",
+            "id": "f7259dfe-ab11-47ee-bbdc-06a76a0cb145",
             "type": "istar.ParticipatesInLink",
             "source": "2b3ba506-1f5b-4b5b-9114-01b1092cd067",
             "target": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
@@ -2192,28 +2221,18 @@ istar.examples.everyElementAndLink = {
             }
         },
         {
-            "id": "bcc54179-39d0-4a3b-8525-ccf39a4fb5c2",
-            "type": "istar.DependencyLink",
-            "source": "ccf83503-3c8f-4886-a30f-8a290499d8b2",
-            "target": "ad1e6006-2afa-448a-ab76-94be798d1a1e",
+            "id": "710b0263-0263-4b39-bd9f-26214616ba84",
+            "type": "istar.OrRefinementLink",
+            "source": "a892b326-dae3-4ce1-8513-0de9ac88d4b5",
+            "target": "e1acd9b0-c9e9-468b-845c-c7b08db3020f",
             "customProperties": {
-                "Description": "This link is part of a goal dependency. The \"D\" is pointing from Role A to Dependum A",
-                "Tooltip": "If you accidentally added to many vertices to an link, you can delete them by clickin on the \"Clear vertices\" button below"
-            }
-        },
-        {
-            "id": "b61bd4e3-501e-472d-aeb8-01dfbfb88585",
-            "type": "istar.DependencyLink",
-            "source": "ad1e6006-2afa-448a-ab76-94be798d1a1e",
-            "target": "2b3ba506-1f5b-4b5b-9114-01b1092cd067",
-            "customProperties": {
-                "Description": "This link is part of a goal dependency. The \"D\" is pointing from Dependum A to Agent A",
-                "Concept": "A dependency is defined as a relationship with five arguments:\n– depender is the actor that depends for something (the dependum) to be provided;\n– dependerElmt is the intentional element within the depender’s actor boundary where the dependency starts from, which explains why the dependency exists;\n– dependum is an intentional element that is the object of the dependency;\n– dependee is the actor that should provide the dependum;\n– dependeeElmt is the intentional element that explains how the dependee intends to provide the dependum\n\nDependencies link the dependerElmt within the depender actor to the dependum, outside actor boundaries, to the dependeeElmt within the dependee actor. The link is drawn with a “D” symbol indicating direction, with the D acting as an arrowhead “>”, pointing from dependerElmt to dependum to dependeeElmt.\n\nBoth the dependerElmt and the dependeeElmt can be omitted. This optionality is used when creating an initial Strategic Dependency view, or to support expressing partial knowledge, e.g., when the “why” (dependerElmt) or the “how”; (dependeeElmt) of the dependency are unknown"
+                "Description": "This is an (inclusive) OR-refinement linking Task X to Goal X",
+                "Concept": "The black triangle in this link indicates that it is an (inclusive) OR-refinement: the fulfillment of at least one child makes the parent fulfilled"
             }
         }
     ],
     "display": {
-        "b0e70150-9db6-411f-8b8c-976076dc2146": {
+        "c14e7fda-e081-450f-b716-3fc839802fc3": {
             "vertices": [
                 {
                     "x": 112,
@@ -2221,7 +2240,7 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "d64540cb-032b-4759-9839-d08c9d19d745": {
+        "a7ad94ed-b49e-465f-912b-4ea6f86cd976": {
             "vertices": [
                 {
                     "x": 43,
@@ -2229,31 +2248,31 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "02cb3526-ab02-42d1-9bad-0a65cdb86b7f": {
+        "8118839e-ae5e-4755-87ba-c9fb29f10625": {
             "vertices": [
                 {
-                    "x": 165,
-                    "y": 262
+                    "x": 383,
+                    "y": 284
                 }
             ]
         },
-        "83ee4c45-2517-4336-af0d-8ecf58fd9d69": {
+        "5a65337a-8568-4eaf-b63b-f9256b314015": {
             "vertices": [
                 {
-                    "x": 285,
-                    "y": 399
+                    "x": 387,
+                    "y": 361
+                },
+                {
+                    "x": 365,
+                    "y": 390
+                },
+                {
+                    "x": 345,
+                    "y": 413
                 }
             ]
         },
-        "3428a3ca-ea5e-4856-9c2d-7edeedafdaa9": {
-            "vertices": [
-                {
-                    "x": 422,
-                    "y": 279
-                }
-            ]
-        },
-        "9143dfcf-6903-4002-a77d-2db9ecc0ab46": {
+        "fa443e67-28f5-4934-a5d6-aae299fd95c3": {
             "vertices": [
                 {
                     "x": 388,
@@ -2261,7 +2280,7 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "0295cd63-3ece-4349-b2bc-9dd7db4be8d4": {
+        "fc7573af-3955-4998-b839-ad4dd7649601": {
             "vertices": [
                 {
                     "x": 568,
@@ -2269,39 +2288,7 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "57111733-7076-4116-b22a-5f0d8453a36f": {
-            "vertices": [
-                {
-                    "x": 646,
-                    "y": 274
-                }
-            ]
-        },
-        "aa74a406-9b26-478e-ab69-9fd234408cf5": {
-            "vertices": [
-                {
-                    "x": 855,
-                    "y": 272
-                }
-            ]
-        },
-        "3dc971b7-3bde-4ed8-9b24-55152ce452a8": {
-            "vertices": [
-                {
-                    "x": 619,
-                    "y": 433
-                }
-            ]
-        },
-        "24e93e68-9cf9-4607-8d4d-60de8a61c7c2": {
-            "vertices": [
-                {
-                    "x": 865,
-                    "y": 434
-                }
-            ]
-        },
-        "bcc54179-39d0-4a3b-8525-ccf39a4fb5c2": {
+        "fd846234-3871-4c3b-bd10-64bdb4621fb5": {
             "vertices": [
                 {
                     "x": 319,
@@ -2333,11 +2320,59 @@ istar.examples.everyElementAndLink = {
                 }
             ]
         },
-        "b61bd4e3-501e-472d-aeb8-01dfbfb88585": {
+        "b15583b6-46c5-44a3-af48-c53535af7ee9": {
             "vertices": [
                 {
                     "x": 71,
                     "y": 447
+                }
+            ]
+        },
+        "bb3a0297-98a5-419a-b2be-1fa7d8386b3a": {
+            "vertices": [
+                {
+                    "x": 156,
+                    "y": 265
+                }
+            ]
+        },
+        "b092f4ad-f635-4f27-a335-5f2c3874ad8c": {
+            "vertices": [
+                {
+                    "x": 313,
+                    "y": 383
+                }
+            ]
+        },
+        "14fc329e-60d2-4d10-8ed2-7aea6bdb0263": {
+            "vertices": [
+                {
+                    "x": 646,
+                    "y": 274
+                }
+            ]
+        },
+        "c268c9ad-85db-44aa-b219-995e339e462a": {
+            "vertices": [
+                {
+                    "x": 855,
+                    "y": 272
+                }
+            ]
+        },
+        "80811f20-5b66-4a89-8863-c1319ffa1c3b": {
+            "vertices": [
+                {
+                    "x": 619,
+                    "y": 433
+                }
+            ]
+        },
+        "0a80971f-4c33-4785-853a-fc6ce0453e61": {
+            "vertices": [
+                {
+                    "x": 865,
+                    "y": 434
                 }
             ]
         },
@@ -2353,7 +2388,7 @@ istar.examples.everyElementAndLink = {
     },
     "tool": "pistar.2.0.0",
     "istar": "2.0",
-    "saveDate": "Sat, 29 Dec 2018 00:34:01 GMT",
+    "saveDate": "Mon, 31 Dec 2018 14:52:34 GMT",
     "diagram": {
         "width": 1100,
         "height": 600,
