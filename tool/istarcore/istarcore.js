@@ -8,7 +8,7 @@
  * This is the basic istar class.
  * this object contains the main functionalities for creating istar models
  *
- * @return A new istar object
+ * @return {object} A new istar object
  * @class istar
  */
 var istar = function () {
@@ -49,13 +49,14 @@ var istar = function () {
     }
 
     function _createBasicPrototypeFunctions  () {
-        //TODO passar para UI
         joint.dia.Element.prototype.setNodeLabel = _setNodeLabel;
         joint.dia.Element.prototype.updateLineBreak = _updateLineBreak;
     }
 
     function _setNodeLabel (content) {
+        /* jshint validthis: true */
         /* this function is meant to be added to a prototype */
+
         //a default width value for kindOfActor elements, since the BBox refers to the whole element (including its boundary)
         var breakWidth = 90;
         if (! this.isKindOfActor()) {
@@ -65,25 +66,33 @@ var istar = function () {
         content = $.trim(content) || '';
         content = joint.util.breakText(content, {width: breakWidth});//add the line breaks automatically
 
-        this.attr('text/text', content);
+        this.attr('text/text', content);//actually change the label
         return this;
     }
 
     function _updateLineBreak () {
+        /* jshint validthis: true */
         /* this function is meant to be added to a prototype */
+
         this.setNodeLabel(this.prop('name'), {breakLine: true, breakWidth: this.findView(istar.paper).getBBox().width});
     }
 
     function _embedNode (node) {
+        /* jshint validthis: true */
+        /* this function is meant to be added to a prototype */
+
         if (node !== null) {
             this.embed(node);
-            _updateActorBoundary(this);
+            this.updateBoundary();
         }
 
         return node;
     }
 
     function _collapse () {
+        /* jshint validthis: true */
+        /* this function is meant to be added to a prototype */
+
         var actor = this;//stores 'this' in a named variable so that it can be read by the anonymous function
         if (!this.prop('collapsed')) {
             this.attr('rect/display', 'none');//hide the actor's boundary
@@ -113,6 +122,9 @@ var istar = function () {
     }
 
     function _expand () {
+        /* jshint validthis: true */
+        /* this function is meant to be added to a prototype */
+
         var actor = this;//stores 'this' in a named variable so that it can be read by the anonymous function
         if (this.prop('collapsed')) {
             this.attr('rect/display', 'visible');//display the actor's boundary
@@ -150,6 +162,9 @@ var istar = function () {
     }
 
     function _toggleCollapse () {
+        /* jshint validthis: true */
+        /* this function is meant to be added to a prototype */
+
         if (this.prop('collapsed')) {
             this.uncollapse();
         }
@@ -158,33 +173,37 @@ var istar = function () {
         }
     }
 
-    function _setNodeLinkLabel (value) {
+    function _setLinkLabel (value) {
+        /* jshint validthis: true */
+        /* this function is meant to be added to a prototype */
+
         this.label(0, {attrs: {text: {text: '' + value + ''}}});
         return this;//TODO passar para UI
     }
 
-    function _updateActorBoundary (parent) {
+    function _updateActorBoundary () {
+        /* jshint validthis: true */
+        /* this function is meant to be added to a prototype */
+
         //update the size of the (parent) actor's boundary based on its contents
         //based on a JointJS tutorial: http://www.jointjs.com/tutorial/hierarchy
 
-        parent = parent || this;
-
-        if (!parent.get('originalPosition')) {
-            parent.set('originalPosition', parent.get('position'));
+        if (!this.get('originalPosition')) {
+            this.set('originalPosition', this.get('position'));
         }
-        if (!parent.get('originalSize')) {
-            parent.set('originalSize', parent.get('size'));
+        if (!this.get('originalSize')) {
+            this.set('originalSize', this.get('size'));
         }
 
-        var originalPosition = parent.get('originalPosition');
-        var originalSize = parent.get('originalSize');
+        var originalPosition = this.get('originalPosition');
+        var originalSize = this.get('originalSize');
 
         var newX = originalPosition.x;
         var newY = originalPosition.y;
         var newCornerX = originalPosition.x + originalSize.width;
         var newCornerY = originalPosition.y + originalSize.height;
 
-        _.forEach(parent.getEmbeddedCells(), function (child) {
+        _.forEach(this.getEmbeddedCells(), function (child) {
             if (!child.isLink()) {
                 var childBbox = child.getBBox();
 
@@ -206,11 +225,11 @@ var istar = function () {
         // Note that we also pass a flag so that we know we shouldn't adjust the
         // `originalPosition` and `originalSize` in our handlers as a reaction
         // on the following `set()` call.
-        parent.set({
+        this.set({
             position: {x: newX, y: newY},
             size: {width: newCornerX - newX, height: newCornerY - newY}
         }, {skipParentHandler: true});
-        parent.attr({
+        this.attr({
             rect: {
                 width: newCornerX - newX + 10,
                 height: newCornerY - newY + 10
@@ -249,8 +268,14 @@ var istar = function () {
                 var parentId = cell.get('parent');
                 if (parentId) {
                     var parent = istar.graph.getCell(parentId);
-                    _updateActorBoundary(parent);
+                    parent.updateBoundary();
                 }
+            });
+        },
+        displayInvalidModelMessages: function(messages) {
+            messages = messages || [];
+            _.forEach(messages, function(message) {
+                console.log('INVALID: ' + message);
             });
         },
         /**
@@ -486,7 +511,7 @@ var istar = function () {
                 }
 
                 if (linkType.changeableLabel) {
-                    link.setContributionType = _setNodeLinkLabel;
+                    link.setContributionType = _setLinkLabel;
                     link.on('change:value', function(link, newValue) {
                         link.setContributionType(newValue);
                     });

@@ -160,6 +160,7 @@ istar.setupMetamodel = function (metamodel) {
             if (! cellType.isValid) {
                 cellType.isValid = function () {return {isValid: true, message: ''};};
             }
+            // cellType.isValid = function () {return {isValid: true, message: ''};}; //uncomment to remove constraints
         }
     }
 
@@ -192,6 +193,9 @@ istar.setupMetamodel = function (metamodel) {
     function setupCellsGeneralPrototypes(metamodel) {
         joint.dia.Cell.prototype.isActorLink = function () {
             return _.includes(metamodel.getContainerLinksNames(), this.prop('type'));
+        };
+        joint.dia.Cell.prototype.isNodeLink = function () {
+            return _.includes(metamodel.getNodeLinksNames(), this.prop('type'));
         };
         joint.dia.Cell.prototype.isKindOfInnerElement = function () {
             return _.includes(metamodel.getInnerElementsNames(), this.prop('type'));

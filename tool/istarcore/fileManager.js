@@ -174,6 +174,7 @@ function loadModel(inputRaw) {
     if (inputRaw) {
         this.changedModel = true;
 
+        fileManager.invalidMessages = [];
         ui.clearDiagram();
         istar.graph.prop('name', '');
         istar.graph.prop('customProperties', '');
@@ -243,6 +244,11 @@ function loadModel(inputRaw) {
                 var depender = istar.graph.getCell(element.source);
                 var dependum = fileManager.addLoadedElement(element);
                 var dependee = istar.graph.getCell(element.target);
+
+                isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(depender, dependee);
+                if (!isValid.isValid) {
+                    this._processInvalidLink('DependencyLink', depender, dependee);
+                }
 
                 links = istar.addDependencyLink(depender, dependum, dependee);
                 links[0].on('change:vertices', ui._toggleSmoothness);
@@ -318,11 +324,15 @@ function loadModel(inputRaw) {
             }
         }
     }
+    if (_.size(fileManager.invalidMessages)>0) {
+        istar.displayInvalidModelMessages(fileManager.invalidMessages);
+    }
 }
 
 
 fileManager = {
     load: loadModel,
+    invalidMessages: [],
     addLoadedElement: function (element) {
         if (element.id && element.type && element.x && element.y) {
             element.text = element.text || '';
@@ -345,13 +355,36 @@ fileManager = {
             }
         }
     },
+    _processInvalidLink: function(typeName, source, target) {
+        var parent = source.parent();
+        var parentText = '';
+        if (parent) {
+            parentText = 'In ' + istar.graph.getCell(parent).prop('name') + ', ';
+        }
+        var message = parentText + typeName + ' from "' + source.prop('name') + '" to "' +
+            target.prop('name') + '": ' + isValid.message;
+        this.invalidMessages.push(message);
+    },
     addLoadedLink: function (linkJSON) {
         if (linkJSON.id && linkJSON.type && linkJSON.source && linkJSON.target) {
-            var typeWithoutPrefix = linkJSON.type.split('.')[1];
-            if (istar['add' + typeWithoutPrefix]) {
+            var typeNameWithoutPrefix = linkJSON.type.split('.')[1];
+            if (istar['add' + typeNameWithoutPrefix]) {
                 sourceObject = istar.graph.getCell(linkJSON.source);
                 targetObject = istar.graph.getCell(linkJSON.target);
-                var newLink = istar['add' + typeWithoutPrefix](sourceObject, targetObject, linkJSON.label);
+                if (_.includes(istar.metamodel.getNodeLinksNames(), typeNameWithoutPrefix)) {
+                    isValid = istar.metamodel.nodeLinks[typeNameWithoutPrefix].isValid(sourceObject, targetObject);
+                    if (!isValid.isValid) {
+                        this._processInvalidLink(typeNameWithoutPrefix, sourceObject, targetObject);
+                    }
+                }
+                else if (_.includes(istar.metamodel.getContainerLinksNames(), typeNameWithoutPrefix)) {
+                    isValid = istar.metamodel.containerLinks[typeNameWithoutPrefix].isValid(sourceObject, targetObject);
+                    if (!isValid.isValid) {
+                        this._processInvalidLink(typeNameWithoutPrefix, sourceObject, targetObject);
+                    }
+                }
+
+                var newLink = istar['add' + typeNameWithoutPrefix](sourceObject, targetObject, linkJSON.label);
 
                 if (linkJSON.name) {
                     newLink.prop('name', linkJSON.name);
@@ -359,7 +392,7 @@ fileManager = {
                 if (linkJSON.customProperties) {
                     newLink.prop('customProperties', linkJSON.customProperties);
                 }
-                if (typeWithoutPrefix === 'ContributionLink') {
+                if (typeNameWithoutPrefix === 'ContributionLink') {
                     newLink.on('change:vertices', ui._toggleSmoothness);
                 }
                 return newLink;

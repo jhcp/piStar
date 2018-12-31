@@ -1139,3 +1139,22 @@ $('#modal-alert').on('shown.bs.modal', function () {
 ui.displayInvalidLinkMessage = function (message) {
     ui.alert('INVALID: Sorry, but ' + message, 'Invalid link');
 };
+
+ui.displayInvalidModelMessage = function (messages) {
+    if (messages) {
+        var text = '<div class="alert alert-danger">Hello there! Previous versions of the piStar tool allowed the creation of models that break ' +
+            'some rules of the <a href="https://sites.google.com/site/istarlanguage/" target="_blank">iStar 2.0 Language Guide</a>. Please address the issues listed below ' +
+            'in order to ensure that your model will continue to open correctly in future versions of the tool.</div>';
+        text += '<h4>Errors:</h4><ul>';
+
+        _.forEach(messages, function (message) {
+            text += '<li>' + message + '</li>';
+            console.log('INVALID: ' + message);
+        });
+        text += '</ul>';
+        ui.alert(text, 'Invalid model');
+    }
+};
+
+//overrids istar.displayInvalidModelMessages, in order to display the messages in the user interface
+istar.displayInvalidModelMessages = ui.displayInvalidModelMessage;
