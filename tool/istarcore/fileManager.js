@@ -95,7 +95,7 @@ function saveModel() {
     var toCollapse = [];
     var vertices = [];
 
-    _.each(istar.graph.getElements(), function (element) {
+    _.forEach(istar.graph.getElements(), function (element) {
         if (element.isKindOfActor()) {
             var actorJSON = fileManager.elementToJSON(element);
 
@@ -146,7 +146,7 @@ function saveModel() {
             modelJSON.dependencies.push(dependency);
         }
     });
-    _.each(istar.graph.getLinks(), function (link) {
+    _.forEach(istar.graph.getLinks(), function (link) {
         var linkJSON = fileManager.linkToJSON(link);
         if (link.isContributionLink()) {
             linkJSON.label = link.prop('value');//link.attributes.labels[0].attrs.text.text;
@@ -162,7 +162,7 @@ function saveModel() {
         modelJSON.links.push(linkJSON);
     });
 
-    _.each(toCollapse, function (actor) {
+    _.forEach(toCollapse, function (actor) {
         modelJSON.display[actor.id] = {collapsed: true};//add the collapsing information to the save file
         actor.collapse();//collapses the actor, thus returning it to its original state
     });
@@ -328,7 +328,10 @@ fileManager = {
             element.text = element.text || '';
             var type = element.type.split('.')[1];
             if (istar['add' + type]) {
-                var newElement = istar['add' + type](element.x, element.y, element.text, {id: element.id});//obs: the id MUST be passed during creation, can't be changed later
+                var position = {x: element.x, y: element.y};
+                //obs: the id MUST be passed during creation, can't be changed later
+                // console.log(element.text);
+                var newElement = istar['add' + type](element.text, {id: element.id, position: position});
 
                 if (element.customProperties) {
                     newElement.prop('customProperties', element.customProperties);
@@ -399,7 +402,7 @@ fileManager = {
     childrenToJSON: function (element) {
         var result = {nodes: [], display: {}};
 
-        _.each(element.getEmbeddedCells(), function (element) {
+        _.forEach(element.getEmbeddedCells(), function (element) {
             if (element.isKindOfInnerElement()) {
                 var node = fileManager.elementToJSON(element);
                 var display = {};

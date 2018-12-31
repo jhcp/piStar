@@ -77,20 +77,12 @@ uiC.PropertiesTableView = Backbone.View.extend({
         }
     },
     setupElementNameEditing: function () {
+        currentElementModel = this.model;
         this.$table.find('a').editable({
             showbuttons: 'bottom',
             success: function (response, newValue) {
-                var updatedElement = ui.getSelectedElement()
-                if (updatedElement.changeNodeContent) {
-                  //if it is a istar element
-                  updatedElement.changeNodeContent(newValue);
-                }
-                else {
-                  //if it is a istar model (graph)
-                  updatedElement.prop('name', newValue);
-                }
-
-                return {newValue: updatedElement.prop('name')};
+                currentElementModel.prop('name', 'x:'+newValue);
+                return {newValue: currentElementModel.prop('name')};
             }
         })
             .on('shown', ui.changeStateToEdit)
@@ -211,7 +203,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
                         source = connectedLinks[1].getSourceElement();
                         target = connectedLinks[0].getTargetElement();
                     }
-                    isValid = istar.types['DependencyLink'].isValid(target, source);//check with flipped source/target
+                    isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(target, source);//check with flipped source/target
+                    // isValid = istar.types['DependencyLink'].isValid(target, source);//check with flipped source/target
 
                     if (isValid.isValid) {
                         //If we change the source and target without removing the vertices, the math for creating

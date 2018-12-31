@@ -12,19 +12,24 @@
  * @class istar
  */
 var istar = function () {
-    var _createDefaultGraph = function () {
-        graph = new joint.dia.Graph();
+    'use strict';
+
+    function _createDefaultGraph  () {
+        var graph = new joint.dia.Graph();
 
         //Create a new JointJS Cell to store custom data properties of the
         // model as a whole
         graph._modelProperties = (new joint.dia.Element()).prop('name', '');
+
         graph.prop = graph._modelProperties.prop;
+        graph.isCell = function() {return false;};
         graph.isElement = function(){return false;};
         graph.isLink = function(){return false;};
 
         return graph;
-    };
-    var _createDefaultPaper = function (graph) {
+    }
+
+    function _createDefaultPaper (graph) {
         return new joint.dia.Paper({
             el: $('#diagram'),
             width: 2000,
@@ -41,53 +46,54 @@ var istar = function () {
             //async: true,
             //linkConnectionPoint: joint.util.shapePerimeterConnectionPoint, //connects links to the nodes' shape, rather than their bounding box. Big toll on performance
         });
-    };
-    var _createBasicPrototypeFunctions = function () {
-        joint.dia.Element.prototype.changeNodeContent = _changeNodeContent;
-        joint.dia.Cell.prototype.isDependum = function () {
-            return this.get('isDependum');
-        };
-    };
-    var _changeNodeContent = function (content, options) {
-        "use strict";
+    }
+
+    function _createBasicPrototypeFunctions  () {
+        //TODO passar para UI
+        joint.dia.Element.prototype.setNodeLabel = _setNodeLabel;
+        joint.dia.Element.prototype.updateLineBreak = _updateLineBreak;
+    }
+
+    function _setNodeLabel (content) {
         /* this function is meant to be added to a prototype */
-        //default values for the options
-        options = _.defaults(options || {}, {
-            'breakLine': true,
-            'breakWidth': 90
-        });
-        content = $.trim(content) || '';
-        this.prop('name', content);
-        //add the line breaks automatically
-        if (options.breakLine && content) {
-            content = joint.util.breakText(content, {width: options.breakWidth});
+        //a default width value for kindOfActor elements, since the BBox refers to the whole element (including its boundary)
+        var breakWidth = 90;
+        if (! this.isKindOfActor()) {
+            breakWidth = this.findView(istar.paper).getBBox().width;
         }
-        ui.hideSelection();//workaround for jointjs bug: changing the path of a highlight when changing an attribute of a CellView
+
+        content = $.trim(content) || '';
+        content = joint.util.breakText(content, {width: breakWidth});//add the line breaks automatically
+
         this.attr('text/text', content);
-        ui.showSelection();//workaround for jointjs bug: changing the path of a highlight when changing an attribute of a CellView
         return this;
-    };
-    var _embedNode = function (node) {
-        "use strict";
+    }
+
+    function _updateLineBreak () {
+        /* this function is meant to be added to a prototype */
+        this.setNodeLabel(this.prop('name'), {breakLine: true, breakWidth: this.findView(istar.paper).getBBox().width});
+    }
+
+    function _embedNode (node) {
         if (node !== null) {
             this.embed(node);
             _updateActorBoundary(this);
         }
 
         return node;
-    };
-    var _collapse = function () {
-        "use strict";
+    }
+
+    function _collapse () {
         var actor = this;//stores 'this' in a named variable so that it can be read by the anonymous function
         if (!this.prop('collapsed')) {
             this.attr('rect/display', 'none');//hide the actor's boundary
-            _.each(this.getEmbeddedCells(), function (innerElement) {
+            _.forEach(this.getEmbeddedCells(), function (innerElement) {
                 innerElement.attr('./display', 'none');//hide the actor's inner elements
 
                 //update the dependency links
                 var connectedLinks = istar.graph.getConnectedLinks(innerElement);
                 if (connectedLinks) {
-                    _.each(connectedLinks, function (connectedLink) {
+                    _.forEach(connectedLinks, function (connectedLink) {
                         if (connectedLink.attributes.type === ('DependencyLink')) {
 
                             if (connectedLink.get('source').id === innerElement.id) {
@@ -104,19 +110,19 @@ var istar = function () {
             });
             this.prop('collapsed', true);
         }
-    };
-    var _uncollapse = function () {
-        "use strict";
+    }
+
+    function _expand () {
         var actor = this;//stores 'this' in a named variable so that it can be read by the anonymous function
         if (this.prop('collapsed')) {
             this.attr('rect/display', 'visible');//display the actor's boundary
-            _.each(this.getEmbeddedCells(), function (innerElement) {
+            _.forEach(this.getEmbeddedCells(), function (innerElement) {
                 innerElement.attr('./display', 'visible');//display the actor's inner elements
 
                 //update the dependency links
                 var connectedLinks = istar.graph.getConnectedLinks(actor);
                 if (connectedLinks) {
-                    _.each(connectedLinks, function (connectedLink) {
+                    _.forEach(connectedLinks, function (connectedLink) {
                         if (connectedLink.attributes.type === ('DependencyLink')) {
 
                             if (connectedLink.get('source').id === actor.id) {
@@ -141,31 +147,34 @@ var istar = function () {
             });
             this.prop('collapsed', false);
         }
-    };
-    var _toggleCollapse = function () {
-        "use strict";
+    }
+
+    function _toggleCollapse () {
         if (this.prop('collapsed')) {
             this.uncollapse();
         }
         else {
             this.collapse();
         }
-    };
-    var _setNodeLinkLabel = function (value) {
-        "use strict";
+    }
+
+    function _setNodeLinkLabel (value) {
         this.label(0, {attrs: {text: {text: '' + value + ''}}});
-        return this;//TODO
-    };
-    var _updateActorBoundary = function (parent) {
-        "use strict";
+        return this;//TODO passar para UI
+    }
+
+    function _updateActorBoundary (parent) {
         //update the size of the (parent) actor's boundary based on its contents
         //based on a JointJS tutorial: http://www.jointjs.com/tutorial/hierarchy
 
         parent = parent || this;
-        var parentBbox = parent.getBBox();
 
-        if (!parent.get('originalPosition')) parent.set('originalPosition', parent.get('position'));
-        if (!parent.get('originalSize')) parent.set('originalSize', parent.get('size'));
+        if (!parent.get('originalPosition')) {
+            parent.set('originalPosition', parent.get('position'));
+        }
+        if (!parent.get('originalSize')) {
+            parent.set('originalSize', parent.get('size'));
+        }
 
         var originalPosition = parent.get('originalPosition');
         var originalSize = parent.get('originalSize');
@@ -175,7 +184,7 @@ var istar = function () {
         var newCornerX = originalPosition.x + originalSize.width;
         var newCornerY = originalPosition.y + originalSize.height;
 
-        _.each(parent.getEmbeddedCells(), function (child) {
+        _.forEach(parent.getEmbeddedCells(), function (child) {
             if (!child.isLink()) {
                 var childBbox = child.getBBox();
 
@@ -204,22 +213,18 @@ var istar = function () {
         parent.attr({
             rect: {
                 width: newCornerX - newX + 10,
-                height: newCornerY - newY + 10,
+                height: newCornerY - newY + 10
             }
         });
-    };
+    }
 
     return {
-        PREFIX_ADD: 'add', /*prefix to identify functions that add an element. Ex: addTask(...)*/
-        PREFIX_IS: 'is', /*prefix to identify functions that check if an element is of an certain kind. Ex: isTask(...)*/
-        types: {},
+        metamodel: {},
         setupModel: function (graph) {
-            "use strict";
             this.graph = graph ? graph : _createDefaultGraph();
             _createBasicPrototypeFunctions();
         },
         setupDiagram: function (paper) {
-            "use strict";
             this.paper = paper ? paper : _createDefaultPaper(this.graph);
 
             this.setupAutomaticContainerResizing();
@@ -229,7 +234,9 @@ var istar = function () {
             //based on JointJS' tutorial: http://jointjs.com/tutorial/hierarchy
             this.graph.on('change:position', function (cell, newPosition, opt) {
 
-                if (opt.skipParentHandler) return;
+                if (opt.skipParentHandler) {
+                    return;
+                }
 
                 if (cell.get('embeds') && cell.get('embeds').length) {
                     // If we're manipulating a parent element, let's store
@@ -253,7 +260,6 @@ var istar = function () {
          *   if (istar.isEmpty()) {...}
          */
         isEmpty: function () {
-            "use strict";
             return (_.size(istar.graph.getCells()) < 1);
         },
 
@@ -264,7 +270,6 @@ var istar = function () {
          *   istar.getNumberOfCells();
          */
         getNumberOfCells: function () {
-            "use strict";
             return _.size(istar.graph.getCells());
         },
 
@@ -275,21 +280,19 @@ var istar = function () {
          *   istar.getNumberOfElements();
          */
         getNumberOfElements: function () {
-            "use strict";
             //note: the dependum also counts as an element
             return _.size(istar.graph.getElements());
         },
 
         /**
          * Returns the number of links (connections) in the model. For instance, refinements and contributions are links.
-         * Please note that each depency has 2 links: one from the depender to the dependum, and other from the dependum
+         * Please note that each dependency has 2 links: one from the depender to the dependum, and other from the dependum
          * to the dependee.
          * @returns {number} number of links (connections)
          * @example
          *   istar.getNumberOfLinks();
          */
         getNumberOfLinks: function () {
-            "use strict";
             //note: each dependency counts as two links: one from the depender to the dependum, and another from the dependum to the dependee
             return _.size(istar.graph.getLinks());
         },
@@ -301,58 +304,31 @@ var istar = function () {
          * breakLine: if true, breaks the line of the content automatically at breakWidth. <i>Default value: true</i>.<br />
          * breakWidth: width limit used for breaking lines. <i>Default value: 90</i>.
          * @returns the new node
-         * @param {string} shape shape of the node to be created
-         * @param {number} x    x position of the new node
-         * @param {number} y    y position of the new node
-         * @param [content]       content of the node
-         * @param [options]       options of the new node
+         * @param {object}  nodeType    type definition of the node to be created
+         * @param {string}  content     content of the node
+         * @param {object}  options     {id, position: {x, y}}
          */
-        addNode: function (typeName, shape, x, y, content, options) {
-            "use strict";
-            if (!shape) {
-                shape = joint.shapes.basic.Rect;//safeguard in case the library is being used without a visual representation
-            }
-            //options for addNode:
+        addNode: function (nodeType, content, options) {
 
-            //default values for the options
-            options = _.defaults(options || {}, {
-                'breakLine': true,
-                'breakWidth': 90
-            });
-            var clearTypeName = typeName.substring(typeName.lastIndexOf('.') + 1);
-            var originalContent = content;
-            if (options.breakLine && content) {
-                //add the line breaks automatically
-                content = joint.util.breakText(content, {width: options.breakWidth});
-            }
-            //create the node and add it to the graph
-            var node;
-            if (options.id) {
-                node = new shape({
-                    id: options.id,
-                    position: {x: x, y: y},
-                });
-            }
-            else {
-                node = new shape({
-                    position: {x: x, y: y},
-                });
-            }
-            node.prop('name', originalContent || clearTypeName);
-            node.attr('text/text', content);
-            node.prop('originalSize', node.prop('size')); //stores the initial size of the element
+            var newNode = new nodeType.shapeObject(options);
+            //add to the graph before changing properties, so that eventual UI event listeners can start acting at once
+            istar.graph.addCell(newNode);
 
-            istar.graph.addCell(node);
-            return node;
+            newNode.prop('name', content || nodeType.name);
+            newNode.prop('type', nodeType.name);
+            //stores the initial size of the element in order to later be able to restore it to its initial size
+            newNode.prop('originalSize', newNode.prop('size'));
+
+            return newNode;
         },
         replaceNode: function (element, typeName) {
-            "use strict";
             var shape = joint.shapes[istar.metamodel.prefix][typeName];
 
             //create the node and add it to the graph
             var node = new shape({
-                position: element.prop('position'),
+                position: element.prop('position')
             });
+            node.prop('type', typeName);
 
             //copy the old node properties to the new node
             node.prop('name', element.prop('name'));
@@ -369,17 +345,17 @@ var istar = function () {
             //change the dependency links from the old node to the new node
             var nodeId = element.prop('id');
             var connectedLinks = istar.graph.getConnectedLinks(element);
-            if (connectedLinks[0].prop('source/id') == nodeId) {
-                connectedLinks[0].prop('source/id', node.prop('id'))
+            if (connectedLinks[0].prop('source/id') === nodeId) {
+                connectedLinks[0].prop('source/id', node.prop('id'));
             }
-            if (connectedLinks[1].prop('source/id') == nodeId) {
-                connectedLinks[1].prop('source/id', node.prop('id'))
+            if (connectedLinks[1].prop('source/id') === nodeId) {
+                connectedLinks[1].prop('source/id', node.prop('id'));
             }
-            if (connectedLinks[0].prop('target/id') == nodeId) {
-                connectedLinks[0].prop('target/id', node.prop('id'))
+            if (connectedLinks[0].prop('target/id') === nodeId) {
+                connectedLinks[0].prop('target/id', node.prop('id'));
             }
-            if (connectedLinks[1].prop('target/id') == nodeId) {
-                connectedLinks[1].prop('target/id', node.prop('id'))
+            if (connectedLinks[1].prop('target/id') === nodeId) {
+                connectedLinks[1].prop('target/id', node.prop('id'));
             }
 
             //remove the old node
@@ -390,28 +366,25 @@ var istar = function () {
         /**
          * Adds a link between two actors.
          * @returns the new link
-         * @param {Shape} shape     shape of the link
-         * @param {Actor} source    source of the link
-         * @param {Actor} target    target of the link
+         * @param {object}  linkType    type definition of the link to be created
+         * @param {Actor}   source      source of the link (the actual Cell, not just the id)
+         * @param {Actor}   target      target of the link (the actual Cell, not just the id)
          */
-        addLinkBetweenActors: function (linkName, shape, source, target) {
-            "use strict";
-            if (!shape) {
-                shape = joint.dia.Link;//safeguard in case the library is being used without a visual representation
-            }
+        addLinkBetweenActors: function (linkType, source, target) {
+
             //prevent repeated links
             if (!this.isThereLinkBetween(source, target)) {
-                var link = new shape({
+                var link = new linkType.shapeObject({
                     'source': {id: source.id},
                     'target': {id: target.id}
                 });
+                link.prop('type', linkType.name);
 
                 istar.graph.addCell(link);
                 return link;
             }
         },
         addOneSideOfDependencyLink: function (source, target) {
-            "use strict";
             var link;
             if (source.isKindOfActor()) {
                 link = new joint.shapes.istar.DependencyLink({
@@ -422,6 +395,7 @@ var istar = function () {
             else {
                 link = new joint.shapes.istar.DependencyLink({'source': {id: source.id}, 'target': {id: target.id}});
             }
+            link.prop('type', 'DependencyLink');
 
             istar.graph.addCell(link);
 
@@ -431,13 +405,12 @@ var istar = function () {
             var actors = _.filter(istar.graph.getElements(), function (element) {
                 return element.isKindOfActor();
             });
-            _.each(actors, function (actor) {
+            _.forEach(actors, function (actor) {
                 actor.toBack();
             });
             return [link];
         },
         addDependencyLink: function (depender, dependum, dependee) {
-            "use strict";
             //TODO prevent repeated links
 
             var link1;
@@ -470,8 +443,13 @@ var istar = function () {
             }
             istar.graph.addCell(link2);
 
+            //make a reference from one link to another, in order to be able so remove the other one if
+            //one of them is removed
             link1.prop('otherHalf', link2);
             link2.prop('otherHalf', link1);
+
+            link1.prop('type', 'DependencyLink');
+            link2.prop('type', 'DependencyLink');
 
             dependum.prop('isDependum', true);
             var dependumPosition = {x: 50, y: 50};
@@ -486,29 +464,23 @@ var istar = function () {
             var actors = _.filter(istar.graph.getElements(), function (element) {
                 return element.isKindOfActor();
             });
-            _.each(actors, function (actor) {
+            _.forEach(actors, function (actor) {
                 actor.toBack();
             });
             return [link1, link2];
         },
         addLinkBetweenNodes: function (linkType, source, target, value) {
-            "use strict";
-
-            var shape = linkType.shapeObject;
-            if (!shape) {
-                shape = joint.dia.Link;//safeguard in case the library is being used without a visual representation
-            }
-
             //prevent repeated links
             var currentLinksFromSource = istar.graph.getConnectedLinks(source);
             var isDuplicated = false;
-            _.each(currentLinksFromSource, function (link) {
+            _.forEach(currentLinksFromSource, function (link) {
                 isDuplicated = isDuplicated || link.getSourceElement() === target || link.getTargetElement() === target;
             });
             if (!isDuplicated) {
-                var link = new shape({'source': {id: source.id}, 'target': {id: target.id}});
+                var link = new linkType.shapeObject({'source': {id: source.id}, 'target': {id: target.id}});
+                link.prop('type', linkType.name);
                 istar.graph.addCell(link);
-                //embeds the link on the (parent) actor of its source element, to facilitate collapse/uncollapse
+                //embeds the link on the (parent) actor of its source element, to facilitate collapse/expand
                 if (source.get('parent')) {
                     istar.graph.getCell(source.get('parent')).embed(link);
                 }
@@ -517,9 +489,11 @@ var istar = function () {
                     link.setContributionType = _setNodeLinkLabel;
                     link.on('change:value', function(link, newValue) {
                         link.setContributionType(newValue);
-                    })
+                    });
                 }
-                if (value) link.prop('value', value);
+                if (value) {
+                    link.prop('value', value);
+                }
 
                 return link;
             }
@@ -529,25 +503,11 @@ var istar = function () {
         },
         createContainerFunctions: function (prototype) {
             prototype.collapse = _collapse;
-            prototype.uncollapse = _uncollapse;
+            prototype.uncollapse = _expand; /* @deprecated since version 2.0.0 - use 'expand' instead*/
+            prototype.expand = _expand;
             prototype.toggleCollapse = _toggleCollapse;
             prototype.embedNode = _embedNode;
             prototype.updateBoundary = _updateActorBoundary;
-        },
-        createAddLinkBetweenActors: function (linkPrefixedName, linkName, shape) {
-            this['add' + linkName] = function (source, target) {
-                if (istar.types[linkName].isValid(source, target)) {
-                    return istar.addLinkBetweenActors(linkName, shape, source, target);
-                }
-            };
-        },
-        createAddLinkBetweenNodes: function (linkType) {
-            this['add' + linkType.name] = function (source, target, label) {
-                if (istar.types[linkType.name].isValid(source, target)) {
-                    return istar.addLinkBetweenNodes(linkType, source, target, label);
-                }
-
-            };
         },
         embedNode: function (child, parent) {
             parent.embed(child);
@@ -564,7 +524,7 @@ var istar = function () {
         isSourceOf: function (element, typeName) {
             var currentLinksFromElement = istar.graph.getConnectedLinks(element);
             var isSourceOf = false;
-            _.each(currentLinksFromElement, function (link) {
+            _.forEach(currentLinksFromElement, function (link) {
                 isSourceOf = isSourceOf || ((link.getSourceElement() === element) && (link.prop('type') === typeName));
             });
             return isSourceOf;
@@ -572,7 +532,7 @@ var istar = function () {
         isTargetOf: function (element, typeName) {
             var currentLinksFromElement = istar.graph.getConnectedLinks(element);
             var isTargetOf = false;
-            _.each(currentLinksFromElement, function (link) {
+            _.forEach(currentLinksFromElement, function (link) {
                 isTargetOf = isTargetOf || ((link.getTargetElement() === element) && (link.prop('type') === typeName));
             });
             return isTargetOf;
@@ -584,13 +544,13 @@ var istar = function () {
             var currentLinksFromSource = istar.graph.getConnectedLinks(source);
             var isDuplicated = false;
             if (typeName) {
-                _.each(currentLinksFromSource, function (link) {
-                    isDuplicated = isDuplicated || (link.prop('type') === typeName && (link.getSourceElement() === target
-                        || link.getTargetElement() === target) );
+                _.forEach(currentLinksFromSource, function (link) {
+                    isDuplicated = isDuplicated || (link.prop('type') === typeName && (link.getSourceElement() ===
+                        target || link.getTargetElement() === target) );
                 });
             }
             else {
-                _.each(currentLinksFromSource, function (link) {
+                _.forEach(currentLinksFromSource, function (link) {
                     isDuplicated = isDuplicated || link.getSourceElement() === target || link.getTargetElement() === target;
                 });
             }
@@ -599,3 +559,6 @@ var istar = function () {
 
     };
 }();
+
+/*definition of globals to prevent undue JSHint warnings*/
+/*globals joint:false, $:false, _:false */

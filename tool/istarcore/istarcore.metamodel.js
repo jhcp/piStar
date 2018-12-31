@@ -1,22 +1,41 @@
 /**
- * A class to represent the metamodel to be used.
- * @class
+ * An object that defines the metamodel to be used.
+ * By default, each Cell (Element or Link) is valid. However,
+ *  you can define your own isValid functions to constrain the addition of elements in a model.
+ *  For examples, see the nodeLink definitions;
+ *
+ * @typedef metamodel
+ * @type {object}
+ * @property {string} prefix
+ * @property {string} version - written in the format 'a.b'
+ * @property {object} containers
+ * @property {object} nodes
+ * @property {object} containerLinks
+ * @property {object} dependencyLinks
+ * @property {object} nodeLinks
+ *
+ * @type {metamodel}
  */
 istar.metamodel = {
+    /** A prefix to use when loading and saving the model */
     /** @type {string} */
     prefix: 'istar',
-    /** @type {Object} */
-    shapesObject: joint.shapes.istar,
+
     /**
-     * describes the version of this metamodel
+     * Identify the version of the metamodel
      * @example
      * version: '0.1'
      @type {string}
      */
     version: '0.2',
 
-    //actor-like elements
-    /** @type {Object[]} */
+    /** An object containing the definition of the shapes that are used in this metamodel*/
+    /** @type {Object} */
+    shapesObject: joint.shapes.istar,
+
+    //Add here the elements of your language that behave like actors, in the sense that they are containers
+    // onto which inner elements are added
+    /** @type {Object} */
     containers: {
         'Actor': {
             'name': 'Actor'
@@ -28,9 +47,10 @@ istar.metamodel = {
             'name': 'Role'
         }
     },
-    //non-container elements
-    //they can be inner elements, dependums, or both
-    /** @type {Object[]} */
+
+    //Add here the elements of your language that do not behave like actors, i.e., they are not containers;
+    //They can be inner elements, dependums, or both
+    /** @type {Object} */
     nodes: {
         'Goal': {
             'name': 'Goal',
@@ -50,18 +70,21 @@ istar.metamodel = {
         'Resource': {
             'name': 'Resource',
             'canBeInnerElement': true,
-            'canBeDependum': true
+            'canBeDependum': true,
         }
     },
-    //links between actor-like elements
-    /** @type {Object[]} */
+
+    //Add here the links of your language that directly relate a container with another container (e.g., an Actor
+    // to another actor).
+    //Links may have a isValid function that constrain their instantiation
+    /** @type {Object} */
     containerLinks: {
         'IsALink': {
             'name': 'IsALink',
             'isValid': function (source, target) {
                 // role->role; actor->actor;
                 // - Only roles can be specialized into roles, or general actors into general actors (page 6)
-                // - There should be no is-a cycles (page 14) (TODO)
+                // - There should be no is-a cycles (page 14) (ignored)
                 // - A pair of actors can be linked by at most one actor link: it is not possible to
                 //   connect two actors via both is-a and participates-in (page 14)
 
@@ -75,11 +98,11 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'the target of Is-A links must be a Role or a general Actor (iStar 2.0 Guide, Page 6)';
                 }
-                if ( isValid && !(source !== target) ) {
+                if ( isValid && (source === target) ) {
                     isValid = false;
                     result.message = 'you cannot make Is-A links from an actor onto itself';
                 }
-                if ( isValid && !(source.get('type') === target.get('type')) ) {
+                if ( isValid && (source.get('type') !== target.get('type')) ) {
                     isValid = false;
                     result.message = 'the source and target of Is-A links must be of the same type - Actor and Actor, or Role and Role (iStar 2.0 Guide, Page 6) ';
                 }
@@ -102,7 +125,7 @@ istar.metamodel = {
                 //   specialization, between two actors. No restriction exists on the type of actors
                 //   linked by this association (page 6)
                 // - Every actor can participate-in multiple other actors (page 6)
-                // - There should be no participates-in cycles (page 14) (TODO)
+                // - There should be no participates-in cycles (page 14) (ignored)
                 // - A pair of actors can be linked by at most one actor link: it is not possible to
                 //   connect two actors via both is-a and participates-in (page 14)
 
@@ -116,7 +139,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'the target of a Participates-In link must be some kind of actor (iStar 2.0 Guide, Page 6)';
                 }
-                if ( isValid && !(source !== target) ) {
+                if ( isValid && (source === target) ) {
                     isValid = false;
                     result.message = 'you cannot make a Participates-In link from an actor onto itself';
                 }
@@ -131,6 +154,10 @@ istar.metamodel = {
             allowMultipleLinksBetweenTheSameElements: false //TODO
         }
     },
+
+    //Add here the links of your language that behave like a Dependency link: they link a container with
+    // another container while having a node in the middle
+    //Links may have a isValid function that constrain their instantiation
     dependencyLinks: {
         'DependencyLink': {
             'name': 'DependencyLink',
@@ -168,7 +195,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'the target of a Dependency link cannot be a link';
                 }
-                if (isValid && !(source !== target)) {
+                if (isValid && (source === target)) {
                     isValid = false;
                     result.message = 'a Dependency link cannot link an element onto itself';
                 }
@@ -198,22 +225,23 @@ istar.metamodel = {
             }
         }
     },
-    //links between non-container elements
-    /** @type {Object[]} */
+    //Add here the links of your language that relate a node with another node
+    //Links may have a isValid function that constrain their instantiation
+    /** @type {Object} */
     nodeLinks: {
         'AndRefinementLink': {
             'name': 'AndRefinementLink',
             'isValid': function (source, target) {
                 //istar 2.0:
                 //- goal->goal; goal->task; task->task; task->goal (table 1)
-                //- ...the fulfillment of all the n children (n ≥ 2)(page 10) (TODO)
+                //- ...the fulfillment of all the n children (n ≥ 2)(page 10) (ignored)
                 //- A parent can only be AND-refined or OR-refined, not both simultaneously (page 10)
                 // - The relationships between intentional elements (contributesTo, qualifies, neededBy, refines)
                 //  apply only to elements that are wanted by the same actor (page 14)
                 //- For a dependency, if a dependerElmt x exists, then x cannot be refined or
                 //   contributed to (page 14)
                 //- The refinement relationship should not lead to refinement cycles
-                //  (e.g., G ORrefined to G1 and G1 OR-refined to G, G OR-refined to G, etc.) (page 14)  (TODO)
+                //  (e.g., G ORrefined to G1 and G1 OR-refined to G, G OR-refined to G, etc.) (page 14)  (ignored)
 
                 var result = {};
                 var isValid = true;
@@ -225,7 +253,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'the target of an AND-refinement link must be a Goal or a Task (iStar 2.0 Guide, Table 1)';
                 }
-                if ( isValid && !(source !== target) ) {
+                if ( isValid && (source === target) ) {
                     isValid = false;
                     result.message = 'you cannot make an AND-refinement link from an element onto itself';
                 }
@@ -233,7 +261,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'you cannot make an AND-refinement link with a dependum (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && !(source.attributes.parent === target.attributes.parent) ) {
+                if ( isValid && (source.attributes.parent !== target.attributes.parent) ) {
                     isValid = false;
                     result.message = 'the source and target of an AND-refinement link must pertain to the same actor (iStar 2.0 Guide, Page 14)';
                 }
@@ -247,7 +275,9 @@ istar.metamodel = {
                 }
                 if ( isValid && istar.isTargetOf(target, 'OrRefinementLink')) {
                     isValid = false;
-                    result.message = 'you cannot mix AND-refinements with OR-refinements targeting the same element (iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br><img src="images/errors/mixAndAndOr.svg" />';
+                    result.message = 'you cannot mix AND-refinements with OR-refinements targeting the same element ' +
+                        '(iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br>' +
+                        '<img src="images/errors/mixAndAndOr.svg" alt="An element may be AND-refined or OR-refined, but not both"/>';
                 }
 
                 result.isValid = isValid;
@@ -265,7 +295,7 @@ istar.metamodel = {
                 //- For a dependency, if a dependerElmt x exists, then x cannot be refined or
                 //   contributed to (page 14)
                 //- The refinement relationship should not lead to refinement cycles
-                //  (e.g., G ORrefined to G1 and G1 OR-refined to G, G OR-refined to G, etc.) (page 14) (TODO)
+                //  (e.g., G OR-refined to G1 and G1 OR-refined to G, G OR-refined to G, etc.) (page 14) (ignored)
 
                 var result = {};
                 var isValid = true;
@@ -277,7 +307,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'the target of an OR-refinement link must be a Goal or a Task (iStar 2.0 Guide, Table 1)';
                 }
-                if ( isValid && !(source !== target) ) {
+                if ( isValid && (source === target) ) {
                     isValid = false;
                     result.message = 'you cannot make an OR-refinement link from an element onto itself';
                 }
@@ -285,7 +315,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'you cannot make an OR-refinement link with a dependum (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && !(source.attributes.parent === target.attributes.parent) ) {
+                if ( isValid && (source.attributes.parent !== target.attributes.parent) ) {
                     isValid = false;
                     result.message = 'the source and target of an OR-refinement link must pertain to the same actor (iStar 2.0 Guide, Page 14)';
                 }
@@ -299,7 +329,9 @@ istar.metamodel = {
                 }
                 if ( isValid && istar.isTargetOf(target, 'AndRefinementLink')) {
                     isValid = false;
-                    result.message = 'you cannot mix OR-refinements with AND-refinements targeting the same element (iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br><img src="images/errors/mixAndAndOr.svg" />';
+                    result.message = 'you cannot mix OR-refinements with AND-refinements targeting the same element ' +
+                        '(iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br>' +
+                        '<img src="images/errors/mixAndAndOr.svg" alt="An element may be AND-refined or OR-refined, but not both"/>';
                 }
 
                 result.isValid = isValid;
@@ -325,7 +357,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'the target of a Needed-By link must be a Task (iStar 2.0 Guide, Table 1)';
                 }
-                if ( isValid && !(source !== target) ) {
+                if ( isValid && (source === target) ) {
                     isValid = false;
                     result.message = 'you cannot make a Needed-By link from an element onto itself';
                 }
@@ -333,7 +365,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'you cannot make a Needed-By link with a dependum (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && !(source.attributes.parent === target.attributes.parent) ) {
+                if ( isValid && (source.attributes.parent !== target.attributes.parent) ) {
                     isValid = false;
                     result.message = 'the source and target of a Needed-By link must pertain to the same actor (iStar 2.0 Guide, Page 14)';
                 }
@@ -369,7 +401,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'the target of a Contribution link must be a Quality (iStar 2.0 Guide, Table 1)';
                 }
-                if ( isValid && !(source !== target) ) {
+                if ( isValid && (source === target) ) {
                     isValid = false;
                     result.message = 'you cannot make a Contribution link from an element onto itself (iStar 2.0 Guide, Page 15)';
                 }
@@ -377,7 +409,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'you cannot make a Contribution link with a dependum (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && !(source.attributes.parent === target.attributes.parent) ) {
+                if ( isValid && (source.attributes.parent !== target.attributes.parent) ) {
                     isValid = false;
                     result.message = 'the source and target of an a Contribution link must pertain to the same actor (iStar 2.0 Guide, Page 14)';
                 }
@@ -405,7 +437,7 @@ istar.metamodel = {
             'isValid': function (source, target) {
                 //istar 2.0
                 //quality->goal, quality->task, quality->resource (table 1)
-                //The qualfication relationship relates a quality to its
+                //The qualification relationship relates a quality to its
                 //subject: a task, goal, or resource.
                 //- The relationships between intentional elements (contributesTo, qualifies, neededBy, refines)
                 //  apply only to elements that are wanted by the same actor (page 14)
@@ -422,7 +454,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'the target of a Qualification link must be a Goal, a Task or a Resource (iStar 2.0 Guide, Table 1)';
                 }
-                if ( isValid && !(source !== target) ) {
+                if ( isValid && (source === target) ) {
                     isValid = false;
                     result.message = 'you cannot make a Qualification link from an element onto itself';
                 }
@@ -430,7 +462,7 @@ istar.metamodel = {
                     isValid = false;
                     result.message = 'you cannot make a Qualification link with a dependum (iStar 2.0 Guide, Page 14)';
                 }
-                if ( isValid && !(source.attributes.parent === target.attributes.parent) ) {
+                if ( isValid && (source.attributes.parent !== target.attributes.parent) ) {
                     isValid = false;
                     result.message = 'the source and target of an a Qualification link must pertain to the same actor (iStar 2.0 Guide, Page 14)';
                 }
@@ -449,3 +481,6 @@ istar.metamodel = {
         }
     }
 };
+
+/*definition of globals to prevent undue JSHint warnings*/
+/*globals istar:false, joint:false */

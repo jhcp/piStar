@@ -157,7 +157,12 @@ ui.unhighlightFocus = function (cellView) {
 };
 ui.defineInteractions = function () {
     istar.graph.on('add', function(cell) {
-        if (cell.isLink()) {
+        if (cell.isElement()) {
+            cell.on('change:name', function(node, newValue) {
+                node.setNodeLabel(newValue);
+            });
+        }
+        else if (cell.isLink()) {
             var verticesTool = new joint.linkTools.Vertices({snapRadius: 1});
             // var removeButton = new joint.linkTools.Remove();
             // var toolsView = new joint.dia.ToolsView({tools: [verticesTool, removeButton]});
@@ -185,14 +190,6 @@ ui.defineInteractions = function () {
         linkView.model.attr('connection-wrap/stroke', 'transparent');
     });
 
-    istar.graph.on('add', function(cell) {
-        if (cell.isElement()) {
-            cell.updateLineBreak = function() {
-                this.changeNodeContent(this.prop('name'), {breakLine: true, breakWidth: this.findView(istar.paper).getBBox().width});
-            };
-        }
-    });
-
     istar.paper.on('change:selection', function(selection) {
         if (selection.selectedElement) {
             ui.table = new uiC.PropertiesTableView({model: selection.selectedElement}).render();
@@ -213,7 +210,7 @@ ui.defineInteractions = function () {
             ui.selectModel();
         }
         if (ui.currentStateIsAddKindOfActor()) {
-            ui.addElementOnPaper(x, y);
+            ui.addElementOnPaper({position: {x: x, y: y}});
         }
     });
 
@@ -275,7 +272,7 @@ ui.defineInteractions = function () {
             }
         }
         if (ui.currentStateIsAddNode()) {
-            ui.addElementOnActor(cellView, x - 50, y - 18);
+            ui.addElementOnActor(cellView, {position: {x: x, y: y}});
             if (cellView.model.prop('collapsed')) {
                 cellView.model.toggleCollapse();
             }
@@ -288,7 +285,7 @@ ui.defineInteractions = function () {
                         ui.linkSource = cellView;
                     } else {
                         ui.linkTarget = cellView;
-                        isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                        isValid = istar.metamodel.containerLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                         if (isValid.isValid) {
                             // newLink = istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
                             ui.addLinkBetweenActors(ui.currentAddingElement, cellView);
@@ -306,7 +303,7 @@ ui.defineInteractions = function () {
                         ui.linkSource = cellView;
                     } else {
                         ui.linkTarget = cellView;
-                        isValid = istar.types['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                        isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
                         if (isValid.isValid) {
                             addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                         }
@@ -330,31 +327,42 @@ ui.defineInteractions = function () {
                             var newLink = null;
                             var prettyLinkName = '';
                             if (ui.currentAddingElement === 'AndRefinementLink') {
-                                isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
                                 }
                             }
                             else if (ui.currentAddingElement === 'OrRefinementLink') {
-                                isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addOrRefinementLink(ui.linkSource.model, ui.linkTarget.model);
                                 }
                             }
                             else if (ui.currentAddingElement === 'NeededByLink') {
-                                isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addNeededByLink(ui.linkSource.model, ui.linkTarget.model);
                                 }
                             }
                             else if (ui.currentAddingElement === 'QualificationLink') {
-                                isValid = istar.types[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                if ((!ui.linkSource.model.isQuality()) && ui.linkTarget.model.isQuality()) {
+                                    var temp = ui.linkSource;
+                                    ui.linkSource = ui.linkTarget;
+                                    ui.linkTarget = temp;
+                                    var undoInversion = true;
+                                }
+                                isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addQualificationLink(ui.linkSource.model, ui.linkTarget.model);
                                 }
+                                if (undoInversion) {
+                                    temp = ui.linkSource;
+                                    ui.linkSource = ui.linkTarget;
+                                    ui.linkTarget = temp;
+                                }
                             }
                             else if (ui.currentAddingElement.match(/make|help|hurt|break/i)) {
-                                isValid = istar.types['ContributionLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                isValid = istar.metamodel.nodeLinks['ContributionLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.currentAddingElement);
                                     if (newLink) {
@@ -368,7 +376,7 @@ ui.defineInteractions = function () {
                             }
                         }
                         else if (ui.dependencyType.match(/DependencyLink/)) {
-                            isValid = istar.types['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                            isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
                             if (isValid.isValid) {
                                 addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                             }
@@ -428,17 +436,14 @@ ui.defineInteractions = function () {
             oldText = cellView.model.prop('name');
             newText = window.prompt('Edit text:', oldText);
             if (newText !== null) {
-                if (cellView.model.isKindOfActor()) {
-                    cellView.model.changeNodeContent(newText);
-                }
-                else {
-                    cellView.model.changeNodeContent(newText, {breakLine: true, breakWidth: cellView.getBBox().width});
-                }
+                cellView.model.setNodeLabel(newText);
             }
         }
     });
 
     istar.paper.on('cell:contextmenu', function (cellView, evt, x, y) {
+        //highlight the contextual actions panel when users right clicks a Cell,
+        // letting they know where to find such actions
         ui.selectElement(cellView.model);
         $('#sidepanel-title-actions').addClass('flash-on');
         setTimeout(function () {
@@ -451,9 +456,9 @@ ui.defineInteractions = function () {
     });
 };
 
-ui.addElementOnPaper = function (x, y) {
+ui.addElementOnPaper = function (options) {
     try {
-        newActor = istar['add' + ui.currentAddingElement](x, y);
+        newActor = istar['add' + ui.currentAddingElement]('', options);
         newActor.prop('customProperties/Description', '');
         ui.selectElement(newActor);
     } catch (e) {
@@ -463,9 +468,9 @@ ui.addElementOnPaper = function (x, y) {
     }
 };
 
-ui.addElementOnActor = function (cellView, x, y) {
+ui.addElementOnActor = function (cellView, options) {
     try {
-        element = addElementInPlace(cellView.model, istar[istar.PREFIX_ADD + ui.currentAddingElement], x, y);
+        element = addElementInPlace(cellView.model, istar['add' + ui.currentAddingElement], options);
         element.prop('customProperties/Description', '');
         ui.selectElement(element);
     } catch (e) {
@@ -477,8 +482,8 @@ ui.addElementOnActor = function (cellView, x, y) {
 ui.addLinkBetweenActors = function (newLink, targetCellView) {
     try {
         ui.linkTarget = targetCellView;
-        if (istar.types[newLink].isValid(ui.linkSource.model, ui.linkTarget.model)) {
-            istar[istar.PREFIX_ADD + ui.currentAddingElement](ui.linkSource.model, ui.linkTarget.model);
+        if (istar.metamodel.containerLinks[newLink].isValid(ui.linkSource.model, ui.linkTarget.model)) {
+            istar['add' + ui.currentAddingElement](ui.linkSource.model, ui.linkTarget.model);
         }
     } catch (e) {
         console.log(e);
@@ -541,7 +546,7 @@ ui.setupDependencyRemoval = function (links) {
     });
 };
 
-function addElementInPlace(clickedNode, callback, x, y) {
+function addElementInPlace(clickedNode, callback, options) {
     ui.currentState = ui.STATE_VIEW;
     ui.resetAddingElement();
     //assigns the new node to the correct parent
@@ -549,13 +554,13 @@ function addElementInPlace(clickedNode, callback, x, y) {
     //otherwise, if the user clicked on another element (e.g., a goal), then the parent of the new element will be the same parent of the clicked element
     var node;
     if (clickedNode.isKindOfActor()) {
-        node = callback(x, y);
+        node = callback('', options);
         clickedNode.embedNode(node);
     }
     else {
         var parent = istar.graph.getCell(clickedNode.attributes.parent);
         if (parent && parent.isKindOfActor()) {
-            node = callback(x, y);
+            node = callback('', options);
             istar.graph.getCell(clickedNode.attributes.parent).embedNode(node);
         }
     }
@@ -606,7 +611,7 @@ ui.connectLinksToShape = function () {
     setTimeout(function () {
         istar.paper.options.linkConnectionPoint = joint.util.shapePerimeterConnectionPoint;
         //this translation is just to force re-rendering of links
-        _.each(istar.getElements(), function (e) {
+        _.forEach(istar.getElements(), function (e) {
             e.translate(1);
             e.translate(-1);
         });

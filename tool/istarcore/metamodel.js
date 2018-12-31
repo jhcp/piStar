@@ -10,7 +10,7 @@ istar.validateMetamodel = function (metamodel) {
     //check if every kind of element and link has a name.
     //also check against names starting with 'node' or 'link', to prevent from overriding
     //methods of the istar object.
-    _.each(metamodel.containers, function (element) {
+    _.forEach(metamodel.containers, function (element) {
         if (!element.name) {
             throw new Error('Invalid container in the metamodel. Containers must have a "name".');
         }
@@ -19,7 +19,7 @@ istar.validateMetamodel = function (metamodel) {
                 '. Container names cannot start with "node" nor "link".');
         }
     });
-    _.each(metamodel.nodes, function (element) {
+    _.forEach(metamodel.nodes, function (element) {
         if (!element.name) {
             throw new Error('Invalid node in the metamodel. Nodes must have a "name".');
         }
@@ -28,7 +28,7 @@ istar.validateMetamodel = function (metamodel) {
                 '. Node names cannot start with "node" nor "link".');
         }
     });
-    _.each(metamodel.containerLinks, function (element) {
+    _.forEach(metamodel.containerLinks, function (element) {
         if (!element.name) {
             throw new Error('Invalid container link in the metamodel. Container links must have a "name".');
         }
@@ -37,7 +37,7 @@ istar.validateMetamodel = function (metamodel) {
                 '. Container link names cannot start with "node" nor "link".');
         }
     });
-    _.each(metamodel.nodeLinks, function (element) {
+    _.forEach(metamodel.nodeLinks, function (element) {
         if (!element.name) {
             throw new Error('Invalid node link in the metamodel. Node links must have a "name".');
         }
@@ -56,154 +56,159 @@ istar.validateMetamodel = function (metamodel) {
     }
 };
 
-istar._setupBasicType = function (nodeType, metamodel) {
-    if (nodeType.name) {
-
-        if ((!nodeType.shapeObject) && metamodel.shapesObject) {
-            nodeType.shapeObject = metamodel.shapesObject[nodeType.name];//can be used to access the object that describes this node's shape
-        }
-
-        //creates an 'add' function that can be used to create instances of this type
-        istar['add' + nodeType.name] = function (x, y, content, options) {
-            return istar.addNode(nodeType.name, nodeType.shapeObject, x, y, content, options);
-        };
-
-        //store type information in an object that will be accessible to the rest of the software
-        istar.types[nodeType.name] = {
-            name: nodeType.name
-        };
-
-        //creates an 'is' function that can be used to check if a given node is of this type
-        joint.dia.Cell.prototype['is' + nodeType.name] = function () {
-            return this.prop('type') === nodeType.name;
-        };
-    }
-};
-istar._setupBasicLink = function (linkType, metamodel) {
-    if (linkType.name) {
-        //add some useful attributes for the node type
-        // linkType.prefixedName = metamodel.prefix + '.' + linkType.name;//prefixedName acts as an unique id for this kind of node
-        if ((!linkType.shapeObject) && metamodel.shapesObject) {
-            linkType.shapeObject = metamodel.shapesObject[linkType.name];//can be used to access the object that describes this node's shape
-        }
-
-        //if a 'isValid' function has not been defined, create a default
-        //function that allows any connection
-        if (! linkType.isValid) {
-            linkType.isValid = function () {return {isValid: true};};
-        }
-
-        //store type information in an object that will be accessible to the rest of the software
-        istar.types[linkType.name] = {
-            isValid: linkType.isValid,
-            name: linkType.name
-        };
-
-        //creates an 'is' function that can be used to check if a given node is of this type
-        joint.dia.Cell.prototype['is' + linkType.name] = function () {
-            return this.prop('type') === linkType.name;
-        };
-
-        //TODO create a isValid function, if it doesn't exist
-    }
-};
-istar._setupLinkBetweenActors = function (linkType, metamodel) {
-    if (linkType.name) {
-        //creates an 'add' function that can be used to create instances of this type
-        istar.createAddLinkBetweenActors(linkType.prefixedName, linkType.name, linkType.shapeObject);
-
-
-    }
-};
-istar._setupLinkBetweenNodes = function (linkType, metamodel) {
-    if (linkType.name) {
-        //creates an 'add' function that can be used to create instances of this type
-        istar.createAddLinkBetweenNodes(linkType);
-    }
-};
-
-
 istar.setupMetamodel = function (metamodel) {
-    console.log('Trying metamodel');
+    console.log('validating metamodel');
     istar.validateMetamodel(metamodel);
     console.log('metamodel is valid');
-    _.each(metamodel.nodes, function (node) {
-        istar._setupBasicType(node, metamodel);
-    });
-    _.each(metamodel.containers, function (node) {
-        istar._setupBasicType(node, metamodel);
-    });
-    _.each(metamodel.containers, function (containerType) {
-        if (containerType.shapeObject) istar.createContainerFunctions(containerType.shapeObject.prototype);
-    });
-    _.each(metamodel.containerLinks, function (node) {
-        istar._setupBasicLink(node, metamodel);
-    });
-    _.each(metamodel.containerLinks, function (node) {
-        istar._setupLinkBetweenActors(node, metamodel);
-    });
-    _.each(metamodel.dependencyLinks, function (node) {
-        istar._setupBasicLink(node, metamodel);
-    });
-    _.each(metamodel.nodeLinks, function (node) {
-        istar._setupBasicLink(node, metamodel);
-    });
-    _.each(metamodel.nodeLinks, function (node) {
-        istar._setupLinkBetweenNodes(node, metamodel);
-    });
 
-    //create helper functions to that return arrays containing the names of sets of cells in this metamodel
-    getName = function(cellDefinition) {
-        return cellDefinition.name;
-    };
-    metamodel.getContainersNames = function() {
-        return _.map(metamodel.containers, getName);
-    };
-    metamodel.getNodesNames = function() {
-        return _.map(metamodel.nodes, getName);
-    };
-    metamodel.getInnerElementsNames = function() {
-        innerElements = _.filter(metamodel.nodes, 'canBeInnerElement');
-        return _.map(innerElements, getName);
-    };
-    metamodel.getDependumsNames = function() {
-        dependums = _.filter(metamodel.nodes, 'canBeDependum');
-        return _.map(dependums, getName);
-    };
-    metamodel.getContainerLinksNames = function() {
-        return _.map(metamodel.containerLinks, getName);
-    };
-    metamodel.getDependencyLinksNames = function() {
-        return _.map(metamodel.dependencyLinks, getName);
-    };
-    metamodel.getNodeLinksNames = function() {
-        return _.map(metamodel.nodeLinks, getName);
-    };
-
-
-    istar._createIsActorLinkFunction(metamodel);
-    joint.dia.Cell.prototype.isKindOfInnerElement = function () {
-        return _.includes(metamodel.getInnerElementsNames(), this.prop('type'));
-    };
-    joint.dia.Cell.prototype.isKindOfActor = function () {
-        return _.includes(metamodel.getContainersNames(), this.prop('type'));
-    };
+    createHelperGetNamesFunctions(metamodel);
+    setupCellsSpecificPrototypes(metamodel);
+    setupCellsGeneralPrototypes(metamodel);
 
     console.log('end of metamodel setup');
-    return 0;
+    return metamodel;
+
+    //declaration of locally-scoped functions
+    function createHelperGetNamesFunctions(metamodel) {
+        //create helper functions that return arrays containing the names of sets of cells in this metamodel
+        var getName = function (cellDefinition) {
+            return cellDefinition.name;
+        };
+        metamodel.getContainersNames = function () {
+            return _.map(metamodel.containers, getName);
+        };
+        metamodel.getNodesNames = function () {
+            return _.map(metamodel.nodes, getName);
+        };
+        metamodel.getInnerElementsNames = function () {
+            return _.map(
+                _.filter(metamodel.nodes, 'canBeInnerElement'),
+                getName);
+        };
+        metamodel.getDependumsNames = function () {
+            return _.map(
+                _.filter(metamodel.nodes, 'canBeDependum'),
+                getName);
+        };
+        metamodel.getContainerLinksNames = function () {
+            return _.map(metamodel.containerLinks, getName);
+        };
+        metamodel.getDependencyLinksNames = function () {
+            return _.map(metamodel.dependencyLinks, getName);
+        };
+        metamodel.getNodeLinksNames = function () {
+            return _.map(metamodel.nodeLinks, getName);
+        };
+    }
+
+    function setupCellsSpecificPrototypes(metamodel) {
+        _.forEach(metamodel.containers, function (cellType) {
+            attachShapeObject(cellType, metamodel, 'element');
+            createIsCellFunctions(cellType);
+            createAddElementFunction(cellType);
+            istar.createContainerFunctions(cellType.shapeObject.prototype);
+        });
+        _.forEach(metamodel.nodes, function (cellType) {
+            attachShapeObject(cellType, metamodel, 'element');
+            createIsCellFunctions(cellType);
+            createAddElementFunction(cellType);
+        });
+        _.forEach(metamodel.containerLinks, function (cellType) {
+            attachShapeObject(cellType, metamodel);
+            createIsCellFunctions(cellType);
+            createAddContainerLinkFunction(cellType);
+        });
+        _.forEach(metamodel.dependencyLinks, function (cellType) {
+            attachShapeObject(cellType, metamodel);
+            createIsCellFunctions(cellType);
+        });
+        _.forEach(metamodel.nodeLinks, function (cellType) {
+            attachShapeObject(cellType, metamodel);
+            createIsCellFunctions(cellType);
+            createAddNodeLinkFunction(cellType);
+        });
+    }
+
+    function attachShapeObject(cellType, metamodel, kindOfCell) {
+        //attach to the individual Cell Type definition the shape object that is used to create its view
+        if (cellType.name) {
+            if ((!cellType.shapeObject) && metamodel.shapesObject) {
+                cellType.shapeObject = metamodel.shapesObject[cellType.name];
+            }
+            if ((!cellType.shapeObject) && !metamodel.shapesObject) {
+                //if no shape is defined, add a default shape, otherwise functions based on visual attributes will fail
+                if (kindOfCell === 'element') {
+                    cellType.shapeObject = joint.shapes.basic.Rect;
+                }
+                else {
+                    cellType.shapeObject = joint.dia.Link;
+                }
+            }
+        }
+    }
+
+    function createIsCellFunctions(cellType) {
+        if (cellType.name) {
+            //creates an 'isX' function that can be used to check if a given node is of this type
+            //Example: if the cellType is Actor, an isActor() function will be created
+            joint.dia.Cell.prototype['is' + cellType.name] = function () {
+                return this.prop('type') === cellType.name;
+            };
+
+            //if a 'isValid' function has not been defined, create a default
+            //function that poses no constraint
+            if (! cellType.isValid) {
+                cellType.isValid = function () {return {isValid: true, message: ''};};
+            }
+        }
+    }
+
+    function createAddElementFunction (nodeType) {
+        //creates an 'add' function that can be used to create instances of this type
+        //Example: if the cellType is Actor, an addActor() function will be created
+        if (nodeType.name) {
+            istar['add' + nodeType.name] = function (content, options) {
+                return istar.addNode(nodeType, content, options);
+            };
+        }
+    }
+
+    function createAddContainerLinkFunction (linkType) {
+        istar['add' + linkType.name] = function (source, target) {
+            if (istar.metamodel.containerLinks[linkType.name].isValid(source, target)) {
+                return istar.addLinkBetweenActors(linkType, source, target);
+            }
+        };
+    }
+
+    function createAddNodeLinkFunction (linkType) {
+        istar['add' + linkType.name] = function (source, target, label) {
+            if (istar.metamodel.nodeLinks[linkType.name].isValid(source, target)) {
+                return istar.addLinkBetweenNodes(linkType, source, target, label);
+            }
+        };
+    }
+
+    function setupCellsGeneralPrototypes(metamodel) {
+        joint.dia.Cell.prototype.isActorLink = function () {
+            return _.includes(metamodel.getContainerLinksNames(), this.prop('type'));
+        };
+        joint.dia.Cell.prototype.isKindOfInnerElement = function () {
+            return _.includes(metamodel.getInnerElementsNames(), this.prop('type'));
+        };
+        joint.dia.Cell.prototype.isDependum = function () {
+            //this function does not inform if this type can be dependum.
+            // Instead, it informs whether this instance is an actual dependum in the present graph
+            return this.get('isDependum') || false;
+        };
+        joint.dia.Cell.prototype.isKindOfActor = function () {
+            return _.includes(metamodel.getContainersNames(), this.prop('type'));
+        };
+        joint.dia.Cell.prototype.isCell = function () {
+            return true;
+        };
+    }
 };
 
-istar._createIsActorLinkFunction = function (metamodel) {
-    var namesOfActorLinkTypes = [];
-    _.each(metamodel.containerLinks, function (link) {
-        namesOfActorLinkTypes.push('is' + link.name);
-    });
-    joint.dia.Cell.prototype.isActorLink = function () {
-        var result = false;
-        var link = this;
-        _.each(namesOfActorLinkTypes, function (functionName) {
-            result = result || link[functionName]();
-        });
-        return result;
-    };
-};
+/*definition of globals to prevent undue JSHint warnings*/
+/*globals istar:false, joint:false, _:false */
