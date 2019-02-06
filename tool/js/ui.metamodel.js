@@ -1,6 +1,7 @@
 /* this file contains additional information that can be used in the UI, regarding elements and links of the metamodel
 *
-*  you can define the following attributes for nodes. If they are not defined, default values based on the node name
+*  you can define the following attributes for elements (containers and nodes).
+*  If these are not defined, default values based on the node name
 *  are adopted.
 *    - label (label for its add element button)
 *    - tooltip (appears when the add element button is hovered)

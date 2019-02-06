@@ -7,9 +7,6 @@ uiC.AddButtonModel = Backbone.Model.extend({
         tooltip: '',
         statusText: '',
         defaultButtonImage: '',
-        precondition: function () {
-            return true;
-        },
         action: 'view',
         active: false
     },
@@ -48,6 +45,8 @@ uiC.AddButtonModel = Backbone.Model.extend({
         }
     },
     end: function () {
+        'use strict';
+
         this.set('active', false);
         //resets the values of the app variables
 

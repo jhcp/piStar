@@ -16,7 +16,7 @@ joint.shapes.istar = {};
 joint.shapes.istar.Actor = joint.dia.Element.extend({
     markup: '<g><rect class="boundary" /><circle class="element actorKindMain" /><path /><text/></g>',
     defaults: joint.util.deepSupplement({
-        type: 'Actor',
+        type: 'Container',
         size: {width: 200, height: 120},
         attrs: {
             '.element': {
@@ -50,14 +50,13 @@ joint.shapes.istar.Actor = joint.dia.Element.extend({
                 width: 200
             },
         }
-
     }, joint.dia.Element.prototype.defaults)
 });
 
 joint.shapes.istar.Role = joint.dia.Element.extend({
     markup: '<g><rect class="boundary" /><circle class="element actorKindMain" /><path class="actorDecorator"/><text/></g>',
     defaults: joint.util.deepSupplement({
-        type: 'Role',
+        type: 'Container',
         size: {width: 200, height: 120},
         attrs: {
             '.element': {
@@ -103,7 +102,7 @@ joint.shapes.istar.Role = joint.dia.Element.extend({
 joint.shapes.istar.Agent = joint.dia.Element.extend({
     markup: '<g><rect class="boundary"/><circle class="element actorKindMain"/><path class="actorDecorator"/><text/></g>',
     defaults: joint.util.deepSupplement({
-        type: 'Agent',
+        type: 'Container',
         size: {width: 200, height: 120},
         attrs: {
             '.element': {
@@ -143,6 +142,51 @@ joint.shapes.istar.Agent = joint.dia.Element.extend({
                 stroke: 'black',
                 'stroke-width': 1.5
             }
+        }
+    }, joint.dia.Element.prototype.defaults)
+});
+
+/* this shape is used by default when a new container is added to the metamodel .
+   DO NOT CHANGE THIS SHAPE. Instead, you should create
+   a *new* shape specific to the container that was added to the metamodel
+ */
+joint.shapes.istar.DefaultContainer = joint.dia.Element.extend({
+    markup: '<g><rect class="boundary" /><circle class="element actorKindMain" /><path /><text/></g>',
+    defaults: joint.util.deepSupplement({
+        type: 'Container',
+        size: {width: 200, height: 120},
+        attrs: {
+            '.element': {
+                cx: 40,
+                cy: 40,
+                fill: 'white',
+                r: 40,
+                stroke: 'black',
+                'stroke-width': 2,
+                'stroke-dasharray': '8, 4',
+                transform: 'translate(-20, -20)',  //displaces the actual actor symbol a little bit
+            },
+            text: {
+                fill: '#000000',
+                'font-family': 'Arial, helvetica, sans-serif',
+                'font-size': 12,
+                ref: '.element',//makes the position of the text relative to the actual actor symbol
+                'ref-x': 0.5,
+                'ref-y': 0.5,
+                text: 'Container',
+                'text-anchor': 'middle',
+                'y-alignment': 'middle'
+            },
+            '.boundary': {
+                fill: 'rgb(230,230,230)',
+                height: 120,
+                rx: 100,
+                ry: 40,
+                stroke: 'black',
+                'stroke-dasharray': '10,5,4,4',
+                'stroke-width': 2,
+                width: 200
+            },
         }
     }, joint.dia.Element.prototype.defaults)
 });
@@ -243,7 +287,7 @@ joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
 });
 
 /* this shape is used by default when a new node is added to the metamodel .
-   instead of changing this shape, you should create
+   DO NOT CHANGE THIS SHAPE. Instead, you should create
    a *new* shape specific to the element that was added to the metamodel
  */
 joint.shapes.istar.DefaultNode = joint.shapes.basic.Rect.extend({

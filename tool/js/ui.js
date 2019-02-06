@@ -3,6 +3,8 @@
 
 // noinspection JSUnusedGlobalSymbols
 var ui = function() {
+    'use strict';
+
     var selectedElement = null;
 
     return {
@@ -224,16 +226,7 @@ ui.defineInteractions = function () {
             ui.addElementOnPaper({position: {x: x, y: y}});
         }
         if (ui.currentStateIsAddNode()) {
-            if (istar.metamodel.nodes[ui.currentAddingElement] && istar.metamodel.nodes[ui.currentAddingElement].canBeOnCanvas ) {
-                isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid();
-                if (isValid.isValid ) {
-                    ui.addElementOnPaper({position: {x: x, y: y}});
-                }
-                else {
-                    ui.displayInvalidLinkMessage(isValid.message);
-                    ui.currentButton.end();
-                }
-            }
+            ui.addElementOnPaper({position: {x: x, y: y}});
         }
     });
 
@@ -243,20 +236,20 @@ ui.defineInteractions = function () {
         color = '#1C5052';
         if (cellView.model.isKindOfActor()) {
             if (cellView.model.prop('collapsed')) {
-                cellView.$('circle').css({stroke: color, 'stroke-width': '3'});
+                cellView.$('.element').css({stroke: color, 'stroke-width': '3'});
                 cellView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
             }
             else {
-                cellView.$('rect').css({stroke: color, 'stroke-width': '4'});
-                cellView.$('circle').css({stroke: color, 'stroke-width': '3'});
+                cellView.$('.boundary').css({stroke: color, 'stroke-width': '4'});
+                cellView.$('.element').css({stroke: color, 'stroke-width': '3'});
                 cellView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
             }
         }
         else {
             if (cellView.model.get('parent')) {
                 parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
-                parentView.$('rect').css({stroke: color, 'stroke-width': '4'});
-                parentView.$('circle').css({stroke: color, 'stroke-width': '3'});
+                parentView.$('.boundary').css({stroke: color, 'stroke-width': '4'});
+                parentView.$('.element').css({stroke: color, 'stroke-width': '3'});
                 parentView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
             }
         }
@@ -295,18 +288,9 @@ ui.defineInteractions = function () {
             }
         }
         if (ui.currentStateIsAddNode()) {
-            if (istar.metamodel.nodes[ui.currentAddingElement] && istar.metamodel.nodes[ui.currentAddingElement].canBeInnerElement ) {
-                isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid(cellView.model);
-                if (isValid.isValid ) {
-                    ui.addElementOnActor(cellView, {position: {x: x, y: y}});
-                    if (cellView.model.prop('collapsed')) {
-                        cellView.model.toggleCollapse();
-                    }
-                }
-                else {
-                    ui.displayInvalidLinkMessage(isValid.message);
-                    ui.currentButton.end();
-                }
+            ui.addElementOnActor(cellView, {position: {x: x, y: y}});
+            if (cellView.model.prop('collapsed')) {
+                cellView.model.toggleCollapse();
             }
         }
         else if (ui.currentStateIsAddLink()) {
@@ -471,18 +455,7 @@ ui.defineInteractions = function () {
 
     istar.paper.on('cell:pointerdblclick', function (cellView, evt, x, y) {
         var newText;
-        if (cellView.model.isLink()) {
-            // console.log(cellView.model);
-            //   if (cellView.model.isContributionLink()) {
-            //       newText = window.prompt('make, help, hurt, or break', cellView.model.attributes.labels[0].attrs.text.text);
-            //       //newText = window.prompt('make, help, hurt, or break', cellView.model.getContributionType());
-            //       if (newText !== null) {
-            //           cellView.model.attributes.labels[0].attrs.text.text = newText;
-            //           //cellView.model.setContributionType(newText);
-            //       }
-            //   }
-        }
-        else {
+        if (cellView.model.isElement()) {
             oldText = cellView.model.prop('name');
             newText = window.prompt('Edit text:', oldText);
             if (newText !== null) {
@@ -508,9 +481,26 @@ ui.defineInteractions = function () {
 
 ui.addElementOnPaper = function (options) {
     try {
-        newActor = istar['add' + ui.currentAddingElement]('', options);
-        newActor.prop('customProperties/Description', '');
-        ui.selectElement(newActor);
+        var isValid = {isValid: false};
+        if (ui.currentStateIsAddNode()) {
+            if (istar.metamodel.nodes[ui.currentAddingElement] && istar.metamodel.nodes[ui.currentAddingElement].canBeOnCanvas) {
+                isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid();
+            }
+        }
+        else if (ui.currentStateIsAddKindOfActor()) {
+            if (istar.metamodel.containers[ui.currentAddingElement]) {
+                isValid = istar.metamodel.containers[ui.currentAddingElement].isValid();
+            }
+        }
+
+        if (isValid.isValid) {
+            newActor = istar['add' + ui.currentAddingElement]('', options);
+            newActor.prop('customProperties/Description', '');
+            ui.selectElement(newActor);
+        }
+        else {
+            ui.displayInvalidLinkMessage(isValid.message);
+        }
     } catch (e) {
         console.log(e);
     } finally {
@@ -520,9 +510,19 @@ ui.addElementOnPaper = function (options) {
 
 ui.addElementOnActor = function (cellView, options) {
     try {
-        element = addElementInPlace(cellView.model, istar['add' + ui.currentAddingElement], options);
-        element.prop('customProperties/Description', '');
-        ui.selectElement(element);
+        var isValid = {isValid: false};
+        if (istar.metamodel.nodes[ui.currentAddingElement] && istar.metamodel.nodes[ui.currentAddingElement].canBeInnerElement ) {
+            isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid(cellView.model);
+        }
+
+        if (isValid.isValid) {
+            element = addElementInPlace(cellView.model, istar['add' + ui.currentAddingElement], options);
+            element.prop('customProperties/Description', '');
+            ui.selectElement(element);
+        }
+        else {
+            ui.displayInvalidLinkMessage(isValid.message);
+        }
     } catch (e) {
         console.log(e);
     } finally {
@@ -624,7 +624,7 @@ function addElementInPlace(clickedNode, callback, options) {
 ui.changeColorActorContainer = function (color) {
     _.map(istar.getElements(), function (node) {
         if (node.isKindOfActor()) {
-            node.attr('rect', {fill: color});
+            node.attr('.boundary', {fill: color});
         }
     });
 };
@@ -642,7 +642,7 @@ ui.changeColorElement = function (color, element) {
     element = element || ui.getSelectedElement();
     ui.hideSelection();
     if (element.isKindOfActor()) {
-        element.attr('circle', {fill: color});
+        element.attr('.element', {fill: color});
     }
     else {
         element.attr('rect', {fill: color});

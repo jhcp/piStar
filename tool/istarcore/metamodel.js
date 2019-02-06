@@ -34,7 +34,12 @@ istar.metamodel = {
     shapesObject: joint.shapes.istar,
 
     //Add here the elements of your language that behave like actors, in the sense that they are containers
-    // onto which inner elements are added
+    // onto which inner elements (nodes) are added
+    //Constraints for the addition of a Container type can be defined through a optional 'isValid' function
+    //      it must return a object in the format {message, isValid}, where
+    //      message is an optional string that explains the error to the user (if any)
+    //      isValid is a boolean that should be true if the addition is valid
+    //      if unspecified, it will always be valid to add that container
     /** @type {Object} */
     containers: {
         'Actor': {
@@ -53,11 +58,12 @@ istar.metamodel = {
     //If they can be dependums in a dependency link, 'canBeDependum' must be set to true (default value: false)
     //If they can be added directly to the canvas, without being part of a dependency link, 'canBeOnCanvas' (default value: false)
     //Further constraints can be defined through a optional 'isValid' function
-    //      this function may receive as argument the container that it is going to be added to
+    //      this function may receive as argument the container (parent) that it is going to be added to
     //      it must return a object in the format {message, isValid}, where
     //      message is an optional string that explains the error to the user (if any)
     //      isValid is a boolean that should be true if the addition is valid
     //      this function (isValid) does not apply to dependency links
+    //      if unspecified, it will always be valid to add that node
     /** @type {Object} */
     nodes: {
         'Goal': {

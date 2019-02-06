@@ -4,33 +4,27 @@ uiC.createAddButtons = function() {
     'use strict';
 
     //create the ADD buttons
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-actor-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Actor',
-            action: ui.STATE_ADD_ACTOR,
-            tooltip: 'Add Actor',
-            statusText: 'Adding <b>Actor</b>: click on an empty space in the diagram to add a new Actor'
-        })
-    }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-actor-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Agent',
-            action: ui.STATE_ADD_ACTOR,
-            tooltip: 'Add Agent',
-            statusText: 'Adding <b>Agent</b>: click on an empty space in the diagram to add a new Agent'
-        })
-    }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-actor-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Role',
-            action: ui.STATE_ADD_ACTOR,
-            tooltip: 'Add Role',
-            statusText: 'Adding <b>Role</b>: click on an empty space in the diagram to add a new Role'
-        })
-    }).render();
+
+    //create Add <<Container>> buttons
+    _.forEach(istar.metamodel.getContainersNames(), function(containerTypeName) {
+        //if specific ui elements are not defined, use default ones
+        var label = istar.metamodel.containers[containerTypeName].label || containerTypeName;
+        var tooltip = istar.metamodel.containers[containerTypeName].tooltip || ('Add ' + containerTypeName);
+        var statusText = istar.metamodel.containers[containerTypeName].statusText || ('Adding <b>' + containerTypeName + '</b>: click on an empty space in the diagram to add a new ' + containerTypeName);
+
+        new uiC.AddButtonDropdownItemView({
+            attributes: {parent: '#add-actor-dropdown'},
+            model: new uiC.AddButtonModel({
+                label: label,
+                action: ui.STATE_ADD_ACTOR,
+                name: containerTypeName,
+                tooltip: tooltip,
+                statusText: statusText,
+                defaultButtonImage: 'DefaultContainer.svg'
+            })
+        }).render();
+    });
+
     new uiC.AddButtonDropdownItemView({
         attributes: {parent: '#add-actor-link-dropdown'},
         model: new uiC.AddButtonModel({
@@ -96,27 +90,7 @@ uiC.createAddButtons = function() {
                 })
             }).render();
         }
-
     });
-
-    // new uiC.AddButtonView({
-    //     model: new uiC.AddButtonModel({
-    //         label: 'Goal',
-    //         action: ui.STATE_ADD_NODE,
-    //         name: 'Goal',
-    //         tooltip: 'Add Goal',
-    //         statusText: 'Adding <b>Goal</b>: Click on an actor/role/agent to add a Goal',
-    //         precondition: function () {
-    //             var valid = true;
-    //             if (istar.isEmpty()) {
-    //                 alert('Sorry, you can only add goals on an actor/role/agent.');
-    //                 valid = false;
-    //             }
-    //             return valid;
-    //         }
-    //     })
-    // }).render();
-    //
 
     new uiC.AddButtonView({
         model: new uiC.AddButtonModel({

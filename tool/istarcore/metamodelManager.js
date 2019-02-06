@@ -115,13 +115,13 @@ istar.setupMetamodel = function (metamodel) {
 
     function setupCellsSpecificPrototypes(metamodel) {
         _.forEach(metamodel.containers, function (cellType) {
-            attachShapeObject(cellType, metamodel, 'element');
+            attachShapeObject(cellType, metamodel, 'container');
             createIsCellFunctions(cellType);
             createAddElementFunction(cellType);
             istar.createContainerFunctions(cellType.shapeObject.prototype);
         });
         _.forEach(metamodel.nodes, function (cellType) {
-            attachShapeObject(cellType, metamodel, 'element');
+            attachShapeObject(cellType, metamodel, 'node');
             createIsCellFunctions(cellType);
             createAddElementFunction(cellType);
         });
@@ -149,8 +149,11 @@ istar.setupMetamodel = function (metamodel) {
             }
             if (!cellType.shapeObject) {
                 //if no shape is defined, add a default shape, otherwise functions based on visual attributes will fail
-                if (kindOfCell === 'element') {
+                if (kindOfCell === 'node') {
                     cellType.shapeObject = joint.shapes.istar.DefaultNode;
+                }
+                else if (kindOfCell === 'container') {
+                    cellType.shapeObject = joint.shapes.istar.DefaultContainer;
                 }
                 else {
                     cellType.shapeObject = joint.dia.Link;
@@ -176,12 +179,12 @@ istar.setupMetamodel = function (metamodel) {
         }
     }
 
-    function createAddElementFunction (nodeType) {
+    function createAddElementFunction (elementType) {
         //creates an 'add' function that can be used to create instances of this type
         //Example: if the cellType is Actor, an addActor() function will be created
-        if (nodeType.name) {
-            istar['add' + nodeType.name] = function (content, options) {
-                return istar.addNode(nodeType, content, options);
+        if (elementType.name) {
+            istar['add' + elementType.name] = function (content, options) {
+                return istar.addNode(elementType, content, options);
             };
         }
     }

@@ -95,7 +95,7 @@ var istar = function () {
 
         var actor = this;//stores 'this' in a named variable so that it can be read by the anonymous function
         if (!this.prop('collapsed')) {
-            this.attr('rect/display', 'none');//hide the actor's boundary
+            this.attr('.boundary/display', 'none');//hide the actor's boundary
             _.forEach(this.getEmbeddedCells(), function (innerElement) {
                 innerElement.attr('./display', 'none');//hide the actor's inner elements
 
@@ -107,11 +107,11 @@ var istar = function () {
 
                             if (connectedLink.get('source').id === innerElement.id) {
                                 connectedLink.prop('elementSource', innerElement.id);
-                                connectedLink.set('source', {id: actor.id, selector: 'circle'});
+                                connectedLink.set('source', {id: actor.id, selector: '.element'});
                             }
                             else if (connectedLink.get('target').id === innerElement.id) {
                                 connectedLink.prop('elementTarget', innerElement.id);
-                                connectedLink.set('target', {id: actor.id, selector: 'circle'});
+                                connectedLink.set('target', {id: actor.id, selector: '.element'});
                             }
                         }
                     });
@@ -127,7 +127,7 @@ var istar = function () {
 
         var actor = this;//stores 'this' in a named variable so that it can be read by the anonymous function
         if (this.prop('collapsed')) {
-            this.attr('rect/display', 'visible');//display the actor's boundary
+            this.attr('.boundary/display', 'visible');//display the actor's boundary
             _.forEach(this.getEmbeddedCells(), function (innerElement) {
                 innerElement.attr('./display', 'visible');//display the actor's inner elements
 
@@ -230,7 +230,7 @@ var istar = function () {
             size: {width: newCornerX - newX, height: newCornerY - newY}
         }, {skipParentHandler: true});
         this.attr({
-            rect: {
+            '.boundary': {
                 width: newCornerX - newX + 10,
                 height: newCornerY - newY + 10
             }
@@ -334,7 +334,6 @@ var istar = function () {
          * @param {object}  options     {id, position: {x, y}}
          */
         addNode: function (nodeType, content, options) {
-
             var newNode = new nodeType.shapeObject(options);
             //add to the graph before changing properties, so that eventual UI event listeners can start acting at once
             istar.graph.addCell(newNode);
@@ -413,7 +412,7 @@ var istar = function () {
             var link;
             if (source.isKindOfActor()) {
                 link = new joint.shapes.istar.DependencyLink({
-                    'source': {id: source.id, selector: 'circle'},
+                    'source': {id: source.id, selector: '.element'},
                     'target': {id: target.id}
                 });
             }
@@ -441,7 +440,7 @@ var istar = function () {
             var link1;
             if (depender.isKindOfActor()) {
                 link1 = new joint.shapes.istar.DependencyLink({
-                    'source': {id: depender.id, selector: 'circle'},
+                    'source': {id: depender.id, selector: '.element'},
                     'target': {id: dependum.id}
                 });
             }
@@ -457,7 +456,7 @@ var istar = function () {
             if (dependee.isKindOfActor()) {
                 link2 = new joint.shapes.istar.DependencyLink({
                     'source': {id: dependum.id},
-                    'target': {id: dependee.id, selector: 'circle'}
+                    'target': {id: dependee.id, selector: '.element'}
                 });
             }
             else {

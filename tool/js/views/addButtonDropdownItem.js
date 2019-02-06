@@ -26,11 +26,8 @@ uiC.AddButtonDropdownItemView = Backbone.View.extend({
             ui.currentButton.end();
         }
         ui.dependencyType = this.model.get('name');
-        if (this.model.get('precondition')()) {
-
-            this.model.act();
-            ui.changeStatus(this.model.get('statusText'));
-        }
+        this.model.act();
+        ui.changeStatus(this.model.get('statusText'));
     },
 
     highlight: function (element) {

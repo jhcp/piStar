@@ -4,6 +4,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
     template: _.template($('#property-template').html()),
 
     initialize: function () {
+        'use strict';
+
         this.$table = $('#properties-table');
 
         this.listenTo(this.model, 'mouseup', this.render);
@@ -12,6 +14,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
 
     render: function () {
+        'use strict';
+
         this.renderElementName();
         this.setupElementNameEditing();
 
@@ -52,6 +56,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
     },
 
     renderElementName: function () {
+        'use strict';
+
         this.$table.find('tbody').html(this.template({
             propertyName: 'Name',
             propertyValue: this.model.prop('name'),
@@ -59,6 +65,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
         }));
     },
     renderElementType: function () {
+        'use strict';
+
         if (this.model.prop('type')) {
             var propertyName = null;
             if (this.model.isDependum && this.model.isDependum()) {
@@ -77,7 +85,9 @@ uiC.PropertiesTableView = Backbone.View.extend({
         }
     },
     setupElementNameEditing: function () {
-        currentElementModel = this.model;
+        'use strict';
+
+        var currentElementModel = this.model;
         this.$table.find('a').editable({
             showbuttons: 'bottom',
             success: function (response, newValue) {
@@ -89,6 +99,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
             .on('hidden', ui.changeStateToView);
     },
     setupElementTypeEditing: function () {
+        'use strict';
+
         if (this.model.isDependum && this.model.isDependum()) {
             var typeNames = [];
             var currentType = 0;
@@ -140,6 +152,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
         // }
     },
     setupAddPropertyButton: function () {
+        'use strict';
+
         $('#add-property-button-area').html('<a href="#" id="add-property-button" class="property-add" data-type="text" data-pk="1"           data-name="name" data-title="Enter description" data-placeholder="ahhhh" title="Add a new property to this element">        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>        Add Property</a>');
         // $('#add-property-button-area').html('<button type="button" id="addPropertyButton">Add Property</button>');
         // $('#cell-buttons').html('<button type="button" id="addPropertyButton">Add Property</button>');
@@ -172,9 +186,13 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     clearOptionsPanel: function () {
+        'use strict';
+
         $('#cell-actions').html('');
     },
     setupCollapseExpandButton: function () {
+        'use strict';
+
         $('#cell-actions').append(
             '<a id="collapse-expand-actor-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: alt+click the actor">Collapse/Expand</a><br>'
         );
@@ -187,6 +205,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     setupChangeDirectionButton: function () {
+        'use strict';
+
         if (ui.getSelectedElement().remove) {
             $('#cell-actions').append(
                 '<a id="flip-direction-button" class="btn btn-default btn-xs button-horizontal" title="Change the direction of the dependency">Flip direction</a><br>'
@@ -256,6 +276,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
         }
     },
     setupClearVerticesButton: function () {
+        'use strict';
+
         $('#cell-actions').append(
             '<a id="clear-vertices-button" class="btn btn-default btn-xs button-horizontal" ' +
             'title="This deletes all vertices in this link. To delete an individual vertex, double click the vertex.">Clear vertices</a><br>'
@@ -267,6 +289,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
         });
     },
     setupDeleteButton: function () {
+        'use strict';
+
         if (ui.getSelectedElement().remove) {
             $('#cell-actions').append(
                 '<a id="delete-element-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: Delete key">Delete</a><br>'
@@ -280,14 +304,18 @@ uiC.PropertiesTableView = Backbone.View.extend({
         }
     },
     setupOptionsPanel: function () {
-      if (this.model.prop('backgroundColor')) {
-        $('#single-element-color-picker').get(0).jscolor.fromString(this.model.prop('backgroundColor'));
-      }
-      else if (ui.getSelectedElement()){
-        $('#single-element-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
-      }
+        'use strict';
+
+        if (this.model.prop('backgroundColor')) {
+            $('#single-element-color-picker').get(0).jscolor.fromString(this.model.prop('backgroundColor'));
+        }
+        else if (ui.getSelectedElement()){
+            $('#single-element-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
+        }
     },
     renderCustomProperty: function (propertyName) {
+        'use strict';
+
         this.$table.find('tbody').append(this.template({
             propertyName: propertyName,
             propertyValue: this.model.prop('customProperties/' + propertyName),
@@ -295,6 +323,8 @@ uiC.PropertiesTableView = Backbone.View.extend({
         }));
     },
     setupCustomPropertyEditing: function (propertyName) {
+        'use strict';
+
         $('#current' + propertyName).editable({
                 showbuttons: 'bottom',
                 success: function (response, newValue) {

@@ -1,6 +1,8 @@
 /*! This is open-source. Feel free to use, modify, redistribute, and so on.
  */
 function saveSvg(paperId) {
+    'use strict';
+
     //access the SVG element and serialize it
     $('svg').attr('width', istar.paper.getArea().width);
     $('svg').attr('height', istar.paper.getArea().height);
@@ -16,6 +18,8 @@ function saveSvg(paperId) {
 if (!HTMLCanvasElement.prototype.toBlob) {
     Object.defineProperty(HTMLCanvasElement.prototype, 'toBlob', {
         value: function (callback, type, quality) {
+            'use strict';
+
             var canvas = this;
             setTimeout(function () {
 
@@ -35,6 +39,8 @@ if (!HTMLCanvasElement.prototype.toBlob) {
 }
 
 function savePng(paperId, callback, filename, resolutionFactor, transparent) {
+    'use strict';
+
     //create a canvas, which is used to convert the SVG to png
     var canvas = document.createElement('canvas');
     var canvasContext = canvas.getContext('2d');
@@ -68,6 +74,8 @@ function savePng(paperId, callback, filename, resolutionFactor, transparent) {
 
 
 function saveModel() {
+    'use strict';
+
     var diagram = {width: 1300, height: 1300};
     diagram.width = istar.paper.getArea().width;
     diagram.height = istar.paper.getArea().height;
@@ -111,7 +119,7 @@ function saveModel() {
               modelJSON.display[element.id] = {backgroundColor: element.prop('backgroundColor')};
             }
 
-            children = fileManager.childrenToJSON(element);
+            var children = fileManager.childrenToJSON(element);
             $.extend(true, modelJSON.display, children.display);
             actorJSON.nodes = children.nodes;
             modelJSON.actors.push(actorJSON);
@@ -195,8 +203,10 @@ function saveModel() {
 }
 
 function loadModel(inputRaw) {
+    'use strict';
+
     if (inputRaw) {
-        this.changedModel = true;
+        fileManager.changedModel = true;
 
         fileManager.invalidMessages = [];
         ui.clearDiagram();
@@ -249,12 +259,12 @@ function loadModel(inputRaw) {
                 var dependum = fileManager.addLoadedElement(element, inputModel.display);
                 var dependee = istar.graph.getCell(element.target);
 
-                isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(depender, dependee);
+                var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(depender, dependee);
                 if (!isValid.isValid) {
                     this._processInvalidLink('DependencyLink', depender, dependee);
                 }
 
-                links = istar.addDependencyLink(depender, dependum, dependee);
+                var links = istar.addDependencyLink(depender, dependum, dependee);
                 links[0].on('change:vertices', ui._toggleSmoothness);
                 links[1].on('change:vertices', ui._toggleSmoothness);
 
@@ -356,9 +366,10 @@ fileManager = {
                         size.width = size.width || newElement.prop('size/width');
                         size.height = size.height || newElement.prop('size/height');
                         newElement.resize(size.width, size.height);
-                        newElement.updateLineBreak();
                     }
                 }
+
+                newElement.updateLineBreak();
 
                 return newElement;
             }
@@ -481,7 +492,7 @@ fileManager = {
             id: link.id,
             type: istar.metamodel.prefix + '.' + link.prop('type'),
             source: link.attributes.source.id,
-            target: link.attributes.target.id,
+            target: link.attributes.target.id
         };
         if (link.prop('name')) {
             result.name = link.prop('name');
