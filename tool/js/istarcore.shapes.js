@@ -242,6 +242,33 @@ joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
     }, joint.shapes.basic.Path.prototype.defaults)
 });
 
+/* this shape is used by default when a new node is added to the metamodel .
+   instead of changing this shape, you should create
+   a *new* shape specific to the element that was added to the metamodel
+ */
+joint.shapes.istar.DefaultNode = joint.shapes.basic.Rect.extend({
+    defaults: joint.util.deepSupplement({
+        size: {width: 90, height: 35},
+        attrs: {
+            rect: {
+                fill: 'rgb(255,255,255)',
+                height: 30,
+                rx: 0,
+                stroke: 'black',
+                'stroke-dasharray': '8, 4',
+                'stroke-width': 2,
+                'vector-effect': 'non-scaling-stroke', /* prevents stroke distortion when the element is resized */
+                width: 130
+            },
+            text: {
+                'font-size': 12,
+                'font-weight': 'bold',
+                text: '<<ElementType>>'
+            }
+        }
+    }, joint.shapes.basic.Rect.prototype.defaults)
+});
+
 joint.shapes.istar.ParticipatesInLink = joint.dia.Link.define('ParticipatesInLink',
     {
         attrs: {
@@ -639,3 +666,6 @@ joint.shapes.istar.QualificationLink = joint.dia.Link.define('QualificationLink'
         ]
     }
 );
+
+/*definition of globals to prevent undue JSHint warnings*/
+/*globals joint:false */

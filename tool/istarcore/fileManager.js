@@ -83,6 +83,7 @@ function saveModel() {
 
     var modelJSON = {
         'actors': [],
+        'orphans': [],
         'dependencies': [],
         'links': [],
         'display': {},
@@ -145,6 +146,29 @@ function saveModel() {
 
             modelJSON.dependencies.push(dependency);
         }
+        else if (!element.attributes.parent) {
+            var orphan = fileManager.elementToJSON(element);
+            var display = {};
+            var needToSaveDisplay = false;
+            if (element.prop('backgroundColor')) {
+                display.backgroundColor = element.prop('backgroundColor');
+                needToSaveDisplay = true;
+            }
+            if (element.prop('size/width') !== element.prop('originalSize/width')) {
+                display.width = element.prop('size/width');
+                needToSaveDisplay = true;
+            }
+            if (element.prop('size/height') !== element.prop('originalSize/height')) {
+                display.height = element.prop('size/height');
+                needToSaveDisplay = true;
+            }
+
+            if (needToSaveDisplay === true) {
+                modelJSON.display[[element.id]] = display;
+            }
+
+            modelJSON.orphans.push(orphan);
+        }
     });
     _.forEach(istar.graph.getLinks(), function (link) {
         var linkJSON = fileManager.linkToJSON(link);
@@ -201,30 +225,10 @@ function loadModel(inputRaw) {
             //create actors and inner elements
             for (var i = 0; i < inputModel.actors.length; i++) {
                 var actor = inputModel.actors[i];
-                var parent = fileManager.addLoadedElement(actor);
+                var parent = fileManager.addLoadedElement(actor, inputModel.display);
                 for (var j = 0; j < actor.nodes.length; j++) {
-                    var child = fileManager.addLoadedElement(actor.nodes[j]);
+                    var child = fileManager.addLoadedElement(actor.nodes[j], inputModel.display);
                     if (child) {
-                        if (inputModel.display && inputModel.display[actor.nodes[j].id]) {
-                            size = {};
-                            if (inputModel.display[actor.nodes[j].id].backgroundColor) {
-                                ui.changeColorElement(inputModel.display[actor.nodes[j].id].backgroundColor, child);
-                            }
-                            if (inputModel.display[actor.nodes[j].id].width) {
-                                size.width = inputModel.display[actor.nodes[j].id].width;
-                            }
-                            if (inputModel.display[actor.nodes[j].id].height) {
-                                size.height = inputModel.display[actor.nodes[j].id].height;
-                            }
-                            if (size.width || size.height) {
-                                size.width = size.width || child.prop('size/width');
-                                size.height = size.height || child.prop('size/height');
-                                child.resize(size.width, size.height);
-                                child.updateLineBreak();
-                            }
-
-
-                        }
                         parent.embedNode(child);
                     }
                 }
@@ -242,7 +246,7 @@ function loadModel(inputRaw) {
             for (i = 0; i < inputModel.dependencies.length; i++) {
                 var element = inputModel.dependencies[i];
                 var depender = istar.graph.getCell(element.source);
-                var dependum = fileManager.addLoadedElement(element);
+                var dependum = fileManager.addLoadedElement(element, inputModel.display);
                 var dependee = istar.graph.getCell(element.target);
 
                 isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(depender, dependee);
@@ -287,24 +291,7 @@ function loadModel(inputRaw) {
                 dependum.prop('position/x', element.x);
                 dependum.prop('position/y', element.y);
 
-                if (inputModel.display[element.id]) {
-                    size = {};
-                    if (inputModel.display[element.id].backgroundColor) {
-                        ui.changeColorElement(inputModel.display[element.id].backgroundColor, dependum);
-                    }
-                    if (inputModel.display[element.id].width) {
-                        size.width = inputModel.display[element.id].width;
-                    }
-                    if (inputModel.display[element.id].height) {
-                        size.height = inputModel.display[element.id].height;
-                    }
-                    if (size.width || size.height) {
-                        size.width = size.width || child.prop('size/width');
-                        size.height = size.height || child.prop('size/height');
-                        dependum.resize(size.width, size.height);
-                        dependum.updateLineBreak();
-                    }
-                }
+
 
             }
 
@@ -323,6 +310,13 @@ function loadModel(inputRaw) {
                 toCollapse[i].collapse();
             }
         }
+        if (inputModel.orphans) {
+            //create orphan elements
+            _.forEach(inputModel.orphans, function (element) {
+                var orphan = fileManager.addLoadedElement(element, inputModel.display);
+
+            });
+        }
     }
     if (_.size(fileManager.invalidMessages)>0) {
         istar.displayInvalidModelMessages(fileManager.invalidMessages);
@@ -333,7 +327,7 @@ function loadModel(inputRaw) {
 fileManager = {
     load: loadModel,
     invalidMessages: [],
-    addLoadedElement: function (element) {
+    addLoadedElement: function (element, display) {
         if (element.id && element.type && element.x && element.y) {
             element.text = element.text || '';
             var type = element.type.split('.')[1];
@@ -346,6 +340,26 @@ fileManager = {
                 if (element.customProperties) {
                     newElement.prop('customProperties', element.customProperties);
                 }
+
+                if (display && display[element.id]) {
+                    size = {};
+                    if (display[element.id].backgroundColor) {
+                        ui.changeColorElement(display[element.id].backgroundColor, newElement);
+                    }
+                    if (display[element.id].width) {
+                        size.width = display[element.id].width;
+                    }
+                    if (display[element.id].height) {
+                        size.height = display[element.id].height;
+                    }
+                    if (size.width || size.height) {
+                        size.width = size.width || newElement.prop('size/width');
+                        size.height = size.height || newElement.prop('size/height');
+                        newElement.resize(size.width, size.height);
+                        newElement.updateLineBreak();
+                    }
+                }
+
                 return newElement;
             }
             else {

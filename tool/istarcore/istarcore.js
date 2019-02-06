@@ -347,7 +347,7 @@ var istar = function () {
             return newNode;
         },
         replaceNode: function (element, typeName) {
-            var shape = joint.shapes[istar.metamodel.prefix][typeName];
+            var shape = istar.metamodel.nodes[typeName].shapeObject;
 
             //create the node and add it to the graph
             var node = new shape({

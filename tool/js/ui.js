@@ -223,6 +223,18 @@ ui.defineInteractions = function () {
         if (ui.currentStateIsAddKindOfActor()) {
             ui.addElementOnPaper({position: {x: x, y: y}});
         }
+        if (ui.currentStateIsAddNode()) {
+            if (istar.metamodel.nodes[ui.currentAddingElement] && istar.metamodel.nodes[ui.currentAddingElement].canBeOnCanvas ) {
+                isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid();
+                if (isValid.isValid ) {
+                    ui.addElementOnPaper({position: {x: x, y: y}});
+                }
+                else {
+                    ui.displayInvalidLinkMessage(isValid.message);
+                    ui.currentButton.end();
+                }
+            }
+        }
     });
 
     istar.paper.on('cell:mouseover', function (cellView, evt, x, y) {
@@ -283,9 +295,18 @@ ui.defineInteractions = function () {
             }
         }
         if (ui.currentStateIsAddNode()) {
-            ui.addElementOnActor(cellView, {position: {x: x, y: y}});
-            if (cellView.model.prop('collapsed')) {
-                cellView.model.toggleCollapse();
+            if (istar.metamodel.nodes[ui.currentAddingElement] && istar.metamodel.nodes[ui.currentAddingElement].canBeInnerElement ) {
+                isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid(cellView.model);
+                if (isValid.isValid ) {
+                    ui.addElementOnActor(cellView, {position: {x: x, y: y}});
+                    if (cellView.model.prop('collapsed')) {
+                        cellView.model.toggleCollapse();
+                    }
+                }
+                else {
+                    ui.displayInvalidLinkMessage(isValid.message);
+                    ui.currentButton.end();
+                }
             }
         }
         else if (ui.currentStateIsAddLink()) {
@@ -526,17 +547,21 @@ function addDependency(source, dependencyType, target) {
     var node = '';
     var position = {x: 10, y: 10};
     var text = 'Dependum';
-    if (dependencyType === 'QualityDependencyLink') {
-        node = istar.addQuality(text, position);
-    }
-    else if (dependencyType === 'TaskDependencyLink') {
-        node = istar.addTask(text, position);
-    }
-    else if (dependencyType === 'ResourceDependencyLink') {
-        node = istar.addResource(text, position);
-    } else {
-        node = istar.addGoal(text, position);
-    }
+
+    var dependumType = dependencyType.replace('DependencyLink', '');
+    node = istar['add' + dependumType](text, position);
+    // if (dependencyType === 'QualityDependencyLink') {
+    //     node = istar.addQuality(text, position);
+    // }
+    // else if (dependencyType === 'TaskDependencyLink') {
+    //     node = istar.addTask(text, position);
+    // }
+    // else if (dependencyType === 'ResourceDependencyLink') {
+    //     node = istar.addResource(text, position);
+    // }
+    // else {
+    //     node = istar.addGoal(text, position);
+    // }
     links = istar.addDependencyLink(source, node, target);
     links[0].on('change:vertices', ui._toggleSmoothness);
     links[1].on('change:vertices', ui._toggleSmoothness);
@@ -772,7 +797,7 @@ $('#modal-button-load-model').click(function () {
 
 ui.setupUi = function () {
     this.setupPluginMenu();
-
+    this.setupMetamodelUI();
     this.defineInteractions();
     uiC.createAddButtons();
 
@@ -1158,3 +1183,7 @@ ui.displayInvalidModelMessage = function (messages) {
 
 //overrids istar.displayInvalidModelMessages, in order to display the messages in the user interface
 istar.displayInvalidModelMessages = ui.displayInvalidModelMessage;
+
+ui.loadDefaultNodeImage = function (id) {
+    document.getElementById(id).src = 'images/Resource.svg';
+}

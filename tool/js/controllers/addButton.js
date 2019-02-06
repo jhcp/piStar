@@ -1,6 +1,8 @@
 window.uiC = window.uiC || {};  //prevents overriding the variable, while also preventing working with a null variable
 
 uiC.createAddButtons = function() {
+    'use strict';
+
     //create the ADD buttons
     new uiC.AddButtonDropdownItemView({
         attributes: {parent: '#add-actor-dropdown'},
@@ -49,88 +51,73 @@ uiC.createAddButtons = function() {
             statusText: 'Adding <b>Participates-In</b> link: click on the source, and then on the target.'
         })
     }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-dependency-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Goal dependency',
-            action: ui.STATE_ADD_LINK,
-            name: 'GoalDependencyLink',
-            tooltip: 'Add a Goal Dependency link (including its dependum)',
-            statusText: 'Adding <b>Goal Dependency</b> link: click first on the depender, and then on the dependee.'
-        })
-    }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-dependency-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Quality dependency',
-            action: ui.STATE_ADD_LINK,
-            name: 'QualityDependencyLink',
-            tooltip: 'Add a Quality Dependency link (including its dependum)',
-            statusText: 'Adding <b>Quality Dependency</b> link: click first on the depender, and then on the dependee.'
-        })
-    }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-dependency-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Resource dependency',
-            action: ui.STATE_ADD_LINK,
-            name: 'ResourceDependencyLink',
-            tooltip: 'Add a Resource Dependency link (including its dependum)',
-            statusText: 'Adding <b>Resource Dependency</b> link: click first on the depender, and then on the dependee.'
-        })
-    }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-dependency-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Task dependency',
-            action: ui.STATE_ADD_LINK,
-            name: 'TaskDependencyLink',
-            tooltip: 'Add a Task Dependency link (including its dependum)',
-            statusText: 'Adding <b>Task Dependency</b> link: click first on the depender, and then on the dependee.'
-        })
-    }).render();
-    new uiC.AddButtonView({
-        model: new uiC.AddButtonModel({
-            label: 'Goal',
-            action: ui.STATE_ADD_NODE,
-            name: 'Goal',
-            tooltip: 'Add Goal',
-            statusText: 'Adding <b>Goal</b>: Click on an actor/role/agent to add a Goal',
-            precondition: function () {
-                var valid = true;
-                if (istar.isEmpty()) {
-                    alert('Sorry, you can only add goals on an actor/role/agent.');
-                    valid = false;
-                }
-                return valid;
-            }
-        })
-    }).render();
-    new uiC.AddButtonView({
-        model: new uiC.AddButtonModel({
-            label: 'Task',
-            action: ui.STATE_ADD_NODE,
-            tooltip: 'Add Task',
-            statusText: 'Adding <b>Task</b>: Click on an actor/role/agent to add a Task'
-        })
-    }).render();
-    new uiC.AddButtonView({
-        model: new uiC.AddButtonModel({
-            label: 'Resource',
-            action: ui.STATE_ADD_NODE,
-            tooltip: 'Add Resource',
-            statusText: 'Adding <b>Resource</b>: Click on an actor/role/agent to add a Resource'
-        })
-    }).render();
-    new uiC.AddButtonView({
-        model: new uiC.AddButtonModel({
-            label: 'Quality',
-            action: ui.STATE_ADD_NODE,
-            name: 'Quality',
-            tooltip: 'Add Quality',
-            statusText: 'Adding <b>Quality</b>: Click on an actor/role/agent to add a Quality'
-        })
-    }).render();
+
+    //create Add <<Dependency>> buttons
+    _.forEach(istar.metamodel.getNodesNames(), function(nodeTypeName) {
+        if (istar.metamodel.nodes[nodeTypeName].canBeDependum ) {
+
+            //if specific ui elements are not defined, use default ones
+            var label = istar.metamodel.nodes[nodeTypeName].label || (nodeTypeName + ' dependency');
+            var tooltip = istar.metamodel.nodes[nodeTypeName].tooltip || ('Add a ' + nodeTypeName + ' Dependency link (including its dependum)');
+            var statusText = istar.metamodel.nodes[nodeTypeName].statusText || ('Adding <b>' + nodeTypeName + ' Dependency</b> link');
+
+            new uiC.AddButtonDropdownItemView({
+                attributes: {parent: '#add-dependency-dropdown'},
+                model: new uiC.AddButtonModel({
+                    label: label,
+                    action: ui.STATE_ADD_LINK,
+                    name: nodeTypeName + 'DependencyLink',
+                    tooltip: tooltip,
+                    statusText: statusText,
+                    defaultButtonImage: 'DefaultDependencyLink.svg'
+                })
+            }).render();
+        }
+
+    });
+
+    //create Add <<Element>> buttons
+    _.forEach(istar.metamodel.getNodesNames(), function(nodeTypeName) {
+        if (istar.metamodel.nodes[nodeTypeName].canBeInnerElement || istar.metamodel.nodes[nodeTypeName].canBeOnCanvas) {
+
+            //if specific ui elements are not defined, use default ones
+            var label = istar.metamodel.nodes[nodeTypeName].label || nodeTypeName;
+            var tooltip = istar.metamodel.nodes[nodeTypeName].tooltip || ('Add ' + nodeTypeName);
+            var statusText = istar.metamodel.nodes[nodeTypeName].statusText || ('Adding <b>' + nodeTypeName + '</b>');
+
+            new uiC.AddButtonView({
+                model: new uiC.AddButtonModel({
+                    label: label,
+                    action: ui.STATE_ADD_NODE,
+                    name: nodeTypeName,
+                    tooltip: tooltip,
+                    statusText: statusText,
+                    defaultButtonImage: 'DefaultNode.svg'
+                })
+            }).render();
+        }
+
+    });
+
+    // new uiC.AddButtonView({
+    //     model: new uiC.AddButtonModel({
+    //         label: 'Goal',
+    //         action: ui.STATE_ADD_NODE,
+    //         name: 'Goal',
+    //         tooltip: 'Add Goal',
+    //         statusText: 'Adding <b>Goal</b>: Click on an actor/role/agent to add a Goal',
+    //         precondition: function () {
+    //             var valid = true;
+    //             if (istar.isEmpty()) {
+    //                 alert('Sorry, you can only add goals on an actor/role/agent.');
+    //                 valid = false;
+    //             }
+    //             return valid;
+    //         }
+    //     })
+    // }).render();
+    //
+
     new uiC.AddButtonView({
         model: new uiC.AddButtonModel({
             label: 'And',
@@ -208,3 +195,6 @@ uiC.createAddButtons = function() {
         })
     }).render();
 }
+
+/*definition of globals to prevent undue JSHint warnings*/
+/*globals istar:false, _:false, ui:false, uiC:false */

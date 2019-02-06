@@ -6,6 +6,7 @@ uiC.AddButtonModel = Backbone.Model.extend({
         label: '',
         tooltip: '',
         statusText: '',
+        defaultButtonImage: '',
         precondition: function () {
             return true;
         },
@@ -13,6 +14,8 @@ uiC.AddButtonModel = Backbone.Model.extend({
         active: false
     },
     act: function () {
+        'use strict';
+
         ui.selectModel();
 
         this.set('active', true);
@@ -23,11 +26,25 @@ uiC.AddButtonModel = Backbone.Model.extend({
             $('#diagram').css('cursor', 'crosshair');
             $('#diagram g').css('cursor', 'no-drop');
             $('#diagram .actorKindMain').css('cursor', 'no-drop');
-        }
-        else {
-            $('#diagram').css('cursor', 'no-drop');
-            $('#diagram g').css('cursor', 'crosshair');
-            $('#diagram .actorKindMain').css('cursor', 'crosshair');
+        } else {
+            if (this.get('action') === ui.STATE_ADD_NODE) {
+                if (istar.metamodel.nodes[this.get('name')] && (istar.metamodel.nodes[this.get('name')].canBeOnCanvas)) {
+                    $('#diagram').css('cursor', 'crosshair');
+                } else {
+                    $('#diagram').css('cursor', 'no-drop');
+                }
+                if (istar.metamodel.nodes[this.get('name')] && (istar.metamodel.nodes[this.get('name')].canBeInnerElement)) {
+                    $('#diagram g').css('cursor', 'crosshair');
+                    $('#diagram .actorKindMain').css('cursor', 'crosshair');
+                } else {
+                    $('#diagram g').css('cursor', 'no-drop');
+                    $('#diagram .actorKindMain').css('cursor', 'no-drop');
+                }
+            } else {
+                $('#diagram').css('cursor', 'no-drop');
+                $('#diagram g').css('cursor', 'crosshair');
+                $('#diagram .actorKindMain').css('cursor', 'crosshair');
+            }
         }
     },
     end: function () {
@@ -46,3 +63,6 @@ uiC.AddButtonModel = Backbone.Model.extend({
     }
 
 });
+
+/*definition of globals to prevent undue JSHint warnings*/
+/*globals istar:false, ui:false, console:false, $:false */
