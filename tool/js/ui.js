@@ -1,7 +1,6 @@
 /*! This is open-source. Feel free to use, modify, redistribute, and so on.
  */
 
-// noinspection JSUnusedGlobalSymbols
 var ui = function() {
     'use strict';
 
@@ -132,8 +131,10 @@ var ui = function() {
 
 
 ui.highlightFocus = function (cellView) {
+    'use strict';
+
     if (cellView) {
-        elementBox = cellView.getBBox();
+        var elementBox = cellView.getBBox();
 
         //positioning and display of the selection box
         $('.element-selection').css({
@@ -154,10 +155,14 @@ ui.highlightFocus = function (cellView) {
 };
 
 ui.unhighlightFocus = function (cellView) {
+    'use strict';
+
     $('#resize-handle').hide();
     $('.element-selection').hide();
 };
 ui.defineInteractions = function () {
+    'use strict';
+
     //this redefinition was used, instead of on('remove'), because when the 'remove' event is triggered the
     //node has already been removed, thus it would be too late to know whom is the parent
     var originalRemove = joint.dia.Cell.prototype.remove;
@@ -233,7 +238,7 @@ ui.defineInteractions = function () {
     istar.paper.on('cell:mouseover', function (cellView, evt, x, y) {
         //indicates that the mouse is over a given actor
         //.css() is used instead of .attr() because the latter is bugged with elements containing a path element
-        color = '#1C5052';
+        var color = '#1C5052';
         if (cellView.model.isKindOfActor()) {
             if (cellView.model.prop('collapsed')) {
                 cellView.$('.element').css({stroke: color, 'stroke-width': '3'});
@@ -247,7 +252,7 @@ ui.defineInteractions = function () {
         }
         else {
             if (cellView.model.get('parent')) {
-                parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
+                var parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
                 parentView.$('.boundary').css({stroke: color, 'stroke-width': '4'});
                 parentView.$('.element').css({stroke: color, 'stroke-width': '3'});
                 parentView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
@@ -262,7 +267,7 @@ ui.defineInteractions = function () {
         }
         else {
             if (cellView.model.get('parent')) {
-                parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
+                var parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
                 parentView.$('rect').css({stroke: 'black', 'stroke-width': '2'});
                 parentView.$('circle').css({stroke: 'black', 'stroke-width': '2'});
             }
@@ -275,7 +280,7 @@ ui.defineInteractions = function () {
             }
         }
         if (ui.getSelectedElement().findView) {
-            ui.unhighlightFocus(ui.getSelectedElement().findView(istar.paper));
+            ui.hideSelection();
         }
     });
     istar.paper.on('cell:pointerup', function (cellView, evt, x, y) {
@@ -454,12 +459,21 @@ ui.defineInteractions = function () {
     });
 
     istar.paper.on('cell:pointerdblclick', function (cellView, evt, x, y) {
-        var newText;
-        if (cellView.model.isElement()) {
-            oldText = cellView.model.prop('name');
-            newText = window.prompt('Edit text:', oldText);
-            if (newText !== null) {
-                cellView.model.prop('name', newText);
+        if ( ! (evt.ctrlKey || evt.altKey) ) {
+            var newText;
+            if (cellView.model.isElement()) {
+                ui.showSelection();
+
+                //set a delay in order to give the browser time to actually show the selected element
+                setTimeout(function () {
+                    var oldText = cellView.model.prop('name');
+                    newText = window.prompt('Edit text:', oldText);
+                    if (newText !== null) {
+                        cellView.model.prop('name', newText);
+                    }
+                }, 30);
+
+
             }
         }
     });
@@ -480,6 +494,8 @@ ui.defineInteractions = function () {
 };
 
 ui.addElementOnPaper = function (options) {
+    'use strict';
+
     try {
         var isValid = {isValid: false};
         if (ui.currentStateIsAddNode()) {
@@ -494,7 +510,7 @@ ui.addElementOnPaper = function (options) {
         }
 
         if (isValid.isValid) {
-            newActor = istar['add' + ui.currentAddingElement]('', options);
+            var newActor = istar['add' + ui.currentAddingElement]('', options);
             newActor.prop('customProperties/Description', '');
             ui.selectElement(newActor);
         }
@@ -509,6 +525,8 @@ ui.addElementOnPaper = function (options) {
 };
 
 ui.addElementOnActor = function (cellView, options) {
+    'use strict';
+
     try {
         var isValid = {isValid: false};
         if (istar.metamodel.nodes[ui.currentAddingElement] && istar.metamodel.nodes[ui.currentAddingElement].canBeInnerElement ) {
@@ -516,7 +534,7 @@ ui.addElementOnActor = function (cellView, options) {
         }
 
         if (isValid.isValid) {
-            element = addElementInPlace(cellView.model, istar['add' + ui.currentAddingElement], options);
+            var element = addElementInPlace(cellView.model, istar['add' + ui.currentAddingElement], options);
             element.prop('customProperties/Description', '');
             ui.selectElement(element);
         }
@@ -530,6 +548,8 @@ ui.addElementOnActor = function (cellView, options) {
     }
 };
 ui.addLinkBetweenActors = function (newLink, targetCellView) {
+    'use strict';
+
     try {
         ui.linkTarget = targetCellView;
         if (istar.metamodel.containerLinks[newLink].isValid(ui.linkSource.model, ui.linkTarget.model)) {
@@ -544,25 +564,16 @@ ui.addLinkBetweenActors = function (newLink, targetCellView) {
 };
 
 function addDependency(source, dependencyType, target) {
+    'use strict';
+
     var node = '';
     var position = {x: 10, y: 10};
     var text = 'Dependum';
 
     var dependumType = dependencyType.replace('DependencyLink', '');
     node = istar['add' + dependumType](text, position);
-    // if (dependencyType === 'QualityDependencyLink') {
-    //     node = istar.addQuality(text, position);
-    // }
-    // else if (dependencyType === 'TaskDependencyLink') {
-    //     node = istar.addTask(text, position);
-    // }
-    // else if (dependencyType === 'ResourceDependencyLink') {
-    //     node = istar.addResource(text, position);
-    // }
-    // else {
-    //     node = istar.addGoal(text, position);
-    // }
-    links = istar.addDependencyLink(source, node, target);
+
+    var links = istar.addDependencyLink(source, node, target);
     links[0].on('change:vertices', ui._toggleSmoothness);
     links[1].on('change:vertices', ui._toggleSmoothness);
 
@@ -573,6 +584,8 @@ function addDependency(source, dependencyType, target) {
 }
 
 ui.setupDependencyRemoval = function (links) {
+    'use strict';
+
     //ensure that the entire dependency (two links and dependum) are deleted
     //when any of its links is deleted
     //this is needed when a depender or dependee is deleted, so that
@@ -600,6 +613,8 @@ ui.setupDependencyRemoval = function (links) {
 };
 
 function addElementInPlace(clickedNode, callback, options) {
+    'use strict';
+
     ui.currentState = ui.STATE_VIEW;
     ui.resetAddingElement();
     //assigns the new node to the correct parent
@@ -622,6 +637,8 @@ function addElementInPlace(clickedNode, callback, options) {
 
 
 ui.changeColorActorContainer = function (color) {
+    'use strict';
+
     _.map(istar.getElements(), function (node) {
         if (node.isKindOfActor()) {
             node.attr('.boundary', {fill: color});
@@ -629,6 +646,8 @@ ui.changeColorActorContainer = function (color) {
     });
 };
 ui.changeColorElements = function (color) {
+    'use strict';
+
     _.map(istar.getElements(), function (node) {
         node.attr('circle', {fill: color});
         if (node.isKindOfInnerElement()) {
@@ -639,6 +658,8 @@ ui.changeColorElements = function (color) {
     });
 };
 ui.changeColorElement = function (color, element) {
+    'use strict';
+
     element = element || ui.getSelectedElement();
     ui.hideSelection();
     if (element.isKindOfActor()) {
@@ -659,6 +680,8 @@ ui.changeColorElement = function (color, element) {
     ui.showSelection();
 };
 ui.connectLinksToShape = function () {
+    'use strict';
+
     $('.menu-body *').addClass('waiting');
     //do the processing after a small delay, in order to allow the browser to update the cursor icon
     setTimeout(function () {
@@ -675,6 +698,8 @@ ui.connectLinksToShape = function () {
 };
 
 $('#input-file-format').change(function () {
+    'use strict';
+
     if ($(this).val() === "PNG") {
         $('#save-png-options').removeClass('hidden');
     }
@@ -685,7 +710,9 @@ $('#input-file-format').change(function () {
 });
 
 $('#modal-button-save-image').click(function () {
-    $saveButton = $(this);
+    'use strict';
+
+    var $saveButton = $(this);
 
     //let the user know that sometinh is being done
     $('body *').addClass('waiting');
@@ -707,7 +734,7 @@ $('#modal-button-save-image').click(function () {
     //execute the actual saving only after some time has passed, allowing the browser to update the UI
     setTimeout(function () {
         $saveButton.button('save'); //display status information in the save button
-        filename = $('#input-filename').val() || 'goalModel';
+        var filename = $('#input-filename').val() || 'goalModel';
 
         //Adjust the size of the model, to prevent empty spaces in the image
         var originalWidth = istar.paper.getArea().width;
@@ -720,7 +747,7 @@ $('#modal-button-save-image').click(function () {
         }
         else {
             //save PNG
-            resolutionFactor = 1;
+            var resolutionFactor = 1;
             if ($('#modal-input-hi-res').prop('checked')) {
                 resolutionFactor = 4;
             }
@@ -744,12 +771,16 @@ $('#modal-button-save-image').click(function () {
 });
 
 $('#menu-button-save-model').click(function () {
+    'use strict';
+
     var model = saveModel();
-    csvData = 'data:text/json;charset=utf-8,' + (encodeURI(model));
+    var csvData = 'data:text/json;charset=utf-8,' + (encodeURI(model));
     joint.util.downloadDataUri(csvData, 'goalModel.txt');
 });
 
 $('#modal-button-load-model').click(function () {
+    'use strict';
+
     $(this).button('loading');
     //load the model with a small delay, giving time to the browser to display the 'loading' message
     setTimeout(function () {
@@ -796,6 +827,8 @@ $('#modal-button-load-model').click(function () {
 });
 
 ui.setupUi = function () {
+    'use strict';
+
     this.setupPluginMenu();
     this.setupMetamodelUI();
     this.defineInteractions();
@@ -813,6 +846,8 @@ ui.setupUi = function () {
 };
 
 ui.setupPluginMenu = function () {
+    'use strict';
+
     //listen for changes in the plugin menus, displaying it if some element is added to it
     var targetNode = document.getElementById('menu-plugin');
     var config = {childList: true, subtree: true }; // Options for the observer (which mutations to observe)
@@ -827,6 +862,8 @@ ui.setupPluginMenu = function () {
 };
 
 ui.setupDiagramSizeInputs = function () {
+    'use strict';
+
     //updates the initial values of the diagram's size inputs with the diagram's actual size
     $('#input-diagram-width').val(istar.paper.getArea().width);
     $('#input-diagram-height').val(istar.paper.getArea().height);
@@ -851,6 +888,8 @@ ui.setupDiagramSizeInputs = function () {
 };
 
 ui.setupLoadExampleButton = function () {
+    'use strict';
+
     $('.modal-button-load-example').click(function () {
         $('.modal *').addClass('waiting');
         var modelToLoad = $(this).data('model');
@@ -869,13 +908,15 @@ ui.setupLoadExampleButton = function () {
 };
 
 ui.setupMainMenuInteraction = function () {
+    'use strict';
+
     // default menu to be displayed when the tool opens
     var currentMenuItem = $('#menu-item-add');
 
     // set up the click behavior for every menu-item
     $('.menu-items a').each(function () {
         $(this).click(function () {
-            target = $('#' + $(this).data('toggle'));
+            var target = $('#' + $(this).data('toggle'));
 
             if (currentMenuItem === null) {
                 //no menu is currently displayed, the clicked one will now be displayed
@@ -919,36 +960,63 @@ ui.setupMainMenuInteraction = function () {
 
     $('#' + currentMenuItem.data('toggle')).slideDown(0); //displays the default menu when the tool is loaded
 
+    //change state when focusing on inputs, to prevent accidentally deleting model elements with backspace and del
+    $('input')
+        .focusin(function () {
+            ui.changeStateToEdit();
+        })
+        .focusout(function () {
+            ui.changeStateToView();
+        });
+
 };
 
 $('#all-actor-boundary-color-picker').on('change', function () {
+    'use strict';
+
     ui.changeColorActorContainer(this.value);
 });
 $('#all-elements-color-picker').on('change', function () {
+    'use strict';
+
     ui.changeColorElements(this.value);
 });
 
 $('#single-element-color-picker').on('change', function () {
+    'use strict';
+
     ui.changeColorElement(this.value);
 });
 
 $('#menu-button-precise-links').click(function () {
+    'use strict';
+
     ui.connectLinksToShape();
 });
 
 $('#menu-button-toggle-fullscreen').click(function () {
+    'use strict';
+
     joint.util.toggleFullScreen();
 });
 
 $('#menu-button-straighten-links').click(function () {
+    'use strict';
+
     if (confirm("ATTENTION! This action will remove all vertices you may have added to the links in this model. Are you sure you want to do this?")) {
+        var selectedElement = ui.getSelectedElement();
         _.forEach(istar.getLinks(), function (link) {
             link.vertices([]);
-        })
+        });
+
+        //restore selection to the element that was selected (if any) when the action started
+        ui.selectElement(selectedElement);
     }
 });
 
 ui.clearDiagram = function () {
+    'use strict';
+
     istar.graph.clear();
 };
 
@@ -956,16 +1024,22 @@ ui.clearDiagram = function () {
 var hoverButtons = [];
 
 function createButtons() {
+    'use strict';
+
     hoverButtons = [];
 
     return this;
 }
 
 ui.changeStatus = function (text) {
+    'use strict';
+
     $('#status').html(text);
 };
 
 $(document).keyup(function (e) {
+    'use strict';
+
     if (ui.getSelectedElement() !== null) {
         if (ui.currentStateIsView()) {
             if (e.which === 8 || e.which === 46) {
@@ -990,15 +1064,21 @@ $(document).keyup(function (e) {
 });
 
 ui.changeStateToEdit = function () {
+    'use strict';
+
     ui.currentState = 'edit';
     ui.resetPointerStyles();
 };
 ui.changeStateToView = function () {
+    'use strict';
+
     ui.currentState = 'view';
 };
 
 ui.resetPointerStyles = function () {
-    $diagram = $('#diagram');
+    'use strict';
+
+    var $diagram = $('#diagram');
     $diagram.css('cursor', 'auto');
     $diagram.find('g').css('cursor', 'move');
     $diagram.find('.actorKindMain').css('cursor', 'move');
@@ -1006,6 +1086,8 @@ ui.resetPointerStyles = function () {
 };
 
 ui._toggleSmoothness = function (link, vertices, something) {
+    'use strict';
+
     if (vertices.length >= 1) {
         link.set('smooth', true);
     }
@@ -1016,6 +1098,8 @@ ui._toggleSmoothness = function (link, vertices, something) {
 
 
 function changeCustomPropertyValue(model, propertyName, propertyValue) {
+    'use strict';
+
     if (propertyValue) {
         propertyValue = $.trim(propertyValue);
     }
@@ -1033,10 +1117,14 @@ function changeCustomPropertyValue(model, propertyName, propertyValue) {
 
 
 $('#fit-to-content-button').click(function () {
+    'use strict';
+
     istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any'});
 });
 
 $('#reset-all-colors-button').click(function () {
+    'use strict';
+
     $('#all-actor-boundary-color-picker').get(0).jscolor.fromString('E6E6E6');
     ui.changeColorActorContainer('#E6E6E6');
     $('#all-elements-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
@@ -1044,11 +1132,15 @@ $('#reset-all-colors-button').click(function () {
 });
 
 $('#reset-element-color-button').click(function () {
+    'use strict';
+
     $('#single-element-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
     ui.changeColorElement(ui.defaultElementBackgroundColor);
 });
 
 ui.setupSidepanelInteraction = function () {
+    'use strict';
+
     var sidepanelSizes = ['size1', 'size2', 'size3'];
     var sidepanelCurrentSize = 1;
     ui.expandSidepanel = function () {
@@ -1087,6 +1179,8 @@ ui.setupSidepanelInteraction = function () {
 };
 
 ui.setupElementResizing = function () {
+    'use strict';
+
     $('#resize-handle').hide();
     $('.element-selection').hide();
 
@@ -1108,8 +1202,8 @@ ui.setupElementResizing = function () {
     };
 
     ui.resizeHandlerOnMouseMove = function (e) {
-        viewBBox = ui.getSelectedElement().findView(istar.paper).getBBox();
-        diagramPosition = $('#out').position();
+        var viewBBox = ui.getSelectedElement().findView(istar.paper).getBBox();
+        var diagramPosition = $('#out').position();
 
         var newWidth = e.pageX - viewBBox.x - diagramPosition.left + $('#out').scrollLeft();
         var newHeight = e.pageY - viewBBox.y - diagramPosition.top + $('#out').scrollTop();
@@ -1148,6 +1242,8 @@ ui.setupElementResizing = function () {
 };
 
 ui.alert = function (body, title) {
+    'use strict';
+
     $('#body-alert-modal').html(body);
     if (title) {
         $('#label-alert-modal').html(title);
@@ -1158,14 +1254,20 @@ ui.alert = function (body, title) {
     $('#modal-alert').modal('show');
 };
 $('#modal-alert').on('shown.bs.modal', function () {
+    'use strict';
+
     $('#close-button-alert-modal').focus()
 });
 
 ui.displayInvalidLinkMessage = function (message) {
+    'use strict';
+
     ui.alert('INVALID: Sorry, but ' + message, 'Invalid link');
 };
 
 ui.displayInvalidModelMessage = function (messages) {
+    'use strict';
+
     if (messages) {
         var text = '<div class="alert alert-danger">Hello there! Previous versions of the piStar tool allowed the creation of models that break ' +
             'some rules of the <a href="https://sites.google.com/site/istarlanguage/" target="_blank">iStar 2.0 Language Guide</a>. Please address the issues listed below ' +
@@ -1181,9 +1283,14 @@ ui.displayInvalidModelMessage = function (messages) {
     }
 };
 
-//overrids istar.displayInvalidModelMessages, in order to display the messages in the user interface
+//overrides istar.displayInvalidModelMessages, in order to display the messages in the user interface
 istar.displayInvalidModelMessages = ui.displayInvalidModelMessage;
 
 ui.loadDefaultNodeImage = function (id) {
+    'use strict';
+
     document.getElementById(id).src = 'images/Resource.svg';
 }
+
+/*definition of globals to prevent undue JSHint warnings*/
+/*globals istar:false, console:false */
