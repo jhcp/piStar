@@ -373,43 +373,52 @@ var istar = function () {
             var shape = istar.metamodel.nodes[typeName].shapeObject;
 
             //create the node and add it to the graph
-            var node = new shape({
+            var newNode = new shape({
                 position: element.prop('position')
             });
-            node.prop('type', typeName);
+            newNode.prop('type', typeName);
 
             //copy the old node properties to the new node
-            node.prop('name', element.prop('name'));
-            node.attr('text/text', element.prop('name'));
-            node.prop('originalSize', node.prop('size')); //stores the initial size of the element
+            newNode.prop('name', element.prop('name'));
+            newNode.attr('text/text', element.prop('name'));
+            newNode.prop('originalSize', newNode.prop('size')); //stores the initial size of the element
             if (element.prop('size') !== element.prop('originalSize')) {
-                node.prop('size', element.prop('size')); //stores the initial size of the element
+                newNode.prop('size', element.prop('size')); //stores the initial size of the element
             }
-            node.prop('customProperties', element.prop('customProperties'));
+            newNode.prop('customProperties', element.prop('customProperties'));
+            if (element.getParentCell()) {
+                element.getParentCell().embed(newNode);
+            }
             //TODO copy style
 
-            istar.graph.addCell(node);
+            istar.graph.addCell(newNode);
+            //update the line break on the element's label
+            newNode.updateLineBreak();
 
             //change the dependency links from the old node to the new node
             var nodeId = element.prop('id');
             var connectedLinks = istar.graph.getConnectedLinks(element);
-            if (connectedLinks[0].prop('source/id') === nodeId) {
-                connectedLinks[0].prop('source/id', node.prop('id'));
-            }
-            if (connectedLinks[1].prop('source/id') === nodeId) {
-                connectedLinks[1].prop('source/id', node.prop('id'));
-            }
-            if (connectedLinks[0].prop('target/id') === nodeId) {
-                connectedLinks[0].prop('target/id', node.prop('id'));
-            }
-            if (connectedLinks[1].prop('target/id') === nodeId) {
-                connectedLinks[1].prop('target/id', node.prop('id'));
-            }
+            _.forEach(connectedLinks, function (link) {
+                if (link.prop('source/id') === nodeId) {
+                    link.prop('source/id', newNode.prop('id'));
+                }
+                if (link.prop('target/id') === nodeId) {
+                    link.prop('target/id', newNode.prop('id'));
+                }
+                // beginning of validation code for replacing inner elements
+                // if (( ! link.isDependencyLink()) && ( ! newNode.isKindOfActor()) && ( ! newNode.isDependum())) {
+                //     var sourceModel = istar.graph.getCell(link.prop('source/id'));
+                //     var targetModel = istar.graph.getCell(link.prop('target/id'));
+                //     console.log(targetModel);
+                //     var isValid = istar.metamodel.nodeLinks[link.prop('type')].isValid(sourceModel, targetModel);
+                //     console.log(isValid);
+                // }
+            });
 
             //remove the old node
             element.remove();
 
-            return node;
+            return newNode;
         },
         /**
          * Adds a link between two actors.
