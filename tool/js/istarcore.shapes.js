@@ -20,7 +20,7 @@ joint.shapes.istar = {};
 */
 
 joint.shapes.istar.Actor = joint.dia.Element.extend({
-    markup: '<g><rect class="boundary" /><circle class="element actorKindMain" /><path /><text/></g>',
+    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path /><text/></g>',
     defaults: joint.util.deepSupplement({
         type: 'Container',
         size: {width: 200, height: 120},
@@ -60,7 +60,7 @@ joint.shapes.istar.Actor = joint.dia.Element.extend({
 });
 
 joint.shapes.istar.Role = joint.dia.Element.extend({
-    markup: '<g><rect class="boundary" /><circle class="element actorKindMain" /><path class="actorDecorator"/><text/></g>',
+    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path class="actorDecorator"/><text/></g>',
     defaults: joint.util.deepSupplement({
         type: 'Container',
         size: {width: 200, height: 120},
@@ -106,7 +106,7 @@ joint.shapes.istar.Role = joint.dia.Element.extend({
 });
 
 joint.shapes.istar.Agent = joint.dia.Element.extend({
-    markup: '<g><rect class="boundary"/><circle class="element actorKindMain"/><path class="actorDecorator"/><text/></g>',
+    markup: '<g><rect class="boundary"/><circle class="element actorSymbol"/><path class="actorDecorator"/><text/></g>',
     defaults: joint.util.deepSupplement({
         type: 'Container',
         size: {width: 200, height: 120},
@@ -157,7 +157,7 @@ joint.shapes.istar.Agent = joint.dia.Element.extend({
    a *new* shape specific to the container that was added to the metamodel
  */
 joint.shapes.istar.DefaultContainer = joint.dia.Element.extend({
-    markup: '<g><rect class="boundary" /><circle class="element actorKindMain" /><path /><text/></g>',
+    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path /><text/></g>',
     defaults: joint.util.deepSupplement({
         type: 'Container',
         size: {width: 200, height: 120},
