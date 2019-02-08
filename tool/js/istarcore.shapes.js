@@ -157,7 +157,7 @@ joint.shapes.istar.Agent = joint.dia.Element.extend({
    a *new* shape specific to the container that was added to the metamodel
  */
 joint.shapes.istar.DefaultContainer = joint.dia.Element.extend({
-    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path /><text class="content"/></g>',
+    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path /><text class="stereotype"/><text class="content"/></g>',
     defaults: joint.util.deepSupplement({
         type: 'Container',
         size: {width: 200, height: 120},
@@ -172,14 +172,27 @@ joint.shapes.istar.DefaultContainer = joint.dia.Element.extend({
                 'stroke-dasharray': '8, 4',
                 transform: 'translate(-20, -20)',  //displaces the actual actor symbol a little bit
             },
-            text: {
+            '.stereotype': {
                 fill: '#000000',
                 'font-family': 'Arial, helvetica, sans-serif',
                 'font-size': 12,
+                'font-style': 'italic',
+                ref: '.content',//makes the position of the text relative to content label
+                'ref-x': 0.5,
+                'ref-y': -6,
+                text: '<<ElementType>>',
+                'text-anchor': 'middle',
+                'y-alignment': 'middle'
+            },
+            '.content': {
+                fill: '#000000',
+                'font-family': 'Arial, helvetica, sans-serif',
+                'font-size': 12,
+                'font-weight': 'bold',
                 ref: '.element',//makes the position of the text relative to the actual actor symbol
                 'ref-x': 0.5,
                 'ref-y': 0.5,
-                text: 'Container',
+                text: 'ElementType',
                 'text-anchor': 'middle',
                 'y-alignment': 'middle'
             },
