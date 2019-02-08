@@ -68,10 +68,13 @@ var istar = function () {
         /* jshint validthis: true */
         /* this function is meant to be added to a prototype */
 
-        //a default width value for kindOfActor elements, since the BBox refers to the whole element (including its boundary)
         var breakWidth = 90;
         if (! this.isKindOfActor()) {
-            breakWidth = this.findView(istar.paper).getBBox().width;
+            breakWidth = this.getBBox().width;
+        }
+        else {
+            //actors' width require a different approach, since the regular getBBox refers to the whole actor
+            breakWidth = joint.util.getElementBBox($('#'+ this.findView(istar.paper).id +' .actorSymbol')).width;
         }
 
         content = $.trim(content) || '';
