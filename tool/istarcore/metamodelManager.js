@@ -1,10 +1,10 @@
-/*
-    This function processes a given metamodel, stores the processed data on the istar global variable,
-        and creates additional functions based on the metamodel
-
-    It creates 'add' functions for each element of the metamodel
-        For instance, if there is a node type named 'Person', an 'addPerson' function is created
-*/
+/*!
+ * This is open-source. Which means that you can contribute to it, and help
+ * make it better! Also, feel free to use, modify, redistribute, and so on.
+ *
+ * Please don't work directly from this source-code. Instead, download or fork it from
+ * https://github.com/jhcp/pistar
+ */
 
 istar.validateMetamodel = function (metamodel) {
     'use strict';
