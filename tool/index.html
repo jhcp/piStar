@@ -2,285 +2,285 @@
 <!--suppress SpellCheckingInspection, HtmlUnknownTarget -->
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- The 3 meta tags above *must* come first in the head; any other head content must come *after* these tags -->
-  <title>piStar tool</title>
-  <meta name="description"
-        content="piStar is an online Goal Modeling tool, compliant with iStar 2.0. Useful for creating diagrams
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The 3 meta tags above *must* come first in the head; any other head content must come *after* these tags -->
+    <title>piStar tool</title>
+    <meta name="description"
+          content="piStar is an online Goal Modeling tool, compliant with iStar 2.0. Useful for creating diagrams
         for requirements documents.">
-  <meta name="author" content="João Pimentel">
-  <link rel="icon" href="images/favicon.ico">
+    <meta name="author" content="João Pimentel">
+    <link rel="icon" href="images/favicon.ico">
 
-  <!-- bootstrap styles -->
-  <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">  <!-- Bootstrap core CSS -->
-  <!-- library-specific styles -->
-  <link href="istarcore/lib/joint.min.css" rel="stylesheet"> <!-- joint js -->
-  <link href="lib/bootstrap3-editable/bootstrap-editable.css" rel="stylesheet"> <!-- x-editable -->
-  <!-- tool styles -->
-  <link href="pistar.css" rel="stylesheet">
+    <!-- bootstrap styles -->
+    <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">  <!-- Bootstrap core CSS -->
+    <!-- library-specific styles -->
+    <link href="istarcore/lib/joint.min.css" rel="stylesheet"> <!-- joint js -->
+    <link href="lib/bootstrap3-editable/bootstrap-editable.css" rel="stylesheet"> <!-- x-editable -->
+    <!-- tool styles -->
+    <link href="pistar.css" rel="stylesheet">
 </head>
 
 <body>
 <div id="tool">
-<div class="menu-bar">
-  <div id="logo">
-    <img src="images/logo-pie.svg" width="21" height="21" title="a pie" alt=""/>
-    <img id="star" src="images/logo-star.svg" width="12" height="12" title="a star" alt=""/>
-    piStar
-  </div>
-  <nav class="menu-items">
-    <a class="menu-item" href="#" id="menu-item-file" data-toggle="menu-file">File</a>
-    <a class="menu-item active" href="#" id="menu-item-add" data-toggle="menu-add">Add</a>
-    <a class="menu-item" href="#" id="menu-item-diagram" data-toggle="menu-diagram">Options</a>
-    <a class="menu-item" href="#" id="menu-item-help" data-toggle="menu-help">Help</a>
-    <a class="menu-item" href="#" id="menu-item-plugin" data-toggle="menu-plugin">Plugins</a>
-  </nav>
-</div>
-
-<div id="menu-bodies">
-  <div id="menu-file" class="menu-body hidden">
-    <div class="menu-group">
-      <div class="menu-line">
-
-        <a class="btn btn-default button-vertical" id="menu-button-save-image" title="Save (download) model as a SVG or PNG image file"
-                data-toggle="modal" data-target="#modal-save-image">
-          <span class="glyphicon glyphicon-picture" aria-hidden="true"></span><br>
-          Save Image
-        </a>
-
-        <a class="btn btn-default button-vertical" id="menu-button-save-model"
-                title="Save (download) the model to your computer">
-          <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span><br>
-          Save Model
-        </a>
-
-        <a class="btn btn-default button-vertical" id="menu-button-load-model" data-toggle="modal" data-target="#modal-load-model"
-                title="Load a previously saved model">
-          <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span><br>
-          Load Model
-        </a>
-
-      </div>
+    <div class="menu-bar">
+        <div id="logo">
+            <img src="images/logo-pie.svg" width="21" height="21" title="a pie" alt=""/>
+            <img id="star" src="images/logo-star.svg" width="12" height="12" title="a star" alt=""/>
+            piStar
+        </div>
+        <nav class="menu-items">
+            <a class="menu-item" href="#" id="menu-item-file" data-toggle="menu-file">File</a>
+            <a class="menu-item active" href="#" id="menu-item-add" data-toggle="menu-add">Add</a>
+            <a class="menu-item" href="#" id="menu-item-diagram" data-toggle="menu-diagram">Options</a>
+            <a class="menu-item" href="#" id="menu-item-help" data-toggle="menu-help">Help</a>
+            <a class="menu-item" href="#" id="menu-item-plugin" data-toggle="menu-plugin">Plugins</a>
+        </nav>
     </div>
-  </div>
-  <div id="menu-add" class="menu-body">
-    <div class="menu-group">
-      <div class="menu-line">
 
-        <div class="add-dropdown-button dropdown">
-          <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-actors"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Add Role, Agent, or Actor">
-            <img src="images/Actor.svg" height="25" alt=""/><br>
-            Actor...
-            <span class="caret"></span>
-          </button>
-          <ul id="add-actor-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-actors"></ul>
+    <div id="menu-bodies">
+        <div id="menu-file" class="menu-body hidden">
+            <div class="menu-group">
+                <div class="menu-line">
+
+                    <a class="btn btn-default button-vertical" id="menu-button-save-image" title="Save (download) model as a SVG or PNG image file"
+                       data-toggle="modal" data-target="#modal-save-image">
+                        <span class="glyphicon glyphicon-picture" aria-hidden="true"></span><br>
+                        Save Image
+                    </a>
+
+                    <a class="btn btn-default button-vertical" id="menu-button-save-model"
+                       title="Save (download) the model to your computer">
+                        <span class="glyphicon glyphicon-floppy-save" aria-hidden="true"></span><br>
+                        Save Model
+                    </a>
+
+                    <a class="btn btn-default button-vertical" id="menu-button-load-model" data-toggle="modal" data-target="#modal-load-model"
+                       title="Load a previously saved model">
+                        <span class="glyphicon glyphicon-floppy-open" aria-hidden="true"></span><br>
+                        Load Model
+                    </a>
+
+                </div>
+            </div>
+        </div>
+        <div id="menu-add" class="menu-body">
+            <div class="menu-group">
+                <div class="menu-line">
+
+                    <div class="add-dropdown-button dropdown">
+                        <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-actors"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Add some kind of Actor">
+                            <img src="images/Actor.svg" height="25" alt=""/><br>
+                            Actor...
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="add-actor-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-actors"></ul>
+                    </div>
+
+                    <div class="add-dropdown-button dropdown">
+                        <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-actor-links"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                                title="Add links between actors">
+                            <img src="images/IsALink.svg" height="25" alt=""/><br>
+                            Actor links...
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="add-actor-link-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-actor-links"></ul>
+                    </div>
+
+                    <div class="add-dropdown-button dropdown">
+                        <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-dependency-links"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Add dependency link">
+                            <img src="images/DependencyLink.svg" height="25" alt=""/><br>
+                            Dependency...
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="add-dependency-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-dependency-links"></ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="menu-group">
+                <div class="menu-line">
+                    <span id="add-internal-cells-palette" class="add-button"></span>
+
+                    <div class="add-dropdown-button dropdown">
+                        <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-contribution-links"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                                title="Add contribution link (make, help, hurt or break)">
+                            <img src="images/ContributionLink.svg" height="25" alt=""/><br>
+                            Contribution...
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="add-contribution-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-contribution-links"></ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="line-break"></div>
+            <div id="status-bar">
+                <span id="status"></span>
+            </div>
         </div>
 
-        <div class="add-dropdown-button dropdown">
-          <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-actor-links"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-                  title="Add is-a or participates-in link between actors">
-            <img src="images/IsALink.svg" height="25" alt=""/><br>
-            Actor links...
-            <span class="caret"></span>
-          </button>
-          <ul id="add-actor-link-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-actor-links"></ul>
-        </div>
-
-        <div class="add-dropdown-button dropdown">
-          <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-dependency-links"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Add dependency link">
-            <img src="images/DependencyLink.svg" height="25" alt=""/><br>
-            Dependency...
-            <span class="caret"></span>
-          </button>
-          <ul id="add-dependency-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-dependency-links"></ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="menu-group">
-      <div class="menu-line">
-        <span id="add-internal-cells-palette" class="add-button"></span>
-
-        <div class="add-dropdown-button dropdown">
-          <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-contribution-links"
-                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-                  title="Add contribution link (make, help, hurt or break)">
-            <img src="images/ContributionLink.svg" height="25" alt=""/><br>
-            Contribution...
-            <span class="caret"></span>
-          </button>
-          <ul id="add-contribution-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-contribution-links"></ul>
-        </div>
-
-      </div>
-    </div>
-
-    <div class="line-break"></div>
-    <div id="status-bar">
-      <span id="status"></span>
-    </div>
-  </div>
-
-  <div id="menu-diagram" class="menu-body hidden">
-    <div class="menu-group">
-      <div class="title">Diagram Size</div>
-      <div class="menu-line">
-        Width:&nbsp; <input id="input-diagram-width" type="text" name="width" value="500" size="4" maxlength="6"
-                      title="Set the diagram's width (in pixels)"> px
-      </div>
-      <div class="menu-line">
-        Height:&nbsp; <input id="input-diagram-height" type="text" name="height" value="1200" size="4" maxlength="6"
-                       title="Set the diagram's height (in pixels)"> px
-      </div>
-      <!--<span class="menu-line"><a id="fit-to-content-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-resize-small"></i> Fit to content</a></span> TODO-->
-    </div>
-    <!--<div class="menu-group">-->
-    <!--<span class="title">colors</span>-->
-    <!--<span class="menu-line">Actor boundary:-->
-    <!--<input id="all-actor-boundary-color-picker" onchange="console.log('change event');" class="jscolor {hash:true}" value="e6e6e6" size="8">-->
-    <!--</span>-->
-    <!--<span class="menu-line">Elements:-->
-    <!--<input id="all-elements-color-picker" class="jscolor {hash:true}" value="ccfacd" size="8">-->
-    <!--</span>-->
-    <!--<span class="menu-line">-->
-    <!--<a id="reset-all-colors-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset colors</a>-->
-    <!--</span>-->
-    <!--</div>-->
-    <!--<div class="menu-group">-->
-    <!--<span class="title">text</span>-->
-    <!--<span class="menu-line">Font size: <input type="number" name="fontsize" value="12" min="4" max="999"></span>-->
-    <!--<span class="menu-line"><a class="btn btn-default btn-xs" data-toggle="button"><i class="glyphicon glyphicon-italic"></i></a></span>-->
-    <!--</div>-->
-    <div class="menu-group">
+        <div id="menu-diagram" class="menu-body hidden">
+            <div class="menu-group">
+                <div class="title">Diagram Size</div>
+                <div class="menu-line">
+                    Width:&nbsp; <input id="input-diagram-width" type="text" name="width" value="500" size="4" maxlength="6"
+                                        title="Set the diagram's width (in pixels)"> px
+                </div>
+                <div class="menu-line">
+                    Height:&nbsp; <input id="input-diagram-height" type="text" name="height" value="1200" size="4" maxlength="6"
+                                         title="Set the diagram's height (in pixels)"> px
+                </div>
+                <!--<span class="menu-line"><a id="fit-to-content-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-resize-small"></i> Fit to content</a></span> TODO-->
+            </div>
+            <!--<div class="menu-group">-->
+            <!--<span class="title">colors</span>-->
+            <!--<span class="menu-line">Actor boundary:-->
+            <!--<input id="all-actor-boundary-color-picker" onchange="console.log('change event');" class="jscolor {hash:true}" value="e6e6e6" size="8">-->
+            <!--</span>-->
+            <!--<span class="menu-line">Elements:-->
+            <!--<input id="all-elements-color-picker" class="jscolor {hash:true}" value="ccfacd" size="8">-->
+            <!--</span>-->
+            <!--<span class="menu-line">-->
+            <!--<a id="reset-all-colors-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset colors</a>-->
+            <!--</span>-->
+            <!--</div>-->
+            <!--<div class="menu-group">-->
+            <!--<span class="title">text</span>-->
+            <!--<span class="menu-line">Font size: <input type="number" name="fontsize" value="12" min="4" max="999"></span>-->
+            <!--<span class="menu-line"><a class="btn btn-default btn-xs" data-toggle="button"><i class="glyphicon glyphicon-italic"></i></a></span>-->
+            <!--</div>-->
+            <div class="menu-group">
       <span class="menu-line">
         <a id="menu-button-precise-links" class="btn btn-default btn-xs button-horizontal"
-            title="Remove gaps between links and elements; recommended to apply before saving an image. It may take some seconds">
+           title="Remove gaps between links and elements; recommended to apply before saving an image. It may take some seconds">
           <span class="glyphicon glyphicon-screenshot"></span> Pixel-perfect links
         </a>
       </span>
-      <span class="menu-line">
+                <span class="menu-line">
         <a id="menu-button-toggle-fullscreen" class="btn btn-default btn-xs button-horizontal"
            title="Fullscreen toggle">
           <span class="glyphicon glyphicon-fullscreen"></span> Toggle fullscreen
         </a>
       </span>
-      <span class="menu-line">
+                <span class="menu-line">
         <a id="menu-button-straighten-links" class="btn btn-default btn-xs button-horizontal"
            title="Straighten all links">
           <span class="glyphicon glyphicon-minus"></span> Straighten all links
         </a>
       </span>
-    </div>
-  </div>
-  <div id="menu-help" class="menu-body hidden">
-    <div class="menu-group">
-      <div class="menu-line">
+            </div>
+        </div>
+        <div id="menu-help" class="menu-body hidden">
+            <div class="menu-group">
+                <div class="menu-line">
 
-        <a class="btn btn-default" data-toggle="modal" data-target="#modal-examples">Examples</a>
-        <a class="btn btn-default" data-toggle="modal" data-target="#modal-instructions">Quick Help</a>
-        <a class="btn btn-default" href="https://sites.google.com/site/istarlanguage/" target="_blank">
-          iStar 2.0 Language Guide <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
-        </a>
+                    <a class="btn btn-default" data-toggle="modal" data-target="#modal-examples">Examples</a>
+                    <a class="btn btn-default" data-toggle="modal" data-target="#modal-instructions">Quick Help</a>
+                    <a class="btn btn-default" href="https://sites.google.com/site/istarlanguage/" target="_blank">
+                        iStar 2.0 Language Guide <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
+                    </a>
 
-      </div>
-    </div>
-  </div>
-  <div id="menu-plugin" class="menu-body hidden">
-    <div id="appToolbar"></div> <!-- this div is DEPRECATED. Instead, add elements directly to #menu-plugin -->
-  </div>
-
-</div>
-
-<div id="workspace">
-  <div id="sidepanel" class="size2">
-    <div id="regular-size-options">
-      <a href="#" class="collapse-sidepanel-button" title="Collapse panel">-</a>
-      <a href="#" id="uncollapsed-expand-sidepanel-button" class="expand-sidepanel-button" title="Expand panel">+</a>
-    </div>
-    <div id="collapsed-size-options" class="expand-sidepanel-button" title="click to expand this sidepanel">
-      <div id="collapsed-size-options-button">
-        <a href="#">+</a>
-      </div>
-      <a href="#" class="collapsed-size-options-area"></a>
-    </div>
-
-
-    <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active" id="sidepanel-tab-properties"><a href="#subpanel-properties" aria-controls="subpanel-properties" role="tab" data-toggle="tab">Properties</a></li>
-      <li role="presentation" id="sidepanel-tab-style" style="display: none;"><a href="#subpanel-style" aria-controls="subpanel-style" role="tab" data-toggle="tab">Style</a></li>
-    </ul>
-
-    <div class="sidepanel-content tab-content">
-
-      <div id="subpanel-properties" role="tabpanel" class="tab-pane active">
-        <table class="table table-hover" id="properties-table">
-          <tbody>
-          </tbody>
-        </table>
-
-        <div id="add-property-button-area">
+                </div>
+            </div>
+        </div>
+        <div id="menu-plugin" class="menu-body hidden">
+            <div id="appToolbar"></div> <!-- this div is DEPRECATED. Instead, add elements directly to #menu-plugin -->
         </div>
 
-        <div id="sidepanel-title-actions" class="sidepanel-title">Actions:</div>
-        <div id="cell-actions">
-        </div>
-
-      </div>
-
-      <div id="subpanel-style" role="tabpanel" class="tab-pane">
-
-        <div class="sidepanel-title">Element:</div>
-        <div class="group">
-          Color:&nbsp;
-          <input id="single-element-color-picker" class="jscolor {hash:true}" value="ccfacd" size="8">
-          <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
-          <!-- <br>Line style:&nbsp;
-          <select>
-            <option value="volvo">solid</option>
-            <option value="saab">dashed</option>
-            <option value="mercedes">dotted</option>
-          </select>
-          <br>Line thickness:&nbsp;
-          <input type="number" name="quantity" min="1" max="25" value ="2">
-          <br><input type="checkbox" name="" value=""> shadow
-          <br><input type="checkbox" name="" value=""> hand-drawn
-          <br><input type="checkbox" name="" value=""> auto-break lines -->
-        </div>
-
-
-        <!-- <div class="sidepanel-title">Text:</div>
-        <div class="group">
-          Color: <input id="single-element-color-picker" class="jscolor {hash:true}" value="000" size="8">
-          <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
-          <br><button style="font-weight:1000;">B</button><button style="font-style: italic;">I</button><button style="text-decoration: underline;">U</button><button style="text-decoration: line-through;">S</button>
-          <br>Size: <input type="number" name="quantity" min="1" max="25" value ="12">
-          <br>Top padding: <input type="number" name="quantity" min="1" max="25" value ="2">
-          <br>Letter spacing: <input type="number" name="quantity" min="-10" max="25" value ="0">
-          <br>Word spacing: <input type="number" name="quantity" min="-10" max="25" value ="0">
-          <br>Line height: <input type="number" name="quantity" min="0.1" max="10" value ="1.1" step="0.1">
-          <br><input type="checkbox" name="" value=""> shadow
-          <br><input type="checkbox" name="" value=""> uppercase
-        </div> -->
-
-      </div>
     </div>
 
-  </div>
+    <div id="workspace">
+        <div id="sidepanel" class="size2">
+            <div id="regular-size-options">
+                <a href="#" class="collapse-sidepanel-button" title="Collapse panel">-</a>
+                <a href="#" id="uncollapsed-expand-sidepanel-button" class="expand-sidepanel-button" title="Expand panel">+</a>
+            </div>
+            <div id="collapsed-size-options" class="expand-sidepanel-button" title="click to expand this sidepanel">
+                <div id="collapsed-size-options-button">
+                    <a href="#">+</a>
+                </div>
+                <a href="#" class="collapsed-size-options-area"></a>
+            </div>
 
-  <div id="out">
-    <div class="element-selection" style="display: none;"></div>
-    <div id="resize-handle" style="display: none;"></div>
-    <div id="diagram">
+
+            <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active" id="sidepanel-tab-properties"><a href="#subpanel-properties" aria-controls="subpanel-properties" role="tab" data-toggle="tab">Properties</a></li>
+                <li role="presentation" id="sidepanel-tab-style" style="display: none;"><a href="#subpanel-style" aria-controls="subpanel-style" role="tab" data-toggle="tab">Style</a></li>
+            </ul>
+
+            <div class="sidepanel-content tab-content">
+
+                <div id="subpanel-properties" role="tabpanel" class="tab-pane active">
+                    <table class="table table-hover" id="properties-table">
+                        <tbody>
+                        </tbody>
+                    </table>
+
+                    <div id="add-property-button-area">
+                    </div>
+
+                    <div id="sidepanel-title-actions" class="sidepanel-title">Actions:</div>
+                    <div id="cell-actions">
+                    </div>
+
+                </div>
+
+                <div id="subpanel-style" role="tabpanel" class="tab-pane">
+
+                    <div class="sidepanel-title">Element:</div>
+                    <div class="group">
+                        Color:&nbsp;
+                        <input id="single-element-color-picker" class="jscolor {hash:true}" value="ccfacd" size="8">
+                        <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
+                        <!-- <br>Line style:&nbsp;
+                        <select>
+                          <option value="volvo">solid</option>
+                          <option value="saab">dashed</option>
+                          <option value="mercedes">dotted</option>
+                        </select>
+                        <br>Line thickness:&nbsp;
+                        <input type="number" name="quantity" min="1" max="25" value ="2">
+                        <br><input type="checkbox" name="" value=""> shadow
+                        <br><input type="checkbox" name="" value=""> hand-drawn
+                        <br><input type="checkbox" name="" value=""> auto-break lines -->
+                    </div>
+
+
+                    <!-- <div class="sidepanel-title">Text:</div>
+                    <div class="group">
+                      Color: <input id="single-element-color-picker" class="jscolor {hash:true}" value="000" size="8">
+                      <a id="reset-element-color-button" class="btn btn-default btn-xs button-horizontal"><i class="glyphicon glyphicon-erase"></i> Reset color</a>
+                      <br><button style="font-weight:1000;">B</button><button style="font-style: italic;">I</button><button style="text-decoration: underline;">U</button><button style="text-decoration: line-through;">S</button>
+                      <br>Size: <input type="number" name="quantity" min="1" max="25" value ="12">
+                      <br>Top padding: <input type="number" name="quantity" min="1" max="25" value ="2">
+                      <br>Letter spacing: <input type="number" name="quantity" min="-10" max="25" value ="0">
+                      <br>Word spacing: <input type="number" name="quantity" min="-10" max="25" value ="0">
+                      <br>Line height: <input type="number" name="quantity" min="0.1" max="10" value ="1.1" step="0.1">
+                      <br><input type="checkbox" name="" value=""> shadow
+                      <br><input type="checkbox" name="" value=""> uppercase
+                    </div> -->
+
+                </div>
+            </div>
+
+        </div>
+
+        <div id="out">
+            <div class="element-selection" style="display: none;"></div>
+            <div id="resize-handle" style="display: none;"></div>
+            <div id="diagram">
+            </div>
+
+        </div>
+
     </div>
-
-  </div>
-
-</div>
 
 </div>
 
@@ -288,224 +288,225 @@
 
 <!-- backbone templates -->
 <script type="text/template" id="add-button-template">
-  <button type="button" class="btn btn-default add-button" id="add-<%- label %>" title="<%- tooltip %>">
-    <img
-      src="images/<%- name %>.svg" height="25" alt="" onError="this.onerror=null;this.src='images/<%- defaultButtonImage %>';"/>
-    <br><%- label %>
-  </button>
+    <button type="button" class="btn btn-default add-button" id="add-<%- label %>" title="<%- tooltip %>">
+        <img
+                src="images/<%- name %>.svg" height="25" alt="" onError="this.onerror=null;this.src='images/<%- defaultButtonImage %>';"/>
+        <br><%- label %>
+    </button>
 </script>
 
 <script type="text/template" id="add-dropdown-button-template">
-  <a id="d-add-<%- label %>" title="<%- tooltip %>" href="#">
-    <img src="images/<%- name %>.svg" height="35" alt="" onError="this.onerror=null;this.src='images/<%- defaultButtonImage %>';"/>
-    <%- label %>
-  </a>
+    <a id="d-add-<%- name %>" title="<%- tooltip %>" href="#">
+        <img id="d-add-<%- name %>-img" src="images/<%- name %>.svg" height="35" alt=""
+             onError="this.onerror=null;this.src='images/<%- defaultButtonImage %>';"/>
+        <%- label %>
+    </a>
 </script>
 
 
 <script type="text/template" id="property-template">
-  <tr>
-    <th scope="row" class="property-name"><%- propertyName %></th>
-    <td class="property-value">
-      <a href="#" id="current<%- propertyName %>" class="property-value" data-type="<%- dataType %>" data-pk="1"
-         data-name="<%- propertyName %>" data-title="Enter <%- propertyName %>"><%- propertyValue %></a>
-    </td>
-  </tr>
+    <tr>
+        <th scope="row" class="property-name"><%- propertyName %></th>
+        <td class="property-value">
+            <a href="#" id="current<%- propertyName %>" class="property-value" data-type="<%- dataType %>" data-pk="1"
+               data-name="<%- propertyName %>" data-title="Enter <%- propertyName %>"><%- propertyValue %></a>
+        </td>
+    </tr>
 </script>
 
 <div id="modals">
 
-  <div class="modal fade" id="modal-save-image" tabindex="-1" role="dialog" aria-labelledby="label-save-image-modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">×</span></button>
-          <h4 class="modal-title" id="label-save-image-modal">Save model as image</h4>
-        </div>
-        <div class="modal-body">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label for="input-filename" class="col-sm-2 control-label">File name: </label>
-              <div class="col-sm-4">
-                <input type="text" class="form-control" id="input-filename" value="goalModel" placeholder="goalModel">
-              </div>
-              <div class="col-sm-10">
-                <div class="checkbox">
-                  <label>
-                    <input id="modal-input-precise-links" type="checkbox"> Pixel-perfect links (it may take some seconds longer)
-                  </label>
+    <div class="modal fade" id="modal-save-image" tabindex="-1" role="dialog" aria-labelledby="label-save-image-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="label-save-image-modal">Save model as image</h4>
                 </div>
-              </div>
+                <div class="modal-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label for="input-filename" class="col-sm-2 control-label">File name: </label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="input-filename" value="goalModel" placeholder="goalModel">
+                            </div>
+                            <div class="col-sm-10">
+                                <div class="checkbox">
+                                    <label>
+                                        <input id="modal-input-precise-links" type="checkbox"> Pixel-perfect links (it may take some seconds longer)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-3">
+                                <select id="input-file-format" class="form-control" title="Select file format">
+                                    <option>SVG</option>
+                                    <option>PNG</option>
+                                </select>
+
+                            </div>
+                            <div id="save-png-options" class="col-sm-6 hidden">
+                                <div class="checkbox">
+                                    <label title="If you're having trouble downloading large models, try to uncheck this">
+                                        <input id="modal-input-hi-res" type="checkbox" checked> High resolution
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label title="Transparent background">
+                                        <input id="modal-input-transparent-background" type="checkbox" checked> Transparent background
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="modal-button-save-image" type="button" class="btn btn-primary"
+                            data-save-text="Saving..." data-preparing-text="Preparing image... (please wait)">Save image
+                    </button>
+                    <button type="button" class="btn" data-dismiss="modal">Cancel</button>
+                </div>
             </div>
+        </div>
+    </div>
 
-            <div class="form-group">
-              <div class="col-sm-3">
-                <select id="input-file-format" class="form-control" title="Select file format">
-                  <option>SVG</option>
-                  <option>PNG</option>
-                </select>
-
-              </div>
-              <div id="save-png-options" class="col-sm-6 hidden">
-                <div class="checkbox">
-                  <label title="If you're having trouble downloading large models, try to uncheck this">
-                    <input id="modal-input-hi-res" type="checkbox" checked> High resolution
-                  </label>
+    <div class="modal fade" id="modal-load-model" tabindex="-1" role="dialog" aria-labelledby="label-load-model-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="label-load-model-modal">Load i* model from file</h4>
                 </div>
-                <div class="checkbox">
-                  <label title="Transparent background">
-                    <input id="modal-input-transparent-background" type="checkbox" checked> Transparent background
-                  </label>
+                <div class="modal-body">
+                    <input type="file" id="input-file-to-load" name="file"/>
+                    <br>
                 </div>
-              </div>
+                <div class="modal-footer">
+                    <button id="modal-button-load-model" type="button" class="btn btn-primary" data-loading-text="Loading...">Load
+                        model
+                    </button>
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                </div>
             </div>
-
-          </form>
         </div>
-        <div class="modal-footer">
-          <button id="modal-button-save-image" type="button" class="btn btn-primary"
-                  data-save-text="Saving..." data-preparing-text="Preparing image... (please wait)">Save image
-          </button>
-          <button type="button" class="btn" data-dismiss="modal">Cancel</button>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="modal-load-model" tabindex="-1" role="dialog" aria-labelledby="label-load-model-modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">×</span></button>
-          <h4 class="modal-title" id="label-load-model-modal">Load i* model from file</h4>
+    <div class="modal" id="modal-alert" tabindex="-1" role="dialog" aria-labelledby="label-alert-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="label-alert-modal">title</h4>
+                </div>
+                <div id="body-alert-modal" class="modal-body">
+                    text
+                </div>
+                <div class="modal-footer">
+                    <button id="close-button-alert-modal" type="button" class="btn" data-dismiss="modal">OK</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <input type="file" id="input-file-to-load" name="file"/>
-          <br>
-        </div>
-        <div class="modal-footer">
-          <button id="modal-button-load-model" type="button" class="btn btn-primary" data-loading-text="Loading...">Load
-            model
-          </button>
-          <button type="button" class="btn" data-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <div class="modal" id="modal-alert" tabindex="-1" role="dialog" aria-labelledby="label-alert-modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                  aria-hidden="true">×</span></button>
-          <h4 class="modal-title" id="label-alert-modal">title</h4>
+    <div class="modal fade" id="modal-examples" tabindex="-1" role="dialog" aria-labelledby="label-examples-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="label-examples-modal">Load Examples</h4>
+                </div>
+                <div class="modal-body">
+                    <em>Loading may take a while, please wait a few seconds after clicking on an example below.</em><br><br>
+                    <div class="alert alert-danger" role="alert">WARNING! If you click on an example below, your current model will be erased.</div>
+                    <ul>
+                        <li>
+                            <a class="modal-button-load-example" href="#" data-model="everyElementAndLink">
+                                Example with every iStar 2.0 element and link, along with its definitions
+                            </a>
+                        </li>
+                        <li><a class="modal-button-load-example" href="#" data-model="travelReimbursement">University Travel Reimbursement</a></li>
+                        <li><a class="modal-button-load-example" href="#" data-model="buyerDrivenECommerce">Buyer Driven e-Commerce</a></li>
+                    </ul>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div id="body-alert-modal" class="modal-body">
-          text
-        </div>
-        <div class="modal-footer">
-          <button id="close-button-alert-modal" type="button" class="btn" data-dismiss="modal">OK</button>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <div class="modal fade" id="modal-examples" tabindex="-1" role="dialog" aria-labelledby="label-examples-modal">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">×</span></button>
-          <h4 class="modal-title" id="label-examples-modal">Load Examples</h4>
+    <div class="modal fade" id="modal-instructions" tabindex="-1" role="dialog" aria-labelledby="label-instructions-modal">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="label-instructions-modal">Tool Manual</h4>
+                </div>
+                <div class="modal-body">
+                    <h4>Visualization</h4>
+                    <ul>
+                        <li>Use the tool in fullscreen by clicking "Toggle fullscreen" within the <em>Options</em> menu.</li>
+                        <li>Remove the gaps between links and elements by clicking "Pixel-perfect links" within the
+                            <em>Options</em> menu (this operation takes some time).</li>
+                        <li>You can use your regular browser's zoom options to zoom in and out.</li>
+                    </ul>
+                    <h4>Change</h4>
+                    <ul>
+                        <li>To change the name of an element: double-click it.</li>
+                        <li>To collapse/expand an actor/role/agent: press <kbd>alt</kbd> and click it.</li>
+                        <li>To change the diagram size: use the <em>Options</em> menu.</li>
+                    </ul>
+                    <h4>Delete</h4>
+                    <ul>
+                        <li>To delete an element: click on the element, then press the <kbd>delete</kbd> key.</li>
+                        <li>To delete a dependency: click on its dependum, then press the <kbd>delete</kbd> key.</li>
+                        <li>To delete a link: click over the link, then press the <kbd>delete</kbd> key.</li>
+                        <li>To delete a vertex in a link: double-click the vertex.</li>
+                    </ul>
+                    <h4>Add</h4>
+                    <ul>
+                        <li>To add a property to an element or link: click on the element or link, then click on the <em>Add Property</em> button in
+                            the sidepanel.
+                        </li>
+                        <li>To add an actor/role/agent in the diagram: click on the ACTOR... button, select the respective option,
+                            and then click on the diagram.
+                        </li>
+                        <li>To add a goal/task/resource/quality in the diagram: click on the respective button and then click on the
+                            actor that will contain the element. (OBS: all elements must be inside an actor/role/agent)
+                        </li>
+                        <li>To add a refinement/qualification/needed-by link: click on the respective link button, then click on the
+                            source element, and lastly click on the target element.
+                        </li>
+                        <li>To add a contribution link: click on the CONTRIBUTION... button, select the respective label, then click
+                            on the source element, and lastly click on the target element.
+                        </li>
+                        <li>To add a dependency link: click on the DEPENDENCY... button, select the respective dependency type, then
+                            click on the source element (in the depender), and lastly click on the target element (on the dependee).
+                        </li>
+                        <li>To add an is-a/participates-in link: click on the ACTOR LINKS... button, select the respective option,
+                            then click on the source, and lastly click on the target.
+                        </li>
+                    </ul>
+
+                    <em>piStar tool version 2.0.0a</em><br>
+                    For more info on this project, please visit the <a href="https://github.com/jhcp/piStar/" target="_blank">
+                    piStar repository <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a>.
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-body">
-          <em>Loading may take a while, please wait a few seconds after clicking on an example below.</em><br><br>
-          <div class="alert alert-danger" role="alert">WARNING! If you click on an example below, your current model will be erased.</div>
-          <ul>
-            <li>
-              <a class="modal-button-load-example" href="#" data-model="everyElementAndLink">
-                Example with every iStar 2.0 element and link, along with its definitions
-              </a>
-            </li>
-            <li><a class="modal-button-load-example" href="#" data-model="travelReimbursement">University Travel Reimbursement</a></li>
-            <li><a class="modal-button-load-example" href="#" data-model="buyerDrivenECommerce">Buyer Driven e-Commerce</a></li>
-          </ul>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" data-dismiss="modal">Close</button>
-        </div>
-      </div>
     </div>
-  </div>
-
-  <div class="modal fade" id="modal-instructions" tabindex="-1" role="dialog" aria-labelledby="label-instructions-modal">
-    <div class="modal-dialog modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-              aria-hidden="true">×</span></button>
-          <h4 class="modal-title" id="label-instructions-modal">Tool Manual</h4>
-        </div>
-        <div class="modal-body">
-          <h4>Visualization</h4>
-          <ul>
-            <li>Use the tool in fullscreen by clicking "Toggle fullscreen" within the <em>Options</em> menu.</li>
-            <li>Remove the gaps between links and elements by clicking "Pixel-perfect links" within the
-              <em>Options</em> menu (this operation takes some time).</li>
-            <li>You can use your regular browser's zoom options to zoom in and out.</li>
-          </ul>
-          <h4>Change</h4>
-          <ul>
-            <li>To change the name of an element: double-click it.</li>
-            <li>To collapse/expand an actor/role/agent: press <kbd>alt</kbd> and click it.</li>
-            <li>To change the diagram size: use the <em>Options</em> menu.</li>
-          </ul>
-          <h4>Delete</h4>
-          <ul>
-            <li>To delete an element: click on the element, then press the <kbd>delete</kbd> key.</li>
-            <li>To delete a dependency: click on its dependum, then press the <kbd>delete</kbd> key.</li>
-            <li>To delete a link: click over the link, then press the <kbd>delete</kbd> key.</li>
-            <li>To delete a vertex in a link: double-click the vertex.</li>
-          </ul>
-          <h4>Add</h4>
-          <ul>
-            <li>To add a property to an element or link: click on the element or link, then click on the <em>Add Property</em> button in
-              the sidepanel.
-            </li>
-            <li>To add an actor/role/agent in the diagram: click on the ACTOR... button, select the respective option,
-              and then click on the diagram.
-            </li>
-            <li>To add a goal/task/resource/quality in the diagram: click on the respective button and then click on the
-              actor that will contain the element. (OBS: all elements must be inside an actor/role/agent)
-            </li>
-            <li>To add a refinement/qualification/needed-by link: click on the respective link button, then click on the
-              source element, and lastly click on the target element.
-            </li>
-            <li>To add a contribution link: click on the CONTRIBUTION... button, select the respective label, then click
-              on the source element, and lastly click on the target element.
-            </li>
-            <li>To add a dependency link: click on the DEPENDENCY... button, select the respective dependency type, then
-              click on the source element (in the depender), and lastly click on the target element (on the dependee).
-            </li>
-            <li>To add an is-a/participates-in link: click on the ACTOR LINKS... button, select the respective option,
-              then click on the source, and lastly click on the target.
-            </li>
-          </ul>
-
-          <em>piStar tool version 2.0.0a</em><br>
-          For more info on this project, please visit the <a href="https://github.com/jhcp/piStar/" target="_blank">
-          piStar repository <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span></a>.
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div>
 

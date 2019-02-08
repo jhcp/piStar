@@ -92,7 +92,7 @@ var ui = function() {
         },
         deselectElement: function(element, elementView) {
             if (element) {
-                var elementView = elementView || istar.paper.findViewByModel(element);
+                elementView = elementView || istar.paper.findViewByModel(element);
 
                 //actual selection change
                 this.selectedElement = null;
@@ -107,7 +107,7 @@ var ui = function() {
             }
         },
         selectModel: function() {
-            if (this.selectedElement != istar.graph) {
+            if (this.selectedElement !== istar.graph) {
                 this.clearSelection();
                 this.selectedElement = istar.graph;
                 istar.paper.trigger('change:selection', {selectedElement: istar.graph});
@@ -187,8 +187,6 @@ ui.defineInteractions = function () {
         }
         else if (cell.isLink()) {
             var verticesTool = new joint.linkTools.Vertices({snapRadius: 1});
-            // var removeButton = new joint.linkTools.Remove();
-            // var toolsView = new joint.dia.ToolsView({tools: [verticesTool, removeButton]});
             var toolsView = new joint.dia.ToolsView({tools: [verticesTool]});
             cell.findView(istar.paper).addTools(toolsView).hideTools();
             cell.on('change:vertices', function(linkModel) {
@@ -199,6 +197,7 @@ ui.defineInteractions = function () {
     });
 
     istar.paper.on('link:mouseenter', function(linkView) {
+        //highlights a hovered link, which indicates to the user that it is interactive
         linkView.showTools();
         linkView.model.attr('connection-wrap/strokeWidth', 20);
         linkView.model.attr('connection-wrap/stroke', 'lightgrey');
@@ -304,8 +303,13 @@ ui.defineInteractions = function () {
             }
         }
         else if (ui.currentStateIsAddLink()) {
+            var isContainerLink = $.inArray(ui.currentAddingElement, istar.metamodel.getContainerLinksNames()) !== -1;
+            var isNodeLink = $.inArray(ui.currentAddingElement, istar.metamodel.getNodeLinksNames()) !== -1;
+            var isDependencyLink = ui.dependencyType.match(/DependencyLink/) !== null;
+
+            console.log(ui.dependencyType);
             if (cellView.model.isKindOfActor()) {
-                if (ui.currentAddingElement.match(/IsALink|ParticipatesInLink/)) {
+                if (isContainerLink) {
                     if (ui.isLinkSourceUndefined()) {
                         cellView.highlight();
                         ui.linkSource = cellView;
@@ -313,7 +317,6 @@ ui.defineInteractions = function () {
                         ui.linkTarget = cellView;
                         var isValid = istar.metamodel.containerLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                         if (isValid.isValid) {
-                            // newLink = istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
                             ui.addLinkBetweenActors(ui.currentAddingElement, cellView);
                         }
                         else {
@@ -323,7 +326,7 @@ ui.defineInteractions = function () {
                         }
                     }
                 }
-                else if (ui.dependencyType.match(/DependencyLink/)) {
+                else if (isDependencyLink) {
                     if (ui.isLinkSourceUndefined()) {
                         cellView.highlight();
                         ui.linkSource = cellView;
@@ -656,9 +659,7 @@ ui.changeColorElements = function (color) {
     _.map(istar.getElements(), function (node) {
         node.attr('circle', {fill: color});
         if (node.isKindOfInnerElement()) {
-            node.attr('rect', {fill: color});
-            node.attr('polygon', {fill: color});
-            node.attr('path', {fill: color});
+            node.attr('.element', {fill: color});
         }
     });
 };
@@ -671,9 +672,7 @@ ui.changeColorElement = function (color, element) {
         element.attr('.actorSymbol', {fill: color});
     }
     else {
-        element.attr('rect', {fill: color});
-        element.attr('polygon', {fill: color});
-        element.attr('path', {fill: color});
+        element.attr('.element', {fill: color});
     }
     if (color === ui.defaultElementBackgroundColor) {
         element.prop('backgroundColor', null);
@@ -1267,7 +1266,12 @@ $('#modal-alert').on('shown.bs.modal', function () {
 ui.displayInvalidLinkMessage = function (message) {
     'use strict';
 
-    ui.alert('INVALID: Sorry, but ' + message, 'Invalid link');
+    if (message) {
+        ui.alert('INVALID: Sorry, but ' + message, 'Invalid link');
+    }
+    else {
+        ui.alert('INVALID: Sorry, but this link you are trying to create is invalid');
+    }
 };
 
 ui.displayInvalidModelMessage = function (messages) {
@@ -1291,11 +1295,5 @@ ui.displayInvalidModelMessage = function (messages) {
 //overrides istar.displayInvalidModelMessages, in order to display the messages in the user interface
 istar.displayInvalidModelMessages = ui.displayInvalidModelMessage;
 
-ui.loadDefaultNodeImage = function (id) {
-    'use strict';
-
-    document.getElementById(id).src = 'images/Resource.svg';
-}
-
 /*definition of globals to prevent undue JSHint warnings*/
-/*globals istar:false, console:false */
+/*globals istar:false, console:false, $:false, joint:false, uiC:false */
