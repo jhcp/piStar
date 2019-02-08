@@ -129,8 +129,6 @@ uiC.PropertiesTableView = Backbone.View.extend({
                     var newNode = istar.replaceNode(updatedElement, istar.metamodel.nodes[newValue].name)
                         .prop('isDependum', true);
                     ui.selectElement(newNode);
-                    //update the line break on the element's label
-                    newNode.updateLineBreak();
                 },
                 value: currentType
             })
