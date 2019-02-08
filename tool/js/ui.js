@@ -311,7 +311,7 @@ ui.defineInteractions = function () {
                         ui.linkSource = cellView;
                     } else {
                         ui.linkTarget = cellView;
-                        isValid = istar.metamodel.containerLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                        var isValid = istar.metamodel.containerLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                         if (isValid.isValid) {
                             // newLink = istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
                             ui.addLinkBetweenActors(ui.currentAddingElement, cellView);
@@ -329,7 +329,7 @@ ui.defineInteractions = function () {
                         ui.linkSource = cellView;
                     } else {
                         ui.linkTarget = cellView;
-                        isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                        var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
                         if (isValid.isValid) {
                             addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                         }
@@ -353,13 +353,13 @@ ui.defineInteractions = function () {
                             var newLink = null;
                             var prettyLinkName = '';
                             if (ui.currentAddingElement === 'AndRefinementLink') {
-                                isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                var isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addAndRefinementLink(ui.linkSource.model, ui.linkTarget.model);
                                 }
                             }
                             else if (ui.currentAddingElement === 'OrRefinementLink') {
-                                isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                var isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addOrRefinementLink(ui.linkSource.model, ui.linkTarget.model);
                                 }
@@ -377,7 +377,7 @@ ui.defineInteractions = function () {
                                     ui.linkTarget = temp;
                                     undoInversion = true;
                                 }
-                                isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                var isValid = istar.metamodel.nodeLinks[ui.currentAddingElement].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addNeededByLink(ui.linkSource.model, ui.linkTarget.model);
                                 }
@@ -406,7 +406,7 @@ ui.defineInteractions = function () {
                                 }
                             }
                             else if (ui.currentAddingElement.match(/make|help|hurt|break/i)) {
-                                isValid = istar.metamodel.nodeLinks['ContributionLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                                var isValid = istar.metamodel.nodeLinks['ContributionLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
                                     newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.currentAddingElement);
                                     if (newLink) {
@@ -420,7 +420,7 @@ ui.defineInteractions = function () {
                             }
                         }
                         else if (ui.dependencyType.match(/DependencyLink/)) {
-                            isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                            var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
                             if (isValid.isValid) {
                                 addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                             }

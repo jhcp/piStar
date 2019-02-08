@@ -7,10 +7,17 @@
  */
 
 $(document).ready(function () {
+    'use strict';
+
     istar.setupModel();
     istar.setupDiagram();
     istar.setupMetamodel(istar.metamodel);
     ui.setupUi();
     istar.examples.loadPistarWelcome();
     ui.selectModel();//clear selection
+    ui.alert('Hi there, this is a beta version of the tool, currently under testing. Please send us your feedback at <a href="https://goo.gl/forms/SaJlelSfkTkp819t2">https://goo.gl/forms/SaJlelSfkTkp819t2</a>',
+        'Beta version');
 });
+
+/*definition of globals to prevent undue JSHint warnings*/
+/*globals istar:false, ui:false, console:false */
