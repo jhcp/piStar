@@ -80,7 +80,7 @@ var istar = function () {
         content = $.trim(content) || '';
         content = joint.util.breakText(content, {width: breakWidth});//add the line breaks automatically
 
-        this.attr('text/text', content);//actually change the label
+        this.attr('.content/text', content);//actually change the label
         return this;
     }
 

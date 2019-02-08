@@ -20,7 +20,7 @@ joint.shapes.istar = {};
 */
 
 joint.shapes.istar.Actor = joint.dia.Element.extend({
-    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path /><text/></g>',
+    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path /><text class="content"/></g>',
     defaults: joint.util.deepSupplement({
         type: 'Container',
         size: {width: 200, height: 120},
@@ -60,7 +60,7 @@ joint.shapes.istar.Actor = joint.dia.Element.extend({
 });
 
 joint.shapes.istar.Role = joint.dia.Element.extend({
-    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path class="actorDecorator"/><text/></g>',
+    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path class="actorDecorator"/><text class="content"/></g>',
     defaults: joint.util.deepSupplement({
         type: 'Container',
         size: {width: 200, height: 120},
@@ -106,7 +106,7 @@ joint.shapes.istar.Role = joint.dia.Element.extend({
 });
 
 joint.shapes.istar.Agent = joint.dia.Element.extend({
-    markup: '<g><rect class="boundary"/><circle class="element actorSymbol"/><path class="actorDecorator"/><text/></g>',
+    markup: '<g><rect class="boundary"/><circle class="element actorSymbol"/><path class="actorDecorator"/><text class="content"/></g>',
     defaults: joint.util.deepSupplement({
         type: 'Container',
         size: {width: 200, height: 120},
@@ -157,7 +157,7 @@ joint.shapes.istar.Agent = joint.dia.Element.extend({
    a *new* shape specific to the container that was added to the metamodel
  */
 joint.shapes.istar.DefaultContainer = joint.dia.Element.extend({
-    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path /><text/></g>',
+    markup: '<g><rect class="boundary" /><circle class="element actorSymbol" /><path /><text class="content"/></g>',
     defaults: joint.util.deepSupplement({
         type: 'Container',
         size: {width: 200, height: 120},
@@ -198,7 +198,7 @@ joint.shapes.istar.DefaultContainer = joint.dia.Element.extend({
 });
 
 joint.shapes.istar.Goal = joint.shapes.basic.Rect.extend({
-    markup: '<g class="scalable"><rect class="element"/></g><text/>',
+    markup: '<g class="scalable"><rect class="element"/></g><text class="content"/>',
     defaults: joint.util.deepSupplement({
         type: 'Goal',
         size: {width: 90, height: 35},
@@ -222,7 +222,7 @@ joint.shapes.istar.Goal = joint.shapes.basic.Rect.extend({
 });
 
 joint.shapes.istar.Resource = joint.shapes.basic.Rect.extend({
-    markup: '<g class="scalable"><rect class="element"/></g><text/>',
+    markup: '<g class="scalable"><rect class="element"/></g><text class="content"/>',
     defaults: joint.util.deepSupplement({
         type: 'Resource',
         size: {width: 90, height: 35},
@@ -246,7 +246,7 @@ joint.shapes.istar.Resource = joint.shapes.basic.Rect.extend({
 });
 
 joint.shapes.istar.Task = joint.shapes.basic.Polygon.extend({
-    markup: '<g class="scalable"><polygon class="element"/></g><text/>',
+    markup: '<g class="scalable"><polygon class="element"/></g><text class="content"/>',
     defaults: joint.util.deepSupplement({
         type: 'Task',
         size: {width: 95, height: 36},
@@ -271,7 +271,7 @@ joint.shapes.istar.Task = joint.shapes.basic.Polygon.extend({
 });
 
 joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
-    markup: '<g class="scalable"><path class="element"/></g><text/>',
+    markup: '<g class="scalable"><path class="element"/></g><text class="content"/>',
     defaults: joint.util.deepSupplement({
         type: 'Quality',
         size: {width: 90, height: 55},
