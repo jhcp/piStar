@@ -17,14 +17,21 @@
 var istar = function () {
     'use strict';
 
+    //private functions
+
     function _createDefaultGraph  () {
+        //a joint js graph contains all cells (elements and links) of the model
         var graph = new joint.dia.Graph();
 
-        //Create a new JointJS Cell to store custom data properties of the
+        //create a new JointJS Cell to store custom data properties of the
         // model as a whole
         graph._modelProperties = (new joint.dia.Element()).prop('name', '');
-
+        //creates a shortcut for setting up model properties
         graph.prop = graph._modelProperties.prop;
+
+        //create is... functions
+        //they are useful because, since the model itself can be selected, these functions
+        //can help differentiate it from regular cells
         graph.isCell = function() {return false;};
         graph.isElement = function(){return false;};
         graph.isLink = function(){return false;};
@@ -33,8 +40,9 @@ var istar = function () {
     }
 
     function _createDefaultPaper (graph) {
+        //a joint js paper is the view for a joint js graph
         return new joint.dia.Paper({
-            el: $('#diagram'),
+            el: $('#diagram'), /*DOM container of the SVG image*/
             width: 2000,
             height: 1300,
             model: graph,
@@ -102,12 +110,11 @@ var istar = function () {
             _.forEach(this.getEmbeddedCells(), function (innerElement) {
                 innerElement.attr('./display', 'none');//hide the actor's inner elements
 
-                //update the dependency links
+                //retarget the dependency links, from inner elements to the actor itself
                 var connectedLinks = istar.graph.getConnectedLinks(innerElement);
                 if (connectedLinks) {
                     _.forEach(connectedLinks, function (connectedLink) {
-                        if (connectedLink.attributes.type === ('DependencyLink')) {
-
+                        if (connectedLink.isDependencyLink() ) {
                             if (connectedLink.get('source').id === innerElement.id) {
                                 connectedLink.prop('elementSource', innerElement.id);
                                 connectedLink.set('source', {id: actor.id, selector: '.element'});
@@ -134,12 +141,11 @@ var istar = function () {
             _.forEach(this.getEmbeddedCells(), function (innerElement) {
                 innerElement.attr('./display', 'visible');//display the actor's inner elements
 
-                //update the dependency links
+                //retarget the dependency links, from the actor to the original inner elements (when applicable)
                 var connectedLinks = istar.graph.getConnectedLinks(actor);
                 if (connectedLinks) {
                     _.forEach(connectedLinks, function (connectedLink) {
-                        if (connectedLink.attributes.type === ('DependencyLink')) {
-
+                        if (connectedLink.isDependencyLink() ) {
                             if (connectedLink.get('source').id === actor.id) {
                                 if (connectedLink.prop('elementSource')) {
                                     connectedLink.set('source', {
@@ -169,7 +175,7 @@ var istar = function () {
         /* this function is meant to be added to a prototype */
 
         if (this.prop('collapsed')) {
-            this.uncollapse();
+            this.expand();
         }
         else {
             this.collapse();
@@ -181,7 +187,7 @@ var istar = function () {
         /* this function is meant to be added to a prototype */
 
         this.label(0, {attrs: {text: {text: '' + value + ''}}});
-        return this;//TODO passar para UI
+        return this;
     }
 
     function _updateActorBoundary () {
@@ -232,14 +238,29 @@ var istar = function () {
             position: {x: newX, y: newY},
             size: {width: newCornerX - newX, height: newCornerY - newY}
         }, {skipParentHandler: true});
-        this.attr({
-            '.boundary': {
-                width: newCornerX - newX + 10,
-                height: newCornerY - newY + 10
-            }
-        });
+
+        if (this.attr('.boundary/width')) {
+            this.attr({
+                '.boundary': {
+                    width: newCornerX - newX + 10,
+                    height: newCornerY - newY + 10
+                }
+            });
+        }
+        else if (this.attr('.boundary/r')) {
+            //tempative handling of circular boundaries
+            var largerDimension = (newCornerX - newX) >  (newCornerY - newY) ? (newCornerX - newX) : (newCornerY - newY);
+            this.attr({
+                '.boundary': {
+                    cx: largerDimension/2,
+                    cy: largerDimension/2,
+                    r: largerDimension/2
+                }
+            });
+        }
     }
 
+    //public attributes and functions
     return {
         metamodel: {},
         setupModel: function (graph) {
@@ -328,9 +349,6 @@ var istar = function () {
          * Adds a new node to the model.
          * Instead of calling this function directly, this function is expected to be called
          * from a specialized 'add' function, such as addActor or addTask.<br />
-         * Options object:<br />
-         * breakLine: if true, breaks the line of the content automatically at breakWidth. <i>Default value: true</i>.<br />
-         * breakWidth: width limit used for breaking lines. <i>Default value: 90</i>.
          * @returns the new node
          * @param {object}  nodeType    type definition of the node to be created
          * @param {string}  content     content of the node
@@ -588,4 +606,4 @@ var istar = function () {
 }();
 
 /*definition of globals to prevent undue JSHint warnings*/
-/*globals joint:false, $:false, _:false */
+/*globals joint:false, $:false, _:false, ui:false, console:false */

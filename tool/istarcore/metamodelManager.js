@@ -55,7 +55,6 @@ istar.validateMetamodel = function (metamodel) {
                 '. Node link names cannot start with "node" nor "link".');
         }
     });
-    //TODO find a way to prevent so much duplication on this validation code
 
     //check if the metamodel contains at least one kind of element (node or container)
     //if it doesnt them a model couldnt be created
@@ -66,6 +65,13 @@ istar.validateMetamodel = function (metamodel) {
     }
 };
 
+/*
+    This function processes a given metamodel, stores the processed data on the istar global variable,
+        and creates additional functions based on the metamodel
+
+    It creates 'add' functions for each element of the metamodel
+        For instance, if there is a node type named 'Person', an 'addPerson' function is created
+*/
 istar.setupMetamodel = function (metamodel) {
     'use strict';
 
@@ -218,7 +224,7 @@ istar.setupMetamodel = function (metamodel) {
         joint.dia.Cell.prototype.isDependum = function () {
             //this function does not inform if this type can be dependum.
             // Instead, it informs whether this instance is an actual dependum in the present graph
-            return this.get('isDependum') || false;
+            return this.prop('isDependum') || false;
         };
         joint.dia.Cell.prototype.isKindOfActor = function () {
             return _.includes(metamodel.getContainersNames(), this.prop('type'));
