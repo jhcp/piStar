@@ -88,7 +88,7 @@ var istar = function () {
         /* jshint validthis: true */
         /* this function is meant to be added to a prototype */
 
-        this.setNodeLabel(this.prop('name'), {breakLine: true, breakWidth: this.findView(istar.paper).getBBox().width});
+        this.setNodeLabel(this.prop('name'));
     }
 
     function _embedNode (node) {
