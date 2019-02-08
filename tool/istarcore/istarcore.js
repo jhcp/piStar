@@ -367,21 +367,22 @@ var istar = function () {
             //stores the initial size of the element in order to later be able to restore it to its initial size
             newNode.prop('originalSize', newNode.prop('size'));
 
+            if (newNode.attr('.stereotype')) {
+                newNode.attr('.stereotype/text', '<<' + nodeType.name + '>>');
+            }
+
             return newNode;
         },
         replaceNode: function (element, typeName) {
-            var shape = istar.metamodel.nodes[typeName].shapeObject;
-
-            //create the node and add it to the graph
-            var newNode = new shape({
-                position: element.prop('position')
-            });
-            newNode.prop('type', typeName);
+            var newNode = this.addNode(
+                istar.metamodel.nodes[typeName],
+                element.prop('name'),
+                {
+                    position: element.prop('position')
+                });
 
             //copy the old node properties to the new node
-            newNode.prop('name', element.prop('name'));
-            newNode.attr('text/text', element.prop('name'));
-            newNode.prop('originalSize', newNode.prop('size')); //stores the initial size of the element
+            newNode.prop('originalSize', newNode.prop('size')); //stores the (default) initial size of the element
             if (element.prop('size') !== element.prop('originalSize')) {
                 newNode.prop('size', element.prop('size')); //stores the initial size of the element
             }
@@ -393,7 +394,6 @@ var istar = function () {
 
             istar.graph.addCell(newNode);
             //update the line break on the element's label
-            newNode.updateLineBreak();
 
             //change the dependency links from the old node to the new node
             var nodeId = element.prop('id');

@@ -301,11 +301,11 @@ joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
    a *new* shape specific to the element that was added to the metamodel
  */
 joint.shapes.istar.DefaultNode = joint.shapes.basic.Rect.extend({
-    markup: '<g class="scalable"><rect class="element"/></g><text/>',
+    markup: '<g class="scalable"><rect class="element"/></g><text class="stereotype"/><text class="content"/>',
     defaults: joint.util.deepSupplement({
         size: {width: 90, height: 35},
         attrs: {
-            rect: {
+            '.element': {
                 fill: 'rgb(255,255,255)',
                 height: 30,
                 rx: 0,
@@ -315,10 +315,20 @@ joint.shapes.istar.DefaultNode = joint.shapes.basic.Rect.extend({
                 'vector-effect': 'non-scaling-stroke', /* prevents stroke distortion when the element is resized */
                 width: 130
             },
-            text: {
+            '.stereotype': {
+                'font-size': 12,
+                'font-style': 'italic',
+                'ref': '.element',
+                'ref-y': '10',
+                'text': '<<ElementType>>'
+            },
+            '.content': {
                 'font-size': 12,
                 'font-weight': 'bold',
-                text: '<<ElementType>>'
+                'ref': '.element',
+                'ref-y': '5',
+                'refY2': '0.5',
+                text: 'ElementType'
             }
         }
     }, joint.shapes.basic.Rect.prototype.defaults)
