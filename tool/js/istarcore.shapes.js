@@ -198,6 +198,7 @@ joint.shapes.istar.DefaultContainer = joint.dia.Element.extend({
 });
 
 joint.shapes.istar.Goal = joint.shapes.basic.Rect.extend({
+    markup: '<g class="scalable"><rect class="element"/></g><text/>',
     defaults: joint.util.deepSupplement({
         type: 'Goal',
         size: {width: 90, height: 35},
@@ -221,6 +222,7 @@ joint.shapes.istar.Goal = joint.shapes.basic.Rect.extend({
 });
 
 joint.shapes.istar.Resource = joint.shapes.basic.Rect.extend({
+    markup: '<g class="scalable"><rect class="element"/></g><text/>',
     defaults: joint.util.deepSupplement({
         type: 'Resource',
         size: {width: 90, height: 35},
@@ -244,6 +246,7 @@ joint.shapes.istar.Resource = joint.shapes.basic.Rect.extend({
 });
 
 joint.shapes.istar.Task = joint.shapes.basic.Polygon.extend({
+    markup: '<g class="scalable"><polygon class="element"/></g><text/>',
     defaults: joint.util.deepSupplement({
         type: 'Task',
         size: {width: 95, height: 36},
@@ -268,6 +271,7 @@ joint.shapes.istar.Task = joint.shapes.basic.Polygon.extend({
 });
 
 joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
+    markup: '<g class="scalable"><path class="element"/></g><text/>',
     defaults: joint.util.deepSupplement({
         type: 'Quality',
         size: {width: 90, height: 55},
@@ -297,6 +301,7 @@ joint.shapes.istar.Quality = joint.shapes.basic.Path.extend({
    a *new* shape specific to the element that was added to the metamodel
  */
 joint.shapes.istar.DefaultNode = joint.shapes.basic.Rect.extend({
+    markup: '<g class="scalable"><rect class="element"/></g><text/>',
     defaults: joint.util.deepSupplement({
         size: {width: 90, height: 35},
         attrs: {
