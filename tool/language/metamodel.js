@@ -27,7 +27,7 @@
 istar.metamodel = {
     /** A prefix to use when loading and saving the model */
     /** @type {string} */
-    prefix: 'istar',
+    "prefix": 'istar',
 
     /**
      * Identify the version of the metamodel
@@ -35,11 +35,11 @@ istar.metamodel = {
      * version: '0.1'
      @type {string}
      */
-    version: '0.2',
+    "version": '0.2',
 
     /** An object containing the definition of the shapes that are used in this metamodel*/
     /** @type {Object} */
-    shapesObject: joint.shapes.istar,
+    "shapesObject": joint.shapes.istar,
 
     //Add here the elements of your language that behave like actors, in the sense that they are containers
     // onto which inner elements (nodes) are added
@@ -49,22 +49,41 @@ istar.metamodel = {
     //      isValid is a boolean that should be true if the addition is valid
     //      if unspecified, it will always be valid to add that container
     /** @type {Object} */
-    containers: {
-        'Actor': {
-            'name': 'Actor'
+    "containers": {
+        "Actor": {
+            "name": "Actor"
         },
-        'Agent': {
-            'name': 'Agent'
+        "Agent": {
+            "name": "Agent"
         },
-        'Role': {
-            'name': 'Role'
+        "Role": {
+            "name": "Role"
+        },
+        "Robot": {
+            "name": "Robot",
+            "isValid": function() {
+                'use strict';
+
+                var result = {};
+                var isValid = true;
+
+                var numberOfRobots = _.size(_.filter(istar.getElements(), function (element) {
+                    return element.isRobot();}));
+                if (numberOfRobots >= 1) {
+                    isValid = false;
+                    result.message = 'your model can only have 1 robot';
+                }
+
+                result.isValid = isValid;
+                return result;
+            }
         }
     },
 
     //Add here the elements of your language that do not behave like actors, i.e., they are not containers;
     //If they can be added to containers (such as actors), 'canBeInnerElement' must be set to true (default value: false)
     //If they can be dependums in a dependency link, 'canBeDependum' must be set to true (default value: false)
-    //If they can be added directly to the canvas, without being part of a dependency link, 'canBeOnCanvas' (default value: false)
+    //If they can be added directly to the canvas, without being part of a dependency link, "canBeOnCanvas" (default value: false)
     //Further constraints can be defined through a optional 'isValid' function
     //      this function may receive as argument the container (parent) that it is going to be added to
     //      it must return a object in the format {message, isValid}, where
@@ -73,30 +92,52 @@ istar.metamodel = {
     //      this function (isValid) does not apply to dependency links
     //      if unspecified, it will always be valid to add that node
     /** @type {Object} */
-    nodes: {
-        'Goal': {
-            'name': 'Goal',
-            'canBeInnerElement': true,
-            'canBeDependum': true,
-            'canBeOnCanvas': false
+    "nodes": {
+        "Goal": {
+            "name": "Goal",
+            "canBeInnerElement": true,
+            "canBeDependum": true,
+            "canBeOnCanvas": false
         },
-        'Quality': {
-            'name': 'Quality',
-            'canBeInnerElement': true,
-            'canBeDependum': true,
-            'canBeOnCanvas': false
+        "Quality": {
+            "name": "Quality",
+            "canBeInnerElement": true,
+            "canBeDependum": true,
+            "canBeOnCanvas": false
         },
-        'Task': {
-            'name': 'Task',
-            'canBeInnerElement': true,
-            'canBeDependum': true,
-            'canBeOnCanvas': false
+        "Task": {
+            "name": "Task",
+            "canBeInnerElement": true,
+            "canBeDependum": true,
+            "canBeOnCanvas": false
         },
-        'Resource': {
-            'name': 'Resource',
-            'canBeInnerElement': true,
-            'canBeDependum': true,
-            'canBeOnCanvas': false
+        "Resource": {
+            "name": "Resource",
+            "canBeInnerElement": true,
+            "canBeDependum": true,
+            "canBeOnCanvas": false
+        },
+        "Context": {
+            "name": "Context",
+            "canBeInnerElement": true,
+            "canBeDependum": true,
+            "canBeOnCanvas": false,
+            "isValid": function(parent) {
+                "use strict";
+
+                var result = {};
+                var isValid = true;
+
+                var numberOfContexts = _.size(_.filter(istar.getElements(), function (element) {
+                    return element.isContext();}));
+                if (numberOfContexts >= 3) {
+                    isValid = false;
+                    result.message = 'your model can only have at most 3 contexts';
+                }
+
+                result.isValid = isValid;
+                return result;
+            }
         }
     },
 
@@ -147,6 +188,7 @@ istar.metamodel = {
         "ParticipatesInLink": {
             "name": "ParticipatesInLink",
             "label": "participates-in",
+            "isValid": function (source, target) {
                 'use strict';
 
                 // actor->actor; actor->role; actor->agent;
@@ -183,16 +225,56 @@ istar.metamodel = {
                 return result;
             },
             allowMultipleLinksBetweenTheSameElements: false //TODO
+        },
+        'IsCommitedToLink': {
+            'name': 'IsCommitedToLink',
+            'label': '<<is commited to>>',
+            'isValid': function (source, target) {
+                'use strict';
+
+                // role->role; actor->actor;
+                // - Only roles can be specialized into roles, or general actors into general actors (page 6)
+                // - There should be no is-a cycles (page 14) (ignored)
+                // - A pair of actors can be linked by at most one actor link: it is not possible to
+                //   connect two actors via both is-a and participates-in (page 14)
+
+                var result = {};
+                var isValid = true;
+                if ( ! (source.isActor() || source.isRole()) ) {
+                    isValid = false;
+                    result.message = 'the source of Is-A links must be a Role or a general Actor (iStar 2.0 Guide, Page 6)';
+                }
+                if ( isValid && ! (target.isActor() || target.isRole()) ) {
+                    isValid = false;
+                    result.message = 'the target of Is-A links must be a Role or a general Actor (iStar 2.0 Guide, Page 6)';
+                }
+                if ( isValid && (source === target) ) {
+                    isValid = false;
+                    result.message = 'you cannot make Is-A links from an actor onto itself';
+                }
+                if ( isValid && (source.get('type') !== target.get('type')) ) {
+                    isValid = false;
+                    result.message = 'the source and target of Is-A links must be of the same type - Actor and Actor, or Role and Role (iStar 2.0 Guide, Page 6) ';
+                }
+                if ( isValid && istar.isThereLinkBetween(source, target)) {
+                    isValid = false;
+                    result.message = 'there can only be one Actor link between the same two actors (iStar 2.0 Guide, Page 14)';
+                }
+
+                result.isValid = true;
+                // result.isValid = isValid;
+                return result;
+            }
         }
     },
 
     //Add here the links of your language that behave like a Dependency link: they link a container with
     // another container while having a node in the middle
     //Links may have a isValid function that constrain their instantiation
-    dependencyLinks: {
-        'DependencyLink': {
-            'name': 'DependencyLink',
-            'isValid': function (source, target) {
+    "dependencyLinks": {
+        "DependencyLink": {
+            "name": "DependencyLink",
+            "isValid": function (source, target) {
                 'use strict';
 
                 //istar 2.0:
@@ -261,10 +343,10 @@ istar.metamodel = {
     //Add here the links of your language that relate a node with another node
     //Links may have a isValid function that constrain their instantiation
     /** @type {Object} */
-    nodeLinks: {
-        'AndRefinementLink': {
-            'name': 'AndRefinementLink',
-            'isValid': function (source, target) {
+    "nodeLinks": {
+        "AndRefinementLink": {
+            "name": "AndRefinementLink",
+            "isValid": function (source, target) {
                 'use strict';
 
                 //istar 2.0:
@@ -280,7 +362,7 @@ istar.metamodel = {
 
                 var result = {};
                 var isValid = true;
-                if ( !(source.isTask() || source.isGoal()) ) {
+                if ( !(source.isTask() || source.isGoal() || source.isContext()) ) {
                     isValid = false;
                     result.message = 'the source of an AND-refinement link must be a Goal or a Task (iStar 2.0 Guide, Table 1)';
                 }
@@ -319,9 +401,9 @@ istar.metamodel = {
                 return result;
             }
         },
-        'OrRefinementLink': {
-            'name': 'OrRefinementLink',
-            'isValid': function (source, target) {
+        "OrRefinementLink": {
+            "name": "OrRefinementLink",
+            "isValid": function (source, target) {
                 'use strict';
 
                 //istar 2.0:
@@ -375,9 +457,9 @@ istar.metamodel = {
                 return result;
             }
         },
-        'NeededByLink': {
-            'name': 'NeededByLink',
-            'isValid': function (source, target) {
+        "NeededByLink": {
+            "name": "NeededByLink",
+            "isValid": function (source, target) {
                 'use strict';
 
                 //istar 2.0
@@ -416,9 +498,11 @@ istar.metamodel = {
                 return result;
             }
         },
-        'ContributionLink': {
-            'name': 'ContributionLink',
-            'isValid': function (source, target) {
+        "ContributionLink": {
+            "name": "ContributionLink",
+            "changeableLabel": true,
+            "possibleLabels": ["make", "help", "hurt", "break"],
+            "isValid": function (source, target) {
                 'use strict';
 
                 //istar 2.0
@@ -469,13 +553,11 @@ istar.metamodel = {
 
                 result.isValid = isValid;
                 return result;
-            },
-            'changeableLabel': true,
-            'possibleLabels': ['make', 'help', 'hurt', 'break']
+            }
         },
-        'QualificationLink': {
-            'name': 'QualificationLink',
-            'isValid': function (source, target) {
+        "QualificationLink": {
+            "name": "QualificationLink",
+            "isValid": function (source, target) {
                 'use strict';
 
                 //istar 2.0

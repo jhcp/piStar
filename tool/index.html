@@ -11,13 +11,13 @@
           content="piStar is an online Goal Modeling tool, compliant with iStar 2.0. Useful for creating diagrams
         for requirements documents.">
     <meta name="author" content="João Pimentel">
-    <link rel="icon" href="images/favicon.ico">
+    <link rel="icon" href="app/ui/images/favicon.ico">
 
     <!-- bootstrap styles -->
-    <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet">  <!-- Bootstrap core CSS -->
+    <link href="app/ui/lib/bootstrap/bootstrap.min.css" rel="stylesheet">  <!-- Bootstrap core CSS -->
     <!-- library-specific styles -->
-    <link href="istarcore/lib/joint.min.css" rel="stylesheet"> <!-- joint js -->
-    <link href="lib/bootstrap3-editable/bootstrap-editable.css" rel="stylesheet"> <!-- x-editable -->
+    <link href="app/istarcore/lib/joint.min.css" rel="stylesheet"> <!-- joint js -->
+    <link href="app/ui/lib/bootstrap3-editable/bootstrap-editable.css" rel="stylesheet"> <!-- x-editable -->
     <!-- tool styles -->
     <link href="pistar.css" rel="stylesheet">
 </head>
@@ -26,8 +26,8 @@
 <div id="tool">
     <div class="menu-bar">
         <div id="logo">
-            <img src="images/logo-pie.svg" width="21" height="21" title="a pie" alt=""/>
-            <img id="star" src="images/logo-star.svg" width="12" height="12" title="a star" alt=""/>
+            <img src="app/ui/images/logo-pie.svg" width="21" height="21" title="a pie" alt=""/>
+            <img id="star" src="app/ui/images/logo-star.svg" width="12" height="12" title="a star" alt=""/>
             piStar
         </div>
         <nav class="menu-items">
@@ -72,7 +72,7 @@
                     <div class="add-dropdown-button dropdown">
                         <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-actors"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Add some kind of Actor">
-                            <img src="images/Actor.svg" height="25" alt=""/><br>
+                            <img src="language/images/Actor.svg" height="25" alt=""/><br>
                             Actor...
                             <span class="caret"></span>
                         </button>
@@ -83,7 +83,7 @@
                         <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-actor-links"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
                                 title="Add links between actors">
-                            <img src="images/IsALink.svg" height="25" alt=""/><br>
+                            <img src="language/images/IsALink.svg" height="25" alt=""/><br>
                             Actor links...
                             <span class="caret"></span>
                         </button>
@@ -93,7 +93,7 @@
                     <div class="add-dropdown-button dropdown">
                         <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-dependency-links"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" title="Add dependency link">
-                            <img src="images/DependencyLink.svg" height="25" alt=""/><br>
+                            <img src="language/images/DependencyLink.svg" height="25" alt=""/><br>
                             Dependency...
                             <span class="caret"></span>
                         </button>
@@ -110,7 +110,7 @@
                         <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-contribution-links"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
                                 title="Add contribution link (make, help, hurt or break)">
-                            <img src="images/ContributionLink.svg" height="25" alt=""/><br>
+                            <img src="language/images/ContributionLink.svg" height="25" alt=""/><br>
                             Contribution...
                             <span class="caret"></span>
                         </button>
@@ -290,15 +290,15 @@
 <script type="text/template" id="add-button-template">
     <button type="button" class="btn btn-default add-button" id="add-<%- label %>" title="<%- tooltip %>">
         <img
-                src="images/<%- name %>.svg" height="25" alt="" onError="this.onerror=null;this.src='images/<%- defaultButtonImage %>';"/>
+                src="language/images/<%- name %>.svg" height="25" alt="" onError="this.onerror=null;this.src='language/images/<%- defaultButtonImage %>';"/>
         <br><%- label %>
     </button>
 </script>
 
 <script type="text/template" id="add-dropdown-button-template">
     <a id="d-add-<%- name %>" title="<%- tooltip %>" href="#">
-        <img id="d-add-<%- name %>-img" src="images/<%- buttonImage %>.svg" height="35" alt=""
-             onError="this.onerror=null;this.src='images/<%- defaultButtonImage %>';"/>
+        <img id="d-add-<%- name %>-img" src="language/images/<%- buttonImage %>.svg" height="35" alt=""
+             onError="this.onerror=null;this.src='language/images/<%- defaultButtonImage %>';"/>
         <%- label %>
     </a>
 </script>
@@ -512,38 +512,37 @@
 
 
 <!-- dependencies -->
-<script src="istarcore/lib/jquery.min.js"></script>
-<script src="istarcore/lib/lodash.min.js"></script>
-<script src="istarcore/lib/backbone.min.js"></script>
-<script src="lib/jscolor/jscolor.min.js"></script>
+<script src="app/istarcore/lib/jquery.min.js"></script>
+<script src="app/istarcore/lib/lodash.min.js"></script>
+<script src="app/istarcore/lib/backbone.min.js"></script>
+<script src="app/istarcore/lib/joint.min.js"></script>
 
-<script src="istarcore/lib/joint.min.js"></script>
-<script src="lib/bootstrap/bootstrap.min.js"></script>
-
-<script src="lib/bootstrap3-editable/bootstrap-editable.min.js"></script>
+<script src="app/ui/lib/jscolor/jscolor.min.js"></script>
+<script src="app/ui/lib/bootstrap/bootstrap.min.js"></script>
+<script src="app/ui/lib/bootstrap3-editable/bootstrap-editable.min.js"></script>
 
 <!-- istar core -->
-<script src="js/istarcore.shapes.js"></script>
-<script src="istarcore/istarcore.js"></script>
-<script src="istarcore/metamodel.js"></script>
-<script src="istarcore/metamodelManager.js"></script>
+<script src="app/istarcore/istarFunctions.js"></script>
+<script src="app/istarcore/metamodelManager.js"></script>
+<script src="app/istarcore/fileManager.js"></script>
+<script src="app/ui/models/addButton.js"></script>
+<script src="app/ui/views/addButton.js"></script>
+<script src="app/ui/views/addButtonDropdownItem.js"></script>
+<script src="app/ui/controllers/addButton.js"></script>
+<script src="app/ui/views/propertiesTable.js"></script>
+<script src="app/ui/ui.js"></script>
+<script src="app/ui/examples.js"></script>
 
-<!-- tool specific -->
-<script src="istarcore/fileManager.js"></script>
-<script src="js/models/addButton.js"></script>
-<script src="js/views/addButton.js"></script>
-<script src="js/views/addButtonDropdownItem.js"></script>
-<script src="js/controllers/addButton.js"></script>
-<script src="js/views/propertiesTable.js"></script>
-<script src="js/ui.js"></script>
-<script src="js/ui.metamodel.js"></script>
-<script src="js/examples.js"></script>
+<!-- language specific -->
+<script src="language/shapes.js"></script>
+<script src="language/metamodel.js"></script>
+<script src="language/ui.metamodel.js"></script>
 
 <!-- insert your plugin(s) here, after this line -->
 
 <!-- end of plugin(s) area -->
 
-<script src="js/main.js"></script>
+<script src="app/ui/main.js"></script>
 
 </body>
 </html>
