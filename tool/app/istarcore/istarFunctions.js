@@ -500,42 +500,35 @@ var istar = function () {
             link1.toBack();
             link2.toBack();
             //move all the actors even further back, so that they don't impede the visualization of the dependency links
-            var actors = _.filter(istar.graph.getElements(), function (element) {
-                return element.isKindOfActor();
+            _.forEach(istar.graph.getElements(), function (element) {
+                if (element.isKindOfActor()) {
+                    element.toBack();
+                }
             });
-            _.forEach(actors, function (actor) {
-                actor.toBack();
-            });
+
             return [link1, link2];
         },
         addLinkBetweenNodes: function (linkType, source, target, value) {
-            //prevent repeated links
-            var currentLinksFromSource = istar.graph.getConnectedLinks(source);
-            var isDuplicated = false;
-            _.forEach(currentLinksFromSource, function (link) {
-                isDuplicated = isDuplicated || link.getSourceElement() === target || link.getTargetElement() === target;
-            });
-            if (!isDuplicated) {
-                var link = new linkType.shapeObject({'source': {id: source.id}, 'target': {id: target.id}});
-                link.prop('type', linkType.name);
-                istar.graph.addCell(link);
-                //embeds the link on the (parent) actor of its source element, to facilitate collapse/expand
-                if (source.get('parent')) {
-                    istar.graph.getCell(source.get('parent')).embed(link);
-                }
-
-                if (linkType.changeableLabel) {
-                    link.setContributionType = _setLinkLabel;
-                    link.on('change:value', function(link, newValue) {
-                        link.setContributionType(newValue);
-                    });
-                }
-                if (value) {
-                    link.prop('value', value);
-                }
-
-                return link;
+            var link = new linkType.shapeObject({'source': {id: source.id}, 'target': {id: target.id}});
+            link.prop('type', linkType.name);
+            istar.graph.addCell(link);
+            
+            //embeds the link on the (parent) actor of its source element, to facilitate collapse/expand
+            if (source.get('parent')) {
+                istar.graph.getCell(source.get('parent')).embed(link);
             }
+
+            if (linkType.changeableLabel) {
+                link.setContributionType = _setLinkLabel;
+                link.on('change:value', function(link, newValue) {
+                    link.setContributionType(newValue);
+                });
+            }
+            if (value) {
+                link.prop('value', value);
+            }
+
+            return link;
         },
         clearModel: function () {
             istar.graph.clear();

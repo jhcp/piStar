@@ -146,19 +146,19 @@ uiC.createAddButtons = function() {
     _.forEach(istar.metamodel.nodeLinks.ContributionLink.possibleLabels, function(linkValue, i) {
         //if specific ui elements are not defined, use default ones
         var label = linkValue
-        if (linkType.buttonLabel) {
+        if (linkType.buttonLabel && linkType.buttonLabel[i]) {
             label = linkType.buttonLabel[i];
         }
         var tooltip = ('Add a ' + linkValue + ' ' + linkType.name);
-        if (linkType.buttonTooltip) {
+        if (linkType.buttonTooltip && linkType.buttonTooltip[i]) {
             tooltip = linkType.buttonTooltip[i];
         }
         var statusText = 'Adding a <b>' + linkValue + ' ' + linkType.name + '</b>';
-        if (linkType.buttonStatusText) {
+        if (linkType.buttonStatusText && linkType.buttonStatusText[i]) {
             statusText = linkType.buttonStatusText[i];
         }
         var image = linkType.name + '-' + linkValue;
-        if (linkType.buttonImage) {
+        if (linkType.buttonImage && linkType.buttonImage[i]) {
             image = linkType.buttonImage[i];
         }
 
