@@ -437,6 +437,11 @@ var istar = function () {
                 });
                 link.prop('type', linkType.name);
 
+                if (linkType.label) {
+                    link.attr('label/text', linkType.label);
+                    link.attr('label-background/text', linkType.label);
+                }
+
                 istar.graph.addCell(link);
                 return link;
             }

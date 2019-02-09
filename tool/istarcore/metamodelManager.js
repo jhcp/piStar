@@ -132,16 +132,16 @@ istar.setupMetamodel = function (metamodel) {
             createAddElementFunction(cellType);
         });
         _.forEach(metamodel.containerLinks, function (cellType) {
-            attachShapeObject(cellType, metamodel);
+            attachShapeObject(cellType, metamodel, 'containerLink');
             createIsCellFunctions(cellType);
             createAddContainerLinkFunction(cellType);
         });
         _.forEach(metamodel.dependencyLinks, function (cellType) {
-            attachShapeObject(cellType, metamodel);
+            attachShapeObject(cellType, metamodel, 'dependencyLink');
             createIsCellFunctions(cellType);
         });
         _.forEach(metamodel.nodeLinks, function (cellType) {
-            attachShapeObject(cellType, metamodel);
+            attachShapeObject(cellType, metamodel, 'nodeLink');
             createIsCellFunctions(cellType);
             createAddNodeLinkFunction(cellType);
         });
@@ -160,6 +160,9 @@ istar.setupMetamodel = function (metamodel) {
                 }
                 else if (kindOfCell === 'container') {
                     cellType.shapeObject = joint.shapes.istar.DefaultContainer;
+                }
+                else if (kindOfCell === 'containerLink') {
+                    cellType.shapeObject = joint.shapes.istar.DefaultContainerLink;
                 }
                 else {
                     cellType.shapeObject = joint.dia.Link;

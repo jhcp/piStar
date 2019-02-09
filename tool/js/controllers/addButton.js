@@ -14,18 +14,18 @@ uiC.createAddButtons = function() {
     //create the ADD buttons
 
     //create Add <<Container>> buttons
-    _.forEach(istar.metamodel.getContainersNames(), function(containerTypeName) {
+    _.forEach(istar.metamodel.containers, function(elementType) {
         //if specific ui elements are not defined, use default ones
-        var label = istar.metamodel.containers[containerTypeName].label || containerTypeName;
-        var tooltip = istar.metamodel.containers[containerTypeName].tooltip || ('Add ' + containerTypeName);
-        var statusText = istar.metamodel.containers[containerTypeName].statusText || ('Adding <b>' + containerTypeName + '</b>: click on an empty space in the diagram to add a new ' + containerTypeName);
+        var label = elementType.buttonLabel || elementType.name;
+        var tooltip = elementType.buttonTooltip || ('Add ' + elementType.name);
+        var statusText = elementType.buttonStatusText || ('Adding <b>' + elementType.name + '</b>: click on an empty space in the diagram to add a new ' + elementType.name);
 
         new uiC.AddButtonDropdownItemView({
             attributes: {parent: '#add-actor-dropdown'},
             model: new uiC.AddButtonModel({
                 label: label,
                 action: ui.STATE_ADD_ACTOR,
-                name: containerTypeName,
+                name: elementType.name,
                 tooltip: tooltip,
                 statusText: statusText,
                 defaultButtonImage: 'DefaultContainer.svg'
@@ -33,65 +33,65 @@ uiC.createAddButtons = function() {
         }).render();
     });
 
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-actor-link-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Is A link',
-            action: ui.STATE_ADD_LINK,
-            name: 'IsALink',
-            tooltip: 'Add an Is-A link between an Actor and another Actor, or between a Role and another Role',
-            statusText: 'Adding <b>Is-A</b> link: click on the sub-actor/sub-role and then on the super-actor/super-role.'
-        })
-    }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-actor-link-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Participates-In link',
-            action: ui.STATE_ADD_LINK,
-            name: 'ParticipatesInLink',
-            tooltip: 'Add a Participates-In link between any Actors, Roles, or Agents',
-            statusText: 'Adding <b>Participates-In</b> link: click on the source, and then on the target.'
-        })
-    }).render();
+    //create Add <<Container Link>> buttons
+    _.forEach(istar.metamodel.containerLinks, function(linkType) {
+        //if specific ui elements are not defined, use default ones
+        var label = linkType.buttonLabel || (linkType.name);
+        var tooltip = linkType.buttonTooltip || ('Add a ' + linkType.name);
+        var statusText = linkType.buttonStatusText || ('Adding a <b>' + linkType.name + '</b>');
+
+        new uiC.AddButtonDropdownItemView({
+            attributes: {parent: '#add-actor-link-dropdown'},
+            model: new uiC.AddButtonModel({
+                label: label,
+                action: ui.STATE_ADD_LINK,
+                name: linkType.name,
+                tooltip: tooltip,
+                statusText: statusText,
+                defaultButtonImage: 'DefaultContainerLink.svg'
+            })
+        }).render();
+        console.log($('#d-add-'+ linkType.name + '-img'));
+
+    });
 
     //create Add <<Dependency>> buttons
-    _.forEach(istar.metamodel.getNodesNames(), function(nodeTypeName) {
-        if (istar.metamodel.nodes[nodeTypeName].canBeDependum ) {
+    _.forEach(istar.metamodel.nodes, function(elementType) {
+        if (elementType.canBeDependum ) {
 
             //if specific ui elements are not defined, use default ones
-            var label = istar.metamodel.nodes[nodeTypeName].label || (nodeTypeName + ' dependency');
-            var tooltip = istar.metamodel.nodes[nodeTypeName].tooltip || ('Add a ' + nodeTypeName + ' Dependency link (including its dependum)');
-            var statusText = istar.metamodel.nodes[nodeTypeName].statusText || ('Adding <b>' + nodeTypeName + ' Dependency</b> link');
+            var label = elementType.buttonLabel || (elementType.name + ' dependency');
+            var tooltip = elementType.buttonTooltip || ('Add a ' + elementType.name + ' Dependency link (including its dependum)');
+            var statusText = elementType.buttonStatusText || ('Adding <b>' + elementType.name + ' Dependency</b> link');
 
             new uiC.AddButtonDropdownItemView({
                 attributes: {parent: '#add-dependency-dropdown'},
                 model: new uiC.AddButtonModel({
                     label: label,
                     action: ui.STATE_ADD_LINK,
-                    name: nodeTypeName + 'DependencyLink',
+                    name: elementType.name + 'DependencyLink',
                     tooltip: tooltip,
                     statusText: statusText,
                     defaultButtonImage: 'DefaultDependencyLink.svg'
                 })
             }).render();
         }
-
     });
 
     //create Add <<Element>> buttons
-    _.forEach(istar.metamodel.getNodesNames(), function(nodeTypeName) {
-        if (istar.metamodel.nodes[nodeTypeName].canBeInnerElement || istar.metamodel.nodes[nodeTypeName].canBeOnCanvas) {
+    _.forEach(istar.metamodel.nodes, function(elementType) {
+        if (elementType.canBeInnerElement || elementType.canBeOnCanvas) {
 
             //if specific ui elements are not defined, use default ones
-            var label = istar.metamodel.nodes[nodeTypeName].label || nodeTypeName;
-            var tooltip = istar.metamodel.nodes[nodeTypeName].tooltip || ('Add ' + nodeTypeName);
-            var statusText = istar.metamodel.nodes[nodeTypeName].statusText || ('Adding <b>' + nodeTypeName + '</b>');
+            var label = elementType.buttonLabel || elementType.name;
+            var tooltip = elementType.buttonTooltip || ('Add ' + elementType.name);
+            var statusText = elementType.buttonStatusText || ('Adding <b>' + elementType.name + '</b>');
 
             new uiC.AddButtonView({
                 model: new uiC.AddButtonModel({
                     label: label,
                     action: ui.STATE_ADD_NODE,
-                    name: nodeTypeName,
+                    name: elementType.name,
                     tooltip: tooltip,
                     statusText: statusText,
                     defaultButtonImage: 'DefaultNode.svg'
@@ -179,4 +179,4 @@ uiC.createAddButtons = function() {
 }
 
 /*definition of globals to prevent undue JSHint warnings*/
-/*globals istar:false, _:false, ui:false, uiC:false */
+/*globals console:false, istar:false, _:false, ui:false, uiC:false, $:false */

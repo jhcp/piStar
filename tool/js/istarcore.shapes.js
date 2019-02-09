@@ -373,7 +373,6 @@ joint.shapes.istar.ParticipatesInLink = joint.dia.Link.define('ParticipatesInLin
                 atConnectionRatio: 0.5,
                 'font-size': 13,
                 'font-weight': 400,
-                text: 'participates-in',
                 x: -40,
                 y: 4,
                 // textPath: {   /* used if we want the text to follow along the line */
@@ -387,7 +386,6 @@ joint.shapes.istar.ParticipatesInLink = joint.dia.Link.define('ParticipatesInLin
                 'font-weight': 400,
                 stroke: 'white',
                 'stroke-width': '0.35em',
-                text: 'participates=In',
                 x: -40,
                 y: 4,
                 // textPath: {  /* used if we want the text to follow along the line */
@@ -447,7 +445,6 @@ joint.shapes.istar.IsALink = joint.dia.Link.define('IsALink',
                 atConnectionRatio: 0.5,
                 'font-size': 13,
                 'font-weight': 400,
-                text: 'is-a',
                 x: -20,
                 y: 4,
             },
@@ -457,7 +454,76 @@ joint.shapes.istar.IsALink = joint.dia.Link.define('IsALink',
                 'font-weight': 400,
                 stroke: 'white',
                 'stroke-width': '0.35em',
-                text: 'is-a',
+                x: -20,
+                y: 4,
+            }
+        },
+        source: {selector: 'circle'},
+        target: {selector: 'circle'}
+    },
+    {
+        markup: [
+            {
+                tagName: 'path',
+                selector: 'connection-wrap'
+            },
+            {
+                tagName: 'path',
+                selector: 'line'
+            },
+            {
+                tagName: 'text',
+                selector: 'label-background'
+            },
+            {
+                tagName: 'text',
+                selector: 'label'
+            }
+        ]
+    }
+);
+
+/* this shape is used by default when a new node is added to the metamodel .
+   DO NOT CHANGE THIS SHAPE. Instead, you should create
+   a *new* shape specific to the element that was added to the metamodel
+ */
+joint.shapes.istar.DefaultContainerLink = joint.dia.Link.define('DefaultContainerLink',
+    {
+        attrs: {
+            line: {
+                connection: true,
+                fill: 'none',
+                stroke: 'black',
+                'stroke-width': 1,
+                targetMarker: {
+                    'd': 'm 10,-6 l -10,6 10,6',
+                    fill: 'none',
+                    'stroke-width': 1.2,
+                    'type': 'path',
+                }
+            },
+            'connection-wrap': {
+                connection: true,
+                fill: 'none',
+                stroke: 'transparent',
+                'stroke-linecap': 'round',
+                'stroke-width': 20
+            },
+            label: {
+                atConnectionRatio: 0.5,
+                'font-size': 13,
+                'font-weight': 400,
+                text: '<<ContainerLinkType>>',
+                x: -20,
+                y: 4,
+            },
+            'label-background': {
+                atConnectionRatio: 0.5,
+                'font-size': 13,
+                'font-weight': 400,
+                stroke: 'white',
+                'stroke-width': '0.35em',
+                text: '<<ContainerLinkType>>',
                 x: -20,
                 y: 4,
             }

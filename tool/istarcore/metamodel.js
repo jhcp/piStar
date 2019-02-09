@@ -104,10 +104,11 @@ istar.metamodel = {
     // to another actor).
     //Links may have a isValid function that constrain their instantiation
     /** @type {Object} */
-    containerLinks: {
-        'IsALink': {
-            'name': 'IsALink',
-            'isValid': function (source, target) {
+    "containerLinks": {
+        "IsALink": {
+            "name": "IsALink",
+            "label": "is-a",
+            "isValid": function (source, target) {
                 'use strict';
 
                 // role->role; actor->actor;
@@ -143,9 +144,9 @@ istar.metamodel = {
                 return result;
             }
         },
-        'ParticipatesInLink': {
-            'name': 'ParticipatesInLink',
-            'isValid': function (source, target) {
+        "ParticipatesInLink": {
+            "name": "ParticipatesInLink",
+            "label": "participates-in",
                 'use strict';
 
                 // actor->actor; actor->role; actor->agent;
