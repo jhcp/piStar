@@ -114,7 +114,7 @@
                             Contribution...
                             <span class="caret"></span>
                         </button>
-                        <ul id="add-contribution-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-contribution-links"></ul>
+                        <ul id="add-contribution-link-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-contribution-links"></ul>
                     </div>
 
                 </div>
@@ -297,7 +297,7 @@
 
 <script type="text/template" id="add-dropdown-button-template">
     <a id="d-add-<%- name %>" title="<%- tooltip %>" href="#">
-        <img id="d-add-<%- name %>-img" src="images/<%- name %>.svg" height="35" alt=""
+        <img id="d-add-<%- name %>-img" src="images/<%- buttonImage %>.svg" height="35" alt=""
              onError="this.onerror=null;this.src='images/<%- defaultButtonImage %>';"/>
         <%- label %>
     </a>

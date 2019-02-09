@@ -19,16 +19,18 @@ uiC.createAddButtons = function() {
         var label = elementType.buttonLabel || elementType.name;
         var tooltip = elementType.buttonTooltip || ('Add ' + elementType.name);
         var statusText = elementType.buttonStatusText || ('Adding <b>' + elementType.name + '</b>: click on an empty space in the diagram to add a new ' + elementType.name);
+        var image = elementType.name;
 
         new uiC.AddButtonDropdownItemView({
             attributes: {parent: '#add-actor-dropdown'},
             model: new uiC.AddButtonModel({
-                label: label,
                 action: ui.STATE_ADD_ACTOR,
+                buttonImage: image,
+                defaultButtonImage: 'DefaultContainer.svg',
+                label: label,
                 name: elementType.name,
-                tooltip: tooltip,
                 statusText: statusText,
-                defaultButtonImage: 'DefaultContainer.svg'
+                tooltip: tooltip
             })
         }).render();
     });
@@ -39,20 +41,20 @@ uiC.createAddButtons = function() {
         var label = linkType.buttonLabel || (linkType.name);
         var tooltip = linkType.buttonTooltip || ('Add a ' + linkType.name);
         var statusText = linkType.buttonStatusText || ('Adding a <b>' + linkType.name + '</b>');
+        var image = linkType.name;
 
         new uiC.AddButtonDropdownItemView({
             attributes: {parent: '#add-actor-link-dropdown'},
             model: new uiC.AddButtonModel({
-                label: label,
                 action: ui.STATE_ADD_LINK,
+                buttonImage: image,
+                defaultButtonImage: 'DefaultContainerLink.svg',
+                label: label,
                 name: linkType.name,
-                tooltip: tooltip,
                 statusText: statusText,
-                defaultButtonImage: 'DefaultContainerLink.svg'
+                tooltip: tooltip
             })
         }).render();
-        console.log($('#d-add-'+ linkType.name + '-img'));
-
     });
 
     //create Add <<Dependency>> buttons
@@ -63,16 +65,18 @@ uiC.createAddButtons = function() {
             var label = elementType.buttonLabel || (elementType.name + ' dependency');
             var tooltip = elementType.buttonTooltip || ('Add a ' + elementType.name + ' Dependency link (including its dependum)');
             var statusText = elementType.buttonStatusText || ('Adding <b>' + elementType.name + ' Dependency</b> link');
+            var image = elementType.name + 'DependencyLink';
 
             new uiC.AddButtonDropdownItemView({
                 attributes: {parent: '#add-dependency-dropdown'},
                 model: new uiC.AddButtonModel({
-                    label: label,
                     action: ui.STATE_ADD_LINK,
+                    buttonImage: image,
+                    defaultButtonImage: 'DefaultDependencyLink.svg',
+                    label: label,
                     name: elementType.name + 'DependencyLink',
-                    tooltip: tooltip,
                     statusText: statusText,
-                    defaultButtonImage: 'DefaultDependencyLink.svg'
+                    tooltip: tooltip
                 })
             }).render();
         }
@@ -89,12 +93,12 @@ uiC.createAddButtons = function() {
 
             new uiC.AddButtonView({
                 model: new uiC.AddButtonModel({
-                    label: label,
                     action: ui.STATE_ADD_NODE,
+                    defaultButtonImage: 'DefaultNode.svg',
+                    label: label,
                     name: elementType.name,
-                    tooltip: tooltip,
                     statusText: statusText,
-                    defaultButtonImage: 'DefaultNode.svg'
+                    tooltip: tooltip
                 })
             }).render();
         }
@@ -136,46 +140,43 @@ uiC.createAddButtons = function() {
             statusText: 'Adding <b>Qualification</b> link: click first on the Quality and then on the element it qualifies (Goal, Task or Resource).'
         })
     }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-contribution-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Make (++)',
-            action: ui.STATE_ADD_LINK,
-            name: 'make',
-            tooltip: 'Add Make (++) Contribution link',
-            statusText: 'Adding <b>Make (++) Contribution</b> link: click first on an element and then on the Quality it contributes to.'
-        })
-    }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-contribution-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Help (+)',
-            action: ui.STATE_ADD_LINK,
-            name: 'help',
-            tooltip: 'Add Help (+) Contribution link',
-            statusText: 'Adding <b>Help (+) Contribution</b> link: click first on an element and then on the Quality it contributes to.'
-        })
-    }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-contribution-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Hurt (-)',
-            action: ui.STATE_ADD_LINK,
-            name: 'hurt',
-            tooltip: 'Add Hurt (-) Contribution link',
-            statusText: 'Adding <b>Hurt (-) Contribution</b> link: click first on an element and then on the Quality it contributes to.'
-        })
-    }).render();
-    new uiC.AddButtonDropdownItemView({
-        attributes: {parent: '#add-contribution-dropdown'},
-        model: new uiC.AddButtonModel({
-            label: 'Break (--)',
-            action: ui.STATE_ADD_LINK,
-            name: 'break',
-            tooltip: 'Add Break (--) Contribution link',
-            statusText: 'Adding <b>Break (--) Contribution</b> link: click first on an element and then on the Quality it contributes to.'
-        })
-    }).render();
+
+    //create Add <<Contribution Link>> buttons
+    var linkType = istar.metamodel.nodeLinks.ContributionLink;
+    _.forEach(istar.metamodel.nodeLinks.ContributionLink.possibleLabels, function(linkValue, i) {
+        console.log(i);
+        //if specific ui elements are not defined, use default ones
+        var label = linkValue
+        if (linkType.buttonLabel) {
+            label = linkType.buttonLabel[i];
+        }
+        var tooltip = ('Add a ' + linkValue + ' ' + linkType.name);
+        if (linkType.buttonTooltip) {
+            tooltip = linkType.buttonTooltip[i];
+        }
+        var statusText = 'Adding a <b>' + linkValue + ' ' + linkType.name + '</b>';
+        if (linkType.buttonStatusText) {
+            statusText = linkType.buttonStatusText[i];
+        }
+        var image = linkType.name + '-' + linkValue;
+        if (linkType.buttonImage) {
+            image = linkType.buttonImage[i];
+        }
+
+        new uiC.AddButtonDropdownItemView({
+            attributes: {parent: '#add-contribution-link-dropdown'},
+            model: new uiC.AddButtonModel({
+                action: ui.STATE_ADD_LINK,
+                buttonImage: image,
+                defaultButtonImage: 'DefaultContainerLink.svg',
+                label: label,
+                name: linkType.name,
+                statusText: statusText,
+                tooltip: tooltip,
+                value: linkValue
+            })
+        }).render();
+    });
 }
 
 /*definition of globals to prevent undue JSHint warnings*/

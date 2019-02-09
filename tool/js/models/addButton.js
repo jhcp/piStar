@@ -10,13 +10,14 @@ window.uiC = window.uiC || {};  //prevents overriding the variable, while also p
 
 uiC.AddButtonModel = Backbone.Model.extend({
     defaults: {
-        name: '',
-        label: '',
-        tooltip: '',
-        statusText: '',
-        defaultButtonImage: '',
         action: 'view',
-        active: false
+        active: false,
+        defaultButtonImage: '',
+        label: '',
+        name: '',
+        statusText: '',
+        tooltip: '',
+        value: 'none'
     },
     act: function () {
         'use strict';
@@ -26,6 +27,7 @@ uiC.AddButtonModel = Backbone.Model.extend({
         this.set('active', true);
         ui.currentState = this.get('action');
         ui.currentAddingElement = this.get('name');
+        ui.linkValue = this.get('value');
         ui.currentButton = this;
         if (ui.currentState === 'addActor') {
             $('#diagram').css('cursor', 'crosshair');
@@ -72,4 +74,4 @@ uiC.AddButtonModel = Backbone.Model.extend({
 });
 
 /*definition of globals to prevent undue JSHint warnings*/
-/*globals istar:false, ui:false, console:false, $:false */
+/*globals istar:false, ui:false, uiC:false, console:false, $:false, Backbone: false */

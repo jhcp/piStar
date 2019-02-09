@@ -42,6 +42,20 @@ ui.setupMetamodelUI = function () {
         istar.metamodel.containerLinks.ParticipatesInLink.buttonTooltip = 'Add a Participates-In link between any Actors, Roles, or Agents';
         istar.metamodel.containerLinks.ParticipatesInLink.buttonStatusText = 'Adding <b>Participates-In</b> link: click on the source, and then on the target';
     }
+
+    if (istar.metamodel.nodeLinks.ContributionLink) {
+        istar.metamodel.nodeLinks.ContributionLink.buttonLabel = ['Make (++)', 'Help (+)', 'Hurt (-)', 'Break (--)'];
+        istar.metamodel.nodeLinks.ContributionLink.buttonTooltip = [
+            'Add a Make (++) Contribution link',
+            'Add a Help (+) Contribution link',
+            'Add a Hurt (-) Contribution link',
+            'Add a Break (--) Contribution link'];
+        istar.metamodel.nodeLinks.ContributionLink.buttonStatusText = [
+            'Adding <b>Make (++) Contribution</b> link: click first on an element and then on the Quality it contributes to',
+            'Adding <b>Help (+) Contribution</b> link: click first on an element and then on the Quality it contributes to',
+            'Adding <b>Hurt (-) Contribution</b> link: click first on an element and then on the Quality it contributes to',
+            'Adding <b>Break (--) Contribution</b> link: click first on an element and then on the Quality it contributes to'];
+    }
 }
 
 /*definition of globals to prevent undue JSHint warnings*/

@@ -22,6 +22,7 @@ var ui = function() {
         currentAddingElement: 'none',
         linkSource: 'none',
         linkTarget: 'none',
+        linkValue: 'none',
         dependencyType: 'none',
         selectedElement: null,
         defaultElementBackgroundColor: '#CCFACD',
@@ -307,7 +308,6 @@ ui.defineInteractions = function () {
             var isNodeLink = $.inArray(ui.currentAddingElement, istar.metamodel.getNodeLinksNames()) !== -1;
             var isDependencyLink = ui.dependencyType.match(/DependencyLink/) !== null;
 
-            console.log(ui.dependencyType);
             if (cellView.model.isKindOfActor()) {
                 if (isContainerLink) {
                     if (ui.isLinkSourceUndefined()) {
@@ -345,6 +345,7 @@ ui.defineInteractions = function () {
                 }
             }
             else {
+
                 if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|DependencyLink|make|help|hurt|break/)) {
                     if (ui.isLinkSourceUndefined()) {
                         cellView.highlight({blur: 10, color: 'blue'});
@@ -408,10 +409,10 @@ ui.defineInteractions = function () {
                                     ui.linkTarget = temp;
                                 }
                             }
-                            else if (ui.currentAddingElement.match(/make|help|hurt|break/i)) {
+                            else if (ui.currentAddingElement.match(/ContributionLink/i)) {
                                 var isValid = istar.metamodel.nodeLinks['ContributionLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
                                 if (isValid.isValid) {
-                                    newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.currentAddingElement);
+                                    newLink = istar.addContributionLink(ui.linkSource.model, ui.linkTarget.model, ui.linkValue);
                                     if (newLink) {
                                         //do some magic in order to keep links straight when there are no vertices defined
                                         newLink.on('change:vertices', ui._toggleSmoothness);
