@@ -304,9 +304,9 @@ ui.defineInteractions = function () {
             }
         }
         else if (ui.currentStateIsAddLink()) {
-            var isContainerLink = $.inArray(ui.currentAddingElement, istar.metamodel.getContainerLinksNames()) !== -1;
-            var isNodeLink = $.inArray(ui.currentAddingElement, istar.metamodel.getNodeLinksNames()) !== -1;
-            var isDependencyLink = ui.dependencyType.match(/DependencyLink/) !== null;
+            var isContainerLink = _.includes(istar.metamodel.getContainerLinksNames(), ui.currentAddingElement);
+            var isNodeLink = _.includes(istar.metamodel.getNodeLinksNames(), ui.currentAddingElement);
+            var isDependencyLink = _.includes(ui.currentAddingElement, 'DependencyLink');
 
             if (cellView.model.isKindOfActor()) {
                 if (isContainerLink) {

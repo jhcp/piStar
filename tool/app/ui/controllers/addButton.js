@@ -144,7 +144,6 @@ uiC.createAddButtons = function() {
     //create Add <<Contribution Link>> buttons
     var linkType = istar.metamodel.nodeLinks.ContributionLink;
     _.forEach(istar.metamodel.nodeLinks.ContributionLink.possibleLabels, function(linkValue, i) {
-        console.log(i);
         //if specific ui elements are not defined, use default ones
         var label = linkValue
         if (linkType.buttonLabel) {

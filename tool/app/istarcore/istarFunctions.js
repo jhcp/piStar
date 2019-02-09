@@ -428,85 +428,61 @@ var istar = function () {
          * @param {Actor}   target      target of the link (the actual Cell, not just the id)
          */
         addLinkBetweenActors: function (linkType, source, target) {
+            var link = new linkType.shapeObject({
+                'source': {id: source.id},
+                'target': {id: target.id}
+            });
+            link.prop('type', linkType.name);
 
-            //prevent repeated links
-            if (!this.isThereLinkBetween(source, target)) {
-                var link = new linkType.shapeObject({
-                    'source': {id: source.id},
-                    'target': {id: target.id}
-                });
-                link.prop('type', linkType.name);
-
-                if (linkType.label) {
-                    link.attr('label/text', linkType.label);
-                    link.attr('label-background/text', linkType.label);
-                }
-
-                istar.graph.addCell(link);
-                return link;
+            if (linkType.label) {
+                link.attr('label/text', linkType.label);
+                link.attr('label-background/text', linkType.label);
             }
-        },
-        addOneSideOfDependencyLink: function (source, target) {
-            var link;
-            if (source.isKindOfActor()) {
-                link = new joint.shapes.istar.DependencyLink({
-                    'source': {id: source.id, selector: '.element'},
-                    'target': {id: target.id}
-                });
-            }
-            else {
-                link = new joint.shapes.istar.DependencyLink({'source': {id: source.id}, 'target': {id: target.id}});
-            }
-            link.prop('type', 'DependencyLink');
 
             istar.graph.addCell(link);
-
-            //move links to the back, so that they don't appear on top of the element's shape
-            link.toBack();
-            //move all the actors even further back, so that they don't impede the visualization of the dependency links
-            var actors = _.filter(istar.graph.getElements(), function (element) {
-                return element.isKindOfActor();
-            });
-            _.forEach(actors, function (actor) {
-                actor.toBack();
-            });
-            return [link];
+            return link;
         },
+        // addOneSideOfDependencyLink: function (source, target) {
+        //     console.log('addOneSideOfDependencyLink');
+        //     var link;
+        //     if (source.isKindOfActor()) {
+        //         link = new joint.shapes.istar.DependencyLink({
+        //             'source': {id: source.id, selector: '.element'},
+        //             'target': {id: target.id}
+        //         });
+        //     }
+        //     else {
+        //         link = new joint.shapes.istar.DependencyLink({'source': {id: source.id}, 'target': {id: target.id}});
+        //     }
+        //     link.prop('type', 'DependencyLink');
+        //
+        //     istar.graph.addCell(link);
+        //
+        //     //move links to the back, so that they don't appear on top of the element's shape
+        //     link.toBack();
+        //     //move all the actors even further back, so that they don't impede the visualization of the dependency links
+        //     var actors = _.filter(istar.graph.getElements(), function (element) {
+        //         return element.isKindOfActor();
+        //     });
+        //     _.forEach(actors, function (actor) {
+        //         actor.toBack();
+        //     });
+        //     return [link];
+        // },
         addDependencyLink: function (depender, dependum, dependee) {
-            //TODO prevent repeated links
-
-            var link1;
-            if (depender.isKindOfActor()) {
-                link1 = new joint.shapes.istar.DependencyLink({
-                    'source': {id: depender.id, selector: '.element'},
-                    'target': {id: dependum.id}
-                });
-            }
-            else {
-                link1 = new joint.shapes.istar.DependencyLink({
-                    'source': {id: depender.id},
-                    'target': {id: dependum.id}
-                });
-            }
+            var link1 = new joint.shapes.istar.DependencyLink({
+                'source': {id: depender.id, selector: '.element'},
+                'target': {id: dependum.id}
+            });
+            var link2 = new joint.shapes.istar.DependencyLink({
+                'source': {id: dependum.id},
+                'target': {id: dependee.id, selector: '.element'}
+            });
             istar.graph.addCell(link1);
-
-            var link2;
-            if (dependee.isKindOfActor()) {
-                link2 = new joint.shapes.istar.DependencyLink({
-                    'source': {id: dependum.id},
-                    'target': {id: dependee.id, selector: '.element'}
-                });
-            }
-            else {
-                link2 = new joint.shapes.istar.DependencyLink({
-                    'source': {id: dependum.id},
-                    'target': {id: dependee.id}
-                });
-            }
             istar.graph.addCell(link2);
 
-            //make a reference from one link to another, in order to be able so remove the other one if
-            //one of them is removed
+            //stores a reference from one link to another, in order to be able so remove the other one if
+            //any of them is removed, thus preventing dangling dependencies
             link1.prop('otherHalf', link2);
             link2.prop('otherHalf', link1);
 
@@ -514,9 +490,10 @@ var istar = function () {
             link2.prop('type', 'DependencyLink');
 
             dependum.prop('isDependum', true);
-            var dependumPosition = {x: 50, y: 50};
-            dependumPosition.x = (depender.prop('position/x') + dependee.prop('position/x')) / 2;
-            dependumPosition.y = (depender.prop('position/y') + dependee.prop('position/y')) / 2;
+            var dependumPosition = {
+                x: ((depender.prop('position/x') + dependee.prop('position/x')) / 2),
+                y: ((depender.prop('position/y') + dependee.prop('position/y')) / 2)
+            };
             dependum.prop('position', dependumPosition);
 
             //move links to the back, so that they don't appear on top of the element's shape

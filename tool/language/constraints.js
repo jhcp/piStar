@@ -227,7 +227,7 @@ istar.metamodel.nodeLinks.AndRefinementLink.isValid = function (source, target) 
         isValid = false;
         result.message = 'you cannot mix AND-refinements with OR-refinements targeting the same element ' +
             '(iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br>' +
-            '<img src="images/errors/mixAndAndOr.svg" alt="An element may be AND-refined or OR-refined, but not both"/>';
+            '<img src="language/images/errors/mixAndAndOr.svg" alt="An element may be AND-refined or OR-refined, but not both"/>';
     }
 
     result.isValid = isValid;
