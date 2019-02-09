@@ -27,7 +27,7 @@
 istar.metamodel = {
     /** A prefix to use when loading and saving the model */
     /** @type {string} */
-    "prefix": 'istar',
+    "prefix": "istar",
 
     /**
      * Identify the version of the metamodel
@@ -35,7 +35,7 @@ istar.metamodel = {
      * version: '0.1'
      @type {string}
      */
-    "version": '0.2',
+    "version": "0.2",
 
     /** An object containing the definition of the shapes that are used in this metamodel
      *  You probably don't want to change this */
@@ -47,15 +47,9 @@ istar.metamodel = {
     //Constraints for the validity of a Container type can be defined in the constraints file
     /** @type {Object} */
     "containers": {
-        "Actor": {
-            "name": "Actor"
-        },
-        "Agent": {
-            "name": "Agent"
-        },
-        "Role": {
-            "name": "Role"
-        }
+        "Actor": { },
+        "Agent": { },
+        "Role": { }
     },
 
     //Add here the elements of your language that do not behave like actors, i.e., they are not containers;
@@ -66,25 +60,21 @@ istar.metamodel = {
     /** @type {Object} */
     "nodes": {
         "Goal": {
-            "name": "Goal",
             "canBeInnerElement": true,
             "canBeDependum": true,
             "canBeOnCanvas": false
         },
         "Quality": {
-            "name": "Quality",
-            "canBeInnerElement": true,
-            "canBeDependum": true,
-            "canBeOnCanvas": false
-        },
-        "Task": {
-            "name": "Task",
             "canBeInnerElement": true,
             "canBeDependum": true,
             "canBeOnCanvas": false
         },
         "Resource": {
-            "name": "Resource",
+            "canBeInnerElement": true,
+            "canBeDependum": true,
+            "canBeOnCanvas": false
+        },
+        "Task": {
             "canBeInnerElement": true,
             "canBeDependum": true,
             "canBeOnCanvas": false
@@ -97,13 +87,10 @@ istar.metamodel = {
     /** @type {Object} */
     "containerLinks": {
         "IsALink": {
-            "name": "IsALink",
             "label": "is-a"
         },
         "ParticipatesInLink": {
-            "name": "ParticipatesInLink",
-            "label": "participates-in",
-            "allowMultipleLinksBetweenTheSameElements": false //TODO
+            "label": "participates-in"
         }
     },
 
@@ -112,32 +99,21 @@ istar.metamodel = {
     //New types of dependency links are *NOT* created here. T
     //Constraints for the validity of a Dependency link type can be defined in the constraints file
     "dependencyLinks": {
-        "DependencyLink": {
-            "name": "DependencyLink"
-        }
+        "DependencyLink": { }
     },
 
     //Add here the links of your language that relate a node with another node
     //Constraints for the validity of a Link type can be defined in the constraints file
     /** @type {Object} */
     "nodeLinks": {
-        "AndRefinementLink": {
-            "name": "AndRefinementLink"
-        },
-        "OrRefinementLink": {
-            "name": "OrRefinementLink"
-        },
-        "NeededByLink": {
-            "name": "NeededByLink"
-        },
+        "AndRefinementLink": { },
         "ContributionLink": {
-            "name": "ContributionLink",
             "changeableLabel": true,
             "possibleLabels": ["make", "help", "hurt", "break"]
         },
-        "QualificationLink": {
-            "name": "QualificationLink"
-        }
+        "NeededByLink": { },
+        "OrRefinementLink": { },
+        "QualificationLink": { }
     }
 };
 

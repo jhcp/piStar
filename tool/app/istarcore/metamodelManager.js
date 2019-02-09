@@ -8,53 +8,36 @@
 
 istar.validateMetamodel = function (metamodel) {
     'use strict';
-    //check if every kind of element and link has a name.
-    //also check against names starting with 'node' or 'link', to prevent from overriding
+    //check against names starting with 'node' or 'link', to prevent from overriding
     //methods of the istar object.
-    _.forEach(metamodel.containers, function (element) {
-        if (!element.name) {
-            console.log('this metamodel is invalid. Please check the error message below.');
-            throw new Error('Invalid container in the metamodel. Containers must have a "name".');
-        }
-        if (element.name.match(/^(node|link)/i)) {
-            console.log('this metamodel is invalid. Please check the error message below.');
-            throw new Error('Invalid container name in the metamodel: ' + element.name +
-                '. Container names cannot start with "node" nor "link".');
-        }
-    });
-    _.forEach(metamodel.nodes, function (element) {
-        if (!element.name) {
-            console.log('this metamodel is invalid. Please check the error message below.');
-            throw new Error('Invalid node in the metamodel. Nodes must have a "name".');
-        }
-        if (element.name.match(/^(node|link)/i)) {
-            console.log('this metamodel is invalid. Please check the error message below.');
-            throw new Error('Invalid node name in the metamodel: ' + element.name +
-                '. Node names cannot start with "node" nor "link".');
-        }
-    });
-    _.forEach(metamodel.containerLinks, function (element) {
-        if (!element.name) {
-            console.log('this metamodel is invalid. Please check the error message below.');
-            throw new Error('Invalid container link in the metamodel. Container links must have a "name".');
-        }
-        if (element.name.match(/^(node|link)/i)) {
-            console.log('this metamodel is invalid. Please check the error message below.');
-            throw new Error('Invalid container link name in the metamodel: ' + element.name +
-                '. Container link names cannot start with "node" nor "link".');
-        }
-    });
-    _.forEach(metamodel.nodeLinks, function (element) {
-        if (!element.name) {
-            console.log('this metamodel is invalid. Please check the error message below.');
-            throw new Error('Invalid node link in the metamodel. Node links must have a "name".');
-        }
-        if (element.name.match(/^(node|link)/i)) {
-            console.log('this metamodel is invalid. Please check the error message below.');
-            throw new Error('Invalid node link name in the metamodel: ' + element.name +
-                '. Node link names cannot start with "node" nor "link".');
-        }
-    });
+    // _.forEach(metamodel.containers, function (element) {
+    //     if (element.name && element.name.match(/^(node|link)/i)) {
+    //         console.log('this metamodel is invalid. Please check the error message below.');
+    //         throw new Error('Invalid container name in the metamodel: ' + element.name +
+    //             '. Container names cannot start with "node" nor "link".');
+    //     }
+    // });
+    // _.forEach(metamodel.nodes, function (element) {
+    //     if (element.name.match(/^(node|link)/i)) {
+    //         console.log('this metamodel is invalid. Please check the error message below.');
+    //         throw new Error('Invalid node name in the metamodel: ' + element.name +
+    //             '. Node names cannot start with "node" nor "link".');
+    //     }
+    // });
+    // _.forEach(metamodel.containerLinks, function (element) {
+    //     if (element.name.match(/^(node|link)/i)) {
+    //         console.log('this metamodel is invalid. Please check the error message below.');
+    //         throw new Error('Invalid container link name in the metamodel: ' + element.name +
+    //             '. Container link names cannot start with "node" nor "link".');
+    //     }
+    // });
+    // _.forEach(metamodel.nodeLinks, function (element) {
+    //     if (element.name.match(/^(node|link)/i)) {
+    //         console.log('this metamodel is invalid. Please check the error message below.');
+    //         throw new Error('Invalid node link name in the metamodel: ' + element.name +
+    //             '. Node link names cannot start with "node" nor "link".');
+    //     }
+    // });
 
     //check if the metamodel contains at least one kind of element (node or container)
     //if it doesnt them a model couldnt be created
@@ -79,12 +62,26 @@ istar.setupMetamodel = function (metamodel) {
     istar.validateMetamodel(metamodel);
     console.log('metamodel is valid');
 
+    createCellNames(metamodel);
+
     createHelperGetNamesFunctions(metamodel);
     setupCellsSpecificPrototypes(metamodel);
     setupCellsGeneralPrototypes(metamodel);
 
     console.log('end of metamodel setup');
     return metamodel;
+
+    function createCellNames(metamodel) {
+        //for each Cell Type in the metamodel, create an attribute with their name,
+        //allowing to know the name of the Type from within its definition object
+        var allCellTypes = _.concat(metamodel.containers, metamodel.nodes, metamodel.containerLinks,
+            metamodel.dependencyLinks, metamodel.nodeLinks);
+        _.forEach(allCellTypes, function (cellSupertype) {
+            _.forEach(_.keys(cellSupertype), function (cellName) {
+                cellSupertype[cellName].name = cellName;
+            });
+        });
+    }
 
     //declaration of locally-scoped functions
     function createHelperGetNamesFunctions(metamodel) {
