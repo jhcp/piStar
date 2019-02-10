@@ -216,9 +216,7 @@ function loadModel(inputRaw) {
 
         fileManager.invalidMessages = [];
         ui.clearDiagram();
-        istar.graph.prop('name', '');
-        istar.graph.prop('customProperties', '');
-        istar.graph.prop('customProperties/Description', '');
+
         try {
             var inputModel = $.parseJSON(inputRaw);
         } catch (e) {

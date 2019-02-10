@@ -346,14 +346,14 @@ ui.defineInteractions = function () {
             }
             else {
 
-                if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|DependencyLink|make|help|hurt|break/)) {
+                if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|DependencyLink/)) {
                     if (ui.isLinkSourceUndefined()) {
                         cellView.highlight({blur: 10, color: 'blue'});
                         ui.linkSource = cellView;
                     } else {
                         ui.linkTarget = cellView;
 
-                        if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|make|help|hurt|break/)) {
+                        if (ui.currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink/)) {
                             var newLink = null;
                             var prettyLinkName = '';
                             if (ui.currentAddingElement === 'AndRefinementLink') {
@@ -1023,6 +1023,9 @@ ui.clearDiagram = function () {
     'use strict';
 
     istar.graph.clear();
+    istar.graph.prop('name', '');
+    istar.graph.prop('customProperties', '');//delete all custom properties
+    istar.graph.prop('customProperties/Description', '');//set back the 'Description' property
 };
 
 
@@ -1295,6 +1298,16 @@ ui.displayInvalidModelMessage = function (messages) {
 
 //overrides istar.displayInvalidModelMessages, in order to display the messages in the user interface
 istar.displayInvalidModelMessages = ui.displayInvalidModelMessage;
+
+$('#menu-button-new-model').click(function () {
+    'use strict';
+
+    var confirmed = confirm('Are you sure you want to create a new model and delete the current model?');
+    if (confirmed) {
+        ui.clearDiagram();
+    }
+    ui.selectModel();
+});
 
 /*definition of globals to prevent undue JSHint warnings*/
 /*globals istar:false, console:false, $:false, joint:false, uiC:false */

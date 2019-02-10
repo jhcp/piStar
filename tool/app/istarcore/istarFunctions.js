@@ -512,7 +512,7 @@ var istar = function () {
             var link = new linkType.shapeObject({'source': {id: source.id}, 'target': {id: target.id}});
             link.prop('type', linkType.name);
             istar.graph.addCell(link);
-            
+
             //embeds the link on the (parent) actor of its source element, to facilitate collapse/expand
             if (source.get('parent')) {
                 istar.graph.getCell(source.get('parent')).embed(link);
