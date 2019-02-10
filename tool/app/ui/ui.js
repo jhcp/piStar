@@ -204,6 +204,12 @@ ui.defineInteractions = function () {
         linkView.model.attr('connection-wrap/stroke', 'lightgrey');
     });
 
+    istar.paper.on('link:pointerdblclick', function(linkView, a, b) {
+        //hide link tools when a vertex is removed
+        linkView.hideTools();
+        linkView.model.attr('connection-wrap/stroke', 'transparent');
+    });
+
     istar.paper.on('link:pointerup', function(linkView) {
         ui.selectElement(linkView.model, linkView);
     });
