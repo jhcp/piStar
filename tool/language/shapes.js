@@ -46,7 +46,7 @@ joint.shapes.istar.Actor = joint.dia.Element.extend({
                 'y-alignment': 'middle'
             },
             '.boundary': {
-                fill: 'rgb(230,230,230)',
+                fill: 'rgb(242,242,242)',
                 height: 120,
                 rx: 100,
                 ry: 40,
@@ -86,7 +86,7 @@ joint.shapes.istar.Role = joint.dia.Element.extend({
                 'y-alignment': 'middle'
             },
             '.boundary': {
-                fill: 'rgb(230,230,230)',
+                fill: 'rgb(242,242,242)',
                 height: 120,
                 rx: 100,
                 ry: 40,
@@ -133,7 +133,7 @@ joint.shapes.istar.Agent = joint.dia.Element.extend({
                 'y-alignment': 'middle'
             },
             '.boundary': {
-                fill: 'rgb(230,230,230)',
+                fill: 'rgb(242,242,242)',
                 height: 120,
                 rx: 100,
                 ry: 40,
@@ -197,7 +197,7 @@ joint.shapes.istar.DefaultContainer = joint.dia.Element.extend({
                 'y-alignment': 'middle'
             },
             '.boundary': {
-                fill: 'rgb(230,230,230)',
+                fill: 'rgb(242,242,242)',
                 height: 120,
                 rx: 100,
                 ry: 40,
@@ -756,7 +756,7 @@ joint.shapes.istar.ContributionLink = joint.dia.Link.define('ContributionLink',
                         'font-weight': 'bold'
                     },
                     rect: {
-                        fill: 'rgb(230,230,230)',
+                        fill: 'rgb(242,242,242)',
                     }
                 }
             }

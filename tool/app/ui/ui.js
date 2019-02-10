@@ -257,6 +257,7 @@ ui.defineInteractions = function () {
             }
             else {
                 cellView.$('.boundary').css({stroke: color, 'stroke-width': '4'});
+                cellView.$('.boundary').css({fill: '#ddd'});
                 cellView.$('.actorSymbol').css({stroke: color, 'stroke-width': '3'});
                 cellView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
             }
@@ -265,14 +266,18 @@ ui.defineInteractions = function () {
             if (cellView.model.get('parent')) {
                 var parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
                 parentView.$('.boundary').css({stroke: color, 'stroke-width': '4'});
+                parentView.$('.boundary').css({fill: '#ddd'});
                 parentView.$('.actorSymbol').css({stroke: color, 'stroke-width': '3'});
                 parentView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
             }
+            // cellView.$('.element').css({filter: 'brightness(0.5)'});
+            // cellView.$('.element').css({fill: 'hsl(120, 74%, 80%)'});
         }
     });
     istar.paper.on('cell:mouseout', function (cellView, evt, x, y) {
         if (cellView.model.isKindOfActor()) {
             cellView.$('.boundary').css({stroke: 'black', 'stroke-width': '2'});
+            cellView.$('.boundary').css({fill: 'rgb(242,242,242'});
             cellView.$('.actorSymbol').css({stroke: 'black', 'stroke-width': '2'});
             cellView.$('.actorDecorator').css({stroke: 'black', 'stroke-width': '2'});
         }
@@ -280,8 +285,10 @@ ui.defineInteractions = function () {
             if (cellView.model.get('parent')) {
                 var parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
                 parentView.$('.boundary').css({stroke: 'black', 'stroke-width': '2'});
+                parentView.$('.boundary').css({fill: 'rgb(242,242,242'});
                 parentView.$('.actorSymbol').css({stroke: 'black', 'stroke-width': '2'});
             }
+            // cellView.$('.element').css({fill: 'rgb(205, 254, 205)'});
         }
     });
     istar.paper.on('cell:pointerdown', function (cellView, evt, x, y) {

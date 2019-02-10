@@ -270,6 +270,10 @@ kbd {
 
 /* JointJS markup */
 
+.boundary, .element {
+  transition: fill 0.3s ease-out;
+}
+
 .remove-element {
   cursor: pointer;
 }
