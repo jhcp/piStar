@@ -114,7 +114,7 @@ istar.metamodel.containerLinks.ParticipatesInLink.isValid = function (source, ta
     return result;
 };
 
-istar.metamodel.dependencyLinks.DependencyLink.isValid = function (source, target) {
+istar.metamodel.dependencyLinks.DependencyLink.isValid = function (source, target, dependumTypeName) {
     'use strict';
 
     //istar 2.0:

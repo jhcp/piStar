@@ -338,7 +338,7 @@ ui.defineInteractions = function () {
                         ui.linkSource = cellView;
                     } else {
                         ui.linkTarget = cellView;
-                        var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
+                        var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model, ui.dependencyType);
                         if (isValid.isValid) {
                             addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                         }

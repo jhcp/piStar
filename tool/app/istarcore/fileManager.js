@@ -263,7 +263,7 @@ function loadModel(inputRaw) {
                 var dependum = fileManager.addLoadedElement(element, inputModel.display);
                 var dependee = istar.graph.getCell(element.target);
 
-                var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(depender, dependee);
+                var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(depender, dependee, (dependum.prop('type') + 'DependencyLink'));
                 if (!isValid.isValid) {
                     this._processInvalidLink('DependencyLink', depender, dependee);
                 }
