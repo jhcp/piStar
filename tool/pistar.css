@@ -87,6 +87,11 @@ https://stackoverflow.com/questions/7492062/css-overflow-scroll-always-show-vert
   padding: 0 50px;
 }
 
+#logo a, #logo a:hover {
+  color: rgb(252, 255, 239);
+  text-decoration: none;
+}
+
 #star {
   margin-left: -5px;
   margin-top: -10px;

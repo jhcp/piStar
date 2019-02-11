@@ -820,6 +820,7 @@ $('#modal-button-load-model').click(function () {
                     }
                     var fileReader = new FileReader();
                     fileReader.onload = function (e) {
+                        ui.resetCellDisplayStates();
                         fileManager.load(e.target.result);//do the actual loading
                         ui.selectModel();//select the model (as a whole)
 
@@ -916,7 +917,8 @@ ui.setupLoadExampleButton = function () {
             if (ui.getSelectedElement().findView) {
                 ui.unhighlightFocus(ui.getSelectedElement().findView(istar.paper));
             }
-            loadModel(istar.examples[modelToLoad]);
+            ui.resetCellDisplayStates();
+            fileManager.load(istar.examples[modelToLoad]);
             ui.selectModel();//select the model (as a whole)
             $('.modal *').removeClass('waiting');
             $('#modal-examples').modal('hide');
@@ -1317,10 +1319,67 @@ $('#menu-button-new-model').click(function () {
 
     var confirmed = confirm('Are you sure you want to create a new model and delete the current model?');
     if (confirmed) {
-        ui.clearDiagram();
+        istar.clearModel();
     }
     ui.selectModel();
 });
 
+ui.changeDependencyLinksOpacity = function (dependumOpacity, linkOpacity) {
+    'use strict';
+
+    _.forEach(istar.getCells(), function (cell) {
+        if (cell.isDependum()) {
+            cell.attr('*/opacity', dependumOpacity);
+            if (dependumOpacity === 0) {
+                cell.attr('*/display', 'none');//prevent interactivity with invisible dependums
+            }
+            else {
+                cell.attr('*/display', 'visibçe');
+            }
+        }
+        else if (cell.isDependencyLink()) {
+            cell.attr('*/opacity', linkOpacity);
+            if (linkOpacity === 0) {
+                cell.attr('*/display', 'none');//prevent interactivity with invisible dependency links
+            }
+            else {
+                cell.attr('*/display', 'visibçe');
+            }
+        }
+    });
+};
+
+ui.states = {};
+ui.states.cellDisplay = {
+    dependencies: {
+        DISPLAY: 0,
+        PARTIAL: 1,
+        FULL: 2,
+        currentState: 0
+    }
+};
+ui.resetCellDisplayStates = function () {
+    'use strict';
+
+    this.states.cellDisplay.dependencies.currentState = 0;
+}
+
+$('#menu-button-toggle-dependencies-display').click(function () {
+    'use strict';
+
+    if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.DISPLAY) {
+        ui.states.cellDisplay.dependencies.currentState = ui.states.cellDisplay.dependencies.PARTIAL;
+        //links are darker than dependums. That's why it's opacity is smaller
+        ui.changeDependencyLinksOpacity(0.4, 0.1);
+    }
+    else if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL) {
+        ui.states.cellDisplay.dependencies.currentState = ui.states.cellDisplay.dependencies.FULL;
+        ui.changeDependencyLinksOpacity(0, 0);
+    }
+    else if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.FULL) {
+        ui.states.cellDisplay.dependencies.currentState = ui.states.cellDisplay.dependencies.DISPLAY;
+        ui.changeDependencyLinksOpacity(1, 1);
+    }
+});
 /*definition of globals to prevent undue JSHint warnings*/
-/*globals istar:false, console:false, $:false, joint:false, uiC:false */
+/*globals istar:false, console:false, $:false, _:false, joint:false, uiC:false */
