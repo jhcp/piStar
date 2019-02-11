@@ -1334,7 +1334,7 @@ ui.changeDependencyLinksOpacity = function (dependumOpacity, linkOpacity) {
                 cell.attr('*/display', 'none');//prevent interactivity with invisible dependums
             }
             else {
-                cell.attr('*/display', 'visibçe');
+                cell.attr('*/display', 'visible');
             }
         }
         else if (cell.isDependencyLink()) {
@@ -1343,7 +1343,24 @@ ui.changeDependencyLinksOpacity = function (dependumOpacity, linkOpacity) {
                 cell.attr('*/display', 'none');//prevent interactivity with invisible dependency links
             }
             else {
-                cell.attr('*/display', 'visibçe');
+                cell.attr('*/display', 'visible');
+            }
+        }
+    });
+};
+
+ui.changeContributionLinksOpacity = function (linkOpacity) {
+    'use strict';
+
+    _.forEach(istar.getLinks(), function (cell) {
+        if (cell.isContributionLink()) {
+            console.log(cell.attr('line/opacity', linkOpacity));
+            console.log(cell.attr('text/opacity', linkOpacity));
+            if (linkOpacity === 0) {
+                cell.attr('*/display', 'none');//prevent interactivity with invisible dependums
+            }
+            else {
+                cell.attr('*/display', 'visible');
             }
         }
     });
@@ -1356,12 +1373,19 @@ ui.states.cellDisplay = {
         PARTIAL: 1,
         FULL: 2,
         currentState: 0
+    },
+    contributionLinks: {
+        DISPLAY: 0,
+        PARTIAL: 1,
+        FULL: 2,
+        currentState: 0
     }
 };
 ui.resetCellDisplayStates = function () {
     'use strict';
 
     this.states.cellDisplay.dependencies.currentState = 0;
+    this.states.cellDisplay.contributionLinks.currentState = 0;
 }
 
 $('#menu-button-toggle-dependencies-display').click(function () {
@@ -1369,7 +1393,7 @@ $('#menu-button-toggle-dependencies-display').click(function () {
 
     if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.DISPLAY) {
         ui.states.cellDisplay.dependencies.currentState = ui.states.cellDisplay.dependencies.PARTIAL;
-        //links are darker than dependums. That's why it's opacity is smaller
+        //links are darker than dependums. That's why its opacity is smaller
         ui.changeDependencyLinksOpacity(0.4, 0.1);
     }
     else if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL) {
@@ -1381,5 +1405,24 @@ $('#menu-button-toggle-dependencies-display').click(function () {
         ui.changeDependencyLinksOpacity(1, 1);
     }
 });
+
+$('#menu-button-toggle-contributions-display').click(function () {
+    'use strict';
+
+    if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.DISPLAY) {
+        ui.states.cellDisplay.contributionLinks.currentState = ui.states.cellDisplay.contributionLinks.PARTIAL;
+        //links are darker than dependums. That's why its opacity is smaller
+        ui.changeContributionLinksOpacity(0.3);
+    }
+    else if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.PARTIAL) {
+        ui.states.cellDisplay.contributionLinks.currentState = ui.states.cellDisplay.contributionLinks.FULL;
+        ui.changeContributionLinksOpacity(0);
+    }
+    else if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.FULL) {
+        ui.states.cellDisplay.contributionLinks.currentState = ui.states.cellDisplay.contributionLinks.DISPLAY;
+        ui.changeContributionLinksOpacity(1);
+    }
+});
+
 /*definition of globals to prevent undue JSHint warnings*/
 /*globals istar:false, console:false, $:false, _:false, joint:false, uiC:false */
