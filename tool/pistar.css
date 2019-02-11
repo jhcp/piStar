@@ -283,6 +283,10 @@ svg * {
   transition: opacity 0.3s ease-out;
 }
 
+.c-connection-wrap {
+  transition: stroke 0.2s ease-out;
+}
+
 .remove-element {
   cursor: pointer;
 }

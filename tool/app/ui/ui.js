@@ -201,7 +201,7 @@ ui.defineInteractions = function () {
         //highlights a hovered link, which indicates to the user that it is interactive
         linkView.showTools();
         linkView.model.attr('connection-wrap/strokeWidth', 20);
-        linkView.model.attr('connection-wrap/stroke', 'lightgrey');
+        linkView.model.attr('connection-wrap/stroke', 'rgba(190, 190, 190, 1)');
     });
 
     istar.paper.on('link:pointerdblclick', function(linkView, a, b) {
@@ -216,7 +216,7 @@ ui.defineInteractions = function () {
 
     istar.paper.on('link:mouseleave', function(linkView) {
         linkView.hideTools();
-        linkView.model.attr('connection-wrap/stroke', 'transparent');
+        linkView.model.attr('connection-wrap/stroke', 'rgba(190, 190, 190, 0)');
     });
 
     istar.paper.on('change:selection', function(selection) {

@@ -400,20 +400,21 @@ joint.shapes.istar.ParticipatesInLink = joint.dia.Link.define('ParticipatesInLin
     {
         markup: [
             {
-                tagName: 'path',
-                selector: 'connection-wrap'
+                className: 'c-connection-wrap',
+                selector: 'connection-wrap',
+                tagName: 'path'
             },
             {
-                tagName: 'path',
-                selector: 'line'
+                selector: 'line',
+                tagName: 'path'
             },
             {
-                tagName: 'text',
-                selector: 'label-background'
+                selector: 'label-background',
+                tagName: 'text'
             },
             {
-                tagName: 'text',
-                selector: 'label'
+                selector: 'label',
+                tagName: 'text'
             }
         ]
     }
@@ -464,20 +465,21 @@ joint.shapes.istar.IsALink = joint.dia.Link.define('IsALink',
     {
         markup: [
             {
-                tagName: 'path',
-                selector: 'connection-wrap'
+                className: 'c-connection-wrap',
+                selector: 'connection-wrap',
+                tagName: 'path'
             },
             {
-                tagName: 'path',
-                selector: 'line'
+                selector: 'line',
+                tagName: 'path'
             },
             {
-                tagName: 'text',
-                selector: 'label-background'
+                selector: 'label-background',
+                tagName: 'text'
             },
             {
-                tagName: 'text',
-                selector: 'label'
+                selector: 'label',
+                tagName: 'text'
             }
         ]
     }
@@ -534,20 +536,21 @@ joint.shapes.istar.DefaultContainerLink = joint.dia.Link.define('DefaultContaine
     {
         markup: [
             {
-                tagName: 'path',
-                selector: 'connection-wrap'
+                className: 'c-connection-wrap',
+                selector: 'connection-wrap',
+                tagName: 'path'
             },
             {
-                tagName: 'path',
-                selector: 'line'
+                selector: 'line',
+                tagName: 'path'
             },
             {
-                tagName: 'text',
-                selector: 'label-background'
+                selector: 'label-background',
+                tagName: 'text'
             },
             {
-                tagName: 'text',
-                selector: 'label'
+                selector: 'label',
+                tagName: 'text'
             }
         ]
     }
@@ -586,16 +589,17 @@ joint.shapes.istar.DependencyLink = joint.dia.Link.define('DependencyLink',
 {
     markup: [
         {
-            tagName: 'path',
-            selector: 'connection-wrap'
+            className: 'c-connection-wrap',
+            selector: 'connection-wrap',
+            tagName: 'path'
         },
         {
-            tagName: 'path',
-            selector: 'line'
+            selector: 'line',
+            tagName: 'path'
         },
         {
-            tagName: 'path',
-            selector: 'label'
+            selector: 'label',
+            tagName: 'path'
         }]
 }
 );
@@ -627,12 +631,13 @@ joint.shapes.istar.AndRefinementLink = joint.dia.Link.define('AndRefinementLink'
     {
         markup: [
             {
-                tagName: 'path',
-                selector: 'connection-wrap'
+                className: 'c-connection-wrap',
+                selector: 'connection-wrap',
+                tagName: 'path'
             },
             {
-                tagName: 'path',
-                selector: 'line'
+                selector: 'line',
+                tagName: 'path'
             }
         ]
     }
@@ -665,12 +670,13 @@ joint.shapes.istar.OrRefinementLink = joint.dia.Link.define('OrRefinementLink',
     {
         markup: [
             {
-                tagName: 'path',
-                selector: 'connection-wrap'
+                className: 'c-connection-wrap',
+                selector: 'connection-wrap',
+                tagName: 'path'
             },
             {
-                tagName: 'path',
-                selector: 'line'
+                selector: 'line',
+                tagName: 'path'
             }
         ]
     }
@@ -712,12 +718,13 @@ joint.shapes.istar.NeededByLink = joint.dia.Link.define('NeededByLink',
     {
         markup: [
             {
-                tagName: 'path',
-                selector: 'connection-wrap'
+                className: 'c-connection-wrap',
+                selector: 'connection-wrap',
+                tagName: 'path'
             },
             {
-                tagName: 'path',
-                selector: 'line'
+                selector: 'line',
+                tagName: 'path'
             }
         ]
     }
@@ -767,12 +774,13 @@ joint.shapes.istar.ContributionLink = joint.dia.Link.define('ContributionLink',
     {
         markup: [
             {
-                tagName: 'path',
-                selector: 'connection-wrap'
+                className: 'c-connection-wrap',
+                selector: 'connection-wrap',
+                tagName: 'path'
             },
             {
-                tagName: 'path',
-                selector: 'line'
+                selector: 'line',
+                tagName: 'path'
             }
         ]
     }
@@ -800,12 +808,13 @@ joint.shapes.istar.QualificationLink = joint.dia.Link.define('QualificationLink'
     {
         markup: [
             {
-                tagName: 'path',
-                selector: 'connection-wrap'
+                className: 'c-connection-wrap',
+                selector: 'connection-wrap',
+                tagName: 'path'
             },
             {
-                tagName: 'path',
-                selector: 'line'
+                selector: 'line',
+                tagName: 'path'
             }
         ]
     }
