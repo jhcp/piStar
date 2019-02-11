@@ -215,7 +215,7 @@ function loadModel(inputRaw) {
         fileManager.changedModel = true;
 
         fileManager.invalidMessages = [];
-        ui.clearDiagram();
+        istar.clearModel();
 
         try {
             var inputModel = $.parseJSON(inputRaw);
@@ -272,8 +272,8 @@ function loadModel(inputRaw) {
                 links[0].on('change:vertices', ui._toggleSmoothness);
                 links[1].on('change:vertices', ui._toggleSmoothness);
 
-                for (j = 0; j < inputModel.links.length; j++) {
-                    linkJSON = inputModel.links[j];
+                for (var j = 0; j < inputModel.links.length; j++) {
+                    var linkJSON = inputModel.links[j];
                     if (linkJSON.target === element.id) {
                         if (inputModel.display && inputModel.display[linkJSON.id] && inputModel.display[linkJSON.id].vertices) {
                             links[0].set('vertices', inputModel.display[linkJSON.id].vertices);

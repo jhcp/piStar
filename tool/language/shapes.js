@@ -394,8 +394,8 @@ joint.shapes.istar.ParticipatesInLink = joint.dia.Link.define('ParticipatesInLin
                 // },
             }
         },
-        source: {selector: 'circle'},
-        target: {selector: 'circle'}
+        source: {selector: '.actorSymbol'},
+        target: {selector: '.actorSymbol'}
     },
     {
         markup: [
@@ -458,8 +458,8 @@ joint.shapes.istar.IsALink = joint.dia.Link.define('IsALink',
                 y: 4,
             }
         },
-        source: {selector: 'circle'},
-        target: {selector: 'circle'}
+        source: {selector: '.actorSymbol'},
+        target: {selector: '.actorSymbol'}
     },
     {
         markup: [
@@ -528,8 +528,8 @@ joint.shapes.istar.DefaultContainerLink = joint.dia.Link.define('DefaultContaine
                 y: 4,
             }
         },
-        source: {selector: 'circle'},
-        target: {selector: 'circle'}
+        source: {selector: '.actorSymbol'},
+        target: {selector: '.actorSymbol'}
     },
     {
         markup: [

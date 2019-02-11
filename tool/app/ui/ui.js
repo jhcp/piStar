@@ -68,10 +68,10 @@ var ui = function() {
         selectElement: function(element, elementView) {
             if (element) {
                 var toTrigger = false;
-                if (this.selectedElement && this.selectedElement != element) {
+                if (this.selectedElement && this.selectedElement !== element) {
                     this.clearSelection();
                 }
-                if (this.selectedElement != element) {
+                if (this.selectedElement !== element) {
                     //there is no need to trigger a change:selection event if the same element is being selected
                     toTrigger = true;
                 }
@@ -949,7 +949,7 @@ ui.setupMainMenuInteraction = function () {
 
                 $('#star').css("-transform","rotate(0deg)");
             }
-            else if ($(this).attr('id') != currentMenuItem.attr('id')) {
+            else if ($(this).attr('id') !== currentMenuItem.attr('id')) {
                 //some menu is already displayed, a different one will be displayed
 
                 //deselect and hide the current menu
@@ -1034,25 +1034,15 @@ $('#menu-button-straighten-links').click(function () {
     }
 });
 
-ui.clearDiagram = function () {
-    'use strict';
-
-    istar.graph.clear();
-    istar.graph.prop('name', '');
-    istar.graph.prop('customProperties', '');//delete all custom properties
-    istar.graph.prop('customProperties/Description', '');//set back the 'Description' property
-};
-
-
-var hoverButtons = [];
-
-function createButtons() {
-    'use strict';
-
-    hoverButtons = [];
-
-    return this;
-}
+// var hoverButtons = [];
+//
+// function createButtons() {
+//     'use strict';
+//
+//     hoverButtons = [];
+//
+//     return this;
+// }
 
 ui.changeStatus = function (text) {
     'use strict';

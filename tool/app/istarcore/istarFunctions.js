@@ -29,7 +29,7 @@ var istar = function () {
         //creates a shortcut for setting up model properties
         graph.prop = graph._modelProperties.prop;
 
-        //create is... functions
+        //create is... functions for the graph object
         //they are useful because, since the model itself can be selected, these functions
         //can help differentiate it from regular cells
         graph.isCell = function() {return false;};
@@ -54,6 +54,12 @@ var istar = function () {
                     radius: 10
                 }
             }
+            // defaultRouter: {
+            //     name: 'metro',
+            //     args: {
+            //         padding: 10
+            //     }
+            // }
             //async: true,
             //linkConnectionPoint: joint.util.shapePerimeterConnectionPoint, //connects links to the nodes' shape, rather than their bounding box. Big toll on performance
         });
@@ -216,9 +222,16 @@ var istar = function () {
         var newCornerY = originalPosition.y + originalSize.height;
 
         _.forEach(this.getEmbeddedCells(), function (child) {
-            if (!child.isLink()) {
-                var childBbox = child.getBBox();
-
+            var childBbox = null;
+            // in case we want to keep links inside the boundary
+            // if (child.isLink()) {
+            //     childBbox = istar.paper.findViewByModel(child).getBBox();
+            // }
+            // else {
+            //     childBbox = child.getBBox();
+            // }
+            if (! child.isLink()) {
+                childBbox = child.getBBox();
                 if (childBbox.x < newX) {
                     newX = childBbox.x;
                 }
@@ -532,6 +545,9 @@ var istar = function () {
         },
         clearModel: function () {
             istar.graph.clear();
+            istar.graph.prop('name', '');
+            istar.graph.prop('customProperties', '');//delete all custom properties
+            istar.graph.prop('customProperties/Description', '');//set back the 'Description' property
         },
         createContainerFunctions: function (prototype) {
             prototype.collapse = _collapse;
