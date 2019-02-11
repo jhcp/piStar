@@ -263,12 +263,23 @@ ui.defineInteractions = function () {
             }
         }
         else {
+            //if the node is inside a container, also highlight the container
             if (cellView.model.get('parent')) {
                 var parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
                 parentView.$('.boundary').css({stroke: color, 'stroke-width': '4'});
                 parentView.$('.boundary').css({fill: '#ddd'});
                 parentView.$('.actorSymbol').css({stroke: color, 'stroke-width': '3'});
                 parentView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
+            }
+
+            //if the node is partially hidden, display it normally
+            if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL && cellView.model.isDependum()) {
+                cellView.model.prop('partiallyHiddenOpacity', cellView.model.attr('*/opacity'));
+                cellView.model.attr('*/opacity', '1');
+                _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
+                    link.prop('partiallyHiddenOpacity', link.attr('*/opacity'));
+                    link.attr('*/opacity', '1');
+                });
             }
             // cellView.$('.element').css({filter: 'brightness(0.5)'});
             // cellView.$('.element').css({fill: 'hsl(120, 74%, 80%)'});
@@ -287,6 +298,15 @@ ui.defineInteractions = function () {
                 parentView.$('.boundary').css({stroke: 'black', 'stroke-width': '2'});
                 parentView.$('.boundary').css({fill: 'rgb(242,242,242'});
                 parentView.$('.actorSymbol').css({stroke: 'black', 'stroke-width': '2'});
+            }
+
+            //if the node is supposed to be partially hidden, hide it again
+            if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL && cellView.model.isDependum()) {
+                cellView.model.attr('*/opacity', cellView.model.prop('partiallyHiddenOpacity'));
+                _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
+                    link.attr('*/opacity', link.prop('partiallyHiddenOpacity'));
+                });
+                cellView.model.prop('partiallyHiddenOpacity', null);
             }
             // cellView.$('.element').css({fill: 'rgb(205, 254, 205)'});
         }
