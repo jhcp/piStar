@@ -279,6 +279,10 @@ kbd {
   transition: fill 0.3s ease-out;
 }
 
+svg * {
+  transition: opacity 0.3s ease-out;
+}
+
 .remove-element {
   cursor: pointer;
 }

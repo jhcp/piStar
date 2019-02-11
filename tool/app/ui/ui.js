@@ -1342,18 +1342,38 @@ ui.changeDependencyLinksOpacity = function (dependumOpacity, linkOpacity) {
 ui.changeContributionLinksOpacity = function (linkOpacity) {
     'use strict';
 
-    _.forEach(istar.getLinks(), function (cell) {
-        if (cell.isContributionLink()) {
-            console.log(cell.attr('line/opacity', linkOpacity));
-            console.log(cell.attr('text/opacity', linkOpacity));
-            if (linkOpacity === 0) {
-                cell.attr('*/display', 'none');//prevent interactivity with invisible dependums
-            }
-            else {
-                cell.attr('*/display', 'visible');
-            }
-        }
+    var contributionLinks = _.filter(istar.getLinks(), function (link) {
+        return link.isContributionLink();
     });
+
+    if (linkOpacity === 1) {
+        _.forEach(contributionLinks, function (link) {
+                link.attr('*/display', 'visible');
+        });
+        setTimeout(function () {
+            _.forEach(contributionLinks, function (link) {
+                link.attr('line/opacity', linkOpacity);
+                link.attr('text/opacity', linkOpacity);
+            });
+        }, 30);
+    }
+    else if (linkOpacity === 0) {
+        _.forEach(contributionLinks, function (link) {
+            link.attr('line/opacity', linkOpacity);
+            link.attr('text/opacity', linkOpacity);
+        });
+        setTimeout(function () {
+            _.forEach(contributionLinks, function (link) {
+                link.attr('*/display', 'none');
+            });
+        }, 300);
+    }
+    else {
+        _.forEach(contributionLinks, function (link) {
+            link.attr('line/opacity', linkOpacity);
+            link.attr('text/opacity', linkOpacity);
+        });
+    }
 };
 
 ui.states = {};
@@ -1371,6 +1391,7 @@ ui.states.cellDisplay = {
         currentState: 0
     }
 };
+
 ui.resetCellDisplayStates = function () {
     'use strict';
 
@@ -1389,6 +1410,7 @@ $('#menu-button-toggle-dependencies-display').click(function () {
     else if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL) {
         ui.states.cellDisplay.dependencies.currentState = ui.states.cellDisplay.dependencies.FULL;
         ui.changeDependencyLinksOpacity(0, 0);
+        ui.selectModel();
     }
     else if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.FULL) {
         ui.states.cellDisplay.dependencies.currentState = ui.states.cellDisplay.dependencies.DISPLAY;
@@ -1407,6 +1429,7 @@ $('#menu-button-toggle-contributions-display').click(function () {
     else if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.PARTIAL) {
         ui.states.cellDisplay.contributionLinks.currentState = ui.states.cellDisplay.contributionLinks.FULL;
         ui.changeContributionLinksOpacity(0);
+        ui.selectModel();
     }
     else if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.FULL) {
         ui.states.cellDisplay.contributionLinks.currentState = ui.states.cellDisplay.contributionLinks.DISPLAY;
