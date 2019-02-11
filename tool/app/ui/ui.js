@@ -272,7 +272,7 @@ ui.defineInteractions = function () {
                 parentView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
             }
 
-            //if the node is partially hidden, display it normally
+            //if a dependum is partially hidden, display it normally
             if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL && cellView.model.isDependum()) {
                 cellView.model.prop('partiallyHiddenOpacity', cellView.model.attr('*/opacity'));
                 cellView.model.attr('*/opacity', '1');
@@ -281,7 +281,20 @@ ui.defineInteractions = function () {
                     link.attr('*/opacity', '1');
                 });
             }
-            // cellView.$('.element').css({filter: 'brightness(0.5)'});
+
+            //if contribution links are partially hidden, display the ones linked to this node normally
+            if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.PARTIAL) {
+                if (cellView.model.isKindOfInnerElement()) {
+                    _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
+                        link.prop('partiallyHiddenOpacity', link.attr('path/opacity'));
+                        link.attr('path/opacity', 1);
+                        link.attr('.labels/opacity', 1);
+                    });
+                }
+                //links themselves are not considered here due to flickering
+            }
+
+            // cellView.$('g').css({filter: 'brightness(0.5)'});
             // cellView.$('.element').css({fill: 'hsl(120, 74%, 80%)'});
         }
     });
@@ -305,8 +318,20 @@ ui.defineInteractions = function () {
                 cellView.model.attr('*/opacity', cellView.model.prop('partiallyHiddenOpacity'));
                 _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
                     link.attr('*/opacity', link.prop('partiallyHiddenOpacity'));
+                    link.prop('partiallyHiddenOpacity', null);
                 });
                 cellView.model.prop('partiallyHiddenOpacity', null);
+            }
+
+            //if contribution links are partially hidden, hide back the ones linked to this node
+            if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.PARTIAL) {
+                if (cellView.model.isKindOfInnerElement()) {
+                    _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
+                        link.attr('path/opacity', link.prop('partiallyHiddenOpacity'));
+                        link.attr('.labels/opacity', link.prop('partiallyHiddenOpacity'));
+                        link.prop('partiallyHiddenOpacity', null);
+                    });
+                }
             }
             // cellView.$('.element').css({fill: 'rgb(205, 254, 205)'});
         }
@@ -1289,7 +1314,7 @@ ui.alert = function (body, title) {
 $('#modal-alert').on('shown.bs.modal', function () {
     'use strict';
 
-    $('#close-button-alert-modal').focus()
+    $('#close-button-alert-modal').focus();
 });
 
 ui.displayInvalidLinkMessage = function (message) {
@@ -1402,8 +1427,10 @@ ui.changeContributionLinksOpacity = function (linkOpacity) {
 
     function setContributionsOpacity(contributionLinks, linkOpacity) {
         _.forEach(contributionLinks, function (link) {
-            link.attr('line/opacity', linkOpacity);
-            link.attr('text/opacity', linkOpacity);
+            // link.attr('line/opacity', linkOpacity);
+            // link.attr('text/opacity', linkOpacity);
+            link.attr('path/opacity', linkOpacity);
+            link.attr('.labels/opacity', linkOpacity);
         });
     }
 };
