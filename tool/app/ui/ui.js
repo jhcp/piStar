@@ -119,7 +119,7 @@ var ui = function() {
                 });
 
                 $('#sidepanel-tab-style').hide();
-                $('#sidepanel-tab-properties a').tab('show')
+                $('#sidepanel-tab-properties a').tab('show');
             }
         },
         hideSelection: function() {
@@ -190,9 +190,11 @@ ui.defineInteractions = function () {
             var verticesTool = new joint.linkTools.Vertices({snapRadius: 1});
             var toolsView = new joint.dia.ToolsView({tools: [verticesTool]});
             cell.findView(istar.paper).addTools(toolsView).hideTools();
-            cell.on('change:vertices', function(linkModel) {
-                ui.clearSelection();
-                ui.selectElement(linkModel, linkModel.findView(istar.paper));
+            cell.on('change:vertices', function(linkModel, a, b) {
+                if (! b.translateBy) {
+                    //this if prevents updating the selection when the link is being translated along with its parent
+                    ui.showSelection();
+                }
             });
         }
     });
@@ -200,7 +202,7 @@ ui.defineInteractions = function () {
     istar.paper.on('link:mouseenter', function(linkView) {
         //highlights a hovered link, which indicates to the user that it is interactive
         linkView.showTools();
-        linkView.model.attr('connection-wrap/strokeWidth', 20);
+        linkView.model.attr('connection-wrap/strokeWidth', 30);
         linkView.model.attr('connection-wrap/stroke', 'rgba(190, 190, 190, 1)');
     });
 
@@ -1174,7 +1176,7 @@ ui._toggleSmoothness = function (link, vertices, something) {
     if (vertices.length >= 1) {
         link.set('smooth', true);
     }
-    else if (vertices.length === 0) {
+    else {
         link.set('smooth', false);
     }
 };
