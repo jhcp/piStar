@@ -195,7 +195,7 @@ istar.metamodel.nodeLinks.AndRefinementLink.isValid = function (source, target) 
 
     var result = {};
     var isValid = true;
-    if ( !(source.isTask() || source.isGoal() || source.isContext()) ) {
+    if ( !(source.isTask() || source.isGoal()) ) {
         isValid = false;
         result.message = 'the source of an AND-refinement link must be a Goal or a Task (iStar 2.0 Guide, Table 1)';
     }
