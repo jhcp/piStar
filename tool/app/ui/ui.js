@@ -247,33 +247,42 @@ ui.defineInteractions = function () {
     });
 
     istar.paper.on('cell:mouseover', function (cellView, evt, x, y) {
-        //indicates that the mouse is over a given actor
+        //reacts when the mouse is over a given element
         //.css() is used instead of .attr() because the latter is bugged with elements containing a path element
-        var color = '#1C5052';
+        //moreover, .css() doesn't change the actual atrributes of the element, which prevents mistakenly saving
+        //the wrong styles and also makes it easier to restore to its previous style on mouseout
+        var containerHighlightStrokeColor = '#1C5052';
+
+        //highlights a container when it is hovered
         if (cellView.model.isKindOfActor()) {
-            if (cellView.model.prop('collapsed')) {
-                cellView.$('.actorSymbol').css({stroke: color, 'stroke-width': '3'});
-                cellView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
-            }
-            else {
-                cellView.$('.boundary').css({stroke: color, 'stroke-width': '4'});
-                cellView.$('.boundary').css({fill: '#ddd'});
-                cellView.$('.actorSymbol').css({stroke: color, 'stroke-width': '3'});
-                cellView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
-            }
+            cellView.$('.boundary').css({stroke: containerHighlightStrokeColor, 'stroke-width': '4', fill: '#ddd'});
+            cellView.$('.actorSymbol').css({stroke: containerHighlightStrokeColor, 'stroke-width': '3'});
+            cellView.$('.actorDecorator').css({stroke: containerHighlightStrokeColor, 'stroke-width': '2'});
         }
         else {
-            //if the node is inside a container, also highlight the container
+            //if a node inside a container is hovered, highlight the container
             if (cellView.model.get('parent')) {
                 var parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
-                parentView.$('.boundary').css({stroke: color, 'stroke-width': '4'});
-                parentView.$('.boundary').css({fill: '#ddd'});
-                parentView.$('.actorSymbol').css({stroke: color, 'stroke-width': '3'});
-                parentView.$('.actorDecorator').css({stroke: color, 'stroke-width': '2'});
+                parentView.$('.boundary').css({stroke: containerHighlightStrokeColor, 'stroke-width': '4', fill: '#ddd'});
+                parentView.$('.actorSymbol').css({stroke: containerHighlightStrokeColor, 'stroke-width': '3'});
+                parentView.$('.actorDecorator').css({stroke: containerHighlightStrokeColor, 'stroke-width': '2'});
             }
 
-            //if a dependum is partially hidden, display it normally
+            //highlight the hovered element and its neighbors
+            if (cellView.model.isKindOfInnerElement()) {
+                cellView.$('.element').css({fill: 'black'});
+                cellView.$('.content').css({fill: 'white'});
+                cellView.$('.stereotype').css({fill: 'white'});
+
+                _.forEach(istar.graph.getNeighbors(cellView.model), function (cell) {
+                    cell.findView(istar.paper).$('.element').css({fill: '#FABF6E'});
+                });
+            }
+
+            //if a dependum is partially hidden, display it and its links normally while hovered
             if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL && cellView.model.isDependum()) {
+                //CSS opacity currently does not work for elements inside an SVG in Chrome
+                //thus, model.attr() is used instead of view.css()
                 cellView.model.prop('partiallyHiddenOpacity', cellView.model.attr('*/opacity'));
                 cellView.model.attr('*/opacity', '1');
                 _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
@@ -282,39 +291,52 @@ ui.defineInteractions = function () {
                 });
             }
 
-            //if contribution links are partially hidden, display the ones linked to this node normally
+            //if contribution links are partially hidden, display the ones linked to this node normally while it is hovered
             if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.PARTIAL) {
+                //Links are only restored when a connected element is hovered. When the link itself is hovered it is not restored due to flickering
                 if (cellView.model.isKindOfInnerElement()) {
                     _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
-                        link.prop('partiallyHiddenOpacity', link.attr('path/opacity'));
-                        link.attr('path/opacity', 1);
-                        link.attr('.labels/opacity', 1);
+                        //CSS opacity currently does not work for elements inside an SVG in Chrome
+                        //thus, model.attr() is used instead of view.css()
+                        if (! link.isDependencyLink()) {
+                            link.prop('partiallyHiddenOpacity', link.attr('path/opacity'));
+                            link.attr('path/opacity', 1);
+                            link.attr('.labels/opacity', 1);
+                        }
                     });
                 }
-                //links themselves are not considered here due to flickering
             }
-
-            // cellView.$('g').css({filter: 'brightness(0.5)'});
-            // cellView.$('.element').css({fill: 'hsl(120, 74%, 80%)'});
         }
     });
     istar.paper.on('cell:mouseout', function (cellView, evt, x, y) {
+        //by emptying the CSS style, the element returns to its SVG values, thus returning to its style prior to hovering
         if (cellView.model.isKindOfActor()) {
-            cellView.$('.boundary').css({stroke: 'black', 'stroke-width': '2'});
-            cellView.$('.boundary').css({fill: 'rgb(242,242,242'});
-            cellView.$('.actorSymbol').css({stroke: 'black', 'stroke-width': '2'});
-            cellView.$('.actorDecorator').css({stroke: 'black', 'stroke-width': '2'});
+            cellView.$('.boundary').css({stroke: '', 'stroke-width': '', fill: ''});
+            cellView.$('.actorSymbol').css({stroke: '', 'stroke-width': ''});
+            cellView.$('.actorDecorator').css({stroke: '', 'stroke-width': ''});
         }
         else {
             if (cellView.model.get('parent')) {
                 var parentView = istar.paper.findViewByModel(istar.graph.getCell(cellView.model.get('parent')));
-                parentView.$('.boundary').css({stroke: 'black', 'stroke-width': '2'});
-                parentView.$('.boundary').css({fill: 'rgb(242,242,242'});
-                parentView.$('.actorSymbol').css({stroke: 'black', 'stroke-width': '2'});
+                parentView.$('.boundary').css({stroke: '', 'stroke-width': '', fill: ''});
+                parentView.$('.actorSymbol').css({stroke: '', 'stroke-width': ''});
             }
 
-            //if the node is supposed to be partially hidden, hide it again
+            //unhighlight the previously hovered element and its neighbors
+            if (cellView.model.isKindOfInnerElement()) {
+
+                cellView.$('.element').css({fill: ''});
+                cellView.$('.content').css({fill: ''});
+                cellView.$('.stereotype').css({fill: ''});
+                _.forEach(istar.graph.getNeighbors(cellView.model), function (cell) {
+                    cell.findView(istar.paper).$('.element').css({fill: ''});
+                });
+            }
+
+            //if the node is supposed to be partially hidden, hide it and its links again
             if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL && cellView.model.isDependum()) {
+                //CSS opacity currently does not work for elements inside an SVG in Chrome
+                //thus, model.attr() is used instead of view.css()
                 cellView.model.attr('*/opacity', cellView.model.prop('partiallyHiddenOpacity'));
                 _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
                     link.attr('*/opacity', link.prop('partiallyHiddenOpacity'));
@@ -327,13 +349,16 @@ ui.defineInteractions = function () {
             if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.PARTIAL) {
                 if (cellView.model.isKindOfInnerElement()) {
                     _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
-                        link.attr('path/opacity', link.prop('partiallyHiddenOpacity'));
-                        link.attr('.labels/opacity', link.prop('partiallyHiddenOpacity'));
-                        link.prop('partiallyHiddenOpacity', null);
+                        //CSS opacity currently does not work for elements inside an SVG in Chrome
+                        //thus, model.attr() is used instead of view.css()
+                        if (! link.isDependencyLink()) {
+                            link.attr('path/opacity', link.prop('partiallyHiddenOpacity'));
+                            link.attr('.labels/opacity', link.prop('partiallyHiddenOpacity'));
+                            link.prop('partiallyHiddenOpacity', null);
+                        }
                     });
                 }
             }
-            // cellView.$('.element').css({fill: 'rgb(205, 254, 205)'});
         }
     });
     istar.paper.on('cell:pointerdown', function (cellView, evt, x, y) {

@@ -143,7 +143,7 @@ joint.shapes.istar.Agent = joint.dia.Element.extend({
                 width: 200
             },
             path: {
-                d: 'm -10 -5 60 0',
+                d: 'm -11 -5 62 0',
                 fill: 'none',
                 stroke: 'black',
                 'stroke-width': 1.5

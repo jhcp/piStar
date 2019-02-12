@@ -275,7 +275,7 @@ kbd {
 
 /* JointJS markup */
 
-.boundary, .element {
+.boundary, .element, .content {
   transition: fill 0.3s ease-out;
 }
 

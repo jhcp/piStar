@@ -377,6 +377,7 @@ var istar = function () {
 
             newNode.prop('name', content || nodeType.name);
             newNode.prop('type', nodeType.name);
+
             //stores the initial size of the element in order to later be able to restore it to its initial size
             newNode.prop('originalSize', newNode.prop('size'));
 
