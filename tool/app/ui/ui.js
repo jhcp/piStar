@@ -593,8 +593,18 @@ ui.addElementOnPaper = function (options) {
     try {
         var isValid = {isValid: false};
         if (ui.currentStateIsAddNode()) {
-            if (istar.metamodel.nodes[ui.currentAddingElement] && istar.metamodel.nodes[ui.currentAddingElement].canBeOnCanvas) {
-                isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid();
+            if (istar.metamodel.nodes[ui.currentAddingElement]) {
+                if (istar.metamodel.nodes[ui.currentAddingElement].canBeOnCanvas) {
+                    isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid();
+                }
+                else {
+                    isValid = {
+                        message: 'a ' + ui.currentAddingElement + ' cannot be added directly to the canvas, it must be added <b>inside</b> an Actor.'
+                    };
+                    if (istar.metamodel.nodes[ui.currentAddingElement].canBeDependum) {
+                        isValid.message += '<br><br>If you are trying to add a dependency link, please try the "Dependency..." button';
+                    }
+                }
             }
         }
         else if (ui.currentStateIsAddKindOfActor()) {
@@ -623,8 +633,15 @@ ui.addElementOnActor = function (cellView, options) {
 
     try {
         var isValid = {isValid: false};
-        if (istar.metamodel.nodes[ui.currentAddingElement] && istar.metamodel.nodes[ui.currentAddingElement].canBeInnerElement ) {
-            isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid(cellView.model);
+        if (istar.metamodel.nodes[ui.currentAddingElement]) {
+            if (istar.metamodel.nodes[ui.currentAddingElement].canBeInnerElement) {
+                isValid = istar.metamodel.nodes[ui.currentAddingElement].isValid(cellView.model);
+            }
+            else {
+                isValid = {
+                    message: 'a ' + ui.currentAddingElement + ' cannot be added inside an actor'
+                };
+            }
         }
 
         if (isValid.isValid) {
