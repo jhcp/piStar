@@ -146,9 +146,9 @@ var istar = function () {
 
         var actor = this;//stores 'this' in a named variable so that it can be read by the anonymous function
         if (this.prop('collapsed')) {
-            this.attr('.boundary/display', 'visible');//display the actor's boundary
+            this.attr('.boundary/display', 'block');//display the actor's boundary
             _.forEach(this.getEmbeddedCells(), function (innerElement) {
-                innerElement.attr('./display', 'visible');//display the actor's inner elements
+                innerElement.attr('./display', 'block');//display the actor's inner elements
 
                 //retarget the dependency links, from the actor to the original inner elements (when applicable)
                 var connectedLinks = istar.graph.getConnectedLinks(actor);
