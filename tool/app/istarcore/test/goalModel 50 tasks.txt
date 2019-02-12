@@ -1,0 +1,1294 @@
+{
+  "actors": [
+    {
+      "id": "a8a20b4d-7f83-4f9b-8254-331df96dca2e",
+      "text": "Test translation with many links",
+      "type": "istar.Agent",
+      "x": 99,
+      "y": 41,
+      "customProperties": {
+        "Description": ""
+      },
+      "nodes": [
+        {
+          "id": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+          "text": "Quality",
+          "type": "istar.Quality",
+          "x": 460,
+          "y": 397,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "17b3ea6b-6d7b-430d-9a52-20f8c64adefe",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 343,
+          "y": 70,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "9e697417-a1ed-4981-96f4-f55755499f79",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 379,
+          "y": 52,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "3165cffd-68cb-4bf4-9bfc-d2ea33610461",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 410,
+          "y": 44,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "7b8edace-15e6-44cf-978e-5e3521c1aaec",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 456,
+          "y": 41,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "b9bdad78-9995-49ee-b113-c6d87fb06e71",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 522,
+          "y": 42,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "119c4ac1-22cb-4cd8-a3b4-afba705b7c65",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 560,
+          "y": 43,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "408e0625-0a00-4685-85c4-511d98a179d2",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 608,
+          "y": 56,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "d41f6a71-dac3-43c0-ac44-3d6e12d3b9c4",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 659,
+          "y": 75,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "248b2f44-df86-42aa-af98-0f36313e9349",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 708,
+          "y": 97,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "94976dbb-4e36-4ea8-9d2c-220c2b2986de",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 727,
+          "y": 116,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "1b6660fa-f28f-4fe6-89f3-30061c896354",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 777,
+          "y": 139,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "6ed6c907-2f59-4cbd-9ab6-897d06d39dfe",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 819,
+          "y": 167,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "bfffd917-23a3-4478-8884-0facab0d1b89",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 816,
+          "y": 194,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "eb364c49-c49d-433c-ab58-0b14cc65b8ca",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 821,
+          "y": 230,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "a9ade304-2398-471b-bb5b-3ee5374f3d85",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 835,
+          "y": 264,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "4bbf15d6-8f1c-42de-9987-cc1a8a10e47a",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 835,
+          "y": 300,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "680ae4c2-b773-4754-955e-88e0041e6a74",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 848,
+          "y": 330,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "8def1e51-485b-42ce-a448-c731cb89bd7a",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 839,
+          "y": 357,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "a5943d7d-9cb3-4035-ad14-dfe869ebac04",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 837,
+          "y": 384,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "60f7eff8-6838-42b2-8541-2e968ecd1100",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 841,
+          "y": 420,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "e4377c38-4f3a-4c40-b081-9f0b323c0753",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 831,
+          "y": 435,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "5dba29ee-6f81-461b-ad2c-0c8e04192d5c",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 831,
+          "y": 462,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "472bc18a-7cbe-4ae9-b191-9a3285cee621",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 833,
+          "y": 484,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "005a7c5c-1925-489f-8f9f-11a9788cb3d7",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 834,
+          "y": 506,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "aa25805a-60da-4298-b914-10e349c28847",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 834,
+          "y": 533,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "4a3479b5-f967-4ceb-896d-471a36aaf758",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 835,
+          "y": 561,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "b47cf60d-8f80-4974-a3af-8fa3cf4133ea",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 830,
+          "y": 588,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "f5adf1e2-7c42-4a17-81f5-aadff00e9507",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 828,
+          "y": 615,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "d1c9d3d3-180b-4e23-a825-18ea74d87fa1",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 824,
+          "y": 637,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "518031a6-5a77-403d-8277-f47dac49dfe0",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 810,
+          "y": 661,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "c8820cd3-4e3a-45b6-bbc0-bcf6a7089f1c",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 807,
+          "y": 688,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "59c54c1a-86bc-48f7-8b5e-b5c0382b4eaa",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 801,
+          "y": 710,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "0e9df45c-232a-46e0-b46f-070d94d3d86c",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 787,
+          "y": 730,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "6ad331ce-8227-434f-82cc-1e7e16d9b068",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 781,
+          "y": 750,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "deb86045-932f-4ae3-b540-7944f481e9f7",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 740,
+          "y": 764,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "705d9965-1fb7-432e-a49d-9957df05e1c5",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 717,
+          "y": 778,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "d7b9642d-dc4e-483d-983b-539c13c3a779",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 684,
+          "y": 782,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "e6836a50-9be3-493a-a137-d25f6c981efb",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 637,
+          "y": 780,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "1ec27c31-4000-4123-957a-67b363333644",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 605,
+          "y": 778,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "caaac508-932a-41da-9489-31873f807c7e",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 572,
+          "y": 780,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "b7d056c9-8775-4241-8528-386393cc8d7f",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 535,
+          "y": 779,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "03435794-a8cf-481a-ac30-652f1ed5b77d",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 503,
+          "y": 779,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "8ff73b64-5b61-4ad5-bd08-51b23e5ba8da",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 468,
+          "y": 777,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "b604d2b4-205d-4151-8c00-5aef6422ef9a",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 444,
+          "y": 777,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "783a7667-93a6-440b-a510-169d951ab371",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 417,
+          "y": 776,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "a07ea00f-8623-45fa-90b7-d0ff053e1ad6",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 388,
+          "y": 775,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "e6b7145c-9455-4d9a-9c8a-d6c291e44e8d",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 358,
+          "y": 775,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "ed1b24ce-3e8b-449f-9c8f-704120190da5",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 331,
+          "y": 776,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "f45efb3f-d879-460d-84d1-16149ac96503",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 299,
+          "y": 776,
+          "customProperties": {
+            "Description": ""
+          }
+        },
+        {
+          "id": "985c60e2-ccbd-445d-8e7f-95383c9a7932",
+          "text": "Task",
+          "type": "istar.Task",
+          "x": 258,
+          "y": 776,
+          "customProperties": {
+            "Description": ""
+          }
+        }
+      ]
+    }
+  ],
+  "orphans": [],
+  "dependencies": [],
+  "links": [
+    {
+      "id": "57b6edd3-35e3-4f54-83da-2987edd9da56",
+      "type": "istar.ContributionLink",
+      "source": "17b3ea6b-6d7b-430d-9a52-20f8c64adefe",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "7489ad9c-ca6d-4c96-b9ea-c1df68bc3e6a",
+      "type": "istar.ContributionLink",
+      "source": "9e697417-a1ed-4981-96f4-f55755499f79",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "c86a50af-5299-47bd-b00c-201bce47e7a1",
+      "type": "istar.ContributionLink",
+      "source": "3165cffd-68cb-4bf4-9bfc-d2ea33610461",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "c9f8693d-d7da-46ab-bcd5-623c01f58d7a",
+      "type": "istar.ContributionLink",
+      "source": "7b8edace-15e6-44cf-978e-5e3521c1aaec",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "ec52e181-1119-402e-90a0-775c4f6f92f4",
+      "type": "istar.ContributionLink",
+      "source": "b9bdad78-9995-49ee-b113-c6d87fb06e71",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "323111f5-2f2b-4ce0-8254-83253b53a5e4",
+      "type": "istar.ContributionLink",
+      "source": "119c4ac1-22cb-4cd8-a3b4-afba705b7c65",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "d02efac3-ef66-48c8-aa8a-6dce3f052fd3",
+      "type": "istar.ContributionLink",
+      "source": "408e0625-0a00-4685-85c4-511d98a179d2",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "484e00d2-7799-48c0-a555-d4c7d28efc86",
+      "type": "istar.ContributionLink",
+      "source": "d41f6a71-dac3-43c0-ac44-3d6e12d3b9c4",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "ea2729cf-5c6e-4b1f-86e6-61341a9e41f1",
+      "type": "istar.ContributionLink",
+      "source": "248b2f44-df86-42aa-af98-0f36313e9349",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "41262d59-03c1-4b45-a3d7-d30f094b4e3f",
+      "type": "istar.ContributionLink",
+      "source": "94976dbb-4e36-4ea8-9d2c-220c2b2986de",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "e8bfb32f-55d3-4a05-a3c6-0650977b40f4",
+      "type": "istar.ContributionLink",
+      "source": "1b6660fa-f28f-4fe6-89f3-30061c896354",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "f0865965-aea1-42dd-b8f1-5ae059fb7412",
+      "type": "istar.ContributionLink",
+      "source": "6ed6c907-2f59-4cbd-9ab6-897d06d39dfe",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "d990659d-019d-44c9-9e14-5208a7cde53d",
+      "type": "istar.ContributionLink",
+      "source": "bfffd917-23a3-4478-8884-0facab0d1b89",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "94b846c0-4655-4a97-b713-2777a90feaaf",
+      "type": "istar.ContributionLink",
+      "source": "eb364c49-c49d-433c-ab58-0b14cc65b8ca",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "5bb35868-e15f-422c-b6cf-38173e0c6ef7",
+      "type": "istar.ContributionLink",
+      "source": "a9ade304-2398-471b-bb5b-3ee5374f3d85",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "f9dd2cf5-fbbf-4926-8d4d-08433185c641",
+      "type": "istar.ContributionLink",
+      "source": "4bbf15d6-8f1c-42de-9987-cc1a8a10e47a",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "7dd57f38-9975-4d58-8031-233ad068be77",
+      "type": "istar.ContributionLink",
+      "source": "680ae4c2-b773-4754-955e-88e0041e6a74",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "a43ee6b3-038b-478b-ae2b-5014bee3c6f9",
+      "type": "istar.ContributionLink",
+      "source": "8def1e51-485b-42ce-a448-c731cb89bd7a",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "ecc223f7-c36b-4a2c-b7f5-339b4e8eb1d1",
+      "type": "istar.ContributionLink",
+      "source": "a5943d7d-9cb3-4035-ad14-dfe869ebac04",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "ee63567c-da8d-4c2b-9b82-a29f4aeae2f6",
+      "type": "istar.ContributionLink",
+      "source": "60f7eff8-6838-42b2-8541-2e968ecd1100",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "6933b484-a7ff-4529-a0db-845349846608",
+      "type": "istar.ContributionLink",
+      "source": "e4377c38-4f3a-4c40-b081-9f0b323c0753",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "4fdd7e19-6517-4026-8c2a-450def3e7ea6",
+      "type": "istar.ContributionLink",
+      "source": "5dba29ee-6f81-461b-ad2c-0c8e04192d5c",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "0fd793ee-1072-4b44-a37f-19bc30d80a2c",
+      "type": "istar.ContributionLink",
+      "source": "472bc18a-7cbe-4ae9-b191-9a3285cee621",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "8722bb7c-8ed7-4188-97ba-babb247e4be6",
+      "type": "istar.ContributionLink",
+      "source": "005a7c5c-1925-489f-8f9f-11a9788cb3d7",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "37b383af-677f-4e8b-9847-150d68759ca7",
+      "type": "istar.ContributionLink",
+      "source": "aa25805a-60da-4298-b914-10e349c28847",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "00c0a220-8363-4914-b78a-309adb116354",
+      "type": "istar.ContributionLink",
+      "source": "4a3479b5-f967-4ceb-896d-471a36aaf758",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "f64c94c1-e3b2-4270-b210-2899bfba3e23",
+      "type": "istar.ContributionLink",
+      "source": "b47cf60d-8f80-4974-a3af-8fa3cf4133ea",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "52d229b6-053b-402a-bef4-35a2afd49e7b",
+      "type": "istar.ContributionLink",
+      "source": "f5adf1e2-7c42-4a17-81f5-aadff00e9507",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "2ed7b7df-1f59-46d7-aecf-9a1f09605731",
+      "type": "istar.ContributionLink",
+      "source": "d1c9d3d3-180b-4e23-a825-18ea74d87fa1",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "2ff676f1-6b93-4a0f-814b-51d9496bfcd7",
+      "type": "istar.ContributionLink",
+      "source": "518031a6-5a77-403d-8277-f47dac49dfe0",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "ea075305-5fd8-451b-a455-90a85475608d",
+      "type": "istar.ContributionLink",
+      "source": "c8820cd3-4e3a-45b6-bbc0-bcf6a7089f1c",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "a72affd2-9883-45aa-985a-735ce7b2f6ea",
+      "type": "istar.ContributionLink",
+      "source": "59c54c1a-86bc-48f7-8b5e-b5c0382b4eaa",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "14575323-0618-461d-9471-3af8a9083d23",
+      "type": "istar.ContributionLink",
+      "source": "0e9df45c-232a-46e0-b46f-070d94d3d86c",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "e935f728-96e8-4118-a51e-ca0b5e02cd72",
+      "type": "istar.ContributionLink",
+      "source": "6ad331ce-8227-434f-82cc-1e7e16d9b068",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "ff4c91ee-03c9-45de-8c22-dfec2d7582ef",
+      "type": "istar.ContributionLink",
+      "source": "deb86045-932f-4ae3-b540-7944f481e9f7",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "9cbbad3d-f6bd-469d-ac66-365b42a5355b",
+      "type": "istar.ContributionLink",
+      "source": "705d9965-1fb7-432e-a49d-9957df05e1c5",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "bdacf482-74ad-4651-ba7e-5ac1c104109b",
+      "type": "istar.ContributionLink",
+      "source": "d7b9642d-dc4e-483d-983b-539c13c3a779",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "8db38d71-12ba-409e-bff0-9ee34a1cbcd5",
+      "type": "istar.ContributionLink",
+      "source": "e6836a50-9be3-493a-a137-d25f6c981efb",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "984ea8bf-fe5c-4cdb-a2d9-7c0d5d147099",
+      "type": "istar.ContributionLink",
+      "source": "1ec27c31-4000-4123-957a-67b363333644",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "a2d6aa0d-fc2d-432d-aad3-3b6e550a6939",
+      "type": "istar.ContributionLink",
+      "source": "caaac508-932a-41da-9489-31873f807c7e",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "c4f9e2cd-6d7c-43fa-91c8-681d3b22e024",
+      "type": "istar.ContributionLink",
+      "source": "b7d056c9-8775-4241-8528-386393cc8d7f",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "d290c43b-d5f6-4739-a579-5bd8e68985fb",
+      "type": "istar.ContributionLink",
+      "source": "8ff73b64-5b61-4ad5-bd08-51b23e5ba8da",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "05646761-aecd-4654-aeb7-2a4889a24eff",
+      "type": "istar.ContributionLink",
+      "source": "03435794-a8cf-481a-ac30-652f1ed5b77d",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "0c6a8ae1-13d9-4045-b54d-ff6152e04fac",
+      "type": "istar.ContributionLink",
+      "source": "b604d2b4-205d-4151-8c00-5aef6422ef9a",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "6f79170d-2023-4e11-81f3-27739974f6a9",
+      "type": "istar.ContributionLink",
+      "source": "a07ea00f-8623-45fa-90b7-d0ff053e1ad6",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "8bfcb3ff-be42-4cc2-a814-f63079f92c22",
+      "type": "istar.ContributionLink",
+      "source": "783a7667-93a6-440b-a510-169d951ab371",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "23cbc7d6-70f8-494a-ae12-68285bfdafe7",
+      "type": "istar.ContributionLink",
+      "source": "e6b7145c-9455-4d9a-9c8a-d6c291e44e8d",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "f7169fe5-02b7-4cbb-aa5c-9b180872a6d1",
+      "type": "istar.ContributionLink",
+      "source": "ed1b24ce-3e8b-449f-9c8f-704120190da5",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "7a955a37-b38b-490f-906f-fb9f438e8ab8",
+      "type": "istar.ContributionLink",
+      "source": "f45efb3f-d879-460d-84d1-16149ac96503",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    },
+    {
+      "id": "02406a68-61ea-4420-a611-be3badaeac98",
+      "type": "istar.ContributionLink",
+      "source": "985c60e2-ccbd-445d-8e7f-95383c9a7932",
+      "target": "298fb1d8-30b4-4f7e-b734-2e8aaaa2aee2",
+      "label": "make"
+    }
+  ],
+  "display": {
+    "57b6edd3-35e3-4f54-83da-2987edd9da56": {
+      "vertices": [
+        {
+          "x": 410,
+          "y": 169
+        }
+      ]
+    },
+    "7489ad9c-ca6d-4c96-b9ea-c1df68bc3e6a": {
+      "vertices": [
+        {
+          "x": 429,
+          "y": 148
+        }
+      ]
+    },
+    "c86a50af-5299-47bd-b00c-201bce47e7a1": {
+      "vertices": [
+        {
+          "x": 455,
+          "y": 133
+        }
+      ]
+    },
+    "c9f8693d-d7da-46ab-bcd5-623c01f58d7a": {
+      "vertices": [
+        {
+          "x": 546,
+          "y": 168
+        }
+      ]
+    },
+    "ec52e181-1119-402e-90a0-775c4f6f92f4": {
+      "vertices": [
+        {
+          "x": 545,
+          "y": 116
+        }
+      ]
+    },
+    "323111f5-2f2b-4ce0-8254-83253b53a5e4": {
+      "vertices": [
+        {
+          "x": 602,
+          "y": 141
+        }
+      ]
+    },
+    "d02efac3-ef66-48c8-aa8a-6dce3f052fd3": {
+      "vertices": [
+        {
+          "x": 654,
+          "y": 148
+        }
+      ]
+    },
+    "484e00d2-7799-48c0-a555-d4c7d28efc86": {
+      "vertices": [
+        {
+          "x": 699,
+          "y": 159
+        }
+      ]
+    },
+    "ea2729cf-5c6e-4b1f-86e6-61341a9e41f1": {
+      "vertices": [
+        {
+          "x": 730,
+          "y": 179
+        }
+      ]
+    },
+    "41262d59-03c1-4b45-a3d7-d30f094b4e3f": {
+      "vertices": [
+        {
+          "x": 743,
+          "y": 191
+        }
+      ]
+    },
+    "e8bfb32f-55d3-4a05-a3c6-0650977b40f4": {
+      "vertices": [
+        {
+          "x": 775,
+          "y": 215
+        }
+      ]
+    },
+    "f0865965-aea1-42dd-b8f1-5ae059fb7412": {
+      "vertices": [
+        {
+          "x": 807,
+          "y": 248
+        }
+      ]
+    },
+    "d990659d-019d-44c9-9e14-5208a7cde53d": {
+      "vertices": [
+        {
+          "x": 769,
+          "y": 278
+        }
+      ]
+    },
+    "94b846c0-4655-4a97-b713-2777a90feaaf": {
+      "vertices": [
+        {
+          "x": 784,
+          "y": 305
+        }
+      ]
+    },
+    "5bb35868-e15f-422c-b6cf-38173e0c6ef7": {
+      "vertices": [
+        {
+          "x": 778,
+          "y": 302
+        }
+      ]
+    },
+    "f9dd2cf5-fbbf-4926-8d4d-08433185c641": {
+      "vertices": [
+        {
+          "x": 788,
+          "y": 323
+        }
+      ]
+    },
+    "7dd57f38-9975-4d58-8031-233ad068be77": {
+      "vertices": [
+        {
+          "x": 785,
+          "y": 346
+        }
+      ]
+    },
+    "a43ee6b3-038b-478b-ae2b-5014bee3c6f9": {
+      "vertices": [
+        {
+          "x": 794,
+          "y": 365
+        }
+      ]
+    },
+    "ecc223f7-c36b-4a2c-b7f5-339b4e8eb1d1": {
+      "vertices": [
+        {
+          "x": 786,
+          "y": 380
+        }
+      ]
+    },
+    "ee63567c-da8d-4c2b-9b82-a29f4aeae2f6": {
+      "vertices": [
+        {
+          "x": 793,
+          "y": 408
+        }
+      ]
+    },
+    "6933b484-a7ff-4529-a0db-845349846608": {
+      "vertices": [
+        {
+          "x": 780,
+          "y": 412
+        }
+      ]
+    },
+    "4fdd7e19-6517-4026-8c2a-450def3e7ea6": {
+      "vertices": [
+        {
+          "x": 791,
+          "y": 438
+        }
+      ]
+    },
+    "0fd793ee-1072-4b44-a37f-19bc30d80a2c": {
+      "vertices": [
+        {
+          "x": 797,
+          "y": 454
+        }
+      ]
+    },
+    "8722bb7c-8ed7-4188-97ba-babb247e4be6": {
+      "vertices": [
+        {
+          "x": 791,
+          "y": 469
+        }
+      ]
+    },
+    "37b383af-677f-4e8b-9847-150d68759ca7": {
+      "vertices": [
+        {
+          "x": 789,
+          "y": 486
+        }
+      ]
+    },
+    "00c0a220-8363-4914-b78a-309adb116354": {
+      "vertices": [
+        {
+          "x": 787,
+          "y": 495
+        }
+      ]
+    },
+    "f64c94c1-e3b2-4270-b210-2899bfba3e23": {
+      "vertices": [
+        {
+          "x": 782,
+          "y": 514
+        }
+      ]
+    },
+    "52d229b6-053b-402a-bef4-35a2afd49e7b": {
+      "vertices": [
+        {
+          "x": 775,
+          "y": 543
+        }
+      ]
+    },
+    "2ed7b7df-1f59-46d7-aecf-9a1f09605731": {
+      "vertices": [
+        {
+          "x": 776,
+          "y": 546
+        }
+      ]
+    },
+    "2ff676f1-6b93-4a0f-814b-51d9496bfcd7": {
+      "vertices": [
+        {
+          "x": 771,
+          "y": 573
+        }
+      ]
+    },
+    "ea075305-5fd8-451b-a455-90a85475608d": {
+      "vertices": [
+        {
+          "x": 770,
+          "y": 587
+        }
+      ]
+    },
+    "a72affd2-9883-45aa-985a-735ce7b2f6ea": {
+      "vertices": [
+        {
+          "x": 766,
+          "y": 602
+        }
+      ]
+    },
+    "14575323-0618-461d-9471-3af8a9083d23": {
+      "vertices": [
+        {
+          "x": 769,
+          "y": 616
+        }
+      ]
+    },
+    "e935f728-96e8-4118-a51e-ca0b5e02cd72": {
+      "vertices": [
+        {
+          "x": 774,
+          "y": 654
+        }
+      ]
+    },
+    "ff4c91ee-03c9-45de-8c22-dfec2d7582ef": {
+      "vertices": [
+        {
+          "x": 742,
+          "y": 668
+        }
+      ]
+    },
+    "9cbbad3d-f6bd-469d-ac66-365b42a5355b": {
+      "vertices": [
+        {
+          "x": 731,
+          "y": 684
+        }
+      ]
+    },
+    "bdacf482-74ad-4651-ba7e-5ac1c104109b": {
+      "vertices": [
+        {
+          "x": 696,
+          "y": 672
+        }
+      ]
+    },
+    "8db38d71-12ba-409e-bff0-9ee34a1cbcd5": {
+      "vertices": [
+        {
+          "x": 657,
+          "y": 671
+        }
+      ]
+    },
+    "984ea8bf-fe5c-4cdb-a2d9-7c0d5d147099": {
+      "vertices": [
+        {
+          "x": 647,
+          "y": 672
+        }
+      ]
+    },
+    "a2d6aa0d-fc2d-432d-aad3-3b6e550a6939": {
+      "vertices": [
+        {
+          "x": 622,
+          "y": 667
+        }
+      ]
+    },
+    "c4f9e2cd-6d7c-43fa-91c8-681d3b22e024": {
+      "vertices": [
+        {
+          "x": 592,
+          "y": 655
+        }
+      ]
+    },
+    "d290c43b-d5f6-4739-a579-5bd8e68985fb": {
+      "vertices": [
+        {
+          "x": 548,
+          "y": 653
+        }
+      ]
+    },
+    "05646761-aecd-4654-aeb7-2a4889a24eff": {
+      "vertices": [
+        {
+          "x": 569,
+          "y": 659
+        }
+      ]
+    },
+    "0c6a8ae1-13d9-4045-b54d-ff6152e04fac": {
+      "vertices": [
+        {
+          "x": 529,
+          "y": 656
+        }
+      ]
+    },
+    "6f79170d-2023-4e11-81f3-27739974f6a9": {
+      "vertices": [
+        {
+          "x": 490,
+          "y": 665
+        }
+      ]
+    },
+    "8bfcb3ff-be42-4cc2-a814-f63079f92c22": {
+      "vertices": [
+        {
+          "x": 513,
+          "y": 657
+        }
+      ]
+    },
+    "23cbc7d6-70f8-494a-ae12-68285bfdafe7": {
+      "vertices": [
+        {
+          "x": 465,
+          "y": 660
+        }
+      ]
+    },
+    "f7169fe5-02b7-4cbb-aa5c-9b180872a6d1": {
+      "vertices": [
+        {
+          "x": 442,
+          "y": 665
+        }
+      ]
+    },
+    "7a955a37-b38b-490f-906f-fb9f438e8ab8": {
+      "vertices": [
+        {
+          "x": 435,
+          "y": 661
+        }
+      ]
+    },
+    "02406a68-61ea-4420-a611-be3badaeac98": {
+      "vertices": [
+        {
+          "x": 405,
+          "y": 665
+        }
+      ]
+    }
+  },
+  "tool": "pistar.2.0.0a",
+  "istar": "2.0",
+  "saveDate": "Tue, 12 Feb 2019 02:49:44 GMT",
+  "diagram": {
+    "width": 2000,
+    "height": 1300,
+    "name": "Test model 50 contributions",
+    "customProperties": {
+      "Description": "Model with 50 tasks connected with a quality through a contribution link.\nEvery link has one vertex",
+      "TestScenarios": "- Translate the quality\n- Translate the expanded actor\n- Translate the collapsed actor\n- Hover the quality and check if the tasks are highlighted\n- hide contribution links button"
+    }
+  }
+}
