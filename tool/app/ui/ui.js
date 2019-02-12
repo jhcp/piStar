@@ -223,7 +223,7 @@ ui.defineInteractions = function () {
 
     istar.paper.on('change:selection', function(selection) {
         if (selection.selectedElement) {
-            ui.table = new uiC.PropertiesTableView({model: selection.selectedElement}).render();
+            ui.table = new ui.components.PropertiesTableView({model: selection.selectedElement}).render();
             if (selection.selectedElementView) {
                 ui.highlightFocus(selection.selectedElementView);
             }
@@ -419,7 +419,7 @@ ui.defineInteractions = function () {
                         ui.linkTarget = cellView;
                         var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model, ui.dependencyType);
                         if (isValid.isValid) {
-                            addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
+                            ui.addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                         }
                         else {
                             ui.displayInvalidLinkMessage(isValid.message);
@@ -511,7 +511,7 @@ ui.defineInteractions = function () {
                         else if (ui.dependencyType.match(/DependencyLink/)) {
                             var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.linkSource.model, ui.linkTarget.model);
                             if (isValid.isValid) {
-                                addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
+                                ui.addDependency(ui.linkSource.model, ui.dependencyType, ui.linkTarget.model);
                             }
                             else {
                                 ui.displayInvalidLinkMessage(isValid.message);
@@ -645,7 +645,7 @@ ui.addElementOnActor = function (cellView, options) {
         }
 
         if (isValid.isValid) {
-            var element = addElementInPlace(cellView.model, istar['add' + ui.currentAddingElement], options);
+            var element = ui.addElementInPlace(cellView.model, istar['add' + ui.currentAddingElement], options);
             element.prop('customProperties/Description', '');
             ui.selectElement(element);
         }
@@ -674,7 +674,7 @@ ui.addLinkBetweenActors = function (newLink, targetCellView) {
     }
 };
 
-function addDependency(source, dependencyType, target) {
+ui.addDependency = function (source, dependencyType, target) {
     'use strict';
 
     var node = '';
@@ -723,7 +723,7 @@ ui.setupDependencyRemoval = function (links) {
     });
 };
 
-function addElementInPlace(clickedNode, callback, options) {
+ui.addElementInPlace = function (clickedNode, callback, options) {
     'use strict';
 
     ui.currentState = ui.STATE_VIEW;
@@ -849,7 +849,7 @@ $('#modal-button-save-image').click(function () {
         istar.paper.fitToContent({padding: 10, allowNewOrigin: 'any'});
 
         if ($('#input-file-format').val() === "SVG") {
-            var svgData = saveSvg('diagram');
+            var svgData = istar.fileManager.saveSvg(istar.paper);
             joint.util.downloadDataUri(svgData, filename + '.svg');
         }
         else {
@@ -858,7 +858,7 @@ $('#modal-button-save-image').click(function () {
             if ($('#modal-input-hi-res').prop('checked')) {
                 resolutionFactor = 4;
             }
-            savePng('diagram', joint.util.downloadBlob, filename, resolutionFactor, $('#modal-input-transparent-background').prop('checked'));
+            istar.fileManager.savePng('diagram', joint.util.downloadBlob, filename, resolutionFactor, $('#modal-input-transparent-background').prop('checked'));
         }
 
         //restore the paper to its initial state
@@ -880,7 +880,7 @@ $('#modal-button-save-image').click(function () {
 $('#menu-button-save-model').click(function () {
     'use strict';
 
-    var model = saveModel();
+    var model = istar.fileManager.saveModel();
     var csvData = 'data:text/json;charset=utf-8,' + (encodeURI(model));
     joint.util.downloadDataUri(csvData, 'goalModel.txt');
 });
@@ -910,7 +910,7 @@ $('#modal-button-load-model').click(function () {
                     var fileReader = new FileReader();
                     fileReader.onload = function (e) {
                         ui.resetCellDisplayStates();
-                        fileManager.load(e.target.result);//do the actual loading
+                        istar.fileManager.loadModel(e.target.result);//do the actual loading
                         ui.selectModel();//select the model (as a whole)
 
                         $('#modal-load-model').modal('hide');
@@ -937,10 +937,11 @@ $('#modal-button-load-model').click(function () {
 ui.setupUi = function () {
     'use strict';
 
+    overrideIstarFunctions();
     this.setupPluginMenu();
     this.setupMetamodelUI();
     this.defineInteractions();
-    uiC.createAddButtons();
+    ui.components.createAddButtons();
 
     $('#placeholder-save-model').hide();
 
@@ -951,6 +952,17 @@ ui.setupUi = function () {
     this.setupSidepanelInteraction();
 
     ui.selectModel();
+
+    function overrideIstarFunctions() {
+        //extend original iStar functions with UI behavior
+        var originalFunction = null;
+
+        originalFunction = istar.clearModel;
+        istar.clearModel = function() {
+            originalFunction();
+            ui.selectModel();
+        };
+    }
 };
 
 ui.setupPluginMenu = function () {
@@ -1007,7 +1019,7 @@ ui.setupLoadExampleButton = function () {
                 ui.unhighlightFocus(ui.getSelectedElement().findView(istar.paper));
             }
             ui.resetCellDisplayStates();
-            fileManager.load(istar.examples[modelToLoad]);
+            istar.fileManager.loadModel(istar.examples[modelToLoad]);
             ui.selectModel();//select the model (as a whole)
             $('.modal *').removeClass('waiting');
             $('#modal-examples').modal('hide');
@@ -1199,7 +1211,7 @@ ui._toggleSmoothness = function (link, vertices, something) {
 };
 
 
-function changeCustomPropertyValue(model, propertyName, propertyValue) {
+ui.changeCustomPropertyValue = function (model, propertyName, propertyValue) {
     'use strict';
 
     if (propertyValue) {
@@ -1318,9 +1330,6 @@ ui.setupElementResizing = function () {
     ui.stopResizeMouseEvents = function (e) {
         $(window).off('mousemove', ui.resizeHandlerOnMouseMove);
         $(window).off('mouseup', ui.stopResizeMouseEvents);
-        if (ui.getSelectedElement().get('parent')) {
-            istar.graph.getCell(ui.getSelectedElement().get('parent')).updateBoundary();
-        }
     };
 
     $('#resize-handle').mousedown(function (e) {
@@ -1400,7 +1409,6 @@ $('#menu-button-new-model').click(function () {
     if (confirmed) {
         istar.clearModel();
     }
-    ui.selectModel();
 });
 
 ui.changeDependencyLinksOpacity = function (dependumOpacity, linkOpacity) {

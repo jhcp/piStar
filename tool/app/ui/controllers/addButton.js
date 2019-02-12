@@ -6,9 +6,9 @@
  * https://github.com/jhcp/pistar
  */
 
-window.uiC = window.uiC || {};  //prevents overriding the variable, while also preventing working with a null variable
+ui.components = ui.components || {};  //prevents overriding the variable, while also preventing working with a null variable
 
-uiC.createAddButtons = function() {
+ui.components.createAddButtons = function() {
     'use strict';
 
     //create the ADD buttons
@@ -21,9 +21,9 @@ uiC.createAddButtons = function() {
         var statusText = elementType.buttonStatusText || ('Adding <b>' + elementType.name + '</b>: click on an empty space in the diagram to add a new ' + elementType.name);
         var image = elementType.name;
 
-        new uiC.AddButtonDropdownItemView({
+        new ui.components.AddButtonDropdownItemView({
             attributes: {parent: '#add-actor-dropdown'},
-            model: new uiC.AddButtonModel({
+            model: new ui.components.AddButtonModel({
                 action: ui.STATE_ADD_ACTOR,
                 buttonImage: image,
                 defaultButtonImage: 'DefaultContainer.svg',
@@ -43,9 +43,9 @@ uiC.createAddButtons = function() {
         var statusText = linkType.buttonStatusText || ('Adding a <b>' + linkType.name + '</b>');
         var image = linkType.name;
 
-        new uiC.AddButtonDropdownItemView({
+        new ui.components.AddButtonDropdownItemView({
             attributes: {parent: '#add-actor-link-dropdown'},
-            model: new uiC.AddButtonModel({
+            model: new ui.components.AddButtonModel({
                 action: ui.STATE_ADD_LINK,
                 buttonImage: image,
                 defaultButtonImage: 'DefaultContainerLink.svg',
@@ -67,9 +67,9 @@ uiC.createAddButtons = function() {
             var statusText = elementType.buttonStatusText || ('Adding <b>' + elementType.name + ' Dependency</b> link');
             var image = elementType.name + 'DependencyLink';
 
-            new uiC.AddButtonDropdownItemView({
+            new ui.components.AddButtonDropdownItemView({
                 attributes: {parent: '#add-dependency-dropdown'},
-                model: new uiC.AddButtonModel({
+                model: new ui.components.AddButtonModel({
                     action: ui.STATE_ADD_LINK,
                     buttonImage: image,
                     defaultButtonImage: 'DefaultDependencyLink.svg',
@@ -91,8 +91,8 @@ uiC.createAddButtons = function() {
             var tooltip = elementType.buttonTooltip || ('Add ' + elementType.name);
             var statusText = elementType.buttonStatusText || ('Adding <b>' + elementType.name + '</b>');
 
-            new uiC.AddButtonView({
-                model: new uiC.AddButtonModel({
+            new ui.components.AddButtonView({
+                model: new ui.components.AddButtonModel({
                     action: ui.STATE_ADD_NODE,
                     defaultButtonImage: 'DefaultNode.svg',
                     label: label,
@@ -104,8 +104,8 @@ uiC.createAddButtons = function() {
         }
     });
 
-    new uiC.AddButtonView({
-        model: new uiC.AddButtonModel({
+    new ui.components.AddButtonView({
+        model: new ui.components.AddButtonModel({
             label: 'And',
             action: ui.STATE_ADD_LINK,
             name: 'AndRefinementLink',
@@ -113,8 +113,8 @@ uiC.createAddButtons = function() {
             statusText: 'Adding <b>And-Refinement</b> link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
         })
     }).render();
-    new uiC.AddButtonView({
-        model: new uiC.AddButtonModel({
+    new ui.components.AddButtonView({
+        model: new ui.components.AddButtonModel({
             label: 'Or',
             action: ui.STATE_ADD_LINK,
             name: 'OrRefinementLink',
@@ -122,8 +122,8 @@ uiC.createAddButtons = function() {
             statusText: 'Adding <b>Or-Refinement</b> link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
         })
     }).render();
-    new uiC.AddButtonView({
-        model: new uiC.AddButtonModel({
+    new ui.components.AddButtonView({
+        model: new ui.components.AddButtonModel({
             label: 'Needed-By',
             action: ui.STATE_ADD_LINK,
             name: 'NeededByLink',
@@ -131,8 +131,8 @@ uiC.createAddButtons = function() {
             statusText: 'Adding <b>Needed-By</b> link: click first on the Resource and then on the Task that needs it.'
         })
     }).render();
-    new uiC.AddButtonView({
-        model: new uiC.AddButtonModel({
+    new ui.components.AddButtonView({
+        model: new ui.components.AddButtonModel({
             label: 'Qualification',
             action: ui.STATE_ADD_LINK,
             name: 'QualificationLink',
@@ -162,9 +162,9 @@ uiC.createAddButtons = function() {
             image = linkType.buttonImage[i];
         }
 
-        new uiC.AddButtonDropdownItemView({
+        new ui.components.AddButtonDropdownItemView({
             attributes: {parent: '#add-contribution-link-dropdown'},
-            model: new uiC.AddButtonModel({
+            model: new ui.components.AddButtonModel({
                 action: ui.STATE_ADD_LINK,
                 buttonImage: image,
                 defaultButtonImage: 'DefaultContainerLink.svg',

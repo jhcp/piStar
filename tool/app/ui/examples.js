@@ -9,7 +9,7 @@
 istar.examples = istar.examples || {};  //prevents overriding the variable, while also preventing working with a null variable
 
 istar.examples.loadPistarWelcome = function () {
-    loadModel(this.pistarWelcome);
+    istar.fileManager.loadModel(this.pistarWelcome);
 };
 
 // istar.examples.experimentExample = function () {

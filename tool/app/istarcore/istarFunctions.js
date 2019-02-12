@@ -17,59 +17,15 @@
 var istar = function () {
     'use strict';
 
-    //private functions
+    function _setLinkLabel (value) {
+        /* jshint validthis: true */
+        /* this function is meant to be added to a prototype */
 
-    function _createDefaultGraph  () {
-        //a joint js graph contains all cells (elements and links) of the model
-        var graph = new joint.dia.Graph();
-
-        //create a new JointJS Cell to store custom data properties of the
-        // model as a whole
-        graph._modelProperties = (new joint.dia.Element()).prop('name', '');
-        //creates a shortcut for setting up model properties
-        graph.prop = graph._modelProperties.prop;
-
-        //create is... functions for the graph object
-        //they are useful because, since the model itself can be selected, these functions
-        //can help differentiate it from regular cells
-        graph.isCell = function() {return false;};
-        graph.isElement = function(){return false;};
-        graph.isLink = function(){return false;};
-
-        return graph;
+        this.label(0, {attrs: {text: {text: '' + value + ''}}});
+        return this;
     }
 
-    function _createDefaultPaper (graph) {
-        //a joint js paper is the view for a joint js graph
-        return new joint.dia.Paper({
-            el: $('#diagram'), /*DOM container of the SVG image*/
-            width: 2000,
-            height: 1300,
-            model: graph,
-            gridSize: 1,
-            linkPinning: false, /*prevents connecting a link to a point outside of an element*/
-            defaultConnector: {
-                name: 'rounded',
-                args: {
-                    radius: 10
-                }
-            }
-            // defaultRouter: {
-            //     name: 'metro',
-            //     args: {
-            //         padding: 10
-            //     }
-            // }
-            //async: true,
-            //linkConnectionPoint: joint.util.shapePerimeterConnectionPoint, //connects links to the nodes' shape, rather than their bounding box. Big toll on performance
-        });
-    }
-
-    function _createBasicPrototypeFunctions  () {
-        joint.dia.Element.prototype.setNodeLabel = _setNodeLabel;
-        joint.dia.Element.prototype.updateLineBreak = _updateLineBreak;
-    }
-
+    //prototype functions
     function _setNodeLabel (content) {
         /* jshint validthis: true */
         /* this function is meant to be added to a prototype */
@@ -191,14 +147,6 @@ var istar = function () {
         }
     }
 
-    function _setLinkLabel (value) {
-        /* jshint validthis: true */
-        /* this function is meant to be added to a prototype */
-
-        this.label(0, {attrs: {text: {text: '' + value + ''}}});
-        return this;
-    }
-
     function _updateActorBoundary () {
         /* jshint validthis: true */
         /* this function is meant to be added to a prototype */
@@ -279,38 +227,138 @@ var istar = function () {
     //public attributes and functions
     return {
         metamodel: {},
-        setupModel: function (graph) {
-            this.graph = graph ? graph : _createDefaultGraph();
-            _createBasicPrototypeFunctions();
+        graph: {},
+        paper: {},
+        setup: {
+            setupModel: function (_graph) {
+                var graph = _graph ? graph : createDefaultGraph();
+                setupGraphProperties(graph);
+                return graph;
+
+                function createDefaultGraph() {
+                    //a joint js graph contains all cells (elements and links) of the model
+                    return (new joint.dia.Graph());
+                }
+
+                function setupGraphProperties(graph) {
+                    //create a new JointJS Element to store custom data properties of the
+                    // model as a whole
+                    graph._modelProperties = (new joint.dia.Element()).prop('name', '');
+                    //creates a shortcut for setting up model properties
+                    graph.prop = graph._modelProperties.prop;
+
+                    //create is... functions for the graph object
+                    //they are useful because, since the model itself can be selected, these functions
+                    //can help differentiate it from regular cells
+                    graph.isCell = function () {
+                        return false;
+                    };
+                    graph.isElement = function () {
+                        return false;
+                    };
+                    graph.isLink = function () {
+                        return false;
+                    };
+                }
+            },
+            setupDiagram: function (graph, _paper) {
+                var paper = _paper ? paper : createDefaultPaper(graph);
+                setupElementLabelFunctions();
+                setupAutomaticContainerResizing(graph);
+                return paper;
+
+                function createDefaultPaper(graph) {
+                    //a joint js paper is the view for a joint js graph
+                    return new joint.dia.Paper({
+                        el: $('#diagram'), /*DOM container of the SVG image*/
+                        width: 2000,
+                        height: 1300,
+                        model: graph,
+                        gridSize: 1,
+                        linkPinning: false, /*prevents connecting a link to a point outside of an element*/
+                        defaultConnector: {
+                            name: 'rounded',
+                            args: {
+                                radius: 10
+                            }
+                        }
+                        // defaultRouter: {
+                        //     name: 'metro',
+                        //     args: {
+                        //         padding: 10
+                        //     }
+                        // }
+                        //async: true,
+                        //linkConnectionPoint: joint.util.shapePerimeterConnectionPoint, //connects links to the nodes' shape, rather than their bounding box. Big toll on performance
+                    });
+                }
+
+                function setupElementLabelFunctions() {
+                    joint.dia.Element.prototype.setNodeLabel = _setNodeLabel;
+                    joint.dia.Element.prototype.updateLineBreak = _updateLineBreak;
+                }
+
+                function setupAutomaticContainerResizing(graph) {
+                    //updates the size of a container boundary when its internal elements are moved
+                    //based on JointJS' tutorial: http://jointjs.com/tutorial/hierarchy
+                    graph.on('change:position change:size', function (cell, newPosition, opt) {
+
+                        if (opt.skipParentHandler) {
+                            return;
+                        }
+
+                        if (cell.get('embeds') && cell.get('embeds').length) {
+                            // If we're manipulating a parent element, let's store
+                            // it's original position to a special property so that
+                            // we can shrink the parent element back while manipulating
+                            // its children.
+                            cell.set('originalPosition', cell.get('position'));
+                        }
+
+                        var parentId = cell.get('parent');
+                        if (parentId) {
+                            var parent = graph.getCell(parentId);
+                            parent.updateBoundary();
+                        }
+                    });
+                }
+            },
+            createContainerFunctions: function (prototype) {
+                prototype.collapse = _collapse;
+                prototype.uncollapse = _expand; /* @deprecated since version 2.0.0 - use 'expand' instead*/
+                prototype.expand = _expand;
+                prototype.toggleCollapse = _toggleCollapse;
+                prototype.embedNode = _embedNode;
+                prototype.updateBoundary = _updateActorBoundary;
+            }
         },
-        setupDiagram: function (paper) {
-            this.paper = paper ? paper : _createDefaultPaper(this.graph);
+        base: {
+            /**
+             * Adds a new node to the model.
+             * Instead of calling this function directly, this function is expected to be called
+             * from a specialized 'add' function, such as addActor or addTask.<br />
+             * @returns the new node
+             * @param {object}  nodeType    type definition of the node to be created
+             * @param {string}  content     content of the node
+             * @param {object}  options     {id, position: {x, y}}
+             */
+            addNode: function (nodeType, content, options) {
+                var newNode = new nodeType.shapeObject(options);
+                //add to the graph before changing properties, so that eventual UI event listeners can start acting at once
+                istar.graph.addCell(newNode);
 
-            this.setupAutomaticContainerResizing();
-        },
-        setupAutomaticContainerResizing: function () {
-            //updates the size of an actor's boundary when its internal elements are moved
-            //based on JointJS' tutorial: http://jointjs.com/tutorial/hierarchy
-            this.graph.on('change:position', function (cell, newPosition, opt) {
+                newNode.prop('name', content || nodeType.name);
+                newNode.prop('type', nodeType.name);
 
-                if (opt.skipParentHandler) {
-                    return;
+                //stores the initial size of the element in order to later be able to restore it to its initial size
+                newNode.prop('originalSize', newNode.prop('size'));
+
+                if (newNode.attr('.stereotype')) {
+                    newNode.attr('.stereotype/text', '<<' + nodeType.name + '>>');
                 }
 
-                if (cell.get('embeds') && cell.get('embeds').length) {
-                    // If we're manipulating a parent element, let's store
-                    // it's original position to a special property so that
-                    // we can shrink the parent element back while manipulating
-                    // its children.
-                    cell.set('originalPosition', cell.get('position'));
-                }
-
-                var parentId = cell.get('parent');
-                if (parentId) {
-                    var parent = istar.graph.getCell(parentId);
-                    parent.updateBoundary();
-                }
-            });
+                return newNode;
+            },
         },
         displayInvalidModelMessages: function(messages) {
             messages = messages || [];
@@ -361,34 +409,8 @@ var istar = function () {
             //note: each dependency counts as two links: one from the depender to the dependum, and another from the dependum to the dependee
             return _.size(istar.graph.getLinks());
         },
-        /**
-         * Adds a new node to the model.
-         * Instead of calling this function directly, this function is expected to be called
-         * from a specialized 'add' function, such as addActor or addTask.<br />
-         * @returns the new node
-         * @param {object}  nodeType    type definition of the node to be created
-         * @param {string}  content     content of the node
-         * @param {object}  options     {id, position: {x, y}}
-         */
-        addNode: function (nodeType, content, options) {
-            var newNode = new nodeType.shapeObject(options);
-            //add to the graph before changing properties, so that eventual UI event listeners can start acting at once
-            istar.graph.addCell(newNode);
-
-            newNode.prop('name', content || nodeType.name);
-            newNode.prop('type', nodeType.name);
-
-            //stores the initial size of the element in order to later be able to restore it to its initial size
-            newNode.prop('originalSize', newNode.prop('size'));
-
-            if (newNode.attr('.stereotype')) {
-                newNode.attr('.stereotype/text', '<<' + nodeType.name + '>>');
-            }
-
-            return newNode;
-        },
         replaceNode: function (element, typeName) {
-            var newNode = this.addNode(
+            var newNode = this.base.addNode(
                 istar.metamodel.nodes[typeName],
                 element.prop('name'),
                 {
@@ -435,7 +457,7 @@ var istar = function () {
             return newNode;
         },
         /**
-         * Adds a link between two actors.
+         * Adds a link between two containers.
          * @returns the new link
          * @param {object}  linkType    type definition of the link to be created
          * @param {Actor}   source      source of the link (the actual Cell, not just the id)
@@ -456,33 +478,6 @@ var istar = function () {
             istar.graph.addCell(link);
             return link;
         },
-        // addOneSideOfDependencyLink: function (source, target) {
-        //     console.log('addOneSideOfDependencyLink');
-        //     var link;
-        //     if (source.isKindOfActor()) {
-        //         link = new joint.shapes.istar.DependencyLink({
-        //             'source': {id: source.id, selector: '.element'},
-        //             'target': {id: target.id}
-        //         });
-        //     }
-        //     else {
-        //         link = new joint.shapes.istar.DependencyLink({'source': {id: source.id}, 'target': {id: target.id}});
-        //     }
-        //     link.prop('type', 'DependencyLink');
-        //
-        //     istar.graph.addCell(link);
-        //
-        //     //move links to the back, so that they don't appear on top of the element's shape
-        //     link.toBack();
-        //     //move all the actors even further back, so that they don't impede the visualization of the dependency links
-        //     var actors = _.filter(istar.graph.getElements(), function (element) {
-        //         return element.isKindOfActor();
-        //     });
-        //     _.forEach(actors, function (actor) {
-        //         actor.toBack();
-        //     });
-        //     return [link];
-        // },
         addDependencyLink: function (depender, dependum, dependee) {
             var link1 = new joint.shapes.istar.DependencyLink({
                 'source': {id: depender.id, selector: '.element'},
@@ -550,14 +545,6 @@ var istar = function () {
             istar.graph.prop('customProperties', '');//delete all custom properties
             istar.graph.prop('customProperties/Description', '');//set back the 'Description' property
         },
-        createContainerFunctions: function (prototype) {
-            prototype.collapse = _collapse;
-            prototype.uncollapse = _expand; /* @deprecated since version 2.0.0 - use 'expand' instead*/
-            prototype.expand = _expand;
-            prototype.toggleCollapse = _toggleCollapse;
-            prototype.embedNode = _embedNode;
-            prototype.updateBoundary = _updateActorBoundary;
-        },
         embedNode: function (child, parent) {
             parent.embed(child);
         },
@@ -570,7 +557,7 @@ var istar = function () {
         getLinks: function () {
             return this.graph.getLinks();
         },
-        isSourceOf: function (element, typeName) {
+        isElementSourceOfType: function (element, typeName) {
             var currentLinksFromElement = istar.graph.getConnectedLinks(element);
             var isSourceOf = false;
             _.forEach(currentLinksFromElement, function (link) {
@@ -578,7 +565,7 @@ var istar = function () {
             });
             return isSourceOf;
         },
-        isTargetOf: function (element, typeName) {
+        isElementTargetOfType: function (element, typeName) {
             var currentLinksFromElement = istar.graph.getConnectedLinks(element);
             var isTargetOf = false;
             _.forEach(currentLinksFromElement, function (link) {
@@ -605,7 +592,6 @@ var istar = function () {
             }
             return isDuplicated;
         }
-
     };
 }();
 

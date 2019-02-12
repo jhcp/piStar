@@ -6,9 +6,9 @@
  * https://github.com/jhcp/pistar
  */
 
-window.uiC = window.uiC || {};  //prevents overriding the variable, while also preventing working with a null variable
+ui.components = ui.components || {};  //prevents overriding the variable, while also preventing working with a null variable
 
-uiC.AddButtonView = Backbone.View.extend({
+ui.components.AddButtonView = Backbone.View.extend({
     tagName: 'span',
     className: 'add-button',
     template: _.template($('#add-button-template').html()),

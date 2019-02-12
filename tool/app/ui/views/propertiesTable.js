@@ -6,9 +6,9 @@
  * https://github.com/jhcp/pistar
  */
 
-window.uiC = window.uiC || {};  //prevents overriding the variable, while also preventing working with a null variable
+ui.components = ui.components || {};  //prevents overriding the variable, while also preventing working with a null variable
 
-uiC.PropertiesTableView = Backbone.View.extend({
+ui.components.PropertiesTableView = Backbone.View.extend({
     template: _.template($('#property-template').html()),
 
     initialize: function () {
@@ -229,7 +229,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
                         source = connectedLinks[1].getSourceElement();
                         target = connectedLinks[0].getTargetElement();
                     }
-                    isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(target, source);//check with flipped source/target
+                    var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(target, source);//check with flipped source/target
                     // isValid = istar.types['DependencyLink'].isValid(target, source);//check with flipped source/target
 
                     if (isValid.isValid) {
@@ -335,7 +335,7 @@ uiC.PropertiesTableView = Backbone.View.extend({
                 showbuttons: 'bottom',
                 success: function (response, newValue) {
                     //update backbone model
-                    var updatedElement = changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue);
+                    var updatedElement = ui.changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue);
                     return {newValue: updatedElement.prop('customProperties/' + propertyName)};
                 }
             }

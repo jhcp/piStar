@@ -121,7 +121,7 @@ istar.setupMetamodel = function (metamodel) {
             attachShapeObject(cellType, metamodel, 'container');
             createIsCellFunctions(cellType);
             createAddElementFunction(cellType);
-            istar.createContainerFunctions(cellType.shapeObject.prototype);
+            istar.setup.createContainerFunctions(cellType.shapeObject.prototype);
         });
         _.forEach(metamodel.nodes, function (cellType) {
             attachShapeObject(cellType, metamodel, 'node');
@@ -190,7 +190,7 @@ istar.setupMetamodel = function (metamodel) {
         //Example: if the cellType is Actor, an addActor() function will be created
         if (elementType.name) {
             istar['add' + elementType.name] = function (content, options) {
-                return istar.addNode(elementType, content, options);
+                return istar.base.addNode(elementType, content, options);
             };
         }
     }

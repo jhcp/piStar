@@ -9,8 +9,8 @@
 $(document).ready(function () {
     'use strict';
 
-    istar.setupModel();
-    istar.setupDiagram();
+    istar.graph = istar.setup.setupModel();
+    istar.paper = istar.setup.setupDiagram(istar.graph);
     istar.setupMetamodel(istar.metamodel);
     ui.setupUi();
     istar.examples.loadPistarWelcome();

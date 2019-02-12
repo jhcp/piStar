@@ -6,9 +6,9 @@
  * https://github.com/jhcp/pistar
  */
 
-window.uiC = window.uiC || {};  //prevents overriding the variable, while also preventing working with a null variable
+ui.components = ui.components || {};  //prevents overriding the variable, while also preventing working with a null variable
 
-uiC.AddButtonDropdownItemView = Backbone.View.extend({
+ui.components.AddButtonDropdownItemView = Backbone.View.extend({
     tagName: 'li',
     template: _.template($('#add-dropdown-button-template').html()),
 

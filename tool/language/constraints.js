@@ -166,11 +166,11 @@ istar.metamodel.dependencyLinks.DependencyLink.isValid = function (source, targe
         isValid = false;
         result.message = 'a Dependency link must involve two different actors (iStar 2.0 Guide, Page 14)';
     }
-    if (isValid && (istar.isTargetOf(source, 'OrRefinementLink') || istar.isTargetOf(source, 'AndRefinementLink'))) {
+    if (isValid && (istar.isElementTargetOfType(source, 'OrRefinementLink') || istar.isElementTargetOfType(source, 'AndRefinementLink'))) {
         isValid = false;
         result.message = 'a refined element cannot be the Depender Element in a Dependency link (iStar 2.0 Guide, Page 14)';
     }
-    if (isValid && istar.isTargetOf(source, 'ContributionLink')) {
+    if (isValid && istar.isElementTargetOfType(source, 'ContributionLink')) {
         isValid = false;
         result.message = 'a contributed element cannot be the Depender Element in a Dependency link (iStar 2.0 Guide, Page 14)';
     }
@@ -219,11 +219,11 @@ istar.metamodel.nodeLinks.AndRefinementLink.isValid = function (source, target) 
         isValid = false;
         result.message = 'there can only be one refinement link between the same two elements';
     }
-    if ( isValid && istar.isSourceOf(target, 'DependencyLink')) {
+    if ( isValid && istar.isElementSourceOfType(target, 'DependencyLink')) {
         isValid = false;
         result.message = 'you cannot refine a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)';
     }
-    if ( isValid && istar.isTargetOf(target, 'OrRefinementLink')) {
+    if ( isValid && istar.isElementTargetOfType(target, 'OrRefinementLink')) {
         isValid = false;
         result.message = 'you cannot mix AND-refinements with OR-refinements targeting the same element ' +
             '(iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br>' +
@@ -273,11 +273,11 @@ istar.metamodel.nodeLinks.OrRefinementLink.isValid = function (source, target) {
         isValid = false;
         result.message = 'there can only be one refinement link between the same two elements';
     }
-    if ( isValid && istar.isSourceOf(target, 'DependencyLink')) {
+    if ( isValid && istar.isElementSourceOfType(target, 'DependencyLink')) {
         isValid = false;
         result.message = 'you cannot refine a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)';
     }
-    if ( isValid && istar.isTargetOf(target, 'AndRefinementLink')) {
+    if ( isValid && istar.isElementTargetOfType(target, 'AndRefinementLink')) {
         isValid = false;
         result.message = 'you cannot mix OR-refinements with AND-refinements targeting the same element ' +
             '(iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br>' +
@@ -371,7 +371,7 @@ istar.metamodel.nodeLinks.ContributionLink.isValid = function (source, target) {
         isValid = false;
         result.message = 'you cannot have Contribution and Qualification links between the same two elements (iStar 2.0 Guide, Page 15)';
     }
-    if ( isValid && istar.isSourceOf(target, 'DependencyLink')) {
+    if ( isValid && istar.isElementSourceOfType(target, 'DependencyLink')) {
         isValid = false;
         result.message = 'you cannot contribute to a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)';
     }
