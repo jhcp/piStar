@@ -645,7 +645,12 @@ ui.addElementOnActor = function (cellView, options) {
         }
 
         if (isValid.isValid) {
-            var element = ui.addElementInPlace(cellView.model, istar['add' + ui.currentAddingElement], options);
+            //centers the position
+            var bbox = (new istar.metamodel.nodes[currentAddingElement].shapeObject()).getBBox();
+            options.position.x -= bbox.width/2;
+            options.position.y -= bbox.height/2;
+
+            var element = ui.addElementInPlace(cellView.model, istar['add' + currentAddingElement], options);
             element.prop('customProperties/Description', '');
             ui.selectElement(element);
         }
