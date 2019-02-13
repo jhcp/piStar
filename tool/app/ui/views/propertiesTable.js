@@ -103,8 +103,12 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                 return {newValue: currentElementModel.prop('name')};
             }
         })
-            .on('shown', ui.changeStateToEdit)
-            .on('hidden', ui.changeStateToView);
+            .on('shown', function () {
+                ui.states.editor.transitionTo(ui.states.editor.EDITING_TEXT);
+            })
+            .on('hidden', function () {
+                ui.states.editor.transitionTo(ui.states.editor.VIEWING);
+            });
     },
     setupElementTypeEditing: function () {
         'use strict';
@@ -123,17 +127,21 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                 showbuttons: false,
                 source: typeNames,
                 success: function (response, newValue) {
-                    var updatedElement = ui.getSelectedElement();
+                    var updatedElement = ui.getSelectedCells()[0];
                     var newType = istar.metamodel.nodes[newValue].name;
                     updatedElement.prop('type', newType);
                     var newNode = istar.replaceNode(updatedElement, istar.metamodel.nodes[newValue].name)
                         .prop('isDependum', true);
-                    ui.selectElement(newNode);
+                    ui.selectCell(newNode);
                 },
                 value: currentType
             })
-                .on('shown', ui.changeStateToEdit)
-                .on('hidden', ui.changeStateToView);
+                .on('shown', function () {
+                    ui.states.editor.transitionTo(ui.states.editor.EDITING_TEXT);
+                })
+                .on('hidden', function () {
+                    ui.states.editor.transitionTo(ui.states.editor.VIEWING);
+                });
         }
         else if (this.model.isContributionLink && this.model.isContributionLink()) {
             var element = this.model;
@@ -144,12 +152,16 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                 showbuttons: false,
                 source: valueNames,
                 success: function (response, newValue) {
-                    ui.getSelectedElement().prop('value', newValue);
+                    ui.getSelectedCells()[0].prop('value', newValue);
                 },
                 value: element.prop('value')
             })
-                .on('shown', ui.changeStateToEdit)
-                .on('hidden', ui.changeStateToView);
+                .on('shown', function () {
+                    ui.states.editor.transitionTo(ui.states.editor.EDITING_TEXT);
+                })
+                .on('hidden', function () {
+                    ui.states.editor.transitionTo(ui.states.editor.VIEWING);
+                });
         }
         // else {
         //     this.$table.find('a').editable({
@@ -169,7 +181,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                 var isValidName = false;
                 var validityMessage = '';
                 if (isNaN(newPropertyName)) {
-                    var existsPropertyWithSameNameInThisElement = ui.getSelectedElement().prop('customProperties/' + newPropertyName);
+                    var existsPropertyWithSameNameInThisElement = ui.getSelectedCells()[0].prop('customProperties/' + newPropertyName);
                     if (existsPropertyWithSameNameInThisElement === undefined) {
                         newPropertyName = newPropertyName.replace(/\W/g, '');
                         isValidName = true;
@@ -183,7 +195,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                 }
 
                 if (isValidName) {
-                    ui.getSelectedElement().prop('customProperties/' + newPropertyName, '');
+                    ui.getSelectedCells()[0].prop('customProperties/' + newPropertyName, '');
                 }
                 else {
                     ui.alert(validityMessage, 'Invalid property name');
@@ -203,9 +215,9 @@ ui.components.PropertiesTableView = Backbone.View.extend({
             '<a id="collapse-expand-actor-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: alt+click the actor">Collapse/Expand</a><br>'
         );
         $('#collapse-expand-actor-button').click(function () {
-            if (ui.getSelectedElement()) {
+            if (ui.getSelectedCells()) {
                 ui.hideSelection();//remove the focus from the actor
-                ui.getSelectedElement().toggleCollapse();
+                ui.getSelectedCells()[0].toggleCollapse();
                 ui.showSelection();//give the focus back to actor, now collapsed or expanded
             }
         });
@@ -213,12 +225,12 @@ ui.components.PropertiesTableView = Backbone.View.extend({
     setupChangeDirectionButton: function () {
         'use strict';
 
-        if (ui.getSelectedElement().remove) {
+        if (ui.getSelectedCells()[0].remove) {
             $('#cell-actions').append(
                 '<a id="flip-direction-button" class="btn btn-default btn-xs button-horizontal" title="Change the direction of the dependency">Flip direction</a><br>'
             );
             $('#flip-direction-button').click(function () {
-                var dependum = ui.getSelectedElement();
+                var dependum = ui.getSelectedCells()[0];
                 if (dependum) {
                     var connectedLinks = istar.graph.getConnectedLinks(dependum);
 
@@ -272,7 +284,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                             connectedLinks[1].prop('source/selector', 'text');
                         }
                         connectedLinks[1].vertices(_.reverse(originalVertices));
-                        ui.selectElement(dependum);
+                        ui.selectCell(dependum);
                     }
                     else {
                         ui.displayInvalidLinkMessage(isValid.message + '. Thus, this Dependency currently cannot be flipped');
@@ -289,22 +301,22 @@ ui.components.PropertiesTableView = Backbone.View.extend({
             'title="This deletes all vertices in this link. To delete an individual vertex, double click the vertex.">Clear vertices</a><br>'
         );
         $('#clear-vertices-button').click(function () {
-            if (ui.getSelectedElement()) {
-                ui.getSelectedElement().vertices([]);
+            if (ui.getSelectedCells()) {
+                ui.getSelectedCells()[0].vertices([]);
             }
         });
     },
     setupDeleteButton: function () {
         'use strict';
 
-        if (ui.getSelectedElement().remove) {
+        if (ui.getSelectedCells()[0].remove) {
             $('#cell-actions').append(
                 '<a id="delete-element-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: Delete key">Delete</a><br>'
             );
             $('#delete-element-button').click(function () {
-                if (ui.getSelectedElement()) {
-                    ui.getSelectedElement().remove();
-                    ui.selectModel();
+                if (ui.getSelectedCells()) {
+                    ui.getSelectedCells()[0].remove();
+                    ui.selectPaper();
                 }
             });
         }
@@ -315,7 +327,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
         if (this.model.prop('backgroundColor')) {
             $('#single-element-color-picker').get(0).jscolor.fromString(this.model.prop('backgroundColor'));
         }
-        else if (ui.getSelectedElement()){
+        else if (ui.getSelectedCells()){
             $('#single-element-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
         }
     },
@@ -335,12 +347,16 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                 showbuttons: 'bottom',
                 success: function (response, newValue) {
                     //update backbone model
-                    var updatedElement = ui.changeCustomPropertyValue(ui.getSelectedElement(), $(this).attr('data-name'), newValue);
+                    var updatedElement = ui.changeCustomPropertyValue(ui.getSelectedCells()[0], $(this).attr('data-name'), newValue);
                     return {newValue: updatedElement.prop('customProperties/' + propertyName)};
                 }
             }
         )
-            .on('shown', ui.changeStateToEdit)
-            .on('hidden', ui.changeStateToView);
+            .on('shown', function () {
+                ui.states.editor.transitionTo(ui.states.editor.EDITING_TEXT);
+            })
+            .on('hidden', function () {
+                ui.states.editor.transitionTo(ui.states.editor.VIEWING);
+            });
     },
 });

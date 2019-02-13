@@ -24,7 +24,7 @@ ui.components.createAddButtons = function() {
         new ui.components.AddButtonDropdownItemView({
             attributes: {parent: '#add-actor-dropdown'},
             model: new ui.components.AddButtonModel({
-                action: ui.STATE_ADD_ACTOR,
+                action: ui.states.editor.ADDING.ADD_CONTAINER,
                 buttonImage: image,
                 defaultButtonImage: 'DefaultContainer.svg',
                 label: label,
@@ -46,7 +46,7 @@ ui.components.createAddButtons = function() {
         new ui.components.AddButtonDropdownItemView({
             attributes: {parent: '#add-actor-link-dropdown'},
             model: new ui.components.AddButtonModel({
-                action: ui.STATE_ADD_LINK,
+                action: ui.states.editor.ADDING.ADD_LINK,
                 buttonImage: image,
                 defaultButtonImage: 'DefaultContainerLink.svg',
                 label: label,
@@ -70,7 +70,7 @@ ui.components.createAddButtons = function() {
             new ui.components.AddButtonDropdownItemView({
                 attributes: {parent: '#add-dependency-dropdown'},
                 model: new ui.components.AddButtonModel({
-                    action: ui.STATE_ADD_LINK,
+                    action: ui.states.editor.ADDING.ADD_LINK,
                     buttonImage: image,
                     defaultButtonImage: 'DefaultDependencyLink.svg',
                     label: label,
@@ -93,7 +93,7 @@ ui.components.createAddButtons = function() {
 
             new ui.components.AddButtonView({
                 model: new ui.components.AddButtonModel({
-                    action: ui.STATE_ADD_NODE,
+                    action: ui.states.editor.ADDING.ADD_NODE,
                     defaultButtonImage: 'DefaultNode.svg',
                     label: label,
                     name: elementType.name,
@@ -107,7 +107,7 @@ ui.components.createAddButtons = function() {
     new ui.components.AddButtonView({
         model: new ui.components.AddButtonModel({
             label: 'And',
-            action: ui.STATE_ADD_LINK,
+            action: ui.states.editor.ADDING.ADD_LINK,
             name: 'AndRefinementLink',
             tooltip: 'Add And-Refinement link',
             statusText: 'Adding <b>And-Refinement</b> link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
@@ -116,7 +116,7 @@ ui.components.createAddButtons = function() {
     new ui.components.AddButtonView({
         model: new ui.components.AddButtonModel({
             label: 'Or',
-            action: ui.STATE_ADD_LINK,
+            action: ui.states.editor.ADDING.ADD_LINK,
             name: 'OrRefinementLink',
             tooltip: 'Add Or-Refinement link',
             statusText: 'Adding <b>Or-Refinement</b> link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
@@ -125,7 +125,7 @@ ui.components.createAddButtons = function() {
     new ui.components.AddButtonView({
         model: new ui.components.AddButtonModel({
             label: 'Needed-By',
-            action: ui.STATE_ADD_LINK,
+            action: ui.states.editor.ADDING.ADD_LINK,
             name: 'NeededByLink',
             tooltip: 'Add Needed-By link',
             statusText: 'Adding <b>Needed-By</b> link: click first on the Resource and then on the Task that needs it.'
@@ -134,7 +134,7 @@ ui.components.createAddButtons = function() {
     new ui.components.AddButtonView({
         model: new ui.components.AddButtonModel({
             label: 'Qualification',
-            action: ui.STATE_ADD_LINK,
+            action: ui.states.editor.ADDING.ADD_LINK,
             name: 'QualificationLink',
             tooltip: 'Add Qualification link',
             statusText: 'Adding <b>Qualification</b> link: click first on the Quality and then on the element it qualifies (Goal, Task or Resource).'
@@ -165,7 +165,7 @@ ui.components.createAddButtons = function() {
         new ui.components.AddButtonDropdownItemView({
             attributes: {parent: '#add-contribution-link-dropdown'},
             model: new ui.components.AddButtonModel({
-                action: ui.STATE_ADD_LINK,
+                action: ui.states.editor.ADDING.ADD_LINK,
                 buttonImage: image,
                 defaultButtonImage: 'DefaultContainerLink.svg',
                 label: label,

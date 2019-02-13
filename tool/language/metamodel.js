@@ -62,22 +62,22 @@ istar.metamodel = {
         "Goal": {
             "canBeInnerElement": true,
             "canBeDependum": true,
-            "canBeOnCanvas": false
+            "canBeOnPaper": false
         },
         "Quality": {
             "canBeInnerElement": true,
             "canBeDependum": true,
-            "canBeOnCanvas": false
+            "canBeOnPaper": false
         },
         "Resource": {
             "canBeInnerElement": true,
             "canBeDependum": true,
-            "canBeOnCanvas": false
+            "canBeOnPaper": false
         },
         "Task": {
             "canBeInnerElement": true,
             "canBeDependum": true,
-            "canBeOnCanvas": false
+            "canBeOnPaper": false
         }
     },
 

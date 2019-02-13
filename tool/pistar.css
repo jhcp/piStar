@@ -469,14 +469,15 @@ svg * {
   border: 2px solid #1C5052;
   border-radius: 50%;
   cursor: nwse-resize;
-  height: 10px;
+  height: 12px;
   position: absolute;
-  width: 10px;
+  width: 12px;
   z-index: 2;
 }
 
-.element-selection {
-  border: 2px dashed grey;
+.cell-selection {
+  border: 3px dashed dimgrey;
+  /*border: 4px dashed #1C5052;*/
   height: 0;
   pointer-events: none;  /* based on https://stackoverflow.com/questions/3538489/html-css-make-a-div-invisible-to-clicks */
   position: absolute;
