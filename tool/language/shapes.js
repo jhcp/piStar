@@ -485,9 +485,9 @@ joint.shapes.istar.IsALink = joint.dia.Link.define('IsALink',
     }
 );
 
-/* this shape is used by default when a new node is added to the metamodel .
+/* this shape is used by default when a new Container Link is added to the metamodel .
    DO NOT CHANGE THIS SHAPE. Instead, you should create
-   a *new* shape specific to the element that was added to the metamodel
+   a *new* shape specific to the link that was added to the metamodel
  */
 joint.shapes.istar.DefaultContainerLink = joint.dia.Link.define('DefaultContainerLink',
     {
@@ -496,6 +496,7 @@ joint.shapes.istar.DefaultContainerLink = joint.dia.Link.define('DefaultContaine
                 connection: true,
                 fill: 'none',
                 stroke: 'black',
+                'stroke-dasharray': '2,4',
                 'stroke-width': 1,
                 targetMarker: {
                     'd': 'm 10,-6 l -10,6 10,6',
@@ -512,16 +513,16 @@ joint.shapes.istar.DefaultContainerLink = joint.dia.Link.define('DefaultContaine
                 'stroke-width': 20
             },
             label: {
-                atConnectionRatio: 0.5,
-                'font-size': 13,
+                atConnectionRatio: 0.45,
+                'font-size': 14,
                 'font-weight': 400,
                 text: '<<ContainerLinkType>>',
                 x: -20,
                 y: 4,
             },
             'label-background': {
-                atConnectionRatio: 0.5,
-                'font-size': 13,
+                atConnectionRatio: 0.45,
+                'font-size': 14,
                 'font-weight': 400,
                 stroke: 'white',
                 'stroke-width': '0.35em',
@@ -816,6 +817,78 @@ joint.shapes.istar.QualificationLink = joint.dia.Link.define('QualificationLink'
             {
                 selector: 'line',
                 tagName: 'path'
+            }
+        ]
+    }
+);
+
+/* this shape is used by default when a new node link is added to the metamodel .
+   DO NOT CHANGE THIS SHAPE. Instead, you should create
+   a *new* shape specific to the link that was added to the metamodel
+ */
+joint.shapes.istar.DefaultNodeLink = joint.dia.Link.define('DefaultNodeLink',
+    {
+        attrs: {
+            line: {
+                connection: true,
+                fill: 'none',
+                stroke: 'black',
+                'stroke-dasharray': '2,4',
+                'stroke-width': 1,
+                targetMarker: {
+                    'd': 'm 10,-6 l -10,6 10,6',
+                    fill: 'none',
+                    'stroke-width': 1.2,
+                    'type': 'path',
+                }
+            },
+            'connection-wrap': {
+                connection: true,
+                fill: 'none',
+                stroke: 'transparent',
+                'stroke-linecap': 'round',
+                'stroke-width': 20
+            },
+            label: {
+                atConnectionRatio: 0.45,
+                'font-size': 14,
+                'font-weight': 400,
+                text: '<<NodeLinkType>>',
+                x: -20,
+                y: 4,
+            },
+            'label-background': {
+                atConnectionRatio: 0.45,
+                'font-size': 14,
+                'font-weight': 400,
+                stroke: 'rgb(242,242,242)',
+                'stroke-width': '0.35em',
+                text: '<<NodeLinkType>>',
+                x: -20,
+                y: 4,
+            }
+        },
+        source: {selector: '.element'},
+        target: {selector: '.element'}
+    },
+    {
+        markup: [
+            {
+                className: 'c-connection-wrap',
+                selector: 'connection-wrap',
+                tagName: 'path'
+            },
+            {
+                selector: 'line',
+                tagName: 'path'
+            },
+            {
+                selector: 'label-background',
+                tagName: 'text'
+            },
+            {
+                selector: 'label',
+                tagName: 'text'
             }
         ]
     }

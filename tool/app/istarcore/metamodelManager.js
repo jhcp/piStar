@@ -162,7 +162,7 @@ istar.setupMetamodel = function (metamodel) {
                     cellType.shapeObject = joint.shapes.istar.DefaultContainerLink;
                 }
                 else {
-                    cellType.shapeObject = joint.dia.Link;
+                    cellType.shapeObject = joint.shapes.istar.DefaultNodeLink;
                 }
             }
         }

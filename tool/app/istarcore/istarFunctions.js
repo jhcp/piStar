@@ -530,6 +530,11 @@ var istar = function () {
             link.prop('type', linkType.name);
             istar.graph.addCell(link);
 
+            if (linkType.label) {
+                link.attr('label/text', linkType.label);
+                link.attr('label-background/text', linkType.label);
+            }
+
             //embeds the link on the (parent) actor of its source element, to facilitate collapse/expand
             if (source.get('parent')) {
                 istar.graph.getCell(source.get('parent')).embed(link);

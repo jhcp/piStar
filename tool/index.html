@@ -115,18 +115,6 @@
             <div class="menu-group">
                 <div class="menu-line">
                     <span id="add-internal-cells-palette" class="add-button"></span>
-
-                    <div class="add-dropdown-button dropdown">
-                        <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-contribution-links"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-                                title="Add contribution link (make, help, hurt or break)">
-                            <img src="language/images/ContributionLink.svg" height="25" alt=""/><br>
-                            Contribution...
-                            <span class="caret"></span>
-                        </button>
-                        <ul id="add-contribution-link-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-contribution-links"></ul>
-                    </div>
-
                 </div>
             </div>
 
@@ -322,6 +310,19 @@
 </script>
 
 <script type="text/template" id="add-dropdown-button-template">
+    <div class="add-dropdown-button dropdown">
+        <button class="btn add-button btn-default dropdown-toggle" type="button" id="menu-dropdown-<%- name %>"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+                title="<%- tooltip %>">
+            <img src="language/images/<%- name %>.svg" height="25" alt="" onError="this.onerror=null;this.src='language/images/<%- defaultButtonImage %>';"/><br>
+            <%- label %>...
+            <span class="caret"></span>
+        </button>
+        <ul id="add-<%- name %>-dropdown" class="dropdown-menu" aria-labelledby="menu-dropdown-<%- name %>"></ul>
+    </div>
+</script>
+
+<script type="text/template" id="add-dropdown-item-template">
     <a id="d-add-<%- name %>" title="<%- tooltip %>" href="#">
         <img id="d-add-<%- name %>-img" src="language/images/<%- buttonImage %>.svg" height="35" alt=""
              onError="this.onerror=null;this.src='language/images/<%- defaultButtonImage %>';"/>
@@ -554,6 +555,7 @@
 <script src="app/ui/ui.js"></script>
 <script src="app/ui/models/addButton.js"></script>
 <script src="app/ui/views/addButton.js"></script>
+<script src="app/ui/views/addButtonDropdown.js"></script>
 <script src="app/ui/views/addButtonDropdownItem.js"></script>
 <script src="app/ui/controllers/addButton.js"></script>
 <script src="app/ui/views/propertiesTable.js"></script>

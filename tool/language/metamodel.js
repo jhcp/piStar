@@ -96,7 +96,7 @@ istar.metamodel = {
 
     //Add here the links of your language that *behave like* a Dependency link: they link a container with
     // another container while having a node in the middle
-    //New types of dependency links are *NOT* created here. T
+    //New types of dependency links are *NOT* created here.
     //Constraints for the validity of a Dependency link type can be defined in the constraints file
     "dependencyLinks": {
         "DependencyLink": { }
@@ -107,16 +107,16 @@ istar.metamodel = {
     /** @type {Object} */
     "nodeLinks": {
         "AndRefinementLink": { },
-        "ContributionLink": {
-            "changeableLabel": true,
-            "possibleLabels": ["make", "help", "hurt", "break"]
-        },
+        "OrRefinementLink": { },
         "NeededByLink": {
             "tryReversedWhenAdding": true
         },
-        "OrRefinementLink": { },
         "QualificationLink": {
             "tryReversedWhenAdding": true
+        },
+        "ContributionLink": {
+            "changeableLabel": true,
+            "possibleLabels": ["make", "help", "hurt", "break"]
         }
     }
 };

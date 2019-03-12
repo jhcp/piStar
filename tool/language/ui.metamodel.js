@@ -43,14 +43,37 @@ ui.setupMetamodelUI = function () {
         istar.metamodel.containerLinks.ParticipatesInLink.buttonStatusText = 'Adding <b>Participates-In</b> link: click on the source, and then on the target';
     }
 
+    if (istar.metamodel.nodeLinks.AndRefinementLink) {
+        istar.metamodel.nodeLinks.AndRefinementLink.buttonLabel = 'And';
+        istar.metamodel.nodeLinks.AndRefinementLink.buttonTooltip = 'Add And-Refinement link';
+        istar.metamodel.nodeLinks.AndRefinementLink.buttonStatusText = 'Adding <b>And-Refinement</b> link: click first on the child, and then on the parent. It can only be applied to goals or tasks.';
+    }
+    if (istar.metamodel.nodeLinks.OrRefinementLink) {
+        istar.metamodel.nodeLinks.OrRefinementLink.buttonLabel = 'Or';
+        istar.metamodel.nodeLinks.OrRefinementLink.buttonTooltip = 'Add Or-Refinement link';
+        istar.metamodel.nodeLinks.OrRefinementLink.buttonStatusText = 'Adding <b>Or-Refinement</b> link: click first on the child, and then on the parent. It can only be applied to goals or tasks.';
+    }
+    if (istar.metamodel.nodeLinks.NeededByLink) {
+        istar.metamodel.nodeLinks.NeededByLink.buttonLabel = 'Needed-By';
+        istar.metamodel.nodeLinks.NeededByLink.buttonTooltip = 'Add Needed-By link';
+        istar.metamodel.nodeLinks.NeededByLink.buttonStatusText = 'Adding <b>Needed-By</b> link: click on the Resource that is needed and on the Task that needs it.';
+    }
+    if (istar.metamodel.nodeLinks.QualificationLink) {
+        istar.metamodel.nodeLinks.QualificationLink.buttonLabel = 'Qualification';
+        istar.metamodel.nodeLinks.QualificationLink.buttonTooltip = 'Add Qualification link';
+        istar.metamodel.nodeLinks.QualificationLink.buttonStatusText = 'Adding <b>Qualification</b> link: click on the Quality and on the element it qualifies (Goal, Task or Resource).';
+    }
+
     if (istar.metamodel.nodeLinks.ContributionLink) {
-        istar.metamodel.nodeLinks.ContributionLink.buttonLabel = ['Make (++)', 'Help (+)', 'Hurt (-)', 'Break (--)'];
+        istar.metamodel.nodeLinks.ContributionLink.buttonLabel = ['Contribution', 'Make (++)', 'Help (+)', 'Hurt (-)', 'Break (--)'];
         istar.metamodel.nodeLinks.ContributionLink.buttonTooltip = [
+            'Add Contribution link (Make, Help, Hurt or Break',
             'Add a Make (++) Contribution link',
             'Add a Help (+) Contribution link',
             'Add a Hurt (-) Contribution link',
             'Add a Break (--) Contribution link'];
         istar.metamodel.nodeLinks.ContributionLink.buttonStatusText = [
+            '',
             'Adding <b>Make (++) Contribution</b> link: click first on an element and then on the Quality it contributes to',
             'Adding <b>Help (+) Contribution</b> link: click first on an element and then on the Quality it contributes to',
             'Adding <b>Hurt (-) Contribution</b> link: click first on an element and then on the Quality it contributes to',

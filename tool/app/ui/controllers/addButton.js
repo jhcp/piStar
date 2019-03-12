@@ -35,7 +35,7 @@ ui.components.createAddButtons = function() {
         }).render();
     });
 
-    //create Add <<Container Link>> buttons
+    //create Add <<ContainerLink>> buttons
     _.forEach(istar.metamodel.containerLinks, function(linkType) {
         //if specific ui elements are not defined, use default ones
         var label = linkType.buttonLabel || (linkType.name);
@@ -57,7 +57,7 @@ ui.components.createAddButtons = function() {
         }).render();
     });
 
-    //create Add <<Dependency>> buttons
+    //create Add <<DependencyLink>> buttons
     _.forEach(istar.metamodel.nodes, function(elementType) {
         if (elementType.canBeDependum ) {
 
@@ -104,78 +104,83 @@ ui.components.createAddButtons = function() {
         }
     });
 
-    new ui.components.AddButtonView({
-        model: new ui.components.AddButtonModel({
-            label: 'And',
-            action: ui.states.editor.ADDING.ADD_LINK,
-            name: 'AndRefinementLink',
-            tooltip: 'Add And-Refinement link',
-            statusText: 'Adding <b>And-Refinement</b> link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
-        })
-    }).render();
-    new ui.components.AddButtonView({
-        model: new ui.components.AddButtonModel({
-            label: 'Or',
-            action: ui.states.editor.ADDING.ADD_LINK,
-            name: 'OrRefinementLink',
-            tooltip: 'Add Or-Refinement link',
-            statusText: 'Adding <b>Or-Refinement</b> link: click first on the child, and then on the parent. It can only be applied to goals or tasks.'
-        })
-    }).render();
-    new ui.components.AddButtonView({
-        model: new ui.components.AddButtonModel({
-            label: 'Needed-By',
-            action: ui.states.editor.ADDING.ADD_LINK,
-            name: 'NeededByLink',
-            tooltip: 'Add Needed-By link',
-            statusText: 'Adding <b>Needed-By</b> link: click first on the Resource and then on the Task that needs it.'
-        })
-    }).render();
-    new ui.components.AddButtonView({
-        model: new ui.components.AddButtonModel({
-            label: 'Qualification',
-            action: ui.states.editor.ADDING.ADD_LINK,
-            name: 'QualificationLink',
-            tooltip: 'Add Qualification link',
-            statusText: 'Adding <b>Qualification</b> link: click first on the Quality and then on the element it qualifies (Goal, Task or Resource).'
-        })
-    }).render();
+    //create Add <<NodeLink>> buttons
+    _.forEach(istar.metamodel.nodeLinks, function(linkType) {
+        if (linkType.changeableLabel) {
+            //create a dropdown button and then create a dropdown item for each possible value of the label
 
-    //create Add <<Contribution Link>> buttons
-    var linkType = istar.metamodel.nodeLinks.ContributionLink;
-    _.forEach(istar.metamodel.nodeLinks.ContributionLink.possibleLabels, function(linkValue, i) {
-        //if specific ui elements are not defined, use default ones
-        var label = linkValue
-        if (linkType.buttonLabel && linkType.buttonLabel[i]) {
-            label = linkType.buttonLabel[i];
-        }
-        var tooltip = ('Add a ' + linkValue + ' ' + linkType.name);
-        if (linkType.buttonTooltip && linkType.buttonTooltip[i]) {
-            tooltip = linkType.buttonTooltip[i];
-        }
-        var statusText = 'Adding a <b>' + linkValue + ' ' + linkType.name + '</b>';
-        if (linkType.buttonStatusText && linkType.buttonStatusText[i]) {
-            statusText = linkType.buttonStatusText[i];
-        }
-        var image = linkType.name + '-' + linkValue;
-        if (linkType.buttonImage && linkType.buttonImage[i]) {
-            image = linkType.buttonImage[i];
-        }
+            //if specific ui elements are not defined, use default ones
+            var label = linkType.buttonLabel[0] || linkType.name;
+            var tooltip = linkType.buttonTooltip[0] || ('Add ' + linkType.name);
+            var image = linkType.name;
 
-        new ui.components.AddButtonDropdownItemView({
-            attributes: {parent: '#add-contribution-link-dropdown'},
-            model: new ui.components.AddButtonModel({
-                action: ui.states.editor.ADDING.ADD_LINK,
-                buttonImage: image,
-                defaultButtonImage: 'DefaultContainerLink.svg',
-                label: label,
-                name: linkType.name,
-                statusText: statusText,
-                tooltip: tooltip,
-                value: linkValue
-            })
-        }).render();
+            new ui.components.AddButtonDropdownView({
+                model: new ui.components.AddButtonModel({
+                    buttonImage: image,
+                    defaultButtonImage: 'DefaultContainerLink.svg',
+                    label: label,
+                    name: linkType.name,
+                    tooltip: tooltip
+                })
+            }).render();
+
+            //create the dropdown items
+            _.forEach(linkType.possibleLabels, function(linkValue, i) {
+                //if specific ui elements are not defined, use default ones
+                var index = i + 1;
+                var label = linkValue
+                if (linkType.buttonLabel && linkType.buttonLabel[index]) {
+                    label = linkType.buttonLabel[index];
+                }
+                var tooltip = ('Add a ' + linkValue + ' ' + linkType.name);
+                if (linkType.buttonTooltip && linkType.buttonTooltip[index]) {
+                    tooltip = linkType.buttonTooltip[index];
+                }
+                var statusText = 'Adding a <b>' + linkValue + ' ' + linkType.name + '</b>';
+                if (linkType.buttonStatusText && linkType.buttonStatusText[index]) {
+                    statusText = linkType.buttonStatusText[index];
+                }
+                var image = linkType.name + '-' + linkValue;
+                if (linkType.buttonImage && linkType.buttonImage[index]) {
+                    image = linkType.buttonImage[index];
+                }
+
+                new ui.components.AddButtonDropdownItemView({
+                    attributes: {parent: '#add-'+ linkType.name +'-dropdown'},
+                    model: new ui.components.AddButtonModel({
+                        action: ui.states.editor.ADDING.ADD_LINK,
+                        buttonImage: image,
+                        defaultButtonImage: 'DefaultContainerLink.svg',
+                        label: label,
+                        name: linkType.name,
+                        statusText: statusText,
+                        tooltip: tooltip,
+                        value: linkValue
+                    })
+                }).render();
+            });
+        }
+        else {
+            //if specific ui elements are not defined, use default ones
+            var label = linkType.buttonLabel || linkType.name;
+            var tooltip = linkType.buttonTooltip || ('Add ' + linkType.name);
+            var statusText = linkType.buttonStatusText || ('Adding <b>' + linkType.name + '</b>');
+            var image = linkType.name;
+
+            new ui.components.AddButtonView({
+                model: new ui.components.AddButtonModel({
+                    action: ui.states.editor.ADDING.ADD_LINK,
+                    buttonImage: image,
+                    defaultButtonImage: 'DefaultContainerLink.svg',
+                    label: label,
+                    name: linkType.name,
+                    statusText: statusText,
+                    tooltip: tooltip
+                })
+            }).render();
+        }
     });
+
 }
 
 /*definition of globals to prevent undue JSHint warnings*/
