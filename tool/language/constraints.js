@@ -132,13 +132,13 @@ istar.metamodel.dependencyLinks.DependencyLink.isValid = function (source, targe
     var targetParentId;
     if (source.isKindOfActor()) {
         sourceParentId = source.id;
-    } else if (source.isKindOfInnerElement()) {
+    } else if (source.isNode()) {
         sourceParentId = source.attributes.parent;
     }
 
     if (target.isKindOfActor()) {
         targetParentId = target.id;
-    } else if (target.isKindOfInnerElement()) {
+    } else if (target.isNode()) {
         targetParentId = target.attributes.parent;
     }
 

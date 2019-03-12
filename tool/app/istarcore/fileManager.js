@@ -212,7 +212,7 @@ istar.fileManager = function() {
                 var result = {nodes: [], display: {}};
 
                 _.forEach(element.getEmbeddedCells(), function (element) {
-                    if (element.isKindOfInnerElement()) {
+                    if (element.isNode()) {
                         var node = elementToJSON(element);
                         var display = {};
                         var needToSaveDisplay = false;

@@ -212,13 +212,14 @@ istar.setupMetamodel = function (metamodel) {
     }
 
     function setupCellsGeneralPrototypes(metamodel) {
-        joint.dia.Cell.prototype.isActorLink = function () {
+        joint.dia.Cell.prototype.isContainerLink = function () {
             return _.includes(metamodel.getContainerLinksNames(), this.prop('type'));
         };
+        joint.dia.Cell.prototype.isActorLink = joint.dia.Cell.prototype.isContainerLink;
         joint.dia.Cell.prototype.isNodeLink = function () {
             return _.includes(metamodel.getNodeLinksNames(), this.prop('type'));
         };
-        joint.dia.Cell.prototype.isKindOfInnerElement = function () {
+        joint.dia.Cell.prototype.isNode = function () {
             return _.includes(metamodel.getInnerElementsNames(), this.prop('type'));
         };
         joint.dia.Cell.prototype.isDependum = function () {
@@ -226,9 +227,10 @@ istar.setupMetamodel = function (metamodel) {
             // Instead, it informs whether this instance is an actual dependum in the present graph
             return this.prop('isDependum') || false;
         };
-        joint.dia.Cell.prototype.isKindOfActor = function () {
+        joint.dia.Cell.prototype.isContainer = function () {
             return _.includes(metamodel.getContainersNames(), this.prop('type'));
         };
+        joint.dia.Cell.prototype.isKindOfActor = joint.dia.Cell.prototype.isContainer;
         joint.dia.Cell.prototype.isCell = function () {
             return true;
         };

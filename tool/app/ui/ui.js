@@ -70,7 +70,7 @@ var ui = function() {
                     //actually change state
                     this.current = targetState;
 
-                    console.log('editor state changed to ' + targetState);
+                    //console.log('editor state changed to ' + targetState);
                 }
             },
             cellDisplay: {
@@ -238,7 +238,6 @@ ui.defineInteractions = function () {
     });
 
     istar.paper.on('change:selection', function(selection) {
-        console.log(selection)
         if (selection.selectedCell) {
             ui.table = new ui.components.PropertiesTableView({model: selection.selectedCell}).render();
             if (selection.selectedCellView) {
@@ -265,7 +264,6 @@ ui.defineInteractions = function () {
         }
         if (ui.states.editor.isAddingNode()) {
             var bbox = (new istar.metamodel.nodes.Goal.shapeObject()).getBBox();
-            console.log(bbox);
             ui.addElementOnPaper({position: {
                 x: x - bbox.width/2,
                 y: y - bbox.height/2
@@ -296,7 +294,7 @@ ui.defineInteractions = function () {
             }
 
             //highlight the hovered element and its neighbors
-            if (cellView.model.isKindOfInnerElement()) {
+            if (cellView.model.isNode()) {
                 cellView.$('.element').css({fill: 'black'});
                 cellView.$('.content').css({fill: 'white'});
                 cellView.$('.stereotype').css({fill: 'white'});
@@ -321,7 +319,7 @@ ui.defineInteractions = function () {
             //if contribution links are partially hidden, display the ones linked to this node normally while it is hovered
             if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.PARTIAL) {
                 //Links are only restored when a connected element is hovered. When the link itself is hovered it is not restored due to flickering
-                if (cellView.model.isKindOfInnerElement()) {
+                if (cellView.model.isNode()) {
                     _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
                         //CSS opacity currently does not work for elements inside an SVG in Chrome
                         //thus, model.attr() is used instead of view.css()
@@ -350,7 +348,7 @@ ui.defineInteractions = function () {
             }
 
             //unhighlight the previously hovered element and its neighbors
-            if (cellView.model.isKindOfInnerElement()) {
+            if (cellView.model.isNode()) {
 
                 cellView.$('.element').css({fill: ''});
                 cellView.$('.content').css({fill: ''});
@@ -374,7 +372,7 @@ ui.defineInteractions = function () {
 
             //if contribution links are partially hidden, hide back the ones linked to this node
             if (ui.states.cellDisplay.contributionLinks.currentState === ui.states.cellDisplay.contributionLinks.PARTIAL) {
-                if (cellView.model.isKindOfInnerElement()) {
+                if (cellView.model.isNode()) {
                     _.forEach(istar.graph.getConnectedLinks(cellView.model), function (link) {
                         //CSS opacity currently does not work for elements inside an SVG in Chrome
                         //thus, model.attr() is used instead of view.css()
@@ -1019,7 +1017,6 @@ ui.setupDiagramSizeInputs = function () {
     $('#input-diagram-width, #input-diagram-height')
         .focusout(function () {
             istar.paper.setDimensions($('#input-diagram-width').val(), $('#input-diagram-height').val());
-            console.log('resize');
         })
         .keyup(function (e) {
             if (e.which === 13) {
