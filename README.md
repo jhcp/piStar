@@ -14,9 +14,10 @@ For further information please contact jhcp at cin ufpe br
 ## A hackable tool
 Feel like getting inside The Matrix? Open your browser's console (usualy ctrl+shift+c) and try one of these examples:
 
-- Add a new actor in the model:
+- Add new actors to the model:
 ```javascript
-istar.addActor(10,10,'Eric');
+istar.addActor('Gary');
+istar.addAgent('Quinn', {position: {x: 400, y:50}});
 ```
 
 - Get the content of each element of the model:
@@ -26,12 +27,12 @@ _.map(istar.getElements(), function(node) { return node.prop('name'); });
 
 - Find out if the selected element is a goal (for this you first need to click on an element of the goal model):
 ```javascript
-ui.getSelectedElement().isGoal();
+ui.getSelectedCells()[0].isGoal();
 ```
 
 - Highlight every neighbor of the selected element (for this you first need to click on an element of the goal model):
 ```javascript
-_.map(istar.graph.getNeighbors(ui.getSelectedElement()), function(node) { istar.paper.findViewByModel(node).highlight(); });
+_.map(istar.graph.getNeighbors(ui.getSelectedCells()[0]), function(node) { istar.paper.findViewByModel(node).highlight(); });
 ```
 
 ## Licensing
