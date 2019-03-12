@@ -121,10 +121,10 @@ var ui = function() {
                     istar.paper.trigger('change:selection', {selectedCell: cell});
                 }
                 if (cell.isElement()) {
-                  $('#sidepanel-tab-style').show();
+                    $('#sidepanel-tab-style').show();
                 }
                 else {
-                  $('#sidepanel-tab-style').hide();
+                    $('#sidepanel-tab-style').hide();
                 }
             }
         },
@@ -265,9 +265,9 @@ ui.defineInteractions = function () {
         if (ui.states.editor.isAddingNode()) {
             var bbox = (new istar.metamodel.nodes.Goal.shapeObject()).getBBox();
             ui.addElementOnPaper({position: {
-                x: x - bbox.width/2,
-                y: y - bbox.height/2
-            }});
+                    x: x - bbox.width/2,
+                    y: y - bbox.height/2
+                }});
         }
     });
 
@@ -404,16 +404,11 @@ ui.defineInteractions = function () {
     istar.paper.on('cell:pointerup', function (cellView, evt, x, y) {
         var currentAddingElement = ui.states.editor.ADDING.data.typeNameToAdd;
 
-        if (evt.ctrlKey || evt.altKey) {
-            //collapse/uncollapse actors when alt-clicked
-            if (cellView.model.isKindOfActor()) {
-                ui.hideSelection();//remove the focus from the actor
-                cellView.model.toggleCollapse();
-                ui.showSelection();//give the focus back to actor, now collapsed or expanded
-            }
-        }
         if (ui.states.editor.isAddingNode()) {
             ui.addElementOnContainer(cellView, {position: {x: x, y: y}});
+
+            //if adding a node to a collapsed container, expand the container. Otherwise it would look like
+            //the node was added directly to the paper
             if (cellView.model.prop('collapsed')) {
                 cellView.model.toggleCollapse();
             }
@@ -423,8 +418,8 @@ ui.defineInteractions = function () {
             var isNodeLink = _.includes(istar.metamodel.getNodeLinksNames(), currentAddingElement);
             var isDependencyLink = _.includes(currentAddingElement, 'DependencyLink');
 
-            if (cellView.model.isKindOfActor()) {
-                if (isContainerLink) {
+            if (isContainerLink) {
+                if (cellView.model.isKindOfActor()) {
                     if (ui.states.editor.ADDING.data.isLinkSourceUndefined()) {
                         cellView.highlight();
                         ui.states.editor.ADDING.data.linkSourceView = cellView;
@@ -441,117 +436,82 @@ ui.defineInteractions = function () {
                         }
                     }
                 }
-                else if (isDependencyLink) {
-                    if (ui.states.editor.ADDING.data.isLinkSourceUndefined()) {
-                        cellView.highlight();
-                        ui.states.editor.ADDING.data.linkSourceView = cellView;
-                    } else {
-                        ui.states.editor.ADDING.data.linkTargetView = cellView;
-                        var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model, ui.states.editor.ADDING.data.typeNameToAdd);
+            }
+            else {
+                if (ui.states.editor.ADDING.data.isLinkSourceUndefined()) {
+                    cellView.highlight();
+                    ui.states.editor.ADDING.data.linkSourceView = cellView;
+                } else {
+                    ui.states.editor.ADDING.data.linkTargetView = cellView;
+
+                    if (isDependencyLink) {
+                        var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
                         if (isValid.isValid) {
                             ui.addDependency(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.typeNameToAdd, ui.states.editor.ADDING.data.linkTargetView.model);
                         }
                         else {
                             ui.displayInvalidLinkMessage(isValid.message);
                         }
-                        ui.states.editor.ADDING.data.linkSourceView.unhighlight();
-                        ui.states.editor.ADDING.data.button.end();
                     }
-                }
-            }
-            else {
+                    if (isNodeLink) {
+                        var newLink = null;
+                        var prettyLinkName = '';
+                        var isValid = istar.metamodel.nodeLinks[currentAddingElement].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
 
-                if (currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink|DependencyLink/)) {
-                    if (ui.states.editor.ADDING.data.isLinkSourceUndefined()) {
-                        cellView.highlight({blur: 10, color: 'blue'});
-                        ui.states.editor.ADDING.data.linkSourceView = cellView;
-                    } else {
-                        ui.states.editor.ADDING.data.linkTargetView = cellView;
-
-                        if (currentAddingElement.match(/AndRefinementLink|OrRefinementLink|NeededByLink|QualificationLink|ContributionLink/)) {
-                            var newLink = null;
-                            var prettyLinkName = '';
-                            if (currentAddingElement === 'AndRefinementLink') {
-                                var isValid = istar.metamodel.nodeLinks[currentAddingElement].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                                if (isValid.isValid) {
-                                    newLink = istar.addAndRefinementLink(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                                }
-                            }
-                            else if (currentAddingElement === 'OrRefinementLink') {
-                                var isValid = istar.metamodel.nodeLinks[currentAddingElement].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                                if (isValid.isValid) {
-                                    newLink = istar.addOrRefinementLink(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                                }
-                            }
-                            else if (currentAddingElement === 'NeededByLink') {
-                                var temp = ui.states.editor.ADDING.data.linkSourceView;
-                                var undoInversion = false;
-                                if ((ui.states.editor.ADDING.data.linkSourceView.model.isTask()) && ui.states.editor.ADDING.data.linkTargetView.model.isResource()) {
+                        if (istar.metamodel.nodeLinks[currentAddingElement].tryReversedWhenAdding) {
+                            console.log('tryReversedWhenAdding');
+                            if (!isValid.isValid) {
+                                //try with reversed source/targets
+                                console.log('not valid');
+                                var isValidReversed = istar.metamodel.nodeLinks[currentAddingElement].isValid(ui.states.editor.ADDING.data.linkTargetView.model, ui.states.editor.ADDING.data.linkSourceView.model);
+                                if (isValidReversed) {
+                                    var tempSource = ui.states.editor.ADDING.data.linkSourceView;
                                     ui.states.editor.ADDING.data.linkSourceView = ui.states.editor.ADDING.data.linkTargetView;
-                                    ui.states.editor.ADDING.data.linkTargetView = temp;
-                                    undoInversion = true;
+                                    ui.states.editor.ADDING.data.linkTargetView = tempSource;
+                                    isValid = isValidReversed;
+                                    console.log('reversed');
                                 }
-                                var isValid = istar.metamodel.nodeLinks[currentAddingElement].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                                if (isValid.isValid) {
-                                    newLink = istar.addNeededByLink(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                                }
-                                if (undoInversion) {
-                                    temp = ui.states.editor.ADDING.data.linkSourceView;
-                                    ui.states.editor.ADDING.data.linkSourceView = ui.states.editor.ADDING.data.linkTargetView;
-                                    ui.states.editor.ADDING.data.linkTargetView = temp;
-                                }
-                            }
-                            else if (currentAddingElement === 'QualificationLink') {
-                                var temp = ui.states.editor.ADDING.data.linkSourceView;
-                                var undoInversion = false;
-                                if ((!ui.states.editor.ADDING.data.linkSourceView.model.isQuality()) && ui.states.editor.ADDING.data.linkTargetView.model.isQuality()) {
-                                    ui.states.editor.ADDING.data.linkSourceView = ui.states.editor.ADDING.data.linkTargetView;
-                                    ui.states.editor.ADDING.data.linkTargetView = temp;
-                                    undoInversion = true;
-                                }
-                                isValid = istar.metamodel.nodeLinks[currentAddingElement].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                                if (isValid.isValid) {
-                                    newLink = istar.addQualificationLink(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                                }
-                                if (undoInversion) {
-                                    temp = ui.states.editor.ADDING.data.linkSourceView;
-                                    ui.states.editor.ADDING.data.linkSourceView = ui.states.editor.ADDING.data.linkTargetView;
-                                    ui.states.editor.ADDING.data.linkTargetView = temp;
-                                }
-                            }
-                            else if (currentAddingElement.match(/ContributionLink/i)) {
-                                var isValid = istar.metamodel.nodeLinks['ContributionLink'].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                                if (isValid.isValid) {
-                                    newLink = istar.addContributionLink(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model, ui.linkValue);
-                                    if (newLink) {
-                                        //do some magic in order to keep links straight when there are no vertices defined
-                                        newLink.on('change:vertices', ui._toggleSmoothness);
-                                    }
-                                }
-                            }
-                            if (! isValid.isValid) {
-                                ui.displayInvalidLinkMessage(isValid.message);
                             }
                         }
-                        else if (ui.states.editor.ADDING.data.typeNameToAdd.match(/DependencyLink/)) {
-                            var isValid = istar.metamodel.dependencyLinks['DependencyLink'].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
-                            if (isValid.isValid) {
-                                ui.addDependency(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.typeNameToAdd, ui.states.editor.ADDING.data.linkTargetView.model);
+                        if (isValid.isValid) {
+                            //actually create the link
+                            if (istar.metamodel.nodeLinks[currentAddingElement].changeableLabel) {
+                                newLink = istar['add' + currentAddingElement](ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model, ui.linkValue);
                             }
                             else {
-                                ui.displayInvalidLinkMessage(isValid.message);
+                                newLink = istar['add' + currentAddingElement](ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
+                            }
+
+                            //smoothness setup
+                            if (newLink.attr('smooth')) {
+                                //do some magic in order to make links smooth when there are vertices, but straight
+                                //when there are no vertices defined
+                                newLink.on('change:vertices', ui._toggleSmoothness);
                             }
                         }
-
-                        ui.states.editor.ADDING.data.linkSourceView.unhighlight();
-                        ui.states.editor.ADDING.data.button.end();
                     }
+                    if (! isValid.isValid) {
+                        ui.displayInvalidLinkMessage(isValid.message);
+                    }
+
+
+                    ui.states.editor.ADDING.data.linkSourceView.unhighlight();
+                    ui.states.editor.ADDING.data.linkTargetView.unhighlight();
+                    ui.states.editor.ADDING.data.button.end();
                 }
             }
         }
         else if (ui.states.editor.isViewing()) {
-            //increase the drawing area if there is an element beyond its edges
+            //collapse/uncollapse actors when alt-clicked
+            if (evt.ctrlKey || evt.altKey) {
+                if (cellView.model.isKindOfActor()) {
+                    ui.hideSelection();//remove the focus from the actor
+                    cellView.model.toggleCollapse();
+                    ui.showSelection();//give the focus back to actor, now collapsed or expanded
+                }
+            }
 
+            //increase the drawing area if there is an element beyond its edges
             //get the Bounding Box from the view, which ignores hidden inner elements
             //In contrast, if we were to get the Bounding Box from the model, the dimensions would be
             //that of a expanded actor even if it were collapsed
@@ -1448,7 +1408,7 @@ ui.changeContributionLinksOpacity = function (linkOpacity) {
 
     if (linkOpacity === 1) {
         _.forEach(contributionLinks, function (link) {
-                link.attr('*/display', 'visible');
+            link.attr('*/display', 'visible');
         });
         setTimeout(function () {
             setContributionsOpacity(contributionLinks, linkOpacity);

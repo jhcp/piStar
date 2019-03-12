@@ -111,9 +111,13 @@ istar.metamodel = {
             "changeableLabel": true,
             "possibleLabels": ["make", "help", "hurt", "break"]
         },
-        "NeededByLink": { },
+        "NeededByLink": {
+            "tryReversedWhenAdding": true
+        },
         "OrRefinementLink": { },
-        "QualificationLink": { }
+        "QualificationLink": {
+            "tryReversedWhenAdding": true
+        }
     }
 };
 

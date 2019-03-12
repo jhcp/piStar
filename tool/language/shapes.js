@@ -751,7 +751,8 @@ joint.shapes.istar.ContributionLink = joint.dia.Link.define('ContributionLink',
                 stroke: 'transparent',
                 'stroke-linecap': 'round',
                 'stroke-width': 20
-            }
+            },
+            smooth: true
         },
         labels: [
             {
