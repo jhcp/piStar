@@ -4116,3 +4116,699 @@ istar.examples.everyElementAndLink = {
         }
     }
 };
+
+istar.examples.buyerDrivenECommerce = {
+    "actors": [
+        {
+            "id": "09c7354b-25e0-4b59-8fd1-38e5925c0ec5",
+            "text": "Customer As Buyer [Service]",
+            "type": "istar.Actor",
+            "x": 31,
+            "y": 56,
+            "nodes": [
+                {
+                    "id": "41f6245a-fe65-4b02-9348-1d2a5aa49b61",
+                    "text": "Low Price",
+                    "type": "istar.Quality",
+                    "x": 31,
+                    "y": 193
+                },
+                {
+                    "id": "fd9cb71e-7beb-43b4-8bb3-407b94432adb",
+                    "text": "Flexibility [Purchasing]",
+                    "type": "istar.Quality",
+                    "x": 88,
+                    "y": 94
+                },
+                {
+                    "id": "cbb50b38-f83c-4871-b545-3bd72f9aac29",
+                    "text": "Service Be Purchased [Service]",
+                    "type": "istar.Goal",
+                    "x": 203,
+                    "y": 66,
+                    "customProperties": {
+                        "Description": "The customer’s main goal is that Service Be Purchased [Service]. The goal is parameterized on Service so that the graph may be evaluated differently for different services."
+                    }
+                },
+                {
+                    "id": "c9731a43-8765-450f-aec1-5450d733a923",
+                    "text": "Purchase by Naming My Own Price [Service]",
+                    "type": "istar.Task",
+                    "x": 199,
+                    "y": 159,
+                    "customProperties": {
+                        "Description": "One possible way to accomplish the Service Be Purchased goal is through the task Purchase By Naming My Own Price [Service]. It is connected to the goal with an or-refinement link. This task has two sub-elements connected to it through and-refinement links – the sub-task Name A Price [Service], and the sub-goal Low Price Service Provider Be Found.\n\nNaming one’s own price contributes positively (Help) to the buyer’s desired quality of Low Price, but negatively (Hurt) to Flexibility [Purchasing] because preferences about schedule, choice of airline, etc., could not be accommodated"
+                    }
+                },
+                {
+                    "id": "ed027de5-ce0c-4544-bd6f-13da198dff2a",
+                    "text": "Name a Price [Service]",
+                    "type": "istar.Task",
+                    "x": 115,
+                    "y": 304
+                },
+                {
+                    "id": "ced7a959-842e-40db-8214-90bebb537259",
+                    "text": "Low Price Service Provider Be Found",
+                    "type": "istar.Goal",
+                    "x": 251,
+                    "y": 297
+                },
+                {
+                    "id": "e9d26ca1-da40-4f0a-a10b-f4e5ddaedcb8",
+                    "text": "Good Quality [Service]",
+                    "type": "istar.Quality",
+                    "x": 372,
+                    "y": 267,
+                    "customProperties": {
+                        "Description": ""
+                    }
+                }
+            ]
+        },
+        {
+            "id": "88bdaa42-a903-4744-a515-55ce9b016442",
+            "text": "Middleman As Seller [Service]",
+            "type": "istar.Actor",
+            "x": 639,
+            "y": 35,
+            "nodes": [
+                {
+                    "id": "66b6daf0-c676-46c2-8552-dabd042c4163",
+                    "text": "Profitability",
+                    "type": "istar.Quality",
+                    "x": 784,
+                    "y": 48
+                },
+                {
+                    "id": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
+                    "text": "Customer Attraction [Service]",
+                    "type": "istar.Quality",
+                    "x": 801,
+                    "y": 182
+                },
+                {
+                    "id": "5536a6e3-7a22-4f93-afca-d944ad76e682",
+                    "text": "Be Middleman [Service]",
+                    "type": "istar.Goal",
+                    "x": 1034,
+                    "y": 50
+                },
+                {
+                    "id": "be1aa6fc-66dd-40f8-af03-a652352793e1",
+                    "text": "Sell in Buyer Driven Style [Service]",
+                    "type": "istar.Task",
+                    "x": 1046,
+                    "y": 135
+                },
+                {
+                    "id": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
+                    "text": "Accept Purchase Request with Price",
+                    "type": "istar.Task",
+                    "x": 859,
+                    "y": 310
+                },
+                {
+                    "id": "ef62e89b-1bdd-49ed-959c-be64f45d673a",
+                    "text": "Send Modified Request to Supplier",
+                    "type": "istar.Task",
+                    "x": 1122,
+                    "y": 232
+                },
+                {
+                    "id": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a",
+                    "text": "Get Price Agreement From Supplier",
+                    "type": "istar.Task",
+                    "x": 1075,
+                    "y": 322
+                },
+                {
+                    "id": "53516afe-4276-487c-b2f5-62298257e377",
+                    "text": "Loyalty",
+                    "type": "istar.Quality",
+                    "x": 639,
+                    "y": 199,
+                    "customProperties": {
+                        "Description": ""
+                    }
+                },
+                {
+                    "id": "05a6b113-d29d-4190-b33e-bf5d7870ba99",
+                    "text": "Pay for Purchasing [Service]",
+                    "type": "istar.Task",
+                    "x": 913,
+                    "y": 183,
+                    "customProperties": {
+                        "Description": ""
+                    }
+                }
+            ]
+        },
+        {
+            "id": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381",
+            "text": "Supplier [Service]",
+            "type": "istar.Actor",
+            "x": 839,
+            "y": 563,
+            "nodes": []
+        }
+    ],
+    "dependencies": [
+        {
+            "id": "d4beb38e-13e2-4e69-8540-d6ac5780ad36",
+            "text": "Name a Price [Service]",
+            "type": "istar.Task",
+            "x": 488,
+            "y": 232,
+            "customProperties": {
+                "Description": "In a task dependency, an actor depends on another to perform an activity. The activity description specifies a particular course of action. For example, the task dependency Name a Price [Service] expresses that the customer depends on the middleman to name his own price for the service in need by specifying the standard procedure for naming a price."
+            },
+            "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
+            "target": "ed027de5-ce0c-4544-bd6f-13da198dff2a"
+        },
+        {
+            "id": "07e4ea3e-bd43-49e3-b41c-38320942dcfb",
+            "text": "Low Price Service Provider Be Found",
+            "type": "istar.Goal",
+            "x": 477,
+            "y": 404,
+            "customProperties": {
+                "Description": "In a goal dependency, an actor depends on another to make a condition in the world come true. The goal dependency Low Price Service Provider be Found from the customer to the middleman means that it is up to the middleman to decide how to find the low price service provider"
+            },
+            "source": "ced7a959-842e-40db-8214-90bebb537259",
+            "target": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a"
+        },
+        {
+            "id": "a77ec4dd-ab7d-463c-82fd-928cf3dde4c6",
+            "text": "Acceptable Price [Service]",
+            "type": "istar.Quality",
+            "x": 172,
+            "y": 536,
+            "source": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381",
+            "target": "ed027de5-ce0c-4544-bd6f-13da198dff2a"
+        },
+        {
+            "id": "4cff68b2-92bf-4e1c-b802-44daaadfdadd",
+            "text": "Attract More Customers [Service]",
+            "type": "istar.Quality",
+            "x": 643,
+            "y": 468,
+            "source": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381",
+            "target": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c"
+        },
+        {
+            "id": "4407a764-eef0-409e-90da-668fa688b17f",
+            "text": "Agreement on Price [P]",
+            "type": "istar.Resource",
+            "x": 991,
+            "y": 458,
+            "customProperties": {
+                "Description": "In a resource dependency, an actor depends on another for the availability of an entity. The depender takes the availability of the resource to be unproblematic. In this example, the customer’s dependency on the supplier for agreement on price is modelled as a resource dependency"
+            },
+            "source": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a",
+            "target": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381"
+        },
+        {
+            "id": "7c51a553-16a7-4e5d-883d-0aa0ee9ae4cf",
+            "text": "Good Quality [Service]",
+            "type": "istar.Quality",
+            "x": 307,
+            "y": 476,
+            "customProperties": {
+                "Description": "The customer’s dependency on the supplier for good quality service can be achieved in different ways. The desired degree of how good the quality should be is ultimately decided by the depender"
+            },
+            "source": "e9d26ca1-da40-4f0a-a10b-f4e5ddaedcb8",
+            "target": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381"
+        },
+        {
+            "id": "62b11734-5a57-4b75-843c-6e1aa99bc8a5",
+            "text": "Loyalty",
+            "type": "istar.Quality",
+            "x": 495,
+            "y": 147,
+            "customProperties": {
+                "Description": ""
+            },
+            "source": "53516afe-4276-487c-b2f5-62298257e377",
+            "target": "c9731a43-8765-450f-aec1-5450d733a923"
+        },
+        {
+            "id": "cf0b6aaa-a607-4e88-9065-b030e98c18f0",
+            "text": "Pay for Purchasing [Service]",
+            "type": "istar.Task",
+            "x": 490,
+            "y": 86,
+            "customProperties": {
+                "Description": ""
+            },
+            "source": "05a6b113-d29d-4190-b33e-bf5d7870ba99",
+            "target": "c9731a43-8765-450f-aec1-5450d733a923"
+        }
+    ],
+    "links": [
+        {
+            "id": "9bc7f0d0-59e0-4889-94e8-0f26c8e7a557",
+            "type": "istar.DependencyLink",
+            "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
+            "target": "d4beb38e-13e2-4e69-8540-d6ac5780ad36"
+        },
+        {
+            "id": "c92f63ad-90a8-4323-a1c4-eabd803e6a6c",
+            "type": "istar.DependencyLink",
+            "source": "d4beb38e-13e2-4e69-8540-d6ac5780ad36",
+            "target": "ed027de5-ce0c-4544-bd6f-13da198dff2a"
+        },
+        {
+            "id": "cacaaf61-5a24-436a-96a8-7c91e5dc2e0a",
+            "type": "istar.DependencyLink",
+            "source": "ced7a959-842e-40db-8214-90bebb537259",
+            "target": "07e4ea3e-bd43-49e3-b41c-38320942dcfb"
+        },
+        {
+            "id": "bf177ac0-0e58-42f9-b34d-ea5273310e94",
+            "type": "istar.DependencyLink",
+            "source": "07e4ea3e-bd43-49e3-b41c-38320942dcfb",
+            "target": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a"
+        },
+        {
+            "id": "1818b2db-f879-4462-a411-82a14ae3c861",
+            "type": "istar.DependencyLink",
+            "source": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381",
+            "target": "a77ec4dd-ab7d-463c-82fd-928cf3dde4c6"
+        },
+        {
+            "id": "85440206-b98a-4290-9244-2b49198a0205",
+            "type": "istar.DependencyLink",
+            "source": "a77ec4dd-ab7d-463c-82fd-928cf3dde4c6",
+            "target": "ed027de5-ce0c-4544-bd6f-13da198dff2a"
+        },
+        {
+            "id": "f2b0cbc9-4165-4818-95b8-ebdb2bcdf682",
+            "type": "istar.DependencyLink",
+            "source": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381",
+            "target": "4cff68b2-92bf-4e1c-b802-44daaadfdadd"
+        },
+        {
+            "id": "797ae0a0-b147-4e44-aba6-2b54582d8d91",
+            "type": "istar.DependencyLink",
+            "source": "4cff68b2-92bf-4e1c-b802-44daaadfdadd",
+            "target": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c"
+        },
+        {
+            "id": "e16dab80-7af1-489e-9dbc-73c93f656b79",
+            "type": "istar.DependencyLink",
+            "source": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a",
+            "target": "4407a764-eef0-409e-90da-668fa688b17f"
+        },
+        {
+            "id": "391d982a-a069-4dd6-bb5b-aeaf66be365a",
+            "type": "istar.DependencyLink",
+            "source": "4407a764-eef0-409e-90da-668fa688b17f",
+            "target": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381"
+        },
+        {
+            "id": "195ffcdc-8884-4321-932a-00e5dec79f73",
+            "type": "istar.OrRefinementLink",
+            "source": "c9731a43-8765-450f-aec1-5450d733a923",
+            "target": "cbb50b38-f83c-4871-b545-3bd72f9aac29"
+        },
+        {
+            "id": "87f9cad7-b9cc-49fe-ab58-896acbf19d2a",
+            "type": "istar.AndRefinementLink",
+            "source": "ed027de5-ce0c-4544-bd6f-13da198dff2a",
+            "target": "c9731a43-8765-450f-aec1-5450d733a923"
+        },
+        {
+            "id": "416f468d-2df4-4778-b9c1-fe8834287722",
+            "type": "istar.OrRefinementLink",
+            "source": "be1aa6fc-66dd-40f8-af03-a652352793e1",
+            "target": "5536a6e3-7a22-4f93-afca-d944ad76e682"
+        },
+        {
+            "id": "20119a89-b236-4164-96d2-f98c76a67261",
+            "type": "istar.AndRefinementLink",
+            "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
+            "target": "be1aa6fc-66dd-40f8-af03-a652352793e1"
+        },
+        {
+            "id": "f18a4b6e-11a1-409a-8ad8-893cd2230891",
+            "type": "istar.AndRefinementLink",
+            "source": "ef62e89b-1bdd-49ed-959c-be64f45d673a",
+            "target": "be1aa6fc-66dd-40f8-af03-a652352793e1"
+        },
+        {
+            "id": "cc31d1cb-8436-43cb-a9f7-752752173dbc",
+            "type": "istar.AndRefinementLink",
+            "source": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a",
+            "target": "be1aa6fc-66dd-40f8-af03-a652352793e1"
+        },
+        {
+            "id": "df755fd9-b1c4-4427-8735-04fd6c039873",
+            "type": "istar.ContributionLink",
+            "source": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
+            "target": "66b6daf0-c676-46c2-8552-dabd042c4163",
+            "label": "help"
+        },
+        {
+            "id": "5ad03ad3-8757-49a5-9dfc-cd3e63ad526e",
+            "type": "istar.AndRefinementLink",
+            "source": "ced7a959-842e-40db-8214-90bebb537259",
+            "target": "c9731a43-8765-450f-aec1-5450d733a923"
+        },
+        {
+            "id": "bf722f05-ed86-4b51-950f-53c88fa55b93",
+            "type": "istar.ContributionLink",
+            "source": "ed027de5-ce0c-4544-bd6f-13da198dff2a",
+            "target": "41f6245a-fe65-4b02-9348-1d2a5aa49b61",
+            "label": "help"
+        },
+        {
+            "id": "3808903f-e1c0-48e3-a43f-e728336661c4",
+            "type": "istar.ContributionLink",
+            "source": "ced7a959-842e-40db-8214-90bebb537259",
+            "target": "fd9cb71e-7beb-43b4-8bb3-407b94432adb",
+            "label": "hurt"
+        },
+        {
+            "id": "5988ab20-38da-46fe-9ef0-eb471a5c4e97",
+            "type": "istar.ContributionLink",
+            "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
+            "target": "66b6daf0-c676-46c2-8552-dabd042c4163",
+            "label": "hurt"
+        },
+        {
+            "id": "ff4cbf2d-2167-4618-838c-e6c48fd75181",
+            "type": "istar.ContributionLink",
+            "source": "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4",
+            "target": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
+            "label": "help"
+        },
+        {
+            "id": "1cbae22c-e5f0-4e06-9b72-503c72d83222",
+            "type": "istar.ContributionLink",
+            "source": "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a",
+            "target": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
+            "label": "help"
+        },
+        {
+            "id": "50e90f9a-58cb-4f52-82f7-754c9e50683c",
+            "type": "istar.QualificationLink",
+            "source": "e9d26ca1-da40-4f0a-a10b-f4e5ddaedcb8",
+            "target": "c9731a43-8765-450f-aec1-5450d733a923"
+        },
+        {
+            "id": "80cc9d57-b599-4a73-bdab-2813d316f95d",
+            "type": "istar.DependencyLink",
+            "source": "e9d26ca1-da40-4f0a-a10b-f4e5ddaedcb8",
+            "target": "7c51a553-16a7-4e5d-883d-0aa0ee9ae4cf"
+        },
+        {
+            "id": "97d9f275-e3ec-43da-b139-fd8fb54c2834",
+            "type": "istar.DependencyLink",
+            "source": "7c51a553-16a7-4e5d-883d-0aa0ee9ae4cf",
+            "target": "f9b4f95d-861a-4f71-b3d7-1e75c6dda381"
+        },
+        {
+            "id": "55d7d74e-7fc9-46cd-b6dd-045b597dded5",
+            "type": "istar.DependencyLink",
+            "source": "53516afe-4276-487c-b2f5-62298257e377",
+            "target": "62b11734-5a57-4b75-843c-6e1aa99bc8a5"
+        },
+        {
+            "id": "089059b7-d33b-4fbe-a5fc-e7ff04cd77fd",
+            "type": "istar.DependencyLink",
+            "source": "62b11734-5a57-4b75-843c-6e1aa99bc8a5",
+            "target": "c9731a43-8765-450f-aec1-5450d733a923"
+        },
+        {
+            "id": "d9efb91f-199f-4278-814c-ced8684080c9",
+            "type": "istar.ContributionLink",
+            "source": "53516afe-4276-487c-b2f5-62298257e377",
+            "target": "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c",
+            "label": "help"
+        },
+        {
+            "id": "abf948ac-9690-437f-b06f-55a74876b189",
+            "type": "istar.DependencyLink",
+            "source": "05a6b113-d29d-4190-b33e-bf5d7870ba99",
+            "target": "cf0b6aaa-a607-4e88-9065-b030e98c18f0"
+        },
+        {
+            "id": "a945654d-4862-4939-9af9-ebed458498f4",
+            "type": "istar.DependencyLink",
+            "source": "cf0b6aaa-a607-4e88-9065-b030e98c18f0",
+            "target": "c9731a43-8765-450f-aec1-5450d733a923"
+        },
+        {
+            "id": "73f4c938-3650-4262-9f62-a45c3b35577c",
+            "type": "istar.AndRefinementLink",
+            "source": "05a6b113-d29d-4190-b33e-bf5d7870ba99",
+            "target": "be1aa6fc-66dd-40f8-af03-a652352793e1"
+        }
+    ],
+    "display": {
+        "cbb50b38-f83c-4871-b545-3bd72f9aac29": {
+            "backgroundColor": "#FADF71"
+        },
+        "c9731a43-8765-450f-aec1-5450d733a923": {
+            "backgroundColor": "#FADF71",
+            "width": 106.85000610351562,
+            "height": 45.90000915527344
+        },
+        "ced7a959-842e-40db-8214-90bebb537259": {
+            "width": 91.85000610351562,
+            "height": 51.600006103515625
+        },
+        "b389b51d-d8ef-4b7a-9b7c-e48b9fdb528c": {
+            "width": 85.6348876953125,
+            "height": 53.16175842285156
+        },
+        "afbabeb8-bf7c-432f-bc12-3cf1d2142ba4": {
+            "width": 128.03334045410156,
+            "height": 40.600006103515625
+        },
+        "ef62e89b-1bdd-49ed-959c-be64f45d673a": {
+            "width": 107.03334045410156,
+            "height": 38.20001220703125
+        },
+        "eaf58ea7-2db6-4ab1-9ed4-6b457ac0661a": {
+            "width": 102.03334045410156,
+            "height": 44.600006103515625
+        },
+        "d4beb38e-13e2-4e69-8540-d6ac5780ad36": {
+            "backgroundColor": "#FADF71"
+        },
+        "07e4ea3e-bd43-49e3-b41c-38320942dcfb": {
+            "backgroundColor": "#FADF71",
+            "width": 99.85000610351562,
+            "height": 46.600006103515625
+        },
+        "4cff68b2-92bf-4e1c-b802-44daaadfdadd": {
+            "width": 89.636962890625,
+            "height": 55.161956787109375
+        },
+        "4407a764-eef0-409e-90da-668fa688b17f": {
+            "backgroundColor": "#FADF71"
+        },
+        "7c51a553-16a7-4e5d-883d-0aa0ee9ae4cf": {
+            "backgroundColor": "#FADF71"
+        },
+        "9bc7f0d0-59e0-4889-94e8-0f26c8e7a557": {
+            "vertices": [
+                {
+                    "x": 688,
+                    "y": 271
+                }
+            ]
+        },
+        "c92f63ad-90a8-4323-a1c4-eabd803e6a6c": {
+            "vertices": [
+                {
+                    "x": 296,
+                    "y": 262
+                }
+            ]
+        },
+        "cacaaf61-5a24-436a-96a8-7c91e5dc2e0a": {
+            "vertices": [
+                {
+                    "x": 372,
+                    "y": 370
+                }
+            ]
+        },
+        "bf177ac0-0e58-42f9-b34d-ea5273310e94": {
+            "vertices": [
+                {
+                    "x": 947,
+                    "y": 407
+                }
+            ]
+        },
+        "1818b2db-f879-4462-a411-82a14ae3c861": {
+            "vertices": [
+                {
+                    "x": 509,
+                    "y": 595
+                }
+            ]
+        },
+        "85440206-b98a-4290-9244-2b49198a0205": {
+            "vertices": [
+                {
+                    "x": 159,
+                    "y": 444
+                }
+            ]
+        },
+        "f2b0cbc9-4165-4818-95b8-ebdb2bcdf682": {
+            "vertices": [
+                {
+                    "x": 721,
+                    "y": 556
+                }
+            ]
+        },
+        "797ae0a0-b147-4e44-aba6-2b54582d8d91": {
+            "vertices": [
+                {
+                    "x": 697,
+                    "y": 443
+                },
+                {
+                    "x": 746,
+                    "y": 328
+                }
+            ]
+        },
+        "e16dab80-7af1-489e-9dbc-73c93f656b79": {
+            "vertices": [
+                {
+                    "x": 1080,
+                    "y": 372
+                }
+            ]
+        },
+        "391d982a-a069-4dd6-bb5b-aeaf66be365a": {
+            "vertices": [
+                {
+                    "x": 960,
+                    "y": 543
+                }
+            ]
+        },
+        "df755fd9-b1c4-4427-8735-04fd6c039873": {
+            "vertices": [
+                {
+                    "x": 863,
+                    "y": 150
+                }
+            ]
+        },
+        "bf722f05-ed86-4b51-950f-53c88fa55b93": {
+            "vertices": [
+                {
+                    "x": 81,
+                    "y": 275
+                }
+            ]
+        },
+        "3808903f-e1c0-48e3-a43f-e728336661c4": {
+            "vertices": [
+                {
+                    "x": 131,
+                    "y": 195
+                }
+            ]
+        },
+        "5988ab20-38da-46fe-9ef0-eb471a5c4e97": {
+            "vertices": [
+                {
+                    "x": 775,
+                    "y": 231
+                }
+            ]
+        },
+        "1cbae22c-e5f0-4e06-9b72-503c72d83222": {
+            "vertices": [
+                {
+                    "x": 1024,
+                    "y": 270
+                }
+            ]
+        },
+        "80cc9d57-b599-4a73-bdab-2813d316f95d": {
+            "vertices": [
+                {
+                    "x": 343,
+                    "y": 406
+                }
+            ]
+        },
+        "97d9f275-e3ec-43da-b139-fd8fb54c2834": {
+            "vertices": [
+                {
+                    "x": 547,
+                    "y": 561
+                }
+            ]
+        },
+        "55d7d74e-7fc9-46cd-b6dd-045b597dded5": {
+            "vertices": [
+                {
+                    "x": 605,
+                    "y": 227
+                }
+            ]
+        },
+        "089059b7-d33b-4fbe-a5fc-e7ff04cd77fd": {
+            "vertices": [
+                {
+                    "x": 386,
+                    "y": 164
+                }
+            ]
+        },
+        "d9efb91f-199f-4278-814c-ced8684080c9": {
+            "vertices": [
+                {
+                    "x": 748,
+                    "y": 201
+                }
+            ]
+        },
+        "abf948ac-9690-437f-b06f-55a74876b189": {
+            "vertices": [
+                {
+                    "x": 748,
+                    "y": 134
+                }
+            ]
+        },
+        "a945654d-4862-4939-9af9-ebed458498f4": {
+            "vertices": [
+                {
+                    "x": 425,
+                    "y": 116
+                }
+            ]
+        },
+        "f9b4f95d-861a-4f71-b3d7-1e75c6dda381": {
+            "collapsed": true
+        }
+    },
+    "tool": "pistar.2.0.0a",
+    "istar": "2.0",
+    "saveDate": "Thu, 14 Mar 2019 14:17:02 GMT",
+    "diagram": {
+        "width": 1244,
+        "height": 700,
+        "name": "Buyer-driven e-commerce system",
+        "customProperties": {
+            "Description": "Example of a buyer-driven e-commerce system. In such a system, the customer depends on a middleman to find a service provider who is willing to accept a price set by the customer. The customer submits a priced request to a middleman. The middleman forwards the request to suppliers. If a supplier decides to accept the request, it makes an agreement with the middleman. The middleman expects the customer to pay for the purchase in time.",
+            "Colors": "Checkout the yellow elements, they have textual descriptions",
+            "About": "When you collapse every actor, the model becomes a *Strategic Dependency* (SD) model, consisting of a set of nodes and links. Each node represents an actor, and each link between two actors indicates that one actor depends on the other for something in order that the former may attain some goal. We call the depending actor the depender, and the actor who is depended upon the dependee. The object around which the\ndependency relationship centers is called the dependum. By depending on another actor for a dependum, an actor (the depender) is able to achieve goals that it was not able to without the dependency, or not as easily or as well. At the same time, the depender becomes vulnerable. If the dependee fails to deliver the dependum, the depender would be adversely affected in its ability to achieve its goals.\n\nWhen actors are expanded, you have a *Strategic Rationale* (SR) model, which provides a more detailed level of modelling by looking “inside” actors to model internal intentional relationships. Intentional elements (goals, tasks, resources, and qualities) appear in SR models not only as external dependencies, but also as internal elements arranged into (mostly hierarchical) structures of or-refinements, and-refinements, contribution, needed-by and qualification relationships.",
+            "Origin": "Model and text based on Eric Yu, Lin Liu, and Ying Li. \"Modelling strategic actor relationships to support intellectual property management.\" International Conference on Conceptual Modeling, 2001. It was adapted to conform to the iStar 2.0 standard, thus it is not an exact copy of the original model."
+        }
+    }
+};
