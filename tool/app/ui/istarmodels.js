@@ -6,22 +6,103 @@
  * https://github.com/jhcp/pistar
  */
 
-istar.examples = istar.examples || {};  //prevents overriding the variable, while also preventing working with a null variable
+istar.models = istar.models || {};  //prevents overriding the variable, while also preventing working with a null variable
 
-istar.examples.loadPistarWelcome = function () {
+istar.models.processModelParameter = function () {
+    "use strict";
+
+    var modelId = this.getAllUrlParams().m || 'pistarWelcome';
+    if (! istar.models[modelId]) {
+        alert('Sorry, we do not have this model: ' + modelId);
+        modelId = 'pistarWelcome';
+    }
+
+    return istar.models[modelId];
+};
+
+istar.models.getAllUrlParams = function () {
+    "use strict";
+    //this function was adapted from the following tutorial:
+    // https://www.sitepoint.com/get-url-parameters-with-javascript/
+
+    // get query string from the window
+
+    var queryString = window.location.search.slice(1);
+
+    // we'll store the parameters here
+    var obj = {};
+
+    // if query string exists
+    if (queryString) {
+
+        // stuff after # is not part of query string, so get rid of it
+        queryString = queryString.split('#')[0];
+
+        // split our query string into its component parts
+        var arr = queryString.split('&');
+
+        for (var i = 0; i < arr.length; i++) {
+            // separate the keys and the values
+            var a = arr[i].split('=');
+
+            // set parameter name and value (use 'true' if empty)
+            var paramName = a[0];
+            var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+
+            // (optional) keep case consistent
+            // paramName = paramName.toLowerCase();
+            // if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase();
+
+            // if the paramName ends with square brackets, e.g. colors[] or colors[2]
+            // if (paramName.match(/\[(\d+)?\]$/)) {
+            //
+            //     // create key if it doesn't exist
+            //     var key = paramName.replace(/\[(\d+)?\]/, '');
+            //     if (!obj[key]) obj[key] = [];
+            //
+            //     // if it's an indexed array e.g. colors[2]
+            //     if (paramName.match(/\[\d+\]$/)) {
+            //         // get the index value and add the entry at the appropriate position
+            //         var index = /\[(\d+)\]/.exec(paramName)[1];
+            //         obj[key][index] = paramValue;
+            //     } else {
+            //         // otherwise add the value to the end of the array
+            //         obj[key].push(paramValue);
+            //     }
+            // } else {
+            // we're dealing with a string
+            if (!obj[paramName]) {
+                // if it doesn't exist, create property
+                obj[paramName] = paramValue;
+            } else if (obj[paramName] && typeof obj[paramName] === 'string'){
+                // if property does exist and it's a string, convert it to an array
+                obj[paramName] = [obj[paramName]];
+                obj[paramName].push(paramValue);
+            } else {
+                // otherwise add the property
+                obj[paramName].push(paramValue);
+            }
+            // }
+        }
+    }
+
+    return obj;
+};
+
+istar.models.loadPistarWelcome = function () {
     istar.fileManager.loadModel(this.pistarWelcome);
 };
 
-// istar.examples.experimentExample = function () {
+// istar.models.experimentExample = function () {
 //     console.log('Go drink some water, this will take a while');
 //     var actor = istar.addActor(23, 23, 'Actor');
 //     for (var i = 1; i <= 40; i++) {
 //         for (var j = 0; j < 25; j++) {
-//             var kindOfElement = istar.examples.util.randomIntegerFromMinToMax(0, 4);
+//             var kindOfElement = istar.models.util.randomIntegerFromMinToMax(0, 4);
 //             var x = 10 + i * 30;
 //             var y = 10 + j * 30;
 //             var name = 'element ' + (j * 40 + i);
-//             var priority = istar.examples.util.randomIntegerFromMinToMax(1, 101);
+//             var priority = istar.models.util.randomIntegerFromMinToMax(1, 101);
 //
 //             var creationFunction = istar.addGoal;
 //             if (kindOfElement === 1) creationFunction = istar.addQuality;
@@ -35,15 +116,15 @@ istar.examples.loadPistarWelcome = function () {
 //     }
 // };
 //
-// istar.examples.util = {};
-// istar.examples.util.randomIntegerFromMinToMax = function (min, max) {
+// istar.models.util = {};
+// istar.models.util.randomIntegerFromMinToMax = function (min, max) {
 //     //min (included)
 //     //max (excluded)
 //     return Math.floor(Math.random() * (max - min)) + min;
 // };
 
 
-istar.examples.pistarWelcome = {
+istar.models.pistarWelcome = {
     "actors": [
         {
             "id": "3589ee55-603d-41ee-8bf1-2b2a54498def",
@@ -405,7 +486,7 @@ istar.examples.pistarWelcome = {
     }
 };
 
-istar.examples.travelReimbursement = {
+istar.models.travelReimbursement = {
     "actors": [
         {
             "id": "830b5ef8-0f41-4a17-ba2a-ba4a8f4e799b",
@@ -1168,7 +1249,7 @@ istar.examples.travelReimbursement = {
     }
 };
 
-istar.examples.smartHome = {
+istar.models.smartHome = {
     "actors": [
         {
             "id": "0c7fe3d8-ed88-4bc1-8464-80c769a1b97f",
@@ -3458,7 +3539,7 @@ istar.examples.smartHome = {
     }
 };
 
-istar.examples.everyElementAndLink = {
+istar.models.everyElementAndLink = {
     "actors": [
         {
             "id": "2b3ba506-1f5b-4b5b-9114-01b1092cd067",
@@ -4117,7 +4198,7 @@ istar.examples.everyElementAndLink = {
     }
 };
 
-istar.examples.buyerDrivenECommerce = {
+istar.models.buyerDrivenECommerce = {
     "actors": [
         {
             "id": "09c7354b-25e0-4b59-8fd1-38e5925c0ec5",

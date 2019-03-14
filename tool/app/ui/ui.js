@@ -1010,7 +1010,7 @@ ui.setupLoadExampleButton = function () {
                 ui.hideSelection();
             }
             ui.resetCellDisplayStates();
-            istar.fileManager.loadModel(istar.examples[modelToLoad]);
+            istar.fileManager.loadModel(istar.models[modelToLoad]);
             ui.selectPaper();//select the model (as a whole)
             $('.modal *').removeClass('waiting');
             $('#modal-examples').modal('hide');
