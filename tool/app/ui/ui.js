@@ -459,7 +459,6 @@ ui.defineInteractions = function () {
                         var isValid = istar.metamodel.nodeLinks[currentAddingElement].isValid(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.linkTargetView.model);
 
                         if (istar.metamodel.nodeLinks[currentAddingElement].tryReversedWhenAdding) {
-                            console.log('tryReversedWhenAdding');
                             if (!isValid.isValid) {
                                 //try with reversed source/targets
                                 console.log('not valid');
@@ -578,7 +577,7 @@ ui.addElementOnPaper = function (options) {
         var isValid = {isValid: false};
         if (ui.states.editor.isAddingNode()) {
             if (istar.metamodel.nodes[currentAddingElement]) {
-                if (istar.metamodel.nodes[currentAddingElement].canBeOnCanvas) {
+                if (istar.metamodel.nodes[currentAddingElement].canBeOnPaper) {
                     isValid = istar.metamodel.nodes[currentAddingElement].isValid();
                 }
                 else {

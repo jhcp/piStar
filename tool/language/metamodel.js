@@ -55,7 +55,7 @@ istar.metamodel = {
     //Add here the elements of your language that do not behave like actors, i.e., they are not containers;
     //If they can be added to containers (such as actors), 'canBeInnerElement' must be set to true (default value: false)
     //If they can be dependums in a dependency link, 'canBeDependum' must be set to true (default value: false)
-    //If they can be added directly to the canvas, without being part of a dependency link, "canBeOnCanvas" (default value: false)
+    //If they can be added directly to the paper, without being part of a dependency link, "canBeOnPaper" (default value: false)
     //Further constraints can be defined in the constraints file
     /** @type {Object} */
     "nodes": {

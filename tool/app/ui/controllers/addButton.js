@@ -84,7 +84,7 @@ ui.components.createAddButtons = function() {
 
     //create Add <<Element>> buttons
     _.forEach(istar.metamodel.nodes, function(elementType) {
-        if (elementType.canBeInnerElement || elementType.canBeOnCanvas) {
+        if (elementType.canBeInnerElement || elementType.canBeOnPaper) {
 
             //if specific ui elements are not defined, use default ones
             var label = elementType.buttonLabel || elementType.name;

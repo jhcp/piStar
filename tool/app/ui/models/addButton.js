@@ -36,7 +36,7 @@ ui.components.AddButtonModel = Backbone.Model.extend({
             $('#diagram .actorKindMain').css('cursor', 'no-drop');
         } else {
             if (this.get('action') === ui.states.editor.ADDING.ADD_NODE) {
-                if (istar.metamodel.nodes[this.get('name')] && (istar.metamodel.nodes[this.get('name')].canBeOnCanvas)) {
+                if (istar.metamodel.nodes[this.get('name')] && (istar.metamodel.nodes[this.get('name')].canBeOnPaper)) {
                     $('#diagram').css('cursor', 'crosshair');
                 } else {
                     $('#diagram').css('cursor', 'no-drop');
