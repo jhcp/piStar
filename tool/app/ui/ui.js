@@ -517,17 +517,30 @@ ui.defineInteractions = function () {
             var cellBBox = cellView.getBBox();
 
             var paperWidth = istar.paper.getArea().width;
+            var paperHeight = istar.paper.getArea().height;
 
             //Round the numbers of the new dimension since:
             // a) Precision is not relevant here
             // b) Int numbers are easier for the user to handle (when manually changing the size)
-            if (cellBBox.y + cellBBox.height > istar.paper.getArea().height ) {
-                //if the element is beyond the right edge
+            if (cellBBox.y + cellBBox.height > paperHeight ) {
+                //if the element is beyond the bottom edge
                 istar.paper.setDimensions(paperWidth, Math.round(cellBBox.y + cellBBox.height + 40));
             }
             if (cellBBox.x + cellBBox.width > paperWidth ) {
-                //if the element is beyond the bottom edge
+                //if the element is beyond the right edge
                 istar.paper.setDimensions(Math.round(cellBBox.x + cellBBox.width + 40));
+            }
+            if (cellBBox.x < 0 ) {
+                //if the element is beyond the left edge
+                var delta = Math.round(40 - cellBBox.x);
+                istar.paper.setDimensions(paperWidth + delta);
+                istar.graph.translate(delta, 0);
+            }
+            if (cellBBox.y < 0 ) {
+                //if the element is beyond the left edge
+                var delta = Math.round(40 - cellBBox.y);
+                istar.paper.setDimensions(paperWidth, paperHeight + delta);
+                istar.graph.translate(0, delta);
             }
 
             ui.showSelection();

@@ -275,15 +275,6 @@ var istar = function () {
                         height: 1300,
                         model: graph,
                         gridSize: 1,
-                        linkPinning: false, /*prevents connecting a link to a point outside of an element*/
-                        restrictTranslate: function(elementView) {
-                            //prevents translating to the top and left edges of the paper while
-                            //giving a leeway in the bottom and right edges, which can be used to increase the canvas
-                            var bbox = istar.paper.getArea();
-                            bbox.width = bbox.width + 500;
-                            bbox.height = bbox.height + 500;
-                            return bbox;
-                            },
                         defaultConnector: {
                             name: 'rounded',
                             args: {
