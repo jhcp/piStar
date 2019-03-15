@@ -9,8 +9,8 @@
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    version="1.1"
    id="v-2"
-   width="220.42007"
-   height="126.16666"
+   width="402.9025"
+   height="374.84406"
    sodipodi:docname="mixAndAndOr.svg"
    inkscape:version="0.92.1 r15371">
   <metadata
@@ -43,15 +43,15 @@
      fit-margin-right="0"
      fit-margin-bottom="0"
      inkscape:zoom="1.0229277"
-     inkscape:cx="413.31952"
-     inkscape:cy="231.6726"
+     inkscape:cx="581.35432"
+     inkscape:cy="253.05755"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="v-2" />
   <g
      style="fill:#ffffff;stroke:none"
-     transform="translate(52.951248,1.1666667)"
+     transform="translate(156.83009,189.55891)"
      data-type="istar.Goal"
      class="joint-cell joint-type-istar joint-type-istar-goal joint-element joint-theme-default"
      id="j_2"
@@ -87,7 +87,7 @@
   </g>
   <g
      style="fill:#ffffff;stroke:none"
-     transform="translate(0.95124836,86.166667)"
+     transform="translate(104.83009,274.5589)"
      data-type="istar.Task"
      class="joint-cell joint-type-istar joint-type-istar-task joint-element joint-theme-default"
      id="j_3"
@@ -124,7 +124,7 @@
      class="joint-cell joint-type-istar joint-type-istar-andrefinementlink joint-link joint-theme-default"
      id="j_5"
      model-id="d9713c76-1651-49e6-8277-26f2188cb6b1"
-     transform="translate(-300.04875,-103.83333)">
+     transform="translate(-196.16991,84.55891)">
     <path
        style="fill:none;stroke:#000000"
        inkscape:connector-curvature="0"
@@ -218,7 +218,7 @@
   </g>
   <g
      style="fill:#ffffff;stroke:none"
-     transform="translate(102.95125,89.166667)"
+     transform="translate(206.83009,277.5589)"
      data-type="istar.Task"
      class="joint-cell joint-type-istar joint-type-istar-task joint-element joint-theme-default"
      id="j_7"
@@ -255,7 +255,7 @@
      class="joint-cell joint-type-istar joint-type-istar-orrefinementlink joint-link joint-theme-default"
      id="j_8"
      model-id="7b6d2169-4725-4e16-8e53-adddddcfca66"
-     transform="translate(-300.04875,-103.83333)">
+     transform="translate(-196.16991,84.55891)">
     <path
        style="fill:none;stroke:#000000"
        inkscape:connector-curvature="0"
@@ -348,32 +348,505 @@
     </g>
   </g>
   <defs
-     id="v-4" />
-  <rect
-     style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#a20000;stroke-width:3.22537661;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-     id="rect4655"
-     width="38.620045"
-     height="2.7154722"
-     x="56.271652"
-     y="133.88268"
-     transform="rotate(-46.578516)" />
-  <rect
-     style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#a20000;stroke-width:3.22537661;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-     id="rect4655-7"
-     width="38.620045"
-     height="2.7154722"
-     x="-154.70131"
-     y="75.129089"
-     transform="rotate(-136.57852)" />
+     id="v-4">
+    <marker
+       class="waiting"
+       markerUnits="userSpaceOnUse"
+       overflow="visible"
+       orient="auto"
+       id="v-2-479506292"
+       style="overflow:visible">
+      <path
+         class="waiting"
+         d="M 10,-6 V 6"
+         transform="scale(-1)"
+         id="v-163"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:1.20000005" />
+    </marker>
+    <marker
+       class="waiting"
+       markerUnits="userSpaceOnUse"
+       overflow="visible"
+       orient="auto"
+       id="v-21429980022"
+       style="overflow:visible">
+      <path
+         class="waiting"
+         d="M 10,-6 0,0 10,6"
+         transform="scale(-1)"
+         id="v-171"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:1.20000005" />
+    </marker>
+    <marker
+       class="waiting"
+       markerUnits="userSpaceOnUse"
+       overflow="visible"
+       orient="auto"
+       id="v-2-933205445"
+       style="overflow:visible">
+      <path
+         class="waiting"
+         d="M 12,-6 0,0 12,6 Z"
+         transform="scale(-1)"
+         id="v-193"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000;stroke-width:1.20000005" />
+    </marker>
+  </defs>
+  <g
+     id="g4878"
+     transform="translate(-60.164381,316.17638)">
+    <rect
+       transform="rotate(-46.578516)"
+       y="133.88268"
+       x="56.271652"
+       height="2.7154722"
+       width="38.620045"
+       id="rect4655"
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#a20000;stroke-width:3.22537661;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       transform="rotate(-136.57852)"
+       y="75.129089"
+       x="-154.70131"
+       height="2.7154722"
+       width="38.620045"
+       id="rect4655-7"
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#a20000;stroke-width:3.22537661;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+  </g>
   <text
      xml:space="preserve"
      style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
-     x="164.43831"
-     y="40.612011"
+     x="110.27392"
+     y="334.07794"
      id="text4674"><tspan
        sodipodi:role="line"
        id="tspan4672"
-       x="164.43831"
-       y="40.612011"
-       style="font-size:18.66666603px;fill:#000000;fill-opacity:1">wrong</tspan></text>
+       x="110.27392"
+       y="334.07794"
+       style="font-size:18.66666603px;fill:#000000;fill-opacity:1">wrong, because it mixes</tspan></text>
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(54.951248,51.422696)"
+     data-type="Goal"
+     class="joint-cell joint-type-goal joint-element joint-theme-default waiting"
+     id="j_36"
+     model-id="f610a487-122e-4e14-a43c-ab85b3136096">
+    <g
+       id="g4560"
+       transform="scale(0.69230769,1.1666667)"
+       class="scalable waiting">
+      <rect
+         width="130"
+         rx="20"
+         height="30"
+         id="v-243"
+         class="element waiting"
+         x="0"
+         y="0"
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2" />
+    </g>
+    <text
+       transform="translate(45,11.9)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-244"
+       class="content waiting"
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"><tspan
+         id="tspan4562"
+         class="v-line waiting"
+         dy="0">Goal</tspan></text>
+  </g>
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(0.95124836,133.9227)"
+     data-type="Task"
+     class="joint-cell joint-type-task joint-element joint-theme-default waiting"
+     id="j_37"
+     model-id="c0977150-5c46-4bdb-86b6-de4bd4c58a3e">
+    <g
+       id="g4567"
+       transform="scale(0.73076923,1)"
+       class="scalable waiting">
+      <polygon
+         width="130"
+         points="15,36 0,18 15,0 115,0 130,18 115,36 "
+         height="36"
+         id="v-248"
+         class="element waiting"
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2" />
+    </g>
+    <text
+       transform="translate(47.5,12.4)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-249"
+       class="content waiting"
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"><tspan
+         id="tspan4569"
+         class="v-line waiting"
+         dy="0">Task</tspan></text>
+  </g>
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(98.951248,134.9227)"
+     data-type="Task"
+     class="joint-cell joint-type-task joint-element joint-theme-default waiting"
+     id="j_38"
+     model-id="34e2f379-076e-4ca8-aaf5-fd93adb45cf8">
+    <g
+       id="g4574"
+       transform="scale(0.73076923,1)"
+       class="scalable waiting">
+      <polygon
+         width="130"
+         points="15,36 0,18 15,0 115,0 130,18 115,36 "
+         height="36"
+         id="v-253"
+         class="element waiting"
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2" />
+    </g>
+    <text
+       transform="translate(47.5,12.4)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-254"
+       class="content waiting"
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"><tspan
+         id="tspan4576"
+         class="v-line waiting"
+         dy="0">Task</tspan></text>
+  </g>
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(251.95125,47.922696)"
+     data-type="Goal"
+     class="joint-cell joint-type-goal joint-element joint-theme-default waiting"
+     id="j_39"
+     model-id="35a29c37-4a8b-41f1-aee4-925604b9f2fa">
+    <g
+       id="g4581"
+       transform="scale(0.69230769,1.1666667)"
+       class="scalable waiting">
+      <rect
+         width="130"
+         rx="20"
+         height="30"
+         id="v-258"
+         class="element waiting"
+         x="0"
+         y="0"
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2" />
+    </g>
+    <text
+       transform="translate(45,11.9)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-259"
+       class="content waiting"
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"><tspan
+         id="tspan4583"
+         class="v-line waiting"
+         dy="0">Goal</tspan></text>
+  </g>
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(208.95125,135.9227)"
+     data-type="Task"
+     class="joint-cell joint-type-task joint-element joint-theme-default waiting"
+     id="j_40"
+     model-id="5433d1e4-984b-4f35-b61d-2459937fdf52">
+    <g
+       id="g4588"
+       transform="scale(0.73076923,1)"
+       class="scalable waiting">
+      <polygon
+         width="130"
+         points="15,36 0,18 15,0 115,0 130,18 115,36 "
+         height="36"
+         id="v-263"
+         class="element waiting"
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2" />
+    </g>
+    <text
+       transform="translate(47.5,12.4)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-264"
+       class="content waiting"
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"><tspan
+         id="tspan4590"
+         class="v-line waiting"
+         dy="0">Task</tspan></text>
+  </g>
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(306.95125,135.9227)"
+     data-type="Task"
+     class="joint-cell joint-type-task joint-element joint-theme-default waiting"
+     id="j_41"
+     model-id="5774bd02-c542-479c-ab72-7b5644766e76">
+    <g
+       id="g4595"
+       transform="scale(0.73076923,1)"
+       class="scalable waiting">
+      <polygon
+         width="130"
+         points="15,36 0,18 15,0 115,0 130,18 115,36 "
+         height="36"
+         id="v-268"
+         class="element waiting"
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2" />
+    </g>
+    <text
+       transform="translate(47.5,12.4)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-269"
+       class="content waiting"
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"><tspan
+         id="tspan4597"
+         class="v-line waiting"
+         dy="0">Task</tspan></text>
+  </g>
+  <g
+     data-type="AndRefinementLink"
+     class="joint-cell joint-type-andrefinementlink joint-link joint-theme-default waiting"
+     id="j_43"
+     model-id="51d0eabb-4e4e-46c1-9239-be3229d013cb"
+     transform="translate(-215.04875,-170.07731)">
+    <path
+       class="c-connection-wrap waiting"
+       d="m 275.6,302.5 28.54,-46"
+       stroke="rgba(190, 190, 190, 0)"
+       id="v-280"
+       joint-selector="connection-wrap"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke-width:30;stroke-linecap:round" />
+    <path
+       class="waiting"
+       d="m 275.6,302.5 28.54,-46"
+       id="v-279"
+       joint-selector="line"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:1;marker-end:url(#v-2-479506292)" />
+  </g>
+  <g
+     data-type="AndRefinementLink"
+     class="joint-cell joint-type-andrefinementlink joint-link joint-theme-default waiting"
+     id="j_44"
+     model-id="89ec3c97-1b04-4ad6-bfc8-754e022e9c88"
+     transform="translate(-215.04875,-170.07731)">
+    <path
+       class="c-connection-wrap waiting"
+       d="m 350.71,303.5 -26.02,-47"
+       stroke="rgba(190, 190, 190, 0)"
+       id="v-283"
+       joint-selector="connection-wrap"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke-width:30;stroke-linecap:round" />
+    <path
+       class="waiting"
+       d="m 350.71,303.5 -26.02,-47"
+       id="v-282"
+       joint-selector="line"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:1;marker-end:url(#v-2-479506292)" />
+  </g>
+  <g
+     data-type="OrRefinementLink"
+     class="joint-cell joint-type-orrefinementlink joint-link joint-theme-default waiting"
+     id="j_47"
+     model-id="291bf62f-f101-434a-b26c-e0fe472c9fbd"
+     transform="translate(-215.04875,-170.07731)">
+    <path
+       class="c-connection-wrap waiting"
+       d="m 479.74,306 24.25,-53"
+       stroke="rgba(190, 190, 190, 0)"
+       id="v-292"
+       joint-selector="connection-wrap"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke-width:30;stroke-linecap:round" />
+    <path
+       class="waiting"
+       d="m 479.74,306 24.25,-53"
+       id="v-291"
+       joint-selector="line"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:1;marker-end:url(#v-2-933205445)" />
+  </g>
+  <g
+     data-type="OrRefinementLink"
+     class="joint-cell joint-type-orrefinementlink joint-link joint-theme-default waiting"
+     id="j_48"
+     model-id="d001f559-7e56-460d-880b-ed1424baf990"
+     transform="translate(-215.04875,-170.07731)">
+    <path
+       class="c-connection-wrap waiting"
+       d="M 556.83,304.5 523.37,253"
+       stroke="rgba(190, 190, 190, 0)"
+       id="v-295"
+       joint-selector="connection-wrap"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke-width:30;stroke-linecap:round" />
+    <path
+       class="waiting"
+       d="M 556.83,304.5 523.37,253"
+       id="v-294"
+       joint-selector="line"
+       inkscape:connector-curvature="0"
+       style="fill:none;stroke:#000000;stroke-width:1;marker-end:url(#v-2-933205445)" />
+  </g>
+  <g
+     id="v-5"
+     class="joint-tools-container waiting"
+     transform="translate(98.756418,-383.1911)">
+    <g
+       class="joint-tools joint-theme-default waiting"
+       id="g4618">
+      <g
+         class="joint-tool joint-theme-default waiting"
+         data-tool-name="vertices"
+         model-id="51d0eabb-4e4e-46c1-9239-be3229d013cb"
+         style="display:none"
+         id="g4616">
+        <path
+           style="fill:none;stroke-width:10"
+           inkscape:connector-curvature="0"
+           stroke="transparent"
+           cursor="cell"
+           joint-selector="connection"
+           d="m 278.37,290.5 24.18,-34"
+           class="joint-vertices-path waiting"
+           id="path4614" />
+      </g>
+    </g>
+    <g
+       class="joint-tools joint-theme-default waiting"
+       id="g4624">
+      <g
+         class="joint-tool joint-theme-default waiting"
+         data-tool-name="vertices"
+         model-id="89ec3c97-1b04-4ad6-bfc8-754e022e9c88"
+         style="display:none"
+         id="g4622">
+        <path
+           style="fill:none;stroke-width:10"
+           inkscape:connector-curvature="0"
+           stroke="transparent"
+           cursor="cell"
+           joint-selector="connection"
+           d="m 350.71,303.5 -26.02,-47"
+           class="joint-vertices-path waiting"
+           id="path4620" />
+      </g>
+    </g>
+    <g
+       class="joint-tools joint-theme-default waiting"
+       id="g4630">
+      <g
+         class="joint-tool joint-theme-default waiting"
+         data-tool-name="vertices"
+         model-id="291bf62f-f101-434a-b26c-e0fe472c9fbd"
+         style="display:none"
+         id="g4628">
+        <path
+           style="fill:none;stroke-width:10"
+           inkscape:connector-curvature="0"
+           stroke="transparent"
+           cursor="cell"
+           joint-selector="connection"
+           d="m 479.74,306 24.25,-53"
+           class="joint-vertices-path waiting"
+           id="path4626" />
+      </g>
+    </g>
+    <g
+       class="joint-tools joint-theme-default waiting"
+       id="g4636">
+      <g
+         class="joint-tool joint-theme-default waiting"
+         data-tool-name="vertices"
+         model-id="d001f559-7e56-460d-880b-ed1424baf990"
+         style="display:none"
+         id="g4634">
+        <path
+           style="fill:none;stroke-width:10"
+           inkscape:connector-curvature="0"
+           stroke="transparent"
+           cursor="cell"
+           joint-selector="connection"
+           d="M 556.83,304.5 523.37,253"
+           class="joint-vertices-path waiting"
+           id="path4632" />
+      </g>
+    </g>
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="107.59049"
+     y="37.605957"
+     id="text4674-5"><tspan
+       sodipodi:role="line"
+       id="tspan4672-8"
+       x="107.59049"
+       y="37.605957"
+       style="font-size:18.66666603px;fill:#000000;fill-opacity:1">ok</tspan></text>
+  <path
+     style="fill:#008000;stroke:#008000;stroke-width:0.51374459px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 73.921588,23.161692 8.89302,10.32422 26.336992,-26.1792596 2.73632,7.3744496 -29.757382,26.54799 -11.62935,-12.53656 z"
+     id="path4813-0"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="310.92841"
+     y="30.762852"
+     id="text4674-5-3"><tspan
+       sodipodi:role="line"
+       id="tspan4672-8-1"
+       x="310.92841"
+       y="30.762852"
+       style="font-size:18.66666603px;fill:#000000;fill-opacity:1">ok</tspan></text>
+  <path
+     style="fill:#008000;stroke:#008000;stroke-width:0.51374459px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 277.25952,16.318596 8.89302,10.32422 26.33699,-26.17925965 2.73632,7.37445005 -29.75738,26.5479896 -11.62935,-12.53656 z"
+     id="path4813-0-9"
+     inkscape:connector-curvature="0" />
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="121.37906"
+     y="353.06232"
+     id="text4674-7"><tspan
+       sodipodi:role="line"
+       id="tspan4672-80"
+       x="121.37906"
+       y="353.06232"
+       style="font-size:18.66666603px;fill:#000000;fill-opacity:1">And/Or refinements </tspan></text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="132.98291"
+     y="370.96124"
+     id="text4674-2"><tspan
+       sodipodi:role="line"
+       id="tspan4672-5"
+       x="132.98291"
+       y="370.96124"
+       style="font-size:18.66666603px;fill:#000000;fill-opacity:1">with the same parent</tspan></text>
 </svg>

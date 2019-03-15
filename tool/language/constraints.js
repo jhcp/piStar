@@ -54,23 +54,28 @@ istar.metamodel.containerLinks.IsALink.isValid = function (source, target) {
     var isValid = true;
     if ( isValid && (source.get('type') !== target.get('type')) ) {
         isValid = false;
-        result.message = 'the source and target of Is-A links must be of the same type - Actor and Actor, or Role and Role (iStar 2.0 Guide, Page 6) ';
+        result.message = 'the source and target of Is-A links must be of the same type - Actor and Actor, or Role and Role (iStar 2.0 Guide, Page 6).' +
+            '<br><br><img src="language/images/errors/isATypes.svg" alt="You cannot add make an Is-A link from a type to a different type"/>';
     }
     if ( ! (source.isActor() || source.isRole()) ) {
         isValid = false;
-        result.message = 'the source of Is-A links must be a Role or a general Actor (iStar 2.0 Guide, Page 6)';
+        result.message = 'the source of Is-A links must be a Role or a general Actor (iStar 2.0 Guide, Page 6).' +
+            '<br><br><img src="language/images/errors/isATypes.svg" alt="Is-A links must originate from a general Actor or a Role"/>';
     }
     if ( isValid && ! (target.isActor() || target.isRole()) ) {
         isValid = false;
-        result.message = 'the target of Is-A links must be a Role or a general Actor (iStar 2.0 Guide, Page 6)';
+        result.message = 'the target of Is-A links must be a Role or a general Actor (iStar 2.0 Guide, Page 6).' +
+            '<br><br><img src="language/images/errors/isATypes.svg" alt="Is-A links must target a general Actor or a Role"/>';
     }
     if ( isValid && (source === target) ) {
         isValid = false;
-        result.message = 'you cannot make Is-A links from an actor onto itself';
+        result.message = 'you cannot make Is-A links from an actor onto itself.' +
+            '<br><br><img src="language/images/errors/isASelfLink.svg" alt="No self-links allowed"/>';
     }
     if ( isValid && istar.isThereLinkBetween(source, target)) {
         isValid = false;
-        result.message = 'there can only be one Actor link between the same two actors (iStar 2.0 Guide, Page 14)';
+        result.message = 'there can only be one Actor link between the same two actors (iStar 2.0 Guide, Page 14).' +
+            '<br><br><img src="language/images/errors/isAMultipleLinks.svg" alt="You cannot add multiple Is-A links to the same two actors"/>';
     }
 
     result.isValid = isValid;
@@ -103,11 +108,13 @@ istar.metamodel.containerLinks.ParticipatesInLink.isValid = function (source, ta
     }
     if ( isValid && (source === target) ) {
         isValid = false;
-        result.message = 'you cannot make a Participates-In link from an actor onto itself';
+        result.message = 'you cannot make a Participates-In link from an actor onto itself.' +
+            '<br><br><img src="language/images/errors/participatesInSelfLink.svg" alt="No self-links allowed"/>';
     }
     if ( isValid && istar.isThereLinkBetween(source, target)) {
         isValid = false;
-        result.message = 'there can only be one Actor link between the same two actors (iStar 2.0 Guide, Page 14)';
+        result.message = 'there can only be one Actor link between the same two actors (iStar 2.0 Guide, Page 14).' +
+            '<br><br><img src="language/images/errors/participatesInMultipleLinks.svg" alt="You cannot add multiple Participates-In links to the same two actors"/>';
     }
 
     result.isValid = isValid;
@@ -168,11 +175,15 @@ istar.metamodel.dependencyLinks.DependencyLink.isValid = function (source, targe
     }
     if (isValid && (istar.isElementTargetOfType(source, 'OrRefinementLink') || istar.isElementTargetOfType(source, 'AndRefinementLink'))) {
         isValid = false;
-        result.message = 'a refined element cannot be the Depender Element in a Dependency link (iStar 2.0 Guide, Page 14)';
+        result.message = 'a refined element cannot be the Depender Element in a Dependency link (iStar 2.0 Guide, Page 14)' +
+            '. Instead, you can try to add the Dependency originating from a child, as shown in the example below.' +
+            '<br><br><img src="language/images/errors/dependerElementRefined.svg" alt="You cannot add a dependency from a element that is already refined"/>';
     }
     if (isValid && istar.isElementTargetOfType(source, 'ContributionLink')) {
         isValid = false;
-        result.message = 'a contributed element cannot be the Depender Element in a Dependency link (iStar 2.0 Guide, Page 14)';
+        result.message = 'a contributed element cannot be the Depender Element in a Dependency link (iStar 2.0 Guide, Page 14)' +
+            '. Instead, you can try to add the Dependency originating from a child, as shown in the example below.' +
+            '<br><br><img src="language/images/errors/dependerElementContributedTo.svg" alt="You cannot add a dependency from a element that is the target of a Contribution link"/>';
     }
 
     result.isValid = isValid;
@@ -217,16 +228,19 @@ istar.metamodel.nodeLinks.AndRefinementLink.isValid = function (source, target) 
     }
     if ( isValid && istar.isThereLinkBetween(source, target)) {
         isValid = false;
-        result.message = 'there can only be one refinement link between the same two elements';
+        result.message = 'there can only be one refinement link between the same two elements' +
+            '<br><br><img src="language/images/errors/duplicatedRefinement.svg" alt="You cannot have duplicated links"/>';
     }
     if ( isValid && istar.isElementSourceOfType(target, 'DependencyLink')) {
         isValid = false;
-        result.message = 'you cannot refine a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)';
+        result.message = 'you cannot refine a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)' +
+            '. Instead, you can try to move the dependency to the sub-element, as shown in the example below.' +
+            '<br><br><img src="language/images/errors/refinementToDependerELement.svg" alt="You cannot add a Refinement link targeting a Depender Element"/>';
     }
     if ( isValid && istar.isElementTargetOfType(target, 'OrRefinementLink')) {
         isValid = false;
         result.message = 'you cannot mix AND-refinements with OR-refinements targeting the same element ' +
-            '(iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br>' +
+            '(iStar 2.0 Guide, Page 10).<br><br>' +
             '<img src="language/images/errors/mixAndAndOr.svg" alt="An element may be AND-refined or OR-refined, but not both"/>';
     }
 
@@ -271,16 +285,19 @@ istar.metamodel.nodeLinks.OrRefinementLink.isValid = function (source, target) {
     }
     if ( isValid && istar.isThereLinkBetween(source, target)) {
         isValid = false;
-        result.message = 'there can only be one refinement link between the same two elements';
+        result.message = 'there can only be one refinement link between the same two elements' +
+            '<br><br><img src="language/images/errors/duplicatedRefinement.svg" alt="You cannot have duplicated links"/>';
     }
     if ( isValid && istar.isElementSourceOfType(target, 'DependencyLink')) {
         isValid = false;
-        result.message = 'you cannot refine a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)';
+        result.message = 'you cannot refine a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)' +
+            '. Instead, you can try to move the dependency to the sub-element, as shown in the example below.' +
+            '<br><br><img src="language/images/errors/refinementToDependerELement.svg" alt="You cannot add a Refinement link targeting a Depender Element"/>';
     }
     if ( isValid && istar.isElementTargetOfType(target, 'AndRefinementLink')) {
         isValid = false;
         result.message = 'you cannot mix OR-refinements with AND-refinements targeting the same element ' +
-            '(iStar 2.0 Guide, Page 10)<br><br> Example of a wrong model:<br>' +
+            '(iStar 2.0 Guide, Page 10).<br><br>' +
             '<img src="language/images/errors/mixAndAndOr.svg" alt="An element may be AND-refined or OR-refined, but not both"/>';
     }
 
@@ -321,7 +338,8 @@ istar.metamodel.nodeLinks.NeededByLink.isValid = function (source, target) {
     }
     if ( isValid && istar.isThereLinkBetween(source, target)) {
         isValid = false;
-        result.message = 'there can only be one Needed-By link between the same two elements';
+        result.message = 'there can only be one Needed-By link between the same two elements' +
+            '<br><br><img src="language/images/errors/duplicatedNeededBy.svg" alt="you cannot have duplicated Needed-By links"/>';
     }
     result.isValid = isValid;
     return result;
@@ -365,7 +383,8 @@ istar.metamodel.nodeLinks.ContributionLink.isValid = function (source, target) {
     }
     if ( isValid && istar.isThereLinkBetween(source, target, 'ContributionLink')) {
         isValid = false;
-        result.message = 'there can only be one Contribution link between the same two elements';
+        result.message = 'there can only be one Contribution link between the same two elements' +
+            '<br><br><img src="language/images/errors/duplicatedContributions.svg" alt="you cannot have duplicated Contribution links"/>';
     }
     if ( isValid && istar.isThereLinkBetween(source, target, 'QualificationLink')) {
         isValid = false;
@@ -373,7 +392,9 @@ istar.metamodel.nodeLinks.ContributionLink.isValid = function (source, target) {
     }
     if ( isValid && istar.isElementSourceOfType(target, 'DependencyLink')) {
         isValid = false;
-        result.message = 'you cannot contribute to a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)';
+        result.message = 'you cannot contribute to a Depender Element; that is, an element that is the source of a Dependency (iStar 2.0 Guide, Page 14)' +
+            '. Instead, you can try to move the dependency to the sub-quality, as shown in the example below.' +
+            '<br><br><img src="language/images/errors/contributionToDependerELement.svg" alt="You cannot add a Contribution link to a Depender Element"/>';
     }
 
     result.isValid = isValid;

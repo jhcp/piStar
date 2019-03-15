@@ -181,7 +181,7 @@ istar.setupMetamodel = function (metamodel) {
             if (! cellType.isValid) {
                 cellType.isValid = function () {return {isValid: true, message: ''};};
             }
-            // cellType.isValid = function () {return {isValid: true, message: ''};}; //uncomment to remove constraints
+            // cellType.isValid = function () {return {isValid: true, message: ''};}; //uncomment to remove all constraints
         }
     }
 

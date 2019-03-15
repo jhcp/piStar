@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   id="v-2"
+   width="312.61908"
+   height="112.71037"
+   sodipodi:docname="duplicatedNeededBy.svg"
+   inkscape:version="0.92.1 r15371">
+  <metadata
+     id="metadata107">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview105"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="1.4466382"
+     inkscape:cx="269.86224"
+     inkscape:cy="24.844602"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="v-2" />
+  <defs
+     id="v-4">
+    <marker
+       style="overflow:visible"
+       id="v-2688321182"
+       orient="auto"
+       overflow="visible"
+       markerUnits="userSpaceOnUse"
+       class="waiting">
+      <path
+         style="fill:#000000;stroke:#000000"
+         inkscape:connector-curvature="0"
+         id="v-233"
+         transform="scale(-1)"
+         d="M 1,0 A 4,4 0 1 0 9,0 4,4 0 1 0 1,0"
+         class="waiting" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="v-2688321182-0"
+       orient="auto"
+       overflow="visible"
+       markerUnits="userSpaceOnUse"
+       class="waiting">
+      <path
+         style="fill:#000000;stroke:#000000"
+         inkscape:connector-curvature="0"
+         id="v-233-9"
+         transform="scale(-1)"
+         d="M 1,0 A 4,4 0 1 0 9,0 4,4 0 1 0 1,0"
+         class="waiting" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="v-2688321182-0-4"
+       orient="auto"
+       overflow="visible"
+       markerUnits="userSpaceOnUse"
+       class="waiting">
+      <path
+         style="fill:#000000;stroke:#000000"
+         inkscape:connector-curvature="0"
+         id="v-233-9-9"
+         transform="scale(-1)"
+         d="M 1,0 A 4,4 0 1 0 9,0 4,4 0 1 0 1,0"
+         class="waiting" />
+    </marker>
+  </defs>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="106.1131"
+     y="64.95594"
+     id="text4674"><tspan
+       sodipodi:role="line"
+       id="tspan4672"
+       x="106.1131"
+       y="64.95594"
+       style="font-size:18.66666603px;fill:#000000;fill-opacity:1">ok</tspan></text>
+  <path
+     style="fill:#008000;stroke:#008000;stroke-width:0.51374459px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+     d="m 72.444201,50.51167 8.89302,10.32422 26.336989,-26.17926 2.73632,7.37445 -29.757379,26.54799 -11.62933,-12.53656 z"
+     id="path4813"
+     inkscape:connector-curvature="0" />
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(0.95124836,1)"
+     data-type="Task"
+     class="joint-cell joint-type-task joint-element joint-theme-default waiting"
+     id="j_35"
+     model-id="c3c124ac-cd87-40e0-aa67-7492b90f84ef">
+    <g
+       id="g277"
+       transform="scale(0.73076923,1)"
+       class="scalable waiting">
+      <polygon
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2"
+         width="130"
+         points="15,36 0,18 15,0 115,0 130,18 115,36 "
+         height="36"
+         id="v-237"
+         class="element waiting" />
+    </g>
+    <text
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"
+       transform="translate(47.5,12.4)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-238"
+       class="content waiting"><tspan
+         id="tspan279"
+         class="v-line waiting"
+         dy="0">Task</tspan></text>
+  </g>
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(21.951248,76)"
+     data-type="Resource"
+     class="joint-cell joint-type-resource joint-element joint-theme-default waiting"
+     id="j_36"
+     model-id="e40babd6-e371-4603-985c-9eca3a6bc6e5">
+    <g
+       id="g284"
+       transform="scale(0.69230769,1.1666667)"
+       class="scalable waiting">
+      <rect
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2"
+         y="0"
+         x="0"
+         width="130"
+         rx="0"
+         height="30"
+         id="v-242"
+         class="element waiting" />
+    </g>
+    <text
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"
+       transform="translate(45,11.9)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-243"
+       class="content waiting"><tspan
+         id="tspan286"
+         class="v-line waiting"
+         dy="0">Resource</tspan></text>
+  </g>
+  <g
+     data-type="NeededByLink"
+     class="joint-cell joint-type-neededbylink joint-link joint-theme-default waiting"
+     id="j_37"
+     model-id="4aa78028-1357-43e1-b13e-f35d0edba6ea"
+     transform="translate(-1052.0488,-452.00001)">
+    <path
+       style="fill:none;stroke-width:30;stroke-linecap:round"
+       inkscape:connector-curvature="0"
+       class="c-connection-wrap waiting"
+       d="m 1114.65,528 -9.68,-39"
+       stroke="rgba(190, 190, 190, 0)"
+       id="v-249"
+       joint-selector="connection-wrap" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;marker-end:url(#v-2688321182)"
+       inkscape:connector-curvature="0"
+       class="waiting"
+       d="m 1114.65,528 -9.68,-39"
+       id="v-248"
+       joint-selector="line" />
+  </g>
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(131.38471,1.5437)"
+     data-type="Task"
+     class="joint-cell joint-type-task joint-element joint-theme-default waiting"
+     id="j_35-4"
+     model-id="c3c124ac-cd87-40e0-aa67-7492b90f84ef">
+    <g
+       id="g277-2"
+       transform="scale(0.73076923,1)"
+       class="scalable waiting">
+      <polygon
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2"
+         width="130"
+         points="0,18 15,0 115,0 130,18 115,36 15,36 "
+         height="36"
+         id="v-237-1"
+         class="element waiting" />
+    </g>
+    <text
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"
+       transform="translate(47.5,12.4)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-238-4"
+       class="content waiting"><tspan
+         id="tspan279-1"
+         class="v-line waiting"
+         dy="0">Task</tspan></text>
+  </g>
+  <g
+     style="fill:#ffffff;stroke:none"
+     transform="translate(152.38471,76.5437)"
+     data-type="Resource"
+     class="joint-cell joint-type-resource joint-element joint-theme-default waiting"
+     id="j_36-5"
+     model-id="e40babd6-e371-4603-985c-9eca3a6bc6e5">
+    <g
+       id="g284-1"
+       transform="scale(0.69230769,1.1666667)"
+       class="scalable waiting">
+      <rect
+         style="vector-effect:non-scaling-stroke;fill:#cdfecd;stroke:#000000;stroke-width:2"
+         y="0"
+         x="0"
+         width="130"
+         rx="0"
+         height="30"
+         id="v-242-1"
+         class="element waiting" />
+    </g>
+    <text
+       style="font-weight:bold;font-size:12px;font-family:Arial, helvetica, sans-serif;text-anchor:middle;fill:#000000"
+       transform="translate(45,11.9)"
+       font-weight="bold"
+       y="0.80000001em"
+       xml:space="preserve"
+       font-size="12"
+       id="v-243-4"
+       class="content waiting"><tspan
+         id="tspan286-6"
+         class="v-line waiting"
+         dy="0">Resource</tspan></text>
+  </g>
+  <g
+     data-type="NeededByLink"
+     class="joint-cell joint-type-neededbylink joint-link joint-theme-default waiting"
+     id="j_37-1"
+     model-id="4aa78028-1357-43e1-b13e-f35d0edba6ea"
+     transform="translate(-935.6153,-451.45631)">
+    <path
+       style="fill:none;stroke-width:30;stroke-linecap:round"
+       inkscape:connector-curvature="0"
+       class="c-connection-wrap waiting"
+       d="m 1114.65,528 -9.68,-39"
+       stroke="rgba(190, 190, 190, 0)"
+       id="v-249-3"
+       joint-selector="connection-wrap" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;marker-end:url(#v-2688321182-0)"
+       inkscape:connector-curvature="0"
+       class="waiting"
+       d="m 1114.65,528 -9.68,-39"
+       id="v-248-7"
+       joint-selector="line" />
+  </g>
+  <g
+     data-type="NeededByLink"
+     class="joint-cell joint-type-neededbylink joint-link joint-theme-default waiting"
+     id="j_37-1-8"
+     model-id="4aa78028-1357-43e1-b13e-f35d0edba6ea"
+     transform="translate(-913.5294,-451.79918)">
+    <path
+       style="fill:none;stroke-width:30;stroke-linecap:round"
+       inkscape:connector-curvature="0"
+       class="c-connection-wrap waiting"
+       d="m 1114.65,528 -9.68,-39"
+       stroke="rgba(190, 190, 190, 0)"
+       id="v-249-3-5"
+       joint-selector="connection-wrap" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;marker-end:url(#v-2688321182-0-4)"
+       inkscape:connector-curvature="0"
+       class="waiting"
+       d="m 1114.65,528 -9.68,-39"
+       id="v-248-7-7"
+       joint-selector="line" />
+  </g>
+  <g
+     id="g4817-6"
+     transform="translate(-164.18579,11.13406)">
+    <rect
+       transform="rotate(-46.578516)"
+       y="320.45523"
+       x="232.12418"
+       height="2.7154722"
+       width="38.620045"
+       id="rect4655-1-1"
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#a20000;stroke-width:3.22537661;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    <rect
+       transform="rotate(-136.57852)"
+       y="250.9816"
+       x="-341.27386"
+       height="2.7154722"
+       width="38.620045"
+       id="rect4655-7-8-6"
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;stroke:#a20000;stroke-width:3.22537661;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+     x="256.6373"
+     y="52.263878"
+     id="text4674-1-33"><tspan
+       sodipodi:role="line"
+       id="tspan4672-5-1"
+       x="256.6373"
+       y="52.263878"
+       style="font-size:18.66666603px;fill:#000000;fill-opacity:1">wrong</tspan></text>
+</svg>
