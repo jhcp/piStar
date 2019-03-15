@@ -553,16 +553,13 @@ ui.defineInteractions = function () {
             if (cellView.model.isElement()) {
                 ui.showSelection();
 
-                //set a delay in order to give the browser time to actually show the selected element
-                setTimeout(function () {
-                    var oldText = cellView.model.prop('name');
-                    newText = window.prompt('Edit text:', oldText);
-                    if (newText !== null) {
-                        cellView.model.prop('name', newText);
-                    }
-                }, 30);
-
-
+                var oldText = cellView.model.prop('name');
+                ui.prompt('<input type="text" class="form-control" id="input-filename" value="' + oldText + '">',
+                    'Edit name', function (values) {
+                        if (values && values[0] != null) {
+                            cellView.model.prop('name', values[0]);
+                        }
+                    });
             }
         }
     });
@@ -1316,20 +1313,67 @@ ui.setupElementResizing = function () {
 ui.alert = function (body, title) {
     'use strict';
 
+    //set the body of the modal
     $('#body-alert-modal').html(body);
+
+    //set the title of the modal
     if (title) {
         $('#label-alert-modal').html(title);
     }
     else {
         $('#label-alert-modal').html('alert');
     }
+
     $('#modal-alert').modal('show');
+    $('#close-button-alert-modal').focus();
 };
-$('#modal-alert').on('shown.bs.modal', function () {
+
+ui.prompt = function (body, title, callback) {
     'use strict';
 
-    $('#close-button-alert-modal').focus();
-});
+    //set the body of the modal
+    $('#body-prompt-modal').html(body);
+
+    //set the title of the modal
+    if (title) {
+        $('#label-prompt-modal').html(title);
+    }
+    else {
+        $('#label-prompt-modal').html('alert');
+    }
+
+    $('#modal-prompt').modal('show');
+
+    //change state to prevent accidental deletes
+    ui.states.editor.transitionTo(ui.states.editor.EDITING_TEXT);
+
+
+    $('#body-prompt-modal input')
+        .focusin(function() {
+            //makes the content of the inputs be selected when the input is focused in
+            $(this).select();
+        })
+        .keyup(function (e) {
+            //process the form when the 'enter' key is pressed
+            if (e.which === 13) {
+                processOk();
+                $('#modal-prompt').modal('hide');
+            }
+        });
+    $('#ok-button-prompt-modal').click(function () {
+        processOk();
+    });
+
+    //auto-select the first input in the modal
+    $('#body-prompt-modal input:first').focusin();
+
+    function processOk() {
+        ui.states.editor.transitionTo(ui.states.editor.VIEWING);
+
+        //calls the callback function, passing an array with the values of the inputs
+        callback($.map($('#body-prompt-modal input'), function (n) {return $(n).val();}));
+    }
+};
 
 ui.displayInvalidLinkMessage = function (message) {
     'use strict';
