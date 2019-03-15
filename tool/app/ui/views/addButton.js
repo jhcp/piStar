@@ -2,7 +2,7 @@
  * This is open-source. Which means that you can contribute to it, and help
  * make it better! Also, feel free to use, modify, redistribute, and so on.
  *
- * Please don't work directly from this source-code. Instead, download or fork it from
+ * If you are going to edit the code, always work from the source-code available for download at
  * https://github.com/jhcp/pistar
  */
 
