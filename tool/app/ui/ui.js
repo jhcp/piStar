@@ -294,15 +294,15 @@ ui.defineInteractions = function () {
             }
 
             //highlight the hovered element and its neighbors
-            if (cellView.model.isNode()) {
-                cellView.$('.element').css({fill: 'black'});
-                cellView.$('.content').css({fill: 'white'});
-                cellView.$('.stereotype').css({fill: 'white'});
-
-                _.forEach(istar.graph.getNeighbors(cellView.model), function (cell) {
-                    cell.findView(istar.paper).$('.element').css({fill: '#FABF6E'});
-                });
-            }
+            // if (cellView.model.isNode()) {
+            //     cellView.$('.element').css({fill: 'black'});
+            //     cellView.$('.content').css({fill: 'white'});
+            //     cellView.$('.stereotype').css({fill: 'white'});
+            //
+            //     _.forEach(istar.graph.getNeighbors(cellView.model), function (cell) {
+            //         cell.findView(istar.paper).$('.element').css({fill: '#FABF6E'});
+            //     });
+            // }
 
             //if a dependum is partially hidden, display it and its links normally while hovered
             if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL && cellView.model.isDependum()) {
@@ -348,15 +348,15 @@ ui.defineInteractions = function () {
             }
 
             //unhighlight the previously hovered element and its neighbors
-            if (cellView.model.isNode()) {
-
-                cellView.$('.element').css({fill: ''});
-                cellView.$('.content').css({fill: ''});
-                cellView.$('.stereotype').css({fill: ''});
-                _.forEach(istar.graph.getNeighbors(cellView.model), function (cell) {
-                    cell.findView(istar.paper).$('.element').css({fill: ''});
-                });
-            }
+            // if (cellView.model.isNode()) {
+            //
+            //     cellView.$('.element').css({fill: ''});
+            //     cellView.$('.content').css({fill: ''});
+            //     cellView.$('.stereotype').css({fill: ''});
+            //     _.forEach(istar.graph.getNeighbors(cellView.model), function (cell) {
+            //         cell.findView(istar.paper).$('.element').css({fill: ''});
+            //     });
+            // }
 
             //if the node is supposed to be partially hidden, hide it and its links again
             if (ui.states.cellDisplay.dependencies.currentState === ui.states.cellDisplay.dependencies.PARTIAL && cellView.model.isDependum()) {
