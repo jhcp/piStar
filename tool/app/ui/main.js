@@ -13,8 +13,15 @@ $(document).ready(function () {
     istar.paper = istar.setup.setupDiagram(istar.graph);
     istar.setupMetamodel(istar.metamodel);
     ui.setupUi();
-    istar.fileManager.loadModel(istar.models.processModelParameter());
-    ui.selectPaper();//clear selection
+
+    //wait the ui finish loading before loading a model
+    $(document).ready(function () {
+        setTimeout(function () {
+            istar.fileManager.loadModel(istar.models.processModelParameter());
+            ui.selectPaper();//clear selection
+            }, 5);
+    });
+
     // ui.alert('Hi there, this is a beta version of the tool, currently under testing. Please send us your feedback at <a href="https://goo.gl/forms/SaJlelSfkTkp819t2">https://goo.gl/forms/SaJlelSfkTkp819t2</a>',
     //     'Beta version');
 });
