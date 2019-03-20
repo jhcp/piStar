@@ -263,7 +263,10 @@ ui.defineInteractions = function () {
             ui.addElementOnPaper({position: {x: x, y: y}});
         }
         if (ui.states.editor.isAddingNode()) {
-            var bbox = (new istar.metamodel.nodes.Goal.shapeObject()).getBBox();
+            //gets a default bbox (first node in the metamodel) to use as bbox for positioning the
+            //element in the diagram
+            var nodes = _.keys(istar.metamodel.nodes);
+            var bbox = (new istar.metamodel.nodes[nodes[0]].shapeObject()).getBBox();
             ui.addElementOnPaper({position: {
                     x: x - bbox.width/2,
                     y: y - bbox.height/2
