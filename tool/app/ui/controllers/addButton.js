@@ -110,8 +110,8 @@ ui.components.createAddButtons = function() {
             //create a dropdown button and then create a dropdown item for each possible value of the label
 
             //if specific ui elements are not defined, use default ones
-            var label = linkType.buttonLabel[0] || linkType.name;
-            var tooltip = linkType.buttonTooltip[0] || ('Add ' + linkType.name);
+            var label = (linkType.buttonLabel && linkType.buttonLabel[0]) || linkType.name;
+            var tooltip = (linkType.buttonTooltip && linkType.buttonTooltip[0]) || ('Add ' + linkType.name);
             var image = linkType.name;
 
             new ui.components.AddButtonDropdownView({
