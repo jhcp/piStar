@@ -340,7 +340,7 @@ istar.fileManager = function() {
                             processInvalidLink('DependencyLink', depender, dependee, isValid);
                         }
 
-                        var links = istar.addDependencyLink(depender, dependum, dependee);
+                        var links = istar.addDependency(depender, dependum, dependee);
                         links[0].on('change:vertices', ui._toggleSmoothness);
                         links[1].on('change:vertices', ui._toggleSmoothness);
 

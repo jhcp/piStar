@@ -465,6 +465,7 @@ var istar = function () {
          * @param {Actor}   target      target of the link (the actual Cell, not just the id)
          */
         addLinkBetweenActors: function (linkType, source, target) {
+            var hasShape = istar.metamodel.shapesObject[linkType.name];
             var link = new linkType.shapeObject({
                 'source': {id: source.id},
                 'target': {id: target.id}
@@ -475,21 +476,38 @@ var istar = function () {
                 link.attr('label/text', linkType.label);
                 link.attr('label-background/text', linkType.label);
             }
+            else if (! hasShape) {
+                link.attr('label/text', '<<' + linkType.name + '>>');
+                link.attr('label-background/text', '<<' + linkType.name + '>>');
+            }
 
             istar.graph.addCell(link);
             return link;
         },
-        addDependencyLink: function (depender, dependum, dependee) {
-            var link1 = new joint.shapes.istar.DependencyLink({
+        addDependency: function (depender, dependum, dependee) {
+            var shape = joint.shapes.istar.DependencyLink;
+            var hasShape = true;
+            if (!shape) {
+                var shape = joint.shapes.istar.DependencyLink || joint.shapes.istar.DefaultContainerLink;
+                hasShape = false;
+            }
+            var link1 = new shape({
                 'source': {id: depender.id, selector: '.element'},
                 'target': {id: dependum.id}
             });
-            var link2 = new joint.shapes.istar.DependencyLink({
+            var link2 = new shape({
                 'source': {id: dependum.id},
                 'target': {id: dependee.id, selector: '.element'}
             });
             istar.graph.addCell(link1);
             istar.graph.addCell(link2);
+
+            if (! hasShape) {
+                link1.attr('label/text', '<<DependencyLink>>');
+                link1.attr('label-background/text', '<<DependencyLink>>');
+                link2.attr('label/text', '<<DependencyLink>>');
+                link2.attr('label-background/text', '<<DependencyLink>>');
+            }
 
             //stores a reference from one link to another, in order to be able so remove the other one if
             //any of them is removed, thus preventing dangling dependencies
@@ -519,6 +537,7 @@ var istar = function () {
             return [link1, link2];
         },
         addLinkBetweenNodes: function (linkType, source, target, value) {
+            var hasShape = istar.metamodel.shapesObject[linkType.name];
             var link = new linkType.shapeObject({'source': {id: source.id}, 'target': {id: target.id}});
             link.prop('type', linkType.name);
             istar.graph.addCell(link);
@@ -526,6 +545,10 @@ var istar = function () {
             if (linkType.label) {
                 link.attr('label/text', linkType.label);
                 link.attr('label-background/text', linkType.label);
+            }
+            else if (! hasShape) {
+                link.attr('label/text', '<<' + linkType.name + '>>');
+                link.attr('label-background/text', '<<' + linkType.name + '>>');
             }
 
             //embeds the link on the (parent) actor of its source element, to facilitate collapse/expand

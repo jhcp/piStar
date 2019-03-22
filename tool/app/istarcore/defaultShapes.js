@@ -37,7 +37,7 @@ joint.shapes.istar.DefaultContainer = joint.dia.Element.extend({
                 ref: '.content',//makes the position of the text relative to content label
                 'ref-x': 0.5,
                 'ref-y': -6,
-                text: '<<ElementType>>',
+                // text: '<<ElementType>>',
                 'text-anchor': 'middle',
                 'y-alignment': 'middle'
             },
@@ -87,7 +87,7 @@ joint.shapes.istar.DefaultNode = joint.shapes.basic.Rect.extend({
                 'font-style': 'italic',
                 'ref': '.element',
                 'ref-y': '10',
-                'text': '<<ElementType>>'
+                // 'text': '<<ElementType>>'
             },
             '.content': {
                 'font-size': 12,
