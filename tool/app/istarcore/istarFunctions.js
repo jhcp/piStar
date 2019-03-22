@@ -353,7 +353,9 @@ var istar = function () {
                 newNode.prop('originalSize', newNode.prop('size'));
 
                 if (newNode.attr('.stereotype')) {
-                    newNode.attr('.stereotype/text', '<<' + nodeType.name + '>>');
+                    if (! newNode.attr('.stereotype/text')) {
+                        newNode.attr('.stereotype/text', '<<' + nodeType.name + '>>');
+                    }
                 }
 
                 return newNode;
