@@ -452,9 +452,9 @@ ui.defineInteractions = function () {
                         if (isValid.isValid) {
                             ui.addDependency(ui.states.editor.ADDING.data.linkSourceView.model, ui.states.editor.ADDING.data.typeNameToAdd, ui.states.editor.ADDING.data.linkTargetView.model);
                         }
-                        else {
-                            ui.displayInvalidLinkMessage(isValid.message);
-                        }
+                        // else {
+                        //     ui.displayInvalidLinkMessage(isValid.message);
+                        // }
                     }
                     if (isNodeLink) {
                         var newLink = null;
@@ -464,14 +464,12 @@ ui.defineInteractions = function () {
                         if (istar.metamodel.nodeLinks[currentAddingElement].tryReversedWhenAdding) {
                             if (!isValid.isValid) {
                                 //try with reversed source/targets
-                                console.log('not valid');
                                 var isValidReversed = istar.metamodel.nodeLinks[currentAddingElement].isValid(ui.states.editor.ADDING.data.linkTargetView.model, ui.states.editor.ADDING.data.linkSourceView.model);
                                 if (isValidReversed) {
                                     var tempSource = ui.states.editor.ADDING.data.linkSourceView;
                                     ui.states.editor.ADDING.data.linkSourceView = ui.states.editor.ADDING.data.linkTargetView;
                                     ui.states.editor.ADDING.data.linkTargetView = tempSource;
                                     isValid = isValidReversed;
-                                    console.log('reversed');
                                 }
                             }
                         }
@@ -556,13 +554,15 @@ ui.defineInteractions = function () {
             if (cellView.model.isElement()) {
                 ui.showSelection();
 
-                var oldText = cellView.model.prop('name');
-                ui.prompt('<input type="text" class="form-control" id="input-filename" value="' + oldText + '">',
-                    'Edit name', function (values) {
-                        if (values && values[0] != null) {
-                            cellView.model.prop('name', values[0]);
+                ui.prompt({
+                    title: 'Edit name',
+                    value: cellView.model.prop('name'),
+                    callback: function (value) {
+                        if (value !== null) {
+                            cellView.model.prop('name', value);
                         }
-                    });
+                    }
+                });
             }
         }
     });
@@ -1316,66 +1316,43 @@ ui.setupElementResizing = function () {
 ui.alert = function (body, title) {
     'use strict';
 
-    //set the body of the modal
-    $('#body-alert-modal').html(body);
+    bootbox.alert({
+        title: title,
+        message: body
+    });
 
-    //set the title of the modal
-    if (title) {
-        $('#label-alert-modal').html(title);
-    }
-    else {
-        $('#label-alert-modal').html('alert');
-    }
-
-    $('#modal-alert').modal('show');
-    $('#close-button-alert-modal').focus();
+    // //set the body of the modal
+    // $('#body-alert-modal').html(body);
+    //
+    // //set the title of the modal
+    // if (title) {
+    //     $('#label-alert-modal').html(title);
+    // }
+    // else {
+    //     $('#label-alert-modal').html('alert');
+    // }
+    //
+    // $('#modal-alert').modal('show');
+    // $('#close-button-alert-modal').focus();
 };
 
-ui.prompt = function (body, title, callback) {
+ui.prompt = function (options) {
     'use strict';
-
-    //set the body of the modal
-    $('#body-prompt-modal').html(body);
-
-    //set the title of the modal
-    if (title) {
-        $('#label-prompt-modal').html(title);
-    }
-    else {
-        $('#label-prompt-modal').html('alert');
-    }
-
-    $('#modal-prompt').modal('show');
-
     //change state to prevent accidental deletes
     ui.states.editor.transitionTo(ui.states.editor.EDITING_TEXT);
 
-
-    $('#body-prompt-modal input')
-        .focusin(function() {
-            //makes the content of the inputs be selected when the input is focused in
-            $(this).select();
-        })
-        .keyup(function (e) {
-            //process the form when the 'enter' key is pressed
-            if (e.which === 13) {
-                processOk();
-                $('#modal-prompt').modal('hide');
-            }
-        });
-    $('#ok-button-prompt-modal').click(function () {
-        processOk();
-    });
-
-    //auto-select the first input in the modal
-    $('#body-prompt-modal input:first').focusin();
-
-    function processOk() {
+    var callback = options.callback;
+    options.callback = function (value) {
+        //change state back to VIEWING after the prompt is dismissed
         ui.states.editor.transitionTo(ui.states.editor.VIEWING);
-
-        //calls the callback function, passing an array with the values of the inputs
-        callback($.map($('#body-prompt-modal input'), function (n) {return $(n).val();}));
-    }
+        callback(value);
+    };
+    options.swapButtonOrder = true;
+    bootbox.prompt(options)
+        .on('shown.bs.modal', function(e){
+            //Automatically select the content of the input, so that the user doesn't have to
+            $(this).find('input').select();
+        });
 };
 
 ui.displayInvalidLinkMessage = function (message) {
@@ -1541,4 +1518,4 @@ $('#menu-button-toggle-contributions-display').click(function () {
 });
 
 /*definition of globals to prevent undue JSHint warnings*/
-/*globals istar:false, console:false, $:false, _:false, joint:false, uiC:false */
+/*globals istar:false, console:false, $:false, _:false, joint:false, uiC:false, bootbox:false */
