@@ -795,79 +795,6 @@ ui.connectLinksToShape = function () {
     }, 100);
 };
 
-$('#input-file-format').change(function () {
-    'use strict';
-
-    if ($(this).val() === "PNG") {
-        $('#save-png-options').removeClass('hidden');
-    }
-    else {
-        $('#save-png-options').addClass('hidden');
-    }
-
-});
-
-$('#modal-button-save-image').click(function () {
-    'use strict';
-
-    var $saveButton = $(this);
-
-    //let the user know that sometinh is being done
-    $('body *').addClass('waiting');
-    $saveButton.button('preparing');//display status information in the save button
-    $saveButton.attr('disabled', 'disabled');
-
-    //optionally fix link gaps
-    if ($('#modal-input-precise-links').prop('checked')) {
-        //this is a time-consuming function. It checks every link connection and make it perfectly fit the
-        //shape of the connected element
-        ui.connectLinksToShape();
-    }
-
-    //hide UI elements before saving
-    var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
-    $jointMarkers.hide();
-    ui.hideSelection();
-
-    //execute the actual saving only after some time has passed, allowing the browser to update the UI
-    setTimeout(function () {
-        $saveButton.button('save'); //display status information in the save button
-        var filename = $('#input-filename').val() || 'goalModel';
-
-        //Adjust the size of the model, to prevent empty spaces in the image
-        var originalWidth = istar.paper.getArea().width;
-        var originalHeight = istar.paper.getArea().height;
-        istar.paper.fitToContent({padding: 10, allowNewOrigin: 'any'});
-
-        if ($('#input-file-format').val() === "SVG") {
-            var svgData = istar.fileManager.saveSvg(istar.paper);
-            joint.util.downloadDataUri(svgData, filename + '.svg');
-        }
-        else {
-            //save PNG
-            var resolutionFactor = 1;
-            if ($('#modal-input-hi-res').prop('checked')) {
-                resolutionFactor = 4;
-            }
-            istar.fileManager.savePng('diagram', joint.util.downloadBlob, filename, resolutionFactor, $('#modal-input-transparent-background').prop('checked'));
-        }
-
-        //restore the paper to its initial state
-        istar.paper.setDimensions(originalWidth, originalHeight);
-        istar.paper.translate(0,0);
-
-        //show the UI elements back again
-        $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element').show();
-        ui.showSelection(ui.getSelectedCells()[0]);
-
-        $('body *').removeClass('waiting');
-        $saveButton.button('reset');
-        $saveButton.removeAttr('disabled');
-        $('#modal-save-image').modal('hide');
-    }, 100);
-
-});
-
 $('#menu-button-save-model').click(function () {
     'use strict';
 
@@ -941,6 +868,7 @@ ui.setupUi = function () {
     this.setupLoadExampleButton();
     this.setupMainMenuInteraction();
     this.setupSidepanelInteraction();
+    this.setupSaveImageModal();
 
     ui.selectPaper();
 
@@ -954,6 +882,86 @@ ui.setupUi = function () {
             ui.selectPaper();
         };
     }
+};
+
+ui.setupSaveImageModal = function() {
+    'use strict';
+
+    //save model when Enter is pressed
+    $('#modal-save-image-form').on('submit', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $('#modal-button-save-image').click();
+    });
+
+    $('#input-file-format').change(function () {
+        if ($(this).val() === "PNG") {
+            $('#save-png-options').removeClass('hidden');
+        }
+        else {
+            $('#save-png-options').addClass('hidden');
+        }
+
+    });
+
+    $('#modal-button-save-image').click(function () {
+        var $saveButton = $(this);
+
+        //let the user know that sometinh is being done
+        $('body *').addClass('waiting');
+        $saveButton.button('preparing');//display status information in the save button
+        $saveButton.attr('disabled', 'disabled');
+
+        //optionally fix link gaps
+        if ($('#modal-input-precise-links').prop('checked')) {
+            //this is a time-consuming function. It checks every link connection and make it perfectly fit the
+            //shape of the connected element
+            ui.connectLinksToShape();
+        }
+
+        //hide UI elements before saving
+        var $jointMarkers = $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element');
+        $jointMarkers.hide();
+        ui.hideSelection();
+
+        //execute the actual saving only after some time has passed, allowing the browser to update the UI
+        setTimeout(function () {
+            $saveButton.button('save'); //display status information in the save button
+            var filename = $('#input-filename').val() || 'goalModel';
+
+            //Adjust the size of the model, to prevent empty spaces in the image
+            var originalWidth = istar.paper.getArea().width;
+            var originalHeight = istar.paper.getArea().height;
+            istar.paper.fitToContent({padding: 10, allowNewOrigin: 'any'});
+
+            if ($('#input-file-format').val() === "SVG") {
+                var svgData = istar.fileManager.saveSvg(istar.paper);
+                joint.util.downloadDataUri(svgData, filename + '.svg');
+            }
+            else {
+                //save PNG
+                var resolutionFactor = 1;
+                if ($('#modal-input-hi-res').prop('checked')) {
+                    resolutionFactor = 4;
+                }
+                istar.fileManager.savePng('diagram', joint.util.downloadBlob, filename, resolutionFactor, $('#modal-input-transparent-background').prop('checked'));
+            }
+
+            //restore the paper to its initial state
+            istar.paper.setDimensions(originalWidth, originalHeight);
+            istar.paper.translate(0,0);
+
+            //show the UI elements back again
+            $('.marker-vertices, .link-tools, .marker-arrowheads, .remove-element').show();
+            ui.showSelection(ui.getSelectedCells()[0]);
+
+            $('body *').removeClass('waiting');
+            $saveButton.button('reset');
+            $saveButton.removeAttr('disabled');
+            $('#modal-save-image').modal('hide');
+        }, 100);
+
+    });
 };
 
 ui.setupPluginMenu = function () {
