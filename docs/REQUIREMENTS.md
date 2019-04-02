@@ -314,3 +314,12 @@ modeling language and tool
 - *Notes*:
   - TBD
 </details>
+
+<details><summary>
+
+**As a** modeler 
+**I want to** be able to load language extensions at runtime
+ **so that** I can document concepts that are not supported by the standard iStar 2.0 </summary>
+- *Notes*:
+  - TBD
+</details>
