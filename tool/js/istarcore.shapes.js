@@ -181,7 +181,8 @@ joint.shapes.istar.Hazard = joint.shapes.basic.Rect.extend({
             text: {
                 text: '<<hazard>> Hazard',
                 'font-size': 12,
-                'font-weight': 'bold'
+                'font-weight': 'bold',
+		'fill': 'white'
             }
         }
     }, joint.shapes.basic.Rect.prototype.defaults)
