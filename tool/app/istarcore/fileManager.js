@@ -307,6 +307,15 @@ istar.fileManager = function() {
                 }
 
                 var toCollapse = [];
+
+                if (inputModel.orphans) {
+                    //create orphan elements
+                    _.forEach(inputModel.orphans, function (element) {
+                        var orphan = addLoadedElement(element, inputModel.display);
+
+                    });
+                }
+
                 if (inputModel.actors) {
                     //create actors and inner elements
                     for (var i = 0; i < inputModel.actors.length; i++) {
@@ -396,13 +405,7 @@ istar.fileManager = function() {
                         toCollapse[i].collapse();
                     }
                 }
-                if (inputModel.orphans) {
-                    //create orphan elements
-                    _.forEach(inputModel.orphans, function (element) {
-                        var orphan = addLoadedElement(element, inputModel.display);
 
-                    });
-                }
             }
             if (_.size(invalidMessages)>0) {
                 istar.displayInvalidModelMessages(invalidMessages);
