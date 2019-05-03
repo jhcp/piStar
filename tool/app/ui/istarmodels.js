@@ -1,4 +1,4 @@
-/*!
+''/*!
  * This is open-source. Which means that you can contribute to it, and help
  * make it better! Also, feel free to use, modify, redistribute, and so on.
  *
@@ -3525,7 +3525,7 @@ istar.models.smartHome = {
             "collapsed": true
         }
     },
-    "tool": "pistar.2.0.0a",
+    "tool": "pistar.2.0.0",
     "istar": "2.0",
     "saveDate": "Thu, 14 Mar 2019 01:11:45 GMT",
     "diagram": {
@@ -4878,7 +4878,7 @@ istar.models.buyerDrivenECommerce = {
             "collapsed": true
         }
     },
-    "tool": "pistar.2.0.0a",
+    "tool": "pistar.2.0.0",
     "istar": "2.0",
     "saveDate": "Thu, 14 Mar 2019 14:17:02 GMT",
     "diagram": {
