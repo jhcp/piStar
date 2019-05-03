@@ -133,6 +133,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                     var newNode = istar.replaceNode(updatedElement, istar.metamodel.nodes[newValue].name)
                         .prop('isDependum', true);
                     ui.selectCell(newNode);
+                    ui.collectActionData('edit', 'change', 'change dependum type');
                 },
                 value: currentType
             })
@@ -153,6 +154,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                 source: valueNames,
                 success: function (response, newValue) {
                     ui.getSelectedCells()[0].prop('value', newValue);
+                    ui.collectActionData('edit', 'change', 'change contribution value');
                 },
                 value: element.prop('value')
             })
@@ -175,7 +177,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
         $('#add-property-button-area').html('<a href="#" id="add-property-button" class="property-add" data-type="text" data-pk="1"           data-name="name" data-title="Enter description" data-placeholder="ahhhh" title="Add a new property to this element">        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>        Add Property</a>');
         // $('#add-property-button-area').html('<button type="button" id="addPropertyButton">Add Property</button>');
         // $('#cell-buttons').html('<button type="button" id="addPropertyButton">Add Property</button>');
-        $('#add-property-button').click(function () {
+        $('#add-property-button').click(function (e) {
             var newPropertyName = window.prompt('Name of the new custom property:', 'newProperty');
             if (newPropertyName) {
                 var isValidName = false;
@@ -201,6 +203,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                     ui.alert(validityMessage, 'Invalid property name');
                 }
             }
+            ui.collectActionData('click', e.currentTarget.id);
         });
     },
     clearOptionsPanel: function () {
@@ -214,12 +217,14 @@ ui.components.PropertiesTableView = Backbone.View.extend({
         $('#cell-actions').append(
             '<a id="collapse-expand-actor-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: alt+click the actor">Collapse/Expand</a><br>'
         );
-        $('#collapse-expand-actor-button').click(function () {
+        $('#collapse-expand-actor-button').click(function (e) {
             if (ui.getSelectedCells()) {
                 ui.hideSelection();//remove the focus from the actor
                 ui.getSelectedCells()[0].toggleCollapse();
                 ui.showSelection();//give the focus back to actor, now collapsed or expanded
             }
+
+            ui.collectActionData('click', e.currentTarget.id);
         });
     },
     setupChangeDirectionButton: function () {
@@ -229,7 +234,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
             $('#cell-actions').append(
                 '<a id="flip-direction-button" class="btn btn-default btn-xs button-horizontal" title="Change the direction of the dependency">Flip direction</a><br>'
             );
-            $('#flip-direction-button').click(function () {
+            $('#flip-direction-button').click(function (e) {
                 var dependum = ui.getSelectedCells()[0];
                 if (dependum) {
                     var connectedLinks = istar.graph.getConnectedLinks(dependum);
@@ -290,6 +295,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                         ui.displayInvalidLinkMessage(isValid.message + '. Thus, this Dependency currently cannot be flipped');
                     }
                 }
+                ui.collectActionData('click', e.currentTarget.id);
             });
         }
     },
@@ -300,10 +306,11 @@ ui.components.PropertiesTableView = Backbone.View.extend({
             '<a id="clear-vertices-button" class="btn btn-default btn-xs button-horizontal" ' +
             'title="This deletes all vertices in this link. To delete an individual vertex, double click the vertex.">Clear vertices</a><br>'
         );
-        $('#clear-vertices-button').click(function () {
+        $('#clear-vertices-button').click(function (e) {
             if (ui.getSelectedCells()) {
                 ui.getSelectedCells()[0].vertices([]);
             }
+            ui.collectActionData('click', e.currentTarget.id);
         });
     },
     setupDeleteButton: function () {
@@ -313,11 +320,12 @@ ui.components.PropertiesTableView = Backbone.View.extend({
             $('#cell-actions').append(
                 '<a id="delete-element-button" class="btn btn-default btn-xs button-horizontal" title="Shortcut: Delete key">Delete</a><br>'
             );
-            $('#delete-element-button').click(function () {
+            $('#delete-element-button').click(function (e) {
                 if (ui.getSelectedCells()) {
                     ui.getSelectedCells()[0].remove();
                     ui.selectPaper();
                 }
+                ui.collectActionData('click', e.currentTarget.id);
             });
         }
     },

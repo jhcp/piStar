@@ -178,7 +178,9 @@ var ui = function() {
                 }
 
             }
-        }
+        },
+        collectActionData: function(a,b,c) {console.log(a,b,c); /* empty function added when deploying */ },
+        collectErrorData: function() { /* empty function added when deploying */ }
     };
 }();
 
@@ -1024,6 +1026,7 @@ ui.setupLoadExampleButton = function () {
             $('#modal-examples').modal('hide');
         }, 100);
 
+        ui.collectActionData('click', 'load example', modelToLoad);
     });
 };
 
@@ -1382,6 +1385,7 @@ ui.displayInvalidLinkMessage = function (message) {
     else {
         ui.alert('INVALID: Sorry, but this link you are trying to create is invalid');
     }
+    ui.collectErrorData('error');
 };
 
 ui.displayInvalidModelMessage = function (messages) {

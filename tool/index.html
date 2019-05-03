@@ -36,7 +36,7 @@ https://github.com/jhcp/pistar
         <div id="logo">
             <img src="app/ui/images/logo-pie.svg" width="21" height="21" title="a pie" alt=""/>
             <img id="star" src="app/ui/images/logo-star.svg" width="12" height="12" title="a star" alt=""/>
-            <a href="index.html" target="_blank" title="Open a instance of the tool in a new tab">piStar</a>
+            <a id="logo-name" href="index.html" target="_blank" title="Open an instance of the tool in a new tab">piStar</a>
         </div>
         <nav class="menu-items">
             <a class="menu-item" href="#" id="menu-item-file" data-toggle="menu-file">File</a>
@@ -203,12 +203,12 @@ https://github.com/jhcp/pistar
             <div class="menu-group">
                 <div class="menu-line">
 
-                    <a class="btn btn-default" data-toggle="modal" data-target="#modal-examples">Examples</a>
-                    <a class="btn btn-default" data-toggle="modal" data-target="#modal-instructions">Quick Help</a>
-                    <a class="btn btn-default" href="https://sites.google.com/site/istarlanguage/" target="_blank">
+                    <a id="menu-button-examples" class="btn btn-default" data-toggle="modal" data-target="#modal-examples">Examples</a>
+                    <a id="menu-button-quickhelp" class="btn btn-default" data-toggle="modal" data-target="#modal-instructions">Quick Help</a>
+                    <a id="menu-button-language-guide" class="btn btn-default" href="https://sites.google.com/site/istarlanguage/" target="_blank">
                         iStar 2.0 Language Guide <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
                     </a>
-                    <a class="btn btn-default" href="https://github.com/jhcp/piStar/blob/master/RESEARCH.md#research" target="_blank">
+                    <a id="menu-button-research" class="btn btn-default" href="https://github.com/jhcp/piStar/blob/master/RESEARCH.md#research" target="_blank">
                         Research <span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>
                     </a>
 
@@ -428,7 +428,7 @@ https://github.com/jhcp/pistar
                     <button id="modal-button-load-model" type="button" class="btn btn-primary" data-loading-text="Loading...">Load
                         model
                     </button>
-                    <button type="button" class="btn" data-dismiss="modal">Close</button>
+                    <button id="modal-button-close-load-model" type="button" class="btn" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
