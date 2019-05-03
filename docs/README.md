@@ -18,6 +18,9 @@ All dependencies are included in this project's repository, so that you can easi
   - [lodash](https://lodash.com/)
 - **[X-editable](https://vitalets.github.io/x-editable/)** - This library is used to provide an easy, user-friendly way to edit content in the tool. It is used, for instance, in the Properties panel.
 - **[Bootstrap 3](http://getbootstrap.com/)** - Because we want our tool to have an organized look-and-feel.
+- **[Bootbox](http://bootboxjs.com/)** - Because we want uniform cross-browser dialogs. Also, native javascript popup boxes
+remove the tool from fullscreen on some browsers, which is an undesired behavior. By using modals instead this issue is 
+prevented.
 
 ## Static Analysis
 In order to prevent some silly mistakes and improve browser compatibility, the source code of this project is checked with:

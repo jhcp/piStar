@@ -36,6 +36,7 @@ The model above represents the following JSON object:
       ]
     }
   ],
+  "orphans": [],
   "dependencies": [],
   "links": [
     {
@@ -46,9 +47,9 @@ The model above represents the following JSON object:
     }
   ],
   "display": {},
-  "tool": "pistar.1.1.0",
+  "tool": "pistar.2.0.0",
   "istar": "2.0",
-  "saveDate": "Thu, 15 Mar 2018 10:28:46 GMT",
+  "saveDate": "Thu, 15 Mar 2019 10:28:46 GMT",
   "diagram": {
     "width": 1700,
     "height": 1300
@@ -58,6 +59,8 @@ The model above represents the following JSON object:
 
 This model has one actor, named (```text```) "Developer".
 This actor has two nodes: "Process an i* model", which is a Goal; and "Use a JSON parser", which is a Task.
+
+This model has no orphan elements (i.e., elements outside actors or dependencies).
 
 This model has no dependencies.
 
@@ -191,6 +194,7 @@ The model above represents the following JSON object:
       ]
     }
   ],
+  "orphans": [],
   "dependencies": [
     {
       "id": "fd083df6-87fc-4423-b25c-3291a1bf9aa3",
@@ -403,6 +407,19 @@ ways:
  according to its version
  - Indirectly, By providing an external utility to convert older models to the newest schema
 
+### From 1.1.0 to 2.0.0
+Starting from version 2.0.0, the piStar's JSON objects now has a ```orphans``` object in its root. It is used to store
+elements that are not part of an actor or of a dependency. This object is not necessary in regular iStar 2.0
+models, but it can be used for variations such as Tropos, where elements are added directly to the paper.
+
+#### Compatibility:
+ - Does this break loading 1.1.0 models into piStar 2.0.0?
+   - No, if the orphan object is undefined it will be ignored.
+ - Does this break loading 2.0.0 models into piStar 1.1.0?
+   - No, the orphan elements will simply be ignored. Since i* 2.0 itself has no orhpan elements, this is usually a non-issue.
+   However, if extensions created with 2.0.0 or newer have orphan elements, they will not be displayed in versions
+   prior to 2.0.0.
+   
 ### From 1.0.1 to 1.1.0
 Starting from version 1.1.0, the piStar's JSON objects now has a ```display``` object in its root.
 This ```display``` object is meant to store visual information of the diagrams, such as
