@@ -3,16 +3,35 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [Release v2.0.0] - 2019-04-06
+
 ### Added
 - UI Error messages when adding invalid links between nodes. E.g., when adding a contribution link
 from a task to another task
 - Automatically expand actor when adding an element inside a collapsed actor, in order to prevent the feeling
 that the inserted element is outside the actor
-- Now the user can select whether to save PNG images with high resolution (default) or with original resolution (the same size as seen in the tool)
+- Now the user can set a name to the image file for saving
+- Now the user can select whether to save PNG images with high resolution (default) or with original
+ resolution (the same size as seen in the tool). There is also an option to have a transparent background or not
 - Option to change the background color of individual elements
 - Now every element that is added to the model comes with a "Description" property by default
 - Now users are able to add custom data (custom properties) to the model itself, rather than just to its elements
+- Now users are able to add custom data (custom properties) to links, rather than just elements
 - Now users are able to change the type of a dependency (dependum)
+- Now users are able to change the direction of a dependency (flip direction)
+- Now users are able to change the value/label of a contribution link
+- Straighten all links - option to remove every vertex of the model links, making them straight
+- Nodes can now be resized
+- Add UI button to delete element
+- Additional iStar 2.0 language constraints enforced: "A single element can be AND-refined or OR-refined, but not both";
+ "For a dependency, if a depender element x exists, then x cannot be refined or contributed to" 
+- Add Bootbox dependency
+- Add (invisible) plugins menu
+- Enable users to delete all the vertices of a single link (button)
+- Add large model example (Contextual Smart Home)
+- Display warnings if loading invalid models
+- Add stereotyped default shapes for metamodel elements that haven't had their shapes defined
+
 
 ### Changed
 - Revamped UI, with collapsable toolbars menu on the top and collapsable panel on the left (for element/link specific content). This repositioning aims to address the complaint of having to scroll
@@ -26,6 +45,18 @@ from CamelCase to snake-case. E.g.: addButton -> add-button
 - when saving the model as a PNG image, now its background is transparent
 - Links are now rounded by default when they have vertices.
 Except for depedency links and contribution links, which are curved
+- The shortcut to collapse/expand actors is now alt+click. The previous ctrl+click shortcut will be
+eventually removed, considering that in the future ctrl may used for multiple selections.
+- Extensive refactoring of folder structure, file naming and object naming to make the code easier to understand.
+- Changed link deletion
+- Refined visuals of links
+- Update e-Commerce example to conform with newly enforced dependency constraints
+- Added text to existing examples, with explicit permission from the original authors 
+- All native javascript popup boxes (alert, confirm, prompt) replaced with Bootbox popups for more flexibility,
+for cross-browser uniformity, and to preventing unintentionally removing the browser from fullscreen
+- Now qualification and needed-by links can be added in any order (source and target automatically defined) 
+- Other UI improvements
+- Auto-increase paper not only to the right and bottom but also to the left and top
 
 ### Removed
 - Aiming to save bandwidth, the following CSS styles that are not likely to be used in the context of this tool have
