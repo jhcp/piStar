@@ -1123,15 +1123,20 @@ $('#menu-button-toggle-fullscreen').click(function () {
 $('#menu-button-straighten-links').click(function () {
     'use strict';
 
-    if (confirm("ATTENTION! This action will remove all vertices you may have added to the links in this model. Are you sure you want to do this?")) {
-        var selectedCell = ui.getSelectedCells()[0];
-        _.forEach(istar.getLinks(), function (link) {
-            link.vertices([]);
-        });
+    ui.confirm({
+        message: 'ATTENTION! This action will remove all vertices you may have added to the links in this model. Are you sure you want to do this?',
+        callback: function (value) {
+            if (value) {
+                var selectedCell = ui.getSelectedCells()[0];
+                _.forEach(istar.getLinks(), function (link) {
+                    link.vertices([]);
+                });
 
-        //restore selection to the element that was selected (if any) when the action started
-        ui.selectCell(selectedCell);
-    }
+                //restore selection to the element that was selected (if any) when the action started
+                ui.selectCell(selectedCell);
+            }
+        }
+    });
 });
 
 ui.changeAddMenuStatus = function (text) {
@@ -1328,20 +1333,25 @@ ui.alert = function (body, title) {
         title: title,
         message: body
     });
+};
 
-    // //set the body of the modal
-    // $('#body-alert-modal').html(body);
-    //
-    // //set the title of the modal
-    // if (title) {
-    //     $('#label-alert-modal').html(title);
-    // }
-    // else {
-    //     $('#label-alert-modal').html('alert');
-    // }
-    //
-    // $('#modal-alert').modal('show');
-    // $('#close-button-alert-modal').focus();
+ui.confirm = function (options) {
+    'use strict';
+    //change state to prevent accidental deletes
+    ui.states.editor.transitionTo(ui.states.editor.EDITING_TEXT);
+
+    var callback = options.callback;
+    options.callback = function (value) {
+        //change state back to VIEWING after the prompt is dismissed
+        ui.states.editor.transitionTo(ui.states.editor.VIEWING);
+        callback(value);
+    };
+    options.swapButtonOrder = true;
+    bootbox.confirm(options);
+    // .on('shown.bs.modal', function(e){
+    //     Automatically select the content of the input, so that the user doesn't have to
+    // $(this).find('input').select();
+    // });
 };
 
 ui.prompt = function (options) {
@@ -1398,10 +1408,14 @@ istar.displayInvalidModelMessages = ui.displayInvalidModelMessage;
 $('#menu-button-new-model').click(function () {
     'use strict';
 
-    var confirmed = confirm('Are you sure you want to create a new model and delete the current model?');
-    if (confirmed) {
-        istar.clearModel();
-    }
+    ui.confirm({
+        message: 'Are you sure you want to create a new model and delete the current model?',
+        callback: function (result) {
+            if (result === true) {
+                istar.clearModel();
+            }
+        }
+    });
 });
 
 ui.changeDependencyLinksOpacity = function (dependumOpacity, linkOpacity) {
