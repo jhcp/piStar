@@ -187,8 +187,9 @@ istar.fileManager = function() {
             });
             _.forEach(istar.graph.getLinks(), function (link) {
                 var linkJSON = linkToJSON(link);
-                if (link.isContributionLink()) {
-                    linkJSON.label = link.prop('value');//link.attributes.labels[0].attrs.text.text;
+                var typeName = link.prop('type');
+                if (istar.metamodel.nodeLinks[typeName] && istar.metamodel.nodeLinks[typeName].changeableLabel) {
+                    linkJSON.label = link.prop('value');
                 }
 
                 var vertices = link.get('vertices');
