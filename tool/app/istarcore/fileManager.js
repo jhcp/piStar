@@ -480,7 +480,8 @@ istar.fileManager = function() {
                         if (linkJSON.customProperties) {
                             newLink.prop('customProperties', linkJSON.customProperties);
                         }
-                        if (typeNameWithoutPrefix === 'ContributionLink') {
+                        var shapeObject = new istar.metamodel.nodeLinks[typeNameWithoutPrefix].shapeObject();
+                        if (shapeObject.attr('smooth')) {
                             newLink.on('change:vertices', ui._toggleSmoothness);
                         }
                         return newLink;
