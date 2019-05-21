@@ -127,6 +127,7 @@ istar.setupMetamodel = function (metamodel) {
             attachShapeObject(cellType, metamodel, 'node');
             createIsCellFunctions(cellType);
             createAddElementFunction(cellType);
+            setupNodeAttributesDefaultValues(cellType);
         });
         _.forEach(metamodel.containerLinks, function (cellType) {
             attachShapeObject(cellType, metamodel, 'containerLink');
@@ -234,6 +235,16 @@ istar.setupMetamodel = function (metamodel) {
         joint.dia.Cell.prototype.isCell = function () {
             return true;
         };
+    }
+
+    function setupNodeAttributesDefaultValues (elementType) {
+        //canBeInnerElement default value: false
+        //canBeDependum default value: false
+        //canBeOnPaper default value: true
+
+        if (elementType.canBeOnPaper === undefined) {
+            elementType.canBeOnPaper = true;
+        }
     }
 };
 
