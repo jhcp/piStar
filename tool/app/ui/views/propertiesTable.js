@@ -261,12 +261,12 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                         connectedLinks[0].prop('source/id', connectedLinks[0].prop('target/id'));
                         connectedLinks[0].prop('target/id', originalSource);
                         if (istar.graph.getCell(originalSource).isKindOfActor()) {
-                            connectedLinks[0].prop('target/selector', 'circle');
+                            connectedLinks[0].prop('target/selector', 'actorSymbol');
                         } else {
                             connectedLinks[0].prop('target/selector', 'text');
                         }
                         if (istar.graph.getCell(connectedLinks[0].prop('source/id')).isKindOfActor()) {
-                            connectedLinks[0].prop('source/selector', 'circle');
+                            connectedLinks[0].prop('source/selector', 'actorSymbol');
                         } else {
                             connectedLinks[0].prop('source/selector', 'text');
                         }
@@ -279,12 +279,12 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                         connectedLinks[1].prop('source/id', connectedLinks[1].prop('target/id'));
                         connectedLinks[1].prop('target/id', originalSource);
                         if (istar.graph.getCell(originalSource).isKindOfActor()) {
-                            connectedLinks[1].prop('target/selector', 'circle');
+                            connectedLinks[1].prop('target/selector', 'actorSymbol');
                         } else {
                             connectedLinks[1].prop('target/selector', 'text');
                         }
                         if (istar.graph.getCell(connectedLinks[1].prop('source/id')).isKindOfActor()) {
-                            connectedLinks[1].prop('source/selector', 'circle');
+                            connectedLinks[1].prop('source/selector', 'actorSymbol');
                         } else {
                             connectedLinks[1].prop('source/selector', 'text');
                         }
