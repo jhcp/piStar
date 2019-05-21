@@ -508,7 +508,7 @@ istar.fileManager = function() {
             function isDependencyLink (linkJSON) {
                 var result = false;
                 if (linkJSON.id && linkJSON.type) {
-                    if (linkJSON.type === 'istar.DependencyLink') {
+                    if (linkJSON.type.includes('DependencyLink')) {
                         result = true;
                     }
                 }
