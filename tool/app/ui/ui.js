@@ -613,6 +613,12 @@ ui.addElementOnPaper = function (options) {
 
         if (isValid.isValid) {
             var newActor = istar['add' + currentAddingElement]('', options);
+            if (istar.metamodel.nodes[currentAddingElement] && istar.metamodel.nodes[currentAddingElement].customProperties) {
+                newActor.prop('customProperties', istar.metamodel.nodes[currentAddingElement].customProperties);
+            }
+            else if (istar.metamodel.containers[currentAddingElement] && istar.metamodel.containers[currentAddingElement].customProperties) {
+                newActor.prop('customProperties', istar.metamodel.containers[currentAddingElement].customProperties);
+            }
             newActor.prop('customProperties/Description', '');
             ui.selectCell(newActor);
         }
@@ -650,6 +656,10 @@ ui.addElementOnContainer = function (cellView, options) {
             options.position.y -= bbox.height/2;
 
             var element = ui.addNodeInPlace(cellView.model, istar['add' + currentAddingElement], options);
+
+            if (istar.metamodel.nodes[currentAddingElement].customProperties) {
+                element.prop('customProperties', istar.metamodel.nodes[currentAddingElement].customProperties);
+            }
             element.prop('customProperties/Description', '');
             ui.selectCell(element);
         }
