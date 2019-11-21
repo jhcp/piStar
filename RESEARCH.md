@@ -10,6 +10,18 @@ If you need to mention the piStar tool, please reference this publication:
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- João Pimentel, Jaelson Castro, Moniky Ribeiro, Alberto Souza, Breno Ramos. Creating Modelling Tools for i* Language Extensions. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper16.pdf]
+
+- Xavier Franch, Lidia López, Jordi Marco. Algebraic Definition of iStar2.0 Models. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper3.pdf]
+
+- Moniky Ribeiro, Jaelson Castro, João Pimentel. iStar for Safety-Critical Systems. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper15.pdf]
+
+- Roxana L.Q. Portugal, Julio Cesar Sampaio do Prado Leite . Challenges in Modeling Non-Functional Requirements Collaboratively. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper11.pdf]
+
+- Marcio Louzada de Freitas, Renata S. S. Guizzardi, Vítor E. Silva Souza. GRALD: an Approach for Goal and Risk Analysis in the Development of Information Systems for the Web of Data. Journal of Software Engineering Research and Development, v. 7, p. 4:1 - 4:13,  2019. ISSN 2195-1721. [https://sol.sbc.org.br/journals/index.php/jserd/article/view/18]
+
+- Inmaculada Ayala, Mercedes Amor, Jose-Miguel Horcas, Lidia Fuentes. A goal-driven software product line approach for evolving multi-agent systems in the Internet of Things. Knowledge-Based Systems. Volume 184, 2019. [https://www.sciencedirect.com/science/article/abs/pii/S0950705119303521]
+
 - Pimentel, João and Castro, Jaelson. piStar Tool – A Pluggable Online Tool for Goal Modeling. 2018 IEEE 26th International Requirements Engineering Conference, pp. 498-499. [http://www.cin.ufpe.br/~jhcp/publica/pistar%20tool%20re2018.pdf]
 
 - In Portuguese: Santos, Max G., and Pimentel, João. "Compartilhamento de Modelos iStar 2.0 em Ferramentas de Modelagem Online - o Caso da piStar." Revista de Engenharia e Pesquisa Aplicada 3.2 (2018). [http://dx.doi.org/10.25286/repa.v3i2.885]
