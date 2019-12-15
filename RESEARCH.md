@@ -18,6 +18,8 @@ If you need to mention the piStar tool, please reference this publication:
 
 - Roxana L.Q. Portugal, Julio Cesar Sampaio do Prado Leite . Challenges in Modeling Non-Functional Requirements Collaboratively. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper11.pdf]
 
+- Jaume Devesa Llinares, Oscar Pastor López. Aplying Modelling Techniques for the Development of a Strategic Plan in a Large Corporation. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper12.pdf]
+
 - Marcio Louzada de Freitas, Renata S. S. Guizzardi, Vítor E. Silva Souza. GRALD: an Approach for Goal and Risk Analysis in the Development of Information Systems for the Web of Data. Journal of Software Engineering Research and Development, v. 7, p. 4:1 - 4:13,  2019. ISSN 2195-1721. [https://sol.sbc.org.br/journals/index.php/jserd/article/view/18]
 
 - Inmaculada Ayala, Mercedes Amor, Jose-Miguel Horcas, Lidia Fuentes. A goal-driven software product line approach for evolving multi-agent systems in the Internet of Things. Knowledge-Based Systems. Volume 184, 2019. [https://www.sciencedirect.com/science/article/abs/pii/S0950705119303521]
