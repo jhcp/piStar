@@ -1,15 +1,18 @@
 # Research
 
-## How to reference the piStar tool
+## How to cite the piStar tool
 
-If you need to mention the piStar tool, please reference this publication: 
+If you need to mention the piStar tool, please reference one of our papers about it: 
 
-- Pimentel, João and Castro, Jaelson. piStar Tool – A Pluggable Online Tool for Goal Modeling. 2018 IEEE 26th International Requirements Engineering Conference, pp. 498-499. [http://www.cin.ufpe.br/~jhcp/publica/pistar%20tool%20re2018.pdf]
+- João Pimentel, Jaelson Castro, Moniky Ribeiro, Alberto Souza, Breno Ramos. Creating Modelling Tools for i* Language Extensions. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper16.pdf]
+
+- João Pimentel and Jaelson Castro. piStar Tool – A Pluggable Online Tool for Goal Modeling. 2018 IEEE 26th International Requirements Engineering Conference, pp. 498-499. [http://www.cin.ufpe.br/~jhcp/publica/pistar%20tool%20re2018.pdf]
 
 ## Research work that uses, extends or mentions the piStar tool.
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- In Portuguese: César Henrique Bernabé. GORO: uma ontologia sobre requisitos orientados a objetivos. M.Sc dissertation, Universidade Federal do Espírito Santo (UFES), 2020.
 - João Pimentel, Jaelson Castro, Moniky Ribeiro, Alberto Souza, Breno Ramos. Creating Modelling Tools for i* Language Extensions. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper16.pdf]
 
 - Xavier Franch, Lidia López, Jordi Marco. Algebraic Definition of iStar2.0 Models. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper3.pdf]
