@@ -12,7 +12,10 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- Putu Arya Pradipta, Bayu Hendradjaya, Hari Purnama. Tool Development for Requirements Modelling using iStar 2.0. [https://www.researchgate.net/profile/Hari_Purnama4/publication/341778681_Tool_Development_for_Requirements_Modelling_using_iStar_20/links/5ed3c22d299bf1c67d2cd31c/Tool-Development-for-Requirements-Modelling-using-iStar-20.pdf]
+
 - In Portuguese: César Henrique Bernabé. GORO: uma ontologia sobre requisitos orientados a objetivos. M.Sc dissertation, Universidade Federal do Espírito Santo (UFES), 2020.
+
 - João Pimentel, Jaelson Castro, Moniky Ribeiro, Alberto Souza, Breno Ramos. Creating Modelling Tools for i* Language Extensions. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper16.pdf]
 
 - Xavier Franch, Lidia López, Jordi Marco. Algebraic Definition of iStar2.0 Models. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper3.pdf]
