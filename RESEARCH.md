@@ -12,6 +12,14 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- Enyo Gonçalves, Guilherme Rodrigues, Paulo Miranda, João Pimentel, João Araujo, Jaelson Castro. piStar-ext: Supporting the Creation of iStar Extensions with the piStar Tool. 13th International iStar Workshop, 2020. [http://ceur-ws.org/Vol-2641/paper_06.pdf]
+
+- Anna Perini, Angelo Susi, Artem Gabbasov, Paolo Busetta, Daniele Dellagiacoma, Maurizio Astegher, Matteo Pedrotti, Matteo Longato. Using i* to Understand the Domain of Video Tutorial for Online Training. 13th International iStar Workshop, 2020. [http://ceur-ws.org/Vol-2641/paper_03.pdf]
+
+- Christophe Ponsard, Robert Darimont. Regulation and Security Modelling of Essential Services in Network of Information Systems. 13th International iStar Workshop, 2020. [http://ceur-ws.org/Vol-2641/paper_08.pdf]
+
+- Xavier Franch. Using i* to Describe Data Structures. 13th International iStar Workshop, 2020. [http://ceur-ws.org/Vol-2641/paper_09.pdf]
+
 - Putu Arya Pradipta, Bayu Hendradjaya, Hari Purnama. Tool Development for Requirements Modelling using iStar 2.0. [https://www.researchgate.net/profile/Hari_Purnama4/publication/341778681_Tool_Development_for_Requirements_Modelling_using_iStar_20/links/5ed3c22d299bf1c67d2cd31c/Tool-Development-for-Requirements-Modelling-using-iStar-20.pdf]
 
 - In Portuguese: César Henrique Bernabé. GORO: uma ontologia sobre requisitos orientados a objetivos. M.Sc dissertation, Universidade Federal do Espírito Santo (UFES), 2020.
