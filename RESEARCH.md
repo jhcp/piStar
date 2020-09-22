@@ -12,6 +12,17 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- Catarina Gralha, Miguel Goulão & João Araujo. Are there gender differences when interacting with social goal models? A quasi-experiment. Empirical Software Engineering, 2020.
+[https://link.springer.com/article/10.1007/s10664-020-09883-y]
+
+- Iain Barclay, Maria Freytsis, Sherri Bucher, Swapna Radha, Alun Preece, Ian Taylor. Towards a Modelling Framework for Self-Sovereign Identity Systems. [https://arxiv.org/pdf/2009.04327.pdf]
+
+- Diogo Henrique de Jesus Lopes Albuquerque. A Sustainability Catalogue for Software Modelling. Master's Dissertation [https://run.unl.pt/handle/10362/103842]
+
+- Ana Maria da Mota Moura, Julio Cesar Sampaio do Prado Leite. JiStar - Rastreabilidade Entre Código Java e Modelos de Metas i*. 23rd Workshop on Requirements Engineering (WER), 2020 [http://wer.inf.puc-rio.br/WERpapers/artigos/artigos_WER20/15_WER_2020_paper_25.pdf]
+
+- João Pimentel, Maria Lencastre. Would You Like Better Visualization for Requirements Prioritization and Release Planning? 23rd Workshop on Requirements Engineering (WER), 2020 [http://wer.inf.puc-rio.br/WERpapers/artigos/artigos_WER20/22_WER_2020_paper_41.pdf]
+
 - Enyo Gonçalves, Guilherme Rodrigues, Paulo Miranda, João Pimentel, João Araujo, Jaelson Castro. piStar-ext: Supporting the Creation of iStar Extensions with the piStar Tool. 13th International iStar Workshop, 2020. [http://ceur-ws.org/Vol-2641/paper_06.pdf]
 
 - Anna Perini, Angelo Susi, Artem Gabbasov, Paolo Busetta, Daniele Dellagiacoma, Maurizio Astegher, Matteo Pedrotti, Matteo Longato. Using i* to Understand the Domain of Video Tutorial for Online Training. 13th International iStar Workshop, 2020. [http://ceur-ws.org/Vol-2641/paper_03.pdf]
