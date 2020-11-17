@@ -12,6 +12,8 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- Kaushik Madala; Ke Ye Hang; Hyunsook Do; Bastian Tenbergen. SACC - A property driven approach to expose undesired behaviors among system’s components. 2020 IEEE 31st International Symposium on Software Reliability Engineering (ISSRE), 2020. [https://doi.org/10.1109/ISSRE5003.2020.00043]
+
 - Catarina Gralha, Miguel Goulão & João Araujo. Are there gender differences when interacting with social goal models? A quasi-experiment. Empirical Software Engineering, 2020.
 [https://link.springer.com/article/10.1007/s10664-020-09883-y]
 
