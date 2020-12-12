@@ -809,7 +809,9 @@ ui.connectLinksToShape = function () {
 
 $('#menu-button-save-model').click(function () {
     'use strict';
-
+    // 
+    // mod4
+    // 
     var model = istar.fileManager.saveModel();
     var csvData = 'data:text/json;charset=utf-8,' + (encodeURI(model));
     joint.util.downloadDataUri(csvData, 'goalModel.txt');
@@ -847,7 +849,9 @@ $('#modal-button-load-model').click(function () {
                         $('#modal-button-load-model').button('reset');
                     };
                     fileReader.readAsText(file);
-
+                    // 
+                    // mod1
+                    console.log("archivo cargado");  //mod1   una vez las comprobaciones echas se llama mi funcion 
                 }
                 else {
                     ui.alert('Sorry, this kind of file is not valid', 'Error loading file');
@@ -978,7 +982,9 @@ ui.setupSaveImageModal = function() {
 
 ui.setupPluginMenu = function () {
     'use strict';
-
+    // 
+    // mod3
+    // 
     //listen for changes in the plugin menus, displaying it if some element is added to it
     var targetNode = document.getElementById('menu-plugin');
     var config = {childList: true, subtree: true }; // Options for the observer (which mutations to observe)
@@ -1421,7 +1427,9 @@ istar.displayInvalidModelMessages = ui.displayInvalidModelMessage;
 
 $('#menu-button-new-model').click(function () {
     'use strict';
-
+    // 
+    // mod2
+    // 
     ui.confirm({
         message: 'Are you sure you want to create a new model and delete the current model?',
         callback: function (result) {

@@ -46,7 +46,7 @@ https://github.com/jhcp/pistar
             <a class="menu-item" href="#" id="menu-item-plugin" data-toggle="menu-plugin">Plugins</a>
         </nav>
     </div>
-
+    
     <div id="menu-bodies">
         <div id="menu-file" class="menu-body hidden">
             <div class="menu-group">
@@ -297,6 +297,9 @@ https://github.com/jhcp/pistar
 
         </div>
 
+
+       
+        
         <div id="out">
             <div class="cell-selection" style="display: none;"></div>
             <div id="resize-handle" style="display: none;"></div>
@@ -304,9 +307,51 @@ https://github.com/jhcp/pistar
             </div>
 
         </div>
+         <!-- ======================================= -->
+        <div class="menu-group">
+            <span class="menu-line">
+                <a id="transformar" class="btn btn-default btn-xs button-horizontal"
+                   title="Remove gaps between links and elements; recommended to apply before saving an image. It may take some seconds">
+                  <span class="glyphicon glyphicon-screenshot"></span> transformar
+                </a>
+                </span>
+            <span class="menu-line">
+                <a id="verificar" class="btn btn-default btn-xs button-horizontal"
+                   title="Fullscreen toggle">
+                  <span class="glyphicon glyphicon-fullscreen"></span> verificar
+                </a>
+                </span>
+            <span class="menu-line">
+                <a id="modelo-ac" class="btn btn-default btn-xs button-horizontal"
+                   title="Straighten all links">
+                  <span class="glyphicon glyphicon-minus"></span> modelo ac
+                </a>
+            </span>
+        </div>
+        
 
     </div>
+    
+    
+  
+</div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+        
 </div>
 
 
@@ -564,7 +609,7 @@ https://github.com/jhcp/pistar
 <script src="language/ui.metamodel.js"></script>
 
 <!-- insert your plugin(s) here, after this line -->
-
+<script src="plugins/component/onload.js"></script>
 <!-- end of plugin(s) area -->
 
 <script src="app/ui/main.js"></script>
