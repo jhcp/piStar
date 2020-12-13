@@ -1,1 +1,0 @@
-istar.filemanager.save();

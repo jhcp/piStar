@@ -3,4 +3,14 @@
 // 
 
 
+ plug.smsg = function(){
+    'use strict';
+    return{
+        sendParent: function (mensaje){
+            parent.postMessage(mensaje, "*");
+            console.log("sendmsg")
+        }
+
+    };
+}();
 

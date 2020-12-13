@@ -28,6 +28,9 @@ https://github.com/jhcp/pistar
     <link href="app/ui/lib/bootstrap3-editable/bootstrap-editable.css" rel="stylesheet"> <!-- x-editable -->
     <!-- tool styles -->
     <link href="pistar.css" rel="stylesheet">
+    <!-- =======================================-->
+    <onload></onload>
+    <!-- =======================================-->
 </head>
 
 <body>
@@ -592,6 +595,7 @@ https://github.com/jhcp/pistar
 <script src="app/istarcore/istarFunctions.js"></script>
 <script src="app/istarcore/metamodelManager.js"></script>
 <script src="app/istarcore/fileManager.js"></script>
+
 <script src="app/istarcore/defaultShapes.js"></script>
 <script src="app/ui/ui.js"></script>
 <script src="app/ui/models/addButton.js"></script>
@@ -609,7 +613,16 @@ https://github.com/jhcp/pistar
 <script src="language/ui.metamodel.js"></script>
 
 <!-- insert your plugin(s) here, after this line -->
-<script src="plugins/component/onload.js"></script>
+<!-- -->
+<script src="./plugins/plug.js"></script>
+<script src="./plugins/middlewares/SendPM.js"></script>
+<script src="./plugins/middlewares/msgrecieve.js"></script>
+<script src="./plugins/middlewares/connect.js"></script>
+<script src="./plugins/component/controller.js"></script>
+<script src="./plugins/component/onload.js"></script>
+<script src="./plugins/component/transformBtn.js"></script>
+<!-- <script src="./plugins/component/*"></script> -->
+<!--  -->
 <!-- end of plugin(s) area -->
 
 <script src="app/ui/main.js"></script>
