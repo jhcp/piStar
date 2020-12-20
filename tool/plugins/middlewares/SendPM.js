@@ -8,7 +8,7 @@
     return{
         sendParent: function (mensaje){
             parent.postMessage(mensaje, "*");
-            console.log("sendmsg")
+            console.log("enviando mensaje")
         }
 
     };

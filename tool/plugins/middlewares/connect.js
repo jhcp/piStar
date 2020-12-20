@@ -3,6 +3,8 @@
 // 
 
 
+var modelosMDD;
+
 
 plug.connect=function(){//configurar conexion con el rest
     return {
@@ -14,26 +16,31 @@ plug.connect=function(){//configurar conexion con el rest
                         method: 'GET'
                                                
                       });
+                      console.log(res);
                       const resDB = await res.json();
-                      return resDB.modelo;
+                      console.log(resDB);
+                      return resDB.model_i.model;
                 } catch (e) {
-                      // algo ha ido mal
+                      console.log(e);// algo ha ido mal
                 }
               
         },
-        post: async function () {
+        verify: async function (bods) {
             try {
-                  const res = await fetch('http://localhost:3000/login',{
+                  const res = await fetch('http://localhost:3000/modelos/verificar/',{
                     method: 'POST',
-                    body: new URLSearchParams({// conten type x-www-form-urlencoded
-                      'password':'123456',
-                      'email':"test17"
-                    })
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                      },
+                    body:JSON.stringify(bods)
                   });
                   const resDB = await res.json();
                   console.log('funciona conexion con rest de piStar')
                   console.log(resDB)
             } catch (e) {
+                  console.log(e);
+                  console.log("no esta conectando el verificador");
                   // algo ha ido mal
             }
           

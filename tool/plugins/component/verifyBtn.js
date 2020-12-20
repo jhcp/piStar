@@ -1,10 +1,16 @@
 // 
 //  btn para verificar el modelo  
+
+
+
 // 
 $('#verificar').click(function(){
     console.log("test de verificar");// testeo borrar 
+    modelo();
 });
-function modelo(){
-    var model = istar.fileManager.saveModel();//guardamos el modelo creado en model
-    plug.connect.put(model);
+async function modelo(){
+    var model = await istar.fileManager.saveModel();//guardamos el modelo creado en model
+    console.log(model);
+    
+    plug.connect.verify(model);
 };

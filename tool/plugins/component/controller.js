@@ -7,8 +7,10 @@ plug.controlador = function(){
 var key = "dataP";
     return{
         mensajeRecibido: function (data){ //controla donde enviar mensaje
-                if(data.id==="" && data.token===""){
-                    saveLS(data);
+                console.log(data.id);
+                console.log(data.token);
+                if(data.id && data.token){
+                    plug.controlador.saveLS(data);
                         //llamamos a localStorage
                         
                 }
@@ -34,7 +36,7 @@ var key = "dataP";
 
 
         saveLS: function (data){ //funcion encargada de guardar la data en el localStorage
-                let verify= compararLS(data)
+                let verify= plug.controlador.compararLS(data)
                 if(verify){
                     localStorage.setItem(key,JSON.stringify(data));
                 };
