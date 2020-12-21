@@ -10,7 +10,7 @@ plug.connect=function(){//configurar conexion con el rest
     return {
         getModel: async function (data) {
                 try {
-                      let url='http://localhost:3000/modelos?'+$.param(data); //añade el parametro data modificar en version final
+                      let url='http://localhost:3000/modelos/get?'+$.param(data); //añade el parametro data modificar en version final
                       console.log(url);
                       const res = await fetch(url,{
                         method: 'GET'
@@ -18,8 +18,11 @@ plug.connect=function(){//configurar conexion con el rest
                       });
                       const resDB = await res.json();
                       console.log(resDB);//borrar
-                      plug.controlador.saveLS("data",resDB);
-                      return resDB;
+                      //plug.controlador.saveLS("data",resDB);
+                      //return resDB;
+
+                      plug.controlador.saveLS("data",resDB.modelo);//borrar
+                      return resDB.modelo;//borrar
                 } catch (e) {
                       console.log("no se encuentra el proyecto");
                       console.log(e);// algo ha ido mal
@@ -48,9 +51,11 @@ plug.connect=function(){//configurar conexion con el rest
             }
           
         },
-        save_model: async function (data) {
+        save_model: async function (id,data) {
             try {
-                  const res = await fetch('http://localhost:3000/modelos/save',{
+                  let url='http://localhost:3000/modelos?'+$.param(id);//modificar
+                  console.log(url);
+                  const res = await fetch(url,{
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json'
@@ -63,7 +68,8 @@ plug.connect=function(){//configurar conexion con el rest
                   console.log(resDB)
                   return resDB;
             } catch (e) {
-                  return Eroor;
+                  console.log("no conecta ");
+                  return Error;
                   // algo ha ido mal
             }
           

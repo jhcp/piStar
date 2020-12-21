@@ -15,7 +15,8 @@ async function inicio(){
     console.log(data);
     
     let modelo = await plug.connect.getModel({"id":data.id});
-    console.log(modelo.ok);
+    console.log(modelo.model_i.model);
+    
    
     cargar(modelo.model_i.model);
     
