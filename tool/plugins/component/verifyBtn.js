@@ -11,6 +11,7 @@ $('#verificar').click(function(){
 async function modelo(){
     var model = await istar.fileManager.saveModel();//guardamos el modelo creado en model
     console.log(model);
-    
-    plug.connect.verify(model);
+    model= await plug.controlador.updateModel("data",model);
+    let estado = await plug.connect.post('http://localhost:3000/modelos/verificar/',model);
+    console.log(estado);//borrar
 };

@@ -9,11 +9,17 @@ const mensajeinit = "cargada"; //mesaje que se enviara al padre a penas se cargu
 
 async function inicio(){
     await plug.smsg.sendParent(mensajeinit); //carga la funcion requerida a penas se renderiza la pagina
-    let data=await plug.controlador.getlS();
+    let data=await plug.controlador.getlS("dataP");
+    
     if(!data){console.log("no hay na")};// borrar
-    console.log("elol");
-    var modelo = await plug.connect.get({"id":data.id});
-    cargar(modelo);
+    console.log(data);
+    
+    let modelo = await plug.connect.getModel({"id":data.id});
+    console.log(modelo.ok);
+   
+    cargar(modelo.model_i.model);
+    
+    
     
 
 };

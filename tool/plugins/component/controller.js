@@ -4,19 +4,19 @@
 
 plug.controlador = function(){
 
-var key = "dataP";
+
     return{
         mensajeRecibido: function (data){ //controla donde enviar mensaje
                 console.log(data.id);
                 console.log(data.token);
                 if(data.id && data.token){
-                    plug.controlador.saveLS(data);
+                    plug.controlador.saveLS("dataP",data);
                         //llamamos a localStorage
                         
                 }
         },
 
-        compararLS: function (data){// si retorna true es que se puede escribir en el localStorage
+        compararLS: function (key,data){// si retorna true es que se puede escribir en el localStorage
                 if(!localStorage.getItem(key)){
                     return true;
                 }else{
@@ -35,20 +35,30 @@ var key = "dataP";
         },
 
 
-        saveLS: function (data){ //funcion encargada de guardar la data en el localStorage
-                let verify= plug.controlador.compararLS(data)
+        saveLS: function (key,data){ //funcion encargada de guardar la data en el localStorage
+                if(key != "data"){
+               
+                    var verify= plug.controlador.compararLS(key,data)
+                }else{
+                    verify=true;
+                };
                 if(verify){
                     localStorage.setItem(key,JSON.stringify(data));
                 };
                 
         },
 
-        getlS: function(){//devuelve solo token y id de proyecto
+        getlS: function(key){//devuelve data de LS 
             if(!localStorage.getItem(key)){
                 return false;
             };
             return JSON.parse(localStorage.getItem(key));
 
+        },
+        updateModel: (key,model)=>{
+            let data = plug.controlador.getlS(key);
+            data.model_i.model=JSON.parse(model);
+            return data;
         }
     };
 }();
