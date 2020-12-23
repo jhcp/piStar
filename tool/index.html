@@ -28,6 +28,7 @@ https://github.com/jhcp/pistar
     <link href="app/ui/lib/bootstrap3-editable/bootstrap-editable.css" rel="stylesheet"> <!-- x-editable -->
     <!-- tool styles -->
     <link href="pistar.css" rel="stylesheet">
+    <link href="test.css" rel="stylesheet">
     <!-- =======================================-->
     <onload></onload>
     <!-- =======================================-->
@@ -310,32 +311,62 @@ https://github.com/jhcp/pistar
             </div>
 
         </div>
-         <!-- ======================================= -->
-        <div class="menu-group">
-            <span class="menu-line">
-                <a id="transformar" class="btn btn-default btn-xs button-horizontal"
-                   title="Remove gaps between links and elements; recommended to apply before saving an image. It may take some seconds">
-                  <span class="glyphicon glyphicon-screenshot"></span> transformar
-                </a>
-                </span>
-            <span class="menu-line">
-                <a id="verificar" class="btn btn-default btn-xs button-horizontal"
-                   title="Fullscreen toggle">
-                  <span class="glyphicon glyphicon-fullscreen"></span> verificar
-                </a>
-                </span>
-            <span class="menu-line">
-                <a id="modelo-ac" class="btn btn-default btn-xs button-horizontal"
-                   title="Straighten all links">
-                  <span class="glyphicon glyphicon-minus"></span> modelo ac
-                </a>
-            </span>
-        </div>
-        
+         <!-- ======================================= -->       
 
     </div>
+    <!-- mod  -->
+     <!-- mod  -->
     
-    
+     <div id="plug-mdd">
+        <div class="topnav">
+            <a id="transformar"href="#">Transformar</a>
+            <a id="verificar"href="#">Verificar</a>
+            <b onclick="myFunction()">Logs</b>
+            <bspan> <p>guardado atuomatico</p>
+                <label class="switch">
+                  <input id="autoSave"type="checkbox" checked>
+                  <span class="slider round"></span>
+                </label>
+            </bspan>
+        </div>
+          
+        <div style="padding-left:16px">
+            <div id="myDIV">
+                
+            </div>            
+        </div>
+        <style>
+        .DivToScroll{   
+            background-color: #F5F5F5;
+            border: 1px solid #DDDDDD;
+            border-radius: 4px 0 4px 0;
+            color: #3B3C3E;
+            font-size: 12px;
+            font-weight: bold;
+            left: -1px;
+            padding: 10px 7px 5px;
+        }
+
+        .DivWithScroll{
+            height:120px;
+            overflow:scroll;
+            overflow-x:hidden;
+        }
+
+        </style>
+        
+        <script>
+            function myFunction() {
+              var x = document.getElementById("myDIV");
+              if (x.style.display === "none") {
+                x.style.display = "block";
+              } else {
+                x.style.display = "none";
+              }
+            }
+        </script>   
+
+    </div>
   
 </div>
 

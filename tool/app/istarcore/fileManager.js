@@ -280,7 +280,7 @@ istar.fileManager = function() {
                 if (newTab) {
                     window.open("data:text/json;charset=utf-8," + encodeURI(stringifiedModel));//this open the content of the file in a new tab
                 }
-                console.log(stringifiedModel);
+                //console.log(stringifiedModel); //imprime modelo
 
                 return stringifiedModel;
             }
