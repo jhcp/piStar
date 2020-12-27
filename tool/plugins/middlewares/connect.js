@@ -36,7 +36,7 @@ plug.connect=function(){//configurar conexion con el rest
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
-                        // 'Content-Type': 'application/x-www-form-urlencoded',
+                        //'Content-Type': 'application/x-www-form-urlencoded',
                       },
                     body:await JSON.stringify(data)
                   });
@@ -54,7 +54,7 @@ plug.connect=function(){//configurar conexion con el rest
         save_model: async function (id,data) {
             try {
                   let url='http://localhost:3000/modelos?'+$.param(id);//modificar
-                  console.log(url);
+                  console.log(await JSON.stringify(data));
                   const res = await fetch(url,{
                     method: 'PUT',
                     headers: {

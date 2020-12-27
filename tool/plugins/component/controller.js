@@ -36,7 +36,7 @@ plug.controlador = function(){
 
 
         saveLS: function (key,data){ //funcion encargada de guardar la data en el localStorage
-                if(key != "data"){
+                if(key != "dataP"){
                
                     var verify= plug.controlador.compararLS(key,data)
                 }else{

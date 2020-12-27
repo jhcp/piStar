@@ -10,23 +10,4 @@ function handleMessage(e) {
 	//console.log('escuche');
 	console.log(e.data);
 	plug.controlador.mensajeRecibido(e.data);
-
-
-
-
-
-
-
-	//=============================================
-	//localStorage.setItem('dataParent',e.data);
-    // Check origin
-    /*if ( e.origin === '*' ) {//direccion del padre del iframe
-		// Retrieve data sent in postMessage
-		
-		console.log(e.data);
-        el.innerHTML = e.data;
-        // Send reply to source of message
-		e.source.postMessage('Message received', e.origin);
-		console.log("recibi la wea");
-    }*/
 };
