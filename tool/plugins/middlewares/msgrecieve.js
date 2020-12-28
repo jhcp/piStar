@@ -7,7 +7,7 @@ window.addEventListener('message', handleMessage, false);
 function handleMessage(e) {
     // Reference to element for data display
 	var el = document.getElementById('display');
-	//console.log('escuche');
+	console.log('escuche');
 	console.log(e.data);
 	plug.controlador.mensajeRecibido(e.data);
 };

@@ -13,10 +13,15 @@ async function inicio(){
     var data=false
     console.log(data)
     while(!data){
+
         data = await plug.controlador.getlS("dataP");
-        await setAsyncTimeout(() => {
-            // Do more stuff
-        }, 500);
+        if(data===null){
+            data=false;
+            await setAsyncTimeout(() => {
+                // Do more stuff
+            }, 500);
+        }
+        
         console.log(data)
     }
         let modelo = await plug.connect.getModel({"id":data.id});

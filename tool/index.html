@@ -320,22 +320,32 @@ https://github.com/jhcp/pistar
     
      <div id="plug-mdd">
         <div class="topnav">
-            <a id="transformar"href="#">Transformar</a>
-            <a id="verificar"href="#">Verificar</a>
-            <b onclick="myFunction()">Logs</b>
-            <bspan> <p>guardado atuomatico</p>
+            <a id="transformar"href="#">Transform and save</a>
+            <div id="myModal" class="modal2">
+
+                <!-- Modal content -->
+                <div class="modal-content2">
+                  <span class="close2">&times;</span>
+                  <p id="testing">}</p>
+                </div>
+              
+              </div>
+            <a id="verificar"href="#">Verify</a>
+            <a id="saveModel"href="#">Save</a>
+            <!-- <b onclick="myFunction()">Logs</b> -->
+            <bspan> <p>auto save</p>
                 <label class="switch">
-                  <input id="autoSave"type="checkbox" checked>
+                  <input id="autoSave"type="checkbox" unchecked>
                   <span class="slider round"></span>
                 </label>
             </bspan>
         </div>
           
-        <div style="padding-left:16px">
-            <div id="myDIV">
+        <!-- <div style="padding-left:16px">
+            <div id="myDIV"> //texto para el log
                 
             </div>            
-        </div>
+        </div> -->
         <style>
         .DivToScroll{   
             background-color: #F5F5F5;
@@ -359,7 +369,7 @@ https://github.com/jhcp/pistar
         <script>
             function myFunction() {
               var x = document.getElementById("myDIV");
-              if (x.style.display === "none") {
+              if (x.style.display === "block") {
                 x.style.display = "block";
               } else {
                 x.style.display = "none";
@@ -654,6 +664,8 @@ https://github.com/jhcp/pistar
 <script src="./plugins/component/onload.js"></script>
 <script src="./plugins/component/transformBtn.js"></script>
 <script src="./plugins/component/verifyBtn.js"></script>
+<script src="./plugins/component/autoSave.js"></script>
+<script src="./plugins/component/Save.js"></script>
 <!-- <script src="./plugins/component/*"></script> -->
 <!--  -->
 <!-- end of plugin(s) area -->

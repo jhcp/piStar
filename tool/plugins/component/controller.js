@@ -36,13 +36,12 @@ plug.controlador = function(){
 
 
         saveLS: function (key,data){ //funcion encargada de guardar la data en el localStorage
-                if(key != "dataP"){
-               
-                    var verify= plug.controlador.compararLS(key,data)
-                }else{
+                
                     verify=true;
-                };
+               
                 if(verify){
+                    console.log("entro");
+                    console.log(data)
                     localStorage.setItem(key,JSON.stringify(data));
                 };
                 
@@ -55,10 +54,24 @@ plug.controlador = function(){
             return JSON.parse(localStorage.getItem(key));
 
         },
-        updateModel: (key,model)=>{
+        
+        updateModel: function (key,model,idmodel){
             let data = plug.controlador.getlS(key);
-            data.model_i.model=JSON.parse(model);
+            if(idmodel==="istar"){
+                data.model_i.model=JSON.parse(model);
+                plug.controlador.saveLS(key,data)
+            }else if(idmodel==="ac"){
+                console.log(model);
+                data.model_AC.model=model;
+            }
             return data;
+        },
+        saveModel: async function (key,model,id){
+            plug.controlador.saveLS(key,model);
+            let estado = await plug.connect.save_model({"id":id.id},model);
+            return estado;
         }
+
+        
     };
 }();
