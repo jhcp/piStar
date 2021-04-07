@@ -12,6 +12,10 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- Rene Noel, Ignacio Panach, Oscar Pastor. A Models-to-Program Information Systems Engineering Method. Modelling to Program, Second International Workshop, M2P 2020.
+
+- Bernd Gil, Eric; Caldas, Ricardo; Rodrigues, Arthur; Levi Gomes da Silva, Gabriel; Nunes Rodrigues, Genaína; Pelliccione, Patrizio. Body Sensor Network: A Self-Adaptive System Exemplar in the Healthcare Domain. Accepted at the 16th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS 2021). [https://arxiv.org/pdf/2103.14948.pdf]
+
 - Kaushik Madala; Ke Ye Hang; Hyunsook Do; Bastian Tenbergen. SACC - A property driven approach to expose undesired behaviors among system’s components. 2020 IEEE 31st International Symposium on Software Reliability Engineering (ISSRE), 2020. [https://doi.org/10.1109/ISSRE5003.2020.00043]
 
 - Catarina Gralha, Miguel Goulão & João Araujo. Are there gender differences when interacting with social goal models? A quasi-experiment. Empirical Software Engineering, 2020.
