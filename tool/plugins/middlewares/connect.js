@@ -5,12 +5,13 @@
 
 var modelosMDD;
 
-
 plug.connect=function(){//configurar conexion con el rest
     return {
         getModel: async function (data) {
                 try {
-                      let url='http://localhost:3000/modelos/get?'+$.param(data); //añade el parametro data modificar en version final
+                      let url='http://localhost:3000/modelos?'+$.param(data); //añade el parametro data modificar en version final
+                      
+                      url+="&type=0";
                       console.log(url);
                       const res = await fetch(url,{
                         method: 'GET'
@@ -20,9 +21,9 @@ plug.connect=function(){//configurar conexion con el rest
                       console.log(resDB);//borrar
                       //plug.controlador.saveLS("data",resDB);
                       //return resDB;
-
-                      plug.controlador.saveLS("data",resDB.modelo);//borrar
-                      return resDB.modelo;//borrar
+                      
+                      plug.controlador.saveLS("data",resDB);//borrar
+                      return resDB;//borrar
                 } catch (e) {
                       console.log("no se encuentra el proyecto");
                       console.log(e);// algo ha ido mal
@@ -54,7 +55,7 @@ plug.connect=function(){//configurar conexion con el rest
         save_model: async function (id,data) {
             try {
                   let url='http://localhost:3000/modelos?'+$.param(id);//modificar
-                  console.log(data);
+                  //console.log(data);
                   const res = await fetch(url,{
                     method: 'PUT',
                     headers: {
@@ -63,6 +64,7 @@ plug.connect=function(){//configurar conexion con el rest
                       },
                     body:JSON.stringify(data)
                   });
+                  console.log("intentando")
                   const resDB = await res.json();
                   console.log('funciona conexion con rest de piStar')
                   console.log(resDB)

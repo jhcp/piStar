@@ -12,7 +12,7 @@ async function inicio(){
     await plug.smsg.sendParent(mensajeinit); //carga la funcion requerida a penas se renderiza la pagina
     var data=false
     console.log(data)
-    while(!data){
+    while(!data){//verfica que se haya recibido el token
 
         data = await plug.controlador.getlS("dataP");
         if(data===null){
@@ -25,6 +25,8 @@ async function inicio(){
         console.log(data)
     }
         let modelo = await plug.connect.getModel({"id":data.id});
+        console.log(modelo);
+        console.log("hlo");
         console.log(modelo.model_i.model);
         
        

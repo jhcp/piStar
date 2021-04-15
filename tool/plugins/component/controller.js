@@ -1,18 +1,27 @@
+
 //
 //controller js controla como distribuir la data
 //
 
 plug.controlador = function(){
-
+    
 
     return{
         mensajeRecibido: function (data){ //controla donde enviar mensaje
-                console.log(data.id);
-                console.log(data.token);
-                if(data.id && data.token){
+                if(data.idm ==0){
                     plug.controlador.saveLS("dataP",data);
                         //llamamos a localStorage
-                        
+                }else if(data.idm==1){
+                    console.log(data.idm)
+                    plug.transform()
+                }else if(data.idm==2){
+                    console.log(data.idm)
+                    plug.verify()
+                }else if(data.idm==3){
+                    console.log(data.idm)
+                    plug.save.save()
+                    
+                    
                 }
         },
 
@@ -55,15 +64,12 @@ plug.controlador = function(){
 
         },
         
-        updateModel: function (key,model,idmodel){
+        updateModel: function (key,model){
             let data = plug.controlador.getlS(key);
-            if(idmodel==="istar"){
+            
                 data.model_i.model=JSON.parse(model);
                 plug.controlador.saveLS(key,data)
-            }else if(idmodel==="ac"){
-                console.log(model);
-                data.model_AC.model=model;
-            }
+            
             return data;
         },
         saveModel: async function (key,model,id){
