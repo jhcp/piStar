@@ -8,8 +8,11 @@ plug.verify = async function(){
                 console.log(estado.respuesta.validator[0]);//borrar
                 if(estado.respuesta.validator[0]==="abc"){
                     // ===========================================================
-                    console.log("modelo correcto")
-                    plug.smsg.sendParent("verified");
+                    const message ={
+                        "idm":2,
+                        "message":"verified"
+                    };
+                    plug.smsg.sendParent(message);
                 }else{
                     plug.smsg.sendParent(estado.respuesta);
                 }

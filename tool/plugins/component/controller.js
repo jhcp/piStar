@@ -49,8 +49,8 @@ plug.controlador = function(){
                     verify=true;
                
                 if(verify){
-                    console.log("entro");
-                    console.log(data)
+                    // console.log("entro");
+                    // console.log(data)
                     localStorage.setItem(key,JSON.stringify(data));
                 };
                 

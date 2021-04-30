@@ -12,13 +12,13 @@ plug.connect=function(){//configurar conexion con el rest
                       let url='http://localhost:3000/modelos?'+$.param(data); //añade el parametro data modificar en version final
                       
                       url+="&type=0";
-                      console.log(url);
+                  //     console.log(url);
                       const res = await fetch(url,{
                         method: 'GET'
                                                
                       });
                       const resDB = await res.json();
-                      console.log(resDB);//borrar
+                  //     console.log(resDB);//borrar
                       //plug.controlador.saveLS("data",resDB);
                       //return resDB;
                       
@@ -42,8 +42,8 @@ plug.connect=function(){//configurar conexion con el rest
                     body:await JSON.stringify(data)
                   });
                   const resDB = await res.json();
-                  console.log('funciona conexion con rest de piStar');
-                  console.log(resDB);//borrar
+                  // console.log('funciona conexion con rest de piStar');
+                  // console.log(resDB);//borrar
                   return resDB;
             } catch (e) {
                   console.log(e);
@@ -66,8 +66,8 @@ plug.connect=function(){//configurar conexion con el rest
                   });
                   console.log("intentando")
                   const resDB = await res.json();
-                  console.log('funciona conexion con rest de piStar')
-                  console.log(resDB)
+                  // console.log('funciona conexion con rest de piStar')
+                  // console.log(resDB)
                   return resDB;
             } catch (e) {
                   console.log("no conecta ");

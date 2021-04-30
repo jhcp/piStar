@@ -8,7 +8,11 @@ plug.save = function(){
             retorno = await plug.controlador.saveModel("data",model,id)
             console.log(retorno)
             if(retorno.state == true){
-                plug.smsg.sendParent("modelo guardado");
+                const message ={
+                    "idm":3,
+                    "message":"saved"
+                };
+                plug.smsg.sendParent(message);
             }else{
                 plug.smsg.sendParent("error en guardado");
                     

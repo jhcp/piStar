@@ -5,7 +5,10 @@
 
 //   ========================================================== 
 
-const mensajeinit = "cargada"; //mesaje que se enviara al padre a penas se cargue la pagina
+const mensajeinit ={
+    "idm":0,
+    "message":"charged"
+}; //mesaje que se enviara al padre a penas se cargue la pagina
 
 async function inicio(){
     localStorage.setItem("dataP",null)
@@ -22,12 +25,12 @@ async function inicio(){
             }, 500);
         }
         
-        console.log(data)
+        // console.log(data)
     }
         let modelo = await plug.connect.getModel({"id":data.id});
-        console.log(modelo);
-        console.log("hlo");
-        console.log(modelo.model_i.model);
+        // console.log(modelo);
+        // console.log("hlo");
+        // console.log(modelo.model_i.model);
         
        
         cargar(modelo.model_i.model);
@@ -49,7 +52,7 @@ function cargar(modelo){
     $(document).ready(function () { //ejecuta js despues de que todos los elementos en la pagina fueron cargados
         
         setTimeout(function () {
-            console.log(modelo);
+            // console.log(modelo);
             istar.fileManager.loadModel(modelo);
             ui.selectPaper();//clear selection
             }, 5);

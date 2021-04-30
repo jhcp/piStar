@@ -12,9 +12,12 @@ plug.transform = async function(){
         let url='http://localhost:3000/modelos/transformar?'+$.param(id);
         let estado = await plug.connect.post(url,model);
         if(estado != Error){
-            console.log(estado)
-            console.log("modelo transformado");
-            plug.smsg.sendParent("modelo transformado");
+            const message ={
+                "idm":1,
+                "message":"transformed"
+            };
+            console.log("transformed")
+            plug.smsg.sendParent(message);
             
 
         }else{
