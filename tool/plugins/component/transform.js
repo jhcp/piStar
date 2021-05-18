@@ -8,7 +8,9 @@ plug.transform = async function(){
     console.log(estado.respuesta.validator[0]);//borrar
 
     if(estado.respuesta.validator[0] === "abc"){
-        let id = await plug.controlador.getlS("dataP");
+        let a = await plug.save.save(false)
+        if(a=== true){
+            let id = await plug.controlador.getlS("dataP");
         let url='http://localhost:3000/modelos/transformar?'+$.param(id);
         let estado = await plug.connect.post(url,model);
         if(estado != Error){
@@ -23,6 +25,8 @@ plug.transform = async function(){
         }else{
             plug.smsg.sendParent("error en transformacion");
         }
+        }
+        
     }
 }
     
