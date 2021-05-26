@@ -4,12 +4,13 @@
 
 
 var modelosMDD;
-
+var urlget="https://servicio-rest-alpha.herokuapp.com/modelos?"
+var urlsave="https://servicio-rest-alpha.herokuapp.com/modelos?"
 plug.connect=function(){//configurar conexion con el rest
     return {
         getModel: async function (data) {
                 try {
-                      let url='http://localhost:3000/modelos?'+$.param(data); //añade el parametro data modificar en version final
+                      let url=urlget+$.param(data); //añade el parametro data modificar en version final
                       
                       url+="&type=0";
                   //     console.log(url);
@@ -54,7 +55,7 @@ plug.connect=function(){//configurar conexion con el rest
         },
         save_model: async function (id,data) {
             try {
-                  let url='http://localhost:3000/modelos?'+$.param(id);//modificar
+                  let url=urlsave+$.param(id);//modificar
                   //console.log(data);
                   const res = await fetch(url,{
                     method: 'PUT',

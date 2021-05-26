@@ -13,11 +13,15 @@ plug.save = function(){
             if(retorno.state == true){
                 const message ={
                     "idm":3,
-                    "message":"saved"
+                    "message":"The model has been saved"
                 };
                 plug.smsg.sendParent(message);
             }else{
-                plug.smsg.sendParent("error en guardado");
+                const message ={
+                    "idm":4,
+                    "message":"there was a problem trying to save"
+                };
+                plug.smsg.sendParent(message);
                     
             }
         
