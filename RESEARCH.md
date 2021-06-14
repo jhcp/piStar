@@ -12,6 +12,10 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+- Jefferson Viana Fonseca Abreu, Celia Ghedini Ralha, João José Costa Gondim. A Multi-agent Approach for Online Twitter Bot Detection. Actas de la VI Jornadas Nacionales (JNIC2021 LIVE)
+
+- Tiago Henrique Faccio Segato, Célia Ghedini Ralha, Sérgio Eduardo Soares Fernandes. Development process of multiagent system for glycemic control of intensive care unit patients. Artificial Intelligence Research 2021, Vol. 10, No. 1. https://doi.org/10.5430/air.v10n1p43
+
 - Christophe Ponsard, Jeremy Grandclaudon, Philippe Massonet. A goal‐driven approach for the joint deployment of safety and security standards for operators of essential services. Journal of Software: Evolution and Process.
 
 - Rene Noel, Ignacio Panach, Oscar Pastor. A Models-to-Program Information Systems Engineering Method. Modelling to Program, Second International Workshop, M2P 2020.
