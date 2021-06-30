@@ -12,7 +12,7 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
-- Jefferson Viana Fonseca Abreu, Celia Ghedini Ralha, João José Costa Gondim. A Multi-agent Approach for Online Twitter Bot Detection. Actas de la VI Jornadas Nacionales (JNIC2021 LIVE)
+- Jefferson Viana Fonseca Abreu, Celia Ghedini Ralha, João José Costa Gondim. A Multi-agent Approach for Online Twitter Bot Detection. Actas de la VI Jornadas Nacionales (JNIC2021 LIVE). [https://ruidera.uclm.es/xmlui/bitstream/handle/10578/28601/03%20INVESTIGACI%C3%93N%20EN%20CIBERSEGURIDAD.pdf?sequence=1&isAllowed=y]
 
 - Tiago Henrique Faccio Segato, Célia Ghedini Ralha, Sérgio Eduardo Soares Fernandes. Development process of multiagent system for glycemic control of intensive care unit patients. Artificial Intelligence Research 2021, Vol. 10, No. 1. https://doi.org/10.5430/air.v10n1p43
 
