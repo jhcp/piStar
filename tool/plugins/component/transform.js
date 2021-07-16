@@ -4,14 +4,14 @@ plug.transform = async function(){
 
     var model = await istar.fileManager.saveModel();//guardamos el modelo creado en model
     model= await plug.controlador.updateModel("data",model);
-    let estado = await plug.connect.post('https://servicio-rest-alpha.herokuapp.com/modelos/verificar/',model);
+    let estado = await plug.connect.post(verify,model);
     console.log(estado.respuesta.validator[0]);//borrar
 
     if(estado.respuesta.validator[0] === "abc"){
         let a = await plug.save.save(false)
         if(a=== true){
             let id = await plug.controlador.getlS("dataP");
-        let url='https://servicio-rest-alpha.herokuapp.com/modelos/transformar?'+'id='+id.id;
+        let url=transform+'id='+id.id;
         let estado = await plug.connect.post(url,model);
         if(estado != Error){
             const message ={

@@ -4,8 +4,6 @@
 
 
 var modelosMDD;
-var urlget="https://servicio-rest-alpha.herokuapp.com/modelos?"
-var urlsave="https://servicio-rest-alpha.herokuapp.com/modelos?"
 plug.connect=function(){//configurar conexion con el rest
     return {
         getModel: async function (data) {
