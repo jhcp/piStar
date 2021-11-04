@@ -1,3 +1,6 @@
+/**
+ * Using auto-layout method to get position results and update the diagram
+ */
 var updateLayout = function () {
     const [width, height] = [istar.paper.getArea().width, istar.paper.getArea().height]
     const { current, nodes, links } = layout()
