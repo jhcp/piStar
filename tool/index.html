@@ -183,6 +183,15 @@ https://github.com/jhcp/pistar
                 </span>
             </div>
 
+            <div class="menu-group">
+                <span class="menu-line">
+                    <a id="menu-button-auto-layout" class="btn btn-default btn-xs button-horizontal"
+                       title="Perform auto layout to reorganize the position of nodes">
+                      <span class="glyphicon glyphicon-move"></span> Auto-layout
+                    </a>
+                </span>
+            </div>
+
             <!--<div class="menu-group">-->
                 <!--<div class="title">View</div>-->
                 <!--<span class="menu-line">-->
@@ -564,7 +573,12 @@ https://github.com/jhcp/pistar
 <script src="language/ui.metamodel.js"></script>
 
 <!-- insert your plugin(s) here, after this line -->
-
+<script src="app/layout/lib/d3-collection.v1.min.js"></script>
+<script src="app/layout/lib/d3-dispatch.v1.min.js"></script>
+<script src="app/layout/lib/d3-quadtree.v1.min.js"></script>
+<script src="app/layout/lib/d3-timer.v1.min.js"></script>
+<script src="app/layout/lib/d3-force.v1.min.js"></script>
+<script src="app/layout/layout.js"></script>
 <!-- end of plugin(s) area -->
 
 <script src="app/ui/main.js"></script>

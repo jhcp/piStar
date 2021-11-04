@@ -1152,6 +1152,31 @@ $('#menu-button-straighten-links').click(function () {
     });
 });
 
+$('#menu-button-auto-layout').click(function () {
+    'use strict';
+
+    ui.confirm({
+        message: 'ATTENTION! This action will change the position you may have added to the model. Are you sure you want to do this?',
+        callback: function (value) {
+            if (value) {
+                var selectedCell = ui.getSelectedCells()[0] ? ui.getSelectedCells()[0] : null;
+                ui.deselectCell(selectedCell);
+                ui.hideSelection();
+
+                _.forEach(istar.getLinks(), function (link) {
+                    link.vertices([]);
+                });
+
+                updateLayout();
+
+                //restore selection to the element that was selected (if any) when the action started
+                ui.selectCell(selectedCell);
+                ui.showSelection(selectedCell);
+            }
+        }
+    });
+});
+
 ui.changeAddMenuStatus = function (text) {
     'use strict';
 
