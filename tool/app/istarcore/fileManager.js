@@ -481,8 +481,12 @@ istar.fileManager = function() {
                         if (linkJSON.customProperties) {
                             newLink.prop('customProperties', linkJSON.customProperties);
                         }
-                        var shapeObject = new istar.metamodel.nodeLinks[typeNameWithoutPrefix].shapeObject();
+                        // Update according to https://www.cin.ufpe.br/~jhcp/pistar/tool/app/istarcore/fileManager.js
+                        /* var shapeObject = new istar.metamodel.nodeLinks[typeNameWithoutPrefix].shapeObject();
                         if (shapeObject.attr('smooth')) {
+                            newLink.on('change:vertices', ui._toggleSmoothness);
+                        }*/
+                        if (typeNameWithoutPrefix === 'ContributionLink') {
                             newLink.on('change:vertices', ui._toggleSmoothness);
                         }
                         return newLink;
