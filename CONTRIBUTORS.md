@@ -1,7 +1,12 @@
 ﻿# List of Contributors
 *To see which contributions each individual made to this project, check our commit history*
 
-#### Design and development
+* Qixiang Zhou (@FrozenYogurtPuff)
+* Yunduo Wang
+* Tong Li
+* João Pimentel (@jhcp)
+
+#### Original design and development
 * João Pimentel
 
 #### Art
