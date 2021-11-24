@@ -1190,8 +1190,21 @@ $(document).keyup(function (e) {
                 // 46: delete
                 // The use of the 'backspace' key, in addition to the 'delete', key aims to improve support for Mac users,
                 //    since in that system the key named 'delete' actually is a 'backspace' key
-                ui.getSelectedCells()[0].remove();
-                ui.selectPaper();
+                if (ui.getSelectedCells()[0].isKindOfActor()) {
+                    ui.confirm({
+                        message: 'ATTENTION! Are you sure you want to delete this entire actor, along with its content?',
+                        callback: function (value) {
+                            if (value) {
+                                ui.getSelectedCells()[0].remove();
+                                ui.selectPaper();
+                            }
+                        }
+                    });
+                }
+                else {
+                    ui.getSelectedCells()[0].remove();
+                    ui.selectPaper();
+                }
             }
             if (e.which === 27) {  //esc
                 ui.selectPaper();
