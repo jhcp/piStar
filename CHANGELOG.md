@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Auto-layout feature for reorganizing the actors and their links, 
-contributed by researchers from the University of Beijing. 
+contributed by researchers from the University of Beijing.
+
+### Changed
+- JointJS (dependency) updated to v3.4.4
+- lodash (dependency) updated to v4.17.21
+- Backbone.js (dependency) updated to v1.4.0
 
 ## [Release v2.0.0] - 2019-04-06
 
@@ -45,7 +50,7 @@ delete elements (in Mac OS the 'delete' key behaves as 'backspace')
 - Changes have been made in the code to conform to [Google's HTML and CSS style guide](https://google.github.io/styleguide/htmlcssguide.html). Notably, HTML elements have been renamed
 from CamelCase to snake-case. E.g.: addButton -> add-button
 - jQuery (dependency) updated to v3.*
-- JointJS (dependency) update to v2.2.0, along with its dependencies (BacjboneJS and lodash)
+- JointJS (dependency) updated to v2.2.0, along with its dependencies (BackboneJS and lodash)
 - when saving the model as a PNG image, now its background is transparent
 - Links are now rounded by default when they have vertices.
 Except for depedency links and contribution links, which are curved
