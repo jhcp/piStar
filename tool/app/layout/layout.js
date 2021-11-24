@@ -337,11 +337,18 @@ const convert = function (data) {
             const size = _.find( istar.graph.getElements(), { id: id } ).get("size")
             if (!size)
                 throw Error('Illegal node size ' + obj.id)
-            const [width, height] = [size.width, size.height]
+            let [width, height] = [size.width, size.height]
 
             reverse[id] = id
             if (obj.nodes) {
                 _.forEach(obj.nodes, item => (reverse[item.id] = id))
+            }
+            if (data.display && data.display[id] && data.display[id].collapsed) {
+                const normalSize = dictionary.nodeSize[desc]
+                if (normalSize) {
+                    width = normalSize[0]
+                    height = normalSize[1]
+                }
             }
 
             const r = (height > width ? height : width) / 2
