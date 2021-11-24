@@ -1137,7 +1137,7 @@ $('#menu-button-straighten-links').click(function () {
     'use strict';
 
     ui.confirm({
-        message: 'ATTENTION! This action will remove all vertices you may have added to the links in this model. Are you sure you want to do this?',
+        message: 'ATTENTION! This action will remove all vertices you may have added to the links in this model. Are you sure you want to proceed?',
         callback: function (value) {
             if (value) {
                 var selectedCell = ui.getSelectedCells()[0];
