@@ -8,7 +8,9 @@ istar.layout = {
 
         // straighten-links
         _.forEach(istar.getLinks(), function (link) {
-            link.vertices([]);
+            if (!link.isNodeLink()) {
+                link.vertices([]);
+            }
         });
 
         // Get the origin point position, rather than center position
@@ -45,12 +47,26 @@ istar.layout = {
                 elem.set('originalPosition', elem.get('position'))
                 // Apply the delta to its children
                 if (elem.isKindOfActor()) {
+                    // Update the position of the nodes within an actor
                     _.forEach(_.filter(elem.getEmbeddedCells(),
                       item => item.isElement()), child => {
                         let cx = child.position().x,
                           cy = child.position().y
                         child.position(cx + dx, cy + dy)
                     })
+                    // Update the position of the vertices of links within an actor
+                    _.forEach(_.filter(elem.getEmbeddedCells(),
+                      item => item.isLink()), child => {
+                        if (child.vertices().length > 0) {
+                            let updatedVertices = [];
+
+                            _.forEach(child.vertices(), vertex => {
+                                updatedVertices.push({x: vertex.x + dx, y: vertex.y + dy});
+                            })
+
+                            child.vertices(updatedVertices);
+                        }
+                    });
                     elem.updateBoundary()
                 }
             }
