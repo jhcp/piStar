@@ -146,9 +146,10 @@ nav a:visited {
 
 .menu-item-quick-button {
   padding: 2px 20px;
-  border: solid 2px #246B29;
+  border: none;
   color: white;
   background-color: transparent;
+  tab-index: -1;
 }
 
 .menu-item-quick-button.inactive {

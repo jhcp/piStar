@@ -1739,6 +1739,10 @@ $('#menu-item-undo').click(function () {
     istar.undoManager.undo();
 });
 
+// Prevent accidental undos. There's no need to use this button through the keyboard, since the user can use
+// its shortcut instead
+$('#menu-item-undo').focus(function (e) {this.blur()});
+
 istar.undoManager.callback = function(empty) {
     'use strict';
 
