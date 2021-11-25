@@ -1600,7 +1600,7 @@ $('#menu-button-new-model').click(function () {
     'use strict';
 
     ui.confirm({
-        message: 'Are you sure you want to create a new model and delete the current model?',
+        message: 'Are you sure you want to create a new model and delete the current model? This action is irreversible.',
         callback: function (result) {
             if (result === true) {
                 istar.clearModel();
