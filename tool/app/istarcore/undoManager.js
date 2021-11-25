@@ -20,5 +20,10 @@ istar.undoManager = {
     this.historyStack.push(undoAction);
     this.current += 1;
     this.callback(this.current < 0);
+  },
+  reset: function() {
+    this.historyStack = [];
+    this.current = -1;
+    this.callback(this.current);
   }
 };

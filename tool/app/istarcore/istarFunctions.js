@@ -573,6 +573,7 @@ var istar = function () {
             istar.graph.prop('name', '');
             istar.graph.prop('customProperties', '');//delete all custom properties
             istar.graph.prop('customProperties/Description', '');//set back the 'Description' property
+            istar.undoManager.reset();
         },
         embedNode: function (child, parent) {
             parent.embed(child);
