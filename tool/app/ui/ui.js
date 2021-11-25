@@ -1733,5 +1733,22 @@ $('#menu-button-toggle-contributions-display').click(function () {
     }
 });
 
+$('#menu-item-undo').click(function () {
+    'use strict';
+
+    istar.undoManager.undo();
+});
+
+istar.undoManager.callback = function(empty) {
+    'use strict';
+
+    if (empty) {
+        $('#menu-item-undo').addClass('inactive');
+    }
+    else {
+        $('#menu-item-undo').removeClass('inactive');
+    }
+}
+
 /*definition of globals to prevent undue JSHint warnings*/
 /*globals istar:false, console:false, $:false, _:false, joint:false, uiC:false, bootbox:false */

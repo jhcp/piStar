@@ -144,6 +144,24 @@ nav a:visited {
   display: none;
 }
 
+.menu-item-quick-button {
+  padding: 2px 20px;
+  border: solid 2px #246B29;
+  color: white;
+  background-color: transparent;
+}
+
+.menu-item-quick-button.inactive {
+  color: #95b397;
+}
+
+.icon-flipped {
+  -moz-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
 .menu-item:hover {
   border-top: solid 2px white;
 }

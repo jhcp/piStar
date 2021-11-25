@@ -42,6 +42,23 @@ too much time in it. May not have been trained on modern web development technol
 <details><summary>
 
 **As a** modeler
+**I want to** be able to undo my recent actions
+**so that** I prevent accidental loss of data </summary>
+- *Notes*:
+  - Support undoing the deletion of cells (elements or links)
+  - Reconsider supporting undoing other kinds of actions in future releases, depending on user feedback
+  - Support ctrl+z or command+z
+- *Tests*:
+  - Try undoing before any change has been made to the diagram
+  - Try undoing after multiple changes have been made
+  - Try undoing after every change has already been undone
+  - Try undoing after going throuh "File/New Model"
+</details>
+  
+
+<details><summary>
+
+**As a** modeler
 **I want to** resize my elements
 **so that** they better fit the size of its label </summary>
 - *Notes*:
@@ -337,15 +354,6 @@ modeling language and tool
 **As a** modeler 
 **I want to** copy elements from my model
  **so that** TBD</summary>
-- *Notes*:
-  - TBD
-</details>
-
-<details><summary>
-
-**As a** modeler 
-**I want to** be able to undo my recent actions
- **so that** I can correct any accident </summary>
 - *Notes*:
   - TBD
 </details>
