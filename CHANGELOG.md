@@ -5,7 +5,10 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 - Auto-layout feature for reorganizing the actors and their links, 
-contributed by researchers from the University of Beijing.
+contributed by researchers from the University of Beijing
+- Confirmation prompt before deleting actors
+- Undo feature, which is able to undo the deletion of elements and links from the model.
+Accessed through ctrl+z or command-z
 
 ### Changed
 - JointJS (dependency) updated to v3.4.4

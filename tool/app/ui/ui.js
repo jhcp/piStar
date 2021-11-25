@@ -1183,8 +1183,150 @@ ui.changeAddMenuStatus = function (text) {
 $(document).keyup(function (e) {
     'use strict';
 
-    if (ui.getSelectedCells()[0] !== null) {
-        if (ui.states.editor.isViewing()) {
+    function getDependencyFromDependencyLink(link) {
+        let dependum = null;
+        if (link.getSourceElement() && link.getSourceElement().isDependum()) {
+            dependum = link.getSourceElement();
+        }
+        else if (link.getTargetElement() && link.getTargetElement().isDependum()) {
+            dependum = link.getTargetElement();
+        }
+        let links = [link, link.prop('otherHalf')];
+
+        return {dependum: dependum, links: links};
+    }
+    function undoDeleteDependency(cell, links) {
+        return function () {
+            istar.graph.addCell(cell);
+            istar.graph.addCell(links);
+
+            for (let link of links) {
+                if ('x' in link.prop('source')) {
+                    link.prop('source', cell);
+                }
+                else if ('x' in link.prop('target')) {
+                    link.prop('target', cell);
+                }
+                istar.paper.findViewByModel(link).hideTools(); // Hide the vertices' handles
+            }
+        }
+    }
+    function deleteCell(cellToDelete) {
+        if (cellToDelete.isDependum()) {
+            istar.undoManager.addToHistory(
+              undoDeleteDependency(cellToDelete, istar.graph.getConnectedLinks(cellToDelete))
+            );
+        }
+        else if (cellToDelete.isDependencyLink()) {
+            const {dependum, links} = getDependencyFromDependencyLink(cellToDelete);
+            istar.undoManager.addToHistory(
+              undoDeleteDependency(dependum, links)
+            );
+        }
+        else if (cellToDelete.isContainerLink()) {
+            istar.undoManager.addToHistory(
+              function (link) {
+                  return function () {
+                      istar.graph.addCell(link);
+                      link.attr('connection-wrap/stroke', 'transparent');  // Hide the link highlight
+                  }
+              }(cellToDelete)
+            );
+        }
+        else if (cellToDelete.isContainer()) {
+            let links = istar.graph.getConnectedLinks(cellToDelete);
+            let dependencies = [];
+            for (let link of links) {
+                if (link.isDependencyLink()) {
+                    dependencies.push(getDependencyFromDependencyLink(link));
+                }
+            }
+            links = _.filter(links, link => {return !link.isDependencyLink();});
+
+            const children = cellToDelete.getEmbeddedCells();
+            for (let child of children) {
+                let nodeLinks = istar.graph.getConnectedLinks(child);
+                for (let link of nodeLinks) {
+                    if (link.isDependencyLink()) {
+                        dependencies.push(getDependencyFromDependencyLink(link));
+                    }
+                }
+            }
+
+            istar.undoManager.addToHistory(
+              function (cell, links, dependencies, children) {
+                  return function () {
+                      istar.graph.addCell(cell);
+                      istar.graph.addCell(links);
+
+                      istar.graph.addCell(children);
+                      for (let child of children) {
+                          cell.embed(child);
+                          if (child.isLink()) {
+                              istar.paper.findViewByModel(child).hideTools(); // Hide the vertices' handles
+                          }
+                      }
+
+                      for (let dependency of dependencies) {
+                          undoDeleteDependency(dependency.dependum, dependency.links)();
+                      }
+
+                      cell.updateBoundary();
+                  }
+              }(cellToDelete, links, dependencies, children)
+            );
+        }
+        else if (cellToDelete.isNode()) {
+            let nodeLinks = istar.graph.getConnectedLinks(cellToDelete);
+            let dependencies = [];
+            for (let link of nodeLinks) {
+                if (link.isDependencyLink()) {
+                    dependencies.push(getDependencyFromDependencyLink(link));
+                }
+            }
+            nodeLinks = _.filter(nodeLinks, link => {return !link.isDependencyLink();});
+
+            istar.undoManager.addToHistory(
+              function (cell, links, parentId, dependencies) {
+                  return function () {
+                      istar.graph.addCell(cell);
+                      istar.graph.addCell(links);
+
+                      const parent = istar.graph.getCell(parentId);
+                      parent.embed(cell);
+                      parent.updateBoundary();
+
+                      for (let link of links) {
+                          parent.embed(link);
+                          istar.paper.findViewByModel(link).hideTools(); // Hide the vertices' handles
+                      }
+
+                      for (let dependency of dependencies) {
+                          undoDeleteDependency(dependency.dependum, dependency.links)();
+                      }
+                  }
+              }(cellToDelete, nodeLinks, cellToDelete.parent(), dependencies)
+            );
+        }
+        else if (cellToDelete.isNodeLink()) {
+            istar.undoManager.addToHistory(
+              function (cell, parentId) {
+                  return function () {
+                      istar.graph.addCell(cell);
+
+                      const parent = istar.graph.getCell(parentId);
+                      parent.embed(cell);
+
+                      cell.attr('connection-wrap/stroke', 'transparent');  // Hide the link highlight
+                  }
+              }(cellToDelete, cellToDelete.parent())
+            );
+        }
+        ui.getSelectedCells()[0].remove();
+        ui.selectPaper();
+    }
+    if (ui.states.editor.isViewing()) {
+        if (ui.getSelectedCells()[0] !== null) {
             if (e.which === 8 || e.which === 46) {
                 // 8: backspace
                 // 46: delete
@@ -1195,19 +1337,18 @@ $(document).keyup(function (e) {
                         message: 'ATTENTION! Are you sure you want to delete this entire actor, along with its content?',
                         callback: function (value) {
                             if (value) {
-                                ui.getSelectedCells()[0].remove();
-                                ui.selectPaper();
+                                deleteCell(ui.getSelectedCells()[0]);
                             }
                         }
                     });
                 }
                 else {
-                    ui.getSelectedCells()[0].remove();
-                    ui.selectPaper();
+                    deleteCell(ui.getSelectedCells()[0]);
                 }
             }
-            if (e.which === 27) {  //esc
-                ui.selectPaper();
+            if ((e.ctrlKey || e.metaKey) && e.which === 90) {  //ctrl + z or command + z
+                e.preventDefault();
+                istar.undoManager.undo();
             }
         }
     }
