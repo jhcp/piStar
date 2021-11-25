@@ -1333,18 +1333,21 @@ $(document).keyup(function (e) {
                 // 46: delete
                 // The use of the 'backspace' key, in addition to the 'delete', key aims to improve support for Mac users,
                 //    since in that system the key named 'delete' actually is a 'backspace' key
-                if (ui.getSelectedCells()[0].isKindOfActor()) {
-                    ui.confirm({
-                        message: 'ATTENTION! Are you sure you want to delete this entire actor, along with its content?',
-                        callback: function (value) {
-                            if (value) {
-                                deleteCell(ui.getSelectedCells()[0]);
+                if (ui.getSelectedCells()[0].isKindOfActor) {
+                    // If the selected cell does not have the isKindOfActor function, it means that it's not
+                    // really a cell, but the diagram itself. Thus, only delete if it has this function.
+                    if (ui.getSelectedCells()[0].isKindOfActor()) {
+                        ui.confirm({
+                            message: 'ATTENTION! Are you sure you want to delete this entire actor, along with its content?',
+                            callback: function (value) {
+                                if (value) {
+                                    deleteCell(ui.getSelectedCells()[0]);
+                                }
                             }
-                        }
-                    });
-                }
-                else {
-                    deleteCell(ui.getSelectedCells()[0]);
+                        });
+                    } else {
+                        deleteCell(ui.getSelectedCells()[0]);
+                    }
                 }
             }
             if ((e.ctrlKey || e.metaKey) && e.which === 90) {  //ctrl + z or command + z
