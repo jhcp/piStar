@@ -322,8 +322,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
             );
             $('#delete-element-button').click(function (e) {
                 if (ui.getSelectedCells()) {
-                    ui.getSelectedCells()[0].remove();
-                    ui.selectPaper();
+                    ui.deleteCell(ui.getSelectedCells()[0]);
                 }
                 ui.collectActionData('click', e.currentTarget.id);
             });
