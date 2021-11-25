@@ -11,6 +11,7 @@ contributed by researchers from the University of Beijing
 Accessed through ctrl+z or command-z
 
 ### Changed
+- Automatically select the link when vertices are added to it.
 - JointJS (dependency) updated to v3.4.4
 - lodash (dependency) updated to v4.17.21
 - Backbone.js (dependency) updated to v1.4.0

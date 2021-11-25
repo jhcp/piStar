@@ -210,8 +210,9 @@ ui.defineInteractions = function () {
             cell.findView(istar.paper).addTools(toolsView).hideTools();
             cell.on('change:vertices', function(linkModel, a, b) {
                 if (! b.translateBy) {
-                    //this if prevents updating the selection when the link is being translated along with its parent
+                    //this 'if' prevents updating the selection when the link is being translated along with its parent
                     ui.showSelection();
+                    ui.selectCell(linkModel);
                 }
             });
         }
