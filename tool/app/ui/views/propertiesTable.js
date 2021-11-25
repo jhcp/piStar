@@ -50,6 +50,15 @@ ui.components.PropertiesTableView = Backbone.View.extend({
             }
 
             this.setupDeleteButton();
+
+            if (this.model.isDependum()) {
+                this.addInfo('TIP: To change the type of this dependency, just click on the current ' +
+                  'Type above and choose a new option.');
+            }
+            else if (this.model.isContributionLink()) {
+                this.addInfo('TIP: To change the label of this contribution link, just click on the current ' +
+                  'Value above and choose a new option.');
+            }
         }
         this.setupOptionsPanel();
 
@@ -337,6 +346,13 @@ ui.components.PropertiesTableView = Backbone.View.extend({
         else if (ui.getSelectedCells()){
             $('#single-element-color-picker').get(0).jscolor.fromString(ui.defaultElementBackgroundColor);
         }
+    },
+    addInfo: function (content) {
+        'use strict';
+
+        $('#cell-actions').append(
+          '<i>' + content + '</i><br>'
+        );
     },
     renderCustomProperty: function (propertyName) {
         'use strict';
