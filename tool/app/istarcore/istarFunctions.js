@@ -411,8 +411,16 @@ var istar = function () {
             return _.size(istar.graph.getLinks());
         },
         replaceNode: function (element, typeName) {
+            let newType = null;
+            if (element.isKindOfActor()) {
+                newType = istar.metamodel.containers[typeName];
+            }
+            else {
+                newType =istar.metamodel.nodes[typeName];
+            }
+
             var newNode = this.base.addNode(
-                istar.metamodel.nodes[typeName],
+                newType,
                 element.prop('name'),
                 {
                     position: element.prop('position')
@@ -431,10 +439,40 @@ var istar = function () {
 
             istar.graph.addCell(newNode);
             //update the line break on the element's label
+            newNode.updateLineBreak();
 
-            //change the dependency links from the old node to the new node
+            //change the links from the old node to the new node
+            //first verify whether the links would remain valid
+            var isValid = {isValid: true};
+            let connectedLinks = istar.graph.getConnectedLinks(element);
+            _.forEach(connectedLinks, function (link) {
+                let source = link.getSourceElement();
+                if (source === element) {
+                    source = newNode;
+                }
+                let target = link.getTargetElement();
+                if (target === element) {
+                    target = newNode;
+                }
+
+                if (link.isContainerLink()) {
+                    isValid = istar.metamodel.containerLinks[link.prop('type')].isValid(target, source);
+                }
+            });
+
+            if (isValid.isValid === false) {
+                newNode.remove();
+                return {ok: false, isValid};
+            }
+
+            if (element.isKindOfActor()) {
+                _.forEach(element.getEmbeddedCells(), function(child) {
+                    element.unembed(child);
+                    newNode.embedNode(child);
+                });
+            }
+
             var nodeId = element.prop('id');
-            var connectedLinks = istar.graph.getConnectedLinks(element);
             _.forEach(connectedLinks, function (link) {
                 if (link.prop('source/id') === nodeId) {
                     link.prop('source/id', newNode.prop('id'));
@@ -451,6 +489,9 @@ var istar = function () {
                 //     console.log(isValid);
                 // }
             });
+            if (element.isKindOfActor()) {
+                newNode.toBack();
+            }
 
             //remove the old node
             element.remove();

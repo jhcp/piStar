@@ -8,13 +8,19 @@ All notable changes to this project will be documented in this file.
 contributed by researchers from the Beijing University of Technology
 - Confirmation prompt before deleting actors
 - Undo feature, which is able to undo the deletion of elements and links from the model.
-Accessed through ctrl+z or command-z
+Accessed through ctrl+z, or command-z, or through a button in the UI
+- Feature to change the type of existing actors
+- Tips in the property panel, to inform about the option of changing the types of elements when applicable
 
 ### Changed
 - Automatically select the link when vertices are added to it.
 - JointJS (dependency) updated to v3.4.4
 - lodash (dependency) updated to v4.17.21
 - Backbone.js (dependency) updated to v1.4.0
+
+### Fix
+- When changing the type of a dependency, the dependum was still selected but the UI did not indicate that it was still
+selected
 
 ## [Release v2.0.0] - 2019-04-06
 

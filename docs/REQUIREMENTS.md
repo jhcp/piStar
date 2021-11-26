@@ -84,10 +84,11 @@ may be reconsidered in future releases
 **I want to** change the type of a given element or link
 **so that** I can edit my model more easily</summary>
 - *Notes*:
-  - Change contribution links, between Make, Help, Hurt, and Break
+  - Change contribution links, between Make, Help, Hurt, and Break (according to the content of the metamodel)
   - Change dependums, between Goal dependency, Quality dependency, Task dependency,
-    and Resource dependency
-- *History*: Since v2.0.0
+    and Resource dependency (according to the content of the metamodel)
+  - Change actors, between Actor, Agent, and Role (according to the content of the metamodel)
+- *History*: Since v2.0.0. Updated on v2.1.0
 </details>
 
 

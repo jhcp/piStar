@@ -59,6 +59,10 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                 this.addInfo('TIP: To change the label of this contribution link, just click on the current ' +
                   'Value above and choose a new option.');
             }
+            else if (this.model.isKindOfActor()) {
+                this.addInfo('TIP: To change the type of this Actor, just click on the current ' +
+                  'Type above and choose a new option.');
+            }
         }
         this.setupOptionsPanel();
 
@@ -87,6 +91,9 @@ ui.components.PropertiesTableView = Backbone.View.extend({
         if (this.model.prop('type')) {
             var propertyName = null;
             if (this.model.isDependum && this.model.isDependum()) {
+                propertyName = 'type';
+            }
+            else if (this.model.isKindOfActor && this.model.isKindOfActor()) {
                 propertyName = 'type';
             }
             else if (this.model.isContributionLink && this.model.isContributionLink()) {
@@ -152,6 +159,45 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                 .on('hidden', function () {
                     ui.states.editor.transitionTo(ui.states.editor.VIEWING);
                 });
+        }
+        else if (this.model.isKindOfActor && this.model.isKindOfActor()) {
+            var typeNames = [];
+            var currentType = 0;
+            var element = this.model;
+            _.forEach(istar.metamodel.containers, function(elementType, index) {
+                typeNames.push({value: index, text: elementType.name});
+                if (elementType.name === element.prop('type')) {
+                    currentType = index;
+                }
+            }, this);
+            this.$table.find('a').editable({
+                showbuttons: false,
+                source: typeNames,
+                success: function (response, newValue) {
+                    var updatedElement = ui.getSelectedCells()[0];
+                    var newType = istar.metamodel.containers[newValue].name;
+                    // updatedElement.prop('type', newType);
+                    var result = istar.replaceNode(updatedElement, istar.metamodel.containers[newValue].name);
+                    if (result.ok === false) {
+                        ui.displayInvalidLinkMessage('it is not possible to change this <b>' +
+                            element.prop('type') + '</b> to <b>' + newType +
+                            '</b>, because it would violate the following constraint:<br /><br />' +
+                            result.isValid.message);
+                    }
+                    else {
+                        ui.selectCell(result);
+                        ui.showSelection();
+                        ui.collectActionData('edit', 'change', 'change actor type');
+                    }
+                },
+                value: currentType
+            })
+              .on('shown', function () {
+                  ui.states.editor.transitionTo(ui.states.editor.EDITING_TEXT);
+              })
+              .on('hidden', function () {
+                  ui.states.editor.transitionTo(ui.states.editor.VIEWING);
+              });
         }
         else if (this.model.isContributionLink && this.model.isContributionLink()) {
             var element = this.model;
