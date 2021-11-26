@@ -573,6 +573,7 @@ ui.defineInteractions = function () {
     istar.paper.on('cell:contextmenu', function (cellView, evt, x, y) {
         //highlight the contextual actions panel when users right clicks a Cell,
         // letting they know where to find such actions
+        ui.alert('Contextual actions can be found on the properties panel');
         ui.selectCell(cellView.model);
         $('#sidepanel-title-actions').addClass('flash-on');
         setTimeout(function () {
