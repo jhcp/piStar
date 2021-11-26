@@ -149,6 +149,7 @@ ui.components.PropertiesTableView = Backbone.View.extend({
                     var newNode = istar.replaceNode(updatedElement, istar.metamodel.nodes[newValue].name)
                         .prop('isDependum', true);
                     ui.selectCell(newNode);
+                    ui.showSelection();
                     ui.collectActionData('edit', 'change', 'change dependum type');
                 },
                 value: currentType
