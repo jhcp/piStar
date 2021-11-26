@@ -575,6 +575,7 @@ ui.defineInteractions = function () {
         // letting they know where to find such actions
         ui.alert('Contextual actions can be found on the properties panel');
         ui.selectCell(cellView.model);
+        ui.showSelection();
         $('#sidepanel-title-actions').addClass('flash-on');
         setTimeout(function () {
             $('#sidepanel-title-actions').removeClass('flash-on');

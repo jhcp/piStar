@@ -21,6 +21,7 @@ Accessed through ctrl+z, or command-z, or through a button in the UI
 ### Fix
 - When changing the type of a dependency, the dependum was still selected but the UI did not indicate that it was still
 selected
+- When right-clicking a cell (element or link), the cell was selected but the UI did not indicate that it was selected
 
 ## [Release v2.0.0] - 2019-04-06
 
