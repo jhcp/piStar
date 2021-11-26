@@ -53,8 +53,25 @@ too much time in it. May not have been trained on modern web development technol
   - Try undoing after multiple changes have been made
   - Try undoing after every change has already been undone
   - Try undoing after going throuh "File/New Model"
+- *History*: Since v2.1.0
 </details>
-  
+
+
+<details><summary>
+
+**As a** modeler
+**I want to** have the layout of my models automatically organized
+**so that** I spend less time and effort organizing my model </summary>
+- *Notes*:
+  - Preserve the content within actors exactly the same as before
+  - For future releases, consider including the option of automatically layouting the content within actors.
+    This would be useful for programatically-generated diagrams.
+- *Tests*:
+  - Try on an empty diagram
+  - Try with collapsed actors
+  - Try with expanded actors
+- *History*: Since v2.1.0
+</details>
 
 <details><summary>
 
