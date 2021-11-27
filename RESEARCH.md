@@ -12,6 +12,37 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+[comment]: <> (- Xavier Franch, Marcela Ruiz. )
+[comment]: <> (  [Goal-Oriented Models for Teaching and Understanding Data Structures]&#40;https://link.springer.com/chapter/10.1007/978-3-030-89022-3_19&#41;.)
+[comment]: <> (  In: Proceedings of the International Conference on Conceptual Modeling &#40;ER 2021&#41;, pp. 227-241.)
+[comment]: <> (I'm not sure if this work actually mentions the piStar tool. Check again in a few months for an open access copy.  )
+
+  
+- Salih Göktuğ Köse; Fatma Başak Aydemir. 
+  [Automated Glossary Extraction from Collaborative Requirements Models](https://ieeexplore.ieee.org/abstract/document/9582295).
+  In: IEEE 29th International Requirements Engineering Conference Workshops (REW), 2021.
+
+- Diogo Albuquerque, Ana Moreira, João Araujo, Catarina Gralha, Miguel Goulão, Isabel Sofia Brito. 
+  [A Sustainability Requirements Catalog for the Social and Technical Dimensions](https://link.springer.com/chapter/10.1007/978-3-030-89022-3_30).
+  In: Proceedings of the International Conference on Conceptual Modeling (ER 2021), pp. 381-394.
+
+- Xavier Franch.
+  [Extending iStar2.0 Metamodel to Define Data Structures](https://upcommons.upc.edu/bitstream/handle/2117/356869/iStar21_paper_5.pdf?sequence=1).
+  In: Proceedings of the 14th International iStar Workshop, 2021.
+
+- Enyo Gonçalves, Ingrid Monteiro. 
+  [Reporting the Usage of iStar in a Model-Based Industrial Project to Evolve an e-Commerce Application](http://ceur-ws.org/Vol-2983/iStar21_paper_2.pdf).
+  In: Proceedings of the 14th International iStar Workshop, 2021.
+
+- Jorge A. Salcedo, Manuel H. Velarde, Alexander J. M. Montalvo, Claudia L. Rojas,
+  Milagros Yarahuaman, Luis A. Araujo, Roxana L. Q. Portugal.
+  [Modeling Non-Functional Requirements of a Reactive System](http://ceur-ws.org/Vol-2983/iStar21_paper_3.pdf).
+  In: Proceedings of the 14th International iStar Workshop, 2021.
+
+- Christophe Ponsard, Valery Ramon, Mounir Touzani. [Improving Cyber Security Risk Assessment by
+  Combined Use of i* and Infrastructure Models](http://ceur-ws.org/Vol-2983/iStar21_paper_11.pdf). 
+  In: Proceedings of the 14th International iStar Workshop, 2021.
+
 - Jefferson Viana Fonseca Abreu, Celia Ghedini Ralha, João José Costa Gondim. A Multi-agent Approach for Online Twitter Bot Detection. Actas de la VI Jornadas Nacionales (JNIC2021 LIVE). [https://ruidera.uclm.es/xmlui/bitstream/handle/10578/28601/03%20INVESTIGACI%C3%93N%20EN%20CIBERSEGURIDAD.pdf?sequence=1&isAllowed=y]
 
 - Tiago Henrique Faccio Segato, Célia Ghedini Ralha, Sérgio Eduardo Soares Fernandes. Development process of multiagent system for glycemic control of intensive care unit patients. Artificial Intelligence Research 2021, Vol. 10, No. 1. https://doi.org/10.5430/air.v10n1p43
