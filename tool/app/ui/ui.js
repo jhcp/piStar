@@ -1418,7 +1418,7 @@ ui.changeCustomPropertyValue = function (model, propertyName, propertyValue) {
 $('#fit-to-content-button').click(function () {
     'use strict';
 
-    istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any', minWidth: 150, minHeight: 150, allowNewOrigin: 'positive'});
+    istar.paper.fitToContent({padding: 20, allowNewOrigin: 'any', minWidth: 150, minHeight: 150});
 
     // Update the positioning of the selection
     ui.hideSelection();
