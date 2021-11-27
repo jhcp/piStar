@@ -514,38 +514,7 @@ ui.defineInteractions = function () {
                 }
             }
 
-            //increase the drawing area if there is an element beyond its edges
-            //get the Bounding Box from the view, which ignores hidden inner elements
-            //In contrast, if we were to get the Bounding Box from the model, the dimensions would be
-            //that of a expanded actor even if it were collapsed
-            var cellBBox = cellView.getBBox();
-
-            var paperWidth = istar.paper.getArea().width;
-            var paperHeight = istar.paper.getArea().height;
-
-            //Round the numbers of the new dimension since:
-            // a) Precision is not relevant here
-            // b) Int numbers are easier for the user to handle (when manually changing the size)
-            if (cellBBox.y + cellBBox.height > paperHeight ) {
-                //if the element is beyond the bottom edge
-                istar.paper.setDimensions(paperWidth, Math.round(cellBBox.y + cellBBox.height + 40));
-            }
-            if (cellBBox.x + cellBBox.width > paperWidth ) {
-                //if the element is beyond the right edge
-                istar.paper.setDimensions(Math.round(cellBBox.x + cellBBox.width + 40));
-            }
-            if (cellBBox.x < 0 ) {
-                //if the element is beyond the left edge
-                var delta = Math.round(40 - cellBBox.x);
-                istar.paper.setDimensions(paperWidth + delta);
-                istar.graph.translate(delta, 0);
-            }
-            if (cellBBox.y < 0 ) {
-                //if the element is beyond the left edge
-                var delta = Math.round(40 - cellBBox.y);
-                istar.paper.setDimensions(paperWidth, paperHeight + delta);
-                istar.graph.translate(0, delta);
-            }
+            istar.resizePaperBasedOnCell(cellView);
 
             ui.showSelection();
         }
@@ -587,6 +556,41 @@ ui.defineInteractions = function () {
     });
 };
 
+istar.resizePaperBasedOnCell = function(cellView) {
+    //increase the drawing area if there is an element beyond its edges
+    //get the Bounding Box from the view, which ignores hidden inner elements
+    //In contrast, if we were to get the Bounding Box from the model, the dimensions would be
+    //that of a expanded actor even if it were collapsed
+    var cellBBox = cellView.getBBox();
+
+    var paperWidth = istar.paper.getArea().width;
+    var paperHeight = istar.paper.getArea().height;
+
+    //Round the numbers of the new dimension since:
+    // a) Precision is not relevant here
+    // b) Int numbers are easier for the user to handle (when manually changing the size)
+    if (cellBBox.y + cellBBox.height > paperHeight ) {
+        //if the element is beyond the bottom edge
+        istar.paper.setDimensions(paperWidth, Math.round(cellBBox.y + cellBBox.height + 40));
+    }
+    if (cellBBox.x + cellBBox.width > paperWidth ) {
+        //if the element is beyond the right edge
+        istar.paper.setDimensions(Math.round(cellBBox.x + cellBBox.width + 40));
+    }
+    if (cellBBox.x < 0 ) {
+        //if the element is beyond the left edge
+        var delta = Math.round(40 - cellBBox.x);
+        istar.paper.setDimensions(paperWidth + delta);
+        istar.graph.translate(delta, 0);
+    }
+    if (cellBBox.y < 0 ) {
+        //if the element is beyond the left edge
+        var delta = Math.round(40 - cellBBox.y);
+        istar.paper.setDimensions(paperWidth, paperHeight + delta);
+        istar.graph.translate(0, delta);
+    }
+}
+
 ui.addElementOnPaper = function (options) {
     'use strict';
 
@@ -623,6 +627,7 @@ ui.addElementOnPaper = function (options) {
                 newActor.prop('customProperties', istar.metamodel.containers[currentAddingElement].customProperties);
             }
             newActor.prop('customProperties/Description', '');
+            istar.resizePaperBasedOnCell(newActor);
             ui.selectCell(newActor);
         }
         else {
@@ -1487,8 +1492,7 @@ ui.setupElementResizing = function () {
 
         ui.showSelection(ui.getSelectedCells()[0]);
 
-        //update the line break on the element's label
-        element.updateLineBreak();
+        element.updateLineBreak();  // Update the line break on the element's label
     };
 
     ui.resizeHandlerOnMouseMove = function (e) {
@@ -1503,15 +1507,16 @@ ui.setupElementResizing = function () {
         ui.resizeElement(ui.getSelectedCells()[0], newWidth, newHeight);
     };
 
-    ui.stopResizeMouseEvents = function (e) {
+    ui.endResize = function (e) {
+        istar.resizePaperBasedOnCell(ui.getSelectedCells()[0]);
         $(window).off('mousemove', ui.resizeHandlerOnMouseMove);
-        $(window).off('mouseup', ui.stopResizeMouseEvents);
+        $(window).off('mouseup', ui.endResize);
     };
 
     $('#resize-handle').mousedown(function (e) {
         e.preventDefault();
         $(window).mousemove(ui.resizeHandlerOnMouseMove);
-        $(window).mouseup(ui.stopResizeMouseEvents);
+        $(window).mouseup(ui.endResize);
     });
     $('#resize-handle').dblclick(function (e) {
         e.preventDefault();

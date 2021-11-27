@@ -149,13 +149,18 @@ may be reconsidered in future releases
  **so that** I can create models as large as I need</summary>
 - *Notes*:
   - Increase the drawing area to fit elements that are moved beyond the current drawing area
+  - Increase the drawing area to fit new actors when they are added do the diagram
+  - Increase the drawing area to fit a resized element when an element is resized
 - *Tests*:
   - Try when moving expanded actor
   - Try when moving collapsed actor
   - Try when moving elements within an expanded actor
   - Try when moving dependums
+  - Try when adding new actors, agents and roles
+  - Try when resizing an element inside an actor
+  - Try when resizing a dependum
   - Try in every direction (top, right, bottom, left)
-- *History*: Since v1.2.0. Updated on v2.0.0
+- *History*: Since v1.2.0. Updated on v2.0.0. Updated on v2.1.0.
 </details>
 
 

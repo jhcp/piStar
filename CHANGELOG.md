@@ -10,7 +10,9 @@ contributed by researchers from the Beijing University of Technology
 - Undo feature, which is able to undo the deletion of elements and links from the model.
 Accessed through ctrl+z, or command-z, or through a button in the UI
 - Feature to change the type of existing actors
-- Tips in the property panel, to inform about the option of changing the types of elements when applicable
+- Tips in the property panel, to inform about the option of changing the types of elements, when applicable
+- When adding a new actor to the diagram, if the actor goes beyond the current drawing area, automatically enlarge it
+- When resizing an element, if the element goes beyond the current drawing area, automatically enlarge it
 
 ### Changed
 - Automatically select the link when vertices are added to it.
@@ -22,6 +24,7 @@ Accessed through ctrl+z, or command-z, or through a button in the UI
 - When changing the type of a dependency, the dependum was still selected but the UI did not indicate that it was still
 selected
 - When right-clicking a cell (element or link), the cell was selected but the UI did not indicate that it was selected
+
 
 ## [Release v2.0.0] - 2019-04-06
 
