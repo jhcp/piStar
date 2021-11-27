@@ -1140,7 +1140,8 @@ $('#menu-button-straighten-links').click(function () {
     'use strict';
 
     ui.confirm({
-        message: 'ATTENTION! This action will remove all vertices you may have added to the links in this model. Are you sure you want to proceed?',
+        message: 'ATTENTION! This action will remove all vertices you may have added to the links in this model. This' +
+          ' action is irreversible. Are you sure you want to proceed?',
         callback: function (value) {
             if (value) {
                 var selectedCell = ui.getSelectedCells()[0];
@@ -1160,7 +1161,7 @@ $('#menu-button-auto-layout').click(function () {
 
     ui.confirm({
         message: 'ATTENTION! This action will change the position of the actors, while also removing every vertex you' +
-                 ' may have added to their links. Are you sure you want to proceed?',
+                 ' may have added to their links. This action is irreversible. Are you sure you want to proceed?',
         callback: function (value) {
             if (value) {
                 var selectedCell = ui.getSelectedCells()[0] ? ui.getSelectedCells()[0] : null;
