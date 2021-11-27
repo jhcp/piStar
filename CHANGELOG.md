@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [Release v2.1.0] - 2021-11-29
+
 ### Added
 - Auto-layout feature for reorganizing the actors and their links, 
 contributed by researchers from the Beijing University of Technology

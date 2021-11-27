@@ -102,7 +102,7 @@ istar.fileManager = function() {
                 'dependencies': [],
                 'links': [],
                 'display': {},
-                'tool': 'pistar.2.0.0',
+                'tool': 'pistar.2.1.0',
                 'istar': '2.0',
                 'saveDate': date,
                 'diagram': diagram

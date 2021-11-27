@@ -127,179 +127,169 @@ istar.models.loadPistarWelcome = function () {
 istar.models.pistarWelcome = {
     "actors": [
         {
-            "id": "3589ee55-603d-41ee-8bf1-2b2a54498def",
-            "text": "Researcher",
-            "type": "istar.Actor",
-            "x": 49,
-            "y": 41,
+            "id": "fcf67803-5e5a-4bae-8690-1f12af4446d6",
+            "text": "piStar tool v2.1.0",
+            "type": "istar.Agent",
+            "x": 530,
+            "y": 55,
             "customProperties": {
-                "Description": "I am a Requirements Engineering researcher. You too?"
+                "ReleaseDate": "November 29th, 2021"
+            },
+            "nodes": [
+                {
+                    "id": "f9035e8c-0294-44a8-a93e-85a349d2f21a",
+                    "text": "Change the type of dependums",
+                    "type": "istar.Task",
+                    "x": 530,
+                    "y": 311,
+                    "customProperties": {
+                        "Description": "Now you can change the type of dependum elements, between Goal, Quality, Resource and Task. In order to do so, select the dependum and then change its type in the Properties panel",
+                        "Since": "Version 2.0.0"
+                    }
+                },
+                {
+                    "id": "c9d1ae28-8b77-4643-a7ac-7e70903dadb7",
+                    "text": "Change the type of actors",
+                    "type": "istar.Task",
+                    "x": 623,
+                    "y": 348,
+                    "customProperties": {
+                        "Description": "Now you can change the type of existing actors, betwen Actor, Agent and Role. In order to do so, select the actor and then change its type in the Properties panel",
+                        "Since": "Version 2.1.0"
+                    }
+                },
+                {
+                    "id": "d2d100ae-ba57-424b-864c-dc3ec69cb2fb",
+                    "text": "Change the type of contribution links",
+                    "type": "istar.Task",
+                    "x": 716,
+                    "y": 288,
+                    "customProperties": {
+                        "Description": "Now you can change the type of contribution links (Make, Help, Hurt, Break). In order to do so, select the link and then change its type in the Properties panel",
+                        "Since": "Version 2.0.0"
+                    }
+                },
+                {
+                    "id": "9250b018-fb16-4b82-b7bf-5f5589b6b259",
+                    "text": "Auto-layout",
+                    "type": "istar.Task",
+                    "x": 547,
+                    "y": 396,
+                    "customProperties": {
+                        "Description": "Auto-layout feature kindly contributed by researchers from the Beijing University of Technology. This is very useful when you want to create SD (Strategic Dependencies) views of your model",
+                        "Since": "Version 2.1.0"
+                    }
+                },
+                {
+                    "id": "339417b8-0430-4ceb-be12-d6cf7b440a35",
+                    "text": "Prevent data loss from accidental deletes",
+                    "type": "istar.Quality",
+                    "x": 573,
+                    "y": 100,
+                    "customProperties": {
+                        "Description": ""
+                    }
+                },
+                {
+                    "id": "3c4eacd1-cc6b-4c1e-8a9e-2260229d831f",
+                    "text": "Confirm before deleting actors",
+                    "type": "istar.Task",
+                    "x": 709,
+                    "y": 210,
+                    "customProperties": {
+                        "Description": "Only delete an actor after confirmation from the user",
+                        "Since": "Version 2.1.0"
+                    }
+                },
+                {
+                    "id": "2904a233-4620-461c-978a-0058a4d3bdc4",
+                    "text": "Undo deletes",
+                    "type": "istar.Task",
+                    "x": 759,
+                    "y": 112,
+                    "customProperties": {
+                        "Description": "Undo through Ctrl+z, Command+z, or through the \"Undo delete\" button on the menu bar",
+                        "Since": "Version 2.1.0"
+                    }
+                },
+                {
+                    "id": "825269c5-af60-4db1-b55c-316987dcb880",
+                    "text": "Modify existing elements",
+                    "type": "istar.Task",
+                    "x": 585,
+                    "y": 223,
+                    "customProperties": {
+                        "Description": "Be able to modify existing elements"
+                    }
+                }
+            ]
+        },
+        {
+            "id": "bda083fe-1fb4-41cf-aea9-449c0d4044b5",
+            "text": "Business Analyst",
+            "type": "istar.Role",
+            "x": 86,
+            "y": 31,
+            "customProperties": {
+                "Description": "Someone that needs to undestand the goals of an organizations"
             },
             "nodes": [
                 {
                     "id": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252",
                     "text": "i* models created",
                     "type": "istar.Goal",
-                    "x": 249,
-                    "y": 87,
+                    "x": 187,
+                    "y": 49,
                     "customProperties": {
-                        "Description": "This tool supports the i* 2.0 version (iStar 2.0)"
+                        "Description": "This tool supports the creation of goal model using the i* 2.0 language (iStar 2.0)"
                     }
                 },
                 {
                     "id": "8d716a61-1ca4-44f4-934c-26166ea44d11",
-                    "text": "Use piStar",
+                    "text": "Use the piStar Tool",
                     "type": "istar.Task",
-                    "x": 172,
-                    "y": 161,
+                    "x": 142,
+                    "y": 231,
                     "customProperties": {
                         "Description": "You can use it for free, without worrying about installations"
                     }
                 },
                 {
                     "id": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
-                    "text": "Good Quality",
+                    "text": "Good visual quality",
                     "type": "istar.Quality",
-                    "x": 126,
-                    "y": 61,
+                    "x": 120,
+                    "y": 120,
                     "customProperties": {
-                        "Description": "By Good Quality we mean good *visual* quality:\n - no visual artefacts due to compression or rescaling;\n - aesthetically similar to the diagrams from the i* Wiki guides"
+                        "Description": "- no visual artefacts due to compression or rescaling;\n - aesthetically similar to the diagrams from the i* Wiki guides"
                     }
-                }
-            ]
-        },
-        {
-            "id": "dbe6cf9f-877d-4600-bac9-8f7bbde93426",
-            "text": "piStar tool team",
-            "type": "istar.Agent",
-            "x": 426,
-            "y": 201,
-            "nodes": [
+                },
                 {
-                    "id": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
-                    "text": "Continuous Improvement",
+                    "id": "3e732026-ae4c-4038-acb7-bd9f036c5f73",
+                    "text": "Reliable usage",
                     "type": "istar.Quality",
-                    "x": 638,
-                    "y": 211,
+                    "x": 252,
+                    "y": 133,
                     "customProperties": {
-                        "Description": "Because we all know there is much to be improved in this tool =)\n\nBtw, help us improve it by sending your feedback through the Help menu"
+                        "Description": ""
                     }
                 },
                 {
-                    "id": "f69a3c4b-4d40-488d-a54a-a0e38453f077",
-                    "text": "Add properties to the diagram",
+                    "id": "ab3313df-175f-4b2b-9486-c0915a3d1cd4",
+                    "text": "Modify the diagram",
                     "type": "istar.Task",
-                    "x": 844,
-                    "y": 311,
+                    "x": 199,
+                    "y": 342,
                     "customProperties": {
-                        "Description": "Now you can add custom properties not only to your elements, but also to your diagram as a whole! For instance, you can give it a name, record the authors' names, provide a link for further information, provide a brief description of the project, and so on.",
-                        "Since": "Version 2.0.0"
+                        "Description": ""
                     }
                 },
                 {
-                    "id": "1f011a05-50ff-47b4-bdf6-e6c9227eef70",
-                    "text": "Change the color of elements",
+                    "id": "8cc94931-99dd-441e-bf97-9b08c03ae576",
+                    "text": "Organize the layout of the diagram",
                     "type": "istar.Task",
-                    "x": 433,
-                    "y": 414,
-                    "customProperties": {
-                        "Description": "Now you can change the color of elements, but use this with CAUTION! because the readers of your model may not be able to guess the meaning of each color. Plus, too many colors will make it messy.",
-                        "Since": "Version 2.0.0"
-                    }
-                },
-                {
-                    "id": "5562be02-998b-4a7b-8bb9-355d84b3c06b",
-                    "text": "Change the size of elements",
-                    "type": "istar.Task",
-                    "x": 427,
-                    "y": 514,
-                    "customProperties": {
-                        "Description": "Now you can change the size of elements of the model. You just need to drag the handle in the bottom-right corner of the selected element",
-                        "Since": "Version 2.0.0"
-                    }
-                },
-                {
-                    "id": "17acd322-9d37-496e-b6d5-c69c497502db",
-                    "text": "Improved UI",
-                    "type": "istar.Resource",
-                    "x": 490,
-                    "y": 305,
-                    "customProperties": {
-                        "Description": "This new User Interface has been designed not only to improve usability, but also to accommodate new functionalities that are coming in the near future",
-                        "Since": "Version 2.0.0"
-                    }
-                },
-                {
-                    "id": "f9035e8c-0294-44a8-a93e-85a349d2f21a",
-                    "text": "Change the type of dependums",
-                    "type": "istar.Task",
-                    "x": 568,
-                    "y": 465,
-                    "customProperties": {
-                        "Description": "Now you can change the type of dependum elements. Select the dependum and then change its type in the Properties sidepanel",
-                        "Since": "Version 2.0.0"
-                    }
-                },
-                {
-                    "id": "2697c4ac-6868-42ff-9d1d-b819000f909e",
-                    "text": "Improved visuals for links",
-                    "type": "istar.Resource",
-                    "x": 725,
-                    "y": 490,
-                    "customProperties": {
-                        "Description": "Improved shape and rotation for the 'D' in dependency links, as well as for the arrows in actor links, or-refinement links, and contribution links",
-                        "Since": "Version 2.0.0"
-                    }
-                },
-                {
-                    "id": "d481f512-6836-4e17-ba29-0192cb0c8ad8",
-                    "text": "Add properties to links",
-                    "type": "istar.Task",
-                    "x": 825,
-                    "y": 515,
-                    "customProperties": {
-                        "Description": "Now you can add custom properties not only to your elements, but also to your links! For instance, you can provide a rationale for the link, define context annotations, specify numerical values for contributions, etc.",
-                        "Since": "Version 2.0.0"
-                    }
-                },
-                {
-                    "id": "63f3b48a-0088-4aa3-9f63-5354efefc78b",
-                    "text": "Change the value of contribution links",
-                    "type": "istar.Task",
-                    "x": 864,
-                    "y": 465,
-                    "customProperties": {
-                        "Description": "Now you can change the value of contribution links (Make, Help, Hurt or Break). Select the link and then change its type in the Properties sidepanel",
-                        "Since": "Version 2.0.0"
-                    }
-                },
-                {
-                    "id": "98275a4b-510e-4016-b985-6a25ca69079b",
-                    "text": "Stricter adherence to the language guide",
-                    "type": "istar.Resource",
-                    "x": 650,
-                    "y": 405,
-                    "customProperties": {
-                        "Description": "Previous versions of the tool allowed the creation of some invalid links:\n - mix of and/or refinements with the same target\n - refinement/contribution to depender elements\n\nThese links are no longer allowed, respecting the constraints defined in the iStar 2.0 Language Guide. The warning messages were improved, now they are much more specific.\n\nThe following links are still allowed:\n - Cyclic links\n - And-refinement with a single child",
-                        "Warning": "For the purpose of compatibility, it is still possible to load models containing these invalid links. Users are advised to correct any invalid links present in their models as soon as possible"
-                    }
-                },
-                {
-                    "id": "ab99b45b-ee62-4a1c-9d4d-1312dbfd3d7d",
-                    "text": "Elements modifiable",
-                    "type": "istar.Goal",
-                    "x": 551,
-                    "y": 357,
-                    "customProperties": {
-                        "Description": "Be able to modify existing elements"
-                    }
-                },
-                {
-                    "id": "3696a947-a1cd-42b1-8804-794bd01aa0f9",
-                    "text": "Improved Links",
-                    "type": "istar.Quality",
-                    "x": 752,
-                    "y": 343,
+                    "x": 100,
+                    "y": 321,
                     "customProperties": {
                         "Description": ""
                     }
@@ -307,181 +297,262 @@ istar.models.pistarWelcome = {
             ]
         }
     ],
+    "orphans": [],
     "dependencies": [
         {
-            "id": "2083cdfc-21c9-4a25-9a70-e65934cd588d",
-            "text": "The piStar tool",
-            "type": "istar.Resource",
-            "x": 253,
-            "y": 273,
+            "id": "4d80aa30-a36b-4737-9299-056aa7748073",
+            "text": "Modify existing elements",
+            "type": "istar.Task",
+            "x": 271,
+            "y": 416,
             "customProperties": {
-                "Cost": "$0.00"
+                "Description": ""
             },
-            "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
-            "target": "dbe6cf9f-877d-4600-bac9-8f7bbde93426"
+            "source": "ab3313df-175f-4b2b-9486-c0915a3d1cd4",
+            "target": "825269c5-af60-4db1-b55c-316987dcb880"
+        },
+        {
+            "id": "76d9cfde-d464-4203-907a-af97c32f7501",
+            "text": "Have the actors and dependencies automatically positioned",
+            "type": "istar.Goal",
+            "x": 62,
+            "y": 429,
+            "customProperties": {
+                "Description": ""
+            },
+            "source": "8cc94931-99dd-441e-bf97-9b08c03ae576",
+            "target": "9250b018-fb16-4b82-b7bf-5f5589b6b259"
+        },
+        {
+            "id": "7af8ec40-8f4f-4904-8130-f33157427ca9",
+            "text": "Prevent data loss from accidental deletes",
+            "type": "istar.Quality",
+            "x": 397,
+            "y": 191,
+            "customProperties": {
+                "Description": ""
+            },
+            "source": "3e732026-ae4c-4038-acb7-bd9f036c5f73",
+            "target": "339417b8-0430-4ceb-be12-d6cf7b440a35"
         }
     ],
     "links": [
         {
-            "id": "3b572289-bb0f-4e7e-8b01-aa40e34ca306",
+            "id": "a6ab1c51-08f5-4abb-beca-7965426da9c9",
             "type": "istar.DependencyLink",
-            "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
-            "target": "2083cdfc-21c9-4a25-9a70-e65934cd588d"
+            "source": "7af8ec40-8f4f-4904-8130-f33157427ca9",
+            "target": "339417b8-0430-4ceb-be12-d6cf7b440a35"
         },
         {
-            "id": "6dd4f5f6-a66d-45f1-b688-b6a216e5739b",
+            "id": "58dea4bb-990d-4a78-a15b-bb40d6b54871",
             "type": "istar.DependencyLink",
-            "source": "2083cdfc-21c9-4a25-9a70-e65934cd588d",
-            "target": "dbe6cf9f-877d-4600-bac9-8f7bbde93426"
+            "source": "3e732026-ae4c-4038-acb7-bd9f036c5f73",
+            "target": "7af8ec40-8f4f-4904-8130-f33157427ca9"
         },
         {
-            "id": "a3ece632-030b-4588-a7fa-077e84ed3e44",
-            "type": "istar.AndRefinementLink",
-            "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
-            "target": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252"
+            "id": "ee36bf97-8ff8-4de3-842b-6ca70175ccac",
+            "type": "istar.DependencyLink",
+            "source": "76d9cfde-d464-4203-907a-af97c32f7501",
+            "target": "9250b018-fb16-4b82-b7bf-5f5589b6b259"
         },
         {
-            "id": "30d2ec84-6fac-419f-83ee-d26c2352820d",
+            "id": "022d5fc4-310c-4442-97b4-3502f33112fe",
+            "type": "istar.DependencyLink",
+            "source": "8cc94931-99dd-441e-bf97-9b08c03ae576",
+            "target": "76d9cfde-d464-4203-907a-af97c32f7501"
+        },
+        {
+            "id": "bcb44d19-4d04-4b1c-964d-06cd7a5cf00a",
+            "type": "istar.DependencyLink",
+            "source": "4d80aa30-a36b-4737-9299-056aa7748073",
+            "target": "825269c5-af60-4db1-b55c-316987dcb880"
+        },
+        {
+            "id": "191489fd-e483-4cef-9da7-00cecedca842",
+            "type": "istar.DependencyLink",
+            "source": "ab3313df-175f-4b2b-9486-c0915a3d1cd4",
+            "target": "4d80aa30-a36b-4737-9299-056aa7748073"
+        },
+        {
+            "id": "5c3a554c-5988-48ec-b2c7-293b8e1db746",
             "type": "istar.ContributionLink",
             "source": "8d716a61-1ca4-44f4-934c-26166ea44d11",
             "target": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
             "label": "help"
         },
         {
-            "id": "3e7c6e16-c2d0-46a2-82c6-0190f15a11e1",
+            "id": "4cb02d7c-a150-4e81-b340-26fa8fab9894",
             "type": "istar.ContributionLink",
-            "source": "f69a3c4b-4d40-488d-a54a-a0e38453f077",
-            "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
+            "source": "3c4eacd1-cc6b-4c1e-8a9e-2260229d831f",
+            "target": "339417b8-0430-4ceb-be12-d6cf7b440a35",
             "label": "help"
         },
         {
-            "id": "b3f49535-95da-41fc-ac88-f65a945ab3e7",
+            "id": "5bc05a64-fcca-4eba-9f8b-f19e43773ffb",
             "type": "istar.ContributionLink",
-            "source": "17acd322-9d37-496e-b6d5-c69c497502db",
-            "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
+            "source": "2904a233-4620-461c-978a-0058a4d3bdc4",
+            "target": "339417b8-0430-4ceb-be12-d6cf7b440a35",
             "label": "make"
         },
         {
-            "id": "8db02be3-764c-49eb-a742-3729841d4ec7",
-            "type": "istar.ContributionLink",
-            "source": "98275a4b-510e-4016-b985-6a25ca69079b",
-            "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
-            "label": "help"
+            "id": "39c892a8-07a6-44fb-a2c7-a21257143f74",
+            "type": "istar.QualificationLink",
+            "source": "e159ce92-b29d-4fdc-a533-ee1e904f9f57",
+            "target": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252"
         },
         {
-            "id": "9fab6d1a-6445-49ef-873e-caa049e306ae",
-            "type": "istar.OrRefinementLink",
-            "source": "1f011a05-50ff-47b4-bdf6-e6c9227eef70",
-            "target": "ab99b45b-ee62-4a1c-9d4d-1312dbfd3d7d"
-        },
-        {
-            "id": "95a46d95-c6bd-4079-ada3-dfbd650f3fc6",
-            "type": "istar.OrRefinementLink",
-            "source": "5562be02-998b-4a7b-8bb9-355d84b3c06b",
-            "target": "ab99b45b-ee62-4a1c-9d4d-1312dbfd3d7d"
-        },
-        {
-            "id": "d36eb6f5-2f2e-4f42-b4f6-bce5d2f5b1d3",
+            "id": "6c57baea-e769-4fa5-a19d-6b12eecdb7cd",
             "type": "istar.OrRefinementLink",
             "source": "f9035e8c-0294-44a8-a93e-85a349d2f21a",
-            "target": "ab99b45b-ee62-4a1c-9d4d-1312dbfd3d7d"
+            "target": "825269c5-af60-4db1-b55c-316987dcb880"
         },
         {
-            "id": "d8569d6b-f285-43a8-a902-44ac50e4d868",
-            "type": "istar.ContributionLink",
-            "source": "ab99b45b-ee62-4a1c-9d4d-1312dbfd3d7d",
-            "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
-            "label": "help"
+            "id": "124b5a38-6a0f-4cad-952f-bd95781d5878",
+            "type": "istar.OrRefinementLink",
+            "source": "c9d1ae28-8b77-4643-a7ac-7e70903dadb7",
+            "target": "825269c5-af60-4db1-b55c-316987dcb880"
         },
         {
-            "id": "2bd7545b-760e-4b22-96b6-a5a25aaeb6b8",
-            "type": "istar.ContributionLink",
-            "source": "d481f512-6836-4e17-ba29-0192cb0c8ad8",
-            "target": "3696a947-a1cd-42b1-8804-794bd01aa0f9",
-            "label": "help"
+            "id": "1d75dbfb-4e92-4ed9-a807-f6ebc525eb8b",
+            "type": "istar.OrRefinementLink",
+            "source": "d2d100ae-ba57-424b-864c-dc3ec69cb2fb",
+            "target": "825269c5-af60-4db1-b55c-316987dcb880"
         },
         {
-            "id": "94e0fa33-a213-4109-87bb-85630708f6c9",
-            "type": "istar.ContributionLink",
-            "source": "2697c4ac-6868-42ff-9d1d-b819000f909e",
-            "target": "3696a947-a1cd-42b1-8804-794bd01aa0f9",
-            "label": "help"
+            "id": "e4daee5e-e8f1-4d15-b3f2-375532357452",
+            "type": "istar.OrRefinementLink",
+            "source": "8cc94931-99dd-441e-bf97-9b08c03ae576",
+            "target": "8d716a61-1ca4-44f4-934c-26166ea44d11"
         },
         {
-            "id": "b4b9cbd7-ee9b-48c0-b98f-b172ba6fb2c6",
-            "type": "istar.ContributionLink",
-            "source": "63f3b48a-0088-4aa3-9f63-5354efefc78b",
-            "target": "3696a947-a1cd-42b1-8804-794bd01aa0f9",
-            "label": "help"
+            "id": "7835d50c-0e9d-4fce-a84a-ecf565a30f10",
+            "type": "istar.OrRefinementLink",
+            "source": "ab3313df-175f-4b2b-9486-c0915a3d1cd4",
+            "target": "8d716a61-1ca4-44f4-934c-26166ea44d11"
         },
         {
-            "id": "c09955af-ecde-4a66-88a2-7c881f6cab64",
-            "type": "istar.ContributionLink",
-            "source": "3696a947-a1cd-42b1-8804-794bd01aa0f9",
-            "target": "61eb4e04-b5f0-4a7d-aea1-22651e470867",
-            "label": "help"
+            "id": "0823486c-9c6b-4567-a5b2-25959fa4bc2f",
+            "type": "istar.QualificationLink",
+            "source": "3e732026-ae4c-4038-acb7-bd9f036c5f73",
+            "target": "71c7aeb6-fb99-40a1-bcd1-5a29e5b45252"
         }
     ],
     "display": {
-        "f69a3c4b-4d40-488d-a54a-a0e38453f077": {
-            "width": 100.609375,
-            "height": 37.078125
+        "fcf67803-5e5a-4bae-8690-1f12af4446d6": {
+            "backgroundColor": "#9AB6FA"
         },
-        "1f011a05-50ff-47b4-bdf6-e6c9227eef70": {
-            "backgroundColor": "#FAE573",
-            "width": 114.609375,
-            "height": 37.078125
+        "c9d1ae28-8b77-4643-a7ac-7e70903dadb7": {
+            "backgroundColor": "#9AB6FA"
         },
-        "5562be02-998b-4a7b-8bb9-355d84b3c06b": {
-            "width": 179.609375,
-            "height": 31.078125
+        "d2d100ae-ba57-424b-864c-dc3ec69cb2fb": {
+            "width": 101.28125,
+            "height": 56.84375
         },
-        "63f3b48a-0088-4aa3-9f63-5354efefc78b": {
-            "width": 140.609375,
-            "height": 34.078125
+        "9250b018-fb16-4b82-b7bf-5f5589b6b259": {
+            "backgroundColor": "#9AB6FA"
         },
-        "98275a4b-510e-4016-b985-6a25ca69079b": {
-            "width": 111.609375,
-            "height": 49.078125
+        "339417b8-0430-4ceb-be12-d6cf7b440a35": {
+            "width": 113.81524658203125,
+            "height": 65.8504638671875
         },
-        "3b572289-bb0f-4e7e-8b01-aa40e34ca306": {
+        "3c4eacd1-cc6b-4c1e-8a9e-2260229d831f": {
+            "backgroundColor": "#9AB6FA",
+            "width": 104.78125,
+            "height": 47.84375
+        },
+        "2904a233-4620-461c-978a-0058a4d3bdc4": {
+            "backgroundColor": "#9AB6FA"
+        },
+        "4d80aa30-a36b-4737-9299-056aa7748073": {
+            "width": 111.78125,
+            "height": 42.84375
+        },
+        "76d9cfde-d464-4203-907a-af97c32f7501": {
+            "width": 118.78125,
+            "height": 63.84375
+        },
+        "7af8ec40-8f4f-4904-8130-f33157427ca9": {
+            "width": 107.81314086914062,
+            "height": 49.848907470703125
+        },
+        "a6ab1c51-08f5-4abb-beca-7965426da9c9": {
             "vertices": [
                 {
-                    "x": 228,
-                    "y": 270
+                    "x": 546,
+                    "y": 195
                 }
             ]
         },
-        "6dd4f5f6-a66d-45f1-b688-b6a216e5739b": {
+        "58dea4bb-990d-4a78-a15b-bb40d6b54871": {
             "vertices": [
                 {
-                    "x": 332,
-                    "y": 257
+                    "x": 348,
+                    "y": 214
+                }
+            ]
+        },
+        "ee36bf97-8ff8-4de3-842b-6ca70175ccac": {
+            "vertices": [
+                {
+                    "x": 345,
+                    "y": 481
+                }
+            ]
+        },
+        "022d5fc4-310c-4442-97b4-3502f33112fe": {
+            "vertices": [
+                {
+                    "x": 95,
+                    "y": 398
+                }
+            ]
+        },
+        "bcb44d19-4d04-4b1c-964d-06cd7a5cf00a": {
+            "vertices": [
+                {
+                    "x": 434,
+                    "y": 387
                 },
                 {
-                    "x": 344,
-                    "y": 231
+                    "x": 484,
+                    "y": 278
                 }
             ]
         },
-        "30d2ec84-6fac-419f-83ee-d26c2352820d": {
+        "191489fd-e483-4cef-9da7-00cecedca842": {
             "vertices": [
                 {
-                    "x": 112,
-                    "y": 138
+                    "x": 229,
+                    "y": 433
+                }
+            ]
+        },
+        "4cb02d7c-a150-4e81-b340-26fa8fab9894": {
+            "vertices": [
+                {
+                    "x": 728,
+                    "y": 172
+                }
+            ]
+        },
+        "5bc05a64-fcca-4eba-9f8b-f19e43773ffb": {
+            "vertices": [
+                {
+                    "x": 730,
+                    "y": 119
                 }
             ]
         }
     },
-    "tool": "pistar.2.0.0",
+    "tool": "pistar.2.1.0",
     "istar": "2.0",
-    "saveDate": "Mon, 31 Dec 2018 17:53:41 GMT",
+    "saveDate": "Sat, 27 Nov 2021 17:12:04 GMT",
     "diagram": {
-        "width": 2000,
-        "height": 1300,
+        "width": 1000,
+        "height": 700,
         "name": "Welcome Model",
         "customProperties": {
-            "Description": "Welcome to the piStar tool! This model describe some of the recent improvements in the tool.\n\nFor help using this tool, please check the Help menu above"
+            "Description": "Welcome to the piStar tool version 2.1.0, released on November, 2021! This model describes some of the recent improvements in the tool. Click on the purple elements for further info.\n\nFor help using this tool, please check the Help menu above"
         }
     }
 };
