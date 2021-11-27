@@ -433,13 +433,16 @@ var istar = function () {
             }
             newNode.prop('customProperties', element.prop('customProperties'));
             if (element.getParentCell()) {
+
                 element.getParentCell().embed(newNode);
             }
-            //TODO copy style
 
             istar.graph.addCell(newNode);
-            //update the line break on the element's label
             newNode.updateLineBreak();
+
+            if (element.prop('backgroundColor')) {
+                ui.changeColorElement(element.prop('backgroundColor'), newNode);
+            }
 
             //change the links from the old node to the new node
             //first verify whether the links would remain valid
