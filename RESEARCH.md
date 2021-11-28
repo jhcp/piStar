@@ -43,6 +43,10 @@ If you need to mention the piStar tool, please reference one of our papers about
   Combined Use of i* and Infrastructure Models](http://ceur-ws.org/Vol-2983/iStar21_paper_11.pdf). 
   In: Proceedings of the 14th International iStar Workshop, 2021.
 
+- Onat Ege Adali, Baris Ozkan, Oktay Turetken, Rick Gilsing, Paul Grefen. 
+  [A Method to Transform Value Propositions of a Service System into Business Services](https://pure.tue.nl/ws/portalfiles/portal/172776666/A_METHOD_TO_TRANSFORM_VALUE_PROPOSITIONS_OF_A_SERVICE_SYSTEM_INTO_BUSINESS_SERVICES_ECIS_Author_Version.pdf).
+  In: European Conference on Information Systems (ECIS 2021) (ECIS Research Papers; Vol. 77), 2021.
+
 - Jefferson Viana Fonseca Abreu, Celia Ghedini Ralha, João José Costa Gondim. A Multi-agent Approach for Online Twitter Bot Detection. Actas de la VI Jornadas Nacionales (JNIC2021 LIVE). [https://ruidera.uclm.es/xmlui/bitstream/handle/10578/28601/03%20INVESTIGACI%C3%93N%20EN%20CIBERSEGURIDAD.pdf?sequence=1&isAllowed=y]
 
 - Tiago Henrique Faccio Segato, Célia Ghedini Ralha, Sérgio Eduardo Soares Fernandes. Development process of multiagent system for glycemic control of intensive care unit patients. Artificial Intelligence Research 2021, Vol. 10, No. 1. https://doi.org/10.5430/air.v10n1p43
