@@ -17,7 +17,15 @@ If you need to mention the piStar tool, please reference one of our papers about
 [comment]: <> (  In: Proceedings of the International Conference on Conceptual Modeling &#40;ER 2021&#41;, pp. 227-241.)
 [comment]: <> (I'm not sure if this work actually mentions the piStar tool. Check again in a few months for an open access copy.  )
 
-  
+- Théo Tuerlinckx.
+  [Analyse du système d'information de
+  l'entreprise PBI et implémentation d'un ERP](file:///C:/Users/joao/Downloads/Tuerlinckx_33081500_2021.pdf) (in French).
+  Louvain School of Management, Université catholique de Louvain, Master Thesis, 2021.
+
+- Tiago Henrique Faccio Segato, Rafael Moura da Silva Serafim, Sérgio Eduardo Soares Fernandes, Célia Ghedini Ralha.
+  [MAS4GC: Multi-agent System for Glycemic Control of Intensive Care Unit Patients](https://link.springer.com/chapter/10.1007/978-3-030-91702-9_5).
+  In: Brazilian Conference on Intelligent Systems, BRACIS 2021: Intelligent Systems, pp 64-78, 2021.
+
 - Salih Göktuğ Köse; Fatma Başak Aydemir. 
   [Automated Glossary Extraction from Collaborative Requirements Models](https://ieeexplore.ieee.org/abstract/document/9582295).
   In: IEEE 29th International Requirements Engineering Conference Workshops (REW), 2021.
