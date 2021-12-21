@@ -17,9 +17,18 @@ If you need to mention the piStar tool, please reference one of our papers about
 [comment]: <> (  In: Proceedings of the International Conference on Conceptual Modeling &#40;ER 2021&#41;, pp. 227-241.)
 [comment]: <> (I'm not sure if this work actually mentions the piStar tool. Check again in a few months for an open access copy.  )
 
+- Renato G. Fritola, Victor F. A. Santander.
+  [Documentando requisitos de sistemas legados: um estudo de
+  caso utilizando tecnicas da Engenharia de Requisitos Orientada a Objetivos](https://sol.sbc.org.br/index.php/eres/article/view/18459/18292)
+  (in Portuguese). In: Anais da Escola Regional de Engenharia de Software (ERES), 2021.
+
+- Wenxing Liu, Yunduo Wang, Qixiang Zhou, Tong Li.
+  [Graphical Modeling VS. Textual Modeling: An Experimental Comparison Based on iStar Models](https://ieeexplore.ieee.org/abstract/document/9529492)
+  In: IEEE 45th Annual Computers, Software, and Applications Conference (COMPSAC), 2021.
+
 - Théo Tuerlinckx.
   [Analyse du système d'information de
-  l'entreprise PBI et implémentation d'un ERP](file:///C:/Users/joao/Downloads/Tuerlinckx_33081500_2021.pdf) (in French).
+  l'entreprise PBI et implémentation d'un ERP](https://dial.uclouvain.be/memoire/ucl/en/object/thesis%3A30129) (in French).
   Louvain School of Management, Université catholique de Louvain, Master Thesis, 2021.
 
 - Tiago Henrique Faccio Segato, Rafael Moura da Silva Serafim, Sérgio Eduardo Soares Fernandes, Célia Ghedini Ralha.
