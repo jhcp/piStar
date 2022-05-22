@@ -17,6 +17,11 @@ If you need to mention the piStar tool, please reference one of our papers about
 [comment]: <> (  In: Proceedings of the International Conference on Conceptual Modeling &#40;ER 2021&#41;, pp. 227-241.)
 [comment]: <> (I'm not sure if this work actually mentions the piStar tool. Check again in a few months for an open access copy.  )
 
+- Rishabh Tripathi, Abhishek Shukla and Subhas Chandra Misra.
+  [Inventory and Supply Chain Management for E-Commerce based Supermarkets Enabled by Cloud Services with Actor Dependency Models](https://www.ieomsociety.org/proceedings/2021india/43.pdf)
+  . In: Proceedings of the International Conference on Industrial Engineering and Operations Management
+Bangalore, India, August 16-18, 2021.
+
 - Renato G. Fritola, Victor F. A. Santander.
   [Documentando requisitos de sistemas legados: um estudo de
   caso utilizando tecnicas da Engenharia de Requisitos Orientada a Objetivos](https://sol.sbc.org.br/index.php/eres/article/view/18459/18292)
