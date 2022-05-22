@@ -12,10 +12,14 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
-[comment]: <> (- Xavier Franch, Marcela Ruiz. )
-[comment]: <> (  [Goal-Oriented Models for Teaching and Understanding Data Structures]&#40;https://link.springer.com/chapter/10.1007/978-3-030-89022-3_19&#41;.)
-[comment]: <> (  In: Proceedings of the International Conference on Conceptual Modeling &#40;ER 2021&#41;, pp. 227-241.)
-[comment]: <> (I'm not sure if this work actually mentions the piStar tool. Check again in a few months for an open access copy.  )
+- Charles Antônio Nascimento Costa.
+  [A Multi-agent Architecture Applying Trust and Reputation Over Unknown Partners for Live Video
+Distributed Transcoding in Open Environments](https://repositorio.unb.br/bitstream/10482/43629/1/2022_CharlesAnt%C3%B4nioNascimentoCosta.pdf)
+  University of Brasília, Master Thesis, 2022.
+
+- Xavier Franch, Marcela Ruiz.
+  [Goal-Oriented Models for Teaching and Understanding Data Structures](https://upcommons.upc.edu/bitstream/handle/2117/359092/ER2021_29_CRV.pdf?sequence=3)
+  In: Proceedings of the International Conference on Conceptual Modeling (ER 2021), pp. 227-241.
 
 - Rishabh Tripathi, Abhishek Shukla and Subhas Chandra Misra.
   [Inventory and Supply Chain Management for E-Commerce based Supermarkets Enabled by Cloud Services with Actor Dependency Models](https://www.ieomsociety.org/proceedings/2021india/43.pdf)
