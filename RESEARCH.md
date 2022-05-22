@@ -108,6 +108,9 @@ Bangalore, India, August 16-18, 2021.
 
 - In Portuguese: César Henrique Bernabé. GORO: uma ontologia sobre requisitos orientados a objetivos. M.Sc dissertation, Universidade Federal do Espírito Santo (UFES), 2020.
 
+- Alicia M. Grubb
+  [Evolving Intentions: Support for Modeling and Reasoning about Requirements that Change over Time](https://tspace.library.utoronto.ca/bitstream/1807/95842/1/Grubb_Alicia_M_201906_PhD_thesis.pdf)
+  . University of Toronto. PhD Thesis, 2019.
 - João Pimentel, Jaelson Castro, Moniky Ribeiro, Alberto Souza, Breno Ramos. Creating Modelling Tools for i* Language Extensions. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper16.pdf]
 
 - Xavier Franch, Lidia López, Jordi Marco. Algebraic Definition of iStar2.0 Models. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper3.pdf]
