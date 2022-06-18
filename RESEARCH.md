@@ -2,7 +2,7 @@
 
 ## How to cite the piStar tool
 
-If you need to mention the piStar tool, please reference one of our papers about it: 
+If you somehow used the piStar tool on your academic work, please reference one of our papers about it: 
 
 - João Pimentel, Jaelson Castro, Moniky Ribeiro, Alberto Souza, Breno Ramos. Creating Modelling Tools for i* Language Extensions. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper16.pdf]
 
@@ -12,11 +12,48 @@ If you need to mention the piStar tool, please reference one of our papers about
 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
+#### 2022
+<!-- BASED ON THE ABSTRACT AND REFERENCES, I COULDN'T CONFIRM WHETHER THIS PAPER ACTUALLY USES/MENTIONS
+  PISTAR OR NOT. CHECK AGAIN IN THE FUTURE
+   - Azzam Maraee, Arnon Sturm
+  [Towards Simplification of ME-Maps](https://link.springer.com/chapter/10.1007/978-3-031-07475-2_19)
+  In: Enterprise, Business-Process and Information Systems Modeling. BPMDS EMMSAD 2022 2022. 
+  Lecture Notes in Business Information Processing, vol 450. Springer,
+  2022. -->
+
+- Jingying Wang, Chao Ma, Huixin Xu, Zhiying Tu, Xiaofei Xu, Hanchuan Xu, Zhongjie Wang
+  [Semi-automatic service value network modeling approach based on external public 
+  data](https://link.springer.com/article/10.1007/s10270-022-01014-z)
+  In: Software and Systems Modeling, 2022.
+  
+- Renata Guizzardi, Glenda Amaral, Giancarlo Guizzardi, John Mylopoulos.
+  [Eliciting Ethicality Requirements Using the Ontology-Based Requirements Engineering 
+  Method](https://link.springer.com/chapter/10.1007/978-3-031-07475-2_15)
+  In: Enterprise, Business-Process and Information Systems Modeling. BPMDS EMMSAD 2022 2022. 
+  Lecture Notes in Business Information Processing, vol 450. Springer, Cham. 
+  https://doi.org/10.1007/978-3-031-07475-2_15 , 
+  2022.
+  
+- Manoel Vieira Coelho Neto. [GM2MS4: A Transformation Tool from Goal-Oriented Models to System-of-Systems
+  Mission Simulation](https://bdm.unb.br/bitstream/10483/29872/1/2021_ManoelVieiraCoelhoNeto_tcc.pdf)
+  University of Brasília, Bachelor's Thesis, 2022.
+  
+- Maximilian Kerpen.
+  [Multi-Agent System for Production Processes in the Automotive Industry](https://kbsg.rwth-aachen.de/theses/kerpen2022.pdf)
+  Rheinisch-Westf ̈alische Technische Hochschule Aachen, Bachelor's Thesis, 2022.
+  
 - Charles Antônio Nascimento Costa.
   [A Multi-agent Architecture Applying Trust and Reputation Over Unknown Partners for Live Video
 Distributed Transcoding in Open Environments](https://repositorio.unb.br/bitstream/10482/43629/1/2022_CharlesAnt%C3%B4nioNascimentoCosta.pdf)
   University of Brasília, Master Thesis, 2022.
 
+#### 2021
+
+- Martin Roland Liebenberg.
+  [Autonomous agents for the World Wide Lab : artificial intelligence in the manufacturing 
+  industry](https://publications.rwth-aachen.de/record/836922)
+  RWTH Aachen University, Dissertation, 2021.
+  
 - Xavier Franch, Marcela Ruiz.
   [Goal-Oriented Models for Teaching and Understanding Data Structures](https://upcommons.upc.edu/bitstream/handle/2117/359092/ER2021_29_CRV.pdf?sequence=3)
   In: Proceedings of the International Conference on Conceptual Modeling (ER 2021), pp. 227-241.
@@ -77,20 +114,22 @@ Bangalore, India, August 16-18, 2021.
 
 - Tiago Henrique Faccio Segato, Célia Ghedini Ralha, Sérgio Eduardo Soares Fernandes. Development process of multiagent system for glycemic control of intensive care unit patients. Artificial Intelligence Research 2021, Vol. 10, No. 1. https://doi.org/10.5430/air.v10n1p43
 
-- Christophe Ponsard, Jeremy Grandclaudon, Philippe Massonet. A goal‐driven approach for the joint deployment of safety and security standards for operators of essential services. Journal of Software: Evolution and Process.
-
-- Rene Noel, Ignacio Panach, Oscar Pastor. A Models-to-Program Information Systems Engineering Method. Modelling to Program, Second International Workshop, M2P 2020.
+- Christophe Ponsard, Jeremy Grandclaudon, Philippe Massonet. A goal‐driven approach for the joint deployment of safety and security standards for operators of essential services. Journal of Software: Evolution and Process, 2021.
 
 - Bernd Gil, Eric; Caldas, Ricardo; Rodrigues, Arthur; Levi Gomes da Silva, Gabriel; Nunes Rodrigues, Genaína; Pelliccione, Patrizio. Body Sensor Network: A Self-Adaptive System Exemplar in the Healthcare Domain. Accepted at the 16th International Symposium on Software Engineering for Adaptive and Self-Managing Systems (SEAMS 2021). [https://arxiv.org/pdf/2103.14948.pdf]
+
+#### 2020
+
+- Rene Noel, Ignacio Panach, Oscar Pastor. A Models-to-Program Information Systems Engineering Method. Modelling to Program, Second International Workshop, M2P 2020.
 
 - Kaushik Madala; Ke Ye Hang; Hyunsook Do; Bastian Tenbergen. SACC - A property driven approach to expose undesired behaviors among system’s components. 2020 IEEE 31st International Symposium on Software Reliability Engineering (ISSRE), 2020. [https://doi.org/10.1109/ISSRE5003.2020.00043]
 
 - Catarina Gralha, Miguel Goulão & João Araujo. Are there gender differences when interacting with social goal models? A quasi-experiment. Empirical Software Engineering, 2020.
 [https://link.springer.com/article/10.1007/s10664-020-09883-y]
 
-- Iain Barclay, Maria Freytsis, Sherri Bucher, Swapna Radha, Alun Preece, Ian Taylor. Towards a Modelling Framework for Self-Sovereign Identity Systems. [https://arxiv.org/pdf/2009.04327.pdf]
+- Iain Barclay, Maria Freytsis, Sherri Bucher, Swapna Radha, Alun Preece, Ian Taylor. Towards a Modelling Framework for Self-Sovereign Identity Systems. [https://arxiv.org/pdf/2009.04327.pdf] , 2020.
 
-- Diogo Henrique de Jesus Lopes Albuquerque. A Sustainability Catalogue for Software Modelling. Master's Dissertation [https://run.unl.pt/handle/10362/103842]
+- Diogo Henrique de Jesus Lopes Albuquerque. A Sustainability Catalogue for Software Modelling. Master's Dissertation [https://run.unl.pt/handle/10362/103842] , 2020.
 
 - Ana Maria da Mota Moura, Julio Cesar Sampaio do Prado Leite. JiStar - Rastreabilidade Entre Código Java e Modelos de Metas i*. 23rd Workshop on Requirements Engineering (WER), 2020 [http://wer.inf.puc-rio.br/WERpapers/artigos/artigos_WER20/15_WER_2020_paper_25.pdf]
 
@@ -104,13 +143,16 @@ Bangalore, India, August 16-18, 2021.
 
 - Xavier Franch. Using i* to Describe Data Structures. 13th International iStar Workshop, 2020. [http://ceur-ws.org/Vol-2641/paper_09.pdf]
 
-- Putu Arya Pradipta, Bayu Hendradjaya, Hari Purnama. Tool Development for Requirements Modelling using iStar 2.0. [https://www.researchgate.net/profile/Hari_Purnama4/publication/341778681_Tool_Development_for_Requirements_Modelling_using_iStar_20/links/5ed3c22d299bf1c67d2cd31c/Tool-Development-for-Requirements-Modelling-using-iStar-20.pdf]
-
 - In Portuguese: César Henrique Bernabé. GORO: uma ontologia sobre requisitos orientados a objetivos. M.Sc dissertation, Universidade Federal do Espírito Santo (UFES), 2020.
+
+#### 2019
+
+- Putu Arya Pradipta, Bayu Hendradjaya, Hari Purnama. Tool Development for Requirements Modelling using iStar 2.0. [https://www.researchgate.net/profile/Hari_Purnama4/publication/341778681_Tool_Development_for_Requirements_Modelling_using_iStar_20/links/5ed3c22d299bf1c67d2cd31c/Tool-Development-for-Requirements-Modelling-using-iStar-20.pdf], 2019.
 
 - Alicia M. Grubb
   [Evolving Intentions: Support for Modeling and Reasoning about Requirements that Change over Time](https://tspace.library.utoronto.ca/bitstream/1807/95842/1/Grubb_Alicia_M_201906_PhD_thesis.pdf)
   . University of Toronto. PhD Thesis, 2019.
+  
 - João Pimentel, Jaelson Castro, Moniky Ribeiro, Alberto Souza, Breno Ramos. Creating Modelling Tools for i* Language Extensions. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper16.pdf]
 
 - Xavier Franch, Lidia López, Jordi Marco. Algebraic Definition of iStar2.0 Models. 12th International iStar Workshop, 2019. [http://ceur-ws.org/Vol-2490/paper3.pdf]
@@ -125,6 +167,8 @@ Bangalore, India, August 16-18, 2021.
 
 - Inmaculada Ayala, Mercedes Amor, Jose-Miguel Horcas, Lidia Fuentes. A goal-driven software product line approach for evolving multi-agent systems in the Internet of Things. Knowledge-Based Systems. Volume 184, 2019. [https://www.sciencedirect.com/science/article/abs/pii/S0950705119303521]
 
+#### 2018
+
 - Pimentel, João and Castro, Jaelson. piStar Tool – A Pluggable Online Tool for Goal Modeling. 2018 IEEE 26th International Requirements Engineering Conference, pp. 498-499. [http://www.cin.ufpe.br/~jhcp/publica/pistar%20tool%20re2018.pdf]
 
 - In Portuguese: Santos, Max G., and Pimentel, João. "Compartilhamento de Modelos iStar 2.0 em Ferramentas de Modelagem Online - o Caso da piStar." Revista de Engenharia e Pesquisa Aplicada 3.2 (2018). [http://dx.doi.org/10.25286/repa.v3i2.885]
@@ -137,6 +181,8 @@ Bangalore, India, August 16-18, 2021.
 
 - de Freitas, M.L., Silva, A.A., Guizzardi, R.S. and Souza, V.E.S., 2018. Goal and Risk Analysis in the Development of Information Systems for the Web of Data. [https://www.inf.ufes.br/~rguizzardi/publications/freitas-silva-guizz-souza-wer2018-CR.pdf]
 
+#### 2017
+
 - SCHUETZ, Christoph G.; SCHREFL, Michael. Towards Formal Strategy Analysis with Goal Models and Semantic Web Technologies. In: International Conference on Conceptual Modeling. Springer, Cham, 2017. p. 144-153.
 [https://link.springer.com/chapter/10.1007/978-3-319-70625-2_14]
 
@@ -144,6 +190,8 @@ Bangalore, India, August 16-18, 2021.
 
 - RUIZ, Marcela; AYDEMIR, Fatma Başak; DALPIAZ, Fabiano. Using Conceptual Models in Research Methods Courses: An experience using iStar 2.0. 2017.
 [http://ceur-ws.org/Vol-1954/istarT_2017_paper_2.pdf]
+
+#### 2016
 
 - LI, Tong; GRUBB, Alicia M.; HORKOFF, Jennifer. Understanding Challenges and Tradeoffs in iStar Tool Development. In: iStar. 2016. p. 49-54.
 [http://ceur-ws.org/Vol-1674/iStar16_pp49-54.pdf]
