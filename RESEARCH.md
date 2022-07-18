@@ -13,14 +13,11 @@ If you somehow used the piStar tool on your academic work, please reference one 
 *Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
 
 #### 2022
-<!-- BASED ON THE ABSTRACT AND REFERENCES, I COULDN'T CONFIRM WHETHER THIS PAPER ACTUALLY USES/MENTIONS
-  PISTAR OR NOT. CHECK AGAIN IN THE FUTURE
-   - Azzam Maraee, Arnon Sturm
-  [Towards Simplification of ME-Maps](https://link.springer.com/chapter/10.1007/978-3-031-07475-2_19)
-  In: Enterprise, Business-Process and Information Systems Modeling. BPMDS EMMSAD 2022 2022. 
-  Lecture Notes in Business Information Processing, vol 450. Springer,
-  2022. -->
 
+- Oscar Trujillo Morales.
+  [eCarta: Toma de pedidos y gestión de negocios gastronómicos](https://rua.ua.es/dspace/bitstream/10045/124731/1/eCarta_Trujillo_Morales_Oscar.pdf) (in Spanish).
+  Universidad de Alicante, Master Thesis, 2022.
+  
 - Jingying Wang, Chao Ma, Huixin Xu, Zhiying Tu, Xiaofei Xu, Hanchuan Xu, Zhongjie Wang
   [Semi-automatic service value network modeling approach based on external public 
   data](https://link.springer.com/article/10.1007/s10270-022-01014-z)
