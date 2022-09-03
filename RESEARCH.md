@@ -14,6 +14,14 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2022
 
+- Carlos Cano-Genoves, Emilio Insfran, and Silvia Abrahão.
+  [Herramienta para el Análisis de Modelos de Objetivos basado en Valor](https://biblioteca.sistedes.es/submissions/descargas/2022/JISBD/2022-JISBD-6606.pdf) (in Spanish).
+  In: Actas de las XXVI Jornadas de Ingeniería del Software y Bases de Datos (JISBD 2022), SISTEDES, 2022.
+  
+- Ben Shreeve, Catarina Gralha, Awais Rashid, João Araujo, Miguel Goulão.
+  [Making sense of the unknown: How managers make cyber security decisions](https://dl.acm.org/doi/abs/10.1145/3548682)
+  In: ACM Transactions on Software Engineering and Methodology.
+
 - Oscar Trujillo Morales.
   [eCarta: Toma de pedidos y gestión de negocios gastronómicos](https://rua.ua.es/dspace/bitstream/10045/124731/1/eCarta_Trujillo_Morales_Oscar.pdf) (in Spanish).
   Universidad de Alicante, Master Thesis, 2022.
