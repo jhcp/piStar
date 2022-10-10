@@ -14,6 +14,17 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2022
 
+- Xavier Franch. [Software Analytics Tools: An Intentional View](http://ceur-ws.org/Vol-3231/iStar22_paper_6.pdf) In: iStar’22: The 15th International i* Workshop, October 17th, 2022, Hyderabad, India.
+
+- Mohamed Abdel-Monem, Islam El-Maddah and Hani Mahdi. [iTactic: A Goal Model Evaluation Tool to Support Strategic Decision-Making](http://ceur-ws.org/Vol-3231/iStar22_paper_7.pdf) In: iStar’22: The 15th International i* Workshop, October 17th, 2022, Hyderabad, India.
+
+- Inmaculada Ayala, Mercedes Amor and Lidia Fuentes. [Evaluation of iStar 2.0 models using Linear Programming](http://ceur-ws.org/Vol-3231/iStar22_paper_8.pdf) In: iStar’22: The 15th International i* Workshop, October 17th, 2022, Hyderabad, India.
+
+- Yuran Zhu & Tong Li. [An object detection-based framework for automatically recognizing iStar hand drafts](https://link.springer.com/article/10.1007/s10515-022-00361-x) In: Automated Software Engineering volume 29, Article number: 57 (2022)
+
+- Rui Dias Carvalho, Alberto Rodrigues da Silva.
+  [Towards the Evaluation of Software Products from an Environmental Sustainability Perspective](https://aisel.aisnet.org/isd2014/proceedings2022/usability/9/) In: R. A. Buchmann, G. C. Silaghi, D. Bufnea, V. Niculescu, G. Czibula, C. Barry, M. Lang, H. Linger, & C. Schneider (Eds.), Information Systems Development: Artificial Intelligence for Information Systems Development and Operations (ISD2022 Proceedings). Cluj-Napoca, Romania: Babeș-Bolyai University. 2022.
+
 - Carlos Cano-Genoves, Emilio Insfran, and Silvia Abrahão.
   [Herramienta para el Análisis de Modelos de Objetivos basado en Valor](https://biblioteca.sistedes.es/submissions/descargas/2022/JISBD/2022-JISBD-6606.pdf) (in Spanish).
   In: Actas de las XXVI Jornadas de Ingeniería del Software y Bases de Datos (JISBD 2022), SISTEDES, 2022.
