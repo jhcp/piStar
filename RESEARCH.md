@@ -14,6 +14,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2022
 
+- H. Xiong, Y. Wang and T. Li. [BiStar: A Template-Based iStar Modeling Tool Combining Graphical and Textual Modeling](https://ieeexplore.ieee.org/abstract/document/9920047). In: 2022 IEEE 30th International Requirements Engineering Conference (RE), 2022, pp. 260-261, doi: 10.1109/RE54965.2022.00034.
+
 - Xavier Franch. [Software Analytics Tools: An Intentional View](http://ceur-ws.org/Vol-3231/iStar22_paper_6.pdf) In: iStar’22: The 15th International i* Workshop, October 17th, 2022, Hyderabad, India.
 
 - Mohamed Abdel-Monem, Islam El-Maddah and Hani Mahdi. [iTactic: A Goal Model Evaluation Tool to Support Strategic Decision-Making](http://ceur-ws.org/Vol-3231/iStar22_paper_7.pdf) In: iStar’22: The 15th International i* Workshop, October 17th, 2022, Hyderabad, India.
