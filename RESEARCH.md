@@ -14,6 +14,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2022
 
+- Ana Moreira, João Araújo, Catarina Gralha, Miguel Goulão, Isabel Sofia Brito, Diogo Albuquerque. [A social and technical sustainability requirements catalogue](https://www.sciencedirect.com/science/article/pii/S0169023X22000982). In: Data & Knowledge Engineering. Available online 17 November 2022.
+
 - Carlos Cano-Genoves, Emilio Insfran, and Silvia Abrahão. [A value-based goal model analysis tool](https://doi.org/10.1145/3550356.3559089). In: Proceedings of the 25th International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings (MODELS '22), pp. 32–36, 2022.
 
 - H. Xiong, Y. Wang and T. Li. [BiStar: A Template-Based iStar Modeling Tool Combining Graphical and Textual Modeling](https://ieeexplore.ieee.org/abstract/document/9920047). In: 2022 IEEE 30th International Requirements Engineering Conference (RE), 2022, pp. 260-261, doi: 10.1109/RE54965.2022.00034.
