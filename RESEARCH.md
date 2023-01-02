@@ -14,6 +14,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2022
 
+- Hooi Yumun, Zarina Che-Embi. [A Review and Analysis of Tools Used from 2018 till 2022 in Requirements Engineering](https://www.atlantis-press.com/article/125980673.pdf). In: Proceedings of the International Conference on Computer, Information Technology and Intelligent Computing (CITIC 2022), 2022, doi: https://dx.doi.org/10.2991/978-94-6463-094-7_33
+
 - Ana Moreira, João Araújo, Catarina Gralha, Miguel Goulão, Isabel Sofia Brito, Diogo Albuquerque. [A social and technical sustainability requirements catalogue](https://www.sciencedirect.com/science/article/pii/S0169023X22000982). In: Data & Knowledge Engineering. Available online 17 November 2022.
 
 - Carlos Cano-Genoves, Emilio Insfran, and Silvia Abrahão. [A value-based goal model analysis tool](https://doi.org/10.1145/3550356.3559089). In: Proceedings of the 25th International Conference on Model Driven Engineering Languages and Systems: Companion Proceedings (MODELS '22), pp. 32–36, 2022.
