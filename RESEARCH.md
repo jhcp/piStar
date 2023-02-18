@@ -10,10 +10,14 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 ## Research work that uses, extends or mentions the piStar tool.
 
-*Is your work missing here? Add a pull request or send me the information through jhcp at cin.ufpe.br*
+*Is your work missing here? Add a pull request*
 
 #### 2022
 
+- Salvador Rosa Mendes. [A Sustainability-Driven Approach for Agile Software Requirements](https://run.unl.pt/bitstream/10362/145192/1/Mendes_2022.pdf). M.Sc Thesis.
+
+- Dina Tbaishat, Yousra Odeh, Faten F. Kharbat, Omar Shamieh, Mohammad Odeh. [Critical Analysis of Palliative Homecare Using the i* Framework's Strategic and Social Requirements Modelling Applied to a Cancer Care Organisation](https://doi.org/10.1109/acit57182.2022.9994182). In: 2022 International Arab Conference on Information Technology (ACIT), 2022. 
+ 
 - Hooi Yumun, Zarina Che-Embi. [A Review and Analysis of Tools Used from 2018 till 2022 in Requirements Engineering](https://www.atlantis-press.com/article/125980673.pdf). In: Proceedings of the International Conference on Computer, Information Technology and Intelligent Computing (CITIC 2022), 2022, doi: https://dx.doi.org/10.2991/978-94-6463-094-7_33
 
 - Ana Moreira, João Araújo, Catarina Gralha, Miguel Goulão, Isabel Sofia Brito, Diogo Albuquerque. [A social and technical sustainability requirements catalogue](https://www.sciencedirect.com/science/article/pii/S0169023X22000982). In: Data & Knowledge Engineering. Available online 17 November 2022.
