@@ -12,9 +12,15 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 *Is your work missing here? Add a pull request*
 
+#### 2023
+
+- Eric Bernd Gil, Genaína Nunes Rodrigues, Patrizio Pelliccione, Radu Calinescu. [Mission specification and decomposition for multi-robot systems](https://www.sciencedirect.com/science/article/pii/S0921889023000258). In Robotics and Autonomous Systems, Volume 163, May 2023, https://doi.org/10.1016/j.robot.2023.104386 
+
 #### 2022
 
-- Salvador Rosa Mendes. [A Sustainability-Driven Approach for Agile Software Requirements](https://run.unl.pt/bitstream/10362/145192/1/Mendes_2022.pdf). M.Sc Thesis.
+- Rendley Arnou Xavier. [PSMAR: Um processo para desenvolvimento de sistemas multiagentes com agentes racionais](https://repositorio.ufc.br/bitstream/riufc/70837/1/2022_tcc_raxavier.pdf). B.Sc thesis (in Portuguese). 2022.
+
+- Salvador Rosa Mendes. [A Sustainability-Driven Approach for Agile Software Requirements](https://run.unl.pt/bitstream/10362/145192/1/Mendes_2022.pdf). M.Sc Thesis. 2022.
 
 - Dina Tbaishat, Yousra Odeh, Faten F. Kharbat, Omar Shamieh, Mohammad Odeh. [Critical Analysis of Palliative Homecare Using the i* Framework's Strategic and Social Requirements Modelling Applied to a Cancer Care Organisation](https://doi.org/10.1109/acit57182.2022.9994182). In: 2022 International Arab Conference on Information Technology (ACIT), 2022. 
  
