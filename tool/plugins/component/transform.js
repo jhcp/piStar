@@ -15,7 +15,7 @@ plug.transform = async function(){
         let estado = await plug.connect.post(url,model);
         if(estado != Error){
             const message ={
-                "idm":1,
+                "idm":6,
                 "message":"the model has been saved and transformed"
             };
             console.log("transformed")
@@ -24,7 +24,7 @@ plug.transform = async function(){
 
         }else{
             const message ={
-                "idm":1,
+                "idm":6,
                 "message":"error in transform"
             };
             plug.smsg.sendParent(message);

@@ -6,7 +6,7 @@
 //   ========================================================== 
 
 const mensajeinit ={
-    "idm":0,
+    "idm":5,
     "message":"charged"
 }; //mesaje que se enviara al padre a penas se cargue la pagina
 

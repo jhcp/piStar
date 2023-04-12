@@ -9,7 +9,7 @@ plug.verify = async function(){
                 if(estado.respuesta.validator[0]==="abc"){
                     // ===========================================================
                     const message ={
-                        "idm":2,
+                        "idm":7,
                         "message":"No errors found in the model"
                     };
                     plug.smsg.sendParent(message);
