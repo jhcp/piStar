@@ -14,7 +14,14 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2023
 
-- Eric Bernd Gil, Genaína Nunes Rodrigues, Patrizio Pelliccione, Radu Calinescu. [Mission specification and decomposition for multi-robot systems](https://www.sciencedirect.com/science/article/pii/S0921889023000258). In Robotics and Autonomous Systems, Volume 163, May 2023, https://doi.org/10.1016/j.robot.2023.104386 
+- Eric Bernd Gil, Genaína Nunes Rodrigues, Patrizio Pelliccione, Radu Calinescu. [Mission specification and decomposition for multi-robot systems](https://www.sciencedirect.com/science/article/pii/S0921889023000258). In Robotics and Autonomous Systems, Volume 163, May 2023, https://doi.org/10.1016/j.robot.2023.104386
+- Jordy W. Klei. [A Method for Eliciting KPI Data Requirements by Adopting a Networked Perspective on Business Goals](https://pure.tue.nl/ws/portalfiles/portal/303572144/Master_Thesis_Jordy_Klei.pdf). Master Thesis, Eindhoven University of Technology, June 2023.
+- Sieta Bon [Optimizing Tool Management Processes at Hankamp Gears](http://essay.utwente.nl/95655/7/Sieta%20Bon%20BA%20%28IEM%29%20BMS%20.pdf). Bachelhor Thesis, University of Twente, July 2023.
+- C. Cano-Genoves, E. Insfran, S. Abrahão. [VeGAn-Tool: A fuzzy-logic approach for value-based goal model analysis](https://www.sciencedirect.com/science/article/abs/pii/S0167642323000837). In Science of Computer Programming, Volume 230, July 2023. ISSN 0167-6423,
+https://doi.org/10.1016/j.scico.2023.103001.
+- Renata Guizzardi, Glenda Amaral, Giancarlo Guizzardi, John Mylopoulos. [An ontology-based approach to engineering ethicality requirements](https://link.springer.com/article/10.1007/s10270-023-01115-3). In Software and Systems Modeling, July 2023. https://doi.org/10.1007/s10270-023-01115-3
+- João Araújo, Armanda Rodrigues, Inês Menezes. [A Catalog for Historical Soundscapes Requirements](https://ieeexplore.ieee.org/abstract/document/10197096). In IEEE 47th Annual Computers, Software, and Applications Conference (COMPSAC), 2023.
+- 
 
 #### 2022
 
