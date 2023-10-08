@@ -14,6 +14,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2023
 
+- Inmaculada Ayala; Mercedes Amor; Lidia Fuentes. [Analysis and optimisation of SPL products using goal models]([https://www.sciencedirect.com/science/article/pii/S0921889023000258](https://ieeexplore.ieee.org/abstract/document/10260981). In 2023 IEEE 31st International Requirements Engineering Conference (RE), Hannover, Germany, 2023, pp. 89-99, doi: 10.1109/RE57278.2023.00018.
+- Benjamin Shreeve, Catarina Gralha, Awais Rashid, João Araújo, Miguel Goulão. [Making Sense of the Unknown: How Managers Make Cyber Security Decisions](https://run.unl.pt/bitstream/10362/158272/1/Making_Sense_of_the_Unknown_How_Managers_Make_Cyber_security_decisions.pdf). In ACM Transactions on Software Engineering and Methodology, Volume 32, Issue 4, Article No.: 83 DOI https://doi.org/10.1145/3548682
 - Eric Bernd Gil, Genaína Nunes Rodrigues, Patrizio Pelliccione, Radu Calinescu. [Mission specification and decomposition for multi-robot systems](https://www.sciencedirect.com/science/article/pii/S0921889023000258). In Robotics and Autonomous Systems, Volume 163, May 2023, https://doi.org/10.1016/j.robot.2023.104386
 - Jordy W. Klei. [A Method for Eliciting KPI Data Requirements by Adopting a Networked Perspective on Business Goals](https://pure.tue.nl/ws/portalfiles/portal/303572144/Master_Thesis_Jordy_Klei.pdf). Master Thesis, Eindhoven University of Technology, June 2023.
 - Sieta Bon [Optimizing Tool Management Processes at Hankamp Gears](http://essay.utwente.nl/95655/7/Sieta%20Bon%20BA%20%28IEM%29%20BMS%20.pdf). Bachelhor Thesis, University of Twente, July 2023.
@@ -21,7 +23,6 @@ If you somehow used the piStar tool on your academic work, please reference one 
 https://doi.org/10.1016/j.scico.2023.103001.
 - Renata Guizzardi, Glenda Amaral, Giancarlo Guizzardi, John Mylopoulos. [An ontology-based approach to engineering ethicality requirements](https://link.springer.com/article/10.1007/s10270-023-01115-3). In Software and Systems Modeling, July 2023. https://doi.org/10.1007/s10270-023-01115-3
 - João Araújo, Armanda Rodrigues, Inês Menezes. [A Catalog for Historical Soundscapes Requirements](https://ieeexplore.ieee.org/abstract/document/10197096). In IEEE 47th Annual Computers, Software, and Applications Conference (COMPSAC), 2023.
-- 
 
 #### 2022
 
