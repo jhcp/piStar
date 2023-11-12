@@ -14,6 +14,7 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2023
 
+- Yousra Odeh, Dina Tbaishat, Faten F. Kharbat, Omar Shamieh, Mohammed Odeh. [Linking Palliative Homecare to the Universal Health Coverage Principles and the United Nations Sustainability Development Goals Using the i* Framework’s Strategic and Social Requirements Modelling, Applied to a Cancer Care Organisation](https://digitallibrary.aau.ac.ae/bitstream/handle/123456789/1133/LINKIN~1.PDF?sequence=1). In: The International Arab Journal of Information Technology, Vol. 20, No. 3A, Special Issue 2023.
 - Wasim Alsaqaf, Maya Daneva, Roel Wieringa. [Agile Quality Requirements Elaboration: A Proposal and Evaluation](https://www.scitepress.org/Papers/2023/121431/121431.pdf). DOI: 10.5220/0012143100003538. In: Proceedings of the 18th International Conference on Software Technologies (ICSOFT 2023), pages 668-679.
 - Moniky	Ribeiro,	Jaelson	Castro, Ricardo	Argenton,	Maria	Lencastre,	Abimael	Santos,	Oscar	Pastor. [Integrating Goal Oriented	Requirements	Modeling	and	Safety	Analysis	with	RESafety](https://ceur-ws.org/Vol-3533/iStar23_paper_7.pdf). In: The 16th International iStar Workshop, September 03–04, 2023, Hannover, Germany.
 - Cyrine Ben Ayed, Sonora Halili, Yanning Tan, Alicia M. Grubb. [Toward Internationalization and Accessibility of Color-based Goal Model Interpretation](https://ceur-ws.org/Vol-3533/iStar23_paper_6.pdf). In: The 16th International iStar Workshop, September 03–04, 2023, Hannover, Germany.
