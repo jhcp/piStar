@@ -12,8 +12,10 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 *Is your work missing here? Add a pull request*
 
+
 #### 2023
 
+- Carlos Joel Tavares da Silva, Célia Ghedini Ralha. [Multi-Robot System Architecture Focusing on Plan Recovery for Dynamic Environments](https://ieeexplore.ieee.org/abstract/document/10371972). In: 2023 IEEE Symposium Series on Computational Intelligence (SSCI), Mexico City, Mexico, 2023, pp. 1668-1673, doi: 10.1109/SSCI52147.2023.10371972.
 - Inmaculada Ayala, Mercedes Amor, Lidia Fuentes. [Analysing Requirements Specification Languages for Self-adaptive AAL Systems](https://link.springer.com/chapter/10.1007/978-3-031-48642-5_14). In: Proceedings of the 15th International Conference on Ubiquitous Computing & Ambient Intelligence (UCAmI 2023). UCAmI 2023. https://doi.org/10.1007/978-3-031-48642-5_14
 - Lokanna Kadakolmath, Umesh D. Ramu. [IStar Goal Model to Z Formal Model Translation and Model Checking of CBTC Moving Block Interlocking System](https://dl.acm.org/doi/10.1145/3633065). In: Formal Aspects of Computing, November 2023. https://doi.org/10.1145/3633065
 - Sotirios Liaskos. [Tool support for modeling and reasoning with decision theoretic goal models](https://er2023.inesc-id.pt/wp-content/uploads/pd_paper_2678.pdf). In: ER2023: Companion Proceedings of the 42nd International Conference on Conceptual Modeling: ER Forum, 7th SCME, Project Exhibitions, Posters and Demos, and Doctoral Consortium, November 06-09, 2023, Lisbon, Portugal.
