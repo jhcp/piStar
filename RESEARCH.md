@@ -13,6 +13,7 @@ If you somehow used the piStar tool on your academic work, please reference one 
 *Is your work missing here? Add a pull request*
 
 #### 2024
+- Małgorzata Pańkowska. [Goal-Oriented Metropolis Ecosystem Development](https://www.hippocampus.si/ISSN/1854-6935/22.5-26.pdf). In: Managing Global Transitions 22 (1): 5–26. 
 - Maria Lencastre, Daniel Silva, João Henrique C. Pimentel, Jaelson Brelaz Castro. [PRIUS: Applying Gamification to User Stories Prioritization](https://dl.acm.org/doi/abs/10.1145/3642964.3642967). In: ACM SIGAPP Applied Computing ReviewVolume 23Issue 4pp 27–44https://doi.org/10.1145/3642964.3642967
 
 
