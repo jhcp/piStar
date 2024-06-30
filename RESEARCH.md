@@ -13,6 +13,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 *Is your work missing here? Add a pull request*
 
 #### 2024
+
+- Renata Guizzardi, Glenda Amaral, Giancarlo Guizzardi, and John Mylopoulos. [Using i* to Analyze Ethicality Requirements](https://www.researchgate.net/profile/Giancarlo-Guizzardi-2/publication/381577268_Using_i_to_Analyze_Ethicality_Requirements/links/66749f97d21e220d89c408b1/Using-i-to-Analyze-Ethicality-Requirements.pdf). 2024.
 - Małgorzata Pańkowska. [Goal-Oriented Metropolis Ecosystem Development](https://www.hippocampus.si/ISSN/1854-6935/22.5-26.pdf). In: Managing Global Transitions 22 (1): 5–26. 
 - Maria Lencastre, Daniel Silva, João Henrique C. Pimentel, Jaelson Brelaz Castro. [PRIUS: Applying Gamification to User Stories Prioritization](https://dl.acm.org/doi/abs/10.1145/3642964.3642967). In: ACM SIGAPP Applied Computing ReviewVolume 23Issue 4pp 27–44https://doi.org/10.1145/3642964.3642967
 
