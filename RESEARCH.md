@@ -14,6 +14,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2024
 
+- Carlos Joel Tavares da Silva. [A multi-robot system architecture with multi-agent planning](http://repositorio2.unb.br/jspui/handle/10482/49790). MSc dissertation, Universidade de Brasília (UNB), 2024.
+- Konstantinos Tsilionis, Miltiadis Geropoulos, and Yves Wautelet. [On the Complementarity between CMMN and iStar in Complex Domain Modeling](https://csimq-journals.rtu.lv/article/view/csimq.2024-39.01). In: Complex Systems Informatics and Modeling Quarterly (CSIMQ), eISSN: 2255-9922, Article 212, Issue 39, June/July 2024, Pages 1–25. https://doi.org/10.7250/csimq.2024-39.01
 - Ewout van der Wal. [Preference-based multi-objective optimization: a comparative case study in the Dutch steel manufacturing industry](https://essay.utwente.nl/101555/1/van%20der%20Wal_MA_EEMCS.pdf). MSc Business Information Technology, 2024.
 - Renata Guizzardi, Glenda Amaral, Giancarlo Guizzardi, and John Mylopoulos. [Using i* to Analyze Ethicality Requirements](https://www.researchgate.net/profile/Giancarlo-Guizzardi-2/publication/381577268_Using_i_to_Analyze_Ethicality_Requirements/links/66749f97d21e220d89c408b1/Using-i-to-Analyze-Ethicality-Requirements.pdf). 2024.
 - Irina Rychkova, Eddy Kiomba Kambilo, Nicolas Herbaut, Oscar Pastor, Rene Noel, Carine Souveyet. [Technology-Aware Enterprise Modeling: Challenging the Model-Driven Architecture Paradigm](https://link.springer.com/chapter/10.1007/978-3-031-61007-3_28). In:  Enterprise, Business-Process and Information Systems Modeling. BPMDS EMMSAD 2024 2024. Lecture Notes in Business Information Processing, vol 511. Springer, Cham. https://doi.org/10.1007/978-3-031-61007-3_28 , 2024.
