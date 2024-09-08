@@ -14,6 +14,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2024
 
+- Jialiang Wei, Anne-Lise Courbis, Thomas Lambolais, Binbin Xu, Pierre Louis Bernard, Gérard Dray, Walid Maalej. [Getting Inspiration for Feature Elicitation: App Store vs. LLM-based Approach](https://arxiv.org/pdf/2408.17404). 39th IEEE/ACM International Conference
+Automated Software Engineering 2024????
 - Carlos Joel Tavares da Silva. [A multi-robot system architecture with multi-agent planning](http://repositorio2.unb.br/jspui/handle/10482/49790). MSc dissertation, Universidade de Brasília (UNB), 2024.
 - Konstantinos Tsilionis, Miltiadis Geropoulos, and Yves Wautelet. [On the Complementarity between CMMN and iStar in Complex Domain Modeling](https://csimq-journals.rtu.lv/article/view/csimq.2024-39.01). In: Complex Systems Informatics and Modeling Quarterly (CSIMQ), eISSN: 2255-9922, Article 212, Issue 39, June/July 2024, Pages 1–25. https://doi.org/10.7250/csimq.2024-39.01
 - Ewout van der Wal. [Preference-based multi-objective optimization: a comparative case study in the Dutch steel manufacturing industry](https://essay.utwente.nl/101555/1/van%20der%20Wal_MA_EEMCS.pdf). MSc Business Information Technology, 2024.
