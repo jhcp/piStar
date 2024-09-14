@@ -14,6 +14,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2024
 
+- Christophe Ponsard & Robert Darimont . [Improving Requirements in Model-Based Systems Engineering Through Multi-layer Goal Models](https://link.springer.com/chapter/10.1007/978-3-031-66339-0_8). In:  Model-Driven Engineering and Software Development. MODELSWARD 2023. Communications in Computer and Information Science, vol 2106. Springer,  Cham., pp. pp 158–178, 2024. https://doi.org/10.1007/978-3-031-66339-0_8
+- Carlos Cano Genovés. [Análisis de modelos de objetivos basado en valor mediante lógica difusa y toma de decisiones multicriterio](https://riunet.upv.es/bitstream/handle/10251/207550/Cano%20-%20Analisis%20de%20modelos%20de%20objetivos%20basado%20en%20valor%20mediante%20logica%20difusa%20y%20toma%20de%20decision....pdf?sequence=4). PhD thesis  (in Spanish), Universitat Politècnica de València, 2024.
 - Jialiang Wei, Anne-Lise Courbis, Thomas Lambolais, Binbin Xu, Pierre Louis Bernard, Gérard Dray, Walid Maalej. [Getting Inspiration for Feature Elicitation: App Store vs. LLM-based Approach](https://arxiv.org/pdf/2408.17404). 39th IEEE/ACM International Conference
 Automated Software Engineering 2024????
 - Carlos Joel Tavares da Silva. [A multi-robot system architecture with multi-agent planning](http://repositorio2.unb.br/jspui/handle/10482/49790). MSc dissertation, Universidade de Brasília (UNB), 2024.
