@@ -12,6 +12,12 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 *Is your work missing here? Add a pull request*
 
+
+#### 2025
+
+- Sekai Ariji. [Assessing and Prioritizing the Requirements of a Digital Twin for the Port of Twente](https://essay.utwente.nl/105117/1/Ariji_BA_TCS.pdf). In: TScIT 42, January 20, 2025, Enschede, The Netherlands, 2025
+
+
 #### 2024
 
 - Anna Perini, Angelo Susi. [i* or Not i*, This Was the Question](https://link.springer.com/chapter/10.1007/978-3-031-72107-6_1). In: Social Modeling Using the i* Framework. Springer, Cham. https://doi.org/10.1007/978-3-031-72107-6_1 , 2024.
