@@ -20,6 +20,7 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2024
 
+- Yoshitake Hirabayashi, Motoshi Saeki. [Towards Automatic Generation of iStar Models Using ChatGPT](https://ceur-ws.org/Vol-3936/iStar24_paper_3.pdf). In: Proceedings of the 17th International iStar Workshop (iStar 2024), October 2024.
 - Anna Perini, Angelo Susi. [i* or Not i*, This Was the Question](https://link.springer.com/chapter/10.1007/978-3-031-72107-6_1). In: Social Modeling Using the i* Framework. Springer, Cham. https://doi.org/10.1007/978-3-031-72107-6_1 , 2024.
 - Fabiano Dalpiaz, Xavier Franch, Jennifer Horkoff. [Definition and Use of iStar 2.0](https://link.springer.com/chapter/10.1007/978-3-031-72107-6_5). In: Social Modeling Using the i* Framework. Springer, Cham. https://doi.org/10.1007/978-3-031-72107-6_5 , 2024.
 - Renata Guizzardi, Glenda Amaral, Giancarlo Guizzardi, John Mylopoulos . [Using i* to Analyze Ethicality Requirements Following Ontology-Based Requirements Engineering](https://link.springer.com/chapter/10.1007/978-3-031-72107-6_12). In: Social Modeling Using the i* Framework. Springer, Cham. https://doi.org/10.1007/978-3-031-72107-6_12 , 2024.
