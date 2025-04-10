@@ -413,7 +413,7 @@ istar.fileManager = function() {
             }
 
             function addLoadedElement (element, display) {
-                if (element.id && element.type && element.x && element.y) {
+                if (element.id && element.type && typeof element.x === 'number' && typeof element.y === 'number' ) {
                     element.text = element.text || '';
                     var type = element.type.split('.')[1];
                     if (istar['add' + type]) {
