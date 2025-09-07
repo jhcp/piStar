@@ -15,8 +15,9 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2025
 
+- Karenna Kung, Alicia M. Grubb. [An Assistive Approach for Learning Goal Modeling](https://www.modre2026.ece.mcgill.ca/proceedings/MoDRE2025_4.pdf). In: 15th Model-Driven Requirements Engineering Workshop, Spain, September 2025.
+- Feifei Niu, Chuany Li, Haosheng Zuo, Jionghan Wu, Xin Xia. [Feature Request Analysis and Processing: Tasks, Techniques, and Trends](https://arxiv.org/abs/2508.12436v1).In: arXiv, first submitted on August 2025. arXiv:2508.12436
 - Sekai Ariji. [Assessing and Prioritizing the Requirements of a Digital Twin for the Port of Twente](https://essay.utwente.nl/105117/1/Ariji_BA_TCS.pdf). In: TScIT 42, January 20, 2025, Enschede, The Netherlands, 2025
-- Feifei Niu, Chuany Li, Haosheng Zuo, Jionghan Wu, Xin Xia. [Feature Request Analysis and Processing: Tasks, Techniques, and Trends](https://arxiv.org/abs/2508.12436v1).In: arXiv, first submitted on August 2025. arXiv:2508.12436 
 
 
 #### 2024
