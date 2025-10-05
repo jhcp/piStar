@@ -15,6 +15,9 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2025
 
+- Juliana Gomes Ribeiro, Joel Machado Pires, Jonas Oliveira Pereira, Frederico Araujo Durão, Celia Ghedini Ralha. [Software Development Using a Multi-agent Approach](https://sol.sbc.org.br/index.php/wesaac/article/download/37549/37331). In: 19th Workshop-School on Agents, Environments, and Applications – WESAAC 2025, 2025.
+- Guilherme Santos Rodrigues. [KAOS4EXT: uma ferramenta para apoio à modelagem de KAOS e suas extensões](https://repositorio.ufc.br/bitstream/riufc/82819/1/2025_tcc_gsrodrigues.pdf).  B.Sc thesis (in Portuguese), Universidade Federal do Ceará, 2025.
+- Roberto de Cerqueira Figueiredo, Julio Cesar Sampaio do Prado Leite, Celia Ghedini Ralha, Rita Suzana Pitangueira Maciel, Daniela Barreiro Claro. [Supporting Pragmatic Interoperability: An LLM Based Process to Analyze Distributed Intentionality (i*) Models](https://www.modre.ece.mcgill.ca/proceedings/MoDRE2025_3.pdf). In: 15th Model-Driven Requirements Engineering Workshop, Spain, September 2025.
 - Karenna Kung, Alicia M. Grubb. [An Assistive Approach for Learning Goal Modeling](https://www.modre2026.ece.mcgill.ca/proceedings/MoDRE2025_4.pdf). In: 15th Model-Driven Requirements Engineering Workshop, Spain, September 2025.
 - Feifei Niu, Chuany Li, Haosheng Zuo, Jionghan Wu, Xin Xia. [Feature Request Analysis and Processing: Tasks, Techniques, and Trends](https://arxiv.org/abs/2508.12436v1).In: arXiv, first submitted on August 2025. arXiv:2508.12436
 - Sekai Ariji. [Assessing and Prioritizing the Requirements of a Digital Twin for the Port of Twente](https://essay.utwente.nl/105117/1/Ariji_BA_TCS.pdf). In: TScIT 42, January 20, 2025, Enschede, The Netherlands, 2025
