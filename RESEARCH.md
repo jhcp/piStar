@@ -12,7 +12,10 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 *Is your work missing here? Add a pull request*
 
+#### 2026
 
+- Tong Li, Qixiang Zhou, Fangqi Dong, Tianai Zhang & Yunduo Wang. [An interactive and AI-enhanced framework for semi-automatically generating iStar goal models](https://link.springer.com/article/10.1007/s10515-025-00586-6). In: Automated Software Engineering 33, 41 (2026). https://doi.org/10.1007/s10515-025-00586-6
+  
 #### 2025
 
 - Juliana Gomes Ribeiro, Joel Machado Pires, Jonas Oliveira Pereira, Frederico Araujo Durão, Celia Ghedini Ralha. [Software Development Using a Multi-agent Approach](https://sol.sbc.org.br/index.php/wesaac/article/download/37549/37331). In: 19th Workshop-School on Agents, Environments, and Applications – WESAAC 2025, 2025.
