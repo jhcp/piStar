@@ -14,8 +14,11 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2026
 
+- Sotirios Liaskos, Nina Dang, Shakil M. Khan, John Mylopoulos, Reza Golipour, Amirreza Radjou. [Designing and generating reinforcement learning training simulators using goal models](https://www.sciencedirect.com/science/article/pii/S0169023X26000509). In: Data & Knowledge Engineering, 2026, 102603, ISSN 0169-023X,
+https://doi.org/10.1016/j.datak.2026.102603.
+
 - Yasin, A., Fatima, R., Puspitasari, I. et al. [From Prey to Protect: Exploring Social Engineering Through Games and Simulation. Trust, Awareness, and Phishing Defense](https://doi.org/10.1007/s10207-025-01193-y). In: Int. J. Inf. Secur. 25, 32 (2026). https://doi.org/10.1007/s10207-025-01193-y
-- 
+
 - Déborah Santos de Sousa, Célia Ghedini Ralha, Conceição de Maria Albuquerque Alves. [Advancing participatory decision support system in water management: An agent-based model for socially-informed collective allocation](https://www.sciencedirect.com/science/article/abs/pii/S1364815226000502). In: Environmental Modelling & Software, Volume 198, 2026, 106903, ISSN 1364-8152, https://doi.org/10.1016/j.envsoft.2026.106903.
   
 - Tong Li, Qixiang Zhou, Fangqi Dong, Tianai Zhang & Yunduo Wang. [An interactive and AI-enhanced framework for semi-automatically generating iStar goal models](https://link.springer.com/article/10.1007/s10515-025-00586-6). In: Automated Software Engineering 33, 41 (2026). https://doi.org/10.1007/s10515-025-00586-6
