@@ -14,6 +14,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2026
 
+- Jefferson Rodrigo Speck, Sidgley Camargo de Andrade, Victor Francisco Araya Santander, Fabiane Sorba. [The use of the iStar Framework for modeling tax compliance programs](https://sol.sbc.org.br/index.php/cibse/article/view/42434). In: CONGRESSO IBERO-AMERICANO EM ENGENHARIA DE SOFTWARE (CIBSE), 29. , 2026, Recife/PE. 
+
 - Sotirios Liaskos, Nina Dang, Shakil M. Khan, John Mylopoulos, Reza Golipour, Amirreza Radjou. [Designing and generating reinforcement learning training simulators using goal models](https://www.sciencedirect.com/science/article/pii/S0169023X26000509). In: Data & Knowledge Engineering, 2026, 102603, ISSN 0169-023X,
 https://doi.org/10.1016/j.datak.2026.102603.
 
@@ -289,7 +291,7 @@ Bangalore, India, August 16-18, 2021.
 - LEJEUNE, Albert. From gamestorming to mobile learning: a conceptual framework and a gaming proposition to explore the design of flourishing business models. Doctorate thesis, Université du Québec à Montréal, Canada, 2017. [https://core.ac.uk/download/pdf/84299644.pdf]
 
 - RUIZ, Marcela; AYDEMIR, Fatma Başak; DALPIAZ, Fabiano. Using Conceptual Models in Research Methods Courses: An experience using iStar 2.0. 2017.
-[http://ceur-ws.org/Vol-1954/istarT_2017_paper_2.pdf]
+[http://ceur-ws.org/Vol-1954/istarT_2017_paper_2.pdf]. In: Proceedings of the 5th Symposium on Conceptual Modeling Education and the 2nd International iStar Teaching Workshop co-located with the 36th International Conference on Conceptual Modeling (ER 2017), Valencia, Spain, November 6-9, 2017
 
 #### 2016
 
