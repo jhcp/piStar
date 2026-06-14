@@ -14,6 +14,8 @@ If you somehow used the piStar tool on your academic work, please reference one 
 
 #### 2026
 
+- Touseef Tahir, Maham Shoaib, Mohammad Noman, Shakeel Ahmad, Shahan Ahmad Chowdhury, Mohammad Ahmad. [Automating Goal-Oriented Modeling with NLP: Extracting Actors, Roles, and Dependencies from Functional Requirements](https://ieeexplore.ieee.org/abstract/document/11543796). In: 2026 2nd International Conference on Computational Intelligence Approaches and Applications (ICCIAA), Amman, Jordan, 2026, pp. 1-6, doi: 10.1109/ICCIAA68481.2026.11543796.
+- 
 - Jefferson Rodrigo Speck, Sidgley Camargo de Andrade, Victor Francisco Araya Santander, Fabiane Sorba. [The use of the iStar Framework for modeling tax compliance programs](https://sol.sbc.org.br/index.php/cibse/article/view/42434). In: CONGRESSO IBERO-AMERICANO EM ENGENHARIA DE SOFTWARE (CIBSE), 29. , 2026, Recife/PE. 
 
 - Sotirios Liaskos, Nina Dang, Shakil M. Khan, John Mylopoulos, Reza Golipour, Amirreza Radjou. [Designing and generating reinforcement learning training simulators using goal models](https://www.sciencedirect.com/science/article/pii/S0169023X26000509). In: Data & Knowledge Engineering, 2026, 102603, ISSN 0169-023X,
